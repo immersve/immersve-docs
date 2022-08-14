@@ -13,7 +13,7 @@ User funding/login wallet (must be a USDC polygon wallet)
 
 ```mermaid
 sequenceDiagram
-		autonumber
+	autonumber
     actor C as Customer
     participant M as Metamask
     participant I as Immersve
