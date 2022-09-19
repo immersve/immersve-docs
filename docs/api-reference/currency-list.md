@@ -18,12 +18,7 @@ The APIs provide the list of currencies available for conversion.
 
 ### Models
 
-**Currency**
-
-| Field             | Type   | Description                                                                     |
-|-------------------|--------|---------------------------------------------------------------------------------|
-| symbol            | String | The Alpha code for the currency.                                                |
-| label             | String | The full name of the currency.                                                  |
+[**Currency**](../models/currency-model)
 
 ### Operations
 
@@ -35,6 +30,12 @@ The APIs provide the list of currencies available for conversion.
 curl https://api.immersve.com/api/currencies \
 	-H "Authorization: Bearer $IMMERSVE_JWT_TOKEN"
 ```
+**RESPONSE**:
+
+> **Schema**:
+>
+> Array<[**Currency**](../models/currency-model)>
+
 
 **EXAMPLE RESPONSE PAYLOAD**:
 

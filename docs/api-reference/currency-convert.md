@@ -24,22 +24,12 @@ does not support USD currency
 
 ### Models
 
-**Conversion**
-
-| Field             | Type   | Description                                                                     |
-|-------------------|--------|---------------------------------------------------------------------------------|
-| currency          | String | The currency to convert from                                                    |
-| targetCurrency    | String | The target currency for the conversion                                          |
-| convertedCurrency | String | The currency converted to                                                       |
-| amount            | Number | The amount of `currency` to convert to destination currency                     |
-| convertedAmount   | Number | The resulting amount of the conversion from `currency` into `convertedCurrency` |
-| rate              | Number | The conversion rate from `currency` to `convertedCurrency`                      |
-
+[**Currency Conversion**](../models/currency-conversion-model) 
 ### Operations
 
 1. Convert a source currency to a target currency using Mastercard rates
 
-**GET** */api/currency/convert*?**currency={sourceCurrency}**&**targetCurrency={targetCurrency}**&**amount={amountToConvert}**
+**GET** */api/currency/convert*?***currency={sourceCurrency}&targetCurrency={targetCurrency}&amount={amountToConvert}&fee={extraFee}***
 
 
 ```console
@@ -47,20 +37,20 @@ curl https://api.immersve.com/api/currency/convert?currency=NZD&targetCurrency=U
 	-H "Authorization: Bearer $IMMERSVE_JWT_TOKEN"
 ```
 
-**REQUIRED FIELDS**:
+**PARAMETERS**:
 
-| Field          | Type   | Description                                                                     |
-|----------------|--------|---------------------------------------------------------------------------------|
-| currency       | String | The currency to convert from                                                    |
-| amount         | Number | The amount of `currency` to convert to destination currency                     |
+| Field          | Type   | Required | Description                                                           |
+|----------------|--------|:--------:|-----------------------------------------------------------------------|
+| currency       | String | X		 | The currency alpha code to convert from                               |
+| amount         | Number | X		 | The amount of `currency` to convert to destination currency           |
+| targetCurrency | String | 		 | The target currency alpha code for the conversion. Defaults to `USD`	 |
+| fee            | Number | 		 | Optional fee added on top of the conversion. Defaults to `0`          |
 
+**RESPONSE**:
 
-**OPTIONAL FIELDS**:
-
-| Field          | Type   | Description                                                                     |
-|----------------|--------|---------------------------------------------------------------------------------|
-| targetCurrency | String | The target currency for the conversion. Defaults to `USD`						|
-| fee            | Number | Optional fee added on top of the conversion.                      				|
+> **Schema**:
+>
+> [**Currency Conversion**](../models/currency-conversion-model) 
 
 **EXAMPLE RESPONSE PAYLOAD**:
 
