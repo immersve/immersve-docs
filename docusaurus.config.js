@@ -56,13 +56,7 @@ async function createConfig() {
             alt: 'Immersve Logo',
             src: 'img/logo-small.svg',
           },
-          items: [
-            {
-              href: 'https://github.com/immersve/immersve-docs',
-              label: 'GitHub',
-              position: 'right',
-            },
-          ],
+          items: [],
         },
         footer: {
           style: 'dark',
