@@ -1,18 +1,13 @@
 ---
-sidebar_position: 2
-id: currency-convert
-title: Currency Convert
+sidebar_position: 4
+id: transaction-clearing
+title: Transaction Clearing
 tags:
-  - symbol
-  - currency
-  - fiat
-  - conversion
-  - convert
-  - settlement
-  - usd
-  - usdc
-  - rate
-  - fx
+  - transaction
+  - real-time
+  - funding
+  - clearing
+  - webhook
 ---
 
 # Currency Convert
@@ -24,7 +19,7 @@ does not support USD currency
 
 ### Models
 
-[**Currency Conversion**](../models/currency-conversion-model)
+[**Currency Conversion**](../models/transaction-clearing-response-model)
 
 ### Operations
 

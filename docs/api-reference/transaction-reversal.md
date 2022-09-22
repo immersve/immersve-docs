@@ -1,18 +1,13 @@
 ---
-sidebar_position: 2
-id: currency-convert
-title: Currency Convert
+sidebar_position: 5
+id: transaction-reversal
+title: Transaction Reversal
 tags:
-  - symbol
-  - currency
-  - fiat
-  - conversion
-  - convert
-  - settlement
-  - usd
-  - usdc
-  - rate
-  - fx
+  - transaction
+  - real-time
+  - funding
+  - reversal
+  - webhook
 ---
 
 # Currency Convert
