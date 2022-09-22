@@ -9,7 +9,7 @@ tags:
 
 # Authentication
 
-API calls can be authenticated by providing a user access token in the “Authorization” header. Immersve uses EIP-4361 for the sign-in process. The following sections describe the process in detail
+API calls can be authenticated by providing a user access token in the “Authorization” header. Immersve uses [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) for the sign-in process. The following sections describe the process in detail
 
 ### Login Flow
 
