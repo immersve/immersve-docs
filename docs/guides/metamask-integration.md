@@ -16,7 +16,7 @@ User funding/login wallet (must be a USDC polygon wallet)
 
 ### Login Flow
 
-See [authentication guide](../api-reference/authentication.md)
+See [authentication guide](./authentication.md)
 
 ### Payment Flow
 

@@ -24,7 +24,7 @@ does not support USD currency
 
 ### Models
 
-[**Currency Conversion**](../models/currency-conversion-model) 
+[**Currency Conversion**](../../models/currency-conversion-model) 
 ### Operations
 
 1. Convert a source currency to a target currency using Mastercard rates
@@ -50,7 +50,7 @@ curl https://api.immersve.com/api/currency/convert?currency=NZD&targetCurrency=U
 
 > **Schema**:
 >
-> [**Currency Conversion**](../models/currency-conversion-model) 
+> [**Currency Conversion**](../../models/currency-conversion-model) 
 
 **EXAMPLE RESPONSE PAYLOAD**:
 

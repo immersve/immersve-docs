@@ -1,7 +1,7 @@
 ---
-sidebar_position: 2
 id: currency-conversion-model
 title: CurrencyConversion
+hide_table_of_contents: true
 tags:
   - currency
   - conversion
