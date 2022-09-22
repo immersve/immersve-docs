@@ -30,12 +30,12 @@ sequenceDiagram
 1. [Request EIP-4361 challenge](../api-reference/authentication/generate-challenge). The response is a EIP-4361 message to be signed by the wallet in plain text, for example:
 
     ```
-    app.sb1.lol wants you to sign in with your Ethereum account:
+    app.immersve.com wants you to sign in with your Ethereum account:
     0xA3058369d6A481B1ff08F62B352409c3D709De9b
 
     Sign in with Ethereum to the app. This request will not trigger a blockchain transaction or cost any gas fees.
 
-    URI: https://app.sb1.lol
+    URI: https://app.immersve.com
     Version: 1
     Chain ID: 1
     Nonce: 2hFm7TDbZmerUgnrJ

@@ -16,7 +16,7 @@ Generating the challenge is the first step in the process of getting the authent
 
 
 ```shell
-curl --location --request POST 'https://api.immersve.com/siwe/generateChallenge' \
+curl --location --request POST 'https://app.immersve.com/siwe/generateChallenge' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "walletAddress": "123",
@@ -33,12 +33,12 @@ Plain text in EIP-4361 format
 **EXAMPLE RESPONSE PAYLOAD**:
 
 ```
-app.sb1.lol wants you to sign in with your Ethereum account:
+app.immersve.com wants you to sign in with your Ethereum account:
 0xA3058369d6A481B1ff08F62B352409c3D709De9b
 
 Sign in with Ethereum to the app. This request will not trigger a blockchain transaction or cost any gas fees.
 
-URI: https://app.sb1.lol
+URI: https://app.immersve.com
 Version: 1
 Chain ID: 1
 Nonce: 2hFm7TDbZmerUgnrJ
