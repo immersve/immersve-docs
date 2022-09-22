@@ -27,19 +27,7 @@ sequenceDiagram
 	  note over C: JWT Token will be used for the following requests to Immersve API
 ```
 
-1. Request EIP-4361 challenge
-    **POST /siwe/generateChallenge**
-    
-    Request:
-    
-    ```json
-    {
-      "walletAddress": "123",
-      "chainId": "123"
-    }
-    ```
-    
-    Response is a EIP-4361 message to be signed by the wallet in plain text:
+1. [Request EIP-4361 challenge](../api-reference/authentication/generate-challenge). The response is a EIP-4361 message to be signed by the wallet in plain text, for example:
 
     ```
     app.sb1.lol wants you to sign in with your Ethereum account:
@@ -55,22 +43,5 @@ sequenceDiagram
     ```
     
 2. Invoke the wallet's signing capability to get a signature for the challenge message. This part's implementation is specific to the wallet used, but it is fair to say that this abstract function is available in all wallets.
-3. Submit the signed challenge with its signature to Immersve:
-    
-    **POST /api/siwe/login**
-    
-    Request:
-    
-    ```json
-    {
-    	"message": "app.sb1.lol wants you to sign in with your Ethereum account:\n0xA3058369d6A481B1ff08F62B352409c3D709De9b\n\nSign in with Ethereum to the app. This request will not trigger a blockchain transaction or cost any gas fees.\n\nURI: https://app.sb1.lol\nVersion: 1\nChain ID: 1\nNonce: 2hFm7TDbZmerUgnrJ\nIssued At: 2022-08-11T22:29:48.244Z",
-    	"signature": "0xbf..."
-    }
-    ```
-    
-    Response:
-    ```json
-    {
-    	"token": string //JWT token>
-    }
-4. The token is both access token and identity token and should be used for consequent requests to protected resources.
+3. [Submit the signed challenge with its signature](../api-reference/authentication/login) to get the authentication token
+4. The received token should be used for consequent requests to protected resources in the `Authorization` header
