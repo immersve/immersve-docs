@@ -1,64 +1,22 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 # MetaMask Integration
 
-### Notes
+Metamask integration walk-through
+
+:::note
 
 User funding/login wallet (must be a USDC polygon wallet)
 
-# User Flows
+:::
+
+
+## User Flows
 
 ### Login Flow
 
-```mermaid
-sequenceDiagram
-	autonumber
-    actor C as Customer
-    participant M as Metamask
-    participant I as Immersve
-		C->>M: Initiate login
-    M->>+I: Get nonce
-    I-->>-M: Randomly generated nonce
-    M->>C: Request approval to sign an EIP-4361 message with nonce
-    C-->>M: Approve Sign Request
-    M->>+I: Send signed EIP-4361 message
-    I-->>-M: Return JWT Token
-	  note over M: JWT Token will be used for the following requests to Immersve API
-```
-
-1. Request a nonce
-    
-    **GET /api/siwe/nonce**
-    
-    will return a random nonce value as a plain text that will also be stored in the session
-    
-2. Create [SIWE message](https://docs.login.xyz/sign-in-with-ethereum/quickstart-guide/creating-siwe-messages) using the nonce
-3. Submit a signed challenge with the wallet information
-    
-    **POST /api/siwe/login**
-    
-    Request:
-    
-    ```json
-    {
-    	"message": "app.sb1.lol wants you to sign in with your Ethereum account:\n0xA3058369d6A481B1ff08F62B352409c3D709De9b\n\nSign in with Ethereum to the app. This request will not trigger a blockchain transaction or cost any gas fees.\n\nURI: https://app.sb1.lol\nVersion: 1\nChain ID: 1\nNonce: 2hFm7TDbZmerUgnrJ\nIssued At: 2022-08-11T22:29:48.244Z",
-    	"signature": "0xbf..."
-    }
-    ```
-    
-    Response:
-    
-    ```json
-    {
-    	"user": {
-    		"id": string, // user id in Immersve
-    		"walletAddress": string
-    	},
-    	"token": string //JWT token>
-    }
-    ```
-    
+See [authentication guide](../api-reference/authentication.md)
 
 ### Payment Flow
 
@@ -99,16 +57,6 @@ sequenceDiagram
     I-->>M: Secure Card Details
     M-->>C: Present Card Details
 ```
-
-## Authentication
-
-1. To call Immersve API
-    1. Authenticate user web3 wallet against Immersve dApp with a sign challenge
-    
-    After the challenge is signed, the client will receive a JWT token signed by Immersve. This token will represent the user credentials on Immesrve backend
-    
-    1. To fetch card details
-    2. A token will be issued to MetaMask to call card details API
 
 ## Generating Card
 
