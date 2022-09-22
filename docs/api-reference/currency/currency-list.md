@@ -18,7 +18,7 @@ The APIs provide the list of currencies available for conversion.
 
 ### Models
 
-[**Currency**](../models/currency-model)
+[**Currency**](../../models/currency-model)
 
 ### Operations
 
@@ -34,7 +34,7 @@ curl https://api.immersve.com/api/currencies \
 
 > **Schema**:
 >
-> Array<[**Currency**](../models/currency-model)>
+> Array<[**Currency**](../../models/currency-model)>
 
 
 **EXAMPLE RESPONSE PAYLOAD**:

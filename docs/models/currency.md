@@ -1,7 +1,7 @@
 ---
-sidebar_position: 1
 id: currency-model
 title: Currency
+hide_table_of_contents: true
 tags:
   - currency
   - symbol
