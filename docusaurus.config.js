@@ -14,13 +14,13 @@ async function createConfig() {
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
-  
+
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
     organizationName: 'immersve', // Usually your GitHub org/user name.
     projectName: 'immersve-docs', // Usually your repo name.
     trailingSlash: false,
-  
+
     // Even if you don't use internalization, you can use this field to set useful
     // metadata like html lang. For example, if your site is Chinese, you may want
     // to replace "en" with "zh-Hans".
@@ -28,7 +28,7 @@ async function createConfig() {
       defaultLocale: 'en',
       locales: ['en'],
     },
-  
+
     presets: [
       [
         'classic',
@@ -46,7 +46,7 @@ async function createConfig() {
         }),
       ],
     ],
-  
+
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
@@ -68,12 +68,15 @@ async function createConfig() {
           darkTheme: darkCodeTheme,
         },
       }),
-  
-      plugins: [
-        [require.resolve('docusaurus-lunr-search'), {
-          indexBaseUrl: true
-        }]
+
+    plugins: [
+      [
+        require.resolve('docusaurus-lunr-search'),
+        {
+          indexBaseUrl: true,
+        },
       ],
+    ],
   };
 }
 
