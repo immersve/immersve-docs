@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkimmersve_docs=self.webpackChunkimmersve_docs||[]).push([[6842],{7076:e=>{e.exports=JSON.parse('{"title":"API Reference","slug":"/category/api-reference","permalink":"/category/api-reference","navigation":{"previous":{"title":"Card","permalink":"/guides/card"},"next":{"title":"Currency","permalink":"/category/currency"}}}')}}]);

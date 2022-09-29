@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkimmersve_docs=self.webpackChunkimmersve_docs||[]).push([[549],{5461:e=>{e.exports=JSON.parse('{"label":"token","permalink":"/tags/token","allTagsPath":"/tags","count":1,"items":[{"id":"models/token-model","title":"Token","description":"Model","permalink":"/models/token-model"}]}')}}]);

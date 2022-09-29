@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkimmersve_docs=self.webpackChunkimmersve_docs||[]).push([[6217],{6826:e=>{e.exports=JSON.parse('{"title":"Card","slug":"/category/card","permalink":"/category/card","navigation":{"previous":{"title":"Login","permalink":"/api-reference/authentication/login"},"next":{"title":"Order a card","permalink":"/api-reference/card/order-card"}}}')}}]);
