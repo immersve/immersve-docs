@@ -84,7 +84,11 @@ to the Smart Contract public address
 ### `depositTo`(uint256 usdcAmount, address sender) external whenNotPaused nonReentrant
 
 > Consumers can deposit USDC funds for a specific address into the Smart Contract using this function. The funds can either be `locked` or `withdrawn` by the consumer later. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
-There is a pre-requisite for this function to work. Because USDC is an ERC-20 token, the consumer needs to [`approve`](https://google.com) USDC funds to the target sender address for the Smart Contract public address
+```
+There is a pre-requisite for this function to work. Because USDC is an ERC-20 token, 
+the consumer needs to approve (https://polygonscan.com/token/0x2791bca1f2de4661ed88a30c99a7a9449aa84174#writeProxyContract#F1 USDC funds 
+to the target sender address for the Smart Contract public address
+```
 - `usdcAmount` (type `uin256`): USDC Amount to deposit in `ethers` format
 - `address` (type `address`): Deposit target address
 
@@ -174,7 +178,7 @@ If the funds are free to release, Immersve will sign a message with a nonce only
 
 
 
-# Immersve Card E-Commerce Payment Happy Path
+## Immersve Card E-Commerce Payment Happy Path
 
 - Card Holder locks USDC funds with Immersve Smart Contract
 - Card Holder receives a valid Credit Card to be used for E-Commerce transaction from Immersve
