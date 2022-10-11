@@ -33,7 +33,6 @@ curl 'https://app.immersve.com/siwe/login' \
 
 ```json
 {
-    "token": "...",
+    "token": "..."
 }
-
 ```

@@ -1,13 +1,10 @@
 ---
 sidebar_position: 5
-title: Required transactions
+title: Get prerequisite transactions
 tags:
   - card
 ---
-
-# Get required transactions
-
-This endpoint returns the required information to create web3 transactions needed to authorize the creation of a new Immersve Card. 
+This endpoint returns web3 transactions required to authorize the creation of a new Immersve Card. 
 
 It is also intended for integrating clients to check that everything is in place before making the actual web3 transactions. Among such things are KYC and AML checks. These are early checks before creating the card to prevent end-users unnecessarily paying for the gas fees of two transactions, should any of the checks fail.
 
@@ -23,9 +20,32 @@ The entire card creation flow:
 3. Make the required transactions
 4. Send card creation request passing the hash of the last trx from step 3
 
-## API Specification
+### Models
 
-POST **/api/card/get-required-transactions**
+[**Card**](../../models/card-model)
+
+### Operations
+
+1. Get prerequisite transactions for card order
+
+POST **/api/card/get-prerequisite-transactions**
+
+```shell
+curl --location --request POST 'https://api.sb1.lol/api/cards/get-prerequisite-transactions' \
+--header 'Authorization: Bearer $IMMERSVE_JWT_TOKEN' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "chainId": "1",
+    "amount": "300.123",
+    "token": "USDC"
+}'
+```
+
+**PAYLOAD**:
+[**PrerequisiteTransactionsRequest**](../../models/get-prerequisite-transactions-request)
+
+**RESPONSE**:
+[**PrerequisiteTransactionsResponse**](../../models/get-prerequisite-transactions-response)
 
 Body:
 
