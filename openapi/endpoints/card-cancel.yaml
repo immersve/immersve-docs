@@ -1,0 +1,19 @@
+post:
+  tags:
+    - card
+  summary: Cancel card
+  description: Cancel the card
+  parameters:
+    - name: cardId
+      in: path
+      description: ID of card to cancel
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "../models/card.yaml"

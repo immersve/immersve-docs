@@ -1,0 +1,27 @@
+post:
+  tags:
+    - authentication
+  summary: Login
+  description: |
+    The login endpoint returns the authentication token in exchange 
+    for the previously issued challenge signed with the users wallet
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../models/login-request.yaml'
+    required: true
+  responses:
+    "200":
+      description: successful login
+      content:
+        application/json:
+          schema:
+            $ref: "../models/login-response.yaml"
+    "400":
+      description: Login unsuccessful
+      content:
+        application/json:
+          example:
+            status: 400
+            message: "Invalid message."

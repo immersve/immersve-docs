@@ -1,0 +1,28 @@
+post:
+  tags:
+    - authentication
+  summary: Generate Challenge
+  description: |
+    Generating the challenge is the first step in the process of getting the authentication token
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../models/challenge-request.yaml'
+    required: true
+  responses:
+    "200":
+      description: Challenge to be signed in EIP-4361 format
+      content:
+        text/plain:
+          example: |
+            app.immersve.com wants you to sign in with your Ethereum account:
+            0xA3058369d6A481B1ff08F62B352409c3D709De9b
+
+            Sign in with Ethereum to the app. This request will not trigger a blockchain transaction or cost any gas fees.
+
+            URI: https://app.immersve.com
+            Version: 1
+            Chain ID: 1
+            Nonce: 2hFm7TDbZmerUgnrJ
+            Issued At: 2022-08-11T22:29:48.244Z
