@@ -1,0 +1,20 @@
+type: object
+properties:
+  currency:
+    type: string
+    description: The currency to convert from
+  targetCurrency:
+    type: string
+    description: The target currency for the conversion
+  convertedCurrency:
+    type: string
+    description: The currency converted to
+  amount:
+    type: number
+    description: The amount of currency to convert to destination currency
+  convertedAmount:
+    type: number
+    description: The resulting amount of the conversion from currency into convertedCurrency
+  rate:
+    type: number
+    description: The conversion rate from currency to convertedCurrency

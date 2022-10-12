@@ -38,6 +38,8 @@ async function createConfig() {
             routeBasePath: '/',
             sidebarPath: require.resolve('./sidebars.js'),
             remarkPlugins: [mdxMermaid.default],
+            docLayoutComponent: "@theme/DocPage",
+            docItemComponent: "@theme/ApiItem" // add @theme/ApiItem here
           },
           blog: false,
           theme: {
@@ -69,6 +71,8 @@ async function createConfig() {
         },
       }),
 
+    themes: ["docusaurus-theme-openapi-docs"],
+
     plugins: [
       [
         require.resolve('docusaurus-lunr-search'),
@@ -76,6 +80,24 @@ async function createConfig() {
           indexBaseUrl: true,
         },
       ],
+      [
+        require.resolve('docusaurus-plugin-openapi-docs'),
+        {
+          id: "openapi",
+          docsPluginId: "classic", // e.g. "classic" or the plugin-content-docs id
+          config: {
+            immersve: {
+              specPath: "openapi/immersve.yaml", // path or URL to the OpenAPI spec
+              outputDir: "docs/api-reference", // output directory for generated *.mdx and sidebar.js files
+              sidebarOptions: {
+                groupPathsBy: "tag", // generate a sidebar.js slice that groups operations by tag
+                categoryLinkSource: "tag",
+              },
+            }
+
+          }
+        },
+      ]
     ],
   };
 }
