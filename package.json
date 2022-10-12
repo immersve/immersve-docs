@@ -4,14 +4,17 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "build": "docusaurus build",
+    "start": "yarn api-re-gen && docusaurus start",
+    "build": "yarn api-re-gen && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "api-gen-all": "docusaurus gen-api-docs all",
+    "api-clean-all": "docusaurus clean-api-docs all",
+    "api-re-gen": "yarn api-clean-all && yarn api-gen-all"
   },
   "dependencies": {
     "@docusaurus/core": "^2.1.0",
