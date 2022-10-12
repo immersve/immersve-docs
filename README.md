@@ -42,8 +42,7 @@ If you are using GitHub pages for hosting, this command is a convenient way to b
 
 ### OpenAPI documentation
 Markdown files under api-reference folder are generated semi-automatically by the openapi-docs plugin. The plugin uses immersve.yaml as an input.
-To edit api reference, modify immersve.yaml, and not the derived markdown files. Then run the following commands:
+To edit api reference, modify immersve.yaml (not the derived markdown files). Then run:
 ```
-yarn docusaurus clean-api-docs immersve
-yarn docusaurus gen-api-docs immersve
+yarn api-re-gen
 ```
