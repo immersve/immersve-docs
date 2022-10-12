@@ -8,9 +8,6 @@ info:
   x-logo:
     url: "https://www.immersve.com/img/immersvelogo-bf8a9fe8408d733c996c2f7d8251e521.svg"
     altText: Immersve logo
-  license:
-    name: Apache 2.0
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 tags:
   - name: card
     x-displayName: Cards

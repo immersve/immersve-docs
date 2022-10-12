@@ -94,7 +94,6 @@ async function createConfig() {
                 categoryLinkSource: "tag",
               },
             }
-
           }
         },
       ]
