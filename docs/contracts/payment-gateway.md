@@ -23,7 +23,34 @@ tags:
 
 # Immersve Payment Gateway
 
-Contract Module that allows CardHolders to deposit funds and lock them to be able to use them with one time use credit cards.
+Contract Module that allows CardHolders to deposit funds and lock them to be able to use them with one time use Immersve Credit Cards.
+
+## Extensions
+
+For security reasons, the smart contract implements the following [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts/4.x/)
+
+- [Initializable](https://docs.openzeppelin.com/contracts/4.x/api/proxy#Initializable)
+- [AccessControl](https://docs.openzeppelin.com/contracts/4.x/api/access#AccessControl)
+- [Pausable](https://docs.openzeppelin.com/contracts/4.x/api/security#Pausable)
+- [ReentrancyGuard](https://docs.openzeppelin.com/contracts/4.x/api/security#ReentrancyGuard)
+
+## Proxy
+
+The Smart Contract implements the OpenZeppelin [TransparentUpgradeable](https://docs.openzeppelin.com/contracts/4.x/api/proxy#TransparentUpgradeableProxy) proxy. Proxy features:
+
+- **Security**: If any bugs are found, or potential security risks, the Smart Contract can be updated to resolve any potential issues
+- **Feature Upgradeability**: Any new features and bug fixes can be added. The Smart Contract will keep the same state, without the need of expensive migrations
+- **Stability**: Clients interacting with the Smart Contract will always do so through the same proxy address. The proxy will know the current implementation address and will always keep the same state.
+
+More about upgradeable contracts here: https://blog.openzeppelin.com/the-state-of-smart-contract-upgrades/
+
+```mermaid
+graph LR
+    Client -- Trx --> Proxy[(Proxy)]
+    Proxy -- "getImplementation()" --> Proxy
+    Proxy -- old --> v1{{ContractImplV1}}
+    Proxy -- "delegate call" --> v2{{ContractImplV2}}
+```
 
 ## Functions
 
@@ -71,7 +98,7 @@ Contract Module that allows CardHolders to deposit funds and lock them to be abl
 
 ### `deposit`(uint256 usdcAmount) external whenNotPaused nonReentrant
 
-> Consumers can deposit USDC funds into the Smart Contract using this function. The funds can either be `locked` or `withdrawn` by the consumer later. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
+> CardHolders can deposit USDC funds into the Smart Contract using this function. The funds can either be `locked` or `withdrawn` by the consumer later. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
 ```
 There is a pre-requisite for this function to work. Because USDC is an ERC-20 token, 
 the consumer needs to approve (https://polygonscan.com/token/0x2791bca1f2de4661ed88a30c99a7a9449aa84174#writeProxyContract#F1 USDC funds 
@@ -83,7 +110,7 @@ to the Smart Contract public address
 
 ### `depositTo`(uint256 usdcAmount, address sender) external whenNotPaused nonReentrant
 
-> Consumers can deposit USDC funds for a specific address into the Smart Contract using this function. The funds can either be `locked` or `withdrawn` by the consumer later. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
+> CardHolders can deposit USDC funds for a specific address into the Smart Contract using this function. The funds can either be `locked` or `withdrawn` by the consumer later. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
 ```
 There is a pre-requisite for this function to work. Because USDC is an ERC-20 token, 
 the consumer needs to approve (https://polygonscan.com/token/0x2791bca1f2de4661ed88a30c99a7a9449aa84174#writeProxyContract#F1 USDC funds 
@@ -96,14 +123,14 @@ to the target sender address for the Smart Contract public address
 
 ### `withdraw`(uint256 usdcAmount) external whenNotPaused nonReentrant
 
-> Consumers can withdraw USDC funds associated to their balance from the Smart Contract using this function. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
+> CardHolders can withdraw USDC funds associated to their balance from the Smart Contract using this function. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
 - `usdcAmount` (type `uin256`): USDC Amount to withdraw in `ethers` format
 
 -----
 
 ### `createLockedFund` (uint256 usdcAmount) external whenNotPaused nonReentrant
 
-> Consumers can put a Lock in place for deposited funds so Immersve can authorize the use of a credit card using those locked funds as collateral.
+> CardHolders can put a Lock in place for deposited funds so Immersve can authorize the use of a credit card using those locked funds as collateral.
 The locked funds will be represented with a `AssetLockedFund` struct inside the Smart Contract. When created, a timeout will be put in place for this lock based on the default Timeout Blocks (see [])
 - `usdcAmount` (type `uin256`): USDC Amount to lock in `ethers` format
 
@@ -156,7 +183,7 @@ It can only be called by the SETTLER role
 
 -----
 
-### `getSenderLockedFunds` (address sender) 
+### `getSenderLockedFunds` (address sender) onlyRole(SETTLER_ROLE)
 > Get the `AssetLockedFund` objects of the specified `sender` argument
 - `sender` (type `address`): CardHolder Address that already locked funds at least once
 
