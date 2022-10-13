@@ -8,6 +8,3 @@ properties:
     description: The approval amount
   token:
     type: string
-
-
-      
