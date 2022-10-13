@@ -1,0 +1,14 @@
+type: object
+properties:
+  contractAddress:
+    type: string
+    description: The address of the smart contract
+  abi:
+    type: string
+    description: The ABI of the smart contract
+  method:
+    type: string
+    description: Smart contract method
+  params:
+    type: object
+    description: Smart contract call params
