@@ -1,0 +1,14 @@
+type: object
+properties:
+  chainId:
+    type: string
+    description: Chain Id (see https://chainlist.org/)
+    example: "1"
+  amount:
+    type: string
+    description: Amount
+  token:
+    type: string
+    description: The token the amount is denominated in
+    enum:
+      - USDC

@@ -1,0 +1,13 @@
+type: object
+properties:
+  spender:
+    type: string
+    description: The address of the spender of the ERC-20 approval
+  amount:
+    type: string
+    description: The approval amount
+  token:
+    type: string
+
+
+      

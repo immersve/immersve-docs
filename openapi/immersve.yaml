@@ -9,10 +9,10 @@ info:
     url: "https://www.immersve.com/img/immersvelogo-bf8a9fe8408d733c996c2f7d8251e521.svg"
     altText: Immersve logo
 tags:
-  - name: card
-    x-displayName: Cards
   - name: authentication
     x-displayName: Authentication
+  - name: card
+    x-displayName: Cards
   - name: currency
     x-displayName: Currency
 security:
@@ -28,6 +28,8 @@ paths:
     $ref: './endpoints/card-cancel.yaml'
   "/api/cards/{cardId}/pan-token":
     $ref: './endpoints/card-pan-token.yaml'
+  "/api/cards/get-prerequisite-transactions":
+    $ref: './endpoints/card-get-prerequisite-transactions.yaml'
   "/api/currencies":
     $ref: './endpoints/currency-list.yaml'
   "/api/currency/convert":
