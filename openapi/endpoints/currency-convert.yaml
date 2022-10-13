@@ -1,0 +1,46 @@
+post:
+  tags:
+    - currency
+  summary: Currency Convert
+  description: Convert a source currency to a target currency using Mastercard rates
+  parameters:
+    - name: currency
+      in: query
+      required: true
+      description: The currency alpha code to convert from
+      schema:
+        type: string
+    - name: amount
+      in: query
+      description: The amount of `currency` to convert to destination currency
+      required: true
+      schema:
+        type: number
+        format: decimal
+    - name: targetCurrency
+      in: query
+      description: The target currency alpha code for the conversion. Defaults to `USD`
+      required: false
+      schema:
+        type: string
+    - name: fee
+      in: query
+      description: Optional fee added on top of the conversion. Defaults to `0`
+      required: false
+      schema:
+        type: number
+        format: decimal
+  responses:
+    "200":
+      content:
+        application/json:
+          schema:
+            $ref: "../models/currency-conversion.yaml"
+          example: |
+            {
+              "currency": "NZD",
+              "convertedCurrency": "USD",
+              "amount": 1000,
+              "convertedAmount": 696.2285,
+              "rate": 0.6962285
+            }

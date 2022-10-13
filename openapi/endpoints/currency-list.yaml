@@ -1,0 +1,28 @@
+get:
+  tags:
+    - currency
+  summary: Currency List
+  description: Get the list of supported currencies by Immersve
+  responses:
+    "200":
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../models/currency.yaml"
+          example: |
+            [
+              {
+                "symbol": "KYD",
+                "label": "CAYMAN ISLAND DOLLAR"
+              },
+              {
+                "symbol": "JPY",
+                "label": "JAPANESE YEN"
+              },
+              {
+                "symbol": "NZD",
+                "label": "NEW ZEALAND DOLLAR"
+              }
+            ]

@@ -1,0 +1,13 @@
+type: object
+required:
+  - walletAddress
+  - chainId
+properties:
+  walletAddress:
+    description: Wallet address
+    type: string
+    example: "0xA3058369d6A481B1ff08F62B352409c3D709De9b"
+  chainId:
+    description: Chain Id
+    type: number
+    example: 1

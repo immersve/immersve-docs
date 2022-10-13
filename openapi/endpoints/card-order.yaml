@@ -1,0 +1,26 @@
+post:
+  tags:
+    - card
+  summary: Order a card
+  description: |
+    Order a virtual credit card for the current user
+  operationId: orderCard
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - transactionHash
+          properties:
+            transactionHash:
+              type: string
+              description: The hash of transaction transferring USDC to Immersve Payment Gateway smart contract
+    required: true
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "../models/card.yaml"
