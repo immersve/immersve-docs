@@ -1,0 +1,10 @@
+type: object
+properties:
+  symbol:
+    type: string
+    description: The Alpha code for the currency
+    example: "KYD"
+  label:
+    type: string
+    description: The full name of the currency
+    example: "CAYMAN ISLAND DOLLAR"

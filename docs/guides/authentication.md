@@ -27,7 +27,7 @@ sequenceDiagram
 	  note over C: JWT Token will be used for the following requests to Immersve API
 ```
 
-1. [Request EIP-4361 challenge](../api-reference/authentication/generate-challenge). The response is a EIP-4361 message to be signed by the wallet in plain text, for example:
+1. [Request EIP-4361 challenge](../api-reference/generate-challenge). The response is a EIP-4361 message to be signed by the wallet in plain text, for example:
 
     ```
     app.immersve.com wants you to sign in with your Ethereum account:
@@ -43,5 +43,5 @@ sequenceDiagram
     ```
     
 2. Invoke the wallet's signing capability to get a signature for the challenge message. This part's implementation is specific to the wallet used, but it is fair to say that this abstract function is available in all wallets.
-3. [Submit the signed challenge with its signature](../api-reference/authentication/login) to get the authentication token
+3. [Submit the signed challenge with its signature](../api-reference/login) to get the authentication token
 4. The received token should be used for consequent requests to protected resources in the `Authorization` header

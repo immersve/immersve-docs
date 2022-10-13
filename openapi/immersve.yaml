@@ -1,0 +1,40 @@
+openapi: 3.0.0
+servers:
+  - url: https://api.sb1.lol/
+    description: Sandbox server
+info:
+  version: 1.0.0
+  title: Immersve API
+  x-logo:
+    url: "https://www.immersve.com/img/immersvelogo-bf8a9fe8408d733c996c2f7d8251e521.svg"
+    altText: Immersve logo
+tags:
+  - name: card
+    x-displayName: Cards
+  - name: authentication
+    x-displayName: Authentication
+  - name: currency
+    x-displayName: Currency
+security:
+  - immersve_auth: []
+paths:
+  "/siwe/generateChallenge":
+    $ref: './endpoints/siwe-generate-challenge.yaml'
+  "/siwe/login":
+    $ref: './endpoints/siwe-login.yaml'
+  "/api/cards/orders":
+    $ref: './endpoints/card-order.yaml'
+  "/api/cards/{cardId}/cancel":
+    $ref: './endpoints/card-cancel.yaml'
+  "/api/cards/{cardId}/pan-token":
+    $ref: './endpoints/card-pan-token.yaml'
+  "/api/currencies":
+    $ref: './endpoints/currency-list.yaml'
+  "/api/currency/convert":
+    $ref: './endpoints/currency-convert.yaml'
+components:
+  securitySchemes:
+    immersve_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

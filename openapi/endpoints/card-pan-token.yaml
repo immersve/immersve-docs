@@ -1,0 +1,24 @@
+post:
+  tags:
+    - card
+  summary: Generate card PAN token
+  description: Generate a token to get the card's detail (full pan and cvv2)
+  parameters:
+    - name: cardId
+      in: path
+      description: ID of card to cancel
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+                description: One-time use token for card detail retrieval
+                example: "1E2426184B3676720F36E43A22649AFF-1000041153"
