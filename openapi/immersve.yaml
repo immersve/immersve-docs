@@ -18,7 +18,7 @@ tags:
 security:
   - immersve_auth: []
 paths:
-  "/siwe/generateChallenge":
+  "/siwe/generate-challenge":
     $ref: './endpoints/siwe-generate-challenge.yaml'
   "/siwe/login":
     $ref: './endpoints/siwe-login.yaml'
