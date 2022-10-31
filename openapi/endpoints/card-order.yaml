@@ -15,7 +15,7 @@ post:
           properties:
             transactionHash:
               type: string
-              description: The hash of transaction transferring USDC to Immersve Payment Gateway smart contract
+              description: The hash of transaction transferring USDC to Immersve Payment Protocol smart contract
     required: true
   responses:
     "200":
