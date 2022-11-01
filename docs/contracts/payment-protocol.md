@@ -2,7 +2,7 @@
 sidebar_position: 1
 tags:
   - payment
-  - gateway
+  - protocol
   - lock
   - settle
   - funds
@@ -21,7 +21,7 @@ tags:
   - balance
 ---
 
-# Immersve Payment Gateway
+# Immersve Payment Protocol
 
 Contract Module that allows CardHolders to deposit funds and lock them to be able to use them with one time use Immersve Credit Cards.
 
@@ -51,6 +51,11 @@ graph LR
     Proxy -- old --> v1{{ContractImplV1}}
     Proxy -- "delegate call" --> v2{{ContractImplV2}}
 ```
+
+## Proxy URLs
+
+- Polygon (Mainnet): ***PENDING***
+- Polygon Mumbai (Testnet): [0x82f639282132a4C2488a58Dc91B8f8222DD47745](https://mumbai.polygonscan.com/address/0x82f639282132a4C2488a58Dc91B8f8222DD47745#code)
 
 ## Functions
 
@@ -138,21 +143,21 @@ The locked funds will be represented with a `AssetLockedFund` struct inside the 
 
 ### `depositAndCreateLockedFund` (uint256 usdcAmount) external whenNotPaused nonReentrant
 
-> Similar to [*deposit*](/contracts/payment-gateway#deposituint256-usdcamount-external-whennotpaused-nonreentrant) but combined with [*createLockedFund*](/contracts/payment-gateway#createlockedfund-uint256-usdcamount-external-whennotpaused-nonreentrant). This function is doing both the deposit and the lock at the same time to save gas fees.
+> Similar to [*deposit*](/contracts/payment-protocol#deposituint256-usdcamount-external-whennotpaused-nonreentrant) but combined with [*createLockedFund*](/contracts/payment-protocol#createlockedfund-uint256-usdcamount-external-whennotpaused-nonreentrant). This function is doing both the deposit and the lock at the same time to save gas fees.
 - `usdcAmount` (type `uin256`): USDC Amount to deposit in `ethers` format
 
 -----
 
 ### `depositAndCreateLockedFundFor` (uint256 usdcAmount, address sender) external whenNotPaused nonReentrant
 
-> Similar to [*depositAndCreateLockedFund*](/contracts/payment-gateway#depositandcreatelockedfund-uint256-usdcamount-external-whennotpaused-nonreentrant) but the target address is specified as an argument instead of using `msg.sender`
+> Similar to [*depositAndCreateLockedFund*](/contracts/payment-protocol#depositandcreatelockedfund-uint256-usdcamount-external-whennotpaused-nonreentrant) but the target address is specified as an argument instead of using `msg.sender`
 - `usdcAmount` (type `uin256`): USDC Amount to deposit in `ethers` format
 
 -----
 
 ### `confirmLockedFundPayment` (address sender, uint256 price, uint256 lockedFundId) external whenNotPaused nonReentrant onlyRole(SETTLER_ROLE)
 
-> Used by Immersve to confirm the settlement of an Immersve Card payment. This function will check that the specified address has enough locked funds for the specified `lockedFundId` and will transfer the settlement amount (`price`) to the settlement address, specified in the [`initialize`](/contracts/payment-gateway#initializeaddress-payable-_settlementaddress-address-_usdcsmartcontract-uint256-_defaulttimeoutblocks-uint256-_safetyblocks-external-initializer) function.
+> Used by Immersve to confirm the settlement of an Immersve Card payment. This function will check that the specified address has enough locked funds for the specified `lockedFundId` and will transfer the settlement amount (`price`) to the settlement address, specified in the [`initialize`](/contracts/payment-protocol#initializeaddress-payable-_settlementaddress-address-_usdcsmartcontract-uint256-_defaulttimeoutblocks-uint256-_safetyblocks-external-initializer) function.
 It can only be called by the SETTLER role
 - `sender` (type `address`): CardHolder Address doing a payment requiring locked funds with Immersve
 - `price` (type `uin256`): USDC Amount to settle in `ethers` format
