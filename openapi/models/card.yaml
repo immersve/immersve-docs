@@ -59,3 +59,4 @@ properties:
   lockedFundCurrency:
     type: string
     description: The currency of this card
+    example: "USDC"

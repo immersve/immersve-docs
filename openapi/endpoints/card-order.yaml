@@ -12,10 +12,11 @@ post:
           type: object
           required:
             - transactionHash
+            - amount
           properties:
             amount:
               type: string
-              description: The value requested to be loaded to the card
+              description: Amount as monetary value to be loaded. Example $0.1 USDC should be "0.1".
             currency:
               type: string
               description: Coin being used currently only USDC
