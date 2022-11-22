@@ -12,7 +12,14 @@ post:
           type: object
           required:
             - transactionHash
+            - amount
           properties:
+            amount:
+              type: string
+              description: Amount as monetary value to be loaded. Example $0.1 USDC should be "0.1".
+            currency:
+              type: string
+              description: Coin being used currently only USDC
             transactionHash:
               type: string
               description: The hash of transaction transferring USDC to Immersve Payment Protocol smart contract
