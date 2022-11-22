@@ -2,7 +2,7 @@ post:
   tags:
     - currency
   summary: Currency Convert
-  description: Convert a source currency to a target currency using Mastercard rates
+  description: Convert a source currency to a target currency
   parameters:
     - name: currency
       in: query
@@ -23,13 +23,6 @@ post:
       required: false
       schema:
         type: string
-    - name: fee
-      in: query
-      description: Optional fee added on top of the conversion. Defaults to `0`
-      required: false
-      schema:
-        type: number
-        format: decimal
   responses:
     "200":
       content:

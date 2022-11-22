@@ -2,13 +2,13 @@ type: object
 properties:
   chainId:
     type: string
-    description: Chain Id (see https://chainlist.org/)
+    description: Chain ID (see https://chainlist.org/)
     example: "1"
   amount:
     type: string
-    description: Amount
+    description: The amount to be locked in the smart contract denominated in the major unit.
   token:
     type: string
-    description: The token the amount is denominated in
+    description: The asset or token the amount is denominated in.
     enum:
       - USDC
