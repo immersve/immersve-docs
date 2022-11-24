@@ -3,7 +3,7 @@ post:
     - authentication
   summary: Generate Challenge
   description: |
-    Generating the challenge is the first step in the process of getting the authentication token
+    Generating the challenge is the first step in the process of getting the authentication token.
   requestBody:
     content:
       application/json:

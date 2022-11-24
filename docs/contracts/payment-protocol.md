@@ -23,7 +23,7 @@ tags:
 
 # Immersve Payment Protocol
 
-Contract Module that allows CardHolders to deposit funds and lock them to be able to use them with one time use Immersve Credit Cards.
+Contract Module that allows users to deposit and lock funds in order to be able to fund one-time-use Immersve virtual cards.
 
 ## Extensions
 

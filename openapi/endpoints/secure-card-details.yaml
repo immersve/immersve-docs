@@ -1,0 +1,19 @@
+post:
+  tags:
+    - card
+  summary: Get Secure Card Details
+  description: |
+    The secure card details endpoint returns the sensitive card details when presented with a token obtained via the `generate card token` endpoint.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../models/secure-card-details-request.yaml'
+    required: true
+  responses:
+    "200":
+      description: Token valid and sensitive card details returned
+      content:
+        application/json:
+          schema:
+            $ref: "../models/secure-card-details-response.yaml"

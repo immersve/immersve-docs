@@ -2,7 +2,7 @@ post:
   tags:
     - currency
   summary: Currency Convert
-  description: Convert a source currency to a target currency
+  description: Convert a source currency to a target currency.
   parameters:
     - name: currency
       in: query

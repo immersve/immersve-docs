@@ -34,6 +34,11 @@ paths:
     $ref: './endpoints/currency-list.yaml'
   "/api/currency/convert":
     $ref: './endpoints/currency-convert.yaml'
+  "/v1/auth/pan/token/validate":
+    $ref: "./endpoints/secure-card-details.yaml"
+    servers:
+      - url: https://mobile.apac-exp.aws.tst.e6tech.net/restful
+        description: Secure card details server
 components:
   securitySchemes:
     immersve_auth:
