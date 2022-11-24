@@ -11,5 +11,5 @@ This documentation is aimed at developers and technically-minded folks intereste
 
 Included here are:
 1. Helpful guides demonstrate how to [authenticate with the API](/guides/authentication) and [issue a virtual card](/guides/issue-a-virtual-card).
-1. An [API reference](/api-reference) wherein you can view API request/response payloads and try interacting with the API from the browser.
+1. An [API reference](/category/api-reference) wherein you can view API request/response payloads and try interacting with the API from the browser.
 1. The [Immersve Payment Protocol smart contract interface](/contracts/payment-protocol) documentation.

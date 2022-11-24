@@ -19,7 +19,7 @@ A user will more often than not be quoted a price for a purchase by a merchant i
 ## Lock Funds
 In order to ensure that funds are sufficiently locked within the [smart contract](/contracts/payment-protocol) such that Immersve are in a position to approve an authorization request received via the card scheme network you will need to have firstly locked sufficient digital assets within the smart contract via digital asset transfer and smart contract invocations as instructed by the [get prerequisite tranasactions](/api-reference/get-prerequisite-transactions) operation. The necessary blockchain transactions are contained within the `requiredTransactions` collection returned.
 
-If the user has not transacted using the solution before then the the [get prerequisite transaction](/api-reference/get-prerequisite-transactions) response will typically call for and `erc20_approval` in favour of the smart contract followed by a `depositAndCreateLockedFund` invocation of the smart contract.
+If the user has not transacted using the solution before then the the [get prerequisite transactions](/api-reference/get-prerequisite-transactions) response will typically call for and `erc20_approval` in favour of the smart contract followed by a `depositAndCreateLockedFund` invocation of the smart contract.
 
 If multiple transactions are present then they should be carried out in the order in which they are presented.
 
@@ -46,11 +46,11 @@ It is not recommended that the card token is supplied to any application other t
 :::
 
 ### Get a Card Token
-Generate a single-use card `token` using [the get card token](/api-reference/get-card-token) operation. The token is typically then transmitted to the cardholder's environment (i.e. web application or mobile application running in their web browser) to complete the final step completing the card issuance.
+Generate a single-use card `token` using [the get a card token](/api-reference/get-a-card-token) operation. The token is typically then transmitted to the cardholder's environment (i.e. web application or mobile application running in their web browser) to complete the final step completing the card issuance.
 
 ### Get Card Details
 
-To obtain the full PAN and CVV2 for display to the cardholder your client-side application should exchange the token for the sensitive card data via the [secure card details](/api-reference/secure-card-details) operation.
+To obtain the full PAN and CVV2 for display to the cardholder your client-side application should exchange the token for the sensitive card data via the [get secure card details](/api-reference/get-secure-card-details) operation.
 
 ## Virtual Card Issuance Sequence Diagram
 

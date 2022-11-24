@@ -28,4 +28,4 @@ A card begins life when you call the [order a card](/api-reference/order-card) o
 
 ### Cancel a card
 
-Should a cardholder change their mind prior to presenting the card to a merchant, you can cancel the card by calling the [cancel a card](/api-reference/cancel-card) operation.
+Should a cardholder change their mind prior to presenting the card to a merchant, you can cancel the card by calling the [cancel a card](/api-reference/cancel-a-card) operation.
