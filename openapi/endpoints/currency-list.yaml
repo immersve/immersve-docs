@@ -2,7 +2,7 @@ get:
   tags:
     - currency
   summary: Currency List
-  description: Get the list of supported currencies by Immersve
+  description: Get the list of currencies supported by Immersve.
   responses:
     "200":
       content:

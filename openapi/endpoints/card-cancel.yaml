@@ -1,8 +1,8 @@
 post:
   tags:
     - card
-  summary: Cancel card
-  description: Cancel the card
+  summary: Cancel a Card
+  description: Cancel a card.
   parameters:
     - name: cardId
       in: path

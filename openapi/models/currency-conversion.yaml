@@ -2,19 +2,19 @@ type: object
 properties:
   currency:
     type: string
-    description: The currency to convert from
+    description: The currency to convert from.
   targetCurrency:
     type: string
-    description: The target currency for the conversion
+    description: The target currency to convert to.
   convertedCurrency:
     type: string
-    description: The currency converted to
+    description: The currency converted to.
   amount:
     type: number
-    description: The amount of currency to convert to destination currency
+    description: The amount of currency to convert to destination currency denominated in the major unit.
   convertedAmount:
     type: number
-    description: The resulting amount of the conversion from currency into convertedCurrency
+    description: The resulting amount of the conversion from `currency` into `convertedCurrency` denominated in the major unit.
   rate:
     type: number
-    description: The conversion rate from currency to convertedCurrency
+    description: The conversion rate applied to arrive at the `convertedAmount` of the `convertedCurrency` from the `amount` of `currency`.

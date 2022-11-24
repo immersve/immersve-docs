@@ -1,12 +1,9 @@
 post:
   tags:
     - card
-  summary: Get prerequisite transactions
+  summary: Get Prerequisite Transactions
   description: |
-    This endpoint returns web3 transactions required to authorize the creation of a new Immersve Card. 
-    It is also intended for integrating clients to check that everything is in place before making the actual web3 transactions.
-    Among such things are KYC and AML checks. These are early checks before creating the card to prevent end-users 
-    unnecessarily paying for the gas fees of two transactions, should any of the checks fail.
+    This endpoint returns the requisite blockchain transactions required to permit the creation of a new Immersve Card. It also indicates if everything is in order before instructing the client of any blockchain transactions. Insufficient KYC and AML status may trigger an error response.
   requestBody:
     content:
       application/json:

@@ -8,7 +8,7 @@ async function createConfig() {
   const mdxMermaid = await import('mdx-mermaid');
   return {
     title: 'Immersve Documentation',
-    tagline: 'Just like that',
+    tagline: 'Immersve Documentation',
     url: 'https://docs.immersve.com',
     baseUrl: '/',
     onBrokenLinks: 'throw',
@@ -53,17 +53,17 @@ async function createConfig() {
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
         navbar: {
-          title: 'Immersve Documentation',
           logo: {
             alt: 'Immersve Logo',
-            src: 'img/logo-small.svg',
+            src: 'img/logo-light.png',
+            srcDark: 'img/logo-dark.png',
           },
           items: [],
         },
         footer: {
           style: 'dark',
           links: [],
-          copyright: `Copyright © ${new Date().getFullYear()} Immersve. Built with Docusaurus.`,
+          copyright: `Copyright © ${new Date().getFullYear()} Immersve. All rights reserved. Built with Docusaurus.`,
         },
         prism: {
           theme: lightCodeTheme,

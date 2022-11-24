@@ -4,27 +4,50 @@
  * work well for content-centric websites.
  */
 
+ @font-face {
+  font-family: "Bebas Neue";
+  src: url("../fonts/Bebas_Neue/BebasNeue-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat/static/Montserrat-Medium.ttf");
+}
+
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("../fonts/SF Pro Text/SF-Pro-Text-Light.otf");
+}
+
+code {
+  font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+}
+
+footer {
+  font-family: Bebas Neue;
+}
+
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  font-family: Montserrat;
+  --ifm-color-primary: #5434ff;
+  --ifm-color-primary-dark: #3a15ff;
+  --ifm-color-primary-darker: #2d06ff;
+  --ifm-color-primary-darkest: #2200d7;
+  --ifm-color-primary-light: #5e40ff;
+  --ifm-color-primary-lighter: #694dff;
+  --ifm-color-primary-lightest: #7359ff;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #5694fd;
+  --ifm-color-primary-dark: #498cfd;
+  --ifm-color-primary-darker: #3b83fd;
+  --ifm-color-primary-darkest: #317dfd;
+  --ifm-color-primary-light: #78a9fd;
+  --ifm-color-primary-lighter: #88b4fe;
+  --ifm-color-primary-lightest: #bbd4fe;
 }

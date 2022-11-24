@@ -8,14 +8,11 @@ properties:
     type: string  
     description: Which account this card belongs to
     example: 057aa15913a57f50577234c8426534c0
-  cardExternalId:
+  externalId:
     type: string
     description: The external id for this card
     example: "8649543161870318367"
-  cardCurrency:
-    type: string
-    description: The currency of this card
-  cardState:
+  state:
     type: string 
     description: The state of the card
     enum:
@@ -38,3 +35,28 @@ properties:
     type: string  
     description: The expiry of the card
     example: "202409"
+  immersveExpiration:
+    type: string
+    description: The expiry as set by Immersve
+    example: "2022-11-16T03:18:23.431Z"
+  createdAt:
+    type: string
+    description: Timestamp of card creation
+    example: "2022-11-16T03:13:18.142Z"
+  modifiedAt:
+    type: string
+    description: Timestamp of card modification
+    example: "2022-11-16T03:13:18.142Z"
+  version:
+    type: number
+    example: 1
+  lockedFundId:
+    type: string
+    example: "58"
+  lockedFundAmount:
+    type: number
+    example: 10
+  lockedFundCurrency:
+    type: string
+    description: The currency of this card
+    example: "USDC"

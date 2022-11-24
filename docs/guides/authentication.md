@@ -9,25 +9,27 @@ tags:
 
 # Authentication
 
-API calls can be authenticated by providing a user access token in the “Authorization” header. Immersve uses [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) for the sign-in process. The following sections describe the process in detail
+Accounts are identified by way of blockchain addresses. Proof of ownership of an address is based upon a process of authentication by way of verification of [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) challenges signed by the private key underlying an address. Upon successful authentication, Immersve will issue an access token for subsequent use in interactions with the Immersve API.
+
+Subsequent requests for protected resources from the Immersve API may be authenticated by supplying the access token in the `Authorization` header.
 
 ### Login Flow
 
 ```mermaid
 sequenceDiagram
-    participant M as Web-3 Wallet
+    participant W as Web3 Wallet
     participant C as API Client
     participant I as Immersve
-    C->>+I: Get EIP-4361 challenge
+    C->>+I: Generate challenge
     I-->>-C: Challenge
-    C->>M: Request to sign an EIP-4361 message
-    M-->>C: Signature
-    C->>+I: Send EIP-4361 message + signature
-    I-->>-C: Return JWT Token
-	  note over C: JWT Token will be used for the following requests to Immersve API
+    C->>W: Request to sign a message
+    W-->>C: Signature
+    C->>+I: Send challenge + signature
+    I-->>-C: Return access token
+	  note over C: Access token will be used for subsequent requests for protected resources from the Immersve API
 ```
 
-1. [Request EIP-4361 challenge](../api-reference/generate-challenge). The response is a EIP-4361 message to be signed by the wallet in plain text, for example:
+1. [Generate a challenge](/api-reference/generate-challenge). The response is an [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) message in plain text to be signed by the wallet. For example:
 
     ```
     app.immersve.com wants you to sign in with your Ethereum account:
@@ -42,6 +44,6 @@ sequenceDiagram
     Issued At: 2022-08-11T22:29:48.244Z
     ```
     
-2. Invoke the wallet's signing capability to get a signature for the challenge message. This part's implementation is specific to the wallet used, but it is fair to say that this abstract function is available in all wallets.
-3. [Submit the signed challenge with its signature](../api-reference/login) to get the authentication token
-4. The received token should be used for consequent requests to protected resources in the `Authorization` header
+2. Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
+3. [Submit the signed challenge along with the signature](/api-reference/login) to get the access token.
+4. The access token should be used for subsequent requests for protected resources from the Immersve API by supplying it in the `Authorization` header.

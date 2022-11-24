@@ -1,0 +1,7 @@
+
+type: object
+properties:
+  tokenId:
+    type: string
+    description: The token returned by the `Get card token` endpoint
+    example: "abc123"
