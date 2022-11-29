@@ -1,6 +1,6 @@
 openapi: 3.0.0
 servers:
-  - url: https://api.sb1.lol/
+  - url: https://api.immersve.com/
     description: Sandbox server
 info:
   version: 1.0.0
