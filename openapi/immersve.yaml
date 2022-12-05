@@ -1,6 +1,6 @@
 openapi: 3.0.0
 servers:
-  - url: https://api.sb1.lol/
+  - url: https://api.immersve.com/
     description: Sandbox server
 info:
   version: 1.0.0
@@ -37,7 +37,7 @@ paths:
   "/v1/auth/pan/token/validate":
     $ref: "./endpoints/secure-card-details.yaml"
     servers:
-      - url: https://mobile.apac-exp.aws.tst.e6tech.net/restful
+      - url: https://mobile.apac-uat.aws.tst.e6tech.net/restful/
         description: Secure card details server
 components:
   securitySchemes:

@@ -55,13 +55,14 @@ graph LR
 ## Proxy URLs
 
 - Polygon (Mainnet): ***PENDING***
-- Polygon Mumbai (Testnet): [0x82f639282132a4C2488a58Dc91B8f8222DD47745](https://mumbai.polygonscan.com/address/0x82f639282132a4C2488a58Dc91B8f8222DD47745#code)
+- Polygon Mumbai (Testnet): [0xa0947892376e8C4dA58Ce68Cdb100412AA126222](https://mumbai.polygonscan.com/address/0x82f639282132a4C2488a58Dc91B8f8222DD47745#code)
 
 ## Functions
 
-### `initialize`(address payable _settlementAddress, address _usdcSmartContract, uint256 _defaultTimeoutBlocks, uint256 _safetyBlocks) external initializer
+### `initialize`(address _settlerRole, address payable _settlementAddress, address _usdcSmartContract, uint256 _defaultTimeoutBlocks, uint256 _safetyBlocks) external initializer
 
 > Initialize the Smart Contract with the required arguments
+- `_settlerRole` (type `address`): The web3 address that will act with the `SETTLER` role.
 - `_settlementAddress` (type `address payable`): The web3 address were Locked funds will be sent once a payment is confirmed by Immersve
 - `_usdcSmartContract` (type `address`): The current network address of the ERC-20 USDC Smart Contract
 - `_defaultTimeoutBlocks` (type `uin256`): Number of blocks in the blockchain that an asset lock will last by default
@@ -152,6 +153,15 @@ The locked funds will be represented with a `AssetLockedFund` struct inside the 
 
 > Similar to [*depositAndCreateLockedFund*](/contracts/payment-protocol#depositandcreatelockedfund-uint256-usdcamount-external-whennotpaused-nonreentrant) but the target address is specified as an argument instead of using `msg.sender`
 - `usdcAmount` (type `uin256`): USDC Amount to deposit in `ethers` format
+
+-----
+
+### `checkLockedFundPayment` (address sender, uint256 price, uint256 lockedFundId) external view whenNotPaused returns(uint256)
+
+> Used by Immersve to check that the locked funds of an Immersve Card payment is currently valid. This function will check that the specified address has enough locked funds for the specified `lockedFundId` and will return the number of blocks that the lock is still valid for.
+- `sender` (type `address`): CardHolder Address doing a payment requiring locked funds with Immersve
+- `price` (type `uin256`): USDC Amount to settle in `ethers` format
+- `lockedFundId` (type `uin256`): Matching Locked Fund Id (which is linked to a Card) to settle payment being done with an Immersve Credit Card
 
 -----
 
