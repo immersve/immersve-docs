@@ -65,8 +65,8 @@ graph LR
 - `_settlerRole` (type `address`): The web3 address that will act with the `SETTLER` role.
 - `_settlementAddress` (type `address payable`): The web3 address were Locked funds will be sent once a payment is confirmed by Immersve
 - `_usdcSmartContract` (type `address`): The current network address of the ERC-20 USDC Smart Contract
-- `_defaultTimeoutBlocks` (type `uin256`): Number of blocks in the blockchain that an asset lock will last by default
-- `_safetyBlocks` (type `uin256`): Number of blocks on top of the default timeout used to calculate if a Lock is usable or not. Because there might be a delay between a transaction confirmation and the actual use of Locked funds by Immersve, there has to be some safety threshold for Immersve to execute the settlement of funds.
+- `_defaultTimeoutBlocks` (type `uint256`): Number of blocks in the blockchain that an asset lock will last by default
+- `_safetyBlocks` (type `uint256`): Number of blocks on top of the default timeout used to calculate if a Lock is usable or not. Because there might be a delay between a transaction confirmation and the actual use of Locked funds by Immersve, there has to be some safety threshold for Immersve to execute the settlement of funds.
 
 -----
 
@@ -91,14 +91,14 @@ graph LR
 ### `setTimeoutBlocks`(uint256 timeoutBlocks) public onlyRole(SETTLER_ROLE)
 
 > Set the default timeout for `AssetLockedFund` as described  in `Asset Locked Funds` section. Only the `SETTLER_ROLE` will be able to call this function.
-- `timeoutBlocks` (type `uin256`): Number of blocks for an Asset Lock to be considered expired
+- `timeoutBlocks` (type `uint256`): Number of blocks for an Asset Lock to be considered expired
 
 -----
 
 ### `setSafetyBlocks`(uint256 timeoutBlocks) public onlyRole(SETTLER_ROLE)
 
 > Set the safety block threshold for `AssetLockedFund` as described  in `Asset Locked Funds` section. Only the `SETTLER_ROLE` will be able to call this function.
-- `timeoutBlocks` (type `uin256`): Number of blocks for an Asset Lock to be considered safe to settle
+- `timeoutBlocks` (type `uint256`): Number of blocks for an Asset Lock to be considered safe to settle
 
 -----
 
@@ -110,7 +110,7 @@ There is a pre-requisite for this function to work. Because USDC is an ERC-20 to
 the consumer needs to approve (https://polygonscan.com/token/0x2791bca1f2de4661ed88a30c99a7a9449aa84174#writeProxyContract#F1 USDC funds 
 to the Smart Contract public address
 ```
-- `usdcAmount` (type `uin256`): USDC Amount to deposit in `ethers` format
+- `usdcAmount` (type `uint256`): USDC Amount to deposit in `ethers` format
 
 -----
 
@@ -122,7 +122,7 @@ There is a pre-requisite for this function to work. Because USDC is an ERC-20 to
 the consumer needs to approve (https://polygonscan.com/token/0x2791bca1f2de4661ed88a30c99a7a9449aa84174#writeProxyContract#F1 USDC funds 
 to the target sender address for the Smart Contract public address
 ```
-- `usdcAmount` (type `uin256`): USDC Amount to deposit in `ethers` format
+- `usdcAmount` (type `uint256`): USDC Amount to deposit in `ethers` format
 - `address` (type `address`): Deposit target address
 
 -----
@@ -130,7 +130,7 @@ to the target sender address for the Smart Contract public address
 ### `withdraw`(uint256 usdcAmount) external whenNotPaused nonReentrant
 
 > CardHolders can withdraw USDC funds associated to their balance from the Smart Contract using this function. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
-- `usdcAmount` (type `uin256`): USDC Amount to withdraw in `ethers` format
+- `usdcAmount` (type `uint256`): USDC Amount to withdraw in `ethers` format
 
 -----
 
@@ -138,21 +138,21 @@ to the target sender address for the Smart Contract public address
 
 > CardHolders can put a Lock in place for deposited funds so Immersve can authorize the use of a credit card using those locked funds as collateral.
 The locked funds will be represented with a `AssetLockedFund` struct inside the Smart Contract. When created, a timeout will be put in place for this lock based on the default Timeout Blocks (see [])
-- `usdcAmount` (type `uin256`): USDC Amount to lock in `ethers` format
+- `usdcAmount` (type `uint256`): USDC Amount to lock in `ethers` format
 
 -----
 
 ### `depositAndCreateLockedFund` (uint256 usdcAmount) external whenNotPaused nonReentrant
 
 > Similar to [*deposit*](/contracts/payment-protocol#deposituint256-usdcamount-external-whennotpaused-nonreentrant) but combined with [*createLockedFund*](/contracts/payment-protocol#createlockedfund-uint256-usdcamount-external-whennotpaused-nonreentrant). This function is doing both the deposit and the lock at the same time to save gas fees.
-- `usdcAmount` (type `uin256`): USDC Amount to deposit in `ethers` format
+- `usdcAmount` (type `uint256`): USDC Amount to deposit in `ethers` format
 
 -----
 
 ### `depositAndCreateLockedFundFor` (uint256 usdcAmount, address sender) external whenNotPaused nonReentrant
 
 > Similar to [*depositAndCreateLockedFund*](/contracts/payment-protocol#depositandcreatelockedfund-uint256-usdcamount-external-whennotpaused-nonreentrant) but the target address is specified as an argument instead of using `msg.sender`
-- `usdcAmount` (type `uin256`): USDC Amount to deposit in `ethers` format
+- `usdcAmount` (type `uint256`): USDC Amount to deposit in `ethers` format
 
 -----
 
@@ -160,8 +160,8 @@ The locked funds will be represented with a `AssetLockedFund` struct inside the 
 
 > Used by Immersve to check that the locked funds of an Immersve Card payment is currently valid. This function will check that the specified address has enough locked funds for the specified `lockedFundId` and will return the number of blocks that the lock is still valid for.
 - `sender` (type `address`): CardHolder Address doing a payment requiring locked funds with Immersve
-- `price` (type `uin256`): USDC Amount to settle in `ethers` format
-- `lockedFundId` (type `uin256`): Matching Locked Fund Id (which is linked to a Card) to settle payment being done with an Immersve Credit Card
+- `price` (type `uint256`): USDC Amount to settle in `ethers` format
+- `lockedFundId` (type `uint256`): Matching Locked Fund Id (which is linked to a Card) to settle payment being done with an Immersve Credit Card
 
 -----
 
@@ -170,8 +170,8 @@ The locked funds will be represented with a `AssetLockedFund` struct inside the 
 > Used by Immersve to confirm the settlement of an Immersve Card payment. This function will check that the specified address has enough locked funds for the specified `lockedFundId` and will transfer the settlement amount (`price`) to the settlement address, specified in the [`initialize`](/contracts/payment-protocol#initializeaddress-payable-_settlementaddress-address-_usdcsmartcontract-uint256-_defaulttimeoutblocks-uint256-_safetyblocks-external-initializer) function.
 It can only be called by the SETTLER role
 - `sender` (type `address`): CardHolder Address doing a payment requiring locked funds with Immersve
-- `price` (type `uin256`): USDC Amount to settle in `ethers` format
-- `lockedFundId` (type `uin256`): Matching Locked Fund Id (which is linked to a Card) to settle payment being done with an Immersve Credit Card
+- `price` (type `uint256`): USDC Amount to settle in `ethers` format
+- `lockedFundId` (type `uint256`): Matching Locked Fund Id (which is linked to a Card) to settle payment being done with an Immersve Credit Card
 
 -----
 
