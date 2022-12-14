@@ -6,7 +6,7 @@ info:
   version: 1.0.0
   title: Immersve API
   x-logo:
-    url: "https://www.immersve.com/img/immersvelogo-bf8a9fe8408d733c996c2f7d8251e521.svg"
+    url: 'https://www.immersve.com/img/immersvelogo-bf8a9fe8408d733c996c2f7d8251e521.svg'
     altText: Immersve logo
 tags:
   - name: authentication
@@ -15,27 +15,31 @@ tags:
     x-displayName: Cards
   - name: currency
     x-displayName: Currency
+  - name: assets
+    x-displayName: Assets
 security:
   - immersve_auth: []
 paths:
-  "/siwe/generate-challenge":
+  '/siwe/generate-challenge':
     $ref: './endpoints/siwe-generate-challenge.yaml'
-  "/siwe/login":
+  '/siwe/login':
     $ref: './endpoints/siwe-login.yaml'
-  "/api/cards/orders":
+  '/api/cards/orders':
     $ref: './endpoints/card-order.yaml'
-  "/api/cards/{cardId}/cancel":
+  '/api/cards/{cardId}/cancel':
     $ref: './endpoints/card-cancel.yaml'
-  "/api/cards/{cardId}/pan-token":
+  '/api/cards/{cardId}/pan-token':
     $ref: './endpoints/card-pan-token.yaml'
-  "/api/cards/get-prerequisite-transactions":
+  '/api/cards/get-prerequisite-transactions':
     $ref: './endpoints/card-get-prerequisite-transactions.yaml'
-  "/api/currencies":
+  '/api/currencies':
     $ref: './endpoints/currency-list.yaml'
-  "/api/currency/convert":
+  '/api/currency/convert':
     $ref: './endpoints/currency-convert.yaml'
-  "/v1/auth/pan/token/validate":
-    $ref: "./endpoints/secure-card-details.yaml"
+  '/v1/auth/pan/token/validate':
+    $ref: './endpoints/secure-card-details.yaml'
+  '/api/assets':
+    $ref: './endpoints/user-assets.yaml'
     servers:
       - url: https://mobile.apac-uat.aws.tst.e6tech.net/restful/
         description: Secure card details server

@@ -1,0 +1,22 @@
+type: object
+properties:
+  walletAddress:
+    type: string
+    description: The logged in user's wallet walletAddress
+    example: '0xA3058369d6A481B1ff08F62B352409c3D709De9b'
+  currentBalance:
+    type: string
+    description: The total funds associated with the user in the smart contract
+    example: '21.430493'
+  availableBalance:
+    type: string
+    description: The sum of the user's funds that are subject to a fund lock
+    example: '3.123456'
+  chainId:
+    type: string
+    description: Chain ID (see https://chainlist.org/)
+    example: 1337
+  currencySymbol:
+    type: string
+    description: The symbol of the respective asset the user has funded their account with
+    example: 'USDC'
