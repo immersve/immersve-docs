@@ -39,6 +39,8 @@ paths:
     servers:
       - url: https://mobile.apac-uat.aws.tst.e6tech.net/restful/
         description: Secure card details server
+  "/api/cards/{accountId}?limit={limit}&cursor={cursor}":
+    $ref: './endpoints/cards-list.yaml'
 components:
   securitySchemes:
     immersve_auth:
