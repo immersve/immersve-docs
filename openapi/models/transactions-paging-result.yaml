@@ -5,14 +5,5 @@ properties:
     items:
       $ref: './transaction.yaml'
   pageInfo:
-    type: object
-    properties:
-      nextCursor:
-        type: string
-        description: Cursor to next available page for pagination
-        example: dGhlIG5leHQgY3Vyc29yIGdvZXMgaGVyZQ==
-      previousCursor:
-        type: string
-        description: Cursor to previous available page for pagination
-        example: dGhlIHByZXZpb3VzIGN1cnNvciBnb2VzIGhlcmU=
+    $ref: './page-info.yaml'
 
