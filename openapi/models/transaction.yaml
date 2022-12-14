@@ -1,0 +1,34 @@
+type: object
+properties:
+  id:
+    type: string
+    description: Transaction primary identifier
+    example: 91ad6fea3b52ca58d60d7fd310f789ec
+  accountId:
+    type: string
+    description: Which account this card belongs to
+    example: 057aa15913a57f50577234c8426534c0
+  cardId:
+    type: string
+    description: Card this transaction belongs to
+    example: 91ad6fea3b52ca58d60d7fd310f789ec
+  description:
+    type: string
+    description: The last 4 digits of the card
+    example: "1920"
+  lockedFundCurrency:
+    type: string
+    description: The currency of this card
+    example: "USDC"
+  amount:
+    type: number
+    description: Transaction amount
+    example: 99.000001
+  transactionDate:
+    type: string
+    description: Date of transaction
+    example: "2022-11-16T03:13:18.142Z"
+  processedDate:
+    type: string
+    description: Date transaction was processed, null if Pending
+    example: "2022-11-16T03:13:18.142Z"

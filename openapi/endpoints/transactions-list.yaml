@@ -1,0 +1,31 @@
+post:
+  tags:
+    - transaction
+  summary: List Transactions
+  description: List transactions by account
+  parameters:
+    - name: accountId
+      in: path
+      description: accountId linked to transactions
+      required: true
+      schema:
+        type: string
+    - name: limit
+      in: path
+      description: amount of records to return
+      required: false
+      schema:
+        type: number
+    - name: cursor
+      in: path
+      description: cursor to retrieve the next page
+      required: false
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "../models/transactions-paging-result.yaml"

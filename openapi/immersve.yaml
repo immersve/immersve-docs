@@ -15,6 +15,8 @@ tags:
     x-displayName: Cards
   - name: currency
     x-displayName: Currency
+  - name: transaction
+    x-displayName: Transactions
 security:
   - immersve_auth: []
 paths:
@@ -41,6 +43,8 @@ paths:
         description: Secure card details server
   "/api/cards/{accountId}?limit={limit}&cursor={cursor}":
     $ref: './endpoints/cards-list.yaml'
+  "/api/transactions/{accountId}?limit={limit}&cursor={cursor}":
+    $ref: './endpoints/transactions-list.yaml'
 components:
   securitySchemes:
     immersve_auth:
