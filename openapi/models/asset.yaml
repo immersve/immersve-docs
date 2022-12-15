@@ -6,11 +6,12 @@ properties:
     example: '0xA3058369d6A481B1ff08F62B352409c3D709De9b'
   balance:
     type: string
-    description: Typically the amount held in the Immersve smart contract on behalf of the wallet address
+    description: The amount held in the Immersve smart contract on behalf of the wallet address
     example: '21.430493'
   availableBalance:
     type: string
-    description: Typically the amount held in the Immersve smart contract minus the portion of that subject to a fund lock
+    description: The sum amount of funds thats are subject to a fund lock
+    
     example: '3.123456'
   chainId:
     type: string
