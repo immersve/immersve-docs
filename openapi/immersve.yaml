@@ -39,7 +39,7 @@ paths:
   '/v1/auth/pan/token/validate':
     $ref: './endpoints/secure-card-details.yaml'
   '/api/assets':
-    $ref: './endpoints/get-balance.yaml'
+    $ref: './endpoints/asset-get.yaml'
     servers:
       - url: https://mobile.apac-uat.aws.tst.e6tech.net/restful/
         description: Secure card details server

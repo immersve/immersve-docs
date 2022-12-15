@@ -8,4 +8,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../models/get-balance-response.yaml'
+            $ref: '../models/asset.yaml'
