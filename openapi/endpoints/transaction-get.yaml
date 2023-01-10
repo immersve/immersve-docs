@@ -1,0 +1,11 @@
+get:
+  tags:
+    - transactions
+  summary: Get a Transaction
+  description: This endpoint returns the details of a transaction by a given id.
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: '../models/transaction.yaml'
