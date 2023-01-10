@@ -17,6 +17,8 @@ tags:
     x-displayName: Currency
   - name: assets
     x-displayName: Assets
+  - name: transactions
+    x-displayName: Transactions
 security:
   - immersve_auth: []
 paths:
@@ -43,6 +45,8 @@ paths:
         description: Secure card details server
   '/api/assets':
     $ref: './endpoints/asset-get.yaml'
+  '/api/transactions/{transaction-id}':
+    $ref: './endpoints/transaction-get.yaml'  
 components:
   securitySchemes:
     immersve_auth:

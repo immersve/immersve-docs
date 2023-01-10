@@ -1,0 +1,124 @@
+type: object
+required:
+  - description
+  - id
+  - accountId
+  - cardId
+  - amount
+  - currency
+  - acquirerAmount
+  - acquirerCurrency
+  - lockedFundCurrency
+  - feeAmount
+  - chain
+  - transactionDate  
+  - reference  
+  - cardAcceptor  
+  - web3Transactions
+properties:
+  id:
+    type: string
+    description: The transaction Id 
+    example: "1000000178145"
+  description:
+    type: string
+    description: A description of the transaction 
+    example: "Air NZ Online Auckland"
+  accountId:
+    type: string  
+    description: Which account this transaction belongs to
+    example: 225d85e65495722bf6517ea0ba0d6f56
+  cardId:
+    type: string
+    description: Which card this transaction belongs to
+    example: "6c474aa7a5dc45bff721b5a207cf0f47"
+  amount:
+    type: number 
+    description: The billing amount of the transaction
+    example: 314.12
+  currency:
+    type: string 
+    description: The billing currency of the transaction
+    example: USD  
+  acquirerAmount:
+    type: number 
+    description: The acquirer amount of the transaction
+    example: 314.12
+  acquirerCurrency:
+    type: string 
+    description: The acquirer currency of the transaction
+    example: NZD
+  lockedFundCurrency:
+    type: string 
+    description: The locked funds' currency of the transaction
+    example: USDC
+  feeAmount:
+    type: number 
+    description: The fee amount of the transaction
+    example: 0.12
+  chain:
+    type: string 
+    description: The chain of the locked funds on 
+    example: "Polygon" 
+  transactionDate:
+    type: string  
+    format: date-time
+    description: The created date formatted in ISO of the transactions.
+    example: "2022-11-09T03:24:15.182Z"
+  processedDate:
+    type: string  
+    format: date-time
+    description: the cleared date formatted in ISO of the transactions.
+    example: "2022-11-09T03:24:15.182Z"
+  reference:
+    type: string
+    description: The reference used when making an enquiry through customer support
+    example: "1000000178145"
+  cardAcceptor:
+    type: object
+    required:
+      - city
+      - countryCode
+      - name
+    properties:  
+      city:
+          type: string 
+          description: The city of the card acceptor
+          example: "Auckland"
+      countryCode:
+          type: string 
+          description: The country code of the card acceptor
+          example: "NZ"
+      name:
+          type: string 
+          description: The name of the card acceptor
+          example: "Air NZ Online"    
+  web3Transactions:
+    items:
+      type: object
+      required:
+        - type
+        - hash
+      properties:
+        type:
+          type: string 
+          enum: [debit,credit]
+          description: >
+            The type of the web3 transaction:
+              * `debit` - The transaction is from the cardholders’ balance to Immersve balance
+              * `credit` - The transaction is from Immersve balance to cardholders’ balance
+        hash:
+          type: string 
+          description: The hash of the web3 transaction
+          example: "0x6f87ad90847828cb8575bd8f3c9a9cdde12a2e53e047604b6012f156495cce1e"
+        transactionId:
+          type: string 
+          description: The associated credit card transaction id
+          example: "1000000178145"
+        transactionType:
+          type: string 
+          description: The associated credit card transaction type
+          enum: [authorization,clearing,reversal]
+
+  
+
