@@ -8,4 +8,6 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../models/transaction.yaml'
+            allOf:
+              - $ref: '../models/transaction.yaml'
+              - $ref: '../models/transaction-detail-extension.yaml'
