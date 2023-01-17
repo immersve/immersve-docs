@@ -13,7 +13,3 @@ post:
   responses:
     "200":
       description: Successful operation
-      content:
-        application/json:
-          schema:
-            $ref: "../models/card.yaml"
