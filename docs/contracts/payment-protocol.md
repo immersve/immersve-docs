@@ -55,16 +55,34 @@ graph LR
 ## Proxy URLs
 
 - Polygon (Mainnet): ***PENDING***
-- Polygon Mumbai (Testnet): [0xa0947892376e8C4dA58Ce68Cdb100412AA126222](https://mumbai.polygonscan.com/address/0x82f639282132a4C2488a58Dc91B8f8222DD47745#code)
+- Polygon Mumbai (Testnet): [0xd73c2deE4604a1af3Db4E8E07Cf6Fb798aB77982](https://mumbai.polygonscan.com/address/0xd73c2deE4604a1af3Db4E8E07Cf6Fb798aB77982#code)
+
+
+# ERC-20 Token testnet funding
+
+To be able to facilitate the minting of ERC20 tokens for integrators of the ImmersvePaymentProtocol smart contract, we've created a new Immersve Fake USDC token that can be minted by anyone in PolygonScan (mumbai)
+
+- Immersve Fake Token (IMMUSDC): [0x2FaC06acFAeB42CC3B5327fcF53F48D9Da72749d](https://mumbai.polygonscan.com/address/0x2FaC06acFAeB42CC3B5327fcF53F48D9Da72749d#code)
+
+Using the PolygonScan interface, anyone can connect their web3 wallet (metamask), and `mint` themselves any amount the need for their testing purposes. The steps to do this are:
+
+- Open the link above
+- Click `Write as Proxy`
+- Clic Connect web3 wallet
+- Open the `mint` function
+- Set the destination wallet address, where you want to receive the assets. Set an amount
+- Initiate the web3 transaction clicking on `Write` button
+- Pay for the gas fees
+
 
 ## Functions
 
-### `initialize`(address _settlerRole, address payable _settlementAddress, address _usdcSmartContract, uint256 _defaultTimeoutBlocks, uint256 _safetyBlocks) external initializer
+### `initialize`(address _settlerRole, address payable _settlementAddress, address _tokenSmartContract, uint256 _defaultTimeoutBlocks, uint256 _safetyBlocks) external initializer
 
 > Initialize the Smart Contract with the required arguments
 - `_settlerRole` (type `address`): The web3 address that will act with the `SETTLER` role.
 - `_settlementAddress` (type `address payable`): The web3 address were Locked funds will be sent once a payment is confirmed by Immersve
-- `_usdcSmartContract` (type `address`): The current network address of the ERC-20 USDC Smart Contract
+- `_tokenSmartContract` (type `address`): The current network address of the ERC-20 token Smart Contract
 - `_defaultTimeoutBlocks` (type `uint256`): Number of blocks in the blockchain that an asset lock will last by default
 - `_safetyBlocks` (type `uint256`): Number of blocks on top of the default timeout used to calculate if a Lock is usable or not. Because there might be a delay between a transaction confirmation and the actual use of Locked funds by Immersve, there has to be some safety threshold for Immersve to execute the settlement of funds.
 
@@ -102,57 +120,57 @@ graph LR
 
 -----
 
-### `deposit`(uint256 usdcAmount) external whenNotPaused nonReentrant
+### `deposit`(uint256 tokenAmount) external whenNotPaused nonReentrant
 
-> CardHolders can deposit USDC funds into the Smart Contract using this function. The funds can either be `locked` or `withdrawn` by the consumer later. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
+> CardHolders can deposit token funds into the Smart Contract using this function. The funds can either be `locked` or `withdrawn` by the consumer later. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
 ```
-There is a pre-requisite for this function to work. Because USDC is an ERC-20 token, 
-the consumer needs to approve (https://polygonscan.com/token/0x2791bca1f2de4661ed88a30c99a7a9449aa84174#writeProxyContract#F1 USDC funds 
+There is a pre-requisite for this function to work. Because token is an ERC-20 token, 
+the consumer needs to approve (https://polygonscan.com/token/0x2791bca1f2de4661ed88a30c99a7a9449aa84174#writeProxyContract#F1 token funds 
 to the Smart Contract public address
 ```
-- `usdcAmount` (type `uint256`): USDC Amount to deposit in `ethers` format
+- `tokenAmount` (type `uint256`): token Amount to deposit in `ethers` format
 
 -----
 
-### `depositTo`(uint256 usdcAmount, address sender) external whenNotPaused nonReentrant
+### `depositTo`(uint256 tokenAmount, address sender) external whenNotPaused nonReentrant
 
-> CardHolders can deposit USDC funds for a specific address into the Smart Contract using this function. The funds can either be `locked` or `withdrawn` by the consumer later. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
+> CardHolders can deposit token funds for a specific address into the Smart Contract using this function. The funds can either be `locked` or `withdrawn` by the consumer later. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
 ```
-There is a pre-requisite for this function to work. Because USDC is an ERC-20 token, 
-the consumer needs to approve (https://polygonscan.com/token/0x2791bca1f2de4661ed88a30c99a7a9449aa84174#writeProxyContract#F1 USDC funds 
+There is a pre-requisite for this function to work. Because token is an ERC-20 token, 
+the consumer needs to approve (https://polygonscan.com/token/0x2791bca1f2de4661ed88a30c99a7a9449aa84174#writeProxyContract#F1 token funds 
 to the target sender address for the Smart Contract public address
 ```
-- `usdcAmount` (type `uint256`): USDC Amount to deposit in `ethers` format
+- `tokenAmount` (type `uint256`): token Amount to deposit in `ethers` format
 - `address` (type `address`): Deposit target address
 
 -----
 
-### `withdraw`(uint256 usdcAmount) external whenNotPaused nonReentrant
+### `withdraw`(uint256 tokenAmount) external whenNotPaused nonReentrant
 
-> CardHolders can withdraw USDC funds associated to their balance from the Smart Contract using this function. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
-- `usdcAmount` (type `uint256`): USDC Amount to withdraw in `ethers` format
+> CardHolders can withdraw token funds associated to their balance from the Smart Contract using this function. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
+- `tokenAmount` (type `uint256`): token Amount to withdraw in `ethers` format
 
 -----
 
-### `createLockedFund` (uint256 usdcAmount) external whenNotPaused nonReentrant
+### `createLockedFund` (uint256 tokenAmount) external whenNotPaused nonReentrant
 
 > CardHolders can put a Lock in place for deposited funds so Immersve can authorize the use of a credit card using those locked funds as collateral.
 The locked funds will be represented with a `AssetLockedFund` struct inside the Smart Contract. When created, a timeout will be put in place for this lock based on the default Timeout Blocks (see [])
-- `usdcAmount` (type `uint256`): USDC Amount to lock in `ethers` format
+- `tokenAmount` (type `uint256`): token Amount to lock in `ethers` format
 
 -----
 
-### `depositAndCreateLockedFund` (uint256 usdcAmount) external whenNotPaused nonReentrant
+### `depositAndCreateLockedFund` (uint256 tokenAmount) external whenNotPaused nonReentrant
 
-> Similar to [*deposit*](/contracts/payment-protocol#deposituint256-usdcamount-external-whennotpaused-nonreentrant) but combined with [*createLockedFund*](/contracts/payment-protocol#createlockedfund-uint256-usdcamount-external-whennotpaused-nonreentrant). This function is doing both the deposit and the lock at the same time to save gas fees.
-- `usdcAmount` (type `uint256`): USDC Amount to deposit in `ethers` format
+> Similar to [*deposit*](/contracts/payment-protocol#deposituint256-tokenamount-external-whennotpaused-nonreentrant) but combined with [*createLockedFund*](/contracts/payment-protocol#createlockedfund-uint256-tokenamount-external-whennotpaused-nonreentrant). This function is doing both the deposit and the lock at the same time to save gas fees.
+- `tokenAmount` (type `uint256`): token Amount to deposit in `ethers` format
 
 -----
 
-### `depositAndCreateLockedFundFor` (uint256 usdcAmount, address sender) external whenNotPaused nonReentrant
+### `depositAndCreateLockedFundFor` (uint256 tokenAmount, address sender) external whenNotPaused nonReentrant
 
-> Similar to [*depositAndCreateLockedFund*](/contracts/payment-protocol#depositandcreatelockedfund-uint256-usdcamount-external-whennotpaused-nonreentrant) but the target address is specified as an argument instead of using `msg.sender`
-- `usdcAmount` (type `uint256`): USDC Amount to deposit in `ethers` format
+> Similar to [*depositAndCreateLockedFund*](/contracts/payment-protocol#depositandcreatelockedfund-uint256-tokenamount-external-whennotpaused-nonreentrant) but the target address is specified as an argument instead of using `msg.sender`
+- `tokenAmount` (type `uint256`): token Amount to deposit in `ethers` format
 
 -----
 
@@ -160,17 +178,17 @@ The locked funds will be represented with a `AssetLockedFund` struct inside the 
 
 > Used by Immersve to check that the locked funds of an Immersve Card payment is currently valid. This function will check that the specified address has enough locked funds for the specified `lockedFundId` and will return the number of blocks that the lock is still valid for.
 - `sender` (type `address`): CardHolder Address doing a payment requiring locked funds with Immersve
-- `price` (type `uint256`): USDC Amount to settle in `ethers` format
+- `price` (type `uint256`): token Amount to settle in `ethers` format
 - `lockedFundId` (type `uint256`): Matching Locked Fund Id (which is linked to a Card) to settle payment being done with an Immersve Credit Card
 
 -----
 
 ### `confirmLockedFundPayment` (address sender, uint256 price, uint256 lockedFundId) external whenNotPaused nonReentrant onlyRole(SETTLER_ROLE)
 
-> Used by Immersve to confirm the settlement of an Immersve Card payment. This function will check that the specified address has enough locked funds for the specified `lockedFundId` and will transfer the settlement amount (`price`) to the settlement address, specified in the [`initialize`](/contracts/payment-protocol#initializeaddress-payable-_settlementaddress-address-_usdcsmartcontract-uint256-_defaulttimeoutblocks-uint256-_safetyblocks-external-initializer) function.
+> Used by Immersve to confirm the settlement of an Immersve Card payment. This function will check that the specified address has enough locked funds for the specified `lockedFundId` and will transfer the settlement amount (`price`) to the settlement address, specified in the [`initialize`](/contracts/payment-protocol#initializeaddress-payable-_settlementaddress-address-_tokensmartcontract-uint256-_defaulttimeoutblocks-uint256-_safetyblocks-external-initializer) function.
 It can only be called by the SETTLER role
 - `sender` (type `address`): CardHolder Address doing a payment requiring locked funds with Immersve
-- `price` (type `uint256`): USDC Amount to settle in `ethers` format
+- `price` (type `uint256`): token Amount to settle in `ethers` format
 - `lockedFundId` (type `uint256`): Matching Locked Fund Id (which is linked to a Card) to settle payment being done with an Immersve Credit Card
 
 -----
@@ -183,12 +201,12 @@ It can only be called by the SETTLER role
 -----
 
 ### `getBalance()` 
-> Get the available USDC balance of the `msg.sender` deposited in the Smart Contract. Balance is not the necessarily the same as locked funds as the former are short lived.
+> Get the available token balance of the `msg.sender` deposited in the Smart Contract. Balance is not the necessarily the same as locked funds as the former are short lived.
 
 -----
 
 ### `getSenderBalance` (address sender) 
-> Get the available USDC balance of the specified `sender` argument, deposited in the Smart Contract. Balance is not the necessarily the same as locked funds as the former are short lived.
+> Get the available token balance of the specified `sender` argument, deposited in the Smart Contract. Balance is not the necessarily the same as locked funds as the former are short lived.
 - `sender` (type `address`): CardHolder Address
 
 -----
@@ -222,7 +240,7 @@ If the funds are free to release, Immersve will sign a message with a nonce only
 
 ## Immersve Card E-Commerce Payment Happy Path
 
-- Card Holder locks USDC funds with Immersve Smart Contract
+- Card Holder locks token funds with Immersve Smart Contract
 - Card Holder receives a valid Credit Card to be used for E-Commerce transaction from Immersve
 - Card Holder uses the Immersve Card to pay for goods purchased on an E-Commerce platform
 - Immersve authorizes the payment with Credit Card network once the locked funds are confirmed
@@ -234,14 +252,14 @@ sequenceDiagram
     participant W as Web-3 Wallet
     participant I as Immersve Backend
     participant S as Smart Contract
-    participant U as USDC Smart Contract
+    participant U as token Smart Contract
     participant E as E-Commerce website
     participant M as E-Commerce Merchant
     H->>I: Create card pre-request
     I-->>H: Web3 Transaction Details
     H->>W: Submit Transactions
-    W->>U: Approve Card Total Authorized Amount in USDC
-    W->>S: Deposit and Lock USDC funds
+    W->>U: Approve Card Total Authorized Amount in token
+    W->>S: Deposit and Lock token funds
     S->>U: Transfer approved amount from Card Holder wallet to Immersve Smart Contract
     S-->>S: Add approved amount to Card Holder address balance
     S-->>S: Create AssetLockedFund to temporarily lock Card Holder funds to be used by Immersve Card
