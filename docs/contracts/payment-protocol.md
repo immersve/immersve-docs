@@ -68,9 +68,9 @@ Using the PolygonScan interface, anyone can connect their web3 wallet (metamask)
 
 - Open the link above
 - Click `Write as Proxy`
-- Clic Connect web3 wallet
+- Click `Connect to Web3` to connect your wallet with the token smart contract
 - Open the `mint` function
-- Set the destination wallet address, where you want to receive the assets. Set an amount
+- Set the destination wallet address (where assets are going to be sent) on the `to` field. Set an amount on the `amount` field
 - Initiate the web3 transaction clicking on `Write` button
 - Pay for the gas fees
 
