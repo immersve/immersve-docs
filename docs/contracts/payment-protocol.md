@@ -57,24 +57,6 @@ graph LR
 - Polygon (Mainnet): ***PENDING***
 - Polygon Mumbai (Testnet): [0xd73c2deE4604a1af3Db4E8E07Cf6Fb798aB77982](https://mumbai.polygonscan.com/address/0xd73c2deE4604a1af3Db4E8E07Cf6Fb798aB77982#code)
 
-
-# ERC-20 Token testnet funding
-
-To be able to facilitate the minting of ERC20 tokens for integrators of the ImmersvePaymentProtocol smart contract, we've created a new Immersve Fake USDC token that can be minted by anyone in PolygonScan (mumbai)
-
-- Immersve Fake Token (IMMUSDC): [0x2FaC06acFAeB42CC3B5327fcF53F48D9Da72749d](https://mumbai.polygonscan.com/address/0x2FaC06acFAeB42CC3B5327fcF53F48D9Da72749d#code)
-
-Using the PolygonScan interface, anyone can connect their web3 wallet (metamask), and `mint` themselves any amount the need for their testing purposes. The steps to do this are:
-
-- Open the link above
-- Click `Write as Proxy`
-- Click `Connect to Web3` to connect your wallet with the token smart contract
-- Open the `mint` function
-- Set the destination wallet address (where assets are going to be sent) on the `to` field. Set an amount on the `amount` field
-- Initiate the web3 transaction clicking on `Write` button
-- Pay for the gas fees
-
-
 ## Functions
 
 ### `initialize`(address _settlerRole, address payable _settlementAddress, address _tokenSmartContract, uint256 _defaultTimeoutBlocks, uint256 _safetyBlocks) external initializer
