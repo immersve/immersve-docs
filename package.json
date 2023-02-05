@@ -17,8 +17,8 @@
     "api-re-gen": "npm run api-clean-all && npm run api-gen-all"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.1.0",
-    "@docusaurus/preset-classic": "^2.1.0",
+    "@docusaurus/core": "^2.3.1",
+    "@docusaurus/preset-classic": "^2.3.1",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.2.1",
     "docusaurus-lunr-search": "^2.1.16",
