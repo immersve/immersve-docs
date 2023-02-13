@@ -21,7 +21,7 @@
 
 post:
   tags:
-    - accounts-custodial
+    - accounts
   summary: Update an Account
   security:
     $ref: '../../models/api-key-auth.yaml'

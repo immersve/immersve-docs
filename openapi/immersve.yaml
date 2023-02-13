@@ -11,8 +11,8 @@ info:
 tags:
   - name: authentication
     x-displayName: Authentication
-  - name: accounts-custodial
-    x-displayName: Accounts (Custodial)
+  - name: accounts
+    x-displayName: Accounts
   - name: assets
     x-displayName: Assets
   - name: card
