@@ -12,8 +12,7 @@ API key authentication is the method in which custodial providers authenticate w
 Each request must be sent with the following headers:
 - **x-api-key** - The api key issued
 - **x-api-secret** - The secret issued
-- **x-account-id** - The account id which is being targeted by the operation. This can be omitted \
-  if the target is the root account (for example creating an account)
+- **x-account-id** - The account id which is being targeted by the operation. This can be omitted if the target is the root account (for example creating an account)
 
 <!-- ### Login Flow
 
