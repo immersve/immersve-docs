@@ -19,6 +19,8 @@ tags:
     x-displayName: Assets
   - name: transactions
     x-displayName: Transactions
+  - name: accounts
+    x-displayName: Accounts
 security:
   - immersve_auth: []
 paths:
@@ -47,9 +49,29 @@ paths:
     $ref: './endpoints/asset-get.yaml'
   '/api/transactions/{transaction-id}':
     $ref: './endpoints/transaction-get.yaml'  
+  '/api/accounts':
+    $ref: './endpoints/accounts/account-create.yaml'
+  '/api/accounts/{accountId}':
+    $ref: './endpoints/accounts/account-update.yaml'
+  '/api/accounts/{accountId}/cancel':
+    $ref: './endpoints/accounts/account-cancel.yaml'
 components:
   securitySchemes:
     immersve_auth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: See Guides -> Authentication for instructions
+    apiSecretHeader:
+      type: apiKey
+      in: header
+      name: x-api-secret
+    accountIdHeader:
+      type: apiKey
+      in: header
+      name: x-account-id
+      description: The target account id. If targeting the root account, this can be omitted (for example creating an account)

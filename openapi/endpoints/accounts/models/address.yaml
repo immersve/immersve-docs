@@ -1,0 +1,44 @@
+type: object
+required:
+  - country
+  - city
+  - state
+  - address1
+  - address2
+  - zipCode
+properties:
+  country:
+    type: string
+    description: The users country code, as a ISO 3166-1 alpha-2-code
+    example: US
+    minLength: 2
+    maxLength: 1
+  city:
+    type: string
+    description: The users city
+    minLength: 1
+    maxLength: 50
+  state:
+    type: string
+    description: The users state
+    minLength: 1
+    maxLength: 12
+  address1:
+    type: string
+    description: Address line 1
+    minLength: 1
+    maxLength: 50
+  address2:
+    type: string
+    description: Address line 2
+    minLength: 1
+    maxLength: 50
+  address3:
+    type: string
+    description: Address line 3
+    maxLength: 50
+  zipCode:
+    type: string
+    description: Zip code
+    minLength: 1
+    maxLength: 20

@@ -1,0 +1,17 @@
+type: object
+properties:
+  success:
+    type: boolean
+  errorCode:
+    description: The error code
+    type: string
+  errorMap:
+    description: An array of key-value pairs describing field errors
+    type: array
+    items:
+      type: object
+example:
+  success: false
+  errorCode: "INVALID_BODY"
+  errorMap:
+    firstName: Required
