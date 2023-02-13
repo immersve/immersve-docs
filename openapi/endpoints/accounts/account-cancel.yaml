@@ -1,7 +1,7 @@
 post:
   tags:
     - accounts
-  summary: Create an Account
+  summary: Cancel an Account
   security:
     $ref: '../../models/api-key-auth.yaml'
   parameters:
