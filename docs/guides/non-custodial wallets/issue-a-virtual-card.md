@@ -9,10 +9,10 @@ tags:
 # Issue a Virtual Card
 A virtual card is a payment card that exists only in digital form. As such, virtual cards are most suitable for online e-commerce purchases as opposed to in-store purchases at brick-and-mortar merchants. Immersve treat virtual cards as being logically time-bound and ephemeral. Beginning at the time of issuance of a virtual card, it has a finite useable lifespan which is often represeted within the UI of the issuing client application as a stopwatch-type timer. This model presents certain benefits over a traditional persistent payment card model (be they virtual, tokenized or physical) in that the potential for card fraud is dramatically reduced. The use of web3-native authentication mechanisms within the context of card issuance mean that the same level of protection to a user's funds in self-custodial wallets is applied to their activities as a cardholder.
 
-Prior to being permitted to [order a card](/api-reference/order-card) a user must first have successfuly [authenticated](/guides/authentication) and locked digital assets within the smart contract via digital asset transfer and smart contract invocations as instructed by the [get prerequisite tranasactions](/api-reference/get-prerequisite-transactions) operation.
+Prior to being permitted to [order a card](/api-reference/order-card) a user must first have successfuly [authenticated](/guides/non-custodial%20wallets/authentication) and locked digital assets within the smart contract via digital asset transfer and smart contract invocations as instructed by the [get prerequisite tranasactions](/api-reference/get-prerequisite-transactions) operation.
 
 ## Authentication
-The authentication processes is described in the [authentication guide](/guides/authentication). As the user account is anchored by control of the private key, there is no distinct prior explicit registration or signup process needed before authenticating.
+The authentication processes is described in the [authentication guide](/guides/non-custodial%20wallets/authentication). As the user account is anchored by control of the private key, there is no distinct prior explicit registration or signup process needed before authenticating.
 
 ## Currency Conversion
 A user will more often than not be quoted a price for a purchase by a merchant in a fiat currency. In order to determine the sufficient amount of digital assets to fund a card and be made available for the purchase, you will retrieve the amount from the [currency conversion](/api-reference/currency-convert) API endpoint.

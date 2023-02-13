@@ -17,8 +17,8 @@ tags:
     x-displayName: Assets
   - name: card
     x-displayName: Cards
-  - name: cards-custodial
-    x-displayName: Cards (Custodial)
+  # - name: cards-custodial
+  #   x-displayName: Cards (Custodial)
   - name: currency
     x-displayName: Currency
   - name: transactions
