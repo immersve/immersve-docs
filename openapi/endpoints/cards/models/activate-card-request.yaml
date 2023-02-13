@@ -1,0 +1,11 @@
+type: object
+required:
+  - panLastDigits
+  - encodedCvv
+properties:
+  panLastDigits:
+    type: string
+    description: Last 6 digits of the Primary Account Number (PAN).
+  encodedCvv:
+    type: string
+    description: Encrypted CVV

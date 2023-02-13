@@ -27,7 +27,7 @@ properties:
     example: "1111"
   type:
     type: string 
-    description: The card’s type
+    description: The card's type
     enum:
       - TEMP
       - PHY

@@ -1,21 +1,23 @@
 post:
   tags:
-    - accounts-custodial
-  summary: Create an Account
+    - cards-custodial
+  summary: Activate a card (for physical cards only)
   security:
     $ref: '../../models/api-key-auth.yaml'
+  parameters:
+    $ref: '../../models/card-id-path.yaml'
   requestBody:
     content:
       application/json:
         schema:
-          $ref: './models/create-account-request.yaml'
+          $ref: './models/activate-card-request.yaml'
     required: true
   responses:
-    '201':
+    '200':
       content:
         application/json:
           schema:
-            $ref: './models/create-account-response.yaml'
+            $ref: './models/activate-card-response.yaml'
     default:
       description: "Error"
       content:

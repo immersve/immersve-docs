@@ -30,4 +30,4 @@ post:
       content:
         application/json:
           schema:
-            $ref: "../models/card.yaml"
+            $ref: "./models/card.yaml"

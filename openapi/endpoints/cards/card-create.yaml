@@ -1,21 +1,21 @@
 post:
   tags:
-    - accounts-custodial
-  summary: Create an Account
+    - cards-custodial
+  summary: Create an new card
   security:
     $ref: '../../models/api-key-auth.yaml'
   requestBody:
     content:
       application/json:
         schema:
-          $ref: './models/create-account-request.yaml'
+          $ref: './models/create-card-request.yaml'
     required: true
   responses:
-    '201':
+    '200':
       content:
         application/json:
           schema:
-            $ref: './models/create-account-response.yaml'
+            $ref: './models/create-card-response.yaml'
     default:
       description: "Error"
       content:

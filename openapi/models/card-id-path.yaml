@@ -1,0 +1,6 @@
+- name: cardId
+  in: path
+  description: ID of card
+  required: true
+  schema:
+    type: string

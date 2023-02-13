@@ -1,6 +1,6 @@
 post:
   tags:
-    - accounts
+    - accounts-custodial
   summary: Cancel an Account
   security:
     $ref: '../../models/api-key-auth.yaml'
@@ -23,4 +23,4 @@ post:
       content:
         application/json:
           schema:
-            $ref: './models/error-response.yaml'
+            $ref: '../../models/custodial-error-response.yaml'

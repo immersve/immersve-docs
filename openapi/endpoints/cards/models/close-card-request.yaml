@@ -1,0 +1,9 @@
+type: object
+properties:
+  reasonCode:
+    type: string
+    enum: 
+      - LOST
+      - STOLEN
+      - FRAUD
+      - OTHER

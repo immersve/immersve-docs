@@ -1,26 +1,26 @@
 post:
   tags:
-    - accounts
-  summary: Update an Account
+    - cards-custodial
+  summary: Close a card
   security:
     $ref: '../../models/api-key-auth.yaml'
   parameters:
-    $ref: '../../models/account-id-path.yaml'
+    $ref: '../../models/card-id-path.yaml'
   requestBody:
     content:
       application/json:
         schema:
-          $ref: './models/update-account-request.yaml'
+          $ref: './models/close-card-request.yaml'
     required: true
   responses:
     '200':
       content:
         application/json:
           schema:
-            $ref: './models/update-account-response.yaml'
+            $ref: './models/close-card-response.yaml'
     default:
       description: "Error"
       content:
         application/json:
           schema:
-            $ref: './models/error-response.yaml'
+            $ref: '../../models/custodial-error-response.yaml'
