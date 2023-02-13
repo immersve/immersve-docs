@@ -1,7 +1,7 @@
 post:
   tags:
     - cards-custodial
-  summary: Create an new card
+  summary: Create a new card
   security:
     $ref: '../../models/api-key-auth.yaml'
   requestBody:
