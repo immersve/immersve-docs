@@ -26,6 +26,20 @@ If multiple transactions are present then they should be carried out in the orde
 
 The client application is to parse and formulate the raw blockchain transaction message such that it is presented to the user within the web3 wallet and signed and sent to the relevant blockchain.
 
+### Wallet Funding for Development and Testing
+To ensure that integrators are able to obtain sufficient ERC-20 tokens to facilitate development and testing, Immersve uses an ERC-20 token contract that allows tokens to be freely minted as needed.
+
+In non-production environments any `erc20_approval` transaction type returned by [get prerequisite transactions](/api-reference/get-prerequisite-transactions) will refer to the "IMMUSDC" token. The "IMMUSDC" token has a `mint` function allowing for the unlimited minting of the token to any wallet address.
+
+One particularly convenient way to get the necessary tokens is to use the Polygonscan interface.
+- Open the [IMMUSDC token in Polygonscan](https://mumbai.polygonscan.com/address/0x2FaC06acFAeB42CC3B5327fcF53F48D9Da72749d#code)
+- Click `Write as Proxy`
+- Click `Connect to Web3` to connect your wallet with Polygonscan
+- Open the `mint` function
+- Set the destination wallet address (where assets are to be sent) in the `to` field. Set an amount in the `amount` field.
+- Initiate the web3 transaction clicking the `Write` button
+- Confirm the transaction in the web3 wallet and pay the gas fees
+
 ## Order a Card
 
 With the funds locked in the smart contract, it's now time to order a card.
