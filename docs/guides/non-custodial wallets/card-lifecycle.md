@@ -3,6 +3,7 @@ sidebar_position: 2
 tags:
   - card
   - virtual card
+  - non-custodial
 ---
 
 # Card Lifecycle

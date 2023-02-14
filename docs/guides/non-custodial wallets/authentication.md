@@ -5,6 +5,7 @@ tags:
   - sign-in
   - sign-up
   - login
+  - non-custodial
 ---
 
 # Authentication

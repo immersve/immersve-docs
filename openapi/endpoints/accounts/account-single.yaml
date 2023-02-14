@@ -1,0 +1,47 @@
+# get:
+#   tags:
+#     - accounts-custodial
+#   summary: Get detailed account info
+#   security:
+#     $ref: '../../models/api-key-auth.yaml'
+#   parameters:
+#     $ref: '../../models/account-id-path.yaml'
+#   responses:
+#     '200':
+#       content:
+#         application/json:
+#           schema:
+#             $ref: './models/get-account-response.yaml'
+#     default:
+#       description: "Error"
+#       content:
+#         application/json:
+#           schema:
+#             $ref: '../../models/custodial-error-response.yaml'
+
+post:
+  tags:
+    - accounts
+  summary: Update an Account
+  security:
+    $ref: '../../models/api-key-auth.yaml'
+  parameters:
+    $ref: '../../models/account-id-path.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: './models/update-account-request.yaml'
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: './models/update-account-response.yaml'
+    default:
+      description: "Error"
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/custodial-error-response.yaml'

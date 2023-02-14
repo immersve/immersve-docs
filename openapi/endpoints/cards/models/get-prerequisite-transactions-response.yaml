@@ -12,7 +12,7 @@ properties:
             - smart_contract_write
         params:
           oneOf:
-            - $ref: './erc20-approval-params.yaml'
+            - $ref: '../../../models/erc20-approval-params.yaml'
               title: erc20_approval
-            - $ref: './smart-contract-write-params.yaml'
+            - $ref: '../../../models/smart-contract-write-params.yaml'
               title: smart_contract_write

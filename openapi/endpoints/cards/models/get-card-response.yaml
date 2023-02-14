@@ -1,0 +1,25 @@
+type: object
+properties:
+  success:
+    type: boolean
+  accountId:
+    type: string
+  type:
+    type: string
+    enum:
+      - PHYSICAL
+      - VIRTUAL
+  status:
+    type: string
+    enum:
+      - INACTIVE
+      - ACTIVE
+      - BLOCKED
+      - CANCELLED
+  cardRefernce:
+    type: string
+  createdAt:
+    type: string
+  sensitiveData:
+    type: string
+    description: Encrypted sensitive card data in json string

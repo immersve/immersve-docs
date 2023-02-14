@@ -8,7 +8,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../models/get-prerequisite-transactions-request.yaml'
+          $ref: './models/get-prerequisite-transactions-request.yaml'
     required: true
   responses:
     "200":
@@ -18,7 +18,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: "../models/get-prerequisite-transactions-response.yaml"
+            $ref: "./models/get-prerequisite-transactions-response.yaml"
           example: |
             {
               "requiredTransactions": [
@@ -61,4 +61,4 @@ post:
       content:
         application/json:
           schema:
-            $ref: "../models/api-error.yaml"
+            $ref: "../../models/api-error.yaml"

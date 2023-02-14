@@ -8,7 +8,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../models/secure-card-details-request.yaml'
+          $ref: './models/secure-card-details-request.yaml'
     required: true
   responses:
     "200":
@@ -16,4 +16,4 @@ post:
       content:
         application/json:
           schema:
-            $ref: "../models/secure-card-details-response.yaml"
+            $ref: "./models/secure-card-details-response.yaml"

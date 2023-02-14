@@ -4,12 +4,7 @@ post:
   summary: Cancel a Card
   description: Cancel a card.
   parameters:
-    - name: cardId
-      in: path
-      description: ID of card to cancel
-      required: true
-      schema:
-        type: string
+    $ref: '../../models/card-id-path.yaml'
   responses:
     "200":
       description: Successful operation

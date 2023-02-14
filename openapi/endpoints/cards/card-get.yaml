@@ -1,0 +1,22 @@
+post:
+  tags:
+    - cards-custodial
+  summary: Get card information
+  security:
+    $ref: '../../models/api-key-auth.yaml'
+  parameters:
+    - name: sensitive
+      in: query
+      description: Boolean indicating whether to also include sensitive card information in the response
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: './models/get-card-response.yaml'
+    default:
+      description: "Error"
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/custodial-error-response.yaml'

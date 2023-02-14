@@ -1,0 +1,24 @@
+type: object
+required:
+  - address
+  - email
+  - phoneNumber
+properties:
+  cardName:
+    type: string
+    description: The personalised card name
+    maxLength: 26
+  email:
+    type: string
+    description: The users email address
+    minLength: 1
+    maxLength: 303
+  phoneNumber:
+    type: string
+    description: The users phone number, formatted as +xxxxxx
+    minLength: 1
+    maxLength: 38
+  address:
+    $ref: '../../../models/address.yaml'
+
+  
