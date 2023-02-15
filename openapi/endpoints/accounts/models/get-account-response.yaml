@@ -33,5 +33,6 @@ properties:
   address:
     $ref: '../../../models/address.yaml'
   creationDate:
-    type: date-time
+    type: string
+    format: date-time
     example: '2023-02-15T03:39:19Z'
