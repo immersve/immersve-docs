@@ -29,9 +29,9 @@ properties:
     example: 'JoeDoe@example.com'
   phoneNumber:
     type: string
-    example: '(905) 577-5464'
+    example: '+1 905-577-5464'
   address:
     $ref: '../../../models/address.yaml'
   creationDate:
-    type: string
+    type: date-time
     example: '2023-02-15T03:39:19Z'
