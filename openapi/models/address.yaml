@@ -9,36 +9,44 @@ required:
 properties:
   country:
     type: string
-    description: The users country code, as a ISO 3166-1 alpha-2-code
+    description: The user's country code, as a ISO 3166-1 alpha-2-code
     example: US
     minLength: 2
     maxLength: 1
+    pattern: ^[a-zA-Z][a-zA-Z]$
+    example: AU
   city:
     type: string
-    description: The users city
+    description: The user's city
     minLength: 1
     maxLength: 50
+    example: Perth
   state:
     type: string
-    description: The users state
+    description: The user's state
     minLength: 1
-    maxLength: 12
+    maxLength: 50
+    example: Western Australia
   address1:
     type: string
     description: Address line 1
     minLength: 1
     maxLength: 50
+    example: My address line 1
   address2:
     type: string
     description: Address line 2
     minLength: 1
     maxLength: 50
+    example: My address line 2
   address3:
     type: string
     description: Address line 3
     maxLength: 50
+    example: My address line 3
   zipCode:
     type: string
     description: Zip code
     minLength: 1
     maxLength: 20
+    example: '55416'
