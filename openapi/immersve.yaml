@@ -11,8 +11,8 @@ info:
 tags:
   - name: authentication
     x-displayName: Authentication
-  - name: accounts
-    x-displayName: Accounts
+  # - name: accounts
+  #   x-displayName: Accounts
   - name: assets
     x-displayName: Assets
   - name: card
@@ -51,12 +51,12 @@ paths:
     $ref: './endpoints/asset-get.yaml'
   '/api/transactions/{transaction-id}':
     $ref: './endpoints/transaction-get.yaml'  
-  '/api/accounts':
-    $ref: './endpoints/accounts/account-create.yaml'
-  '/api/accounts/{accountId}':
-    $ref: './endpoints/accounts/account-single.yaml'
-  '/api/accounts/{accountId}/cancel':
-    $ref: './endpoints/accounts/account-cancel.yaml'
+  # '/api/accounts':
+  #   $ref: './endpoints/accounts/account-create.yaml'
+  # '/api/accounts/{accountId}':
+  #   $ref: './endpoints/accounts/account-single.yaml'
+  # '/api/accounts/{accountId}/cancel':
+  #   $ref: './endpoints/accounts/account-cancel.yaml'
   # '/api/cards':
   #   $ref: './endpoints/cards/card-create.yaml'
   # '/api/cards/{cardId}/close':
