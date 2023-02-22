@@ -16,29 +16,35 @@ properties:
   city:
     type: string
     description: The users city
+    example: 'Buffalo'
     minLength: 1
     maxLength: 50
   state:
     type: string
     description: The users state
+    example: 'NY'
     minLength: 1
     maxLength: 12
   address1:
     type: string
     description: Address line 1
+    example: '123 Main St'
     minLength: 1
     maxLength: 50
   address2:
     type: string
     description: Address line 2
+    example: 'Apt 456'
     minLength: 1
     maxLength: 50
   address3:
     type: string
     description: Address line 3
+    example: 'Building C'
     maxLength: 50
   zipCode:
     type: string
     description: Zip code
+    example: '10001'
     minLength: 1
     maxLength: 20
