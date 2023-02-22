@@ -8,10 +8,7 @@ post:
     $ref: '../../models/card-id-path.yaml'
   responses:
     '200':
-      content:
-        application/json:
-          schema:
-            $ref: './models/block-card-response.yaml'
+      description: 'Card blocked'
     default:
       description: "Error"
       content:

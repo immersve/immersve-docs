@@ -14,10 +14,7 @@ properties:
     minLength: 1
     maxLength: 303
   phoneNumber:
-    type: string
-    description: The users phone number, formatted as +xxxxxx
-    minLength: 1
-    maxLength: 38
+    $ref: '../../../models/phone-number.yaml'
   address:
     $ref: '../../../models/address.yaml'
 

@@ -1,6 +1,6 @@
 post:
   tags:
-    - accounts
+    - accounts-custodial
   summary: Create an Account
   security:
     $ref: '../../models/api-key-auth.yaml'

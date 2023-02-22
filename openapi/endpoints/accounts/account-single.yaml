@@ -1,6 +1,6 @@
 get:
   tags:
-    - accounts
+    - accounts-custodial
   summary: Get detailed account info
   security:
     $ref: '../../models/api-key-auth.yaml'
@@ -21,7 +21,7 @@ get:
 
 post:
   tags:
-    - accounts
+    - accounts-custodial
   summary: Update an Account
   security:
     $ref: '../../models/api-key-auth.yaml'
@@ -35,10 +35,7 @@ post:
     required: true
   responses:
     '200':
-      content:
-        application/json:
-          schema:
-            $ref: './models/update-account-response.yaml'
+      description: 'Account updated'
     default:
       description: 'Error'
       content:

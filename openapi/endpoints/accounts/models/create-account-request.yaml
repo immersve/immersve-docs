@@ -43,12 +43,7 @@ properties:
     format: email
     example: joe@joecardholder.com
   phoneNumber:
-    type: string
-    description: The user's phone number formatted as +xxxxxx
-    minLength: 1
-    maxLength: 38
-    pattern: '^\+\d{1,38}$'
-    example: '+64211234567'
+    $ref: '../../../models/phone-number.yaml'
   address:
     $ref: '../../../models/address.yaml'
     
