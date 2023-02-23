@@ -1,9 +1,10 @@
 type: object
 properties:
-  success:
-    type: boolean
   errorCode:
     description: The error code
+    type: string
+  errorMessage:
+    description: The error message
     type: string
   errorMap:
     description: An array of key-value pairs describing field errors

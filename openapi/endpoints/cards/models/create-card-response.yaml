@@ -1,6 +1,5 @@
 type: object
 properties:
-  success:
-    type: boolean
   cardId:
     type: string
+    description: The created card ID

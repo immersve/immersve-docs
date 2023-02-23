@@ -14,10 +14,7 @@ post:
     required: true
   responses:
     '200':
-      content:
-        application/json:
-          schema:
-            $ref: './models/close-card-response.yaml'
+      description: 'Card closed'
     default:
       description: "Error"
       content:

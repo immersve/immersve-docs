@@ -1,9 +1,6 @@
 type: object
 properties:
-  reasonCode:
+  context:
     type: string
-    enum: 
-      - LOST
-      - STOLEN
-      - FRAUD
-      - OTHER
+    description: Any context describing why the card was closed
+    example: Card lost

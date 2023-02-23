@@ -14,10 +14,7 @@ post:
     required: true
   responses:
     '200':
-      content:
-        application/json:
-          schema:
-            $ref: './models/activate-card-response.yaml'
+      description: 'Card activated'
     default:
       description: "Error"
       content:
