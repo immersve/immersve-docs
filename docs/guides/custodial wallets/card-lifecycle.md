@@ -80,6 +80,8 @@ A card represents a collection of data including primary account number (PAN), e
 
 Immersve supports physical card issuance and manufacture via the card creation API operation. Immersve do not ourselves produce physical cards; rather we integrate with card manufacturers who handle physical card production, personalization and shipping. As a client, you can request to create a physical card using the Immersve APIs. Immersve then includes the particulars of the newly-created card within an embossing file and sends it to your chosen card manufacturer partner for personalization.
 
+Card shipping address is retrieved from the person address set via the [Accounts (Custodial)](/api-reference/accounts-custodial) API. When a shipping address is not set for an account, home address will be used by default.
+
 ```mermaid
 flowchart LR
     Create_card([Create card])-->Generate_card([Generate card])

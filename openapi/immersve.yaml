@@ -57,8 +57,8 @@ paths:
     $ref: './endpoints/accounts/account-single.yaml'
   '/api/custodial/accounts/{accountId}/cancel':
     $ref: './endpoints/accounts/account-cancel.yaml'
-  # '/api/cards':
-  #   $ref: './endpoints/cards/card-create.yaml'
+  '/api/custodial/cards':
+    $ref: './endpoints/cards/card-create.yaml'
   '/api/custodial/cards/{cardId}/close':
     $ref: './endpoints/cards/card-close.yaml'
   # '/api/cards/{cardId}/block':
