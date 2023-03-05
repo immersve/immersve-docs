@@ -59,7 +59,7 @@ After you complete a physical card order, Immersve generates a file containing a
 The embossing file is sent to card manufacturers once per day. Each file includes all cards that have been created since the last time the file was generated. The embossing file can also be sent in batches.
 
 :::caution
-Because embossing file is sent only once per day, submitting multiple physical card orders for the same cardholder but to different shipping addresses can only been done at least 1 day apart
+Because the embossing file is sent only once daily, submitting multiple physical card orders for the same cardholder but to different shipping addresses can only be done at least 1 day apart.
 :::
 
 When your card manufacturer receives the embossing file, the cards will be produced according to the order information in the file. When the cards have been produced, they will be shipped to your customers or specified branch locations.
