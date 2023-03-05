@@ -76,34 +76,11 @@ A virtual card is `activated` automatically upon creation and no eplicit interac
 
 ## Physical cards
 
-A card represents a collection of data including primary account number (PAN), expiry date, and security code, that allows a cardholder to make card payments. A physical card is an object that is encoded with unique card data during manufacture and is delivered to a cardholder. Physical cards let cardholders hold the data pertaining to their card on their person. 
-
-Immersve supports physical card issuance and manufacture via the card creation API operation. Immersve do not ourselves produce physical cards; rather we integrate with card manufacturers who handle physical card production, personalization and shipping. As a client, you can request to create a physical card using the Immersve APIs. Immersve then includes the particulars of the newly-created card within an embossing file and sends it to your chosen card manufacturer partner for personalization.
-
-```mermaid
-flowchart LR
-    Create_card([Create card])-->Generate_card([Generate card])
-    Queue_embossing_file([Queue embossing file])-->Personalize_card([Manufacture card])
-    subgraph Card Personalization Bureau
-      direction TB
-      Personalize_card([Personalize card])-->Ship_card([Ship card])
-    end
-    subgraph Immersve
-      direction TB
-      Generate_card([Generate card])-->Generate_embossing_file([Generate embossing file])
-      Generate_embossing_file([Generate embossing file])-->Queue_embossing_file([Queue embossing file])
-    end
-    subgraph API Client
-      direction TB
-      Create_card([Create card])
-    end
-```
-
 ### Shipped / Returned / Resent / Sold
 Transitions to `shipped`, `returned`, `sold` and `resent` states are determined by the data prodived by the card personalization bureau.
 
 ### Card activation
-Card activation must be done before a card is able to be used for card payments or other functions. To activate a card, set the state in the request to activated. For security reasons, a physical card cannot be moved from created to activated. Instead, it can only be activated after it is `sold` or `shipped`. Card activation ensures that the details of a physical card cannot be used until it is delivered to the customer and `activated`.
+To activate a card, set the state in the request to activated. For security reasons, a physical card cannot be moved from created to activated. Instead, it can only be activated after it is `sold` or `shipped`. Card activation ensures that the details of a physical card cannot be used until it is delivered to the customer and `activated`.
 
 You can alternatively activate a card by setting the card Personal Identification Number (PIN) for the first time.
 

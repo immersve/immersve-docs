@@ -56,9 +56,11 @@ When a card order has been placed, information about the ordered card will be ad
 After you complete a physical card order, Immersve generates a file containing all the information required for the cards to be produced. The ordered cards are included in the file. The embossing file supports orders for individual cards as well as bulk card orders. The embossing file consists of two parts: information about the entire order, contained in the cards object, and information about all the cards in the order, contained in the cards object.
 
 ### Order information
-A single embossing file can contain multiple card orders within the orders object. Each card order in the file can include the following information:
-
 The embossing file is sent to card manufacturers once per day. Each file includes all cards that have been created since the last time the file was generated. The embossing file can also be sent in batches.
+
+:::caution
+Because the embossing file is sent only once daily, submitting multiple physical card orders for the same cardholder but to different shipping addresses can only be done at least 1 day apart.
+:::
 
 When your card manufacturer receives the embossing file, the cards will be produced according to the order information in the file. When the cards have been produced, they will be shipped to your customers or specified branch locations.
 
