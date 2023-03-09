@@ -14,10 +14,7 @@ properties:
       - ACTIVE
       - BLOCKED
       - CANCELLED
-  cardRefernce:
+  cardReference:
     type: string
   createdAt:
     type: string
-  sensitiveData:
-    type: string
-    description: Encrypted sensitive card data in json string

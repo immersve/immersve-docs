@@ -5,9 +5,7 @@ post:
   security:
     $ref: '../../models/api-key-auth.yaml'
   parameters:
-    - name: sensitive
-      in: query
-      description: Boolean indicating whether to also include sensitive card information in the response
+    $ref: '../../models/card-id-path.yaml'
   responses:
     '200':
       content:

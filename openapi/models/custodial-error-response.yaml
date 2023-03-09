@@ -14,5 +14,6 @@ properties:
 example:
   success: false
   errorCode: "INVALID_BODY"
+  errorMessage: "Invalid body"
   errorMap:
     firstName: Required
