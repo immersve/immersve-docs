@@ -6,11 +6,17 @@ post:
     $ref: '../../models/api-key-auth.yaml'
   parameters:
     $ref: '../../models/card-id-path.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: './models/block-card-request.yaml'
+    required: true
   responses:
     '200':
       description: 'Card blocked'
     default:
-      description: "Error"
+      description: 'Error'
       content:
         application/json:
           schema:

@@ -1,0 +1,15 @@
+type: object
+required:
+  - reason
+properties:
+  reason:
+    type: string
+    enum:
+      - LOSTSTOLEN
+      - SUSPENDED
+      - FRAUD
+      - ACTIVATION
+  context:
+    type: string
+    description: Any context describing why the card was blocked
+    example: Card lost

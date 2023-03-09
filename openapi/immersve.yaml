@@ -50,7 +50,7 @@ paths:
   '/api/assets':
     $ref: './endpoints/asset-get.yaml'
   '/api/transactions/{transaction-id}':
-    $ref: './endpoints/transaction-get.yaml'  
+    $ref: './endpoints/transaction-get.yaml'
   '/api/custodial/accounts':
     $ref: './endpoints/accounts/account-create.yaml'
   '/api/custodial/accounts/{accountId}':
@@ -61,8 +61,8 @@ paths:
     $ref: './endpoints/cards/card-create.yaml'
   '/api/custodial/cards/{cardId}/close':
     $ref: './endpoints/cards/card-close.yaml'
-  # '/api/cards/{cardId}/block':
-  #   $ref: './endpoints/cards/card-block.yaml'
+  '/api/cards/{cardId}/block':
+    $ref: './endpoints/cards/card-block.yaml'
   # '/api/cards/{cardId}/activate':
   #   $ref: './endpoints/cards/card-activate.yaml'
   # '/api/cards/{cardId}':
