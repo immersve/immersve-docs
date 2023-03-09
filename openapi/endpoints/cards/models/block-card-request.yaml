@@ -4,6 +4,11 @@ required:
 properties:
   reason:
     type: string
+    description: |
+      - LOSTSTOLEN: Card has been reported lost or stolen.
+      - SUSPENDED: Card has been suspended by the issuer.
+      - FRAUD: Card has been blocked due to suspected fraudulent activity.
+      - ACTIVATION: Card has not been activated yet.
     enum:
       - LOSTSTOLEN
       - SUSPENDED
