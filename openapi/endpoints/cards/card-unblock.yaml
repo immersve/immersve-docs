@@ -1,0 +1,23 @@
+post:
+  tags:
+    - cards-custodial
+  summary: Unblock a card
+  security:
+    $ref: '../../models/api-key-auth.yaml'
+  parameters:
+    $ref: '../../models/card-id-path.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: './models/unblock-card-request.yaml'
+    required: true
+  responses:
+    '200':
+      description: 'Card unblocked'
+    default:
+      description: 'Error'
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/custodial-error-response.yaml'

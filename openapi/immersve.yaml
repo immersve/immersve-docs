@@ -63,6 +63,8 @@ paths:
     $ref: './endpoints/cards/card-close.yaml'
   '/api/cards/{cardId}/block':
     $ref: './endpoints/cards/card-block.yaml'
+  # '/api/cards/{cardId}/unblock':
+  #   $ref: './endpoints/cards/card-unblock.yaml'
   # '/api/cards/{cardId}/activate':
   #   $ref: './endpoints/cards/card-activate.yaml'
   # '/api/cards/{cardId}':
