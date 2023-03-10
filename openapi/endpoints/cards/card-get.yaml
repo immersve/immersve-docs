@@ -1,4 +1,4 @@
-post:
+get:
   tags:
     - cards-custodial
   summary: Get card information
