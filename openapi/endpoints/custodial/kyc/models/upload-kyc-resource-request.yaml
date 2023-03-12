@@ -1,0 +1,38 @@
+type: object
+required:
+  - country
+  - mimeType
+  - documentSide
+  - idType
+  - contents
+properties:
+  country:
+    type: string
+    description: The ISO-3166-alpha3 country code of the user associated with the document
+    minLength: 2
+    maxLength: 2
+    example: NZ
+  mimeType:
+    type: string
+    description: The mime type of the document
+    example: image/jpeg
+  documentSide:
+    type: string
+    enum:
+      - F
+      - B
+    description: The side of the document. Not required when idType is SELF_IMAGE
+    example: F
+  idType:
+    type: string
+    description: The ID type of document
+    enum:
+      - PASSPORT
+      - DRIVERS_LICENCE
+      - NATIONAL_ID
+      - SELF_IMAGE
+    example: DRIVERS_LICENCE
+  contents:
+    type: string
+    format: binary
+    description: The file data

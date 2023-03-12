@@ -23,6 +23,8 @@ tags:
     x-displayName: Currency
   - name: transactions
     x-displayName: Transactions
+  - name: kyc-custodial
+    x-displayName: KYC (Custodial)
 security:
   - immersve_auth: []
 paths:
@@ -67,6 +69,9 @@ paths:
   #   $ref: './endpoints/cards/card-activate.yaml'
   # '/api/cards/{cardId}':
   #   $ref: './endpoints/cards/card-get.yaml'
+
+  '/api/custodial/kyc-resources':
+    $ref: './endpoints/custodial/kyc/upload-kyc-resource.yaml'
 components:
   securitySchemes:
     immersve_auth:
