@@ -21,7 +21,7 @@ properties:
     enum:
       - F
       - B
-    description: The side of the document. Not required when idType is SELF_IMAGE
+    description: The side of the document - front / back. Not required when idType is SELF_IMAGE
     example: F
   idType:
     type: string
