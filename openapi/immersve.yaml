@@ -67,8 +67,8 @@ paths:
   #   $ref: './endpoints/cards/card-unblock.yaml'
   # '/api/cards/{cardId}/activate':
   #   $ref: './endpoints/cards/card-activate.yaml'
-  # '/api/cards/{cardId}':
-  #   $ref: './endpoints/cards/card-get.yaml'
+  '/api/cards/{cardId}':
+   $ref: './endpoints/cards/card-get.yaml'
 components:
   securitySchemes:
     immersve_auth:
