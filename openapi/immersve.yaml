@@ -23,6 +23,8 @@ tags:
     x-displayName: Currency
   - name: transactions
     x-displayName: Transactions
+  - name: kyc-custodial
+    x-displayName: KYC (Custodial)
 security:
   - immersve_auth: []
 paths:
@@ -52,23 +54,28 @@ paths:
   '/api/assets':
     $ref: './endpoints/asset-get.yaml'
   '/api/transactions/{transaction-id}':
-    $ref: './endpoints/transaction-get.yaml'  
+    $ref: './endpoints/transaction-get.yaml'
   '/api/custodial/accounts':
     $ref: './endpoints/accounts/account-create.yaml'
   '/api/custodial/accounts/{accountId}':
     $ref: './endpoints/accounts/account-single.yaml'
   '/api/custodial/accounts/{accountId}/cancel':
     $ref: './endpoints/accounts/account-cancel.yaml'
-  # '/api/cards':
-  #   $ref: './endpoints/cards/card-create.yaml'
+  '/api/custodial/cards':
+    $ref: './endpoints/cards/card-create.yaml'
   '/api/custodial/cards/{cardId}/close':
     $ref: './endpoints/cards/card-close.yaml'
-  # '/api/cards/{cardId}/block':
-  #   $ref: './endpoints/cards/card-block.yaml'
+  '/api/cards/{cardId}/block':
+    $ref: './endpoints/cards/card-block.yaml'
+  # '/api/cards/{cardId}/unblock':
+  #   $ref: './endpoints/cards/card-unblock.yaml'
   # '/api/cards/{cardId}/activate':
   #   $ref: './endpoints/cards/card-activate.yaml'
-  # '/api/cards/{cardId}':
-  #   $ref: './endpoints/cards/card-get.yaml'
+  '/api/cards/{cardId}':
+   $ref: './endpoints/cards/card-get.yaml'
+
+  '/api/custodial/kyc-resources':
+    $ref: './endpoints/custodial/kyc/upload-kyc-resource.yaml'
 components:
   securitySchemes:
     immersve_auth:

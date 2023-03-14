@@ -11,7 +11,7 @@ properties:
     type: string
     description: The user's country code, as a ISO 3166-1 alpha-2-code
     minLength: 2
-    maxLength: 1
+    maxLength: 2
     pattern: ^[a-zA-Z][a-zA-Z]$
     example: AU
   city:
