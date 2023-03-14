@@ -6,5 +6,5 @@ post:
   parameters:
     $ref: '../../models/card-id-path.yaml'
   responses:
-    "200":
+    "202":
       description: Successful operation
