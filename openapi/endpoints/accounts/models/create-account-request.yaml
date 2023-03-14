@@ -46,4 +46,11 @@ properties:
     $ref: '../../../models/phone-number.yaml'
   address:
     $ref: '../../../models/address.yaml'
+  documentResourceIds:
+    type: array
+    description: A list of KYC resource id's to be associated with the account
+    items:
+      type: string
+      description: The document resource id
+      example: 1a2b3c4d5e6f7g8h9i0j
     
