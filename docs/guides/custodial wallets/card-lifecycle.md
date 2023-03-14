@@ -72,12 +72,12 @@ stateDiagram-v2
 ## Virtual cards
 
 ### Card activation
-A virtual card is `activated` automatically upon creation and no eplicit interactions are required prior to the usage of the card.
+A virtual card is `activated` automatically upon creation and no explicit interactions are required prior to the usage of the card.
 
 ## Physical cards
 
 ### Shipped / Returned / Resent / Sold
-Transitions to `shipped`, `returned`, `sold` and `resent` states are determined by the data prodived by the card personalization bureau.
+Transitions to `shipped`, `returned`, `sold` and `resent` states are determined by the data provided by the card personalization bureau.
 
 ### Card activation
 To activate a card, set the state in the request to activated. For security reasons, a physical card cannot be moved from created to activated. Instead, it can only be activated after it is `sold` or `shipped`. Card activation ensures that the details of a physical card cannot be used until it is delivered to the customer and `activated`.

@@ -2,6 +2,7 @@ type: object
 required:
   - accountId
   - cardReference
+  - cardProgramId
   - type
 properties:
   accountId:
@@ -12,6 +13,9 @@ properties:
   deliveryAddress:
     description: Card delivery address
     $ref: '../../../models/address.yaml'
+  cardProgramId:
+    type: string
+    description: The id of the card program
   type:
     type: string
     enum: 
