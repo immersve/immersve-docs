@@ -12,7 +12,7 @@ post:
     required: true
   responses:
     "200":
-      description: Challenge to be signed in EIP-4361 format
+      description: Challenge to be signed in EIP-4361 format. \\([Quick start signing](/guides/non-custodial%20wallets/authentication))
       content:
         text/plain:
           example: |
