@@ -34,8 +34,10 @@ paths:
     $ref: './endpoints/siwe-login.yaml'
   '/api/cards/orders':
     $ref: './endpoints/cards/card-order.yaml'
-  '/api/cards/{cardId}/cancel':
+  '/api/cards/{cardId}/cancel-async':
     $ref: './endpoints/cards/card-cancel.yaml'
+  '/api/cards/{cardId}/cancel':
+    $ref: './endpoints/cards/card-cancel-deprecated.yaml'
   '/api/cards/{cardId}/pan-token':
     $ref: './endpoints/cards/card-pan-token.yaml'
   '/api/cards/get-prerequisite-transactions':

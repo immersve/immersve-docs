@@ -1,10 +1,11 @@
 post:
+  deprecated: true
   tags:
     - card
-  summary: Cancel a Card asynchronously
-  description: Cancel a card asynchronously
+  summary: Cancel a Card synchronously
+  description: Cancel a card synchronously (deprecated)
   parameters:
     $ref: '../../models/card-id-path.yaml'
   responses:
-    "202":
+    "200":
       description: Successful operation
