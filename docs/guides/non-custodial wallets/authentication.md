@@ -47,41 +47,7 @@ sequenceDiagram
 
 2. Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
 
-   For a quick start use your private key and the script below to generate and sign the challenge. Sandboxes setup on [Replit](https://replit.com/@BradenHolgate1/Immersve-Authentication?v=1) and [CodeSandbox](https://codesandbox.io/p/sandbox/immersve-authentication-sign-challenge-n6znxs?file=%2Findex.js).
-
-   ```
-   const ethers = require("ethers");
-   const axios = require("axios");
-
-   const baseUrl = "https://api.immersve.com";
-   const log = (...data) => {
-     console.log.apply(null, data);
-   };
-
-   // Create a wallet to sign the message with
-   const privateKey = ""; //TODO: Set Private key here
-   const walletAddress = ""; //TODO: Set wallet address here
-   const chainId = 137; //. Chain id Reference: https://chainlist.org/
-
-   const wallet = new ethers.Wallet(privateKey);
-   const clientInstance = axios.create({ baseURL: baseUrl });
-
-   const signIn = async () => {
-     const getSignInChallenge = await clientInstance.post(
-       "/siwe/generate-challenge",
-       {
-         walletAddress,
-         chainId,
-       }
-     );
-     const challenge = getSignInChallenge.data;
-     const signature = await wallet.signMessage(challenge);
-     const output = { message: challenge, signature: signature };
-     log(JSON.stringify(output));
-   };
-
-   signIn();
-   ```
+   For a quick start fork our sandbox on [Replit](https://replit.com/@Immersve/Authentication-Sign-Challenge?v=1) and use your private key to create a new wallet and sign the generated challenge.
 
 3. [Submit the signed challenge along with the signature](/api-reference/login) to get the access token.
 4. The access token should be used for subsequent requests for protected resources from the Immersve API by supplying it in the `Authorization` header.
