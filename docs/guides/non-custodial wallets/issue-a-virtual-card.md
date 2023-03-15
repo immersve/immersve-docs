@@ -32,7 +32,6 @@ The client application is to parse and formulate the raw blockchain transaction 
 
 ### Wallet Funding for Development and Testing
 
-o
 To ensure that integrators are able to obtain sufficient ERC-20 tokens to facilitate development and testing, Immersve uses an ERC-20 token contract that allows tokens to be freely minted as needed.
 
 In non-production environments any `erc20_approval` transaction type returned by [get prerequisite transactions](/api-reference/get-prerequisite-transactions) will refer to the "IMMUSDC" token. The "IMMUSDC" token has a `mint` function allowing for the unlimited minting of the token to any wallet address.
@@ -62,7 +61,7 @@ Having created an virtual card via the [order a card](/api-reference/order-card)
 There are two steps in this process;
 
 1. firstly, obtaining a token for transmission to the client application to which the card details are to be provided (i.e. the application that will display the card data to the cardholder) and;
-1. secondly, the exchange, by that client application, of the token for the card data.
+2. secondly, the exchange, by that client application, of the token for the card data.
 
 :::note
 It is not recommended that the card token is supplied to any application other than one that resides within the cardholder environment (i.e. their mobile application or web application running in their browser) unless that system is sufficiently compliant with PCI-DSS requirements and is audited as such.
