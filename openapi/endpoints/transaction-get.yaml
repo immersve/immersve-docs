@@ -2,12 +2,12 @@ get:
   tags:
     - transactions
   summary: Get a Transaction
-  description: This endpoint returns the details of a transaction by a given id.
+  description: This endpoint returns the details of a card purchase transaction by a given id.
   responses:
-    '200':
+    "200":
       content:
         application/json:
           schema:
             allOf:
-              - $ref: '../models/transaction.yaml'
-              - $ref: '../models/transaction-detail-extension.yaml'
+              - $ref: "../models/transaction.yaml"
+              - $ref: "../models/transaction-detail-extension.yaml"

@@ -1,19 +1,4 @@
 type: object
-required:
-  - description
-  - id
-  - accountId
-  - cardId
-  - amount
-  - currency
-  - acquirerAmount
-  - acquirerCurrency
-  - lockedFundCurrency
-  - feeAmount
-  - chain
-  - transactionDate  
-  - reference  
-  - cardAcceptor  
 properties:
   id:
     type: string
