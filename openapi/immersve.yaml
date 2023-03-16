@@ -55,6 +55,8 @@ paths:
     $ref: './endpoints/asset-get.yaml'
   '/api/transactions/{transaction-id}':
     $ref: './endpoints/transaction-get.yaml'
+  '/api/accounts/{account-id}/transactions':
+    $ref: './endpoints/transactions-list.yaml'
   '/api/custodial/accounts':
     $ref: './endpoints/accounts/account-create.yaml'
   '/api/custodial/accounts/{accountId}':
