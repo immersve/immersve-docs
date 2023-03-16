@@ -8,4 +8,3 @@ properties:
     type: string
     description: Cursor to previous available page for pagination
     example: dGhlIHByZXZpb3VzIGN1cnNvciBnb2VzIGhlcmU=
-
