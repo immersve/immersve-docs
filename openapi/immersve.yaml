@@ -67,14 +67,14 @@ paths:
     $ref: './endpoints/cards/card-create.yaml'
   '/api/custodial/cards/{cardId}/close':
     $ref: './endpoints/cards/card-close.yaml'
-  '/api/cards/{cardId}/block':
+  '/api/custodial/cards/{cardId}/block':
     $ref: './endpoints/cards/card-block.yaml'
-  # '/api/cards/{cardId}/unblock':
-  #   $ref: './endpoints/cards/card-unblock.yaml'
+  '/api/custodial/cards/{cardId}/unblock':
+    $ref: './endpoints/cards/card-unblock.yaml'
   # '/api/cards/{cardId}/activate':
   #   $ref: './endpoints/cards/card-activate.yaml'
-  '/api/cards/{cardId}':
-   $ref: './endpoints/cards/card-get.yaml'
+  '/api/custodial/cards/{cardId}':
+    $ref: './endpoints/cards/card-get.yaml'
 
   '/api/custodial/kyc-resources':
     $ref: './endpoints/custodial/kyc/upload-kyc-resource.yaml'
