@@ -8,10 +8,6 @@ properties:
     type: string  
     description: User account id linked to card
     example: 057aa15913a57f50577234c8426534c0
-  externalId:
-    type: string
-    description: Payments partner id
-    example: "8649543161870318367"
   state:
     type: string 
     description: The state of the card
