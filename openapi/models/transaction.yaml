@@ -6,8 +6,14 @@ properties:
     example: "1000000178145"
   description:
     type: string
-    description: A description of the transaction 
+    description: Merchant details
     example: "Air NZ Online Auckland"
+  status:
+    type: string
+    description: Authorization status
+    enum:
+      - holding
+      - cleared
   accountId:
     type: string  
     description: Which account this transaction belongs to
