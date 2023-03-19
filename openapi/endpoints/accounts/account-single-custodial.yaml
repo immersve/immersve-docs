@@ -17,7 +17,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../models/custodial-error-response.yaml'
+            $ref: '../../models/error-response-custodial.yaml'
 
 post:
   tags:
@@ -41,4 +41,4 @@ post:
       content:
         application/json:
           schema:
-            $ref: '../../models/custodial-error-response.yaml'
+            $ref: '../../models/error-response-custodial.yaml'

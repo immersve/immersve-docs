@@ -9,5 +9,5 @@ get:
         application/json:
           schema:
             allOf:
-              - $ref: "../models/transaction.yaml"
-              - $ref: "../models/transaction-detail-extension.yaml"
+              - $ref: "./models/transaction.yaml"
+              - $ref: "./models/transaction-detail-extension.yaml"
