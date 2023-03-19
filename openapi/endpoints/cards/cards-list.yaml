@@ -1,4 +1,4 @@
-post:
+get:
   tags:
     - card
   summary: List Cards
