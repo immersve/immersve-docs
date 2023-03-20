@@ -1,0 +1,89 @@
+get:
+  tags:
+    - asset-activities
+  summary: List Asset Activities
+  description: List activities for the single asset
+  parameters:
+    - name: assetId
+      in: path
+      description: ID for the asset to fetch activities for
+      required: true
+      schema:
+        type: string
+    - name: walletAddress
+      in: query
+      description: This address must be a funding wallet
+      required: false
+      schema:
+        type: string
+    - name: fromUTC
+      in: query
+      description: A date filter to return activities created after this date. Value should be a ISO 8601 string or RFC 2822 string
+      required: false
+      schema:
+        type: string
+    - name: toUTC
+      in: query
+      description: A date filter to return activities created before this date. Value should be a ISO 8601 string or RFC 2822 string
+      required: false
+      schema:
+        type: string
+    - name: eventTypes
+      in: query
+      description: Comma-separated list of smart contract event names that should be included
+      required: false
+      schema:
+        type: string
+        enum:
+          - UserDeposit
+          - UserWithdraw
+          - LockedFunds
+          - LockedFundsWithDeposit
+          - LockedFundsRevoked
+          - LockedFundsPaymentConfirmation
+    - name: limit
+      in: query
+      description: Amount of records to return (max 1000)
+      required: false
+      schema:
+        type: number
+    - name: cursor
+      in: query
+      description: Cursor to retrieve the next page
+      required: false
+      schema:
+        type: string
+    - name: order
+      in: query
+      description: Order of activities. Use "asc" for oldest first and "desc" for newest first
+      required: false
+      schema:
+        type: string
+        enum:
+          - asc
+          - desc
+
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/asset-activities-paging-result.yaml"
+    "400":
+      description: |
+        Request can not be processed. Either request parameters are not valid or cardholder is not found.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error.yaml"
+    "403":
+      description: |
+        User is not allowed to list asset activities due to the reason specified in the message.
+
+        **NoWalletAddressReceived** 
+        User is required to log in with their wallet.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error.yaml"
