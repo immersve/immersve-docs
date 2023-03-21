@@ -4,4 +4,4 @@ required:
   - idType
   - contents
 properties:
-  $ref: "./upload-props.yaml"
+  $ref: './upload-props.yaml'
