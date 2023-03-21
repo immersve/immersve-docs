@@ -4,6 +4,8 @@ post:
   summary: Upload a KYC resource
   description: |
     Upload a KYC resource under the root account. This resource can then be associated to a user when creating a new account.
+
+    The `country` and `documentSide` fields are not required when uploading a `SELF_IMAGE` resource.
   security:
     $ref: '../../../models/api-key-auth.yaml'
   requestBody:
