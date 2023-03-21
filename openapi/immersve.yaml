@@ -6,7 +6,7 @@ info:
   version: 1.0.0
   title: Immersve API
   x-logo:
-    url: "https://www.immersve.com/img/immersvelogo-bf8a9fe8408d733c996c2f7d8251e521.svg"
+    url: 'https://www.immersve.com/img/immersvelogo-bf8a9fe8408d733c996c2f7d8251e521.svg'
     altText: Immersve logo
 tags:
   - name: authentication
@@ -76,9 +76,9 @@ paths:
   # '/api/cards/{cardId}/activate':
   #   $ref: './endpoints/cards/card-activate.yaml'
   '/api/custodial/cards/{cardId}':
-   $ref: './endpoints/cards/card-get-custodial.yaml'
-  "/api/custodial/cards/{cardId}/set-pin":
-    $ref: "./endpoints/cards/card-set-pin.yaml"
+    $ref: './endpoints/cards/card-get-custodial.yaml'
+  '/api/custodial/cards/{cardId}/set-pin':
+    $ref: './endpoints/cards/card-set-pin.yaml'
     servers:
       - url: https://api-sec.immersve.com/
         description: Secure server

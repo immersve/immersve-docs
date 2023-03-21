@@ -6,8 +6,8 @@ properties:
   newPin:
     type: string
     description: New pin to set on the card
-    example: "1234"
+    example: '1234'
   cvv:
     type: string
     description: Card verification value
-    example: "123"
+    example: '123'

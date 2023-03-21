@@ -3,17 +3,16 @@ post:
     - cards-custodial
   summary: Set card pin
   security:
-    $ref: "../../models/api-key-auth.yaml"
+    $ref: '../../models/api-key-auth.yaml'
   parameters:
-    $ref: "../../models/card-id-path.yaml"
+    $ref: '../../models/card-id-path.yaml'
   description: |
-   Sets a new pin to the card
+    Sets a new pin to the card
   requestBody:
     content:
       application/json:
         schema:
-          $ref: "./models/set-card-pin-request.yaml"
+          $ref: './models/set-card-pin-request.yaml'
   responses:
-    "200":
+    '200':
       description: Successful operation
-
