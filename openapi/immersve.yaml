@@ -84,7 +84,7 @@ paths:
     $ref: "./endpoints/cards/card-set-pin.yaml"
     servers:
       - url: https://api-sec.immersve.com/
-        description: Secure card details server
+        description: Secure host
   "/api/custodial/kyc-resources":
     $ref: "./endpoints/custodial/kyc/upload-kyc-resource.yaml"
 components:
