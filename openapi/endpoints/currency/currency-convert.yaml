@@ -28,7 +28,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: "../models/currency-conversion.yaml"
+            $ref: "./models/currency-conversion.yaml"
           example: |
             {
               "currency": "NZD",

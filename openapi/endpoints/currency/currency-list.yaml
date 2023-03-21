@@ -10,7 +10,7 @@ get:
           schema:
             type: array
             items:
-              $ref: "../models/currency.yaml"
+              $ref: "./models/currency.yaml"
           example: |
             [
               {

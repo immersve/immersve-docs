@@ -8,7 +8,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../models/challenge-request.yaml'
+          $ref: './models/challenge-request.yaml'
     required: true
   responses:
     "200":

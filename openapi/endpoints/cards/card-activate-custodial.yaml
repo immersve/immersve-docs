@@ -1,7 +1,7 @@
 post:
   tags:
     - cards-custodial
-  summary: Block a card
+  summary: Activate a card (for physical cards only)
   security:
     $ref: '../../models/api-key-auth.yaml'
   parameters:
@@ -10,14 +10,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: './models/block-card-request.yaml'
+          $ref: './models/activate-card-request.yaml'
     required: true
   responses:
     '200':
-      description: 'Card blocked'
+      description: 'Card activated'
     default:
-      description: 'Error'
+      description: "Error"
       content:
         application/json:
           schema:
-            $ref: '../../models/custodial-error-response.yaml'
+            $ref: '../../models/error-response-custodial.yaml'
