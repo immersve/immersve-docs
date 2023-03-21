@@ -7,7 +7,7 @@ post:
   parameters:
     $ref: "../../models/card-id-path.yaml"
   description: |
-    The set-pin endpoint takes in sensitive data (PIN , CVV) tokenized and sets a new pin to the card without having to expose the data.
+   Sets a new pin to the card
   requestBody:
     content:
       application/json:

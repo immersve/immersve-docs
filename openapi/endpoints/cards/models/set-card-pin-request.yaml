@@ -9,5 +9,5 @@ properties:
     example: "1234"
   cvv:
     type: string
-    description: Secure card code
+    description: Card verification value
     example: "123"
