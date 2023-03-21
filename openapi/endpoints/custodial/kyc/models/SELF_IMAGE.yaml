@@ -1,0 +1,7 @@
+type: object
+required:
+  - mimeType
+  - idType
+  - contents
+properties:
+  $ref: "./upload-props.yaml"
