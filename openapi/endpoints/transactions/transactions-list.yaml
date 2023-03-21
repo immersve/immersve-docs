@@ -28,4 +28,4 @@ post:
       content:
         application/json:
           schema:
-            $ref: "../models/transactions-paging-result.yaml"
+            $ref: "./models/transactions-paging-result.yaml"

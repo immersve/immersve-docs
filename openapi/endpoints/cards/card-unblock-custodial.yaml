@@ -1,7 +1,7 @@
 post:
   tags:
     - cards-custodial
-  summary: Close a card
+  summary: Unblock a card
   security:
     $ref: '../../models/api-key-auth.yaml'
   parameters:
@@ -10,14 +10,13 @@ post:
     content:
       application/json:
         schema:
-          $ref: './models/close-card-request.yaml'
-    required: true
+          $ref: './models/unblock-card-request.yaml'
   responses:
     '200':
-      description: 'Card closed'
+      description: 'Card unblocked'
     default:
-      description: "Error"
+      description: 'Error'
       content:
         application/json:
           schema:
-            $ref: '../../models/custodial-error-response.yaml'
+            $ref: '../../models/error-response-custodial.yaml'

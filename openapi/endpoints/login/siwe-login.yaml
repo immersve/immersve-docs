@@ -9,7 +9,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../models/login-request.yaml'
+          $ref: './models/login-request.yaml'
     required: true
   responses:
     "200":
@@ -17,7 +17,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: "../models/login-response.yaml"
+            $ref: "./models/login-response.yaml"
     "400":
       description: Login unsuccessful
       content:

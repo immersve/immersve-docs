@@ -5,5 +5,5 @@ properties:
     items:
       $ref: './transaction.yaml'
   pageInfo:
-    $ref: './page-info.yaml'
+    $ref: '../../../models/page-info.yaml'
 

@@ -1,23 +1,23 @@
 post:
   tags:
-    - accounts-custodial
-  summary: Cancel an Account
+    - cards-custodial
+  summary: Close a card
   security:
     $ref: '../../models/api-key-auth.yaml'
   parameters:
-    $ref: '../../models/account-id-path.yaml'
+    $ref: '../../models/card-id-path.yaml'
   requestBody:
     content:
       application/json:
         schema:
-          $ref: './models/cancel-account-request.yaml'
+          $ref: './models/close-card-request.yaml'
     required: true
   responses:
     '200':
-      description: 'Account cancelled'
+      description: 'Card closed'
     default:
       description: "Error"
       content:
         application/json:
           schema:
-            $ref: '../../models/custodial-error-response.yaml'
+            $ref: '../../models/error-response-custodial.yaml'
