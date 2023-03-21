@@ -1,0 +1,13 @@
+type: object
+required:
+  - newPin
+  - cvv
+properties:
+  newPin:
+    type: string
+    description: New pin to set on the card
+    example: "1234"
+  cvv:
+    type: string
+    description: Secure card code
+    example: "123"

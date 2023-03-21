@@ -80,6 +80,8 @@ paths:
   #   $ref: './endpoints/cards/card-activate.yaml'
   "/api/custodial/cards/{cardId}":
     $ref: "./endpoints/cards/card-get.yaml"
+  "/api/custodial/cards/{cardId}/set-pin":
+    $ref: "./endpoints/cards/card-set-pin.yaml"
 
   "/api/custodial/kyc-resources":
     $ref: "./endpoints/custodial/kyc/upload-kyc-resource.yaml"

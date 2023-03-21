@@ -1,0 +1,19 @@
+post:
+  tags:
+    - cards-custodial
+  summary: Set card pin
+  security:
+    $ref: "../../models/api-key-auth.yaml"
+  parameters:
+    $ref: "../../models/card-id-path.yaml"
+  description: |
+    The set-pin endpoint takes in sensitive data (PIN , CVV) tokenized and sets a new pin to the card without having to expose the data.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./models/set-card-pin-request.yaml"
+  responses:
+    "200":
+      description: Successful operation
+
