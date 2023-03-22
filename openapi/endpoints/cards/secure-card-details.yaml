@@ -1,7 +1,7 @@
 post:
   tags:
     - card
-  summary: Get Secure Card Details
+  summary: Get secure card details
   description: |
     The secure card details endpoint returns the sensitive card details when presented with a token obtained via the `generate card token` endpoint.
   requestBody:

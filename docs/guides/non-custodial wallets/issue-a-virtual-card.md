@@ -18,7 +18,7 @@ The authentication processes is described in the [authentication guide](/guides/
 
 ## Currency Conversion
 
-A user will more often than not be quoted a price for a purchase by a merchant in a fiat currency. In order to determine the sufficient amount of digital assets to fund a card and be made available for the purchase, you will retrieve the amount from the [currency conversion](/api-reference/currency-convert) API endpoint.
+A user will more often than not be quoted a price for a purchase by a merchant in a fiat currency. In order to determine the sufficient amount of digital assets to fund a card and be made available for the purchase, you will retrieve the amount from the [currency conversion](/api-reference/currency-conversion) API endpoint.
 
 ## Lock Funds
 

@@ -1,7 +1,7 @@
 post:
   tags:
     - authentication
-  summary: Generate Challenge
+  summary: Generate challenge
   description: |
     Generating the challenge is the first step in the process of getting the authentication token.
   requestBody:

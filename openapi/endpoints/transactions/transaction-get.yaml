@@ -1,7 +1,7 @@
 get:
   tags:
     - transactions
-  summary: Get a Transaction
+  summary: Get a transaction
   description: This endpoint returns the details of a card purchase transaction by a given id.
   responses:
     "200":

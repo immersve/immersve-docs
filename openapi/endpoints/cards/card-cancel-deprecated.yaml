@@ -2,7 +2,7 @@ post:
   deprecated: true
   tags:
     - card
-  summary: Cancel a Card synchronously
+  summary: Cancel a card synchronously
   description: Cancel a card synchronously (deprecated)
   parameters:
     $ref: '../../models/card-id-path.yaml'
