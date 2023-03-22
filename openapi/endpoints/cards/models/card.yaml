@@ -13,7 +13,7 @@ properties:
     description: The state of the card
     enum:
       - active
-      - cancelled
+      - canceled
   type:
     type: string 
     description: The type of the card
