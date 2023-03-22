@@ -46,7 +46,7 @@ paths:
     $ref: './endpoints/cards/card-get-prerequisite-transactions.yaml'
   '/v1/auth/pan/token/validate':
     $ref: './endpoints/cards/secure-card-details.yaml'
-  '/api/cards/account/{accountId}/block':
+  '/api/cards/account/{accountId}':
     $ref: './endpoints/cards/cards-list.yaml'
   '/api/currencies':
     $ref: './endpoints/currency/currency-list.yaml'

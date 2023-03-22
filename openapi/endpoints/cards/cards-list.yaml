@@ -22,6 +22,36 @@ get:
       required: false
       schema:
         type: string
+    - name: excludeExpired
+      in: path
+      description: filter by expiry state
+      required: false
+      schema:
+        type: boolean
+    - name: state
+      in: path
+      description: card state to filter by
+      required: false
+      schema:
+        type: string
+        enum:
+          - REQUESTED
+          - KYC_VERIFIED
+          - LOCKED_FUNDS_VERIFIED
+          - LOCKED_FUNDS_BLOCK_CONFIRMATIONS_VERIFIED
+          - PROVISIONING
+          - PROVISIONED
+          - ACTIVE
+          - CANCELING
+          - CANCELED
+          - CANCEL_FAILED
+          - INACTIVE
+          - ORDER_FAILED
+          - BLOCKED
+          - BLOCKING
+          - BLOCK_FAILED
+          - UNBLOCKING
+          - UNBLOCK_FAILED
   responses:
     "200":
       description: Successful operation
@@ -29,3 +59,10 @@ get:
         application/json:
           schema:
             $ref: "./models/cards-paging-result.yaml"
+    "403":
+      description: |
+        User is not allowed to list cards
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error.yaml"
