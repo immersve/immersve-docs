@@ -1,7 +1,7 @@
 post:
   tags:
     - card
-  summary: Order a Card
+  summary: Order a card
   description: |
     Order a virtual card for the current user.
   operationId: orderCard

@@ -1,7 +1,7 @@
 post:
   tags:
     - card
-  summary: Get a Card Token
+  summary: Get a card token
   description: Generate a card token to enable the subsequent retrieval of the card's sensitive details including full PAN and CVV2.
   parameters:
     - name: cardId

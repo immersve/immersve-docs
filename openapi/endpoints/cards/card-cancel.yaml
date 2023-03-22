@@ -1,7 +1,7 @@
 post:
   tags:
     - card
-  summary: Cancel a Card asynchronously
+  summary: Cancel a card asynchronously
   description: Cancel a card asynchronously
   parameters:
     $ref: '../../models/card-id-path.yaml'

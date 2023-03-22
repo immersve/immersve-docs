@@ -1,7 +1,7 @@
 post:
   tags:
     - transactions
-  summary: List Transactions
+  summary: List transactions
   description: List card purchase transactions by account
   parameters:
     - name: accountId
