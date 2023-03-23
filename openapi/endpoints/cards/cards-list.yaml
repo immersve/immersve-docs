@@ -35,23 +35,23 @@ get:
       schema:
         type: string
         enum:
-          - REQUESTED
-          - KYC_VERIFIED
-          - LOCKED_FUNDS_VERIFIED
-          - LOCKED_FUNDS_BLOCK_CONFIRMATIONS_VERIFIED
-          - PROVISIONING
-          - PROVISIONED
-          - ACTIVE
-          - CANCELING
-          - CANCELED
-          - CANCEL_FAILED
-          - INACTIVE
-          - ORDER_FAILED
-          - BLOCKED
-          - BLOCKING
-          - BLOCK_FAILED
-          - UNBLOCKING
-          - UNBLOCK_FAILED
+          - requested
+          - kyc-verified
+          - locked-funds-verified
+          - locked-funds-blockchain-confirmations-verified
+          - provisioning
+          - provisioned
+          - active
+          - canceling
+          - canceled
+          - cancel-failed
+          - inactive
+          - order-failed
+          - blocked
+          - blocking
+          - block-failed
+          - unblocking
+          - unblock-failed
   responses:
     "200":
       description: Successful operation
