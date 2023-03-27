@@ -1,0 +1,60 @@
+get:
+  tags:
+    - assets
+  summary: Get deposit prerequisites
+  description: Get prerequisites for an asset deposit
+  parameters:
+    - name: token
+      in: path
+      description: token symbol
+      required: true
+      schema:
+        type: string
+        enum:
+          - USDC
+    - name: amount
+      in: path
+      description: Amount to be deposited, max six decimals
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: './models/deposit-prerequisite.yaml'
+          example: |
+            {
+              "requiredTransactions": [
+                {
+                    "type": "erc20_approval",
+                    "params": {
+                        "spender": "0xCf0ed659452b092750D9BB54c33c0025b6853aa4",
+                        "amount": 320.22,
+                        "token": "USDC",
+                    }
+                },
+                {
+                    "type": "smart_contract_write",
+                    "params": {
+                        "contractAddress": "0xCf0ed659452b092750D9BB54c33c0025b6853aa4",
+                        "abi": {},
+                        "method": "deposit"
+                        "params": {
+                            "usdcAmount": 320.22
+                        }
+                    }
+                }
+              ]
+            }
+    "400":
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error.yaml"
+    "403":
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error.yaml"

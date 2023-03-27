@@ -53,6 +53,8 @@ paths:
     servers:
       - url: https://mobile.apac-uat.aws.tst.e6tech.net/restful/
         description: Secure card details server
+  '/api/prerequisites/assets/{token}/deposit/{amount}':
+    $ref: './endpoints/assets/asset-deposit-prerequisite-get.yaml'
   '/api/assets':
     $ref: './endpoints/assets/asset-balance-get.yaml'
   '/api/transactions/{transaction-id}':
