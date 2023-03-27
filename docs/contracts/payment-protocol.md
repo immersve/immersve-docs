@@ -168,6 +168,18 @@ The locked funds will be represented with a `AssetLockedFund` struct inside the 
 ### `confirmLockedFundPayment` (address sender, uint256 price, uint256 lockedFundId) external whenNotPaused nonReentrant onlyRole(SETTLER_ROLE)
 
 > Used by Immersve to confirm the settlement of an Immersve Card payment. This function will check that the specified address has enough locked funds for the specified `lockedFundId` and will transfer the settlement amount (`price`) to the settlement address, specified in the [`initialize`](/contracts/payment-protocol#initializeaddress-payable-_settlementaddress-address-_tokensmartcontract-uint256-_defaulttimeoutblocks-uint256-_safetyblocks-external-initializer) function.
+It releases locked funds. Used for transactions with amount matching locked funds.
+It can only be called by the SETTLER role
+- `sender` (type `address`): CardHolder Address doing a payment requiring locked funds with Immersve
+- `price` (type `uint256`): token Amount to settle in `ethers` format
+- `lockedFundId` (type `uint256`): Matching Locked Fund Id (which is linked to a Card) to settle payment being done with an Immersve Credit Card
+
+-----
+
+### `confirmLockedFundPartialPayment` (address sender, uint256 price, uint256 lockedFundId) external whenNotPaused nonReentrant onlyRole(SETTLER_ROLE)
+
+> Used by Immersve to confirm the settlement of an Immersve Card payment. This function will check that the specified address has enough locked funds for the specified `lockedFundId` and will transfer the settlement amount (`price`) to the settlement address, specified in the [`initialize`](/contracts/payment-protocol#initializeaddress-payable-_settlementaddress-address-_tokensmartcontract-uint256-_defaulttimeoutblocks-uint256-_safetyblocks-external-initializer) function.
+Updates locked funds. Used for partial / incremental transactions (multiple transaction with amount < locked funds).
 It can only be called by the SETTLER role
 - `sender` (type `address`): CardHolder Address doing a payment requiring locked funds with Immersve
 - `price` (type `uint256`): token Amount to settle in `ethers` format
