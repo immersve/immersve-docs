@@ -1,0 +1,11 @@
+type: object
+properties:
+  cvv2:
+    type: string
+    example: "442"
+  pan:
+    type: string
+    example: "1234123412345678"
+  expirationDate:
+    type: string
+    example: "202501"
