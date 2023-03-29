@@ -27,6 +27,8 @@ tags:
     x-displayName: Transactions
   - name: kyc-custodial
     x-displayName: KYC (Custodial)
+  - name: prerequisites
+    x-displayName: Prerequisites
 security:
   - immersve_auth: []
 paths:
@@ -44,6 +46,8 @@ paths:
     $ref: './endpoints/cards/card-pan-token.yaml'
   '/api/cards/get-prerequisite-transactions':
     $ref: './endpoints/cards/card-get-prerequisite-transactions.yaml'
+  '/api/prerequisites/{action}':
+    $ref: './endpoints/prerequisites/prerequisites.yaml'
   '/api/currencies':
     $ref: './endpoints/currency/currency-list.yaml'
   '/api/currency/convert':
