@@ -77,10 +77,10 @@ paths:
     $ref: './endpoints/cards/card-close-custodial.yaml'
   '/api/custodial/cards/{cardId}/block':
     $ref: './endpoints/cards/card-block-custodial.yaml'
+  '/api/custodial/cards/{cardId}/activate':
+    $ref: './endpoints/cards/card-activate-custodial.yaml'
   '/api/custodial/cards/{cardId}/unblock':
     $ref: './endpoints/cards/card-unblock-custodial.yaml'
-  # '/api/cards/{cardId}/activate':
-  #   $ref: './endpoints/cards/card-activate.yaml'
   '/api/custodial/cards/{cardId}':
     $ref: './endpoints/cards/card-get-custodial.yaml'
   '/api/custodial/cards/{cardId}/set-pin':

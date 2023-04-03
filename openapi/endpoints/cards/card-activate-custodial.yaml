@@ -6,17 +6,11 @@ post:
     $ref: '../../models/api-key-auth.yaml'
   parameters:
     $ref: '../../models/card-id-path.yaml'
-  requestBody:
-    content:
-      application/json:
-        schema:
-          $ref: './models/activate-card-request.yaml'
-    required: true
   responses:
     '200':
       description: 'Card activated'
     default:
-      description: "Error"
+      description: 'Error'
       content:
         application/json:
           schema:
