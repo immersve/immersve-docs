@@ -14,6 +14,6 @@ properties:
   url:
     description: | 
       A URL referring to the resource that requests the signing.
-      Domain in the "\<domain\> wants you to sign in.." is derived from the host fragment of this parameter.
+      Also, domain in the "\<domain\> wants you to sign in.." is derived from the host fragment of this parameter.
     type: url
     example: https://example.service/login
