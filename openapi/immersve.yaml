@@ -83,6 +83,11 @@ paths:
     $ref: './endpoints/cards/card-unblock-custodial.yaml'
   '/api/custodial/cards/{cardId}':
     $ref: './endpoints/cards/card-get-custodial.yaml'
+  '/api/custodial/cards/{cardId}/secure':
+    $ref: './endpoints/cards/card-get-secure-custodial.yaml'
+    servers:
+      - url: https://api-sec.immersve.com/
+        description: Secure server
   '/api/custodial/cards/{cardId}/set-pin':
     $ref: './endpoints/cards/card-set-pin.yaml'
     servers:
