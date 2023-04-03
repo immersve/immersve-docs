@@ -6,8 +6,7 @@ post:
     $ref: '../../models/api-key-auth.yaml'
   parameters:
     $ref: '../../models/card-id-path.yaml'
-  description: |
-    Sets a new pin to the card
+  description: Sets a new pin to the card
   requestBody:
     content:
       application/json:
