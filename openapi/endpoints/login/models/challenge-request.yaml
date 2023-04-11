@@ -4,7 +4,7 @@ required:
   - chainId
 properties:
   walletAddress:
-    description: Wallet address of the user to be authenticated
+    description: The address of the signing wallet or the smart contract that implements ERC-1271
     type: string
     example: "0xA3058369d6A481B1ff08F62B352409c3D709De9b"
   chainId:
