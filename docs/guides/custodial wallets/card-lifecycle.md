@@ -49,22 +49,22 @@ The following diagram shows the lifecycle of a card's different states.
 ```mermaid
 stateDiagram-v2
     [*] --> Created: start
-    Created --> Activated:
-    Created --> Shipped:
-    Created --> Invalid:
-    Shipped --> Returned:
-    Shipped --> Activated:
-    Shipped --> Sold:
-    Shipped --> Invalid:
-    Returned --> Resent:
-    Returned --> Invalid:
-    Resent --> Returned:
-    Resent --> Sold:
-    Resent --> Activated:
-    Resent --> Invalid:
-    Sold --> Activated:
-    Sold --> Invalid:
-    Activated --> Invalid:
+    Created --> Activated
+    Created --> Shipped
+    Created --> Invalid
+    Shipped --> Returned
+    Shipped --> Activated
+    Shipped --> Sold
+    Shipped --> Invalid
+    Returned --> Resent
+    Returned --> Invalid
+    Resent --> Returned
+    Resent --> Sold
+    Resent --> Activated
+    Resent --> Invalid
+    Sold --> Activated
+    Sold --> Invalid
+    Activated --> Invalid
     Invalid --> [*]: end
 ```
 
