@@ -16,4 +16,4 @@ You can start receiving event notifications in your app using the steps in this 
 1. Create a webhook endpoint as an HTTP endpoint (URL) on your local server.
 2. Handle requests from Immersve by parsing each event object and returning a `200` response status code.
 3. Deploy your webhook endpoint so it’s a publicly accessible HTTPS URL.
-4. [Contact Immersve](https://immersve.com/#contact) to register your publicly accessible HTTPS URL.
+4. [Contact Immersve](mailto:info@immersve.com) to register your publicly accessible HTTPS URL.

@@ -1,14 +1,14 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 tags:
   - reports
   - custodial
   - non-custodial
 ---
 
-# Authorization Reports
+# Clearing Reports
 
-The authorization report can be used to review all card purchase authorizations for a given period.
+The clearing report can be used to review all card purchase clearings for a given period.
 
 
 |       Field        |                                                                                  Description                                                                                  |
@@ -16,9 +16,7 @@ The authorization report can be used to review all card purchase authorizations 
 | cardToken          | Unique identifier of the [card](/api-reference/card).                                                                                                                         |
 | transactionId      | Unique identifier of the associated card [transaction](/api-reference/transactions).                                                                                          |
 | authorizationId    | Unique identifier of the original authorization request received via the card scheme network.                                                                                 |
-| authorizationCode  | Source of the [transaction](/api-reference/transactions). See [Authorization Codes](#authorization-codes).                                                                    |
 | transactionType    | [ISO 8583](https://www.iso.org/obp/ui/#iso:std:iso:8583:-1:ed-1:v1:en) message class. This is a messaging standard for payments initiated with a [card](/api-reference/card). |
-| status             | Status of the [transaction](/api-reference/transactions). Valid values are `approved` or `declined`.                                                                          |
 | merchantCurrency   | Local currency of the country where the [transaction](/api-reference/transactions) was processed.                                                                             |
 | merchantAmount     | Amount of the [transaction](/api-reference/transactions), in minor units of the local currency.                                                                               |
 | billingCurrency    | Currency of the card holder's account balance.                                                                                                                                |
@@ -36,29 +34,11 @@ The authorization report can be used to review all card purchase authorizations 
 | mcc                | Four-digit number listed in [ISO 18245](https://www.iso.org/obp/ui/#iso:std:iso:18245:ed-2:v1:en). Used to classify a business by the types of goods or services it provides. |
 | channel            | Channel used to initialize the [transaction](/api-reference/transactions). Examples include `ATM`, and `Online`.                                                              |
 
-## Authorization Codes
-
-| Code |    Description    |
-| ---- | ----------------- |
-| 0    | Unknown           |
-| 1    | InWalletPOS       |
-| 2    | OutOfWalletPOS    |
-| 3    | InWalletATM       |
-| 4    | OutOfWalletATM    |
-| 5    | Online            |
-| 6    | Partner           |
-| 7    | Customer          |
-| 8    | Internal          |
-| 9    | Static            |
-| 10   | MobileCommerce    |
-| 11   | OnUs              |
-| 12   | OutOfWalletOnline |
-
 ## Example
 
-`82cc0b217d3b850169286b0603e6a756_authorization_2023-03-28T00:00:00.000Z_2023-03-28T00:00:00.000Z.csv`
+`169286b0603e6a75122cc0b217d3b850_clearing_2023-04-18T00:00:00.000Z_2023-04-18T00:00:00.000Z.csv`
 
 ```
-  cardToken,transactionId,authorizationId,authorizationCode,transactionType,status,merchantCurrency,merchantAmount,billingCurrency,billingAmount,settlementCurrency,settlementAmount,exchangeRate,accountId,merchantId,merchantName,merchantCity,merchantCountry,createdAt,approvedAt,mcc,channel
-  6c474aa7a5dc45bff721b5a207cf0f47,1000000318081,1000000318080,5,0100,approved,USD,10000,NZD,16172,USDC,100000000,1.6172000000,225d85e65495722bf6517ea0ba0d6f56,47e4d565f99457119fd9c672f6edf0aa,Family Clothing Store,Auckland,NZL,2023-03-28T23:23:22.958Z,2023-03-28T23:23:24.533Z,5651,Online
+card_token,transaction_id,authorization_id,transaction_type,merchant_currency,merchant_amount,billing_currency,billing_amount,settlement_currency,settlement_amount,exchange_rate,account_id,merchant_id,merchant_name,merchant_city,merchant_country,creation_at,approved_at,mcc,channel
+789f7719eab12100789653487c136165,1000000324137,1000000324138,1200,USD,500,USD,500,USDC,6000000,1.0000000000,e64aa69f0a9af2d664e5989bd7f22562,000000000000000,Family Clothing Store,Auckland,NZL,2023-04-18T01:08:06.435Z,2023-04-18T01:08:09.144Z,5651,Online
 ```
