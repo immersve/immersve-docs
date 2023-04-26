@@ -5,7 +5,7 @@ post:
   security:
     $ref: './models/auth.yaml'
   description: |
-    This webhook endpoint is called when an authorization or sale request is made. 
+    This custodial integrator webhook endpoint is called when an authorization or sale request is made. 
 
     For more information on setting up webhooks 
     see the [webhooks guide](/guides/webhooks)
