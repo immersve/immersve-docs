@@ -29,8 +29,8 @@ tags:
     x-displayName: KYC (Custodial)
   - name: prerequisites
     x-displayName: Prerequisites
-  - name: webhooks
-    x-displayName: Webhooks
+  - name: webhooks-custodial
+    x-displayName: Webhooks (Custodial)
 security:
   - immersve_auth: []
 paths:
@@ -102,11 +102,11 @@ paths:
   '/authorizations':
     servers:
       - url: https://<partnerBaseUrl>/transactions
-    $ref: './endpoints/webhooks/authorization.yaml'
+    $ref: './endpoints/webhooks/authorization-custodial.yaml'
   '/transactions':
     servers:
       - url: https://<partnerBaseUrl>/transactions
-    $ref: './endpoints/webhooks/transaction.yaml'
+    $ref: './endpoints/webhooks/transaction-custodial.yaml'
 #  '/notifications':
 #    servers:
 #      - url: https://<partnerBaseUrl>/transactions

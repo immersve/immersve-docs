@@ -1,6 +1,6 @@
 post:
   tags:
-    - webhooks
+    - webhooks-custodial
   summary: Transaction
   security:
     $ref: './models/auth.yaml'
@@ -13,7 +13,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: './models/transaction-request.yaml'
+          $ref: './models/transaction-custodial-request.yaml'
     required: true
   responses:
     '200':

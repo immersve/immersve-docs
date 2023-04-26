@@ -1,6 +1,6 @@
 post:
   tags:
-    - webhooks
+    - webhooks-custodial
   summary: Notification
   security:
     $ref: './models/auth.yaml'
@@ -13,7 +13,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: './models/notification-request.yaml'
+          $ref: './models/notification-custodial-request.yaml'
     required: true
   responses:
     '200':
