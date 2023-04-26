@@ -8,9 +8,9 @@ tags:
 
 The simulator app is a test application that enables use of Immersve cards with a fake merchant.
 
-To begin using the simulator, one must first create an Immersve card using the main webapp. This app will prompt you to
+To begin using the simulator, one must first create an Immersve card at [app.immersve.com](https://app.immersve.com). This app will prompt you to
 use metamask to load test funds onto a short lived card. Once this card has been generated, navigate to the simulator app 
-at `/simulator` on the main Immersve app. 
+at [app.immersve.com/simulator](https://app.immersve.com/simulator). 
 
 **NOTE:** You must stay logged into your Immersve account while using the simulator.
 
