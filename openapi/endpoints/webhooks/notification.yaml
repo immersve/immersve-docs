@@ -1,0 +1,20 @@
+post:
+  tags:
+    - webhooks
+  summary: Notification
+  security:
+    $ref: './models/auth.yaml'
+  description: |
+    This webhook endpoint is called when a notification is sent. Notifications include:
+    - Card status changes
+
+    For more information on setting up webhooks see the [webhooks guide](/guides/webhooks)
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: './models/notification-request.yaml'
+    required: true
+  responses:
+    '200':
+      description: 'Notification request accepted'

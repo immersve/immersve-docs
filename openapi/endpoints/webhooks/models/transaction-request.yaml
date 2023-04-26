@@ -1,0 +1,108 @@
+type: object
+required:
+  - cardToken
+  - transactionId
+  - transactionType
+  - accountId
+  - merchantId
+  - merchantName
+  - merchantCity
+  - merchantCountry
+  - merchantCurrency
+  - merchantAmount
+  - billingCurrency
+  - billingAmount
+  - settlementCurrency
+  - settlementAmount
+  - mcc
+  - exchangeRate
+  - channel
+  - approvedAt
+properties:
+  cardToken:
+    type: string
+    example: h458c8f49c8c8ca651615a33371e3da7
+    description: The card ID
+  transactionId:
+    type: string
+    example: 1000000010021
+  authorizationId:
+    type: string
+    nullable: true
+    example: 1000000010000
+  transactionType:
+    type: string
+    enum:
+      - 1200
+      - 1400
+    description: |
+      The transaction type:
+
+      1200 - clearing 
+
+      1400 - refund
+    example: 1200
+  accountId:
+    type: string
+    example: 8ce8c8f49c8c8ca651615a33371e3da7
+  merchantId:
+    type: string
+    description: Card acceptor ID
+    example: 100000001
+  merchantName:
+    type: string
+    description: Card acceptor name
+    example: Amazon
+  merchantCity:
+    type: string
+    description: Card acceptor city
+    example: New York
+  merchantCountry:
+    type: string
+    description: Card acceptor country
+    example: US
+  merchantCurrency:
+    type: string
+    description: Card acceptor currency
+    example: USD
+  merchantAmount:
+    type: number
+    description: Card acceptor amount in minor units of the merchant currency
+    example: 100
+  billingCurrency:
+    type: string
+    description: Billing currency
+    example: USDC
+  billingAmount:
+    type: number
+    description: Billing amount in minor units of the billing currency
+    example: 100
+  settlementCurrency:
+    type: string
+    example: USDC
+  settlementAmount:
+    type: number
+    description: Settlement amount in minor units of the settlement currency
+    example: 10000
+  mcc:
+    type: string
+    description: Merchant category code
+    example: 5411
+  exchangeRate:
+    type: string
+    description: Exchange rate between merchant and settlement currencies
+    example: 1.0
+  channel:
+    type: string
+    description: Channel
+    example: ECOMMERCE
+  approvedAt:
+    type: string
+    format: date-time
+    description: Transaction approval date
+    example: 2021-01-01T00:00:00.000Z
+  creationAt:
+    type: string
+    format: date-time
+    description: Transaction creation date
+    example: 2021-01-01T00:00:00.000Z

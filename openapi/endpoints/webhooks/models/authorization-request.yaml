@@ -1,0 +1,107 @@
+type: object
+required:
+  - cardToken
+  - transactionId
+  - transactionType
+  - merchantName
+  - merchantCurrency
+  - merchantAmount
+  - billingCurrency
+  - billingAmount
+  - settlementCurrency
+  - settlementAmount
+  - mcc
+  - exchangeRate
+  - channel
+  - transactionDate
+  - messageId
+  - actualAuthenticationMethod
+properties:
+  cardToken:
+    type: string
+    example: h458c8f49c8c8ca651615a33371e3da7
+    description: The card ID
+  transactionId:
+    type: string
+    example: 1000000010021
+  authorizationId:
+    type: string
+    nullable: true
+  transactionType:
+    type: string
+    enum:
+      - 100
+      - 200
+    description: |
+      The transaction type: 
+
+      100 - auth request 
+
+      200 - sales request
+    example: 100
+  merchantName:
+    type: string
+    description: Card acceptor name
+    example: Amazon
+  merchantCurrency:
+    type: string
+    description: Card acceptor currency
+    example: USD
+  merchantAmount:
+    type: number
+    description: Card acceptor amount in minor units of the merchant currency
+    example: 100
+  billingCurrency:
+    type: string
+    description: Billing currency
+    example: USDC
+  billingAmount:
+    type: number
+    description: Billing amount in minor units of the billing currency
+    example: 100
+  settlementCurrency:
+    type: string
+    example: USDC
+  settlementAmount:
+    type: number
+    description: Settlement amount in minor units of the settlement currency
+    example: 10000
+  mcc:
+    type: string
+    description: Merchant category code
+    example: 5411
+  exchangeRate:
+    type: string
+    description: Exchange rate between merchant and settlement currencies
+    example: 1.0
+  channel:
+    type: string
+    description: Channel
+    example: ECOMMERCE
+  transactionDate:
+    type: string
+    format: date-time
+    description: Transaction date
+    example: '2020-01-01T00:00:00.000Z'
+  messageId:
+    type: string
+    description: Message ID to prevent being processed multiple times
+  actualAuthenticationMethod:
+    type: string
+    enum:
+      - not_applicable
+      - not_performed
+      - email
+      - sms
+      - push
+      - biometric
+      - other
+    example: not_applicable
+  posDataCode:
+    type: string
+    nullable: true
+    example: ISO8583v2003
+  feeAmount:
+    type: number
+    description: The amount charged by IMMERSVE for this transaction in minor units of the settlement currency
+    example: 100
