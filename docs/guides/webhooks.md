@@ -16,14 +16,6 @@ There are multiple webhooks that Immersve sends to your app:
 - [Authorization](/api-reference/authorization) - Sales and Authorization requests
 - [Transaction](/api-reference/transaction) - Clearing and Refund requests
 
-## Authentication
-
-Immersve uses API Keys to authenticate webhooks. You must provide an API Key to Immersve at the time of registration.
-Immersve will send the following header
-on each webhook request:
-
-- `APIKEY` - The API Key provided by you
-
 ## Steps to receive webhooks
 
 You can start receiving event notifications in your app using the steps in this section:
