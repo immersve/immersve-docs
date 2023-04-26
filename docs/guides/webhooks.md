@@ -11,6 +11,11 @@ Immersve sends events to your webhook endpoint as part of a POST request with a 
 a `200` response. If a `200` response is not received, Immersve will retry sending the notification with exponential
 backoff. Immersve has a maximum retry delay of 12 hours.
 
+There are multiple webhooks that Immersve sends to your app:
+
+- [Authorization](/api-reference/authorization) - Sales and Authorization requests
+- [Transaction](/api-reference/transaction) - Clearing and Refund requests
+
 ## Authentication
 
 Immersve uses API Keys to authenticate webhooks. You must provide an API Key to Immersve at the time of registration.
