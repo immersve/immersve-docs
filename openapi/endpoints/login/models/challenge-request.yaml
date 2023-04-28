@@ -4,10 +4,16 @@ required:
   - chainId
 properties:
   walletAddress:
-    description: Wallet address
+    description: The address of the signing wallet or the smart contract that implements ERC-1271
     type: string
     example: "0xA3058369d6A481B1ff08F62B352409c3D709De9b"
   chainId:
     description: Chain ID (see https://chainlist.org/)
     type: number
     example: 1
+  url:
+    description: | 
+      A URL referring to the resource that requests the signing.
+      Also, domain in the "\<domain\> wants you to sign in.." is derived from the host fragment of this parameter.
+    type: url
+    example: https://example.service/login

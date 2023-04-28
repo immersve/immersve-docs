@@ -1,7 +1,7 @@
 get:
   tags:
     - assets
-  summary: Get Balance
+  summary: Get balance
   description: This endpoint returns the balance and available balance for a given asset.
   responses:
     '200':

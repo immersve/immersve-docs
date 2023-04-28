@@ -1,7 +1,7 @@
 get:
   tags:
     - currency
-  summary: Currency Convert
+  summary: Currency conversion
   description: Convert a source currency to a target currency.
   parameters:
     - name: currency
