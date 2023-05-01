@@ -9,6 +9,6 @@ properties:
     nullable: true
   previousCursor:
     type: string
-    description: Cursor to previous page, undefined if no previous page
+    description: Cursor for previous page, undefined if no previous page
     example: dGhlIHByZXZpb3VzIGN1cnNvciBnb2VzIGhlcmU=
     nullable: true
