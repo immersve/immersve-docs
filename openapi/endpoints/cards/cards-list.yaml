@@ -1,0 +1,73 @@
+get:
+  tags:
+    - card
+  summary: List Cards
+  description: Lists cards by account
+  parameters:
+    - name: accountId
+      in: path
+      description: AccountId linked to transactions
+      required: true
+      schema:
+        type: string
+    - name: limit
+      in: path
+      description: Number of records to return
+      required: false
+      schema:
+        type: number
+    - name: cursor
+      in: path
+      description: Cursor to retrieve the next page of records
+      required: false
+      schema:
+        type: string
+    - name: excludeExpired
+      in: path
+      description: Filter by expiry state
+      required: false
+      schema:
+        type: boolean
+    - name: state
+      in: path
+      description: Filter by card state
+      required: false
+      schema:
+        type: string
+        enum:
+        - requested
+        - kyc-verified
+        - locked-funds-verified
+        - locked-funds-blockchain-confirmations-verified
+        - provisioning
+        - provisioned
+        - active
+        - activating
+        - activation-failed
+        - canceling
+        - canceled
+        - cancel-failed
+        - inactive
+        - order-failed
+        - blocked
+        - blocking
+        - block-failed
+        - unblocking
+        - unblock-failed
+        - card-status-change-requested
+        - card-status-change-failed
+        - card-status-changed
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/list-cards-paging-result.yaml"
+    "403":
+      description: |
+        User is not allowed to list cards
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error.yaml"
