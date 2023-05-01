@@ -14,7 +14,7 @@ post:
     required: true
   responses:
     '200':
-      description: 'Account canceled'
+      description: 'Account cancelled'
     default:
       description: "Error"
       content:

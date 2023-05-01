@@ -15,7 +15,7 @@ properties:
       - INACTIVE
       - ACTIVE
       - BLOCKED
-      - CANCELED
+      - CANCELLED
   cardReference:
     type: string
   createdAt:

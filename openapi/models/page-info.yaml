@@ -1,10 +1,14 @@
 type: object
+description: Page info for paginated results
+nullable: true
 properties:
   nextCursor:
     type: string
-    description: Cursor to next available page for pagination
+    description: Cursor for next page, undefined if no more pages
     example: dGhlIG5leHQgY3Vyc29yIGdvZXMgaGVyZQ==
+    nullable: true
   previousCursor:
     type: string
-    description: Cursor to previous available page for pagination
+    description: Cursor to previous page, undefined if no previous page
     example: dGhlIHByZXZpb3VzIGN1cnNvciBnb2VzIGhlcmU=
+    nullable: true

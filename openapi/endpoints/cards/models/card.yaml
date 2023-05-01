@@ -6,19 +6,23 @@ properties:
     example: 91ad6fea3b52ca58d60d7fd310f789ec
   accountId:
     type: string  
-    description: User account id linked to card
+    description: Which account this card belongs to
     example: 057aa15913a57f50577234c8426534c0
+  externalId:
+    type: string
+    description: The external id for this card
+    example: "8649543161870318367"
   state:
     type: string 
     description: The state of the card
     enum:
       - active
-      - canceled
-  type:
+      - cancelled
+  cardType:
     type: string 
     description: The type of the card
     enum:
-      - virtual
+      - virtual  
   panFirst6:
     type: string 
     description: The first 6 digits of the card 
@@ -43,9 +47,11 @@ properties:
     type: string
     description: Timestamp of card modification
     example: "2022-11-16T03:13:18.142Z"
+  version:
+    type: number
+    example: 1
   lockedFundId:
     type: string
-    description: The id of AssetLockedFund on Immersve Payment Protocol
     example: "58"
   lockedFundAmount:
     type: number
@@ -54,12 +60,3 @@ properties:
     type: string
     description: The currency of this card
     example: "USDC"
-  fundingType:
-    type: string
-    description: Card funding channel
-    enum:
-      - immersve
-  fundingWallet:
-    type: string
-    description: Address of wallet used to fund the card
-    example: "0xA3058369d6A481B1ff08F62B352409c3D709De9b"
