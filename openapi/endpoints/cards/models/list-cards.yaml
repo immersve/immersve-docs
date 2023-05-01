@@ -51,7 +51,7 @@ properties:
       - virtual
   expiry:
     type: string  
-    description: Expiry date of the card of physical cards
+    description: Expiry date of the card
     example: "202409"
     nullable: true
   currency:
