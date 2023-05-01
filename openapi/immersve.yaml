@@ -57,6 +57,8 @@ paths:
     servers:
       - url: https://mobile.apac-uat.aws.tst.e6tech.net/restful/
         description: Secure card details server
+  '/api/cards/{cardId}':
+    $ref: './endpoints/cards/card-get.yaml'
   '/api/cards/account/{accountId}':
     $ref: './endpoints/cards/cards-list.yaml'
   '/api/assets':

@@ -1,0 +1,25 @@
+get:
+  tags:
+    - card
+  summary: Get card information
+  description: Returns the non-sensitive details of a card by a given id.
+  parameters:
+  - name: cardId
+    in: path
+    description: Primary identifier of the card to fetch
+    required: true
+    schema:
+      type: string
+  responses:
+    "200":
+      content:
+        application/json:
+          schema:
+              $ref: "./models/get-card.yaml"
+    "403":
+      description:
+        No Authorization to access resource.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error.yaml"
