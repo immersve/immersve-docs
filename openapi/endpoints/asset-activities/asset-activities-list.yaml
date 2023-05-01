@@ -2,7 +2,7 @@ get:
   tags:
     - asset-activities
   summary: List asset activities
-  description: List activities for the single asset
+  description: List parsed smart contract event/log(s) for a single asset
   parameters:
     - name: assetId
       in: path
