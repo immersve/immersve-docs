@@ -29,6 +29,8 @@ tags:
     x-displayName: KYC (Custodial)
   - name: prerequisites
     x-displayName: Prerequisites
+  - name: simulator
+    x-displayName: Simulator
 security:
   - immersve_auth: []
 paths:
@@ -95,9 +97,14 @@ paths:
     servers:
       - url: https://api-sec.immersve.com/
         description: Secure server
-
   '/api/custodial/kyc-resources':
     $ref: './endpoints/kyc/upload-kyc-resource.yaml'
+  '/api/simulator/authorize':
+    $ref: './endpoints/simulator/authorize.yaml'
+  '/api/simulator/clear':
+    $ref: './endpoints/simulator/clear.yaml'
+  '/api/simulator/reverse':
+    $ref: './endpoints/simulator/reverse.yaml'
 
 components:
   securitySchemes:

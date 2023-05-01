@@ -1,0 +1,17 @@
+post:
+  tags:
+    - simulator
+  summary: Authorize a transaction
+  description: This endpoint can be used to test authorizing a transaction on a simulated card network
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: './models/authorize-request.yaml'
+    required: true
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            $ref: './models/simulator-response.yaml'

@@ -1,0 +1,11 @@
+type: object
+properties:
+  requestMsg:
+    type: string
+    description: XML formatted ISO 8583 message sent to the simulated card scheme
+  responseMsg:
+    type: string
+    description: XML formatted ISO 8583 message returned from the simulated card scheme
+  transactionId:
+    type: number
+    description: ID of the transaction

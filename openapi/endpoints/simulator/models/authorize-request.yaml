@@ -1,0 +1,31 @@
+type: object
+required:
+  - transactionType
+  - transactionAmount
+  - cardPan
+  - cardExpiry
+  - cardCvv
+properties:
+  transactionType:
+    type: string
+    description: Transaction type
+    enum:
+      - purchase
+  transactionAmount:
+    type: string
+    pattern: ^[0-9]+(\.[0-9]+)?$
+    description: Transaction amount in USD
+  cardPan:
+    type: string
+    pattern: ^[0-9]{16}$
+    description: Card number
+  cardExpiry:
+    type: string
+    pattern: ^[0-9]{6}$
+    description: Card expiry in YYYYMM format
+  cardCvv:
+    type: string
+    pattern: ^[0-9]{3}$
+    description: Card CVV
+  fxAmount:
+    $ref: './fxAmount.yaml'
