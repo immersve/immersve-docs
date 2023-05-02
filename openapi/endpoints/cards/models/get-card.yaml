@@ -8,15 +8,6 @@ properties:
     type: string  
     description: User account id linked to card
     example: 057aa15913a57f50577234c8426534c0
-  status:
-    type: string
-    description: Status of the card
-    enum:
-      - active
-      - cancelled
-      - created
-      - shipped
-    nullable: true
   state:
     type: string 
     description: State of the card
@@ -49,31 +40,6 @@ properties:
     description: Type of the card
     enum:
       - virtual
-  expiry:
-    type: string  
-    description: Expiry date of the card of physical cards
-    example: "202409"
-    nullable: true
-  currency:
-    type: string 
-    description: The currency of this card
-    example: "USDC"
-    nullable: true
-  panFirst6:
-    type: string 
-    description: First 6 digits of the card Primary Account Number
-    example: "123456"
-    nullable: true
-  panLast4:
-    type: string 
-    description: Last 4 digits of the card Primary Account Number
-    example: "1920"
-    nullable: true 
-  immersveExpiration:
-    type: string
-    description: Expiry as set by Immersve for short-lived cards
-    example: "2022-11-16T03:18:23.431Z"
-    nullable: true
   createdAt:
     type: string
     description: Timestamp of card creation
@@ -82,25 +48,50 @@ properties:
     type: string
     description: Timestamp of card modification
     example: "2022-11-16T03:13:18.142Z"
+  isBlocked:
+    type: boolean
+    description: Whether the card is blocked
+  status:
+    type: string
+    description: Status of the card
+    enum:
+      - active
+      - cancelled
+      - created
+      - shipped
+  expiry:
+    type: string  
+    description: Expiry date of the card of physical cards
+    example: "202409"
+  currency:
+    type: string 
+    description: The currency of this card
+    example: "USDC"
+  panFirst6:
+    type: string 
+    description: First 6 digits of the card Primary Account Number
+    example: "123456"
+  panLast4:
+    type: string 
+    description: Last 4 digits of the card Primary Account Number
+    example: "1920"   
+  immersveExpiration:
+    type: string
+    description: Expiry as set by Immersve for short-lived cards
+    example: "2022-11-16T03:18:23.431Z"
   lockedFundId:
     type: string
     description: Id of AssetLockedFund on the Immersve Payment Protocol
     example: "58"
-    nullable: true
   lockedFundAmount:
     type: number
     example: 10
-    nullable: true
   lockedFundCurrency:
     type: string
     description: Currency used to lock funds on card creation
     example: "USDC"
-    nullable: true
   fundingWallet:
     type: string
     description: Address of the wallet used to fund the card
     example: "0x7D0b0d249A7fB85A5c5F5A5e3b6A2d6c9A6D684B"
-    nullable: true
-  isBlocked:
-    type: boolean
-    description: Whether the card is blocked
+required: [id, accountId, type, createdAt, modifiedAt, isBlocked, state]
