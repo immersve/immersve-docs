@@ -63,6 +63,8 @@ paths:
     $ref: './endpoints/assets/asset-balance-get.yaml'
   '/api/assets/{assetId}/activities':
     $ref: './endpoints/asset-activities/asset-activities-list.yaml'
+  '/api/assets/{assetId}/activities/{eventId}':
+    $ref: './endpoints/asset-activities/asset-activities-get.yaml'
   '/api/transactions/{transaction-id}':
     $ref: './endpoints/transactions/transaction-get.yaml'
   '/api/accounts/{account-id}/transactions':

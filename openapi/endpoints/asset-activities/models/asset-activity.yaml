@@ -8,10 +8,6 @@ properties:
     type: string
     description: Smart contract event name
     example: "LockedFundsWithDeposit"
-  amount?:
-    type: number
-    description: Value of the transaction
-    example: 10
   chain:
     type: string
     description: Blockchain from where the event was fetched. Currently only supports Polygon
@@ -24,19 +20,24 @@ properties:
     type: number
     description: Blockchain block number of the transaction initiating the event
     example: 3009
-  sourceAddress:
-    type: string
-    description: Initiating actor of the transaction containing this event, in the form of wallet address
-    example: "0x777ab28C2A21cD99B3cDb27A416ed453b3b7cD3f"
-  targetAddress?:
-    type: string
-    description: Target actor of the transaction containing this event, in the form of wallet address
-    example: "0xa0947892376e8c4da58ce68cdb100412aa126222"
   transactionHash:
     type: string
     description: The transaction id on the blockchain
     example: "0xa0a08a5c5e72cc7d52beb1867bb5c328809af27c423e202b2c6394e528b5797b"
-  transactionDate?:
+  transactionDate:
     type: string
     description: ISO formatted date of the event
     example: "2023-03-16T03:13:18.142Z"
+  sourceAddress:
+    type: string
+    description: Initiating actor of the transaction containing this event, in the form of a smart contract or wallet address
+    example: "0x777ab28C2A21cD99B3cDb27A416ed453b3b7cD3f"
+  targetAddress:
+    type: string
+    description: Target actor of the transaction containing this event, in the form of a smart contract or wallet address
+    example: "0xa0947892376e8c4da58ce68cdb100412aa126222"
+  amount:
+    type: number
+    description: Value of the transaction
+    example: 10
+required: ["eventId","eventType","chain","lockedFundCurrency","blockNumber","sourceAddress","transactionHash", "transactionDate"]
