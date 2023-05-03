@@ -31,6 +31,8 @@ tags:
     x-displayName: Prerequisites
   - name: webhooks-custodial
     x-displayName: Webhooks (Custodial)
+  - name: simulator
+    x-displayName: Simulator
 security:
   - immersve_auth: []
 paths:
@@ -59,10 +61,14 @@ paths:
     servers:
       - url: https://mobile.apac-uat.aws.tst.e6tech.net/restful/
         description: Secure card details server
+  '/api/cards/account/{accountId}':
+    $ref: './endpoints/cards/cards-list.yaml'
   '/api/assets':
     $ref: './endpoints/assets/asset-balance-get.yaml'
   '/api/assets/{assetId}/activities':
     $ref: './endpoints/asset-activities/asset-activities-list.yaml'
+  '/api/assets/{assetId}/activities/{eventId}':
+    $ref: './endpoints/asset-activities/asset-activities-get.yaml'
   '/api/transactions/{transaction-id}':
     $ref: './endpoints/transactions/transaction-get.yaml'
   '/api/accounts/{account-id}/transactions':
@@ -95,9 +101,14 @@ paths:
     servers:
       - url: https://api-sec.immersve.com/
         description: Secure server
-
   '/api/custodial/kyc-resources':
     $ref: './endpoints/kyc/upload-kyc-resource.yaml'
+  '/api/simulator/authorize':
+    $ref: './endpoints/simulator/authorize.yaml'
+  '/api/simulator/clear':
+    $ref: './endpoints/simulator/clear.yaml'
+  '/api/simulator/reverse':
+    $ref: './endpoints/simulator/reverse.yaml'
 
   '/authorizations':
     servers:

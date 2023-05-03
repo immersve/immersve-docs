@@ -1,0 +1,8 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      $ref: './list-cards.yaml'
+  pageInfo:
+    $ref: '../../../models/page-info.yaml'

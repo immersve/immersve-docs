@@ -11,7 +11,7 @@ post:
       required: true
       schema:
         type: string
-        enum: [create-card, deposit]
+        enum: [create-card, withdraw]
   requestBody:
     content:
       application/json:
@@ -19,14 +19,14 @@ post:
           $ref: '../cards/models/get-prerequisite-transactions-request.yaml'
     required: true
   responses:
-    "200":
+    '200':
       description: |
         User is allowed to perform action. Client should be able to request transactions from the user wallet to Immersve wallet
         The client needs to parse transaction info and convert it to the chain-specific calls
       content:
         application/json:
           schema:
-            $ref: "../cards/models/get-prerequisite-transactions-response.yaml"
+            $ref: '../cards/models/get-prerequisite-transactions-response.yaml'
           example: |
             {
               "requiredTransactions": [
@@ -52,7 +52,7 @@ post:
                 }
               ]
             }
-    "403":
+    '403':
       description: |
         User is not allowed to get the deposit details with the reason stated in the `message`
 
@@ -69,4 +69,4 @@ post:
       content:
         application/json:
           schema:
-            $ref: "../../models/api-error.yaml"
+            $ref: '../../models/api-error.yaml'

@@ -2,7 +2,7 @@ get:
   tags:
     - asset-activities
   summary: List asset activities
-  description: List activities for the single asset
+  description: List parsed smart contract event/log(s) for a single asset
   parameters:
     - name: assetId
       in: path
@@ -64,20 +64,20 @@ get:
           - desc
 
   responses:
-    "200":
+    '200':
       description: Successful operation
       content:
         application/json:
           schema:
-            $ref: "./models/asset-activities-paging-result.yaml"
-    "400":
+            $ref: './models/asset-activities-paging-result.yaml'
+    '400':
       description: |
         Request can not be processed. Either request parameters are not valid or cardholder is not found.
       content:
         application/json:
           schema:
-            $ref: "../../models/api-error.yaml"
-    "403":
+            $ref: '../../models/api-error.yaml'
+    '403':
       description: |
         User is not allowed to list asset activities due to the reason specified in the message.
 
@@ -86,4 +86,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: "../../models/api-error.yaml"
+            $ref: '../../models/api-error.yaml'
