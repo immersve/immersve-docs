@@ -1,7 +1,7 @@
 get:
   tags:
     - card
-  summary: List Cards
+  summary: List cards
   description: Lists cards by account
   parameters:
     - name: accountId
