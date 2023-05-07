@@ -105,10 +105,16 @@ paths:
     $ref: './endpoints/kyc/upload-kyc-resource.yaml'
   '/api/simulator/authorize':
     $ref: './endpoints/simulator/authorize.yaml'
+    servers:
+      - url: https://test.immersve.com/
   '/api/simulator/clear':
     $ref: './endpoints/simulator/clear.yaml'
+    servers:
+      - url: https://test.immersve.com/
   '/api/simulator/reverse':
     $ref: './endpoints/simulator/reverse.yaml'
+    servers:
+      - url: https://test.immersve.com/
 
 components:
   securitySchemes:
