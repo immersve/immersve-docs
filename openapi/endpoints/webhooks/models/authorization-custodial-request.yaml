@@ -1,6 +1,6 @@
 type: object
 required:
-  - cardToken
+  - cardId
   - transactionId
   - transactionType
   - merchantName
@@ -17,7 +17,7 @@ required:
   - messageId
   - actualAuthenticationMethod
 properties:
-  cardToken:
+  cardId:
     type: string
     example: h458c8f49c8c8ca651615a33371e3da7
     description: The card ID

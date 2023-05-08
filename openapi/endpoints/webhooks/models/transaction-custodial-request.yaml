@@ -1,6 +1,6 @@
 type: object
 required:
-  - cardToken
+  - cardId
   - transactionId
   - transactionType
   - accountId
@@ -19,7 +19,7 @@ required:
   - channel
   - approvedAt
 properties:
-  cardToken:
+  cardId:
     type: string
     example: h458c8f49c8c8ca651615a33371e3da7
     description: The card ID

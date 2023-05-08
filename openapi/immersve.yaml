@@ -120,10 +120,10 @@ paths:
     servers:
       - url: https://<partnerBaseUrl>/transactions
     $ref: './endpoints/webhooks/transaction-custodial.yaml'
-#  '/notifications':
-#    servers:
-#      - url: https://<partnerBaseUrl>/transactions
-#    $ref: './endpoints/webhooks/notification.yaml'
+  '/card-status-change':
+    servers:
+      - url: https://<partnerBaseUrl>/card/notification
+    $ref: './endpoints/webhooks/card-status-change-custodial.yaml'
 
 components:
   securitySchemes:

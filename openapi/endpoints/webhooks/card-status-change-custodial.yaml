@@ -1,0 +1,20 @@
+post:
+  tags:
+    - webhooks-custodial
+  summary: Card Status Change
+  security:
+    $ref: './models/auth.yaml'
+  description: |
+    This custodial integrator webhook endpoint is called when a card status is changed. 
+
+    For more information on setting up webhooks 
+    see the [webhooks guide](/guides/webhooks)
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: './models/card-status-change-custodial-request.yaml'
+    required: true
+  responses:
+    '200':
+      description: 'Card status change request accepted'

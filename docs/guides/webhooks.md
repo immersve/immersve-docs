@@ -15,6 +15,7 @@ There are multiple webhooks that Immersve sends to your app:
 
 - [Authorization](/api-reference/authorization) - Sales and Authorization requests
 - [Transaction](/api-reference/transaction) - Clearing and Refund requests
+- [Card Status Change](/api-reference/card-status-change) - Card status changes
 
 ## Steps to receive webhooks
 
@@ -24,5 +25,4 @@ You can start receiving event notifications in your app using the steps in this 
    server [Webhook API Reference](/api-reference/webhooks-custodial).
 2. Handle requests from Immersve by parsing each event object and returning a `200` response status code.
 3. Deploy your webhook endpoint so it’s a publicly accessible HTTPS URL.
-4. Provide Immersve with a valid API Key
-5. [Contact Immersve](mailto:info@immersve.com) to register your publicly accessible HTTPS URL.
+4. [Contact Immersve](mailto:info@immersve.com) to register your publicly accessible HTTPS URL.
