@@ -3,7 +3,7 @@ post:
     - accounts-custodial
   summary: Create an account
   security:
-    $ref: '../../models/api-key-auth.yaml'
+    - $ref: '../../models/api-key-auth.yaml'
   requestBody:
     content:
       application/json:
@@ -17,7 +17,7 @@ post:
           schema:
             $ref: './models/create-account-response.yaml'
     default:
-      description: "Error"
+      description: 'Error'
       content:
         application/json:
           schema:

@@ -3,7 +3,7 @@ get:
     - cards-custodial
   summary: Get secure card information
   security:
-    $ref: '../../models/api-key-auth.yaml'
+    - $ref: '../../models/api-key-auth.yaml'
   parameters:
     $ref: '../../models/card-id-path.yaml'
   responses:
@@ -13,7 +13,7 @@ get:
           schema:
             $ref: './models/get-card-secure-response.yaml'
     default:
-      description: "Error"
+      description: 'Error'
       content:
         application/json:
           schema:
