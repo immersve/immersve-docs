@@ -3,6 +3,6 @@ properties:
   items:
     type: array
     items:
-      $ref: "./card.yaml"
+      $ref: './card.yaml'
   pageInfo:
-    $ref: "../../../models/page-info.yaml"
+    $ref: '../../../models/page-info.yaml'

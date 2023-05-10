@@ -17,7 +17,7 @@ post:
           schema:
             $ref: './models/create-card-response.yaml'
     default:
-      description: "Error"
+      description: 'Error'
       content:
         application/json:
           schema:

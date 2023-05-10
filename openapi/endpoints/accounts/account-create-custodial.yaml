@@ -17,7 +17,7 @@ post:
           schema:
             $ref: './models/create-account-response.yaml'
     default:
-      description: "Error"
+      description: 'Error'
       content:
         application/json:
           schema:

@@ -13,7 +13,7 @@ get:
           schema:
             $ref: './models/get-card-secure-response.yaml'
     default:
-      description: "Error"
+      description: 'Error'
       content:
         application/json:
           schema:

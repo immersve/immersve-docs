@@ -16,7 +16,7 @@ post:
     '200':
       description: 'Account cancelled'
     default:
-      description: "Error"
+      description: 'Error'
       content:
         application/json:
           schema:

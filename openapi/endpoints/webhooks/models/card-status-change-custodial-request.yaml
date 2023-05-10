@@ -1,0 +1,54 @@
+type: object
+required:
+  - cardId
+  - accountId
+  - cardReference
+  - status
+  - reasonCode
+  - reasonMessage
+  - previousStatus
+  - updateDate
+properties:
+  cardId:
+    type: string
+    example: h458c8f49c8c8ca651615a33371e3da7
+    description: The card ID
+  accountId:
+    type: string
+    example: 8ce8c8f49c8c8ca651615a33371e3da7
+  cardReference:
+    type: string
+    example: 100000001
+    description: The card reference on the integrator side
+  status:
+    type: string
+    example: active
+    enum:
+      - active
+      - inactive
+      - shipped
+      - blocked
+      - canceled
+  reasonCode:
+    type: string
+    example: loststolen
+    description: The reason code for the card status change
+  reasonMessage:
+    type: string
+    example: Card was lost or stolen
+    description: The reason message for the card status change
+  previousStatus:
+    type: string
+    example: active
+    enum:
+      - active
+      - inactive
+      - shipped
+      - blocked
+      - canceled
+    description: The previous card status
+  updateDate:
+    type: string
+    format: date-time
+    example: 2020-01-01T00:00:00Z
+    description: The date and time of the card status change

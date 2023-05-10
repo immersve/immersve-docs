@@ -19,20 +19,20 @@ get:
         type: string
 
   responses:
-    "200":
+    '200':
       description: Successful operation
       content:
         application/json:
           schema:
-            $ref: "./models/asset-activity.yaml"
-    "400":
+            $ref: './models/asset-activity.yaml'
+    '400':
       description: |
         Request can not be processed. Either request parameters are not valid or cardholder is not found.
       content:
         application/json:
           schema:
-            $ref: "../../models/api-error.yaml"
-    "403":
+            $ref: '../../models/api-error.yaml'
+    '403':
       description: |
         User is not allowed to get asset activity due to the reason specified in the message.
 
@@ -41,4 +41,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: "../../models/api-error.yaml"
+            $ref: '../../models/api-error.yaml'

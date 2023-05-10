@@ -16,7 +16,7 @@ post:
     '200':
       description: 'Card closed'
     default:
-      description: "Error"
+      description: 'Error'
       content:
         application/json:
           schema:

@@ -5,11 +5,11 @@ properties:
     description: Card primary identifier
     example: 91ad6fea3b52ca58d60d7fd310f789ec
   accountId:
-    type: string  
+    type: string
     description: User account id linked to card
     example: 057aa15913a57f50577234c8426534c0
   state:
-    type: string 
+    type: string
     description: State of the card
     deprecated: true
     enum:
@@ -36,18 +36,18 @@ properties:
       - card-status-change-failed
       - card-status-changed
   type:
-    type: string 
+    type: string
     description: Type of the card
     enum:
       - virtual
   createdAt:
     type: string
     description: Timestamp of card creation
-    example: "2022-11-16T03:13:18.142Z"
+    example: '2022-11-16T03:13:18.142Z'
   modifiedAt:
     type: string
     description: Timestamp of card modification
-    example: "2022-11-16T03:13:18.142Z"
+    example: '2022-11-16T03:13:18.142Z'
   isBlocked:
     type: boolean
     description: Whether the card is blocked
@@ -60,38 +60,38 @@ properties:
       - created
       - shipped
   expiry:
-    type: string  
+    type: string
     description: Expiry date of the card of physical cards
-    example: "202409"
+    example: '202409'
   currency:
-    type: string 
+    type: string
     description: The currency of this card
-    example: "USDC"
+    example: 'USDC'
   panFirst6:
-    type: string 
+    type: string
     description: First 6 digits of the card Primary Account Number
-    example: "123456"
+    example: '123456'
   panLast4:
-    type: string 
+    type: string
     description: Last 4 digits of the card Primary Account Number
-    example: "1920"   
+    example: '1920'
   immersveExpiration:
     type: string
     description: Expiry as set by Immersve for short-lived cards
-    example: "2022-11-16T03:18:23.431Z"
+    example: '2022-11-16T03:18:23.431Z'
   lockedFundId:
     type: string
     description: Id of AssetLockedFund on the Immersve Payment Protocol
-    example: "58"
+    example: '58'
   lockedFundAmount:
     type: number
     example: 10
   lockedFundCurrency:
     type: string
     description: Currency used to lock funds on card creation
-    example: "USDC"
+    example: 'USDC'
   fundingWallet:
     type: string
     description: Address of the wallet used to fund the card
-    example: "0x7D0b0d249A7fB85A5c5F5A5e3b6A2d6c9A6D684B"
+    example: '0x7D0b0d249A7fB85A5c5F5A5e3b6A2d6c9A6D684B'
 required: [id, accountId, type, createdAt, modifiedAt, isBlocked, state]

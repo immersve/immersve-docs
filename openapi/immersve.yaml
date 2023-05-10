@@ -29,6 +29,8 @@ tags:
     x-displayName: KYC (Custodial)
   - name: prerequisites
     x-displayName: Prerequisites
+  - name: immersve-webhooks
+    x-displayName: Webhooks
   - name: simulator
     x-displayName: Simulator
 security:
@@ -116,6 +118,19 @@ paths:
     servers:
       - url: https://test.immersve.com/
 
+  '/authorizations':
+    servers:
+      - url: https://<partnerBaseUrl>/transactions
+    $ref: './endpoints/webhooks/authorization-custodial.yaml'
+  '/transactions':
+    servers:
+      - url: https://<partnerBaseUrl>/transactions
+    $ref: './endpoints/webhooks/transaction-custodial.yaml'
+  '/card-status-change':
+    servers:
+      - url: https://<partnerBaseUrl>/card/notification
+    $ref: './endpoints/webhooks/card-status-change-custodial.yaml'
+
 components:
   securitySchemes:
     immersve_auth:
@@ -127,6 +142,11 @@ components:
       in: header
       name: x-api-key
       description: See Guides -> Authentication for instructions
+    apiKeyHeaderWebhook:
+      type: apiKey
+      in: header
+      name: APIKEY
+      description: The API key provided by you to Immersve
     apiSecretHeader:
       type: apiKey
       in: header

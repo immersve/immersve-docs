@@ -35,39 +35,39 @@ get:
       schema:
         type: string
         enum:
-        - requested
-        - kyc-verified
-        - locked-funds-verified
-        - locked-funds-blockchain-confirmations-verified
-        - provisioning
-        - provisioned
-        - active
-        - activating
-        - activation-failed
-        - canceling
-        - canceled
-        - cancel-failed
-        - inactive
-        - order-failed
-        - blocked
-        - blocking
-        - block-failed
-        - unblocking
-        - unblock-failed
-        - card-status-change-requested
-        - card-status-change-failed
-        - card-status-changed
+          - requested
+          - kyc-verified
+          - locked-funds-verified
+          - locked-funds-blockchain-confirmations-verified
+          - provisioning
+          - provisioned
+          - active
+          - activating
+          - activation-failed
+          - canceling
+          - canceled
+          - cancel-failed
+          - inactive
+          - order-failed
+          - blocked
+          - blocking
+          - block-failed
+          - unblocking
+          - unblock-failed
+          - card-status-change-requested
+          - card-status-change-failed
+          - card-status-changed
   responses:
-    "200":
+    '200':
       description: Successful operation
       content:
         application/json:
           schema:
-            $ref: "./models/list-cards-paging-result.yaml"
-    "403":
+            $ref: './models/list-cards-paging-result.yaml'
+    '403':
       description: |
         User is not allowed to list cards
       content:
         application/json:
           schema:
-            $ref: "../../models/api-error.yaml"
+            $ref: '../../models/api-error.yaml'
