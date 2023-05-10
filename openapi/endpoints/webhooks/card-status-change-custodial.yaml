@@ -1,6 +1,6 @@
 post:
   tags:
-    - webhooks-custodial
+    - immersve-webhooks
   summary: Card Status Change
   security:
     $ref: './models/auth.yaml'

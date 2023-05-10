@@ -29,8 +29,8 @@ tags:
     x-displayName: KYC (Custodial)
   - name: prerequisites
     x-displayName: Prerequisites
-  - name: webhooks-custodial
-    x-displayName: Webhooks (Custodial)
+  - name: immersve-webhooks
+    x-displayName: Webhooks
   - name: simulator
     x-displayName: Simulator
 security:

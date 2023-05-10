@@ -1,6 +1,6 @@
 post:
   tags:
-    - webhooks-custodial
+    - immersve-webhooks
   summary: Authorization
   security:
     $ref: './models/auth.yaml'
