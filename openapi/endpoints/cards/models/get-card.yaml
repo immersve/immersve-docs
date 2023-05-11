@@ -8,33 +8,6 @@ properties:
     type: string
     description: User account id linked to card
     example: 057aa15913a57f50577234c8426534c0
-  state:
-    type: string
-    description: State of the card
-    deprecated: true
-    enum:
-      - requested
-      - kyc-verified
-      - locked-funds-verified
-      - locked-funds-blockchain-confirmations-verified
-      - provisioning
-      - provisioned
-      - active
-      - activating
-      - activation-failed
-      - canceling
-      - canceled
-      - cancel-failed
-      - inactive
-      - order-failed
-      - blocked
-      - blocking
-      - block-failed
-      - unblocking
-      - unblock-failed
-      - card-status-change-requested
-      - card-status-change-failed
-      - card-status-changed
   type:
     type: string
     description: Type of the card
