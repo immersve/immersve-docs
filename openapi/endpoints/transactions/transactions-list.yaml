@@ -11,14 +11,26 @@ post:
       schema:
         type: string
     - name: limit
-      in: path
+      in: query
       description: amount of records to return (max 1000)
       required: false
       schema:
         type: number
     - name: cursor
-      in: path
+      in: query
       description: cursor to retrieve the next page
+      required: false
+      schema:
+        type: string
+    - name: fromUTC
+      in: query
+      description: Filter for transactions from this date (inclusive). Value should be a ISO 8601 string or RFC 2822 string
+      required: false
+      schema:
+        type: string
+    - name: toUTC
+      in: query
+      description: Filter for transactions up to this date (inclusive). Value should be a ISO 8601 string or RFC 2822 string
       required: false
       schema:
         type: string
