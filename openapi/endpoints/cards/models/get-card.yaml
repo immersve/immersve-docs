@@ -1,4 +1,12 @@
 type: object
+required:
+  - id
+  - accountId
+  - type
+  - createdAt
+  - modifiedAt
+  - isBlocked
+  - status
 properties:
   id:
     type: string
@@ -67,4 +75,3 @@ properties:
     type: string
     description: Address of the wallet used to fund the card
     example: '0x7D0b0d249A7fB85A5c5F5A5e3b6A2d6c9A6D684B'
-required: [id, accountId, type, createdAt, modifiedAt, isBlocked, state]
