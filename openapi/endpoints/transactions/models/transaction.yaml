@@ -12,6 +12,14 @@ properties:
     type: string  
     description: Which account this transaction belongs to
     example: 225d85e65495722bf6517ea0ba0d6f56
+  status: 
+    type: string
+    description: The status of the transaction
+    enum:
+      - 'init'
+      - 'holding'
+      - 'cleared'
+      - 'failed'
   cardId:
     type: string
     description: Which card this transaction belongs to
@@ -77,6 +85,21 @@ properties:
           type: string 
           description: The name of the card acceptor
           example: "Air NZ Online"    
-
-  
+required: [
+  id,
+  description,
+  accountId,
+  status,
+  cardId,
+  amount,
+  currency,
+  acquirerAmount,
+  acquirerCurrency,
+  lockedFundCurrency,
+  feeAmount,
+  chain,
+  transactionDate,
+  reference,
+  cardAcceptor
+] 
 
