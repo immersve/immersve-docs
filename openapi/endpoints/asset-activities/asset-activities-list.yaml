@@ -18,13 +18,13 @@ get:
         type: string
     - name: fromUTC
       in: query
-      description: A date filter to return activities created after this date. Value should be a ISO 8601 string or RFC 2822 string
+      description: Filter for activities from this date (inclusive). Value should be a ISO 8601 string or RFC 2822 string
       required: false
       schema:
         type: string
     - name: toUTC
       in: query
-      description: A date filter to return activities created before this date. Value should be a ISO 8601 string or RFC 2822 string
+      description: Filter for activities up to this date (inclusive). Value should be a ISO 8601 string or RFC 2822 string
       required: false
       schema:
         type: string
