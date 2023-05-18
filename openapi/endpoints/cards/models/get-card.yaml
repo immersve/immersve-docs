@@ -1,4 +1,12 @@
 type: object
+required:
+  - id
+  - accountId
+  - type
+  - createdAt
+  - modifiedAt
+  - isBlocked
+  - status
 properties:
   id:
     type: string
@@ -8,33 +16,6 @@ properties:
     type: string
     description: User account id linked to card
     example: 057aa15913a57f50577234c8426534c0
-  state:
-    type: string
-    description: State of the card
-    deprecated: true
-    enum:
-      - requested
-      - kyc-verified
-      - locked-funds-verified
-      - locked-funds-blockchain-confirmations-verified
-      - provisioning
-      - provisioned
-      - active
-      - activating
-      - activation-failed
-      - canceling
-      - canceled
-      - cancel-failed
-      - inactive
-      - order-failed
-      - blocked
-      - blocking
-      - block-failed
-      - unblocking
-      - unblock-failed
-      - card-status-change-requested
-      - card-status-change-failed
-      - card-status-changed
   type:
     type: string
     description: Type of the card
@@ -94,4 +75,3 @@ properties:
     type: string
     description: Address of the wallet used to fund the card
     example: '0x7D0b0d249A7fB85A5c5F5A5e3b6A2d6c9A6D684B'
-required: [id, accountId, type, createdAt, modifiedAt, isBlocked, state]

@@ -28,35 +28,17 @@ get:
       required: false
       schema:
         type: boolean
-    - name: state
+    - name: status
       in: path
-      description: Filter by card state
+      description: Filter by card status
       required: false
       schema:
         type: string
         enum:
-          - requested
-          - kyc-verified
-          - locked-funds-verified
-          - locked-funds-blockchain-confirmations-verified
-          - provisioning
-          - provisioned
+          - created
           - active
-          - activating
-          - activation-failed
-          - canceling
-          - canceled
-          - cancel-failed
-          - inactive
-          - order-failed
-          - blocked
-          - blocking
-          - block-failed
-          - unblocking
-          - unblock-failed
-          - card-status-change-requested
-          - card-status-change-failed
-          - card-status-changed
+          - cancelled
+          - shipped
   responses:
     '200':
       description: Successful operation
