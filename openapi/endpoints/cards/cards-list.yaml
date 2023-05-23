@@ -11,25 +11,25 @@ get:
       schema:
         type: string
     - name: limit
-      in: path
+      in: query
       description: Number of records to return
       required: false
       schema:
         type: number
     - name: cursor
-      in: path
+      in: query
       description: Cursor to retrieve the next page of records
       required: false
       schema:
         type: string
     - name: excludeExpired
-      in: path
+      in: query
       description: Filter by expiry state
       required: false
       schema:
         type: boolean
     - name: status
-      in: path
+      in: query
       description: Filter by card status
       required: false
       schema:
@@ -39,6 +39,12 @@ get:
           - active
           - cancelled
           - shipped
+    - name: expiresAfter
+      in: query
+      description: Timestamp to filter out cards with an expiration date after the given time. Value should be an ISO 8601 string or RFC 2822 string. excludeExpired must be false
+      required: false
+      schema:
+        type: string
   responses:
     '200':
       description: Successful operation
