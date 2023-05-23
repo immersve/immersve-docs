@@ -10,7 +10,7 @@ tags:
 
 A virtual card is a payment card that exists only in digital form. As such, virtual cards are most suitable for online e-commerce purchases as opposed to in-store purchases at brick-and-mortar merchants. Immersve treat virtual cards as being logically time-bound and ephemeral. Beginning at the time of issuance of a virtual card, it has a finite useable lifespan which is often represented within the UI of the issuing client application as a stopwatch-type timer. This model presents certain benefits over a traditional persistent payment card model (be they virtual, tokenized or physical) in that the potential for card fraud is dramatically reduced. The use of web3-native authentication mechanisms within the context of card issuance mean that the same level of protection to a user's funds in self-custodial wallets is applied to their activities as a cardholder.
 
-Prior to being permitted to [order a card](/api-reference/order-card) a user must first have successfully [authenticated](/guides/non-custodial%20wallets/authentication) and locked digital assets within the smart contract via digital asset transfer and smart contract invocations as instructed by the [get prerequisite transactions](/api-reference/get-prerequisite-transactions) operation.
+Prior to being permitted to [order a card](/api-reference/order-card) a user must first have successfully [authenticated](/guides/non-custodial%20wallets/authentication) and locked digital assets within the smart contract via digital asset transfer and smart contract invocations as instructed by the [get prerequisite transactions](/api-reference/get-prerequisites) operation.
 
 ## Authentication
 
@@ -22,9 +22,9 @@ A user will more often than not be quoted a price for a purchase by a merchant i
 
 ## Lock Funds
 
-In order to ensure that funds are sufficiently locked within the [smart contract](/contracts/payment-protocol) such that Immersve are in a position to approve an authorization request received via the card scheme network you will need to have firstly locked sufficient digital assets within the smart contract via digital asset transfer and smart contract invocations as instructed by the [get prerequisite transactions](/api-reference/get-prerequisite-transactions) operation. The necessary blockchain transactions are contained within the `requiredTransactions` collection returned.
+In order to ensure that funds are sufficiently locked within the [smart contract](/contracts/payment-protocol) such that Immersve are in a position to approve an authorization request received via the card scheme network you will need to have firstly locked sufficient digital assets within the smart contract via digital asset transfer and smart contract invocations as instructed by the [get prerequisite transactions](/api-reference/get-prerequisites) operation. The necessary blockchain transactions are contained within the `requiredTransactions` collection returned.
 
-If the user has not transacted using the solution before then the the [get prerequisite transactions](/api-reference/get-prerequisite-transactions) response will typically call for and `erc20_approval` in favour of the smart contract followed by a `depositAndCreateLockedFund` invocation of the smart contract.
+If the user has not transacted using the solution before then the the [get prerequisite transactions](/api-reference/get-prerequisites) response will typically call for and `erc20_approval` in favour of the smart contract followed by a `depositAndCreateLockedFund` invocation of the smart contract.
 
 If multiple transactions are present then they should be carried out in the order in which they are presented.
 
@@ -34,7 +34,7 @@ The client application is to parse and formulate the raw blockchain transaction 
 
 To ensure that integrators are able to obtain sufficient ERC-20 tokens to facilitate development and testing, Immersve uses an ERC-20 token contract that allows tokens to be freely minted as needed.
 
-In non-production environments any `erc20_approval` transaction type returned by [get prerequisite transactions](/api-reference/get-prerequisite-transactions) will refer to the "IMMUSDC" token. The "IMMUSDC" token has a `mint` function allowing for the unlimited minting of the token to any wallet address.
+In non-production environments any `erc20_approval` transaction type returned by [get prerequisite transactions](/api-reference/get-prerequisites) will refer to the "IMMUSDC" token. The "IMMUSDC" token has a `mint` function allowing for the unlimited minting of the token to any wallet address.
 
 One particularly convenient way to get the necessary tokens is to use the Polygonscan interface.
 
