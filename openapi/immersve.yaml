@@ -34,6 +34,7 @@ tags:
   - name: simulator
     x-displayName: Simulator
 security:
+  - $ref: './models/api-key-auth.yaml'
   - immersve_auth: []
 paths:
   '/siwe/generate-challenge':
