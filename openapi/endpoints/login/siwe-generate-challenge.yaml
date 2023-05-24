@@ -4,6 +4,8 @@ post:
   summary: Generate challenge
   description: |
     Generating the challenge is the first step in the process of getting the authentication token.
+  security:
+    - none: []
   requestBody:
     content:
       application/json:

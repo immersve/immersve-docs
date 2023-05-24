@@ -2,9 +2,6 @@ post:
   tags:
     - simulator
   summary: Authorize a transaction
-  security:
-    - immersve_auth: []
-    - $ref: '../../models/api-key-auth.yaml'
   description: This endpoint can be used to test authorizing a transaction on a simulated card network
   requestBody:
     content:
