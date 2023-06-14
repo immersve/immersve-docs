@@ -6,10 +6,6 @@ get:
     Returns the sensitive details of a card using a one-time token generated from the [Get A Card Token](/api-reference/get-a-card-token) endpoint.
 
     For more information on how to generate and use a card token, see [Getting Secure Card Information](/guides/fetching-secure-card-information).
-
-    :::caution
-    This endpoint **must** be called using the secure server domain `api-sec.immersve.com` in order to be PCI compliant.
-    :::
   parameters:
     - name: tokenId
       in: query

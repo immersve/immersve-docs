@@ -10,10 +10,6 @@ The steps for retrieving secure card details is as follows:
 1. Call the [Get a card token](/api-reference/get-a-card-token) endpoint with the card id. This endpoint accepts both custodial and non-custodial authentication.
 2. Call the [Get secure card details](/api-reference/get-secure-card-details) endpoint with the returned `tokenId` as a query parameter. The `tokenId` can only be used a single time and once used, subsequent calls to this endpoint with the same token will return a `403` response code.
 
-:::caution
-The [Get secure card details](/api-reference/get-secure-card-details) endpoint **must** be called using the secure server domain `api-sec.immersve.com` in order to be PCI compliant.
-:::
-
 # Example code snippet
 
 <Tabs>
