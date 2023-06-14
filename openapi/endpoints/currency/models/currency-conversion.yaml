@@ -3,9 +3,6 @@ properties:
   currency:
     type: string
     description: The currency to convert from.
-  targetCurrency:
-    type: string
-    description: The target currency to convert to.
   convertedCurrency:
     type: string
     description: The currency converted to.
