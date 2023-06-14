@@ -2,10 +2,13 @@ type: object
 properties:
   cvv2:
     type: string
+    description: Card CVV
     example: '442'
   pan:
     type: string
+    description: Full card PAN
     example: '1234123412345678'
   expirationDate:
     type: string
+    description: Card expiration date in the format YYYYMM
     example: '202501'
