@@ -1,11 +1,23 @@
 type: object
+required:
+  - cvv2
+  - pan
+  - expiry
+  - embossedName
 properties:
   cvv2:
     type: string
-    example: "442"
+    description: Card CVV
+    example: '442'
   pan:
     type: string
-    example: "1234123412345678"
-  expirationDate:
+    description: Full card PAN
+    example: '1234123412345678'
+  expiry:
     type: string
-    example: "202501"
+    description: Card expiration date in the format YYYYMM
+    example: '202501'
+  embossedName:
+    type: string
+    description: Cardholder embossed name
+    example: 'DOE/JOHN'

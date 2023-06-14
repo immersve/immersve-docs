@@ -6,19 +6,19 @@ post:
   parameters:
     - name: cardId
       in: path
-      description: ID of card to for which to obtain a token
+      description: ID of card for which to obtain a token
       required: true
       schema:
         type: string
   responses:
-    "200":
+    '200':
       description: Successful operation
       content:
         application/json:
           schema:
             type: object
             properties:
-              token:
+              tokenId:
                 type: string
                 description: One-time use token for card detail retrieval
-                example: "1E2426184B3676720F36E43A22649AFF-1000041153"
+                example: '1E2426184B3676720F36E43A22649AFF-1000041153'
