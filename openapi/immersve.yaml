@@ -57,11 +57,6 @@ paths:
     $ref: './endpoints/currency/currency-list.yaml'
   '/api/currency/convert':
     $ref: './endpoints/currency/currency-convert.yaml'
-  '/api/cards/secure':
-    $ref: './endpoints/cards/card-get-secure.yaml'
-    servers:
-      - url: https://api-sec.immersve.com/
-        description: Secure server
   '/api/cards/{cardId}':
     $ref: './endpoints/cards/card-get.yaml'
   '/api/cards/account/{accountId}':
