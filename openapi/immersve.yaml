@@ -57,11 +57,6 @@ paths:
     $ref: './endpoints/currency/currency-list.yaml'
   '/api/currency/convert':
     $ref: './endpoints/currency/currency-convert.yaml'
-  '/v1/auth/pan/token/validate':
-    $ref: './endpoints/cards/secure-card-details.yaml'
-    servers:
-      - url: https://mobile.apac-uat.aws.tst.e6tech.net/restful/
-        description: Secure card details server
   '/api/cards/{cardId}':
     $ref: './endpoints/cards/card-get.yaml'
   '/api/cards/account/{accountId}':

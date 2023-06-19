@@ -73,7 +73,7 @@ Generate a single-use card `token` using [the get a card token](/api-reference/g
 
 ### Get Card Details
 
-To obtain the full PAN and CVV2 for display to the cardholder your client-side application should exchange the token for the sensitive card data via the [get secure card details](/api-reference/get-secure-card-details) operation.
+To obtain the full PAN and CVV2 for display to the cardholder your client-side application should exchange the token for the sensitive card data. See [fetching secure card information](/guides/fetching-secure-card-information).
 
 ## Virtual Card Issuance Sequence Diagram
 

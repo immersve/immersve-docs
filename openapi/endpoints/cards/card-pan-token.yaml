@@ -2,23 +2,32 @@ post:
   tags:
     - card
   summary: Get a card token
-  description: Generate a card token to enable the subsequent retrieval of the card's sensitive details including full PAN and CVV2.
+  description: |
+    Generate a card token to enable the subsequent retrieval of the card's sensitive details including full PAN, expiry, CVV2 and embossedName.
+
+    Refer to the [fetching secure card information guide](/guides/fetching-secure-card-information) for more information.
+
+    The callback url responds with an object containing the card's sensitive details.
+
+    ```json
+    {
+      "cvv2": "442",
+      "pan": "1234123412345678",
+      "expiry": "202501",
+      "embossedName": "DOE/JOHN"
+    }
+    ```
   parameters:
     - name: cardId
       in: path
-      description: ID of card to for which to obtain a token
+      description: ID of card for which to obtain a token
       required: true
       schema:
         type: string
   responses:
-    "200":
+    '200':
       description: Successful operation
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              token:
-                type: string
-                description: One-time use token for card detail retrieval
-                example: "1E2426184B3676720F36E43A22649AFF-1000041153"
+            $ref: './models/card-pan-token-response.yaml'

@@ -11,7 +11,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: './models/get-card-secure-response.yaml'
+            $ref: './models/get-card-secure-custodial-response.yaml'
     default:
       description: 'Error'
       content:

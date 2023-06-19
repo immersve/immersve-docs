@@ -1,0 +1,16 @@
+type: object
+required:
+  - tokenId
+  - callbackUrl
+properties:
+  tokenId:
+    type: string
+    description: One-time use token for card detail retrieval
+    example: 1E2426184B3676720F36E43A22649AFF-1000041153
+  callbackUrl:
+    type: string
+    description: |
+      One-time url which can be called to retrieve the card's secure details.
+
+      This url requires no authentication.
+    example: https://api-sec.immersve.com/api/cards/secure?tokenId=1E2426184B3676720F36E43A22649AFF-1000041153
