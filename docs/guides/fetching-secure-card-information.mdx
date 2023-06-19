@@ -5,7 +5,7 @@ import TabItem from '@theme/TabItem';
 
 In order to retrieve the secure details of a card (cvv, expiry, pan), a one-time token must be generated.
 
-The steps for retrieving secure card details is as follows:
+The steps for retrieving secure card details are as follows:
 
 1. Call the [get a card token](/api-reference/get-a-card-token) endpoint with the card id.
 2. Call the GET url specified in the `callbackUrl` response body field. The `callbackUrl` can only be used once, subsequent calls to this url will return a `403` response code.
