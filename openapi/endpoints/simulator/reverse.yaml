@@ -3,6 +3,14 @@ post:
     - simulator
   summary: Reverse a transaction
   description: This endpoint can be used to test reversing a transaction on a simulated card network
+  parameters:
+    - name: useMinorUnits
+      in: query
+      description: When enabled, reversalAmount and fxReversalAmount.amount in request body will be accepted in minor units, an integer in the smallest denomination for the given currency. 
+      required: false
+      schema:
+        type: boolean
+
   requestBody:
     content:
       application/json:

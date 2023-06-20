@@ -5,6 +5,13 @@ post:
   summary: Get prerequisite transactions
   description: |
     This endpoint returns the requisite blockchain transactions required to permit the creation of a new Immersve Card. It also indicates if everything is in order before instructing the client of any blockchain transactions. Insufficient KYC and AML status may trigger an error response.
+  parameters:
+    - name: useMinorUnits
+      in: query
+      description: When enabled, amount in request body will be accepted in minor units, an integer in the smallest denomination for the given currency. 
+      required: false
+      schema:
+        type: boolean
   requestBody:
     content:
       application/json:

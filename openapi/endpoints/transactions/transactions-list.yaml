@@ -34,6 +34,13 @@ post:
       required: false
       schema:
         type: string
+    - name: useMinorUnits
+      in: query
+      description: When enabled, amount and acquirerAmount in payload items will be returned in minor units, an integer in the smallest denomination for the given currency. 
+      required: false
+      schema:
+        type: boolean
+
   responses:
     "200":
       description: Successful operation

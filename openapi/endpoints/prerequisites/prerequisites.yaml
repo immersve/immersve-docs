@@ -12,6 +12,13 @@ post:
       schema:
         type: string
         enum: [create-card, withdraw]
+    - name: useMinorUnits
+      in: query
+      description: When enabled, amount in request body will be accepted in minor units, an integer in the smallest denomination for the given currency. 
+      required: false
+      schema:
+        type: boolean
+
   requestBody:
     content:
       application/json:
