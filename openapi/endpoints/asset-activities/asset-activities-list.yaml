@@ -35,12 +35,11 @@ get:
       schema:
         type: string
         enum:
-          - UserDeposit
-          - UserWithdraw
-          - LockedFunds
-          - LockedFundsWithDeposit
-          - LockedFundsRevoked
-          - LockedFundsPaymentConfirmation
+          - DepositedAndLocked
+          - Withdrawal
+          - ProcessedPartialPayment
+          - ExtendedLockedFund
+          - UnlockedLockedFund
     - name: limit
       in: query
       description: Amount of records to return (max 1000)
