@@ -6,7 +6,7 @@ post:
   parameters:
     - name: useMinorUnits
       in: query
-      description: When enabled, transactionAmount and fxAmount.amount in request body will be accepted in minor units, an integer in the smallest denomination for the given currency. 
+      description: When enabled, transactionAmount and fxAmount.amount in request body must be in minor units, an integer in the smallest denomination for the given currency. 
       required: false
       schema:
         type: boolean

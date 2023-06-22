@@ -25,7 +25,7 @@ get:
         type: string
     - name: useMinorUnits
       in: query
-      description: When enabled, amount in query parameters will be accepted in minor units, an integer in the smallest denomination for the given currency. Amount and convertedAmount in payload will be also returned in minor units.
+      description: When enabled, amount in query parameters must be in minor units, an integer in the smallest denomination for the given currency. Amount and convertedAmount in payload will be also returned in minor units.
       required: false
       schema:
         type: boolean
