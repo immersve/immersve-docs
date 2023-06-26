@@ -5,6 +5,14 @@ post:
   description: |
     Order a virtual card for the current user.
   operationId: orderCard
+  parameters:
+    - name: useMinorUnits
+      in: query
+      description: When enabled, amount in request body must be in minor units, an integer in the smallest denomination for the given currency. 
+      required: false
+      schema:
+        type: boolean
+
   requestBody:
     content:
       application/json:
@@ -16,7 +24,7 @@ post:
           properties:
             amount:
               type: string
-              description: Amount as monetary value to be loaded. Example $0.1 USDC should be "0.1".
+              description: Amount as monetary value to be loaded. Example 1.1 USDC should be "1.1". If `useMinorUnits` is true, $1.1 USDC should be "1100000"
             currency:
               type: string
               description: Coin being used currently only USDC
