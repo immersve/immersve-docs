@@ -116,8 +116,8 @@ sequenceDiagram
     participant I as Immersve Backend
     participant S as Smart Contract
     participant U as token Smart Contract
-    participant E as ECommerce website
-    participant M as ECommerce Merchant
+    participant E as Ecommerce website
+    participant M as Ecommerce Merchant
     H->>I: Create card pre-request
     I-->>H: Web3 Transaction Details
     H->>W: Submit Transactions
