@@ -28,7 +28,7 @@ Contract Module that allows users to deposit and lock funds in order to be able 
 ## Proxy URLs
 
 - Polygon USDC (Mainnet): ***PENDING***
-- Polygon Mumbai USDC (Testnet): [0x6993D48098F7E92009306A750b8B82B0E7C2e2A5](https://mumbai.polygonscan.com/address/0x6993D48098F7E92009306A750b8B82B0E7C2e2A5#writeProxyContract)
+- Polygon Mumbai USDC (Testnet): [0x91a4ee183763d9fd67F878abCCfFb2D6E51433eA](https://mumbai.polygonscan.com/address/0x91a4ee183763d9fd67F878abCCfFb2D6E51433eA#writeProxyContract)
 ## Extensions
 
 For security reasons, the smart contract implements the following [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts/4.x/)
