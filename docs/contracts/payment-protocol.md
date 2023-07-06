@@ -101,7 +101,7 @@ graph LR
 - 1 `lockedFundBalance` (type `uint`): the balance of the locked fund for the specified address
 
 -----
-## Immersve Card Ecommerce Payment Happy Path
+## Immersve Card E-Commerce Payment Happy Path
 
 - Card Holder locks token funds with Immersve Smart Contract
 - Card Holder receives a valid Credit Card to be used for E-Commerce transaction from Immersve
@@ -116,8 +116,8 @@ sequenceDiagram
     participant I as Immersve Backend
     participant S as Smart Contract
     participant U as token Smart Contract
-    participant E as Ecommerce website
-    participant M as Ecommerce Merchant
+    participant E as E-Commerce website
+    participant M as E-Commerce Merchant
     H->>I: Create card pre-request
     I-->>H: Web3 Transaction Details
     H->>W: Submit Transactions
