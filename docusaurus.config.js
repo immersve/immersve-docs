@@ -55,10 +55,23 @@ async function createConfig() {
         navbar: {
           logo: {
             alt: 'Immersve Logo',
-            src: 'img/logo-light.png',
+            src: 'img/logo.png',
             srcDark: 'img/logo-dark.png',
+            href: 'https://www.immersve.com',
+            target: '_self',
+            className: 'navbar-logo',
+            height:100,
+
           },
-          items: [],
+          items: [{
+            label:'Immersve Docs',
+            to:'/',
+            positon:'center',
+            className: 'navbar-docs'
+            
+          }
+          ],
+
         },
         footer: {
           style: 'dark',

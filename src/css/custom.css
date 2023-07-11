@@ -51,3 +51,9 @@ footer {
   --ifm-color-primary-lighter: #88b4fe;
   --ifm-color-primary-lightest: #bbd4fe;
 }
+
+.navbar-docs {
+  margin-left: 0px;
+  padding:0px;
+}
+
