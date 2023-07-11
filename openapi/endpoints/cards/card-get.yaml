@@ -10,6 +10,13 @@ get:
       required: true
       schema:
         type: string
+    - name: useMinorUnits
+      in: query
+      description: When enabled, lockedFundAmount in payload will be returned in minor units, an integer in the smallest denomination for the given currency. 
+      required: false
+      schema:
+        type: boolean
+    
   responses:
     '200':
       content:

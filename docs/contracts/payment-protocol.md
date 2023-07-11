@@ -25,6 +25,10 @@ tags:
 
 Contract Module that allows users to deposit and lock funds in order to be able to fund one-time-use Immersve virtual cards.
 
+## Proxy URLs
+
+- Polygon USDC (Mainnet): ***PENDING***
+- Polygon Mumbai USDC (Testnet): [0x91a4ee183763d9fd67F878abCCfFb2D6E51433eA](https://mumbai.polygonscan.com/address/0x91a4ee183763d9fd67F878abCCfFb2D6E51433eA#writeProxyContract)
 ## Extensions
 
 For security reasons, the smart contract implements the following [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts/4.x/)
@@ -52,186 +56,51 @@ graph LR
     Proxy -- "delegate call" --> v2{{ContractImplV2}}
 ```
 
-## Proxy URLs
-
-- Polygon (Mainnet): ***PENDING***
-- Polygon Mumbai (Testnet): [0xd73c2deE4604a1af3Db4E8E07Cf6Fb798aB77982](https://mumbai.polygonscan.com/address/0xd73c2deE4604a1af3Db4E8E07Cf6Fb798aB77982#code)
-
 ## Functions
 
-### `initialize`(address _settlerRole, address payable _settlementAddress, address _tokenSmartContract, uint256 _defaultTimeoutBlocks, uint256 _safetyBlocks) external initializer
+### `withdraw`(uint `_amount`) `external` nonReentrant notZeroValue(`_amount`) whenNotPaused
 
-> Initialize the Smart Contract with the required arguments
-- `_settlerRole` (type `address`): The web3 address that will act with the `SETTLER` role.
-- `_settlementAddress` (type `address payable`): The web3 address were Locked funds will be sent once a payment is confirmed by Immersve
-- `_tokenSmartContract` (type `address`): The current network address of the ERC-20 token Smart Contract
-- `_defaultTimeoutBlocks` (type `uint256`): Number of blocks in the blockchain that an asset lock will last by default
-- `_safetyBlocks` (type `uint256`): Number of blocks on top of the default timeout used to calculate if a Lock is usable or not. Because there might be a delay between a transaction confirmation and the actual use of Locked funds by Immersve, there has to be some safety threshold for Immersve to execute the settlement of funds.
+> CardHolders can withdraw token funds associated to their balance from the Smart Contract using this function. Locked funds cannot be withdrawn until the lock expires, or Immersve revokes the lock.
+- `tokenAmount` (type `uint`): token Amount to withdraw in minor units
+
+-----
+### `depositAndLock`(uint `_amount`) `external` nonReentrant notZeroValue(`_amount`) whenNotPaused
+
+> CardHolders can deposit an amount of funds and lock it immediately. This will lock the funds for a number of blocks specified by the `timeoutBlocks` property of the smart contract.
+- `_amount` (type `uint`): token Amount to deposit in minor units
+
 
 -----
 
-### `getVersion()` external pure returns(string memory)
+### `extendLockedFund`() `external` whenNotPaused
 
-> Get the current version implementation of the smart contract with a Version number stored in a Solidity Constant. This means that the constant is not saved into the Smart Contract store.
-
------
-
-### `pause()` public onlyRole(PAUSER_ROLE)
-
-> Pauses the functionality of the Smart Contract. All the functions marked with the `whenNotPaused` modifier will reject the transaction once a pause is in effect. Only the `PAUSER_ROLE` will be able to call this function.
+> Allows user to extend his own lock. This operation will fail if there are no locked funds for the wallet initiating the transaction
 
 -----
 
-### `unpause()` public onlyRole(PAUSER_ROLE)
+### `getTimeoutHasPassed` (address _address, uint _additionalBlocks) public view returns (bool)
+> Retrieves whether the timeout has passed for the lock owned by the `_address`.
 
-> Unpauses the functionality of the Smart Contract. All the functions marked with the `whenNotPaused` modifier will accept the transaction normally. Only the `PAUSER_ROLE` will be able to call this function.
+- `_address` (type `address`): CardHolder Address
+- `_additionalBlocks` (type `uint`): Optional argument to calculate expiration of a locked fund based on an extra amount of blocks
 
------
-
-### `setTimeoutBlocks`(uint256 timeoutBlocks) public onlyRole(SETTLER_ROLE)
-
-> Set the default timeout for `AssetLockedFund` as described  in `Asset Locked Funds` section. Only the `SETTLER_ROLE` will be able to call this function.
-- `timeoutBlocks` (type `uint256`): Number of blocks for an Asset Lock to be considered expired
+#### Response
+`bool`: `true` if the timeout of the block for `_address` has passed, `false` if the lock is still active
 
 -----
+### `getLockedFundBalance` (address _address, uint _additionalBlocks) public view returns (bool, uint)
+> Retrieves whether the timeout has passed for the lock owned by the `_address`. Similar to [getTimeoutHasPassed](/contracts/payment-protocol#gettimeouthaspassed-address-_address-uint-_additionalblocks-public-view-returns-bool) but it returns an array indicating if the timeout has passed and the actual balance of the lock for the specified address
 
-### `setSafetyBlocks`(uint256 timeoutBlocks) public onlyRole(SETTLER_ROLE)
+- `_address` (type `address`): CardHolder Address
+- `_additionalBlocks` (type `uint`): Optional argument to calculate expiration of a locked fund based on an extra amount of blocks
 
-> Set the safety block threshold for `AssetLockedFund` as described  in `Asset Locked Funds` section. Only the `SETTLER_ROLE` will be able to call this function.
-- `timeoutBlocks` (type `uint256`): Number of blocks for an Asset Lock to be considered safe to settle
+#### Response
 
------
-
-### `deposit`(uint256 tokenAmount) external whenNotPaused nonReentrant
-
-> CardHolders can deposit token funds into the Smart Contract using this function. The funds can either be `locked` or `withdrawn` by the consumer later. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
-```
-There is a pre-requisite for this function to work. Because token is an ERC-20 token, 
-the consumer needs to approve (https://polygonscan.com/token/0x2791bca1f2de4661ed88a30c99a7a9449aa84174#writeProxyContract#F1 token funds 
-to the Smart Contract public address
-```
-- `tokenAmount` (type `uint256`): token Amount to deposit in `ethers` format
+`array`: 
+- 0 `timeoutHasPassed` (type `bool`): `true` if the timeout of the block for `_address` has passed, `false` if the lock is still active
+- 1 `lockedFundBalance` (type `uint`): the balance of the locked fund for the specified address
 
 -----
-
-### `depositTo`(uint256 tokenAmount, address sender) external whenNotPaused nonReentrant
-
-> CardHolders can deposit token funds for a specific address into the Smart Contract using this function. The funds can either be `locked` or `withdrawn` by the consumer later. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
-```
-There is a pre-requisite for this function to work. Because token is an ERC-20 token, 
-the consumer needs to approve (https://polygonscan.com/token/0x2791bca1f2de4661ed88a30c99a7a9449aa84174#writeProxyContract#F1 token funds 
-to the target sender address for the Smart Contract public address
-```
-- `tokenAmount` (type `uint256`): token Amount to deposit in `ethers` format
-- `address` (type `address`): Deposit target address
-
------
-
-### `withdraw`(uint256 tokenAmount) external whenNotPaused nonReentrant
-
-> CardHolders can withdraw token funds associated to their balance from the Smart Contract using this function. Locked funds cannot be withdrawn until the lock expires, or the user revokes the lock with an Immersve token.
-- `tokenAmount` (type `uint256`): token Amount to withdraw in `ethers` format
-
------
-
-### `createLockedFund` (uint256 tokenAmount) external whenNotPaused nonReentrant
-
-> CardHolders can put a Lock in place for deposited funds so Immersve can authorize the use of a credit card using those locked funds as collateral.
-The locked funds will be represented with a `AssetLockedFund` struct inside the Smart Contract. When created, a timeout will be put in place for this lock based on the default Timeout Blocks (see [])
-- `tokenAmount` (type `uint256`): token Amount to lock in `ethers` format
-
------
-
-### `depositAndCreateLockedFund` (uint256 tokenAmount) external whenNotPaused nonReentrant
-
-> Similar to [*deposit*](/contracts/payment-protocol#deposituint256-tokenamount-external-whennotpaused-nonreentrant) but combined with [*createLockedFund*](/contracts/payment-protocol#createlockedfund-uint256-tokenamount-external-whennotpaused-nonreentrant). This function is doing both the deposit and the lock at the same time to save gas fees.
-- `tokenAmount` (type `uint256`): token Amount to deposit in `ethers` format
-
------
-
-### `depositAndCreateLockedFundFor` (uint256 tokenAmount, address sender) external whenNotPaused nonReentrant
-
-> Similar to [*depositAndCreateLockedFund*](/contracts/payment-protocol#depositandcreatelockedfund-uint256-tokenamount-external-whennotpaused-nonreentrant) but the target address is specified as an argument instead of using `msg.sender`
-- `tokenAmount` (type `uint256`): token Amount to deposit in `ethers` format
-
------
-
-### `checkLockedFundPayment` (address sender, uint256 price, uint256 lockedFundId) external view whenNotPaused returns(uint256)
-
-> Used by Immersve to check that the locked funds of an Immersve Card payment is currently valid. This function will check that the specified address has enough locked funds for the specified `lockedFundId` and will return the number of blocks that the lock is still valid for.
-- `sender` (type `address`): CardHolder Address doing a payment requiring locked funds with Immersve
-- `price` (type `uint256`): token Amount to settle in `ethers` format
-- `lockedFundId` (type `uint256`): Matching Locked Fund Id (which is linked to a Card) to settle payment being done with an Immersve Credit Card
-
------
-
-### `confirmLockedFundPayment` (address sender, uint256 price, uint256 lockedFundId) external whenNotPaused nonReentrant onlyRole(SETTLER_ROLE)
-
-> Used by Immersve to confirm the settlement of an Immersve Card payment. This function will check that the specified address has enough locked funds for the specified `lockedFundId` and will transfer the settlement amount (`price`) to the settlement address, specified in the [`initialize`](/contracts/payment-protocol#initializeaddress-payable-_settlementaddress-address-_tokensmartcontract-uint256-_defaulttimeoutblocks-uint256-_safetyblocks-external-initializer) function.
-It releases locked funds. Used for transactions with amount matching locked funds.
-It can only be called by the SETTLER role
-- `sender` (type `address`): CardHolder Address doing a payment requiring locked funds with Immersve
-- `price` (type `uint256`): token Amount to settle in `ethers` format
-- `lockedFundId` (type `uint256`): Matching Locked Fund Id (which is linked to a Card) to settle payment being done with an Immersve Credit Card
-
------
-
-### `confirmLockedFundPartialPayment` (address sender, uint256 price, uint256 lockedFundId) external whenNotPaused nonReentrant onlyRole(SETTLER_ROLE)
-
-> Used by Immersve to confirm the settlement of an Immersve Card payment. This function will check that the specified address has enough locked funds for the specified `lockedFundId` and will transfer the settlement amount (`price`) to the settlement address, specified in the [`initialize`](/contracts/payment-protocol#initializeaddress-payable-_settlementaddress-address-_tokensmartcontract-uint256-_defaulttimeoutblocks-uint256-_safetyblocks-external-initializer) function.
-Updates locked funds. Used for partial / incremental transactions (multiple transaction with amount < locked funds).
-It can only be called by the SETTLER role
-- `sender` (type `address`): CardHolder Address doing a payment requiring locked funds with Immersve
-- `price` (type `uint256`): token Amount to settle in `ethers` format
-- `lockedFundId` (type `uint256`): Matching Locked Fund Id (which is linked to a Card) to settle payment being done with an Immersve Credit Card
-
------
-
-### `getAvailableLockedFundsBalance` (address sender)
-
-> Get Available Locked funds for the specified `address`
-- `sender` (type `address`): CardHolder Address that already did a funds lock
-
------
-
-### `getBalance()` 
-> Get the available token balance of the `msg.sender` deposited in the Smart Contract. Balance is not the necessarily the same as locked funds as the former are short lived.
-
------
-
-### `getSenderBalance` (address sender) 
-> Get the available token balance of the specified `sender` argument, deposited in the Smart Contract. Balance is not the necessarily the same as locked funds as the former are short lived.
-- `sender` (type `address`): CardHolder Address
-
------
-
-### `getLockedFunds()` 
-> Get the `AssetLockedFund` objects of the `msg.sender`
-
------
-
-### `getSenderLockedFunds` (address sender) onlyRole(SETTLER_ROLE)
-> Get the `AssetLockedFund` objects of the specified `sender` argument
-- `sender` (type `address`): CardHolder Address that already locked funds at least once
-
------
-
-### `revokeLockedFundMultiSig` (uint256 lockedFundId, uint256 nonce, bytes memory signature) external whenNotPaused nonReentrant
-> CardHolders will be able to revoke a fund lock using an Immersve signature. Immersve will first check if the funds is being used for a payment on Immersve backend.
-If the funds are free to release, Immersve will sign a message with a nonce only valid for a `lockedFundId` and the funds will be put back into the CardHolder balance
-- `lockedFundId` (type `uint256`): Id of the `AssetLockedFund` to be released
-- `nonce` (type `uint256`): Nonce provided by Immersve API and matches the `signature`
-- `signature` (type `memory`): String signature provided by Immersve API created with a `nonce` to avoid replay calls
-
------
-
-### `revokeLockedFund` (address sender, uint256 lockedFundId) external whenNotPaused nonReentrant onlyRole(SETTLER_ROLE)
-> Function used by Immersve Backend (only SETTLER role can call this function) to revoke an unexpired lock. This could be done if Immersve detect illegal or malicious activity related to the `sender` and prefers to revoke locked fund ids
-- `sender` (type `address`): CardHolder Address that already locked funds with the Smart Contract
-- `lockedFundId` (type `uint256`): Id of the `AssetLockedFund` to be released
-
-
-
 ## Immersve Card E-Commerce Payment Happy Path
 
 - Card Holder locks token funds with Immersve Smart Contract
@@ -243,7 +112,7 @@ If the funds are free to release, Immersve will sign a message with a nonce only
 ```mermaid
 sequenceDiagram
     participant H as Card Holder
-    participant W as Web-3 Wallet
+    participant W as Web3 Wallet
     participant I as Immersve Backend
     participant S as Smart Contract
     participant U as token Smart Contract
@@ -256,7 +125,7 @@ sequenceDiagram
     W->>S: Deposit and Lock token funds
     S->>U: Transfer approved amount from Card Holder wallet to Immersve Smart Contract
     S-->>S: Add approved amount to Card Holder address balance
-    S-->>S: Create AssetLockedFund to temporarily lock Card Holder funds to be used by Immersve Card
+    S-->>S: Create LockedFund to temporarily lock Card Holder funds to be used by Immersve Card
     S-->>W: Transaction Hash
     W-->>H: Transaction Hash
     H->>I: Card Create Request

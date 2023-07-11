@@ -13,7 +13,7 @@ async function createConfig() {
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
-    favicon: 'img/favicon.ico',
+    favicon: 'img/favicon-2.ico',
 
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.

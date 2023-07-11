@@ -3,6 +3,14 @@ get:
     - transactions
   summary: Get a transaction
   description: This endpoint returns the details of a card purchase transaction by a given id.
+  parameters:
+    - name: useMinorUnits
+      in: query
+      description: When enabled, amount and acquirerAmount in payload will be returned in minor units, an integer in the smallest denomination for the given currency. 
+      required: false
+      schema:
+        type: boolean
+
   responses:
     "200":
       content:
