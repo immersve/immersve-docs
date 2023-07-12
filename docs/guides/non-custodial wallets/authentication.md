@@ -30,24 +30,66 @@ sequenceDiagram
 	  note over C: Access token will be used for subsequent requests for protected resources from the Immersve API
 ```
 
-1. [Generate a challenge](/api-reference/generate-challenge). The response is an [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) message in plain text to be signed by the wallet. For example:
+1.  [Generate a challenge](/api-reference/generate-challenge). The response is an [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) message in plain text to be signed by the wallet. For example:
 
-   ```
-   app.immersve.com wants you to sign in with your Ethereum account:
-   0xA3058369d6A481B1ff08F62B352409c3D709De9b
+    ```
+    app.immersve.com wants you to sign in with your Ethereum account:
+    0xA3058369d6A481B1ff08F62B352409c3D709De9b
 
-   Sign in with Ethereum to the app. This request will not trigger a blockchain transaction or cost any gas fees.
+    Sign in with Ethereum to the app. This request will not trigger a blockchain transaction or cost any gas fees.
 
-   URI: https://app.immersve.com
-   Version: 1
-   Chain ID: 1
-   Nonce: 2hFm7TDbZmerUgnrJ
-   Issued At: 2022-08-11T22:29:48.244Z
-   ```
+    URI: https://app.immersve.com
+    Version: 1
+    Chain ID: 1
+    Nonce: 2hFm7TDbZmerUgnrJ
+    Issued At: 2022-08-11T22:29:48.244Z
+    ```
 
-2. Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
+2.  Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
 
-   For a quick start fork our sandbox on [Replit](https://replit.com/@Immersve/Authentication-Sign-Challenge?v=1) and use your private key to create a new wallet and sign the generated challenge.
+    For a quick start Metamask users can sign the challenge message using this [CodePen](https://codepen.io/Immersve/pen/zYMpExJ). Alternatively use this Node.js script to create your own wallet and sign the challenge.
+      <details>
+      <summary>Signing Script</summary>
 
-3. [Submit the signed challenge along with the signature](/api-reference/login) to get the access token.
-4. The access token should be used for subsequent requests for protected resources from the Immersve API by supplying it in the `Authorization` header.
+        const ethers = require('ethers');
+        const axios = require('axios');
+
+        const baseUrl = 'https://api.immersve.com';
+        const log = (...data) => {
+          console.log.apply(null, data);
+        }
+
+        // Create a wallet to sign the message with
+        const privateKey = ''; //TODO: Set Private key here
+        const walletAddress = ''; //TODO: Set wallet address here
+        const chainId = 137; //. Chain id Reference: https://chainlist.org/
+
+        if (!privateKey || privateKey.length === 0) {
+          console.error('WALLET_PRIVATE_KEY missing');
+          process.exit(1);
+        }
+        if (!walletAddress || walletAddress.length === 0) {
+          console.error('WALLET_ADDRESS missing');
+          process.exit(1);
+        }
+
+        const wallet = new ethers.Wallet(privateKey);
+        const clientInstance = axios.create({ baseURL: baseUrl });
+
+        const signIn = async () => {
+          const getSignInChallenge = await clientInstance.post('/siwe/generate-challenge', {
+            walletAddress,
+            chainId,
+          });
+          const challenge = getSignInChallenge.data;
+          const signature = await wallet.signMessage(challenge);
+          const output = { message: challenge, signature: signature };
+          log(JSON.stringify(output));
+        }
+
+        signIn();
+
+    </details>
+
+3.  [Submit the signed challenge along with the signature](/api-reference/login) to get the access token.
+4.  The access token should be used for subsequent requests for protected resources from the Immersve API by supplying it in the `Authorization` header.
