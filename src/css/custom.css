@@ -51,3 +51,14 @@ footer {
   --ifm-color-primary-lighter: #88b4fe;
   --ifm-color-primary-lightest: #bbd4fe;
 }
+
+@media (min-width: 997px) {
+  .navbar-title {
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 283px;
+    font-size: larger;
+  }
+}
+
+

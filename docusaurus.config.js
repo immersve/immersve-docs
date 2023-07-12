@@ -38,8 +38,8 @@ async function createConfig() {
             routeBasePath: '/',
             sidebarPath: require.resolve('./sidebars.js'),
             remarkPlugins: [mdxMermaid.default],
-            docLayoutComponent: "@theme/DocPage",
-            docItemComponent: "@theme/ApiItem" // add @theme/ApiItem here
+            docLayoutComponent: '@theme/DocPage',
+            docItemComponent: '@theme/ApiItem', // add @theme/ApiItem here
           },
           blog: false,
           theme: {
@@ -57,8 +57,18 @@ async function createConfig() {
             alt: 'Immersve Logo',
             src: 'img/logo-light.png',
             srcDark: 'img/logo-dark.png',
+            href: 'https://www.immersve.com',
+            target: '_self',
+            className: 'navbar-logo',
           },
-          items: [],
+          items: [
+            {
+              label: 'Docs',
+              to: '/',
+              position: 'left',
+              className: 'navbar-title',
+            },
+          ],
         },
         footer: {
           style: 'dark',
@@ -71,7 +81,7 @@ async function createConfig() {
         },
       }),
 
-    themes: ["docusaurus-theme-openapi-docs"],
+    themes: ['docusaurus-theme-openapi-docs'],
 
     plugins: [
       [
@@ -83,20 +93,20 @@ async function createConfig() {
       [
         require.resolve('docusaurus-plugin-openapi-docs'),
         {
-          id: "openapi",
-          docsPluginId: "classic", // e.g. "classic" or the plugin-content-docs id
+          id: 'openapi',
+          docsPluginId: 'classic', // e.g. "classic" or the plugin-content-docs id
           config: {
             immersve: {
-              specPath: "openapi/immersve.yaml", // path or URL to the OpenAPI spec
-              outputDir: "docs/api-reference", // output directory for generated *.mdx and sidebar.js files
+              specPath: 'openapi/immersve.yaml', // path or URL to the OpenAPI spec
+              outputDir: 'docs/api-reference', // output directory for generated *.mdx and sidebar.js files
               sidebarOptions: {
-                groupPathsBy: "tag", // generate a sidebar.js slice that groups operations by tag
-                categoryLinkSource: "tag",
+                groupPathsBy: 'tag', // generate a sidebar.js slice that groups operations by tag
+                categoryLinkSource: 'tag',
               },
-            }
-          }
+            },
+          },
         },
-      ]
+      ],
     ],
   };
 }
