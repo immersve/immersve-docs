@@ -47,7 +47,7 @@ sequenceDiagram
 
 2.  Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
 
-    For a quick start Metamask users can sign the challenge message using this [CodePen](https://codepen.io/Immersve/pen/zYMpExJ). Alternatively use this Node.js script to create your own wallet and sign the challenge.
+    For a quick start Metamask users can sign the challenge message using this [CodePen](https://codepen.io/imsv/full/zYMpExJ). Alternatively use this Node.js script to create your own wallet and sign the challenge.
       <details>
       <summary>Signing Script</summary>
 
