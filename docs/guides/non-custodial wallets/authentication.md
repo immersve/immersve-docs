@@ -62,7 +62,7 @@ sequenceDiagram
         // Create a wallet to sign the message with
         const privateKey = ''; //TODO: Set Private key here
         const walletAddress = ''; //TODO: Set wallet address here
-        const chainId = 137; //. Chain id Reference: https://chainlist.org/
+        const chainId = 137; //Chain id Reference: https://chainlist.org/
 
         if (!privateKey || privateKey.length === 0) {
           console.error('WALLET_PRIVATE_KEY missing');
