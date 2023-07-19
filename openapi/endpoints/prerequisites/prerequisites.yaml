@@ -38,24 +38,65 @@ post:
             {
               "requiredTransactions": [
                 {
-                    "type": "erc20_approval",
+                  "type": "smart_contract_write",
+                  "params": {
+                    "abi": [
+                      {
+                        "constant": false,
+                        "inputs": [
+                          {
+                            "name": "_spender",
+                            "type": "address"
+                          },
+                          {
+                            "name": "_value",
+                            "type": "uint256"
+                          }
+                        ],
+                        "name": "approve",
+                        "outputs": [
+                          {
+                            "name": "",
+                            "type": "bool"
+                          }
+                        ],
+                        "payable": false,
+                        "stateMutability": "nonpayable",
+                        "type": "function"
+                      }
+                    ],
+                    "contractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+                    "method": "approve",
                     "params": {
-                        "spender": "0xCf0ed659452b092750D9BB54c33c0025b6853aa4",
-                        "amount": {
-                            "total": 320.22,
-                            "token": "USDC"
-                        }
+                      "_spender": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+                      "_value": "1000000"
                     }
+                  }
                 },
                 {
-                    "type": "smart_contract_write",
+                  "type": "smart_contract_write",
+                  "params": {
+                    "abi": [
+                      {
+                        "inputs": [
+                          {
+                            "internalType": "uint256",
+                            "name": "_amount",
+                            "type": "uint256"
+                          }
+                        ],
+                        "name": "depositAndLock",
+                        "outputs": [],
+                        "stateMutability": "nonpayable",
+                        "type": "function"
+                      }
+                    ],
+                    "contractAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+                    "method": "depositAndLock",
                     "params": {
-                        "contractAddress": "0xCf0ed659452b092750D9BB54c33c0025b6853aa4",
-                        "method": "depositAndCreateLockedFund"
-                        "params": {
-                            "usdcAmount": 320.22
-                        }
+                      "_amount": "1000000"
                     }
+                  }
                 }
               ]
             }

@@ -8,11 +8,8 @@ properties:
         type:
           type: string
           enum:
-            - erc20_approval
             - smart_contract_write
         params:
           oneOf:
-            - $ref: '../../../models/erc20-approval-params.yaml'
-              title: erc20_approval
             - $ref: '../../../models/smart-contract-write-params.yaml'
               title: smart_contract_write

@@ -24,17 +24,72 @@ A user will more often than not be quoted a price for a purchase by a merchant i
 
 In order to ensure that funds are sufficiently locked within the [smart contract](/contracts/payment-protocol) such that Immersve are in a position to approve an authorization request received via the card scheme network you will need to have firstly locked sufficient digital assets within the smart contract via digital asset transfer and smart contract invocations as instructed by the [get prerequisite transactions](/api-reference/get-prerequisites) operation. The necessary blockchain transactions are contained within the `requiredTransactions` collection returned.
 
-If the user has not transacted using the solution before then the the [get prerequisite transactions](/api-reference/get-prerequisites) response will typically call for and `erc20_approval` in favour of the smart contract followed by a `depositAndCreateLockedFund` invocation of the smart contract.
+If the user has not transacted using the solution before then the the [get prerequisite transactions](/api-reference/get-prerequisites) response will typically call for and ERC20 `approve` in favour of the smart contract followed by a `depositAndLock` invocation of the smart contract.
 
 If multiple transactions are present then they should be carried out in the order in which they are presented.
 
 The client application is to parse and formulate the raw blockchain transaction message such that it is presented to the user within the web3 wallet and signed and sent to the relevant blockchain.
 
+#### How to use prerequisites example for ts/js
+
+[Prerequisites](/api-reference/get-prerequisites) endpoint returns Array of actions to be performed.  
+Each object in array has `type` and `params`.  
+Type `smart_contract_write` means that this action is about interaction with the smart contract.  
+`params` contain all details required to perform this interaction.
+
+<details>
+<summary>Code snippet (using ethers.js)</summary>
+
+Typescript code
+
+```ts
+import { JsonFragment } from '@ethersproject/abi';
+/**
+ * Builds array of params to be used in calls to smart contracts
+ * @param abi ABI for smart contact function
+ * @param method function name to be called
+ * @param params object of properties matching to the input names specified in ABI
+ * @returns array of params in correct order
+ */
+export function toSmartContractParams(
+  abi: Array<JsonFragment>,
+  method: string,
+  params: Record<string, string>
+): Array<string> {
+  const functionAbi = abi.find((el) => el.name === method);
+
+  if (!functionAbi || !functionAbi.inputs) {
+    throw new Error(`Unable to find ABI for function: "${method}"`);
+  }
+
+  return functionAbi?.inputs.map((inp) => {
+    const param = inp.name && params[inp.name];
+    if (!param) {
+      throw new Error(`Unable to find "${inp.name}" param`);
+    }
+    return param;
+  });
+}
+```
+
+```ts
+const { abi, contractAddress, method, params } =
+  response.data.requiredTransactions.params;
+
+const contract = new Contract(contractAddress, abi, signer); // third param Signer is required
+
+const paramsArray = toSmartContractParams(abi, method, params);
+
+const { hash } = await contract[method](...paramsArray);
+```
+
+</details>
+
 ### Wallet Funding for Development and Testing
 
 To ensure that integrators are able to obtain sufficient ERC-20 tokens to facilitate development and testing, Immersve uses an ERC-20 token contract that allows tokens to be freely minted as needed.
 
-In non-production environments any `erc20_approval` transaction type returned by [get prerequisite transactions](/api-reference/get-prerequisites) will refer to the "IMMUSDC" token. The "IMMUSDC" token has a `mint` function allowing for the unlimited minting of the token to any wallet address.
+In non-production environments any transaction returned by [get prerequisite transactions](/api-reference/get-prerequisites) with actions related to ERC20 smart contract will refer to the "IMMUSDC" token. The "IMMUSDC" token has a `mint` function allowing for the unlimited minting of the token to any wallet address.
 
 One particularly convenient way to get the necessary tokens is to use the Polygonscan interface.
 

@@ -49,8 +49,6 @@ paths:
     $ref: './endpoints/cards/card-cancel-deprecated.yaml'
   '/api/cards/{cardId}/pan-token':
     $ref: './endpoints/cards/card-pan-token.yaml'
-  '/api/cards/get-prerequisite-transactions':
-    $ref: './endpoints/cards/card-get-prerequisite-transactions.yaml'
   '/api/prerequisites/{action}':
     $ref: './endpoints/prerequisites/prerequisites.yaml'
   '/api/currencies':
