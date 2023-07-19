@@ -43,7 +43,6 @@ Type `smart_contract_write` means that this action is about interaction with the
 Typescript code
 
 ```ts
-import { JsonFragment } from '@ethersproject/abi';
 /**
  * Builds array of params to be used in calls to smart contracts
  * @param abi ABI for smart contact function
@@ -58,17 +57,19 @@ export function toSmartContractParams(
 ): Array<string> {
   const functionAbi = abi.find((el) => el.name === method);
 
-  if (!functionAbi || !functionAbi.inputs) {
+  if (!functionAbi) {
     throw new Error(`Unable to find ABI for function: "${method}"`);
   }
 
-  return functionAbi?.inputs.map((inp) => {
-    const param = inp.name && params[inp.name];
-    if (!param) {
-      throw new Error(`Unable to find "${inp.name}" param`);
-    }
-    return param;
-  });
+  return (
+    functionAbi?.inputs?.map((inp) => {
+      const param = inp.name && params[inp.name];
+      if (!param) {
+        throw new Error(`Unable to find "${inp.name}" param`);
+      }
+      return param;
+    }) || []
+  );
 }
 ```
 
