@@ -45,4 +45,4 @@ properties:
     description: Smart contract method
   params:
     type: object
-    description: Smart contract call params. Keys are matching input names defined in ABI
+    description: Smart contract call params. Keys are matching names and order defined in ABI
