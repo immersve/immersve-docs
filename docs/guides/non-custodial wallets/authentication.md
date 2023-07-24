@@ -53,7 +53,7 @@ For example:
     Issued At: 2022-08-11T22:29:48.244Z
     ```
 
-1.  Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
+2.  Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
 
     For a quick start Metamask users can sign the challenge message using this [CodePen](https://codepen.io/imsv/full/zYMpExJ). Alternatively use this Node.js script to create your own wallet and sign the challenge.
       <details>
@@ -99,5 +99,5 @@ For example:
 
     </details>
 
-2.  [Submit the signed challenge along with the signature](/api-reference/login) to get the access token.
-3.  The access token should be used for subsequent requests for protected resources from the Immersve API by supplying it in the `Authorization` header.
+3.  [Submit the signed challenge along with the signature](/api-reference/login) to get the access token.
+4.  The access token should be used for subsequent requests for protected resources from the Immersve API by supplying it in the `Authorization` header.
