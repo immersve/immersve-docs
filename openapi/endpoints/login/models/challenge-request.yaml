@@ -14,7 +14,7 @@ properties:
     type: number
     example: 1
   clientApplicationId:
-    description: Client application ID assigned by IMMERSVE
+    description: ID of the client application created in an Immersve partner profile
     type: string
     example: deeec538c6e59f8e5c746c05f766fcc0
   scopes:

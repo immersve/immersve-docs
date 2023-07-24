@@ -4,6 +4,8 @@ post:
   summary: Generate challenge
   description: |
     Generating the challenge is the first step in the process of getting the authentication token.
+
+    For detailed information on scopes, see [Login flow](/guides/non-custodial%20wallets/authentication#login-flow)
   security:
     - none: []
   requestBody:

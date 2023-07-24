@@ -30,7 +30,15 @@ sequenceDiagram
 	  note over C: Access token will be used for subsequent requests for protected resources from the Immersve API
 ```
 
-1.  [Generate a challenge](/api-reference/generate-challenge). The response is an [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) message in plain text to be signed by the wallet. For example:
+1.  [Generate a challenge](/api-reference/generate-challenge). The response is an [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) message in plain text to be signed by the wallet.
+
+When generating a challenge, authorization scopes must be passed. These scopes are presented to the user when signing the challenge message and are used to determine the level of access the user is granting to the application. The following scopes are available:
+
+- `full-access` - Have full access to all your Immersve resources
+- `full-access:partner` - Have full access to all resources within your {partnerName} Immersve Account
+- `cardholder-partner` - Manage cards within your {partnerName} Immersve account
+
+For example:
 
     ```
     app.immersve.com wants you to sign in with your Ethereum account:
@@ -45,7 +53,7 @@ sequenceDiagram
     Issued At: 2022-08-11T22:29:48.244Z
     ```
 
-2.  Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
+1.  Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
 
     For a quick start Metamask users can sign the challenge message using this [CodePen](https://codepen.io/imsv/full/zYMpExJ). Alternatively use this Node.js script to create your own wallet and sign the challenge.
       <details>
@@ -91,5 +99,5 @@ sequenceDiagram
 
     </details>
 
-3.  [Submit the signed challenge along with the signature](/api-reference/login) to get the access token.
-4.  The access token should be used for subsequent requests for protected resources from the Immersve API by supplying it in the `Authorization` header.
+2.  [Submit the signed challenge along with the signature](/api-reference/login) to get the access token.
+3.  The access token should be used for subsequent requests for protected resources from the Immersve API by supplying it in the `Authorization` header.
