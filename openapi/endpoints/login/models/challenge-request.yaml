@@ -2,17 +2,35 @@ type: object
 required:
   - walletAddress
   - chainId
+  - clientApplicationId
+  - scopes
 properties:
   walletAddress:
     description: The address of the signing wallet or the smart contract that implements ERC-1271
     type: string
-    example: "0xA3058369d6A481B1ff08F62B352409c3D709De9b"
+    example: '0xA3058369d6A481B1ff08F62B352409c3D709De9b'
   chainId:
     description: Chain ID (see https://chainlist.org/)
     type: number
     example: 1
+  clientApplicationId:
+    description: ID of the client application created in an Immersve partner profile
+    type: string
+    example: deeec538c6e59f8e5c746c05f766fcc0
+  scopes:
+    description: An array of authorization scopes requested by the client application
+    type: array
+    items:
+      type: string
+      enum:
+        - full-access
+        - full-access:partner
+        - cardholder-partner
+        - update-kyc-profile
+    example:
+      - full-access
   url:
-    description: | 
+    description: |
       A URL referring to the resource that requests the signing.
       Also, domain in the "\<domain\> wants you to sign in.." is derived from the host fragment of this parameter.
     type: url
