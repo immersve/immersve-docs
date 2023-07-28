@@ -4,6 +4,7 @@ required:
   - chainId
   - clientApplicationId
   - scopes
+  - url
 properties:
   walletAddress:
     description: The address of the signing wallet or the smart contract that implements ERC-1271
@@ -31,7 +32,7 @@ properties:
       - full-access
   url:
     description: |
-      A URL referring to the resource that requests the signing.
-      Also, domain in the "\<domain\> wants you to sign in.." is derived from the host fragment of this parameter.
+      Domain in the "\<domain\> wants you to sign in.." of the EIP-4361 is derived from the host fragment of this parameter.
+      The client application identified by clientApplicationId must allow this domain.
     type: url
-    example: https://example.service/login
+    example: https://example.service
