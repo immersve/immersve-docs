@@ -28,7 +28,7 @@ Contract Module that allows users to deposit and lock funds in order to be able 
 ## Proxy URLs
 
 - Polygon USDC (Mainnet): [0x2EfB0F11a6521f69eD5ea87576b700FfB0bA9Ad1](https://polygonscan.com/address/0x2EfB0F11a6521f69eD5ea87576b700FfB0bA9Ad1)
-- Polygon Mumbai USDC (Testnet): [0x91a4ee183763d9fd67F878abCCfFb2D6E51433eA](https://mumbai.polygonscan.com/address/0x91a4ee183763d9fd67F878abCCfFb2D6E51433eA#writeProxyContract)
+- Polygon Mumbai USDC (Testnet): [0x76023d44D5615A6BbDB05B64Ca478ef780583960](https://mumbai.polygonscan.com/address/0x6984C36b70c7ebF2c72B09Da121bf5C7F7809C45#writeProxyContract)
 
 ## Extensions
 
@@ -81,7 +81,7 @@ graph LR
 
 ---
 
-### `getTimeoutHasPassed` (address _address, uint _additionalBlocks) public view returns (bool)
+### `getTimeoutHasPassed` (address \_address, uint \_additionalBlocks) public view returns (bool)
 
 > Retrieves whether the timeout has passed for the lock owned by the `_address`.
 
@@ -94,7 +94,7 @@ graph LR
 
 ---
 
-### `getLockedFundBalance` (address _address, uint _additionalBlocks) public view returns (bool, uint)
+### `getLockedFundBalance` (address \_address, uint \_additionalBlocks) public view returns (bool, uint)
 
 > Retrieves whether the timeout has passed for the lock owned by the `_address`. Similar to [getTimeoutHasPassed](/contracts/payment-protocol#gettimeouthaspassed-address-_address-uint-_additionalblocks-public-view-returns-bool) but it returns an array indicating if the timeout has passed and the actual balance of the lock for the specified address
 
