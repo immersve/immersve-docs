@@ -27,8 +27,9 @@ Contract Module that allows users to deposit and lock funds in order to be able 
 
 ## Proxy URLs
 
-- Polygon USDC (Mainnet): ***PENDING***
+- Polygon USDC (Mainnet): [0x2EfB0F11a6521f69eD5ea87576b700FfB0bA9Ad1](https://polygonscan.com/address/0x2EfB0F11a6521f69eD5ea87576b700FfB0bA9Ad1)
 - Polygon Mumbai USDC (Testnet): [0x91a4ee183763d9fd67F878abCCfFb2D6E51433eA](https://mumbai.polygonscan.com/address/0x91a4ee183763d9fd67F878abCCfFb2D6E51433eA#writeProxyContract)
+
 ## Extensions
 
 For security reasons, the smart contract implements the following [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts/4.x/)
@@ -61,34 +62,40 @@ graph LR
 ### `withdraw`(uint `_amount`) `external` nonReentrant notZeroValue(`_amount`) whenNotPaused
 
 > CardHolders can withdraw token funds associated to their balance from the Smart Contract using this function. Locked funds cannot be withdrawn until the lock expires, or Immersve revokes the lock.
+
 - `tokenAmount` (type `uint`): token Amount to withdraw in minor units
 
------
+---
+
 ### `depositAndLock`(uint `_amount`) `external` nonReentrant notZeroValue(`_amount`) whenNotPaused
 
 > CardHolders can deposit an amount of funds and lock it immediately. This will lock the funds for a number of blocks specified by the `timeoutBlocks` property of the smart contract.
+
 - `_amount` (type `uint`): token Amount to deposit in minor units
 
-
------
+---
 
 ### `extendLockedFund`() `external` whenNotPaused
 
 > Allows user to extend his own lock. This operation will fail if there are no locked funds for the wallet initiating the transaction
 
------
+---
 
 ### `getTimeoutHasPassed` (address _address, uint _additionalBlocks) public view returns (bool)
+
 > Retrieves whether the timeout has passed for the lock owned by the `_address`.
 
 - `_address` (type `address`): CardHolder Address
 - `_additionalBlocks` (type `uint`): Optional argument to calculate expiration of a locked fund based on an extra amount of blocks
 
 #### Response
+
 `bool`: `true` if the timeout of the block for `_address` has passed, `false` if the lock is still active
 
------
+---
+
 ### `getLockedFundBalance` (address _address, uint _additionalBlocks) public view returns (bool, uint)
+
 > Retrieves whether the timeout has passed for the lock owned by the `_address`. Similar to [getTimeoutHasPassed](/contracts/payment-protocol#gettimeouthaspassed-address-_address-uint-_additionalblocks-public-view-returns-bool) but it returns an array indicating if the timeout has passed and the actual balance of the lock for the specified address
 
 - `_address` (type `address`): CardHolder Address
@@ -96,11 +103,13 @@ graph LR
 
 #### Response
 
-`array`: 
+`array`:
+
 - 0 `timeoutHasPassed` (type `bool`): `true` if the timeout of the block for `_address` has passed, `false` if the lock is still active
 - 1 `lockedFundBalance` (type `uint`): the balance of the locked fund for the specified address
 
------
+---
+
 ## Immersve Card E-Commerce Payment Happy Path
 
 - Card Holder locks token funds with Immersve Smart Contract
