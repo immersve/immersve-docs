@@ -1,0 +1,20 @@
+type: object
+required:
+  - transactionHash
+  - amount
+  - cardProgramId
+properties:
+  amount:
+    type: string
+    description: Amount as monetary value to be loaded. Example 1.1 USDC should be "1.1". If `useMinorUnits` is true, $1.1 USDC should be "1100000"
+  currency:
+    type: string
+    description: Coin being used. Currently only USDC
+    example: USDC
+  transactionHash:
+    type: string
+    description: The hash of transaction transferring USDC to Immersve Payment Protocol smart contract
+    example: 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+  cardProgramId:
+    type: string
+    description: The id of the card program
