@@ -25,6 +25,8 @@ tags:
     x-displayName: Currency
   - name: transactions
     x-displayName: Transactions
+  - name: kyc
+    x-displayName: KYC
   - name: kyc-custodial
     x-displayName: KYC (Custodial)
   - name: prerequisites
@@ -97,8 +99,8 @@ paths:
     servers:
       - url: https://api-sec.immersve.com/
         description: Secure server
-  '/api/custodial/kyc-resources':
-    $ref: './endpoints/kyc/upload-kyc-resource.yaml'
+  '/api/accounts/{cardholderAccountId}/partner-kyc-statement':
+    $ref: './endpoints/kyc/submit-partner-kyc-statement.yaml'
   '/api/simulator/authorize':
     $ref: './endpoints/simulator/authorize.yaml'
     servers:

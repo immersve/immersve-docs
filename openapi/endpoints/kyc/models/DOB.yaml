@@ -1,0 +1,7 @@
+required:
+  - dateOfBirth
+properties:
+  dateOfBirth:
+    type: string
+    description: The cardholder's date of birth formatted as YYYY-MM-DD
+    example: "1981-11-03"

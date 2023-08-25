@@ -1,9 +1,0 @@
-type: object
-required:
-  - country
-  - mimeType
-  - documentSide
-  - idType
-  - contents
-properties:
-  $ref: './upload-props.yaml'

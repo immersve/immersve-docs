@@ -1,0 +1,20 @@
+type: object
+properties:
+  idempotencyKey:
+    type: string
+    description: A client-supplied identifier that prevents duplicate creation.
+    example: 21ede8ef0d230d0a6bf755e07d39la54
+  timestamp:
+    type: string
+    description: A timestamp representing when the request was sent. In the event a duplicate idempotencyKey is received, a KYC statement will be updated if the timestamp is more recent.
+    example: "2023-08-08T04:15:48.013Z"
+  claims:
+    type: array
+    description: A list of claims about the cardholder's identity.
+    items:
+      $ref: './claims.yaml'
+  evidence:
+    type: array
+    description: A list of evidence supporting the claimed identity. At least one piece of evidence is required.
+    items:
+      $ref: './evidence.yaml'

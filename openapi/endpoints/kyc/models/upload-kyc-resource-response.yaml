@@ -1,8 +1,0 @@
-type: object
-required:
-  - documentId
-properties:
-  documentId:
-    type: string
-    description: The ID of the document
-    example: 26aecc0abe6c67165d8cdde05f878f23
