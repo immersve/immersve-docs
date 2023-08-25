@@ -1,0 +1,17 @@
+properties:
+  givenName:
+    type: string
+    description: Primary name.
+    example: John
+  middleName:
+    type: string
+    description: Other name(s).
+    example: Foo Bar
+  familyName:
+    type: string
+    description: Family name or surname.
+    example: Doe
+  honorific:
+    type: string
+    description: Title used to address the cardholder.
+    example: Mr

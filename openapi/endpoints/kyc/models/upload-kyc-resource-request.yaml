@@ -1,4 +1,0 @@
-type: object
-oneOf:
-  - $ref: './OTHER.yaml'
-  - $ref: './SELF_IMAGE.yaml'
