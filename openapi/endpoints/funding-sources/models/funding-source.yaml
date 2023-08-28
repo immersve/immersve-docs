@@ -1,0 +1,27 @@
+type: object
+properties:
+  id:
+    type: string
+    description: Funding source primary identifier
+    example: 91ad6fea3b52ca58d60d7fd310f789ec
+  accountId:
+    type: string
+    description: Cardholder account this funding source belongs to
+    example: 057aa15913a57f50577234c8426534c0
+  createdAt:
+    type: string
+    description: Timestamp of funding source creation
+    example: '2022-11-16T03:13:18.142Z'
+  balance:
+    type: string
+    description: Current balance of funding source in minor units
+    example: "1000000"
+  balanceCurrency:
+    type: string
+    description: Currency of the balance
+    example: 'USDC'
+  fundingSourceType:
+    type: string
+    description: Type of the funding source. Currently only ImmersvePolygonUSDC is supported
+    enum:
+      - ImmersvePolygonUSDC
