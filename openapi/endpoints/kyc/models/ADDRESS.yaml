@@ -23,6 +23,14 @@ properties:
     type: string
     description: Street type. e.g. Road, St, Avenue, Circuit.
     example: Avenue
+  town:
+    type: string
+    description: The town/village/suburb/city.
+    example: Auckland
+  suburb:
+    type: string
+    description: The suburb in the town/city. Only use this if you require a suburb AND a town/city, otherwise, just use the "town" parameter.
+    example: Epsom
   state:
     type: string
     description: The state. Use local abbreviations such as VIC (Victoria) or TX (Texas).
