@@ -31,6 +31,8 @@ tags:
     x-displayName: Webhooks
   - name: simulator
     x-displayName: Simulator
+  - name: funding-source
+    x-displayName: Funding source
 security:
   - $ref: "./models/api-key-auth.yaml"
   - immersve_auth: []
@@ -97,7 +99,9 @@ paths:
   "/card-status-change":
     servers:
       - url: https://<partnerBaseUrl>/card/notification
-    $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
+    $ref: './endpoints/webhooks/card-status-change-custodial.yaml'
+  '/api/funding-sources':
+    $ref: './endpoints/funding-source/create-funding-source.yaml'
 
 components:
   securitySchemes:
