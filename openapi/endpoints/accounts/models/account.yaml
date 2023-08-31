@@ -26,3 +26,4 @@ properties:
     enum:
       - cardholder
       - identity
+      - partner

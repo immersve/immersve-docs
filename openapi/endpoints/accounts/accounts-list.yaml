@@ -2,7 +2,7 @@ get:
   tags:
     - account
   summary: List Accounts
-  description: List accounts that the user has access to
+  description: Get accounts for authenticated subject
 
   responses:
     '200':
