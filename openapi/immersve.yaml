@@ -39,6 +39,8 @@ paths:
     $ref: "./endpoints/login/siwe-generate-challenge.yaml"
   "/siwe/login":
     $ref: "./endpoints/login/siwe-login.yaml"
+  "/api/accounts":
+    $ref: "./endpoints/accounts/accounts-list.yaml"
   "/api/cards/orders":
     $ref: "./endpoints/cards/card-order.yaml"
   "/api/cards/{cardId}/cancel-async":
