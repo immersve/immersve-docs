@@ -1,0 +1,20 @@
+get:
+  tags:
+    - account
+  summary: List Accounts
+  description: Get accounts for authenticated subject
+
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: './models/list-accounts-response.yaml'
+    '403':
+      description: |
+        The caller is not allowed to list accounts for the user
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error.yaml'

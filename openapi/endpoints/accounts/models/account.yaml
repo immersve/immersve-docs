@@ -1,0 +1,29 @@
+type: object
+properties:
+  id:
+    type: string
+    description: The unique account id
+    example: e4b66d1ddecbf518f5f337n5e5a4f682
+  createdAt:
+    type: string
+    description: Timestamp of account creation
+    example: '2022-11-16T03:13:18.142Z'
+  modifiedAt:
+    type: string
+    description: Timestamp of last account modification
+    example: '2022-11-18T03:13:18.142Z'
+  partnerAccountId:
+    type: string
+    description: The partner account id that this account belongs to
+    example: c7d84a7bf1c34323732d21bc60d17s746
+  isActive:
+    type: boolean
+    description: Whether the account is active or not
+    example: true
+  type:
+    type: string
+    description: The account type
+    enum:
+      - cardholder
+      - identity
+      - partner
