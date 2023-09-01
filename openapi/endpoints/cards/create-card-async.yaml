@@ -1,9 +1,9 @@
 post:
   tags:
     - card
-  summary: Create a card asynchronously
+  summary: Create a card
   description: |
-    Create a card under the specified funding source associated with the specified card program.
+    Create a card under a specified card program and affiliated with a funding source.
   requestBody:
     content:
       application/json:

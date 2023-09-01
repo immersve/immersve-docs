@@ -3,7 +3,9 @@ post:
     - prerequisites
   summary: Get spending prerequisites
   description: |
-    This endpoint returns the prerequisites required to permit the action (ex. create a new Immersve Card and load it with an amount). It also indicates if everything is in order before instructing the client of any blockchain transactions. Insufficient KYC and AML status may trigger an error response.
+    This endpoint specifies the necessary prerequisites that must be met for a cardholder to successfully create a card and transact with it against a specified funding source. 
+    The caller can specify the desired spend and receive the necessary transactions required, accounting for existing deposits, to deposit funds on-chain to meet that spend. 
+    It includes any KYC and AML requirements.
   requestBody:
     content:
       application/json:
