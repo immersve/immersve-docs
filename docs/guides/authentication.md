@@ -2,13 +2,28 @@
 sidebar_position: 1
 tags:
   - authentication
+  - non-custodial
+  - custodial
   - sign-in
   - sign-up
   - login
-  - non-custodial
 ---
 
 # Authentication
+
+## API Key
+
+API clients consuming the custodial wallet API endpoints use API key authentication to authenticate to the API. API keys are issued to the custodial wallet provider by Immersve and are used to authorize requests to the relevant custodial wallet endpoints.
+
+Each request must be made with the following headers:
+- **x-api-key** - The API key issued by Immersve
+- **x-api-secret** - The API secret issued by Immersve
+- **x-account-id** - The account ID targeted by the operation. This can be omitted if the target is the root account (such as when creating an account for example)
+
+[Contact us](https://immersve.com/#contact) if you require the above credentials. 
+
+
+## SIWE Authentication
 
 Accounts are identified by way of blockchain addresses. Proof of ownership of an address is based upon a process of authentication by way of verification of [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) challenges signed by the private key underlying an address. Upon successful authentication, Immersve will issue an access token for subsequent use in interactions with the Immersve API.
 
