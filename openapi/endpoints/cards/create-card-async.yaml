@@ -4,20 +4,21 @@ post:
   summary: Create a card
   description: |
     Create a card under a specified card program and affiliated with a funding source.
+    Returns an id with which to retrieve card details.
   requestBody:
     content:
       application/json:
         schema:
-          $ref: './models/create-card-async-request.yaml'
+          $ref: "./models/create-card-async-request.yaml"
     required: true
   responses:
-    '200':
+    "200":
       description: Successful operation
       content:
         application/json:
           schema:
-            $ref: './models/create-card-async-response.yaml'
-    '403':
+            $ref: "./models/create-card-async-response.yaml"
+    "403":
       description: |
         User is not allowed to perform the action with the reason stated in the `message`
 
@@ -35,4 +36,4 @@ post:
       content:
         application/json:
           schema:
-            $ref: '../../models/api-error.yaml'    
+            $ref: "../../models/api-error.yaml"
