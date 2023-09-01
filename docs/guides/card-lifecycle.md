@@ -27,9 +27,9 @@ stateDiagram-v2
 
 ### Create a card
 
-A card begins life when you call the [create a card](/api-reference/order-card) operation to request Immersve to generate a card, returning an id.
+Call the [create a card](/api-reference/order-card) operation to request Immersve generate a card, returning an id.
 It is ready to use when a call to [get card details](/api-reference/get-card-details) with the card id returns a payload with status `active`.
 
 ### Cancel a card
 
-Should a cardholder change their mind prior to presenting the card to a merchant, you can cancel the card by calling the [cancel a card](/api-reference/cancel-a-card-asynchronously) operation.
+Should a cardholder change their mind prior to presenting the card to a merchant, cancel the card by calling the [cancel a card](/api-reference/cancel-a-card-asynchronously) operation.
