@@ -15,6 +15,8 @@ tags:
     x-displayName: Assets
   - name: asset-activities
     x-displayName: Asset activities
+  - name: accounts
+    x-displayName: Accounts
   - name: card
     x-displayName: Cards
   - name: currency
