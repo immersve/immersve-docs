@@ -101,9 +101,9 @@ paths:
   "/card-status-change":
     servers:
       - url: https://<partnerBaseUrl>/card/notification
-    $ref: './endpoints/webhooks/card-status-change-custodial.yaml'
-  '/api/funding-sources':
-    $ref: './endpoints/funding-source/create-funding-source.yaml'
+    $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
+  "/api/funding-sources":
+    $ref: "./endpoints/funding-source/create-funding-source.yaml"
 
 components:
   securitySchemes:
