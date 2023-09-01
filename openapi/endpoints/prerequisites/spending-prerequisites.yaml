@@ -1,0 +1,105 @@
+post:
+  tags:
+    - prerequisites
+  summary: Get spending prerequisites
+  description: |
+    This endpoint specifies the necessary prerequisites that must be met for a cardholder to successfully create a card and transact with it against a specified funding source. 
+    The caller can specify the desired spend and receive the necessary transactions required, accounting for existing deposits, to deposit funds on-chain to meet that spend. 
+    It includes any KYC and AML requirements.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./models/get-spending-prerequisite-request.yaml"
+    required: true
+  responses:
+    "200":
+      content:
+        application/json:
+          schema:
+            $ref: "./models/get-spending-prerequisite-response.yaml"
+          example: |
+            {
+              "prerequisites": [
+                {
+                  "type": "smart_contract_write",
+                  "params": {
+                    "abi": [
+                      {
+                        "constant": false,
+                        "inputs": [
+                          {
+                            "name": "_spender",
+                            "type": "address"
+                          },
+                          {
+                            "name": "_value",
+                            "type": "uint256"
+                          }
+                        ],
+                        "name": "approve",
+                        "outputs": [
+                          {
+                            "name": "",
+                            "type": "bool"
+                          }
+                        ],
+                        "payable": false,
+                        "stateMutability": "nonpayable",
+                        "type": "function"
+                      }
+                    ],
+                    "contractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+                    "method": "approve",
+                    "params": {
+                      "_spender": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+                      "_value": "1000000"
+                    }
+                  }
+                },
+                {
+                  "type": "smart_contract_write",
+                  "params": {
+                    "abi": [
+                      {
+                        "inputs": [
+                          {
+                            "internalType": "uint256",
+                            "name": "_amount",
+                            "type": "uint256"
+                          }
+                        ],
+                        "name": "depositAndLock",
+                        "outputs": [],
+                        "stateMutability": "nonpayable",
+                        "type": "function"
+                      }
+                    ],
+                    "contractAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+                    "method": "depositAndLock",
+                    "params": {
+                      "_amount": "1000000"
+                    }
+                  }
+                },
+              ]
+            }
+    "403":
+      description: |
+        User is not allowed to perform the action with the reason stated in the `message`
+
+        **FORBIDDEN**
+        Insufficient permissions to perform the action.
+
+        **LIVENESS_MISMATCH** 
+        Resource liveness does not match request liveness.
+
+        **CARD_PROGRAM_INVALID**
+        Card program doesn’t belong to a partner this cardholder is associated with.
+
+        **FUNDING_SOURCE_INVALID**
+        Funding source cannot be used with this card program.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error.yaml"

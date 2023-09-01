@@ -1,7 +1,7 @@
 post:
   tags:
     - card
-  summary: Order a card
+  summary: Order a card - Legacy
   description: |
     Order a virtual card for the current user.
   operationId: orderCard
@@ -17,12 +17,12 @@ post:
     content:
       application/json:
         schema:
-          $ref: './models/card-order-request.yaml'
+          $ref: "./models/card-order-request.yaml"
     required: true
   responses:
-    '200':
+    "200":
       description: Successful operation
       content:
         application/json:
           schema:
-            $ref: './models/card.yaml'
+            $ref: "./models/card.yaml"

@@ -1,0 +1,15 @@
+type: object
+properties:
+  prerequisites:
+    type: array
+    items:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - smart_contract_write
+        params:
+          oneOf:
+            - $ref: '../../../models/smart-contract-write-params.yaml'
+              title: smart_contract_write

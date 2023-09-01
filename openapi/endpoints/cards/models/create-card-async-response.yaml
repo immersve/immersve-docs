@@ -1,0 +1,5 @@
+type: object
+properties:
+  cardId:
+    type: string
+    description: The created card id

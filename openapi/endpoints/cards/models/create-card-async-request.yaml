@@ -1,0 +1,11 @@
+type: object
+required:
+  - cardProgramId
+  - fundingSourceId
+properties:
+  cardProgramId:
+    type: string
+    description: Id of card program to use when creating a card
+  fundingSourceId:
+    type: string
+    description: Id of the funding source the card will authorize against
