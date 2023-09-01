@@ -10,11 +10,11 @@ tags:
 
 A virtual card is a payment card that exists only in digital form. As such, virtual cards are most suitable for online e-commerce purchases as opposed to in-store purchases at brick-and-mortar merchants. Immersve treat virtual cards as being logically time-bound and ephemeral. Beginning at the time of issuance of a virtual card, it has a finite useable lifespan which is often represented within the UI of the issuing client application as a stopwatch-type timer. This model presents certain benefits over a traditional persistent payment card model (be they virtual, tokenized or physical) in that the potential for card fraud is dramatically reduced. The use of web3-native authentication mechanisms within the context of card issuance mean that the same level of protection to a user's funds in self-custodial wallets is applied to their activities as a cardholder.
 
-Prior to being permitted to [order a card](/api-reference/order-card) a user must first have successfully [authenticated](/guides/non-custodial%20wallets/authentication) and locked digital assets within the smart contract via digital asset transfer and smart contract invocations as instructed by the [get prerequisite transactions](/api-reference/get-prerequisites) operation.
+Prior to being permitted to [create a card](/api-reference/create-a-card) a user must first have successfully [authenticated](/guides/authentication) and locked digital assets within the smart contract via digital asset transfer and smart contract invocations as instructed by the [get spending prerequisites](/api-reference/get-spending-prerequisites) operation.
 
 ## Authentication
 
-The authentication processes is described in the [authentication guide](/guides/non-custodial%20wallets/authentication). As the user account is anchored by control of the private key, there is no distinct prior explicit registration or signup process needed before authenticating.
+The authentication processes is described in the [authentication guide](/guides/authentication). As the user account is anchored by control of the private key, there is no distinct prior explicit registration or signup process needed before authenticating.
 
 ## Currency Conversion
 
@@ -22,9 +22,9 @@ A user will more often than not be quoted a price for a purchase by a merchant i
 
 ## Lock Funds
 
-In order to ensure that funds are sufficiently locked within the [smart contract](/contracts/payment-protocol) such that Immersve are in a position to approve an authorization request received via the card scheme network you will need to have firstly locked sufficient digital assets within the smart contract via digital asset transfer and smart contract invocations as instructed by the [get prerequisite transactions](/api-reference/get-prerequisites) operation. The necessary blockchain transactions are contained within the `requiredTransactions` collection returned.
+In order to ensure that funds are sufficiently locked within the [smart contract](/contracts/payment-protocol) such that Immersve are in a position to approve an authorization request received via the card scheme network you will need to have firstly locked sufficient digital assets within the smart contract via digital asset transfer and smart contract invocations as instructed by the [get spending prerequisites](/api-reference/get-spending-prerequisites) operation. The necessary blockchain transactions are contained within the `requiredTransactions` collection returned.
 
-If the user has not transacted using the solution before then the the [get prerequisite transactions](/api-reference/get-prerequisites) response will typically call for and ERC20 `approve` in favour of the smart contract followed by a `depositAndLock` invocation of the smart contract.
+If the user has not transacted using the solution before then the the [get spending prerequisites](/api-reference/get-spending-prerequisites) response will typically call for and ERC20 `approve` in favour of the smart contract followed by a `depositAndLock` invocation of the smart contract.
 
 If multiple transactions are present then they should be carried out in the order in which they are presented.
 
@@ -32,7 +32,7 @@ The client application is to parse and formulate the raw blockchain transaction 
 
 #### How to use prerequisites example for ts/js
 
-[Prerequisites](/api-reference/get-prerequisites) endpoint returns Array of actions to be performed.  
+[Prerequisites](/api-reference/get-spending-prerequisites) endpoint returns Array of actions to be performed.  
 Each object in array has `type` and `params`.  
 Type `smart_contract_write` means that this action is about interaction with the smart contract.  
 `params` contain all details required to perform this interaction.
@@ -57,7 +57,7 @@ const { hash } = await contract[method](...Object.values(params));
 
 To ensure that integrators are able to obtain sufficient ERC-20 tokens to facilitate development and testing, Immersve uses an ERC-20 token contract that allows tokens to be freely minted as needed.
 
-In non-production environments any transaction returned by [get prerequisite transactions](/api-reference/get-prerequisites) with actions related to ERC20 smart contract will refer to the "IMMUSDC" token. The "IMMUSDC" token has a `mint` function allowing for the unlimited minting of the token to any wallet address.
+In non-production environments any transaction returned by [get prerequisite transactions](/api-reference/get-spending-prerequisites) with actions related to ERC20 smart contract will refer to the "IMMUSDC" token. The "IMMUSDC" token has a `mint` function allowing for the unlimited minting of the token to any wallet address.
 
 One particularly convenient way to get the necessary tokens is to use the Polygonscan interface.
 
@@ -69,17 +69,17 @@ One particularly convenient way to get the necessary tokens is to use the Polygo
 - Initiate the web3 transaction clicking the `Write` button
 - Confirm the transaction in the web3 wallet and pay the gas fees
 
-## Order a Card
+## Create a card
 
-With the funds locked in the smart contract, it's now time to order a card.
+With the funds locked in the smart contract, it's now time to create a card.
 
-Call the [order a card](/api-reference/order-card) operation to request Immersve to generate a card.
+Call the [create a card](/api-reference/create-a-card) operation to request Immersve to generate a card.
 
-The returned card data returned in response to a [order a card](/api-reference/order-card) request includes only truncated or masked sensitive data. Single-use virtual cards are activated and ready to use by default.
+The returned card data returned in response to a [create a card](/api-reference/create-a-card) request includes only truncated or masked sensitive data. Single-use virtual cards are activated and ready to use by default.
 
 ## Issue a Card
 
-Having created an virtual card via the [order a card](/api-reference/order-card) operation, you are in a position to be able to obtain the sensitive card details to be presented to the cardholder.
+Having created an virtual card via the [create a card](/api-reference/create-a-card) operation, you are in a position to be able to obtain the sensitive card details to be presented to the cardholder.
 
 There are two steps in this process;
 
