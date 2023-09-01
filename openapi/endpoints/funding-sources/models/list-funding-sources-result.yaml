@@ -1,6 +1,6 @@
 type: object
 properties:
-  fundingSources:
+  items:
     type: array
     items:
       $ref: './funding-source.yaml'

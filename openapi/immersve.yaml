@@ -74,7 +74,7 @@ paths:
   "/api/accounts/{account-id}/transactions":
     $ref: "./endpoints/transactions/transactions-list.yaml"
   "/api/accounts/{account-id}/funding-sources":
-    $ref: "./endpoints/funding-sources/funding-sources-list.yaml"
+    $ref: "./endpoints/funding-sources/list-funding-sources.yaml"
   "/api/accounts/{cardholderAccountId}/partner-kyc-statement":
     $ref: "./endpoints/kyc/submit-partner-kyc-statement.yaml"
   "/api/simulator/authorize":
@@ -103,7 +103,7 @@ paths:
       - url: https://<partnerBaseUrl>/card/notification
     $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
   "/api/funding-sources":
-    $ref: "./endpoints/funding-source/create-funding-source.yaml"
+    $ref: "./endpoints/funding-sources/create-funding-source.yaml"
 
 components:
   securitySchemes:

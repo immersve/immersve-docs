@@ -1,6 +1,6 @@
 get:
   tags:
-    - account
+    - accounts
   summary: List Accounts
   description: Get accounts for authenticated subject
 
