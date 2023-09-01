@@ -1,14 +1,29 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 tags:
   - authentication
+  - non-custodial
+  - custodial
   - sign-in
   - sign-up
   - login
-  - non-custodial
 ---
 
 # Authentication
+
+Depending on the use case and endpoint either API key or Sign-in-with-ethereum (SIWE) authentication may be used.
+Our SIWE method allows client applications to act on behalf of users within scopes explicitly granted by the user.
+API keys might be used for admin APIs and for applications not using SIWE authentication for their users.
+
+[Contact us](https://immersve.com/#contact) to provision credentials for your application.
+## API Key Authentication
+
+Each request must be made with the following headers:
+- **x-api-key** - The API key issued by Immersve
+- **x-api-secret** - The API secret issued by Immersve
+- **x-account-id** - The account ID targeted by the operation. This can be omitted if the target is the root account (such as when creating an account for example)
+
+## SIWE Authentication
 
 Accounts are identified by way of blockchain addresses. Proof of ownership of an address is based upon a process of authentication by way of verification of [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) challenges signed by the private key underlying an address. Upon successful authentication, Immersve will issue an access token for subsequent use in interactions with the Immersve API.
 
