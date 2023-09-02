@@ -1,7 +1,7 @@
 post:
   tags:
     - funding-source
-  summary: Claim a funding source for an account.
+  summary: Claim a funding source for an account
   description: |
     This endpoint can be used to claim a wallet address as a source of funds. The funding wallet may be an EOA or a smart contract 
     implementing the ERC-1271 interface. If the wallet is a smart contract, the `ownerAddress`, `message`, and `signature` fields 
@@ -11,16 +11,16 @@ post:
       application/json:
         schema:
           oneOf:
-            - $ref: './models/create-funding-source-erc-1271.yaml'
-            - $ref: './models/create-funding-source-eoa.yaml'
+            - $ref: "./models/create-funding-source-erc-1271.yaml"
+            - $ref: "./models/create-funding-source-eoa.yaml"
     required: true
   responses:
-    '200':
+    "200":
       content:
         application/json:
           schema:
             type: object
-    '403':
+    "403":
       description: Request failed
       content:
         application/json:
@@ -39,9 +39,9 @@ post:
                   - SIGNATURE_INVALID
                   - ADDRESS_MISMATCH
 
-    '400':
+    "400":
       description: Request fields are invalid
       content:
         application/json:
           schema:
-            $ref: '../../models/api-error.yaml'
+            $ref: "../../models/api-error.yaml"
