@@ -1,0 +1,16 @@
+type: object
+required:
+  - type
+  - name
+properties:
+  type: 
+    type: string
+    description: The type of the account
+    enum:
+      - cardholder
+  name:
+    type: string
+    description: Account name
+  parentAccountId:
+    type: string
+    description: Parent account if needed

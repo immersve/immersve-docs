@@ -1,0 +1,22 @@
+type: object
+required:
+  - type
+  - partnerAccount
+  - fundingSourceType
+properties:
+  type: 
+    type: string
+    description: The type of the account
+    enum:
+      - cardholder
+  name:
+    type: string
+    description: Account name
+  partnerAccount:
+    type: string
+    description: The id of the partner account that this cardholder must be linked to
+    example: '65a7e8ef0d230d0a6bf755e07d39eb02'
+  ownerUserId:
+    type: string
+    description: The id of the user that this cardholder account is being created for
+    example: '65a7e8ef0d230d0a6bf755e07d39eb02'

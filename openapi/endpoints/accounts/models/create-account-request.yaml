@@ -1,0 +1,5 @@
+oneOf:
+  - $ref: './create-cardholder-account-request.yaml'
+    title: Create cardholder account
+  - $ref: './create-partner-account-request.yaml'
+    title: Create partner account
