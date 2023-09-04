@@ -15,7 +15,7 @@ Depending on the use case and endpoint either API key or Sign-in-with-ethereum (
 Our SIWE method allows client applications to act on behalf of users within scopes explicitly granted by the user.
 API keys might be used for admin APIs and for applications not using SIWE authentication for their users.
 
-[Contact us](https://immersve.com/#contact) to provision credentials for your application.
+[Contact us](https://immersve.com/contact/) to provision credentials for your application.
 ## API Key Authentication
 
 Each request must be made with the following headers:

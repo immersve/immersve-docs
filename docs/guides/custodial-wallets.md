@@ -4,6 +4,13 @@ sidebar_position: 7
 
 # Custodial Wallets
 
-- [Authentication](/guides/authentication)
-- [Card Lifecycle](/guides/card-lifecycle)
-- [Issue a Virtual Card](/guides/issue-a-virtual-card)
+Organizations acting as custodians of customer funds, such as custodial exchanges and wallet providers, may wish to support card issuance and funding flows for their users. The partnered custodial organization's overarching account may be pre-funded and discrete card transaction authorization determinations made by the the partner.
+
+The below guides are available to assist in your integration: 
+1. Your application will authenticate against the API as described in the [API Authentication Guide](/guides/authentication#api-key-authentication). End user authentication is handled by your application and is outside of Immersve's purview.
+1. The [Issue a Virtual Card](/guides/issue-a-virtual-card) guide and [Card Lifecycle](/guides/card-lifecycle) guide will give you an understanding as to how to create and issue a card to a user.
+1. The [Funding Card Spending](/guides/funding-card-spending) guide describes how a cardholder account is funded such that transactions may be authorized.
+
+:::note
+If this doesn't sound right given your use case then check out the [non-custodial wallets guide](/guides/non-custodial-wallets) for information on how cards may be issued to and funded directly by cardholders leveraging various web3 technogolies. [Contact us](https://immersve.com/contact/) if you require further assistance to understand how your use case might be supported.
+:::
