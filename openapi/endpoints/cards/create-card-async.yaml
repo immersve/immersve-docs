@@ -4,7 +4,7 @@ post:
   summary: Create a card
   description: |
     Create a card under a specified card program and affiliated with a Funding Source.
-    Returns an id with which to retrieve card details.
+    Returns an ID with which to retrieve card details.
   requestBody:
     content:
       application/json:

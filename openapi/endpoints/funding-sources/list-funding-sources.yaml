@@ -6,7 +6,7 @@ get:
   parameters:
     - name: accountId
       in: path
-      description: Cardholder account id to retrieve Funding Sources for.
+      description: Cardholder account ID to retrieve Funding Sources for.
       required: true
       schema:
         type: string

@@ -95,7 +95,7 @@ sequenceDiagram
     note over U: Authentication as per authentication guide
 
     C->>I: Create Funding Source
-    I-->>C: Funding Source id
+    I-->>C: Funding Source ID
     C->>I: Get spending prerequisites
     I-->>C: prerequisites collection
       loop For each smart-contract-write transaction

@@ -25,7 +25,7 @@ See [Claim a Funding Source for an account](/api-reference/claim-a-funding-sourc
 
 Call the [create a card](/api-reference/create-a-card) operation to request Immersve to generate a card.
 
-If successful a [create a card](/api-reference/create-a-card) request will return a card id. Immersve will provision and activate the card by default. 
+If successful a [create a card](/api-reference/create-a-card) request will return a card ID. Immersve will provision and activate the card by default. 
 It is provisioned and activated when the [get card details](/api-reference/get-card-details) response payload includes a `status` of `active`. 
 All cards are currently short-lived and the time to expiry begins at the time of activation, the expiry timestamp is returned in the `immersveExpiration` field.
 ## Issue a Card
@@ -59,7 +59,7 @@ sequenceDiagram
     note over U: Authentication as per authentication guide
 
     C->>I: Create Funding Source
-    I-->>C: Funding Source id
+    I-->>C: Funding Source ID
     par Get spending prerequisites and create card
     C->>I: Get spending prerequisites
     I-->>C: prerequisites collection

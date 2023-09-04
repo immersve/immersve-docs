@@ -9,7 +9,7 @@ required:
 properties:
   accountId:
     type: string
-    description: The id of the cardholder account to add this Funding Source to.
+    description: The ID of the cardholder account to add this Funding Source to.
     example: 65a7e8ef0d230d0a6bf755e07d39eb02
   fundingAddress:
     type: string
