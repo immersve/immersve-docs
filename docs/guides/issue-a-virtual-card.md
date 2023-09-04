@@ -54,7 +54,7 @@ To obtain the full PAN and CVV2 for display to the cardholder your client-side a
 ```mermaid
 sequenceDiagram
     participant U as User
-    participant C as API Client
+    participant C as Your Application
     participant I as Immersve
     note over U: Authentication as per authentication guide
 
