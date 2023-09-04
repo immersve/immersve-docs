@@ -14,7 +14,7 @@ tags:
   - name: assets
     x-displayName: Assets
   - name: asset-activities
-    x-displayName: Asset activities
+    x-displayName: Asset Activities
   - name: accounts
     x-displayName: Accounts
   - name: card
@@ -22,7 +22,7 @@ tags:
   - name: currency
     x-displayName: Currency
   - name: funding-source
-    x-displayName: Funding sources
+    x-displayName: Funding Sources
   - name: transactions
     x-displayName: Transactions
   - name: kyc
@@ -105,7 +105,7 @@ paths:
       - url: https://<partnerBaseUrl>/card/notification
     $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
   "/api/funding-sources":
-    $ref: "./endpoints/funding-sources/create-funding-source.yaml"
+    $ref: "./endpoints/funding-sources/register-funding-source.yaml"
 
 components:
   securitySchemes:
