@@ -9,18 +9,18 @@ required:
 properties:
   accountId:
     type: string
-    description: The id of the cardholder account to add this funding source to.
+    description: The id of the cardholder account to add this Funding Source to.
     example: 65a7e8ef0d230d0a6bf755e07d39eb02
   fundingAddress:
     type: string
-    description: The address to claim as a funding source. This can be a smart contract implementing ERC-1271 or an EOA address.
+    description: The address to claim as a Funding Source. This can be a smart contract implementing ERC-1271 or an EOA address.
     example: 0x1234567890123456789012345678901234567890
   ownerAddress:
     type: string
     description: EOA address that matches a login wallet.
   fundingSourceType:
     type: string
-    description: The type of funding source to create.
+    description: The type of Funding Source to create.
     enum:
       - ImmersvePolygonMumbaiUSDC
       - ImmersvePolygonUSDC

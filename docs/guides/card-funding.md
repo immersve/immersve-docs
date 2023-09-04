@@ -8,11 +8,11 @@ tags:
 
 # Card Funding
 
-A funding source is a pointer to a source of funds for a cardholder that can be drawn upon in relation to transactions made on cards issued to that cardholder. A funding source must have been created prior to creating a card; a card must be tagged with a funding source at the time of card creation.
+A Funding Source is a pointer to a source of funds for a cardholder that can be drawn upon in relation to transactions made on cards issued to that cardholder. A Funding Source must have been created prior to creating a card; a card must be tagged with a Funding Source at the time of card creation.
 
-Whilst a funding source is a pointer to the state of a ledger (often a blockchain address or smart contract address) it is in fact decoupled from the underlying ledger. For instance, when [listing funding sources](/api-reference/list-funding-sources) the `balance` represented within funding source may not always match the balance held on the underlying ledger. This might be due to instances where deposit or load limits have been exceeded or where Immersve AML/CFT controls have determined that the funds in question should not contribute towards the `balance`.
+Whilst a Funding Source is a pointer to the state of a ledger (often a blockchain address or smart contract address) it is in fact decoupled from the underlying ledger. For instance, when [listing Funding Sources](/api-reference/list-funding-sources) the `balance` represented within Funding Source may not always match the balance held on the underlying ledger. This might be due to instances where deposit or load limits have been exceeded or where Immersve AML/CFT controls have determined that the funds in question should not contribute towards the `balance`.
 
-Given that there is sufficient `balance` within the funding source at the time of presentation of a transaction on a card associated with that funding source then the transaction may be approved. Any number of cards can be created in relation to a given funding source and all cards associated to the funding source will have access to the balance held by it.
+Given that there is sufficient `balance` within the Funding Source at the time of presentation of a transaction on a card associated with that Funding Source then the transaction may be approved. Any number of cards can be created in relation to a given Funding Source and all cards associated to the Funding Source will have access to the balance held by it.
 
 ## Authentication
 
@@ -20,13 +20,13 @@ The authentication processes are described in the [authentication guide](/guides
 
 ## Funding Source Provisioning
 
-A funding source is created by a request to the [claim a funding source for an account](/api-reference/claim-a-funding-source-for-an-account) endpoint.
+A Funding Source is created by a request to the [claim a Funding Source for an account](/api-reference/claim-a-funding-source-for-an-account) endpoint.
 The funding wallet may be an EOA or a smart contract implementing the ERC-1271 interface.
 
 ## Funding Process
 
-On-chain funding can be done at any time regardless of card or funding source provisioning.
-A funding source can be loaded with digital assets without using Immersve APIs by depositing funds directly to our smart contract.
+On-chain funding can be done at any time regardless of card or Funding Source provisioning.
+A Funding Source can be loaded with digital assets without using Immersve APIs by depositing funds directly to our smart contract.
 
 However, our APIs aim to reduce the complexity of determining what is the amount of digital assets needed to meet a users desired spend in their desired fiat currency. They also provide pre-built `smart-contract-write` transactions for successful interactions with the Immersve smart contract.
 
@@ -94,8 +94,8 @@ sequenceDiagram
     participant B as Blockchain
     note over U: Authentication as per authentication guide
 
-    C->>I: Create funding source
-    I-->>C: Funding source id
+    C->>I: Create Funding Source
+    I-->>C: Funding Source id
     C->>I: Get spending prerequisites
     I-->>C: prerequisites collection
       loop For each smart-contract-write transaction
@@ -104,6 +104,6 @@ sequenceDiagram
       U->>W: Confirm / authorize transaction
       W->>B: Transmit transaction
       end
-    C->>I: List funding sources
-    I-->>C: Funding source list
+    C->>I: List Funding Sources
+    I-->>C: Funding Source list
 ```

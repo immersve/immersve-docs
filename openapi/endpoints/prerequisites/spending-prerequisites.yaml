@@ -3,7 +3,7 @@ post:
     - prerequisites
   summary: Get spending prerequisites
   description: |
-    This endpoint specifies the necessary prerequisites that must be met for a cardholder to successfully create a card and transact with it against a specified funding source. 
+    This endpoint specifies the necessary prerequisites that must be met for a cardholder to successfully create a card and transact with it against a specified Funding Source. 
     The caller can specify the desired spend and receive the necessary transactions required, accounting for existing deposits, to deposit funds on-chain to meet that spend. 
     It includes any KYC and AML requirements.
   requestBody:

@@ -3,7 +3,7 @@ post:
     - card
   summary: Create a card
   description: |
-    Create a card under a specified card program and affiliated with a funding source.
+    Create a card under a specified card program and affiliated with a Funding Source.
     Returns an id with which to retrieve card details.
   requestBody:
     content:

@@ -2,26 +2,26 @@ get:
   tags:
     - funding-source
   summary: List funding sources
-  description: List funding sources associated with the cardholder account
+  description: List Funding Sources associated with the cardholder account
   parameters:
     - name: accountId
       in: path
-      description: Cardholder account id to retrieve funding sources for.
+      description: Cardholder account id to retrieve Funding Sources for.
       required: true
       schema:
         type: string
 
   responses:
-    '200':
+    "200":
       description: Successful operation
       content:
         application/json:
           schema:
-            $ref: './models/list-funding-sources-result.yaml'
-    '403':
+            $ref: "./models/list-funding-sources-result.yaml"
+    "403":
       description: |
-        Cardholder is not found or the caller is not allowed to list funding sources for the cardholder
+        Cardholder is not found or the caller is not allowed to list Funding Sources for the cardholder
       content:
         application/json:
           schema:
-            $ref: '../../models/api-error.yaml'
+            $ref: "../../models/api-error.yaml"
