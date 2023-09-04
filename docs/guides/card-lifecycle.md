@@ -16,10 +16,9 @@ Short-lived virtual cards are activated and ready to use by default. When the ca
 
 ```mermaid
 stateDiagram-v2
-    [*]--> Created: create
-    Created-->Active: provisioning
-    Active-->Cancelled : cancel_card
-    Active-->Cancelled : expired
+    [*]--> Created: Create
+    Created-->Active: Provisioning
+    Active-->Cancelled : Cancel card, Expired
     Cancelled --> [*]
 ```
 
