@@ -10,8 +10,8 @@ Decentralized applications (such as DeFi and GameFi dApps) or web3 wallets thems
 
 The below guides are available to assist in your integration: 
 1. The [SIWE Authentication Guide](/guides/authentication#siwe-authentication) describes how your application may support a cardholder in establishing a session by authenticating directing using their web3 wallet.
-1. The [Issue a Virtual Card](/guides/issue-a-virtual-card) guide and [Card Lifecycle](/guides/card-lifecycle) guide will give you an understanding of how to create and issue a card to a user.
 1. The [Card Funding](/guides/card-funding) guide describes how a cardholder account is funded such that transactions may be approved.
+1. The [Issue a Virtual Card](/guides/issue-a-virtual-card) guide and [Card Lifecycle](/guides/card-lifecycle) guide will give you an understanding of how to create and issue a card to a user.
 
 
 :::note
