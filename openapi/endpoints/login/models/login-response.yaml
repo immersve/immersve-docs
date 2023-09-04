@@ -6,3 +6,7 @@ properties:
     description: The authentication token
     type: string
     example: "eyJhbGciOiJSUzI1NiIsI..."
+  cardholderAccountId:
+    description: The unique identifier of the cardholder.
+    type: string
+    example: "29097f50d221858223a17633e36716f9"
