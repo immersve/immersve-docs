@@ -45,20 +45,16 @@ paths:
     $ref: "./endpoints/login/siwe-login.yaml"
   "/api/accounts":
     $ref: "./endpoints/accounts/accounts-list.yaml"
-  "/api/cards/orders":
-    $ref: "./endpoints/cards/card-order.yaml"
   "/api/cards":
-    $ref: "./endpoints/cards/create-card-async.yaml"    
+    $ref: "./endpoints/cards/create-card-async.yaml"
   "/api/cards/{cardId}/cancel-async":
     $ref: "./endpoints/cards/card-cancel.yaml"
-  "/api/cards/{cardId}/cancel":
-    $ref: "./endpoints/cards/card-cancel-deprecated.yaml"
   "/api/cards/{cardId}/pan-token":
     $ref: "./endpoints/cards/card-pan-token.yaml"
   "/api/prerequisites/{action}":
     $ref: "./endpoints/prerequisites/prerequisites.yaml"
   "/api/spending-prerequisites":
-    $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"    
+    $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"
   "/api/currencies":
     $ref: "./endpoints/currency/currency-list.yaml"
   "/api/currency/convert":
@@ -67,6 +63,10 @@ paths:
     $ref: "./endpoints/cards/card-get.yaml"
   "/api/cards/account/{accountId}":
     $ref: "./endpoints/cards/cards-list.yaml"
+  "/api/cards/orders":
+    $ref: "./endpoints/cards/card-order.yaml"
+  "/api/cards/{cardId}/cancel":
+    $ref: "./endpoints/cards/card-cancel-deprecated.yaml"
   "/api/assets":
     $ref: "./endpoints/assets/asset-balance-get.yaml"
   "/api/assets/{assetId}/activities":
