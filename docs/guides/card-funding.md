@@ -96,7 +96,7 @@ One particularly convenient way to get the necessary tokens is to use the Polygo
 ```mermaid
 sequenceDiagram
     participant U as User
-    participant C as API Client
+    participant C as Your Application
     participant I as Immersve
     participant W as Wallet
     participant B as Blockchain

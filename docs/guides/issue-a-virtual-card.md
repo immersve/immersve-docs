@@ -68,11 +68,4 @@ sequenceDiagram
     I-->>C: cardId
     I->>I: Provision Card
     end
-    C->>I: Get card details
-    I-->>C: Non-sensitive card details
-    C->>I: Get card token
-    I-->>C: Card token
-    C->>I: Request sensitive card data
-    I-->>C: Return sensitive card data
-    C-->>U: Display sensitive card data
 ```
