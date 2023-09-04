@@ -48,7 +48,7 @@ paths:
   "/api/cards/orders":
     $ref: "./endpoints/cards/card-order.yaml"
   "/api/cards":
-    $ref: "./endpoints/cards/create-card-async.yaml"    
+    $ref: "./endpoints/cards/create-card-async.yaml"
   "/api/cards/{cardId}/cancel-async":
     $ref: "./endpoints/cards/card-cancel.yaml"
   "/api/cards/{cardId}/cancel":
@@ -58,7 +58,7 @@ paths:
   "/api/prerequisites/{action}":
     $ref: "./endpoints/prerequisites/prerequisites.yaml"
   "/api/spending-prerequisites":
-    $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"    
+    $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"
   "/api/currencies":
     $ref: "./endpoints/currency/currency-list.yaml"
   "/api/currency/convert":

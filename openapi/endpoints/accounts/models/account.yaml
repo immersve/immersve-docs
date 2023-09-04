@@ -4,6 +4,10 @@ properties:
     type: string
     description: The unique account id
     example: e4b66d1ddecbf518f5f337n5e5a4f682
+  parentAccountId:
+    type: string
+    description: The parent account id
+    example: fa2ffd6cfba840cabd48fb8b190e5fed
   createdAt:
     type: string
     description: Timestamp of account creation

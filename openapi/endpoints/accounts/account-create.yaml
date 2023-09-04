@@ -1,0 +1,24 @@
+post:
+  tags:
+    - accounts
+  summary: Create an account
+  security:
+    - $ref: '../../models/api-key-auth.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: './models/create-account-request.yaml'
+    required: true
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            $ref: './models/create-account-response.yaml'
+    default:
+      description: 'Error'
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/error-response-custodial.yaml'
