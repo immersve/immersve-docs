@@ -19,10 +19,15 @@ The SIWE method allows client applications to act on behalf of users within scop
 ## API Key Authentication
 
 Each request must be made with the following headers:
+
+Authentication:
 - **x-api-key** - The API key issued by Immersve
 - **x-api-secret** - The API secret issued by Immersve
+
+Target account:
 - **x-account-id** - The account ID targeted by the operation. This can be omitted if the target is the root account (such as when creating an account for example)
 
+The caller must have the correct permissions over this account to perform the requested operation.
 ## SIWE Authentication
 
 The use of web3-native authentication mechanisms within the context of card issuance means that the same level of protection to a user's funds in self-custodial wallets is applied to their activities as a cardholder.
