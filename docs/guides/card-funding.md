@@ -8,19 +8,11 @@ tags:
 
 # Card Funding
 
-To create and spend using a card, a funding source must be created.
-A funding source is an account that connects a user's funds to a card and the card network.
-It is a prerequisite of card creation that a funding source must be explicitly provisioned for a user.
-Multiple cards can be provisioned for the same funding source.
+A funding source is a pointer to a source of funds for a cardholder that can be drawn upon in relation to transactions made on cards issued to that cardholder. A funding source must have been created prior to creating a card; a card must be tagged with a funding source at the time of card creation.
 
-## Non-custodial funding
+Whilst a funding source is a pointer to the state of a ledger (often a blockchain address or smart contract address) it is in fact decoupled from the underlying ledger. For instance, when [listing funding sources](/api-reference/list-funding-sources) the `balance` represented within funding source may not always match the balance held on the underlying ledger. This might be due to instances where deposit or load limits have been exceeded or where Immersve AML/CFT controls have determined that the funds in question should not contribute towards the `balance`.
 
-For non-custodial user's the funding source maintains a ledger balance of both on-chain and card network transactions. 
-
-It is important to note that it is the funding source that maintains the balance of available funds against which a card may transact. This allows users to manage funds independently of managing cards.  
-A user should ensure that a funding source has sufficient balance before attempting to authorize transactions with an affiliated card.
-
-If multiple cards are created against the same funding source they all have access to the balance maintained on it.
+Given that there is sufficient `balance` within the funding source at the time of presentation of a transaction on a card associated with that funding source then the transaction may be approved. Any number of cards can be created in relation to a given funding source and all cards associated to the funding source will have access to the balance held by it.
 
 ## Authentication
 
