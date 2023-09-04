@@ -11,9 +11,9 @@ tags:
 
 # Authentication
 
-Depending on the use case and endpoint either API key or Sign-in-with-ethereum (SIWE) authentication may be used.
-Our SIWE method allows client applications to act on behalf of users within scopes explicitly granted by the user.
-API keys might be used for admin APIs and for applications not using SIWE authentication for their users.
+Depending on the use case and operation, either API key or Sign-in-with-ethereum (SIWE) authentication mechanism may be used.
+
+The SIWE method allows client applications to act on behalf of users within scopes explicitly granted by the user and is typically used by [decentralized applications and web3 wallets](/guides/non-custodial-wallets). API keys might be used for administrative operations and for applications not using SIWE authentication for their users such as [custodial wallets and exchanges](/guides/custodial-wallets).
 
 [Contact us](https://immersve.com/contact/) to provision credentials for your application.
 ## API Key Authentication
