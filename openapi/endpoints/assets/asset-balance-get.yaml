@@ -1,19 +1,20 @@
 get:
+  deprecated: true
   tags:
-    - assets
+    - asset-activities
   summary: Get balance
   description: This endpoint returns the balance and available balance for a given asset.
   parameters:
     - name: useMinorUnits
       in: query
-      description: When enabled, balance and availableBalance will be returned in minor units, an integer in the smallest denomination for the given currency. 
+      description: When enabled, balance and availableBalance will be returned in minor units, an integer in the smallest denomination for the given currency.
       required: false
       schema:
         type: boolean
 
   responses:
-    '200':
+    "200":
       content:
         application/json:
           schema:
-            $ref: './models/wallet-balance.yaml'
+            $ref: "./models/wallet-balance.yaml"
