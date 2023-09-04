@@ -6,7 +6,7 @@ tags:
   - non-custodial
 ---
 
-# Funding Card Spending
+# Card Funding
 
 To create and spend using a card, a funding source must be created.
 A funding source is an account that connects a user's funds to a card and the card network.

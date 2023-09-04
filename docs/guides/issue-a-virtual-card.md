@@ -20,7 +20,7 @@ The authentication processes are described in the [authentication guide](/guides
 ## Provision Funding Source
 
 A funding source is required for card creation. Besides this requirement, cards and funding sources are managed independently.
-See [Claim a funding source for an account](/api-reference/claim-a-funding-source-for-an-account) and the [Funding Card Spending](/guides/funding-card-spending) guide.
+See [Claim a funding source for an account](/api-reference/claim-a-funding-source-for-an-account) and the [Card Funding](/guides/card-funding) guide.
 ## Create a card
 
 Call the [create a card](/api-reference/create-a-card) operation to request Immersve to generate a card.
