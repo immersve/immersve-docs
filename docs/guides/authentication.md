@@ -25,7 +25,7 @@ Each request must be made with the following headers:
 
 ## SIWE Authentication
 
-The use of web3-native authentication mechanisms within the context of card issuance mean that the same level of protection to a user's funds in self-custodial wallets is applied to their activities as a cardholder.
+The use of web3-native authentication mechanisms within the context of card issuance means that the same level of protection to a user's funds in self-custodial wallets is applied to their activities as a cardholder.
 
 Accounts are identified by way of blockchain addresses. Proof of ownership of an address is based upon a process of authentication by way of verification of [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) challenges signed by the private key underlying an address. Upon successful authentication, Immersve will issue an access token for subsequent use in interactions with the Immersve API.
 
