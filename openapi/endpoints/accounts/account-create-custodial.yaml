@@ -8,14 +8,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: './models/create-account-request.yaml'
+          $ref: './models/create-account-custodial-request.yaml'
     required: true
   responses:
     '201':
       content:
         application/json:
           schema:
-            $ref: './models/create-account-response.yaml'
+            $ref: './models/create-account-custodial-response.yaml'
     default:
       description: 'Error'
       content:
