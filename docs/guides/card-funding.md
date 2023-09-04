@@ -28,7 +28,7 @@ The funding wallet may be an EOA or a smart contract implementing the ERC-1271 i
 On-chain funding can be done at any time regardless of card or Funding Source provisioning.
 A Funding Source can be loaded with digital assets without using Immersve APIs by depositing funds directly to our smart contract.
 
-However, our APIs aim to reduce the complexity of determining what is the amount of digital assets needed to meet a users desired spend in their desired fiat currency. They also provide pre-built `smart-contract-write` transactions for successful interactions with the Immersve smart contract.
+However, our APIs aim to reduce the complexity of determining what is the amount of digital assets needed to meet a users desired spend in their desired fiat currency. They also provide pre-built `"smart-contract-write"` transactions for successful interactions with the Immersve smart contract.
 
 ### Currency Conversion
 
@@ -50,7 +50,7 @@ The client application is to parse and formulate the raw blockchain transaction 
 
 The [get spending prerequisites](/api-reference/get-spending-prerequisites) endpoint returns an array of both regulatory and smart contract prerequisite transactions.  
 Each object in the array has `type` and `params`.  
-Type `smart_contract_write` means that this action is about interaction with the smart contract. `params` contains all the details required to perform this interaction.
+Type `"smart_contract_write"` means that this action is about interaction with the smart contract. `params` contains all the details required to perform this interaction.
 
 <details>
 <summary>Code snippet (using ethers.js)</summary>

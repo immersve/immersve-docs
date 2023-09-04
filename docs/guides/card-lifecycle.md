@@ -27,7 +27,7 @@ stateDiagram-v2
 ### Create a card
 
 Call the [create a card](/api-reference/create-a-card) operation to request Immersve generate a card, returning an ID.
-It is ready to use when a call to [get card details](/api-reference/get-card-details) with the card ID returns a payload with status `active`.
+It is ready to use when a call to [get card details](/api-reference/get-card-details) with the card ID returns a payload with `status` `"active"`.
 
 ### Cancel a card
 

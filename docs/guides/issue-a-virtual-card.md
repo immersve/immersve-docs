@@ -26,11 +26,11 @@ See [Claim a Funding Source for an account](/api-reference/claim-a-funding-sourc
 Call the [create a card](/api-reference/create-a-card) operation to request Immersve to generate a card.
 
 If successful a [create a card](/api-reference/create-a-card) request will return a card ID. Immersve will provision and activate the card by default. 
-It is provisioned and activated when the [get card details](/api-reference/get-card-details) response payload includes a `status` of `active`. 
+It is provisioned and activated when the [get card details](/api-reference/get-card-details) response payload includes a `status` of `"active"`. 
 All cards are currently short-lived and the time to expiry begins at the time of activation, the expiry timestamp is returned in the `immersveExpiration` field.
 ## Issue a Card
 
-Having created a virtual card via the [create a card](/api-reference/create-a-card) operation and confirmed it is `active`, you are in a position to be able to obtain the sensitive card details to be presented to the cardholder.
+Having created a virtual card via the [create a card](/api-reference/create-a-card) operation and confirmed it is `"active"`, you are in a position to be able to obtain the sensitive card details to be presented to the cardholder.
 
 There are two steps in this process;
 
