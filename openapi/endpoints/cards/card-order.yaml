@@ -1,4 +1,5 @@
 post:
+  deprecated: true
   tags:
     - card
   summary: Order a card - Legacy
