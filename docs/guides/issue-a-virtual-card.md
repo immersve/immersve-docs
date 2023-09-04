@@ -8,13 +8,13 @@ tags:
 
 # Issue a Virtual Card
 
-A virtual card is a payment card that exists only in digital form. As such, virtual cards are most suitable for online e-commerce purchases as opposed to in-store purchases at brick-and-mortar merchants. By default virtual cards are logically time-bound and ephemeral. Beginning at the time of issuance of a virtual card, it has a finite useable lifespan which is often represented within the UI of the issuing client application as a stopwatch-type timer. This model presents certain benefits over a persistent payment card model (be they virtual, tokenized or physical) in that the potential for card fraud is dramatically reduced.
+A virtual card is a payment card that exists only in digital form. As such, virtual cards are most suitable for online e-commerce purchases as opposed to in-store purchases at brick-and-mortar merchants. By default, virtual cards are logically time-bound and ephemeral. Beginning at the time of issuance of a virtual card, it has a finite useable lifespan which is often represented within the UI of the issuing client application as a stopwatch-type timer. This model presents certain benefits over a persistent payment card model (be they virtual, tokenized or physical) in that the potential for card fraud is dramatically reduced.
 
-Prior to being permitted to [create a card](/api-reference/create-a-card) a user must first have successfully [authenticated](/guides/authentication) and fulfilled any regulatory prerequisites as instructed by the [get spending prerequisites](/api-reference/get-spending-prerequisites) operation.
+Before being permitted to [create a card](/api-reference/create-a-card) a user must first have successfully [authenticated](/guides/authentication) and fulfilled any regulatory prerequisites as instructed by the [get spending prerequisites](/api-reference/get-spending-prerequisites) operation.
 
 ## Authentication
 
-The authentication processes is described in the [authentication guide](/guides/authentication). As the user account is anchored by control of the private key, there is no distinct prior explicit registration or signup process needed before authenticating.
+The authentication processes are described in the [authentication guide](/guides/authentication). As the user account is anchored by control of the private key, there is no distinct prior explicit registration or signup process needed before authenticating.
 
 ## Provision Funding Source
 
@@ -33,8 +33,8 @@ Having created a virtual card via the [create a card](/api-reference/create-a-ca
 
 There are two steps in this process;
 
-1. firstly, obtaining a token for transmission to the client application to which the card details are to be provided (i.e. the application that will display the card data to the cardholder) and;
-2. secondly, the exchange, by that client application, of the token for the card data.
+1. Obtaining a token for transmission to the client application to which the card details are to be provided (i.e. the application that will display the card data to the cardholder) and;
+2. The exchange, by that client application, of the token for the card data.
 
 :::note
 It is not recommended that the card token is supplied to any application other than one that resides within the cardholder environment (i.e. their mobile application or web application running in their browser) unless that system is sufficiently compliant with PCI-DSS requirements and is audited as such.

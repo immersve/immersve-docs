@@ -8,14 +8,14 @@ tags:
 
 # Funding Card Spending
 
-In order to create and spend using a card a funding source must be created.
-A funding source is an account that connects a users funds to a card and the card network.
+To create and spend using a card, a funding source must be created.
+A funding source is an account that connects a user's funds to a card and the card network.
 It is a prerequisite of card creation that a funding source must be explicitly provisioned for a user.
 Multiple cards can be provisioned for the same funding source.
 
 ## Non-custodial funding
 
-For non-custodial users the funding source maintains a ledger balance of both on-chain and card network transactions. 
+For non-custodial user's the funding source maintains a ledger balance of both on-chain and card network transactions. 
 
 It is important to note that it is the funding source that maintains the balance of available funds against which a card may transact. This allows users to manage funds independently of managing cards.  
 A user should ensure that a funding source has sufficient balance before attempting to authorize transactions with an affiliated card.
@@ -24,7 +24,7 @@ If multiple cards are created against the same funding source they all have acce
 
 ## Authentication
 
-The authentication processes is described in the [authentication guide](/guides/authentication).
+The authentication processes are described in the [authentication guide](/guides/authentication).
 
 ## Funding Source Provisioning
 
@@ -40,13 +40,13 @@ However, our APIs aim to reduce the complexity of determining what is the amount
 
 ### Currency Conversion
 
-A user may be quoted a price for a purchase by a merchant in a local fiat currency. In order to determine the sufficient amount of local fiat currency to fund a card in its billing currency (USD), use the [currency conversion](/api-reference/currency-conversion) API endpoint.
+A user may be quoted a price for a purchase by a merchant in a local fiat currency. To determine the sufficient amount of local fiat currency to fund a card in its billing currency (USD), use the [currency conversion](/api-reference/currency-conversion) API endpoint.
 
 The returned value can passed to the get spending prerequisites endpoint as detailed below.
 
 ### Lock Funds
 
-In order to ensure that funds are sufficiently locked within the [smart contract](/contracts/payment-protocol) such that Immersve are in a position to approve an authorization request received via the card scheme network you will need to have firstly locked sufficient digital assets within the smart contract via digital asset transfer and smart contract invocations as instructed by the [get spending prerequisites](/api-reference/get-spending-prerequisites) operation. The necessary blockchain transactions are contained within the `prerequisites` collection returned.
+To ensure that funds are sufficiently locked within the [smart contract](/contracts/payment-protocol) such that Immersve are in a position to approve an authorization request received via the card scheme network you will need to have first locked sufficient digital assets within the smart contract via digital asset transfer and smart contract invocations as instructed by the [get spending prerequisites](/api-reference/get-spending-prerequisites) operation. The necessary blockchain transactions are contained within the `prerequisites` collection returned.
 
 If the user has not transacted using the solution before then the [get spending prerequisites](/api-reference/get-spending-prerequisites) response will typically call for an ERC20 `approve` in favour of the smart contract followed by a `depositAndLock` invocation of the smart contract.
 
@@ -58,7 +58,7 @@ The client application is to parse and formulate the raw blockchain transaction 
 
 The [get spending prerequisites](/api-reference/get-spending-prerequisites) endpoint returns an array of both regulatory and smart contract prerequisite transactions.  
 Each object in the array has `type` and `params`.  
-Type `smart_contract_write` means that this action is about interaction with the smart contract. `params` contain all the details required to perform this interaction.
+Type `smart_contract_write` means that this action is about interaction with the smart contract. `params` contains all the details required to perform this interaction.
 
 <details>
 <summary>Code snippet (using ethers.js)</summary>
@@ -77,9 +77,9 @@ const { hash } = await contract[method](...Object.values(params));
 
 ### Wallet Funding for Development and Testing
 
-To ensure that integrators are able to obtain sufficient ERC-20 tokens to facilitate development and testing, Immersve uses an ERC-20 token contract that allows tokens to be freely minted as needed.
+To ensure that integrators can obtain sufficient ERC-20 tokens to facilitate development and testing, Immersve uses an ERC-20 token contract that allows tokens to be freely minted as needed.
 
-In non-production environments any transaction returned by [get spending prerequisites](/api-reference/get-spending-prerequisites) with actions related to ERC20 smart contract will refer to the "IMMUSDC" token. The "IMMUSDC" token has a `mint` function allowing for the unlimited minting of the token to any wallet address.
+In non-production environments, any transaction returned by [get spending prerequisites](/api-reference/get-spending-prerequisites) with actions related to ERC20 smart contract will refer to the "IMMUSDC" token. The "IMMUSDC" token has a `mint` function allowing for the unlimited minting of the token to any wallet address.
 
 One particularly convenient way to get the necessary tokens is to use the Polygonscan interface.
 
@@ -88,7 +88,7 @@ One particularly convenient way to get the necessary tokens is to use the Polygo
 - Click `Connect to Web3` to connect your wallet with Polygonscan
 - Open the `mint` function
 - Set the destination wallet address (where assets are to be sent) in the `to` field. Set an amount in the `amount` field.
-- Initiate the web3 transaction clicking the `Write` button
+- Initiate the web3 transaction by clicking the `Write` button
 - Confirm the transaction in the web3 wallet and pay the gas fees
 
 ### Funding Sequence Diagram
