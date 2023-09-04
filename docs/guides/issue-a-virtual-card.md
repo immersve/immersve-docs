@@ -4,6 +4,7 @@ tags:
   - card
   - virtual card
   - non-custodial
+  - custodial
 ---
 
 # Issue a Virtual Card

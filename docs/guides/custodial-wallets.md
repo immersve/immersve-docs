@@ -1,5 +1,7 @@
 ---
 sidebar_position: 7
+tag: 
+ - custodial
 ---
 
 # Custodial Wallets
