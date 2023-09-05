@@ -5,9 +5,6 @@ servers:
 info:
   version: 1.0.0
   title: Immersve API
-  x-logo:
-    url: "https://www.immersve.com/img/immersvelogo-bf8a9fe8408d733c996c2f7d8251e521.svg"
-    altText: Immersve logo
 tags:
   - name: authentication
     x-displayName: Authentication
