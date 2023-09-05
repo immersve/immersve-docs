@@ -11,10 +11,8 @@ info:
 tags:
   - name: authentication
     x-displayName: Authentication
-  - name: assets
-    x-displayName: Assets
   - name: asset-activities
-    x-displayName: Asset activities
+    x-displayName: Asset Activities
   - name: accounts
     x-displayName: Accounts
   - name: card
@@ -45,20 +43,16 @@ paths:
     $ref: "./endpoints/login/siwe-login.yaml"
   "/api/accounts":
     $ref: "./endpoints/accounts/accounts-list.yaml"
-  "/api/cards/orders":
-    $ref: "./endpoints/cards/card-order.yaml"
   "/api/cards":
-    $ref: "./endpoints/cards/create-card-async.yaml"    
+    $ref: "./endpoints/cards/create-card-async.yaml"
   "/api/cards/{cardId}/cancel-async":
     $ref: "./endpoints/cards/card-cancel.yaml"
-  "/api/cards/{cardId}/cancel":
-    $ref: "./endpoints/cards/card-cancel-deprecated.yaml"
   "/api/cards/{cardId}/pan-token":
     $ref: "./endpoints/cards/card-pan-token.yaml"
   "/api/prerequisites/{action}":
     $ref: "./endpoints/prerequisites/prerequisites.yaml"
   "/api/spending-prerequisites":
-    $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"    
+    $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"
   "/api/currencies":
     $ref: "./endpoints/currency/currency-list.yaml"
   "/api/currency/convert":
@@ -67,12 +61,16 @@ paths:
     $ref: "./endpoints/cards/card-get.yaml"
   "/api/cards/account/{accountId}":
     $ref: "./endpoints/cards/cards-list.yaml"
-  "/api/assets":
-    $ref: "./endpoints/assets/asset-balance-get.yaml"
+  "/api/cards/orders":
+    $ref: "./endpoints/cards/card-order.yaml"
+  "/api/cards/{cardId}/cancel":
+    $ref: "./endpoints/cards/card-cancel-deprecated.yaml"
   "/api/assets/{assetId}/activities":
     $ref: "./endpoints/asset-activities/asset-activities-list.yaml"
   "/api/assets/{assetId}/activities/{eventId}":
     $ref: "./endpoints/asset-activities/asset-activities-get.yaml"
+  "/api/assets":
+    $ref: "./endpoints/assets/asset-balance-get.yaml"
   "/api/transactions/{transaction-id}":
     $ref: "./endpoints/transactions/transaction-get.yaml"
   "/api/accounts/{account-id}/transactions":
