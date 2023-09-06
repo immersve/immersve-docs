@@ -3,23 +3,15 @@ post:
     - simulator
   summary: Clear a transaction
   description: This endpoint can be used to test clearing a transaction on a simulated card network
-  parameters:
-    - name: useMinorUnits
-      in: query
-      description: When enabled, transactionAmount and fxAmount.amount in request body must be in minor units, an integer in the smallest denomination for the given currency. 
-      required: false
-      schema:
-        type: boolean
-
   requestBody:
     content:
       application/json:
         schema:
-          $ref: './models/clear-request.yaml'
+          $ref: "./models/clear-request.yaml"
     required: true
   responses:
     200:
       content:
         application/json:
           schema:
-            $ref: './models/simulator-response.yaml'
+            $ref: "./models/simulator-response.yaml"

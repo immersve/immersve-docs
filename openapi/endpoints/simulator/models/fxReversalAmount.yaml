@@ -6,7 +6,7 @@ required:
 properties:
   amount:
     type: string
-    description: Transaction amount as an integer in the smallest denomination for the given currency. Convert the `transactionAmount` from USD to the desired currency.
+    description: Amount to reverse on the prior authorize or clear requests specified in the acquirers currency. An integer in the smallest denomination for the given currency. Convert the `reversalAmount` from USD to the desired currency.
   currencyCode:
     type: string
     description: ISO 4217 currency code

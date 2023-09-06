@@ -10,10 +10,9 @@ properties:
       - purchase
   reversalAmount:
     type: string
-    pattern: ^[0-9]+(\.[0-9]+)?$
-    description: Transaction amount in USD
+    description: Amount to reverse on the prior authorize or clear requests. An integer in the smallest denomination of USD.
   fxReversalAmount:
-    $ref: './fxAmount.yaml'
+    $ref: "./fxReversalAmount.yaml"
 oneOf:
   - properties:
       authorizationRequestMsg:

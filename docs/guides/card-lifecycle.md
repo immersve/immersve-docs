@@ -31,4 +31,4 @@ It is ready to use when a call to [get card details](/api-reference/get-card-det
 
 ### Cancel a card
 
-Should a cardholder change their mind prior to presenting the card to a merchant, cancel the card by calling the [cancel a card](/api-reference/cancel-a-card-asynchronously) operation.
+Should a cardholder change their mind prior to presenting the card to a merchant, cancel the card by calling the [cancel a card](/api-reference/cancel-a-card) operation.
