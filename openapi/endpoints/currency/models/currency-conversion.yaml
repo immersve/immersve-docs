@@ -8,10 +8,10 @@ properties:
     description: The currency converted to.
   amount:
     type: number
-    description: The amount of currency to convert to destination currency denominated in the major unit.
+    description: The amount of currency to convert to destination currency denominated in the major unit. An integer in the smallest denomination for the given currency
   convertedAmount:
     type: number
-    description: The resulting amount of the conversion from `currency` into `convertedCurrency` denominated in the major unit.
+    description: The resulting amount of the conversion from `currency` into `convertedCurrency` denominated in the smallest denomination for the given currency.
   rate:
     type: number
     description: The conversion rate applied to arrive at the `convertedAmount` of the `convertedCurrency` from the `amount` of `currency`.

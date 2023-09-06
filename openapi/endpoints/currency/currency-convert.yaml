@@ -12,7 +12,7 @@ get:
         type: string
     - name: amount
       in: query
-      description: The amount of `currency` to convert to destination currency
+      description: The amount of `currency` to convert to destination currency, an integer in the smallest denomination for the given currency
       required: true
       schema:
         type: number
@@ -23,12 +23,6 @@ get:
       required: false
       schema:
         type: string
-    - name: useMinorUnits
-      in: query
-      description: When enabled, amount in query parameters must be in minor units, an integer in the smallest denomination for the given currency. Amount and convertedAmount in payload will be also returned in minor units.
-      required: false
-      schema:
-        type: boolean
 
   responses:
     "200":
