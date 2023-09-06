@@ -2,63 +2,63 @@ type: object
 properties:
   id:
     type: string
-    description: The transaction Id 
+    description: The transaction ID
     example: "1000000178145"
   description:
     type: string
-    description: A description of the transaction 
+    description: A description of the transaction
     example: "Air NZ Online Auckland"
   accountId:
-    type: string  
+    type: string
     description: Which account this transaction belongs to
     example: 225d85e65495722bf6517ea0ba0d6f56
-  status: 
+  status:
     type: string
     description: The status of the transaction
     enum:
-      - 'init'
-      - 'holding'
-      - 'cleared'
-      - 'failed'
+      - "init"
+      - "holding"
+      - "cleared"
+      - "failed"
   cardId:
     type: string
     description: Which card this transaction belongs to
     example: "6c474aa7a5dc45bff721b5a207cf0f47"
   amount:
-    type: number 
+    type: number
     description: The billing amount of the transaction
     example: 314.12
   currency:
-    type: string 
+    type: string
     description: The billing currency of the transaction
-    example: USD  
+    example: USD
   acquirerAmount:
-    type: number 
+    type: number
     description: The acquirer amount of the transaction
     example: 314.12
   acquirerCurrency:
-    type: string 
+    type: string
     description: The acquirer currency of the transaction
     example: NZD
   lockedFundCurrency:
-    type: string 
+    type: string
     description: The locked funds' currency of the transaction
     example: USDC
   feeAmount:
-    type: number 
+    type: number
     description: The fee amount of the transaction
     example: 0.12
   chain:
-    type: string 
-    description: The chain of the locked funds on 
-    example: "Polygon" 
+    type: string
+    description: The chain of the locked funds on
+    example: "Polygon"
   transactionDate:
-    type: string  
+    type: string
     format: date-time
     description: The created date formatted in ISO of the transactions.
     example: "2022-11-09T03:24:15.182Z"
   processedDate:
-    type: string  
+    type: string
     format: date-time
     description: the cleared date formatted in ISO of the transactions.
     example: "2022-11-09T03:24:15.182Z"
@@ -72,34 +72,34 @@ properties:
       - city
       - countryCode
       - name
-    properties:  
+    properties:
       city:
-          type: string 
-          description: The city of the card acceptor
-          example: "Auckland"
+        type: string
+        description: The city of the card acceptor
+        example: "Auckland"
       countryCode:
-          type: string 
-          description: The country code of the card acceptor
-          example: "NZ"
+        type: string
+        description: The country code of the card acceptor
+        example: "NZ"
       name:
-          type: string 
-          description: The name of the card acceptor
-          example: "Air NZ Online"    
-required: [
-  id,
-  description,
-  accountId,
-  status,
-  cardId,
-  amount,
-  currency,
-  acquirerAmount,
-  acquirerCurrency,
-  lockedFundCurrency,
-  feeAmount,
-  chain,
-  transactionDate,
-  reference,
-  cardAcceptor
-] 
-
+        type: string
+        description: The name of the card acceptor
+        example: "Air NZ Online"
+required:
+  [
+    id,
+    description,
+    accountId,
+    status,
+    cardId,
+    amount,
+    currency,
+    acquirerAmount,
+    acquirerCurrency,
+    lockedFundCurrency,
+    feeAmount,
+    chain,
+    transactionDate,
+    reference,
+    cardAcceptor,
+  ]

@@ -62,7 +62,7 @@ properties:
     example: "2022-11-16T03:18:23.431Z"
   lockedFundId:
     type: string
-    description: Id of AssetLockedFund on the Immersve Payment Protocol
+    description: ID of AssetLockedFund on the Immersve Payment Protocol
     example: "58"
   lockedFundAmount:
     type: number
