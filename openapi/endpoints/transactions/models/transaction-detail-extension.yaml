@@ -32,9 +32,9 @@ properties:
           enum: [authorization, clearing, reversal]
   panFirst6:
     type: string
-    description: The first 6 digits of the card's pan
+    description: The first 6 digits of the card's PAN
     example: "123456"
   panLast6:
     type: string
-    description: The last 4 digits of the card's pan
+    description: The last 4 digits of the card's PAN
     example: "1234"

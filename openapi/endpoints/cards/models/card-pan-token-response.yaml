@@ -10,7 +10,7 @@ properties:
   callbackUrl:
     type: string
     description: |
-      One-time url which can be called to retrieve the card's secure details.
+      One-time URL which can be called to retrieve the card's secure details.
 
-      This url requires no authentication.
+      This URL requires no authentication.
     example: https://api-sec.immersve.com/api/cards/secure?tokenId=1E2426184B3676720F36E43A22649AFF-1000041153
