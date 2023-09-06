@@ -15,8 +15,7 @@ get:
       description: The amount of `currency` to convert to destination currency, an integer in the smallest denomination for the given currency
       required: true
       schema:
-        type: number
-        format: decimal
+        type: string
     - name: targetCurrency
       in: query
       description: The target currency alpha code for the conversion. Defaults to `USD`
