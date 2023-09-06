@@ -8,7 +8,7 @@ properties:
     description: The currency converted to.
   amount:
     type: string
-    description: The amount of currency to convert to destination currency denominated in the major unit. An integer in the smallest denomination for the given currency
+    description: The amount of currency to convert to destination currency denominated in the major unit. An integer in the smallest denomination for the given currency.
   convertedAmount:
     type: string
     description: The resulting amount of the conversion from `currency` into `convertedCurrency` denominated in the smallest denomination for the given currency.
