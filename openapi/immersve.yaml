@@ -17,7 +17,7 @@ tags:
   - name: currency
     x-displayName: Currency
   - name: funding-source
-    x-displayName: Funding sources
+    x-displayName: Funding Sources
   - name: transactions
     x-displayName: Transactions
   - name: kyc
@@ -46,8 +46,6 @@ paths:
     $ref: "./endpoints/cards/card-cancel.yaml"
   "/api/cards/{cardId}/pan-token":
     $ref: "./endpoints/cards/card-pan-token.yaml"
-  "/api/prerequisites/{action}":
-    $ref: "./endpoints/prerequisites/prerequisites.yaml"
   "/api/spending-prerequisites":
     $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"
   "/api/currencies":
@@ -102,7 +100,7 @@ paths:
       - url: https://<partnerBaseUrl>/card/notification
     $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
   "/api/funding-sources":
-    $ref: "./endpoints/funding-sources/create-funding-source.yaml"
+    $ref: "./endpoints/funding-sources/register-funding-source.yaml"
 
 components:
   securitySchemes:
@@ -128,4 +126,4 @@ components:
       type: apiKey
       in: header
       name: x-account-id
-      description: The target account id. If targeting the root account, this can be omitted (for example creating an account)
+      description: The target account ID. If targeting the root account, this can be omitted (for example creating an account)

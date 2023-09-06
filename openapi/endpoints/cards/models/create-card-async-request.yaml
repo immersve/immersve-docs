@@ -5,7 +5,7 @@ required:
 properties:
   cardProgramId:
     type: string
-    description: Id of card program to use when creating a card
+    description: ID of card program to use when creating a card
   fundingSourceId:
     type: string
-    description: Id of the funding source the card will authorize against
+    description: ID of the Funding Source the card will authorize against

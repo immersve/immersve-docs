@@ -2,7 +2,7 @@ get:
   tags:
     - card
   summary: Get card details
-  description: Returns the non-sensitive details of a card by a given id.
+  description: Returns the non-sensitive details of a card by a given ID.
   parameters:
     - name: cardId
       in: path
@@ -12,20 +12,20 @@ get:
         type: string
     - name: useMinorUnits
       in: query
-      description: When enabled, lockedFundAmount in payload will be returned in minor units, an integer in the smallest denomination for the given currency. 
+      description: When enabled, lockedFundAmount in payload will be returned in minor units, an integer in the smallest denomination for the given currency.
       required: false
       schema:
         type: boolean
-    
+
   responses:
-    '200':
+    "200":
       content:
         application/json:
           schema:
-            $ref: './models/get-card.yaml'
-    '403':
+            $ref: "./models/get-card.yaml"
+    "403":
       description: No Authorization to access resource.
       content:
         application/json:
           schema:
-            $ref: '../../models/api-error.yaml'
+            $ref: "../../models/api-error.yaml"

@@ -2,20 +2,20 @@ get:
   tags:
     - cards-custodial
   summary: Get card information
-  description: Returns the non-sensitive details of a card by a given id.
+  description: Returns the non-sensitive details of a card by a given ID.
   security:
-    - $ref: '../../models/api-key-auth.yaml'
+    - $ref: "../../models/api-key-auth.yaml"
   parameters:
-    $ref: '../../models/card-id-path.yaml'
+    $ref: "../../models/card-id-path.yaml"
   responses:
-    '200':
+    "200":
       content:
         application/json:
           schema:
-            $ref: './models/get-card-response.yaml'
+            $ref: "./models/get-card-response.yaml"
     default:
-      description: 'Error'
+      description: "Error"
       content:
         application/json:
           schema:
-            $ref: '../../models/error-response-custodial.yaml'
+            $ref: "../../models/error-response-custodial.yaml"

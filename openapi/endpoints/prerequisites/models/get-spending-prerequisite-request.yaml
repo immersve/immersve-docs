@@ -7,10 +7,10 @@ required:
 properties:
   cardProgramId:
     type: string
-    description: Id of card program to create the card under
+    description: ID of card program to create the card under
   fundingSourceId:
     type: string
-    description: Id of the funding source the card will authorize against
+    description: ID of the Funding Source the card will authorize against
   spendableAmount:
     type: string
     description: Amount of fiat money that should be available on the card, denominated in minor units

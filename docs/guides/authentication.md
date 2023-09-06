@@ -11,19 +11,26 @@ tags:
 
 # Authentication
 
-Depending on the use case and endpoint either API key or Sign-in-with-ethereum (SIWE) authentication may be used.
-Our SIWE method allows client applications to act on behalf of users within scopes explicitly granted by the user.
-API keys might be used for admin APIs and for applications not using SIWE authentication for their users.
+Depending on the use case and operation, either API key or Sign-in-with-ethereum (SIWE) authentication mechanism may be used.
 
-[Contact us](https://immersve.com/#contact) to provision credentials for your application.
+The SIWE method allows client applications to act on behalf of users within scopes explicitly granted by the user and is typically used by [decentralized applications and web3 wallets](/guides/non-custodial-wallets). API keys might be used for administrative operations and for applications not using SIWE authentication for their users such as [custodial wallets and exchanges](/guides/custodial-wallets).
+
+[Contact us](https://immersve.com/contact/) to provision credentials for your application.
 ## API Key Authentication
 
 Each request must be made with the following headers:
+
+Authentication:
 - **x-api-key** - The API key issued by Immersve
 - **x-api-secret** - The API secret issued by Immersve
+
+Target account:
 - **x-account-id** - The account ID targeted by the operation. This can be omitted if the target is the root account (such as when creating an account for example)
 
+The caller must have the correct permissions over this account to perform the requested operation.
 ## SIWE Authentication
+
+The use of web3-native authentication mechanisms within the context of card issuance means that the same level of protection to a user's funds in self-custodial wallets is applied to their activities as a cardholder.
 
 Accounts are identified by way of blockchain addresses. Proof of ownership of an address is based upon a process of authentication by way of verification of [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) challenges signed by the private key underlying an address. Upon successful authentication, Immersve will issue an access token for subsequent use in interactions with the Immersve API.
 
@@ -70,7 +77,7 @@ For example:
 
 2.  Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
 
-    For a quick start Metamask users can sign the challenge message using this [CodePen](https://codepen.io/imsv/full/zYMpExJ). Alternatively use this Node.js script to create your own wallet and sign the challenge.
+    For a quick start, Metamask users can sign the challenge message using this [CodePen](https://codepen.io/imsv/full/zYMpExJ). Alternatively, use this Node.js script to create a wallet and sign the challenge.
       <details>
       <summary>Signing Script</summary>
 
@@ -85,7 +92,7 @@ For example:
         // Create a wallet to sign the message with
         const privateKey = ''; //TODO: Set Private key here
         const walletAddress = ''; //TODO: Set wallet address here
-        const chainId = 137; //Chain id Reference: https://chainlist.org/
+        const chainId = 137; //Chain ID Reference: https://chainlist.org/
 
         if (!privateKey || privateKey.length === 0) {
           console.error('WALLET_PRIVATE_KEY missing');

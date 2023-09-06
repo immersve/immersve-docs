@@ -9,7 +9,7 @@ properties:
   walletAddress:
     description: The address of the signing wallet or the smart contract that implements ERC-1271
     type: string
-    example: '0xA3058369d6A481B1ff08F62B352409c3D709De9b'
+    example: "0xA3058369d6A481B1ff08F62B352409c3D709De9b"
   chainId:
     description: Chain ID (see https://chainlist.org/)
     type: number
@@ -33,6 +33,6 @@ properties:
   url:
     description: |
       Domain in the "\<domain\> wants you to sign in.." of the EIP-4361 is derived from the host fragment of this parameter.
-      The client application identified by clientApplicationId must allow this url.
+      The client application identified by clientApplicationId must allow this URL.
     type: url
     example: https://example.service
