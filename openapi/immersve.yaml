@@ -66,11 +66,11 @@ paths:
     $ref: "./endpoints/asset-activities/asset-activities-get.yaml"
   "/api/assets":
     $ref: "./endpoints/assets/asset-balance-get.yaml"
-  "/api/transactions/{transaction-id}":
+  "/api/transactions/{transactionId}":
     $ref: "./endpoints/transactions/transaction-get.yaml"
-  "/api/accounts/{account-id}/transactions":
+  "/api/accounts/{accountId}/transactions":
     $ref: "./endpoints/transactions/transactions-list.yaml"
-  "/api/accounts/{account-id}/funding-sources":
+  "/api/accounts/{accountId}/funding-sources":
     $ref: "./endpoints/funding-sources/list-funding-sources.yaml"
   "/api/accounts/{cardholderAccountId}/partner-kyc-statement":
     $ref: "./endpoints/kyc/submit-partner-kyc-statement.yaml"
