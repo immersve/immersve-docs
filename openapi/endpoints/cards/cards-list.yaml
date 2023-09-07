@@ -45,24 +45,18 @@ get:
       required: false
       schema:
         type: string
-    - name: useMinorUnits
-      in: query
-      description: When enabled, lockedFundAmount in payload items will be returned in minor units, an integer in the smallest denomination for the given currency. 
-      required: false
-      schema:
-        type: boolean
 
   responses:
-    '200':
+    "200":
       description: Successful operation
       content:
         application/json:
           schema:
-            $ref: './models/list-cards-paging-result.yaml'
-    '403':
+            $ref: "./models/list-cards-paging-result.yaml"
+    "403":
       description: |
         User is not allowed to list cards
       content:
         application/json:
           schema:
-            $ref: '../../models/api-error.yaml'
+            $ref: "../../models/api-error.yaml"
