@@ -25,17 +25,17 @@ properties:
     description: Which card this transaction belongs to
     example: "6c474aa7a5dc45bff721b5a207cf0f47"
   amount:
-    type: number
-    description: The billing amount of the transaction
-    example: 314.12
+    type: string
+    description: The billing amount of the transaction, an integer in the smallest denomination for the given currency
+    example: "31412"
   currency:
     type: string
     description: The billing currency of the transaction
     example: USD
   acquirerAmount:
-    type: number
-    description: The acquirer amount of the transaction
-    example: 314.12
+    type: string
+    description: The acquirer amount of the transaction, an integer in the smallest denomination for the given currency
+    example: "31412"
   acquirerCurrency:
     type: string
     description: The acquirer currency of the transaction
@@ -45,9 +45,9 @@ properties:
     description: The locked funds' currency of the transaction
     example: USDC
   feeAmount:
-    type: number
+    type: string
     description: The fee amount of the transaction
-    example: 0.12
+    example: "12"
   chain:
     type: string
     description: The chain of the locked funds on
@@ -55,12 +55,12 @@ properties:
   transactionDate:
     type: string
     format: date-time
-    description: The created date formatted in ISO of the transactions.
+    description: The created date formatted in ISO of the transactions
     example: "2022-11-09T03:24:15.182Z"
   processedDate:
     type: string
     format: date-time
-    description: the cleared date formatted in ISO of the transactions.
+    description: The cleared date formatted in ISO of the transactions
     example: "2022-11-09T03:24:15.182Z"
   reference:
     type: string
