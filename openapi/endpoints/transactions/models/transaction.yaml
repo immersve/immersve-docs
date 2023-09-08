@@ -85,6 +85,12 @@ properties:
         type: string
         description: The name of the card acceptor
         example: "Air NZ Online"
+  creditDebitIndicator:
+    type: string
+    description: Indicates if the transaction was a credit or debit
+    enum:
+      - "credit"
+      - "debit"
 required:
   [
     id,
