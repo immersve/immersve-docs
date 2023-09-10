@@ -2,14 +2,14 @@ tags:
   - accounts
 summary: Create Account
 description: Create account
-security:
-    - $ref: '../../models/api-key-auth.yaml'
+
 requestBody:
   content:
     application/json:
       schema:
         $ref: './models/create-account-request.yaml'
   required: true
+
 responses:
   '200':
     description: Account created successfully

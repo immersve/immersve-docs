@@ -31,8 +31,8 @@ tags:
   - name: funding-source
     x-displayName: Funding source
 security:
-  - $ref: "./models/api-key-auth.yaml"
   - immersve_auth: []
+  - $ref: "./models/api-key-auth.yaml"
 paths:
   "/siwe/generate-challenge":
     $ref: "./endpoints/login/siwe-generate-challenge.yaml"
