@@ -1,0 +1,8 @@
+type: object
+properties:
+  status:
+    type: string
+    description: The cardholder's KYC status.
+    enum:
+      - check_in_progress
+      - failed
