@@ -9,7 +9,10 @@ properties:
           type: string
           enum:
             - smart_contract_write
+            - kyc
         params:
           oneOf:
             - $ref: '../../../models/smart-contract-write-params.yaml'
               title: smart_contract_write
+            - $ref: '../../../models/kyc-params.yaml'
+              title: kyc

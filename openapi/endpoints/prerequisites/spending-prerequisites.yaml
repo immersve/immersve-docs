@@ -82,6 +82,12 @@ post:
                     }
                   }
                 },
+                {
+                  "type": "kyc",
+                  "params": {
+                    "status": "check_in_progress"
+                  }
+                }
               ]
             }
     "403":
