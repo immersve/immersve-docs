@@ -1,39 +1,38 @@
-put:
-  tags:
-    - kyc
-  summary: Submit Partner KYC Statement
-  description: Submit a KYC statement about the cardholder.
-  parameters:
-    - name: cardholderAccountId
-      in: path
-      description: ID of the cardholder account
-      example: 65a7e8ef0d230d0a6bf755e07d39eb02
-      required: true
+tags:
+  - kyc
+summary: Submit Partner KYC Statement
+description: Submit a KYC statement about the cardholder.
+parameters:
+  - name: cardholderAccountId
+    in: path
+    description: ID of the cardholder account.
+    example: 65a7e8ef0d230d0a6bf755e07d39eb02
+    required: true
+    schema:
+      type: string
+security:
+  - $ref: '../../models/api-key-auth.yaml'
+requestBody:
+  content:
+    application/json:
       schema:
-        type: string
-  security:
-    - $ref: '../../models/api-key-auth.yaml'
-  requestBody:
+        $ref: './models/submit-kyc-statement-request.yaml'
+  required: true
+responses:
+  '200':
     content:
       application/json:
         schema:
-          $ref: './models/kyc-partner-statement-request.yaml'
-    required: true
-  responses:
-    '200':
-      content:
-        application/json:
-          schema:
-            type: object
-    '403':
-      description: No Authorization to access resource.
-      content:
-        application/json:
-          schema:
-            $ref: '../../models/api-error.yaml'
-    '400':
-      description: Request parameters are invalid
-      content:
-        application/json:
-          schema:
-            $ref: '../../models/api-error.yaml'
+          type: object
+  '403':
+    description: No Authorization to access resource.
+    content:
+      application/json:
+        schema:
+          $ref: '../../models/api-error.yaml'
+  '400':
+    description: Request parameters are invalid
+    content:
+      application/json:
+        schema:
+          $ref: '../../models/api-error.yaml'

@@ -1,0 +1,32 @@
+type: object
+properties:
+  accountId:
+    type: string
+    description: The cardholder account id.
+    example: "225d85e65495722bf6517ea0ba0d6f56"
+  partnerAccountId:
+    type: string
+    description: The partner account id that is affiliated with the cardholder.
+    example: "314d85e65495722bf6517ea0ba0d4lp3"
+  createdAt:
+    type: string
+    description: Timestamp of KYC statement creation.
+    example: "2022-11-16T03:13:18.142Z"
+  createdBy:
+    type: string
+    description: The Immersve Resource Name (IRN) that created the resource.
+    example: "irn:314d85e65495722bf6517ea0ba0d4lp3:api-key:SLOs3U38hdhfEqwF1JKpTw"
+  idempotencyKey:
+    type: string
+    description: A client-supplied identifier that prevents duplicate creation.
+    example: 21ede8ef0d230d0a6bf755e07d39la54
+  claims:
+    type: array
+    description: A list of claims about the cardholder's identity.
+    items:
+      $ref: './claims.yaml'
+  evidence:
+    type: array
+    description: A list of evidence supporting the claimed identity. At least one piece of evidence is required.
+    items:
+      $ref: './evidence.yaml'

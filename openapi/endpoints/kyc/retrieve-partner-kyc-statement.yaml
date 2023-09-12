@@ -1,0 +1,26 @@
+tags:
+  - kyc
+summary: Retrieve Partner KYC Statement
+description: Retrieve the KYC statement for the cardholder if it exists.
+parameters:
+  - name: cardholderAccountId
+    in: path
+    description: ID of the cardholder account.
+    example: 65a7e8ef0d230d0a6bf755e07d39eb02
+    required: true
+    schema:
+      type: string
+security:
+  - $ref: '../../models/api-key-auth.yaml'
+responses:
+  '200':
+    content:
+      application/json:
+        schema:
+          $ref: './models/retrieve-kyc-statement-response.yaml'
+  '403':
+    description: No Authorization to access resource or it does not exist.
+    content:
+      application/json:
+        schema:
+          $ref: '../../models/api-error.yaml'
