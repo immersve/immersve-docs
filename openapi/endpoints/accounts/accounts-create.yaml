@@ -1,0 +1,38 @@
+tags:
+  - accounts
+summary: Create Account
+description: Create account
+
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: './models/create-account-request.yaml'
+  required: true
+
+responses:
+  '200':
+    description: Account created successfully
+    content:
+      application/json:
+        schema:
+          $ref: './models/create-account-response.yaml'
+  '403':
+    description: |
+      User is not allowed to perform the action with the reason stated in the `message`
+
+      **FORBIDDEN**
+      Insufficient permissions to perform the action.
+
+      **INVALID_PARTNER_ACCOUNT**
+      The partner account does not exist.
+
+      **INVALID_PARENT_ACCOUNT**
+      The parent account does not exist or is not a partner account.
+
+      **INVALID_USER**
+      The user does not exist or is not fully provisioned.
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error.yaml"

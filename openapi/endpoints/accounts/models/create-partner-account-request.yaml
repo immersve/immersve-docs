@@ -1,0 +1,21 @@
+type: object
+required:
+  - type
+  - name
+properties:
+  type: 
+    type: string
+    description: The type of the account
+    enum:
+      - partner
+  name:
+    type: string
+    description: Account name
+  parentAccountId:
+    type: string
+    description: Parent account. If provided, this account will be set as the parent of the created account
+    example: 'dbc1d6aa6c0b2a5be2f567470623ede5'
+  ownerUserId:
+    type: string
+    description: Owner user id. If provided, this user will be set as the owner of the created account
+    example: '1a4d3b41756ce73db66ed969e4e86448'

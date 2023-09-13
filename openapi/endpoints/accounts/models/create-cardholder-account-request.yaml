@@ -1,0 +1,22 @@
+type: object
+required:
+  - type
+  - partnerAccountId
+  - ownerUserId
+properties:
+  type: 
+    type: string
+    description: The type of the account
+    enum:
+      - cardholder
+  name:
+    type: string
+    description: Account name
+  partnerAccountId:
+    type: string
+    description: The id of the partner account that this cardholder must be linked to
+    example: '12fff060a9550622e86a7a962f548c1d'
+  ownerUserId:
+    type: string
+    description: This user will be set as the owner of the created account
+    example: '9c4010f2946be546c716add4bf479410'

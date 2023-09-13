@@ -31,15 +31,18 @@ tags:
   - name: funding-source
     x-displayName: Funding source
 security:
-  - $ref: "./models/api-key-auth.yaml"
   - immersve_auth: []
+  - $ref: "./models/api-key-auth.yaml"
 paths:
   "/siwe/generate-challenge":
     $ref: "./endpoints/login/siwe-generate-challenge.yaml"
   "/siwe/login":
     $ref: "./endpoints/login/siwe-login.yaml"
   "/api/accounts":
-    $ref: "./endpoints/accounts/accounts-list.yaml"
+    get:
+      $ref: "./endpoints/accounts/accounts-list.yaml"
+    post:
+      $ref: "./endpoints/accounts/accounts-create.yaml"
   "/api/cards":
     $ref: "./endpoints/cards/create-card-async.yaml"
   "/api/cards/{cardId}/cancel-async":
