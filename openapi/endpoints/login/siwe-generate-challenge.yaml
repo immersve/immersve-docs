@@ -30,3 +30,9 @@ post:
             Chain ID: 1
             Nonce: 2hFm7TDbZmerUgnrJ
             Issued At: 2022-08-11T22:29:48.244Z
+    '400':
+      description: Request fields are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'

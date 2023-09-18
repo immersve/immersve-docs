@@ -31,3 +31,9 @@ post:
         application/json:
           schema:
             $ref: "./models/card-pan-token-response.yaml"
+    "400":
+      description: Request fields are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'

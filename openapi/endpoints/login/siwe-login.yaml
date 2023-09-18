@@ -21,9 +21,8 @@ post:
           schema:
             $ref: "./models/login-response.yaml"
     "400":
-      description: Login unsuccessful
+      description: Request fields are invalid
       content:
         application/json:
-          example:
-            status: 400
-            message: "Invalid message."
+          schema:
+            $ref: '../../models/api-error-400.yaml'
