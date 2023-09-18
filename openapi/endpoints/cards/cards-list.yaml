@@ -54,8 +54,7 @@ get:
           schema:
             $ref: "./models/list-cards-paging-result.yaml"
     "403":
-      description: |
-        User is not allowed to list cards
+      description: No Authorization to access resource.
       content:
         application/json:
           schema:

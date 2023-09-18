@@ -76,11 +76,7 @@ get:
           schema:
             $ref: '../../models/api-error-400.yaml'
     '403':
-      description: |
-        User is not allowed to list asset activities due to the reason specified in the message.
-
-        **NoWalletAddressReceived** 
-        User is required to log in with their wallet.
+      description: No Authorization to access resource.
       content:
         application/json:
           schema:

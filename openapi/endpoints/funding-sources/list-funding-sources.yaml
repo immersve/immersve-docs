@@ -19,8 +19,7 @@ get:
           schema:
             $ref: "./models/list-funding-sources-result.yaml"
     "403":
-      description: |
-        Cardholder is not found or the caller is not allowed to list Funding Sources for the cardholder
+      description: No Authorization to access resource.
       content:
         application/json:
           schema:

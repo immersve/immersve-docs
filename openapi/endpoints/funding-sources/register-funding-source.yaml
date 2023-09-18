@@ -21,23 +21,24 @@ post:
           schema:
             type: object
     "403":
-      description: Request failed
+      description: |
+        User is not allowed to perform the action with the reason stated in the `errorCode`
+
+        **FORBIDDEN**
+        Insufficient permissions to perform the action.
+        
+        **SIGNATURE_DENIED**
+        The signature was rejected by the ERC-1271 contract `isValidSignature` function.
+
+        **SIGNATURE_INVALID**
+        The message signature was invalid.
+        
+        **ADDRESS_MISMATCH**
+        The `ownerAddress` does not match the EIP-4361 message address.
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: The error code
-                summary: |
-                  - SIGNATURE_DENIED: The signature was rejected by the ERC-1271 contract `isValidSignature` function.
-                  - SIGNATURE_INVALID: The message signature was invalid.
-                  - ADDRESS_MISMATCH: The `ownerAddress` does not match the EIP-4361 message address.
-                enum:
-                  - SIGNATURE_DENIED
-                  - SIGNATURE_INVALID
-                  - ADDRESS_MISMATCH
+            $ref: "../../models/api-error-403.yaml"
 
     "400":
       description: Request fields are invalid

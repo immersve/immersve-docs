@@ -19,19 +19,16 @@ responses:
           $ref: './models/create-account-response.yaml'
   '403':
     description: |
-      User is not allowed to perform the action with the reason stated in the `message`
+      User is not allowed to perform the action with the reason stated in the `errorCode`
 
       **FORBIDDEN**
       Insufficient permissions to perform the action.
 
       **INVALID_PARTNER_ACCOUNT**
-      The partner account does not exist.
+      The provided partner account is not of type partner.
 
       **INVALID_PARENT_ACCOUNT**
-      The parent account does not exist or is not a partner account.
-
-      **INVALID_USER**
-      The user does not exist or is not fully provisioned.
+      The provided parent account is not of type partner.
     content:
       application/json:
         schema:
