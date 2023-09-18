@@ -108,4 +108,4 @@ post:
       content:
         application/json:
           schema:
-            $ref: "../../models/api-error.yaml"
+            $ref: "../../models/api-error-403.yaml"

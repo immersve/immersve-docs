@@ -1,0 +1,20 @@
+type: object
+properties:
+  statusCode:
+    type: integer
+    example: 400
+  statusName:
+    type: string
+    example: Bad Request
+  errorCode:
+    type: string
+    example: BAD_REQUEST
+  errors:
+    type: array
+    items:
+      type: string
+      example: 'Expected string, received number'
+required:
+  - statusCode
+  - statusName
+  - errorCode
