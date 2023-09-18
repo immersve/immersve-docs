@@ -60,3 +60,9 @@ get:
         application/json:
           schema:
             $ref: "../../models/api-error-403.yaml"
+    "400":
+      description: Request fields are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'

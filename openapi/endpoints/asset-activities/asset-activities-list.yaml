@@ -70,8 +70,7 @@ get:
           schema:
             $ref: './models/asset-activities-paging-result.yaml'
     '400':
-      description: |
-        Request can not be processed. Either request parameters are not valid or cardholder is not found.
+      description: Request fields are invalid
       content:
         application/json:
           schema:
