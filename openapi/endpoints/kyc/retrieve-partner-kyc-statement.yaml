@@ -19,7 +19,7 @@ responses:
         schema:
           $ref: './models/retrieve-kyc-statement-response.yaml'
   '403':
-    description: No Authorization to access resource or it does not exist.
+    description: No Authorization to access resource.
     content:
       application/json:
         schema:

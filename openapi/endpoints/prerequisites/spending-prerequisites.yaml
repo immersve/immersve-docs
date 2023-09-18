@@ -92,7 +92,7 @@ post:
             }
     "403":
       description: |
-        User is not allowed to perform the action with the reason stated in the `message`
+        User is not allowed to perform the action with the reason stated in the `errorCode`
 
         **FORBIDDEN**
         Insufficient permissions to perform the action.

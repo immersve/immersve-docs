@@ -11,8 +11,7 @@ responses:
         schema:
           $ref: './models/list-accounts-response.yaml'
   '403':
-    description: |
-      The caller is not allowed to list accounts for the user
+    description: No Authorization to access resource.
     content:
       application/json:
         schema:

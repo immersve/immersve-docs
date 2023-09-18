@@ -23,16 +23,16 @@ post:
         User is not allowed to perform the action with the reason stated in the `message`
 
         **FORBIDDEN**
-        The cardholder is not found or the card program is not found or the caller doesn’t have permissions to create cards for the cardholder or card program.
+        Insufficient permissions to perform the action.
 
         **LIVENESS_MISMATCH** 
         Card program or cardholder have the wrong liveness for the request.
 
         **CARD_PROGRAM_INVALID**
-        Card program doesn’t belong to a partner this cardholder is associated with
+        Card program doesn’t belong to a partner this cardholder is associated with.
 
         **FUNDING_SOURCE_INVALID**
-        Funding source cannot be used with this card program
+        Funding source cannot be used with this card program.
       content:
         application/json:
           schema:
