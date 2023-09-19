@@ -1,0 +1,26 @@
+tags:
+  - kyc
+summary: Get a KYC profile
+description: Get a KYC profile by account id if exists
+parameters:
+  - name: accountId
+    in: path
+    description: Id of the account.
+    example: 225d85e65495722bf6517ea0ba0d6f56
+    required: true
+    schema:
+      type: string
+security:
+  - $ref: '../../models/api-key-auth.yaml'
+responses:
+  '200':
+    content:
+      application/json:
+        schema:
+          $ref: './models/get-kyc-profile-response.yaml'
+  '403':
+    description: No Authorization to access resource or it does not exist.
+    content:
+      application/json:
+        schema:
+          $ref: '../../models/api-error-403.yaml'
