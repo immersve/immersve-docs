@@ -1,0 +1,34 @@
+type: object
+properties:
+  id:
+    type: string
+    description: The KYC profile id.
+    example: 'afd4772562be47f8a3467a11d06c96ba'
+  accountId:
+    type: string
+    description: The account id.
+    example: '225d85e65495722bf6517ea0ba0d6f56'
+  status:
+    type: string
+    description: The status of the KYC profile.
+    example: 'completed'
+  region:
+    type: string
+    description: Region code.
+    example: NZ
+  createdAt:
+    type: string
+    description: Timestamp of KYC profile creation.
+    example: '2022-11-16T03:13:18.142Z'
+  createdBy:
+    type: string
+    description: The Immersve Resource Name (IRN) that created the resource.
+    example: 'irn:314d85e65495722bf6517ea0ba0d4lp3:api-key:SLOs3U38hdhfEqwF1JKpTw'
+  modifiedAt:
+    type: string
+    description: Timestamp of this KYC profile modification.
+    example: '2022-11-16T03:13:18.142Z'
+  modifiedBy:
+    type: string
+    description: The Immersve Resource Name (IRN) that modified the resource.
+    example: 'irn:314d85e65495722bf6517ea0ba0d4lp3:api-key:SLOs3U38hdhfEqwF1JKpTw'

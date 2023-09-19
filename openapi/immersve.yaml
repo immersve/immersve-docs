@@ -80,6 +80,9 @@ paths:
       $ref: "./endpoints/kyc/submit-partner-kyc-statement.yaml"
     get:
       $ref: "./endpoints/kyc/retrieve-partner-kyc-statement.yaml"
+  "/api/accounts/{accountId}/kyc-profile":
+    get:
+      $ref: "./endpoints/kyc/get-kyc-profile.yaml"
   "/api/simulator/authorize":
     $ref: "./endpoints/simulator/authorize.yaml"
     servers:
