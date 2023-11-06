@@ -105,6 +105,9 @@ post:
 
         **FUNDING_SOURCE_INVALID**
         Funding source cannot be used with this card program.
+
+        **KYC_CARD_PROGRAM_REGION_MISMATCH**
+        The card program and the KYC profile are not is the same region.
       content:
         application/json:
           schema:
