@@ -11,7 +11,7 @@ properties:
   status:
     type: string
     description: The status of the KYC profile.
-    example: 'completed'
+    example: 'passed'
   region:
     type: string
     description: Region code.
