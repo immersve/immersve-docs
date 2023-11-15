@@ -1,0 +1,17 @@
+type: object
+required:
+  - type
+  - parentAccountId
+properties:
+  type: 
+    type: string
+    description: The type of the account
+    enum:
+      - cardholder
+  name:
+    type: string
+    description: Account name
+  parentAccountId:
+    type: string
+    description: The id of the partner account that this cardholder must be made child of
+    example: '12fff060a9550622e86a7a962f548c1d'
