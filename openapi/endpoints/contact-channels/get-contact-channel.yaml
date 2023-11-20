@@ -1,0 +1,42 @@
+tags:
+  - contact-channels
+summary: Get contact channel
+description: Get contact channel of the given type for the account
+parameters:
+  - name: accountId
+    in: path
+    description: Account ID for the contact channel
+    required: true
+    schema:
+      type: string
+  - name: contact-type
+    in: path
+    description: Contact channel type
+    required: true
+    schema:
+      enum:
+        - phone
+        - email
+responses:
+  "200":
+    description: Successful operation
+    content:
+      application/json:
+        schema:
+          oneOf:
+          - $ref: "./models/contact-channel-email.yaml"
+            title: Contact email
+          - $ref: "./models/contact-channel-phone.yaml"
+            title: Contact phone
+  "403":
+    description: No Authorization to access resource.
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"
+  "400":
+    description: Request fields are invalid
+    content:
+      application/json:
+        schema:
+          $ref: '../../models/api-error-400.yaml'

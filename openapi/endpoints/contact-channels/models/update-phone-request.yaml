@@ -1,0 +1,8 @@
+type: object
+required:
+  - phoneNumber
+properties:
+  phoneNumber:
+    type: string
+    description: Phone number
+    example: '+1234567890'

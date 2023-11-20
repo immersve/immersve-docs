@@ -1,0 +1,11 @@
+type: object
+properties:
+  accountId:
+    type: string
+    example: 9b7552cf9abab0f2efed72df6b3ce4bc
+  createdAt:
+    type: string
+    format: date-time
+  modifiedAt:
+    type: string
+    format: date-time

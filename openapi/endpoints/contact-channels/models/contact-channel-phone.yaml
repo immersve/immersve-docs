@@ -1,0 +1,11 @@
+allOf:
+  - $ref: ./contact-channel.yaml
+  - type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - phone
+      phoneNumber:
+        type: string
+        example: '+1234567890'

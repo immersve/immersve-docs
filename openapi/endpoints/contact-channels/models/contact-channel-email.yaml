@@ -1,0 +1,11 @@
+allOf:
+  - $ref: ./contact-channel.yaml
+  - type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - email
+      email:
+        type: string
+        example: joe@joecardholder.com

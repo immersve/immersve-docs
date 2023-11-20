@@ -14,6 +14,8 @@ tags:
     x-displayName: Accounts
   - name: card
     x-displayName: Cards
+  - name: contact-channels
+    x-displayName: Contact Channels
   - name: currency
     x-displayName: Currency
   - name: funding-source
@@ -49,6 +51,11 @@ paths:
     $ref: "./endpoints/cards/card-cancel.yaml"
   "/api/cards/{cardId}/pan-token":
     $ref: "./endpoints/cards/card-pan-token.yaml"
+  "/api/accounts/{accountId}/contact-channels/{contact-type}":
+    get:
+      $ref: "./endpoints/contact-channels/get-contact-channel.yaml"
+    put:
+      $ref: "./endpoints/contact-channels/update-contact-channel.yaml"
   "/api/spending-prerequisites":
     $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"
   "/api/currencies":
