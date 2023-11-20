@@ -1,0 +1,37 @@
+
+tags:
+  - contact-channels
+summary: Update contact email
+description: |
+  This endpoint sets or updates the contact email for the account.
+parameters:
+  - name: accountId
+    in: path
+    description: AccountId for the contact email
+    required: true
+    schema:
+      type: string
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: "./models/update-email-request.yaml"
+  required: true
+responses:
+  "200":
+    content:
+      application/json:
+        schema:
+          $ref: "./models/contact-channel-email.yaml"
+  "403":
+    description: API caller is not allowed to perform the action
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"
+  "400":
+    description: Request fields are invalid
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-400.yaml"

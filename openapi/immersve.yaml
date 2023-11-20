@@ -54,8 +54,12 @@ paths:
   "/api/accounts/{accountId}/contact-channels/{contact-type}":
     get:
       $ref: "./endpoints/contact-channels/get-contact-channel.yaml"
+  "/api/accounts/{accountId}/contact-channels/email":
     put:
-      $ref: "./endpoints/contact-channels/update-contact-channel.yaml"
+      $ref: "./endpoints/contact-channels/update-contact-email.yaml"
+  "/api/accounts/{accountId}/contact-channels/phone":
+    put:
+      $ref: "./endpoints/contact-channels/update-contact-phone.yaml"
   "/api/spending-prerequisites":
     $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"
   "/api/currencies":
