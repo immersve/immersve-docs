@@ -1,0 +1,16 @@
+get:
+  tags:
+    - accounts
+  summary: Get an account
+  description: Get an account
+  parameters:
+    $ref: "../../models/card-id-path.yaml"
+  responses:
+    "202":
+      description: Successful operation
+    "400":
+      description: Request fields are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'
