@@ -2,15 +2,20 @@ get:
   tags:
     - accounts
   summary: Get an account
-  description: Get an account
+  description: Get an Account by account id 
   parameters:
-    $ref: "../../models/card-id-path.yaml"
+  - name: accountId
+    in: path
+    description: Id of the account.
+    example: 225d85e65495722bf6517ea0ba0d6f56
+    required: true
+    schema:
+      type: string
   responses:
-    "202":
+    "200":
       description: Successful operation
-    "400":
-      description: Request fields are invalid
       content:
         application/json:
           schema:
-            $ref: '../../models/api-error-400.yaml'
+            $ref: './models/account.yaml'
+
