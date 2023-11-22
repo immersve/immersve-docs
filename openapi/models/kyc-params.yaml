@@ -2,7 +2,12 @@ type: object
 properties:
   status:
     type: string
-    description: The cardholder's KYC status.
+    description: |
+      The cardholder's KYC status.
+      - check_in_progress: KYC check is in progress, request spending prerequisites again later
+      - kyc_required: KYC is required, initiate the process by submitting a KYC statement and requesting spending prerequisites
+      - kyc_check_failed: KYC check failed, check the submitted KYC statement and retry the process or contact support
     enum:
       - check_in_progress
-      - failed
+      - kyc_required
+      - kyc_check_failed
