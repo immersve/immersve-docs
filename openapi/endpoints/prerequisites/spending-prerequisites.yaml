@@ -89,13 +89,13 @@ post:
                   }
                 },
                 {
-                  "type": "contact-email",
+                  "type": "contact_email",
                   "params": {
                     "status": "missing"
                   }
                 },
                 {
-                  "type": "contact-phone",
+                  "type": "contact_phone",
                   "params": {
                     "status": "missing"
                   }
@@ -120,6 +120,9 @@ post:
 
         **KYC_CARD_PROGRAM_REGION_MISMATCH**
         The card program and the KYC profile are not is the same region.
+
+        **AML_CHECK_FAILED**
+        AML check failed. This can't be resolved.
       content:
         application/json:
           schema:
