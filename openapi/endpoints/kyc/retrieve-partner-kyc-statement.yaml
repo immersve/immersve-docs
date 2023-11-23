@@ -19,7 +19,14 @@ responses:
         schema:
           $ref: './models/retrieve-kyc-statement-response.yaml'
   '403':
-    description: No Authorization to access resource.
+    description: |
+        Subject is not allowed to perform the action with the reason stated in the `errorCode`
+
+        **FORBIDDEN**
+        Resource does not exist or there are no sufficient permissions to perform the action.
+
+        **KYC_STATEMENT_DOES_NOT_EXIST** 
+        Partner has not submitted any KYC statements
     content:
       application/json:
         schema:
