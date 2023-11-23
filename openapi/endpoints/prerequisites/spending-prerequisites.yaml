@@ -87,6 +87,18 @@ post:
                   "params": {
                     "status": "check_in_progress"
                   }
+                },
+                {
+                  "type": "contact-email",
+                  "params": {
+                    "status": "missing"
+                  }
+                },
+                {
+                  "type": "contact-phone",
+                  "params": {
+                    "status": "missing"
+                  }
                 }
               ]
             }

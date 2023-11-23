@@ -33,6 +33,21 @@ post:
 
         **FUNDING_SOURCE_INVALID**
         Funding source cannot be used with this card program.
+
+        **KYC_REQUIRED**
+        KYC profile is absent or doesn't have PASSED status.
+
+        **CONTACT_EMAIL_AND_PHONE_REQUIRED**
+        Cardholder doesn't have a contact email and a phone.
+
+        **CONTACT_EMAIL_REQUIRED**
+        Cardholder doesn't have a contact phone.
+
+        **CONTACT_PHONE_REQUIRED**
+        Cardholder doesn't have a contact email.
+
+        **AML_CHECK_FAILED**
+        AML check failed
       content:
         application/json:
           schema:
