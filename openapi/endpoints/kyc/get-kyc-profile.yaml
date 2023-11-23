@@ -19,7 +19,14 @@ responses:
         schema:
           $ref: './models/get-kyc-profile-response.yaml'
   '403':
-    description: No Authorization to access resource or it does not exist.
+    description: |
+        Subject is not allowed to perform the action with the reason stated in the `errorCode`
+
+        **FORBIDDEN**
+        Account does not exist or there are no sufficient permissions to view KYC profile for this account.
+
+        **KYC_PROFILE_DOES_NOT_EXIST** 
+        KYC profile does not exist for this account. It gets created upon initiating the first KYC check.
     content:
       application/json:
         schema:
