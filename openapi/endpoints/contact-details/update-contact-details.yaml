@@ -1,13 +1,13 @@
 
 tags:
-  - contact-channels
-summary: Update contact phone
+  - contact-details
+summary: Update contact details
 description: |
-  This endpoint sets or updates the contact phone for the account. The contact phone is used to send notifications to the cardholder, such as for 3DSecure and one time passwords.
+  This endpoint sets or updates the contact details (email and phone) for the account. The contact details are used to send notifications to the cardholder, such as for 3DSecure and one time passwords.
 parameters:
   - name: accountId
     in: path
-    description: AccountId for the contact phone
+    description: AccountId for the contact details
     required: true
     schema:
       type: string
@@ -15,15 +15,14 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: "./models/update-phone-request.yaml"
-        title: Update contact phone
+        $ref: "./models/update-contact-details-request.yaml"
   required: true
 responses:
   "200":
     content:
       application/json:
         schema:
-          $ref: "./models/contact-channel-phone.yaml"
+          $ref: "./models/get-contact-details-response.yaml"
   "403":
     description: API caller is not allowed to perform the action
     content:

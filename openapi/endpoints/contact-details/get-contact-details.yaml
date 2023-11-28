@@ -1,7 +1,7 @@
 tags:
-  - contact-channels
-summary: Get contact channel
-description: Get contact channel of the given type for the account
+  - contact-details
+summary: Get contact details
+description: Get contact details for the account.
 parameters:
   - name: accountId
     in: path
@@ -9,25 +9,13 @@ parameters:
     required: true
     schema:
       type: string
-  - name: contact-type
-    in: path
-    description: Contact channel type
-    required: true
-    schema:
-      enum:
-        - phone
-        - email
 responses:
   "200":
     description: Successful operation
     content:
       application/json:
         schema:
-          oneOf:
-          - $ref: "./models/contact-channel-email.yaml"
-            title: Contact email
-          - $ref: "./models/contact-channel-phone.yaml"
-            title: Contact phone
+          $ref: "./models/get-contact-details-response.yaml"
   "403":
     description: No Authorization to access resource.
     content:
