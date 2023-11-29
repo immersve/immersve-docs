@@ -113,7 +113,7 @@ post:
         Resource liveness does not match request liveness.
 
         **CARD_PROGRAM_INVALID**
-        Card program doesn’t belong to a partner this cardholder is associated with.
+        Card program does not belong to a partner this cardholder is associated with.
 
         **FUNDING_SOURCE_INVALID**
         Funding source cannot be used with this card program.
@@ -122,7 +122,7 @@ post:
         The card program and the KYC profile are not is the same region.
 
         **AML_CHECK_FAILED**
-        AML check failed. This can't be resolved.
+        AML check failed. This cannot be resolved.
       content:
         application/json:
           schema:
