@@ -8,11 +8,19 @@ tags:
 
 # Card Funding
 
-A Funding Source is a pointer to a source of funds for a cardholder that can be drawn upon in relation to transactions made on cards issued to that cardholder. A Funding Source must have been created prior to creating a card; a card must be tagged with a Funding Source at the time of card creation.
+A Funding Source is an off-chain record of available balance against which card
+transactions are authorized. A Funding Source is owned by a cardholder and can
+be associated with many cards transacting against the same available balance .
+A Funding Source must have sufficient balance for a transaction to be
+authorized.
 
-Whilst a Funding Source is a pointer to the state of a ledger (often a blockchain address or smart contract address) it is in fact decoupled from the underlying ledger. For instance, when [listing Funding Sources](/api-reference/list-funding-sources) the `balance` represented within Funding Source may not always match the balance held on the underlying ledger. This might be due to instances where deposit or load limits have been exceeded or where Immersve AML/CFT controls have determined that the funds in question should not contribute towards the `balance`.
+A Funding Source balance is eventually consistent with the on-chain deposits.
+However, the balance available to spend may differ. This could happen if deposit
+or load limits are exceeded. AML/CFT rules can dictate that the funds should not
+be included in the balance.
 
-Given that there is sufficient `balance` within the Funding Source at the time of presentation of a transaction on a card associated with that Funding Source then the transaction may be approved. Any number of cards can be created in relation to a given Funding Source and all cards associated to the Funding Source will have access to the balance held by it.
+A card will not authorize transactions without an associated Funding Source. You
+must reference a Funding Source when creating a card.
 
 ## Authentication
 
@@ -65,6 +73,7 @@ const contract = new Contract(contractAddress, abi, signer); // third param Sign
 
 const { hash } = await contract[method](...Object.values(params));
 ```
+
 </details>
 
 ### Wallet Funding for Development and Testing
