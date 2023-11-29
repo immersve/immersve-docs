@@ -29,10 +29,22 @@ post:
         Card program or cardholder have the wrong liveness for the request.
 
         **CARD_PROGRAM_INVALID**
-        Card program doesn’t belong to a partner this cardholder is associated with.
+        Card program does not belong to a partner this cardholder is associated with.
 
         **FUNDING_SOURCE_INVALID**
         Funding source cannot be used with this card program.
+
+        **KYC_REQUIRED**
+        KYC profile is missing, does not have PASSED status, or does not match card program region. Use the spending prerequisites endpoint for more details.
+
+        **CONTACT_EMAIL_REQUIRED**
+        Cardholder does not have a contact phone.
+
+        **CONTACT_PHONE_REQUIRED**
+        Cardholder does not have a contact email.
+
+        **AML_CHECK_FAILED**
+        AML check failed.
       content:
         application/json:
           schema:

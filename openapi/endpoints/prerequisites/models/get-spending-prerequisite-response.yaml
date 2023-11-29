@@ -10,9 +10,15 @@ properties:
           enum:
             - smart_contract_write
             - kyc
+            - contact_email
+            - contact_phone
         params:
           oneOf:
             - $ref: '../../../models/smart-contract-write-params.yaml'
               title: smart_contract_write
             - $ref: '../../../models/kyc-params.yaml'
               title: kyc
+            - $ref: '../../../models/contact-channel-email-params.yaml'
+              title: contact_email
+            - $ref: '../../../models/contact-channel-phone-params.yaml'
+              title: contact_phone
