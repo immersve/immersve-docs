@@ -1,0 +1,6 @@
+type: object
+properties:
+  email:
+    $ref: ./contact-channel-email.yaml
+  phone:
+    $ref: ./contact-channel-phone.yaml

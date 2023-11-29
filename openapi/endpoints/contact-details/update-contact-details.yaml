@@ -1,0 +1,37 @@
+
+tags:
+  - contact-details
+summary: Update contact details
+description: |
+  This endpoint sets or updates the contact details (email and phone) for the account. The contact details are used to send notifications to the cardholder, such as for 3DSecure and one time passwords.
+parameters:
+  - name: accountId
+    in: path
+    description: AccountId for the contact details
+    required: true
+    schema:
+      type: string
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: "./models/update-contact-details-request.yaml"
+  required: true
+responses:
+  "200":
+    content:
+      application/json:
+        schema:
+          $ref: "./models/get-contact-details-response.yaml"
+  "403":
+    description: API caller is not allowed to perform the action
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"
+  "400":
+    description: Request fields are invalid
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-400.yaml"
