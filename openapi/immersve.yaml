@@ -119,6 +119,9 @@ paths:
     $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
   "/api/funding-sources":
     $ref: "./endpoints/funding-sources/register-funding-source.yaml"
+  "/api/funding-channels":
+    post:
+      $ref: "./endpoints/funding-channel/funding-channel-create.yaml"
   "/api/funding-channel/{fundingChannelId}":
       $ref: "./endpoints/funding-channel/funding-channel-get.yaml"
   "/api/accounts/{accountId}":
