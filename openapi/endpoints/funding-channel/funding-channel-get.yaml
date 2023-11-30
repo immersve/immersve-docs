@@ -1,0 +1,27 @@
+get:
+  tags:
+    - Funding Channel
+  summary: Get a funding channel
+  description: Retrieves a specific fundingChannel for the given account
+  parameters:
+  - name: fundingChannelId
+    in: path
+    description: id for the fundingChannel
+    example: fundingChannelId1
+    required: true
+    schema:
+      type: string
+
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/get-funding-channel.yaml"
+    "403":
+      description: No Authorization to access resource
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-403.yaml'
