@@ -117,6 +117,8 @@ paths:
     $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
   "/api/funding-sources":
     $ref: "./endpoints/funding-sources/register-funding-source.yaml"
+  "/api/accounts/{accountId}":
+    $ref: "./endpoints/accounts/accounts-get.yaml"
 
 components:
   securitySchemes:
