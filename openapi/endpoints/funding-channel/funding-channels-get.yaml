@@ -1,0 +1,26 @@
+get:
+  tags:
+    - Funding Channel
+  summary: List funding channels
+  description: Retrieves a list of fundingChannels for the given account
+  parameters:
+  - name: accountId
+    in: path
+    description: Partner account id to retrieve funding channels for
+    required: true
+    schema:
+      type: string
+
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/get-funding-channels.yaml"
+    "403":
+      description: No Authorization to access resource
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-403.yaml'

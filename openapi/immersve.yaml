@@ -32,6 +32,8 @@ tags:
     x-displayName: Simulator
   - name: funding-source
     x-displayName: Funding source
+  - name: funding-channel
+    x-displayName: Funding Channel
 security:
   - immersve_auth: []
   - $ref: "./models/api-key-auth.yaml"
@@ -119,6 +121,8 @@ paths:
     $ref: "./endpoints/funding-sources/register-funding-source.yaml"
   "/api/accounts/{accountId}":
     $ref: "./endpoints/accounts/accounts-get.yaml"
+  "/api/account/{accountId}/funding-channels":
+      $ref: "./endpoints/funding-channel/funding-channels-get.yaml"
 
 components:
   securitySchemes:
