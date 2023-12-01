@@ -1,0 +1,30 @@
+get:
+  tags:
+    - accounts
+  summary: Get an account
+  description: Get an Account by account id 
+  parameters:
+  - name: accountId
+    in: path
+    description: Id of the account.
+    example: 225d85e65495722bf6517ea0ba0d6f56
+    required: true
+    schema:
+      type: string
+
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: './models/account.yaml'
+    "403":
+      description: No Authorization to access resource
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-403.yaml'
+
+
+
