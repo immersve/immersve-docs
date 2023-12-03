@@ -19,4 +19,4 @@ properties:
   name:
     type: string
     description: Name of the funding channel
-    example: bof-polygon-usdc
+    example: immersve-polygon-usdc
