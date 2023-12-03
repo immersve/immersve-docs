@@ -47,6 +47,10 @@ paths:
       $ref: "./endpoints/accounts/accounts-create.yaml"
   "/api/cards":
     $ref: "./endpoints/cards/create-card-async.yaml"
+  "/api/cards/{cardId}/set-pin":
+    $ref: "./endpoints/cards/card-set-pin.yaml"
+    servers:
+      - url: https://api-sec.immersve.com/
   "/api/cards/{cardId}/cancel-async":
     $ref: "./endpoints/cards/card-cancel.yaml"
   "/api/cards/{cardId}/pan-token":

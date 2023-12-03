@@ -1,12 +1,23 @@
 post:
   tags:
-    - cards-custodial
-  summary: Set card pin
+    - card
+  summary: Set a card PIN
   security:
-    - $ref: '../../models/api-key-auth.yaml'
+    - immersve_auth: []
   parameters:
     $ref: '../../models/card-id-path.yaml'
-  description: Sets a new pin to the card
+  description: |
+    Set a new PIN on a card.
+    ___________________________________________________________
+    The PIN has to obey the following validation rules:
+    - Must be exactly four digits
+    - Can not be a repeating sequence: `0000`, `1111`, `2222`, `3333`, `4444`, `5555`, `6666`, `7777`, `8888`, and `9999`
+    - Where Y, M, and D represent the customer's date of birth with the format `Y1Y2Y3Y4-M1M2-D1D2`, the PIN digits should not use the formats `Y1Y2Y3Y4`, `M1M2D1D2`, `Y3Y4M2D2`, `Y3Y4M1M2`. For example, if the date of birth is 1 March 1963 the following will not be accepted: 1963, 0301, 6331, 6303
+    - Can not be the same as the last four digits of the PAN
+    - Can not match any part of the customer's phone number(s)
+    - Can not match any part of any external reference number for the customer
+    ___________________________________________________________
+
   requestBody:
     content:
       application/json:
@@ -15,3 +26,28 @@ post:
   responses:
     '200':
       description: Successful operation
+    '403':
+      description: |
+        User is not allowed to perform the action with the reason stated in the `errorCode`
+
+        **FORBIDDEN**  
+        The card or cardholder does not exist or the user has insufficient permissions.
+
+        **LIVENESS_MISMATCH**  
+        Resource liveness does not match request liveness.
+
+        **INVALID_PIN_FORMAT**  
+        The PIN did not pass the validation rules.
+
+        **CARD_SET_PIN_FORBIDDEN**  
+        The card is blocked, expired, or not active.
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-403.yaml'
+    '400':
+      description: Request fields are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'
