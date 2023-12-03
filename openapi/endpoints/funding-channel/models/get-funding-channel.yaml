@@ -10,7 +10,7 @@ properties:
     example: "2023-08-14T12:32:54"
   address:
     type: string
-    description: 
+    description: Fund storage smart contract address
     example: "0x2e429C4324227F70f0101a17214d249cb04035Ec0"
   fundingType:
     type: string
@@ -20,7 +20,3 @@ properties:
     type: string
     description: Name of the funding channel
     example: bof-polygon-usdc
-  liveness:
-    type: string
-    description:
-    example: live

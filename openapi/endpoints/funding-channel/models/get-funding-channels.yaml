@@ -4,3 +4,5 @@ properties:
     type: array
     items:
       $ref: './get-funding-channel.yaml'
+  pageInfo:
+    $ref: '../../../models/page-info.yaml'
