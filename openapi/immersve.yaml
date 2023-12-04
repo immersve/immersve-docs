@@ -32,6 +32,8 @@ tags:
     x-displayName: Simulator
   - name: funding-source
     x-displayName: Funding source
+  - name: funding-channel
+    x-displayName: Funding Channel
 security:
   - immersve_auth: []
   - $ref: "./models/api-key-auth.yaml"
@@ -117,6 +119,8 @@ paths:
     $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
   "/api/funding-sources":
     $ref: "./endpoints/funding-sources/register-funding-source.yaml"
+  "/api/funding-channel/{fundingChannelId}":
+      $ref: "./endpoints/funding-channel/funding-channel-get.yaml"
   "/api/accounts/{accountId}":
     $ref: "./endpoints/accounts/accounts-get.yaml"
 
