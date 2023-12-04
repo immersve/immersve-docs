@@ -1,9 +1,9 @@
 post:
   tags:
     - Funding Channel
-  summary: Claim a funding channel
+  summary: Create a Funding Channel
   description: |
-    This endpoint can be used to claim an on chain funding channel.
+    This endpoint can be used to create a Funding Channel.
   requestBody:
     content:
       application/json:
@@ -38,13 +38,3 @@ post:
           schema:
             $ref: "../../models/api-error-403.yaml"
 
-    "400":
-      description: |
-        Request fields are invalid
-
-        **FUNDING_TYPE_INVALID**
-        Invalid `fundingTypeName` provided
-      content:
-        application/json:
-          schema:
-            $ref: "../../models/api-error-400.yaml"

@@ -6,17 +6,21 @@ required:
 properties:
   accountId:
     type: string
-    description: The ID of the partner account to add this Funding Channel to.
+    description: The id of the partner account to add this Funding Channel to.
     example: 65a7e8ef0d230d0a6bf755e07d39eb02
   fundingTypeName:
     type: string
-    description: The name of the fundingType.
+    description: The name of the Funding Type.
+    enum:
+      - polygon-usdc-universal-evm-test
+      - polygon-usdc-universal-evm-live
+
     example: polygon-usdc-universal-evm-test
   params:
     type: object
-    description: parameter.
+    description: Parameters for the Funding Channel. The valid parameters depend on the Funding Type.
     properties:
       storageAddress: 
         type: string
-        description: The address of the storage contract.
-        example: 0x1234567890123456789012345678901234567890
+        description: The address of the storage contract. Required for universal evm Funding Types.
+        example: '0x1234567890123456789012345678901234567890'

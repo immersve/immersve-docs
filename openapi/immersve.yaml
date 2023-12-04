@@ -33,7 +33,7 @@ tags:
   - name: funding-source
     x-displayName: Funding source
   - name: funding-channel
-    x-displayName: Funding Channel
+    x-displayName: Funding Channels
 security:
   - immersve_auth: []
   - $ref: "./models/api-key-auth.yaml"
