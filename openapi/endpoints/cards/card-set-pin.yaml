@@ -3,6 +3,7 @@ post:
     - card
   summary: Set a card PIN
   security:
+    - immersve_auth: []
     - $ref: "../../models/api-key-auth.yaml"
   parameters:
     $ref: "../../models/card-id-path.yaml"
