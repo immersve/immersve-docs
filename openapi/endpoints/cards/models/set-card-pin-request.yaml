@@ -1,13 +1,8 @@
 type: object
 required:
   - newPin
-  - cvv
 properties:
   newPin:
     type: string
     description: New PIN to set on the card
-    example: '1337'
-  cvv:
-    type: string
-    description: Card verification value
-    example: '123'
+    example: "1337"
