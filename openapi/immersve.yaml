@@ -33,7 +33,7 @@ tags:
   - name: funding-source
     x-displayName: Funding source
   - name: funding-channel
-    x-displayName: Funding Channel
+    x-displayName: Funding Channels
 security:
   - immersve_auth: []
   - $ref: "./models/api-key-auth.yaml"
@@ -124,7 +124,9 @@ paths:
   "/api/funding-sources":
     $ref: "./endpoints/funding-sources/register-funding-source.yaml"
   "/api/funding-channel/{fundingChannelId}":
-      $ref: "./endpoints/funding-channel/funding-channel-get.yaml"
+    $ref: "./endpoints/funding-channel/funding-channel-get.yaml"
+  "/api/funding-channel":
+    $ref: "./endpoints/funding-channel/funding-channel-create.yaml"
   "/api/accounts/{accountId}":
     $ref: "./endpoints/accounts/accounts-get.yaml"
 

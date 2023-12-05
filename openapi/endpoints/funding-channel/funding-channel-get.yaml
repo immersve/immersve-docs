@@ -1,13 +1,13 @@
 get:
   tags:
     - Funding Channel
-  summary: Get a funding channel
-  description: Retrieves a specific fundingChannel for the given account
+  summary: Get a Funding Channel
+  description: Retrieves a specific Funding Channel for the given account
   parameters:
   - name: fundingChannelId
     in: path
-    description: id for the fundingChannel
-    example: fundingChannelId1
+    description: id for the Funding Channel
+    example: 315bad4e81ce0f26966a41b9d451638b
     required: true
     schema:
       type: string
