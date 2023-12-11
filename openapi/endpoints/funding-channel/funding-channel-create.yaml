@@ -1,6 +1,6 @@
 post:
   tags:
-    - Funding Channel
+    - funding-channel
   summary: Create a Funding Channel
   description: |
     This endpoint can be used to create a Funding Channel.
