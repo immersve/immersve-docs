@@ -1,12 +1,12 @@
 get:
   tags:
     - Funding Channel
-  summary: List funding channels
+  summary: List Funding Channels
   description: Retrieves a list of Funding Channels for the given account
   parameters:
   - name: accountId
     in: path
-    description: Partner account id to retrieve funding channels for.
+    description: Partner account id to retrieve Funding Channels for.
     required: true
     schema:
       type: string
