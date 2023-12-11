@@ -1,0 +1,40 @@
+post:
+  tags:
+    - funding-channel
+  summary: Create a Funding Channel
+  description: |
+    This endpoint can be used to create a Funding Channel.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./models/create-funding-channel.yaml"
+    required: true
+
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/get-funding-channel.yaml"
+    "403":
+      description: |
+        User is not allowed to perform the action with the reason stated in the `errorCode`
+
+        **FORBIDDEN**
+        Insufficient permissions to perform the action.
+        
+        **ACCOUNT_TYPE_INVALID**
+        `accountType` of the `accountId` is not of type `PARTNER`.
+
+        **FUNDING_CHANNEL_EXISTS**
+        Instance of this FundingChannel has already been claimed.
+        
+        **STORAGE_ADDRESS_INVALID**
+        `storageAddress` provided is invalid.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
+

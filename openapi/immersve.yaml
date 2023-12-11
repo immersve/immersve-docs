@@ -21,7 +21,7 @@ tags:
   - name: funding-source
     x-displayName: Funding Sources
   - name: funding-channel
-    x-displayName: Funding Channel
+    x-displayName: Funding Channels
   - name: transactions
     x-displayName: Transactions
   - name: kyc
@@ -49,6 +49,10 @@ paths:
       $ref: "./endpoints/accounts/accounts-create.yaml"
   "/api/cards":
     $ref: "./endpoints/cards/create-card-async.yaml"
+  "/api/cards/{cardId}/set-pin":
+    $ref: "./endpoints/cards/card-set-pin.yaml"
+    servers:
+      - url: https://api-sec.immersve.com/
   "/api/cards/{cardId}/cancel-async":
     $ref: "./endpoints/cards/card-cancel.yaml"
   "/api/cards/{cardId}/pan-token":
@@ -119,6 +123,10 @@ paths:
     $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
   "/api/funding-sources":
     $ref: "./endpoints/funding-sources/register-funding-source.yaml"
+  "/api/funding-channel/{fundingChannelId}":
+    $ref: "./endpoints/funding-channel/funding-channel-get.yaml"
+  "/api/funding-channel":
+    $ref: "./endpoints/funding-channel/funding-channel-create.yaml"
   "/api/accounts/{accountId}":
     $ref: "./endpoints/accounts/accounts-get.yaml"
   "/api/account/{accountId}/funding-channels":

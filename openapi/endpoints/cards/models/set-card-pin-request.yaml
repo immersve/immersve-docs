@@ -1,23 +1,8 @@
 type: object
 required:
   - newPin
-  - cvv
 properties:
   newPin:
     type: string
-    description: |
-      New pin to set on the card.
-      ___________________________________________________________
-      * This newPin property should be following the below rules:
-      * Must be 4 digits only.
-      * Should not be one of the following values: 0000, 1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, and 9999.
-      * Should not use the formats Y1Y2Y3Y4, M1M2D1D2, Y3Y4M2D2, Y3Y4M1M2, where Y, M, and D represent the customer's date of birth with the following format Y1Y2Y3Y4-M1M2-D1D2.
-      * Should not be the same as the last four digits of the PAN.
-      * Should not match any part of the customer's phone number(s).
-      * Should not match any part of any external reference number for the customer.
-      ___________________________________________________________
-    example: '1234'
-  cvv:
-    type: string
-    description: Card verification value
-    example: '123'
+    description: New PIN to set on the card
+    example: "1337"
