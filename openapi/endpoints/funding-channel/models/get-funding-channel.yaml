@@ -12,7 +12,7 @@ properties:
     type: string
     description: Fund storage smart contract address.
     example: "0x2e429C4324227F70f0101a17214d249cb04035Ec0"
-  fundingType:
+  fundingTypeName:
     type: string
     description: The type of Funding Channel registered.
     example: polygon-usdc-universal-evm-test
