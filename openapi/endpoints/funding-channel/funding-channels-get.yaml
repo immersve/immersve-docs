@@ -1,6 +1,6 @@
 get:
   tags:
-    - Funding Channel
+    - funding-channel
   summary: List Funding Channels
   description: Retrieves a list of Funding Channels for the given account
   parameters:

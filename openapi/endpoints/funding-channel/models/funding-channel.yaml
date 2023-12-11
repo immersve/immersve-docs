@@ -1,0 +1,22 @@
+type: object
+properties:
+  id:
+    type: string
+    description: Funding Channel primary identifier.
+    example: 315bad4e81ce0f26966a41b9d451638b
+  createdAt:
+    type: string
+    description: Timestamp of Funding Channel creation.
+    example: "2023-08-14T12:32:54"
+  address:
+    type: string
+    description: Fund storage smart contract address.
+    example: "0x2e429C4324227F70f0101a17214d249cb04035Ec0"
+  fundingTypeName:
+    type: string
+    description: The type of Funding Channel registered.
+    example: polygon-usdc-universal-evm-test
+  name:
+    type: string
+    description: Name of the Funding Channel.
+    example: immersve-polygon-usdc

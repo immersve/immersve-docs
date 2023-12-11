@@ -20,6 +20,8 @@ tags:
     x-displayName: Currency
   - name: funding-source
     x-displayName: Funding Sources
+  - name: funding-channel
+    x-displayName: Funding Channel
   - name: transactions
     x-displayName: Transactions
   - name: kyc
@@ -32,8 +34,6 @@ tags:
     x-displayName: Simulator
   - name: funding-source
     x-displayName: Funding source
-  - name: funding-channel
-    x-displayName: Funding Channels
 security:
   - immersve_auth: []
   - $ref: "./models/api-key-auth.yaml"

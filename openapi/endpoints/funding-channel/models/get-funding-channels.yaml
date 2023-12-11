@@ -3,4 +3,4 @@ properties:
   items:
     type: array
     items:
-      $ref: './get-funding-channel.yaml'
+      $ref: './funding-channel.yaml'
