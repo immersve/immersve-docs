@@ -58,6 +58,14 @@ footer {
   --ifm-color-primary-lightest: #bbd4fe;
 }
 
+table {
+  table-layout: fixed;
+}
+
+table td {
+  word-break: break-word;
+}
+
 
 @media (min-width: 997px) {
   .navbar-title {
