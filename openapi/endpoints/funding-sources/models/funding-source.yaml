@@ -22,5 +22,5 @@ properties:
     example: "USDC"
   fundingChannelId:
     type: string
-    description: The ID that this Funding Source belongs to.
+    description: The id of the Funding Channel that this Funding Source relates to.
     example: 315bad4e81ce0f26966a41b9d451638b
