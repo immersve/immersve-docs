@@ -122,7 +122,7 @@ paths:
       - url: https://<partnerBaseUrl>/card/notification
     $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
   "/api/funding-sources":
-    $ref: "./endpoints/funding-sources/register-funding-source.yaml"
+    $ref: "./endpoints/funding-sources/create-funding-source.yaml"
   "/api/funding-channel/{fundingChannelId}":
     $ref: "./endpoints/funding-channel/funding-channel-get.yaml"
   "/api/funding-channels":
