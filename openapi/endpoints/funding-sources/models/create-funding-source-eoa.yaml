@@ -2,7 +2,7 @@ type: object
 required:
   - accountId
   - fundingAddress
-  - fundingSourceType
+  - fundingChannelId
 properties:
   accountId:
     type: string
@@ -12,9 +12,7 @@ properties:
     type: string
     description: The address to claim as a Funding Source. This can be a smart contract implementing ERC-1271 or an EOA address.
     example: 0x1234567890123456789012345678901234567890
-  fundingSourceType:
+  fundingChannelId:
     type: string
-    description: The type of Funding Source to create.
-    enum:
-      - ImmersvePolygonMumbaiUSDC
-      - ImmersvePolygonUSDC
+    description: The id of the Funding Channel that this Funding Source relates to.
+    example: 315bad4e81ce0f26966a41b9d451638b
