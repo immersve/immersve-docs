@@ -28,8 +28,8 @@ guide](/guides/authentication).
 
 ## Funding Source Provisioning
 
-A Funding Source is created by a request to the [claim a Funding Source for an
-account](/api-reference/claim-a-funding-source-for-an-account) endpoint. The
+A Funding Source is created by a request to the [create a Funding Source for an
+account](/api-reference/create-a-funding-source-for-an-account) endpoint. The
 funding wallet may be an EOA or a smart contract implementing the ERC-1271
 interface.
 
