@@ -3,7 +3,7 @@ required:
   - accountId
   - fundingAddress
   - ownerAddress
-  - fundingSourceType
+  - fundingChannelId
   - message
   - signature
 properties:
@@ -18,12 +18,10 @@ properties:
   ownerAddress:
     type: string
     description: EOA address that matches a login wallet.
-  fundingSourceType:
+  fundingChannelId:
     type: string
-    description: The type of Funding Source to create.
-    enum:
-      - ImmersvePolygonMumbaiUSDC
-      - ImmersvePolygonUSDC
+    description: The id of the Funding Channel that this Funding Source relates to.
+    example: 315bad4e81ce0f26966a41b9d451638b
   message:
     type: string
     description: An EIP-4361 message which is signed by the ownerAddress. This is used to verify ownership of the owner address.

@@ -20,8 +20,7 @@ properties:
     type: string
     description: Currency of the balance
     example: "USDC"
-  fundingSourceType:
+  fundingChannelId:
     type: string
-    description: Type of the Funding Source. Currently only ImmersvePolygonUSDC is supported
-    enum:
-      - ImmersvePolygonUSDC
+    description: The id of the Funding Channel that this Funding Source relates to.
+    example: 315bad4e81ce0f26966a41b9d451638b
