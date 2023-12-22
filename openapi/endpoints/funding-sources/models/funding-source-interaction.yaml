@@ -1,0 +1,60 @@
+type: object
+properties:
+  accountId:
+    type: string
+    description: The accountId to which the interaction belongs to.
+    example: 979254377d0e05002242d038926a5691
+  amount:
+    type: number
+    description: The minor units amount of the transaction.
+    example: 20000
+  amountCurrency:
+    type: string
+    description: The token used in the transaction.
+    example: USDC
+  blockNumber:
+    type: string
+    description: The chain block number in which the transactions was mined (if applicable).
+    example: '42409064'
+  contextRef:
+    type: string
+    description: A context reference based on the type of the interaction. It could be a `transactionId` on the case of a Payment, or an `eventId` in the case of an smart contract event.
+    example: '1000000488078'
+  contextType:
+    type: string
+    description: A context type for the context reference, which will depend on the interaction type. For smart contract events, this would be `smart-contract-event` , for E6 rtf, this would be `rtf-transaction`.
+    example: rtf-transaction
+  createdAt:
+    type: string
+    description: Date time on which the interaction was created.
+    example: '2023-11-15T00:48:48.902Z'
+  fundingSourceId:
+    type: string
+    description: Funding source to which the interaction belongs to.
+    example: 2be03cd65da12fe29b8910af7b4b85e7
+  id:
+    type: string
+    description: ID of the interaction.
+    example: f0220f084a182e3f4b4d605cda1d3340
+  interactionStatus:
+    type: string
+    description: The current status of the interaction. It will vary depending on the interaction type.
+    example: ProcessingSuccessful
+  interactionType:
+    type: string
+    description: The interaction type.
+    enum: 
+      - Deposit
+      - Withdrawal
+      - Refund
+      - Payment
+    example: Payment
+  transactionHash:
+    type: string
+    description: The blockchain transaction hash on which the interaction happened, when applicable.
+    example: '0x3c561ba7fb04b8176f5478d26172d7cef02cf4ac6806e047ffaf5af70ccf1e69'
+  modifiedAt:
+    type: string
+    description: Last modified date of this interaction.
+    example: '2023-11-15T00:49:59.261Z'
+  

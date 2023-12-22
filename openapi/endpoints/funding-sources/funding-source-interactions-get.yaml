@@ -1,0 +1,27 @@
+get:
+  tags:
+    - funding-source
+  summary: Get Funding Source Interactions for a Funding Source
+  description: |
+    Retrieves a list of Funding Source Interactions for a given Funding Source.
+  parameters:
+  - name: fundingSourceId
+    in: path
+    description: id for the Funding Source.
+    example: 2be03cd65da12fe29b8910af7b4b85e7
+    required: true
+    schema:
+      type: string
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/get-funding-source-interactions.yaml"
+    "403":
+      description: No Authorization to access resource
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-403.yaml'

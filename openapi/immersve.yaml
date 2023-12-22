@@ -108,7 +108,6 @@ paths:
     $ref: "./endpoints/simulator/reverse.yaml"
     servers:
       - url: https://test.immersve.com/
-
   "/authorizations":
     servers:
       - url: https://<partnerBaseUrl>/transactions
@@ -123,6 +122,8 @@ paths:
     $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
   "/api/funding-sources":
     $ref: "./endpoints/funding-sources/create-funding-source.yaml"
+  "/api/funding-sources/{fundingSourceId}/interactions":
+    $ref: "./endpoints/funding-sources/funding-source-interactions-get.yaml"
   "/api/funding-channel/{fundingChannelId}":
     $ref: "./endpoints/funding-channel/funding-channel-get.yaml"
   "/api/funding-channels":
@@ -130,7 +131,7 @@ paths:
   "/api/accounts/{accountId}":
     $ref: "./endpoints/accounts/accounts-get.yaml"
   "/api/account/{accountId}/funding-channels":
-      $ref: "./endpoints/funding-channel/funding-channels-get.yaml"
+    $ref: "./endpoints/funding-channel/funding-channels-get.yaml"
 
 components:
   securitySchemes:
