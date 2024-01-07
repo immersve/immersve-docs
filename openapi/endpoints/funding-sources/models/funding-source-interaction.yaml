@@ -70,7 +70,7 @@ properties:
       type:
         type: string
         description: The type of Funding Channel.
-        example: 'polygon-usdc-universal-evm-test'
+        example: 'polygon-usdc-universal-evm-live'
       strategy:
         type: string
         description: The funding type strategy.
