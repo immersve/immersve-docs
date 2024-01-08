@@ -2,15 +2,15 @@ type: object
 properties:
   id:
     type: string
-    description: id of the Funding Source Interaction.
+    description: ID of the Funding Source Interaction.
     example: f0220f084a182e3f4b4d605cda1d3340
   fundingSourceId:
     type: string
-    description: Funding Source to which the interaction belongs to.
+    description: The ID of the Funding Source that this Interaction relates to.
     example: 2be03cd65da12fe29b8910af7b4b85e7
   accountId:
     type: string
-    description: The accountId to which the interaction belongs to.
+    description:  The ID of the account that this Interaction relates to.
     example: 979254377d0e05002242d038926a5691
   type:
     type: string

@@ -7,7 +7,7 @@ get:
   parameters:
   - name: fundingSourceId
     in: path
-    description: id for the Funding Source.
+    description: ID for the Funding Source.
     example: 2be03cd65da12fe29b8910af7b4b85e7
     required: true
     schema:

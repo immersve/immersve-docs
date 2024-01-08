@@ -4,5 +4,3 @@ properties:
     type: array
     items:
       $ref: './funding-source-interaction.yaml'
-  pageInfo:
-    $ref: '../../../models/page-info.yaml'
