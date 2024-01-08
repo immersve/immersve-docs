@@ -46,7 +46,7 @@ properties:
     properties:
       ref:
         type: string
-        description: A context reference based on the type of the interaction. It could be a `transactionId` on the case of a Payment, or an `eventId` in the case of an smart contract event.
+        description: A context reference based on the type of the interaction. It could be a `transactionId` in the case of a payment, or an `eventId` in the case of an smart contract event.
         example: '1000000488078'
       type:
         type: string
@@ -54,7 +54,7 @@ properties:
         example: transaction
       blockNumber:
         type: string
-        description: The chain block number in which the transactions was mined (if applicable).
+        description: The chain block number in which the transactions was mined, when applicable.
         example: '42409064'
       transactionHash:
         type: string
