@@ -1,0 +1,79 @@
+type: object
+properties:
+  id:
+    type: string
+    description: ID of the Funding Source Interaction.
+    example: f0220f084a182e3f4b4d605cda1d3340
+  fundingSourceId:
+    type: string
+    description: The ID of the Funding Source that this Interaction relates to.
+    example: 2be03cd65da12fe29b8910af7b4b85e7
+  accountId:
+    type: string
+    description:  The ID of the account that this Interaction relates to.
+    example: 979254377d0e05002242d038926a5691
+  type:
+    type: string
+    enum: [Deposit, Withdrawal, Refund, Payment]
+    description: >
+      The type of Funding Source Interaction:
+        * `Deposit` - Funds added to the Funding Source.  
+        * `Withdrawal` - Funds removed from the Funding Source.
+        * `Refund` - Return of paid funds to the Funding Source. 
+        * `Payment` - Transfer of funds from the Funding Source.
+    example: Payment
+  status:
+    type: string
+    description: The current status of the interaction. It will vary depending on the interaction type.
+    example: processing-successful
+  amount:
+    type: number
+    description: The minor units amount of the transaction.
+    example: 20000
+  token:
+    type: string
+    description: The token used in the transaction.
+    example: USDC
+  createdAt:
+    type: string
+    description: Date time on which the interaction was created.
+    example: '2023-11-15T00:48:48.902Z'
+  modifiedAt:
+    type: string
+    description: Last modified date of this interaction.
+    example: '2023-11-15T00:49:59.261Z'
+  context:
+    type: object
+    properties:
+      ref:
+        type: string
+        description: A context reference based on the type of the interaction. It could be a `transactionId` in the case of a payment, or an `eventId` in the case of an smart contract event.
+        example: '1000000488078'
+      type:
+        type: string
+        description: A context type for the context reference, which will depend on the interaction type. 
+        enum: [card-transaction, smart-contract-event]
+        example: card-transaction
+      blockNumber:
+        type: string
+        description: The chain block number in which the transactions was mined, when applicable.
+        example: '42409064'
+      transactionHash:
+        type: string
+        description: The blockchain transaction hash on which the interaction happened, when applicable.
+        example: '0x3c561ba7fb04b8176f5478d26172d7cef02cf4ac6806e047ffaf5af70ccf1e69'
+  channel:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Funding Channel primary identifier.
+        example: '315bad4e81ce0f26966a41b9d451638b'
+      type:
+        type: string
+        description: The type of Funding Channel.
+        example: 'polygon-usdc-universal-evm-live'
+      strategy:
+        type: string
+        description: The funding type strategy.
+        example: 'universal-evm'
