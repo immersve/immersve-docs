@@ -1,7 +1,7 @@
 get:
   tags:
     - funding-source
-  summary: Get Funding Source Interactions for a Funding Source
+  summary: List Funding Source Interactions
   description: |
     Retrieves a list of Funding Source Interactions for a given Funding Source.
   parameters:
