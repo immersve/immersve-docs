@@ -52,7 +52,8 @@ properties:
       type:
         type: string
         description: A context type for the context reference, which will depend on the interaction type. 
-        example: transaction
+        enum: [card-transaction, smart-contract-event]
+        example: card-transaction
       blockNumber:
         type: string
         description: The chain block number in which the transactions was mined, when applicable.
