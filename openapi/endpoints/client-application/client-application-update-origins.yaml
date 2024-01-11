@@ -5,7 +5,8 @@ post:
   description: |
     Add url origins to the client application whitelist. 
     The [Generate a challenge endpoint](/api-reference/generate-challenge) will reject non-whitelisted origins.
-    Note! This is a destructive operation. The allowed origins will be overwritten with the provided list.
+    **Warning!** This is a destructive operation. The allowed origins will be overwritten with the provided list.
+    Use the [Get a client application endpoint](/api-reference/get-client-application) to retrieve the current list of allowed origins.
   parameters:
     - name: clientApplicationId
       in: path
