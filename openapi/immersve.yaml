@@ -135,7 +135,7 @@ paths:
   "/api/account/{accountId}/funding-channels":
     $ref: "./endpoints/funding-channel/funding-channels-get.yaml"
   "/api/client-applications/{clientApplicationId}":
-    $ref: "./endpoints/client-application/get-client-application.yaml"
+    $ref: "./endpoints/client-application/client-application-get.yaml"
 
 components:
   securitySchemes:

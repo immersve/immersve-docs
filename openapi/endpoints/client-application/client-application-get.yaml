@@ -17,7 +17,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: './models/get-client-application-response.yaml'
+            $ref: './models/client-application-get-response.yaml'
     '403':
       description: |
           Subject is not allowed to perform the action with the reason stated in the `errorCode`
