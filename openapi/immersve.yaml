@@ -136,6 +136,8 @@ paths:
     $ref: "./endpoints/funding-channel/funding-channels-get.yaml"
   "/api/client-applications/{clientApplicationId}":
     $ref: "./endpoints/client-application/client-application-get.yaml"
+  "/api/client-applications/{clientApplicationId}/update-origins":
+    $ref: "./endpoints/client-application/client-application-update-origins.yaml"
 
 components:
   securitySchemes:

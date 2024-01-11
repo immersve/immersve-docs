@@ -1,0 +1,45 @@
+post:  
+  tags:
+    - client-application
+  summary: Update the allowed origins
+  description: |
+    Add url origins to the client application whitelist. 
+    The [Generate a challenge endpoint](/api-reference/generate-challenge) will reject non-whitelisted origins.
+    Note! This is a destructive operation. The allowed origins will be overwritten with the provided list.
+  parameters:
+    - name: clientApplicationId
+      in: path
+      description: Id of the client application.
+      example: 65a7e8ef0d230d0a6bf755e07d39eb02
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./models/client-application-update-origins-request.yaml"
+    required: true
+  security:
+    - $ref: '../../models/api-key-auth.yaml'
+  responses:
+    '204':
+      description: No content
+      content:
+        application/json: {}
+    '403':
+      description: |
+          Subject is not allowed to perform the action with the reason stated in the `errorCode`
+
+          **FORBIDDEN**
+          Resource does not exist or there are no sufficient permissions to perform the action.
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-403.yaml'
+    '400':
+      description: Request parameters are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'
