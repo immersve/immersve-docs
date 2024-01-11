@@ -1,0 +1,36 @@
+get:  
+  tags:
+    - client-application
+  summary: Get a client application
+  parameters:
+    - name: clientApplicationId
+      in: path
+      description: Id of the client application.
+      example: 65a7e8ef0d230d0a6bf755e07d39eb02
+      required: true
+      schema:
+        type: string
+  security:
+    - $ref: '../../models/api-key-auth.yaml'
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: './models/get-client-application-response.yaml'
+    '403':
+      description: |
+          Subject is not allowed to perform the action with the reason stated in the `errorCode`
+
+          **FORBIDDEN**
+          Resource does not exist or there are no sufficient permissions to perform the action.
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-403.yaml'
+    '400':
+      description: Request parameters are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'

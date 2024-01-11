@@ -34,6 +34,8 @@ tags:
     x-displayName: Simulator
   - name: funding-source
     x-displayName: Funding source
+  - name: client-application
+    x-displayName: Client application
 security:
   - immersve_auth: []
   - $ref: "./models/api-key-auth.yaml"
@@ -132,6 +134,8 @@ paths:
     $ref: "./endpoints/accounts/accounts-get.yaml"
   "/api/account/{accountId}/funding-channels":
     $ref: "./endpoints/funding-channel/funding-channels-get.yaml"
+  "/api/client-applications/{clientApplicationId}":
+    $ref: "./endpoints/client-application/get-client-application.yaml"
 
 components:
   securitySchemes:
