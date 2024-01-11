@@ -1,0 +1,26 @@
+type: object
+properties:
+  id:
+    type: string
+    description: The client application id.
+    example: "65a7e8ef0d230d0a6bf755e07d39eb02"
+  accountId:
+    type: string
+    description: The partner account id that is affiliated with the client application.
+    example: "225d85e65495722bf6517ea0ba0d6f56"
+  allowedOrigins:
+    type: array
+    description: The allowed origins for the client application.
+    items:
+      type: string
+      example: 
+        - "https://develop-app.com"
+        - "http://localhost:3000"
+  createdAt:
+    type: string
+    description: Timestamp of client application creation.
+    example: "2022-11-16T03:13:18.142Z"
+  modifiedAt:
+    type: string
+    description: Timestamp of modification.
+    example: "2022-11-16T03:13:18.142Z"
