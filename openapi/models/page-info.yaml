@@ -5,7 +5,3 @@ properties:
     type: string
     description: Cursor for next page, undefined if no more pages
     example: dGhlIG5leHQgY3Vyc29yIGdvZXMgaGVyZQ==
-  previousCursor:
-    type: string
-    description: Cursor for previous page, undefined if no previous page
-    example: dGhlIHByZXZpb3VzIGN1cnNvciBnb2VzIGhlcmU=
