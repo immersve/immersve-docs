@@ -10,7 +10,7 @@ properties:
     example: 2be03cd65da12fe29b8910af7b4b85e7
   accountId:
     type: string
-    description:  The ID of the account that this Interaction relates to.
+    description: The ID of the account that this Interaction relates to.
     example: 979254377d0e05002242d038926a5691
   type:
     type: string
@@ -37,43 +37,51 @@ properties:
   createdAt:
     type: string
     description: Date time on which the interaction was created.
-    example: '2023-11-15T00:48:48.902Z'
+    example: "2023-11-15T00:48:48.902Z"
   modifiedAt:
     type: string
     description: Last modified date of this interaction.
-    example: '2023-11-15T00:49:59.261Z'
+    example: "2023-11-15T00:49:59.261Z"
+  description:
+    type: string
+    description: A description of the interaction.
+    example: "1 Queen Street Auckland NZ"
+  creditOrDebitIndicator:
+    type: string
+    description: The credit or debit indicator of the interaction.
+    example: credit
   context:
     type: object
     properties:
       ref:
         type: string
         description: A context reference based on the type of the interaction. It could be a `transactionId` in the case of a payment, or an `eventId` in the case of an smart contract event.
-        example: '1000000488078'
+        example: "1000000488078"
       type:
         type: string
-        description: A context type for the context reference, which will depend on the interaction type. 
+        description: A context type for the context reference, which will depend on the interaction type.
         enum: [card-transaction, smart-contract-event]
         example: smart-contract-event
       blockNumber:
         type: string
         description: The chain block number in which the transactions was mined, when applicable.
-        example: '42409064'
+        example: "42409064"
       transactionHash:
         type: string
         description: The blockchain transaction hash on which the interaction happened, when applicable.
-        example: '0x3c561ba7fb04b8176f5478d26172d7cef02cf4ac6806e047ffaf5af70ccf1e69'
+        example: "0x3c561ba7fb04b8176f5478d26172d7cef02cf4ac6806e047ffaf5af70ccf1e69"
   channel:
     type: object
     properties:
       id:
         type: string
         description: Funding Channel primary identifier.
-        example: '315bad4e81ce0f26966a41b9d451638b'
+        example: "315bad4e81ce0f26966a41b9d451638b"
       type:
         type: string
         description: The type of Funding Channel.
-        example: 'polygon-usdc-universal-evm-live'
+        example: "polygon-usdc-universal-evm-live"
       strategy:
         type: string
         description: The funding type strategy.
-        example: 'universal-evm'
+        example: "universal-evm"
