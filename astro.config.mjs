@@ -7,21 +7,8 @@ export default defineConfig({
     starlight({
       title: 'My Docs',
       social: {
-        github: 'https://github.com/withastro/starlight',
+        github: 'https://github.com/immersve/immersve-docs',
       },
-      sidebar: [
-        {
-          label: 'Guides',
-          items: [
-            // Each item here is one entry in the navigation menu.
-            { label: 'Example Guide', link: '/guides/example/' },
-          ],
-        },
-        {
-          label: 'Reference',
-          autogenerate: { directory: 'reference' },
-        },
-      ],
     }),
   ],
 });
