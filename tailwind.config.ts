@@ -4,7 +4,9 @@ import typographyPlugin from '@tailwindcss/typography'
 
 export default {
   content: ['./src/**/*.{astro,html,js,ts,md,mdoc}'],
-  darkMode: 'selector',
+  // Starlight theme selector populates "dark" or "light" into the data-theme attribute:
+  // https://github.com/withastro/starlight/blob/main/packages/starlight/components/ThemeSelect.astro#L65
+  darkMode: [ 'class', '[data-theme="dark"]'], 
   theme: {
     fontSize: {
       '2xs': ['0.75rem', { lineHeight: '1.25rem' }],
