@@ -3,7 +3,7 @@ import typographyStyles from './typography'
 import typographyPlugin from '@tailwindcss/typography'
 
 export default {
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  content: ['./src/**/*.{astro,html,js,ts,md,mdoc}'],
   darkMode: 'selector',
   theme: {
     fontSize: {
