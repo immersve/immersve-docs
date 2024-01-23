@@ -54,9 +54,7 @@ chains and their contract address can be found below:
 
 ### Mainnet
 
-| Chain | Tokens | Funds Manager Address | Funding Type |
-| --- | --- | --- | --- |
-| Polygon POS | <nobr>[USDC](https://polygonscan.com/token/0x3c499c542cef5e3811e1192ce70d8cc03d5c3359)</nobr> | [0xcd1c3d1c12437bD0375E3C<wbr>4331771b31220125Bd](https://polygonscan.com/address/0xcd1c3d1c12437bD0375E3C4331771b31220125Bd#writeProxyContract) | `polygon-usdc-universal-evm-live` |
+{% fundingTypeTable categories=["universal-evm", "live"] /%}
 
 ### Testnet
 
@@ -66,10 +64,8 @@ The following contracts are only intended to be used for testing integration
 with fake tokens.
 :::
 
-| Chain | Tokens | Funds Manager Address | Funding Type |
-| --- | --- | --- | --- |
-| Polygon Mumbai | <nobr>[IMMUSDC](https://mumbai.polygonscan.com/address/0x2FaC06acFAeB42CC3B5327fcF53F48D9Da72749d#code)</nobr> | [0xe50FF3C352C0176c12c<wbr>0a130dCa7655eC518fc40](https://mumbai.polygonscan.com/address/0xe50FF3C352C0176c12c0a130dCa7655eC518fc40#writeProxyContract) | `polygon-usdc-universal-evm-test` |
 
+{% fundingTypeTable categories=["universal-evm", "test"] /%}
 
 ## Creating a Funds Storage Instance
 

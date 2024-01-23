@@ -1,0 +1,35 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+const allFundingTypes = await getCollection('funding-types');
+
+const { categories } = Astro.props;
+
+const filteredFundingTypes = allFundingTypes.filter(ft => categories?.every(c => ft.data.categories.includes(c)));
+function wrappableAddress(addr) {
+  return addr.match(/.{1,30}/g).join('<wbr>');
+}
+---
+<table>
+  <thead>
+    <tr>
+      <th>Chain</th>
+      <th>Tokens</th>
+      <th>Funds Manager Address</th>
+      <th>Funding Type</th>
+    </tr>
+  </thead>
+    <tbody>
+    {filteredFundingTypes.map(ft => (
+      <tr>
+        <td><nobr>{ft.data.chain}</nobr></td>
+        <td>
+          {ft.data.tokens.map(token => (
+            <nobr><a href={token.url}>{token.name}</a></nobr>
+          ))}
+        </td>
+        <td><a href={ft.data.url} set:html={wrappableAddress(ft.data.address)}></a></td>
+        <td><nobr><code>{ft.slug}</code></nobr></td>
+      </tr>
+    ))}
+  </tbody>
+</table>

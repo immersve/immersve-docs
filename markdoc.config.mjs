@@ -11,5 +11,11 @@ export default defineMarkdocConfig({
         class: { type: String },
       },
     },
+    fundingTypeTable: {
+      render: component('./src/components/FundingTypeTable.astro'),
+      attributes: {
+        categories: { type: Array },
+      }
+    }
   },
 });
