@@ -15,6 +15,7 @@ export default defineConfig({
       components: {
         MarkdownContent: './src/components/MarkdownContent.astro',
         Pagination: './src/components/FooterNavigation.astro',
+        Sidebar: './src/components/Sidebar.astro',
       }
     }), 
     tailwind({

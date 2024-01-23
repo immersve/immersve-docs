@@ -1,0 +1,12 @@
+---
+import Navigation from './Navigation.astro';
+const { sidebar } = Astro.props;
+---
+
+<Navigation className="hidden lg:mt-10 lg:block" sublist={sidebar} />
+
+<!-- <SidebarSublist sublist={sidebar} /> -->
+<!-- FIXME -->
+<!-- <div class="md:sl-hidden"> -->
+<!-- 	<MobileMenuFooter {...Astro.props} /> -->
+<!-- </div> -->

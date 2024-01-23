@@ -1,0 +1,103 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+import TopLevelNavItem from './NavigationTopLevelItem.astro';
+import NavigationGroup from './NavigationGroup.astro';
+import Button from './Button.astro';
+
+interface Props {
+	sublist: SidebarEntry[];
+	nested?: boolean;
+}
+
+interface LinkHTMLAttributes {}
+
+interface Link {
+	type: 'link';
+	label: string;
+	badge: Badge | undefined;
+	href: string;
+	isCurrent: boolean;
+	attrs: LinkHTMLAttributes;
+}
+
+interface Group {
+	type: 'group';
+	label: string;
+	badge: Badge | undefined;
+	entries: (Link | Group)[];
+	collapsed: boolean;
+}
+
+type SidebarEntry = Link | Group;
+
+const { sublist, nested, class: className } = Astro.props;
+
+function flattenSidebar(sidebar: SidebarEntry[]): Link[] {
+	return sidebar.flatMap((entry) =>
+		entry.type === 'group' ? flattenSidebar(entry.entries) : entry
+	);
+}
+---
+<nav class={className}>
+  <ul role="list">
+    {sublist.filter(entry => entry.type == 'link').map((entry, groupIndex) => (
+      <TopLevelNavItem href={entry.href}>{entry.label}</TopLevelNavItem>
+    ))}
+    {sublist.filter(entry => entry.type == 'group').map((entry, groupIndex) => (
+      <NavigationGroup
+        group={entry}
+        class={groupIndex === 0 ? 'md:mt-0' : ''}
+        isCurrent={flattenSidebar(entry.entries).some((i) => i.isCurrent)}
+      />
+    ))}
+  </ul>
+</nav>
+
+<!-- <nav class={className}> -->
+<!--   <ul role="list"> -->
+<!--     { -->
+<!--       sublist.map((entry) => ( -->
+<!--         <li> -->
+<!--           {entry.type === 'link' ? ( -->
+<!--             <a -->
+<!--               href={entry.href} -->
+<!--               aria-current={entry.isCurrent && 'page'} -->
+<!--               class:list={[{ large: !nested }, entry.attrs.class]} -->
+<!--               {...entry.attrs} -->
+<!--             > -->
+<!--               <span>{entry.label}</span> -->
+<!--               {entry.badge && ( -->
+<!--                 <> -->
+<!--                   {' '} -->
+<!--                   {/* FIXME */} -->
+<!--                   {/* <Badge */} -->
+<!--                   {/* 	text={entry.badge.text} */} -->
+<!--                   {/* 	variant={entry.isCurrent ? 'outline' : entry.badge.variant} */} -->
+<!--                   {/* /> */} -->
+<!--                 </> -->
+<!--               )} -->
+<!--             </a> -->
+<!--           ) : ( -->
+<!--             <details -->
+<!--               open={flattenSidebar(entry.entries).some((i) => i.isCurrent) || !entry.collapsed} -->
+<!--             > -->
+<!--               <summary> -->
+<!--                 <div class="group-label"> -->
+<!--                   <span class="large">{entry.label}</span> -->
+<!--                   {entry.badge && ( -->
+<!--                     <> -->
+<!--                       {' '} -->
+<!--                       <Badge text={entry.badge.text} variant={entry.badge.variant} /> -->
+<!--                     </> -->
+<!--                   )} -->
+<!--                 </div> -->
+<!--                 <Icon name="right-caret" class="caret" size="1.25rem" /> -->
+<!--               </summary> -->
+<!--               <Astro.self sublist={entry.entries} nested /> -->
+<!--             </details> -->
+<!--           )} -->
+<!--         </li> -->
+<!--       )) -->
+<!--     } -->
+<!--   </ul> -->
+<!-- </nav> -->
