@@ -1,0 +1,18 @@
+---
+import PageLink from './FooterPageLink.astro';
+
+const { dir, labels, pagination } = Astro.props;
+const { prev, next } = pagination;
+---
+<div class="flex">
+  {prev && (
+    <div class="flex flex-col items-start gap-3">
+      <PageLink label="Previous" page={prev} previous />
+    </div>
+  )}
+  {next && (
+    <div class="ml-auto flex flex-col items-end gap-3">
+      <PageLink label="Next" page={next} />
+    </div>
+  )}
+</div>

@@ -13,7 +13,8 @@ export default defineConfig({
       },
       customCss: ['./src/styles/tailwind.css'],
       components: {
-        MarkdownContent: './src/components/MarkdownContent.astro'
+        MarkdownContent: './src/components/MarkdownContent.astro',
+        Pagination: './src/components/FooterNavigation.astro',
       }
     }), 
     tailwind({

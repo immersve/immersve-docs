@@ -1,0 +1,29 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+  label: string;
+  page: {
+    href: string;
+    label: string;
+  };
+  previous?: boolean;
+}
+const { label, page, previous }: Props = Astro.props;
+---
+<Button
+  href={page.href}
+  aria-label={`${label}: ${page.label}`}
+  variant="secondary"
+  arrow={previous ? 'left' : 'right'}
+>
+  {label}
+</Button>
+<a
+  href={page.href}
+  tabIndex={-1}
+  aria-hidden="true"
+  class="text-base font-semibold text-zinc-900 transition hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300"
+>
+  {page.label}
+</a>
