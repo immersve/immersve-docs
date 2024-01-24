@@ -12,7 +12,7 @@ get:
       type: string
   - name: limit
     in: query
-    description: amount of records to return
+    description: amount of records to return (max 100)
     required: false
     schema:
       type: number
