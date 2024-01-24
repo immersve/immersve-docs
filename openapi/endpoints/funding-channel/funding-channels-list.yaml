@@ -10,14 +10,25 @@ get:
     required: true
     schema:
       type: string
-
+  - name: limit
+    in: query
+    description: amount of records to return
+    required: false
+    schema:
+      type: number
+  - name: cursor
+    in: query
+    description: cursor to retrieve the next page
+    required: false
+    schema:
+      type: string
   responses:
     "200":
       description: Successful operation
       content:
         application/json:
           schema:
-            $ref: "./models/get-funding-channels.yaml"
+            $ref: "./models/list-funding-channels.yaml"
     "403":
       description: No Authorization to access resource
       content:

@@ -1,0 +1,8 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      $ref: './funding-channel.yaml'
+  pageInfo:
+    $ref: '../../../models/page-info.yaml'
