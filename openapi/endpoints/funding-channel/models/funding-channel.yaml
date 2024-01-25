@@ -8,7 +8,7 @@ properties:
     type: string
     description: Timestamp of Funding Channel creation.
     example: "2023-08-14T12:32:54"
-  address:
+  storageAddress:
     type: string
     description: Fund storage smart contract address.
     example: "0x2e429C4324227F70f0101a17214d249cb04035Ec0"
