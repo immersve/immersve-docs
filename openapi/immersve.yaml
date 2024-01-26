@@ -133,7 +133,7 @@ paths:
   "/api/accounts/{accountId}":
     $ref: "./endpoints/accounts/accounts-get.yaml"
   "/api/account/{accountId}/funding-channels":
-    $ref: "./endpoints/funding-channel/funding-channels-get.yaml"
+    $ref: "./endpoints/funding-channel/funding-channels-list.yaml"
   "/api/client-applications/{clientApplicationId}":
     $ref: "./endpoints/client-application/client-application-get.yaml"
   "/api/client-applications/{clientApplicationId}/update-origins":
