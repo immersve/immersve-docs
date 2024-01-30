@@ -3,6 +3,9 @@
 
 # Production
 /build
+dist
+site.zip
+netlify-deploy.json
 
 # Generated files
 .docusaurus
