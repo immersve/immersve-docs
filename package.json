@@ -4,18 +4,18 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "npm run api-re-gen && docusaurus start",
-    "build": "npm run api-re-gen && docusaurus build",
+    "start": "yarn api-re-gen && docusaurus start",
+    "build": "yarn api-re-gen && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
-    "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "api-gen-all": "docusaurus gen-api-docs all",
     "api-clean-all": "docusaurus clean-api-docs all",
-    "api-re-gen": "npm run api-clean-all && npm run api-gen-all"
+    "api-re-gen": "yarn api-clean-all && yarn api-gen-all"
   },
+  "packageManager": "yarn@4.0.2",
   "dependencies": {
     "@docusaurus/core": "2.2.0",
     "@docusaurus/preset-classic": "2.2.0",
@@ -24,11 +24,12 @@
     "docusaurus-lunr-search": "2.2.0",
     "docusaurus-plugin-openapi-docs": "1.6.1",
     "docusaurus-theme-openapi-docs": "1.6.1",
-    "mdx-mermaid": "2.0.0-rc2",
+    "mdx-mermaid": "2.0.0",
     "mermaid": "^9.1.7",
     "prism-react-renderer": "^1.3.5",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "unist-util-visit": "npm:4.1.2"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.2.0",
