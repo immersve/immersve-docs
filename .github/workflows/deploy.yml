@@ -18,8 +18,8 @@ jobs:
       - run: scripts/github-build-info.mjs | tee build-info.json
       - run: yarn install --immutable
       - run: yarn build
-      - run: cp build-info.json build
-      - run: zip -rq site.zip build
+      - run: cp build-info.json imsv-docs-docusaurus/build
+      - run: zip -rq site.zip imsv-docs-docusaurus/build
       - uses: actions/upload-artifact@v4
         with: { name: site, path: site.zip }
 

@@ -1,5 +1,5 @@
 # Dependencies
-/node_modules
+node_modules
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -9,7 +9,7 @@
 !.yarn/versions
 
 # Production
-/build
+build
 dist
 site.zip
 netlify-deploy.json
@@ -17,7 +17,7 @@ netlify-deploy.json
 # Generated files
 .docusaurus
 .cache-loader
-/docs/api-reference/*
+/imsv-docs-docusaurus/docs/api-reference
 
 # Misc
 .DS_Store
