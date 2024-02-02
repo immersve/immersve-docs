@@ -9,10 +9,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 18, cache: npm }
+        with: { node-version: 18 }
+      - run: corepack enable
+      - id: cache-dir
+        run: echo "dir=$(yarn config get cacheFolder)" | tee $GITHUB_OUTPUT
+      - uses: actions/cache@v4
+        with: { path: "${{ steps.cache-dir.outputs.dir }}", key: "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}" }
       - run: scripts/github-build-info.mjs | tee build-info.json
-      - run: npm install --frozen-lockfile
-      - run: npm run build
+      - run: yarn install --immutable
+      - run: yarn build
       - run: cp build-info.json build
       - run: zip -rq site.zip build
       - uses: actions/upload-artifact@v4
