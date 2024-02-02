@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkimmersve_docs=self.webpackChunkimmersve_docs||[]).push([[7235],{96482:e=>{e.exports=JSON.parse('{"label":"currency","permalink":"/tags/currency","allTagsPath":"/tags","count":1,"items":[{"id":"guides/monetary-units","title":"Monetary Units","description":"Minor Units Format","permalink":"/guides/monetary-units"}]}')}}]);
