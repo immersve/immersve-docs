@@ -3204,13 +3204,13 @@ __metadata:
   linkType: hard
 
 "@types/react@npm:*":
-  version: 18.2.48
-  resolution: "@types/react@npm:18.2.48"
+  version: 18.2.50
+  resolution: "@types/react@npm:18.2.50"
   dependencies:
     "@types/prop-types": "npm:*"
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 7e89f18ea2928b1638f564b156d692894dcb9352a7e0a807873c97e858abe1f23dbd165a25dd088a991344e973fdeef88ba5724bfb64504b74072cbc9c220c3a
+  checksum: 9866e5dc6d786b03842b1f39c49a5b750411cae4e15e17a86ee9a51209fb96c0c0d4b0a07ba58880e7ad998aa3f2b46197c982f42c28b3aaf0cf6011559acb3a
   languageName: node
   linkType: hard
 
@@ -3911,9 +3911,9 @@ __metadata:
   linkType: hard
 
 "available-typed-arrays@npm:^1.0.5":
-  version: 1.0.5
-  resolution: "available-typed-arrays@npm:1.0.5"
-  checksum: c4df567ca72d2754a6cbad20088f5f98b1065b3360178169fa9b44ea101af62c0f423fc3854fa820fd6895b6b9171b8386e71558203103ff8fc2ad503fdcc660
+  version: 1.0.6
+  resolution: "available-typed-arrays@npm:1.0.6"
+  checksum: e427360e68ccb19fa0ea48421f393ef3f3d2c9c561f6a8a0704ff472d58024be3e4101f00565445ba453de723a76f4a650defbacaea663c3fb3be8b8f842e955
   languageName: node
   linkType: hard
 
@@ -4452,9 +4452,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001578, caniuse-lite@npm:^1.0.30001580":
-  version: 1.0.30001581
-  resolution: "caniuse-lite@npm:1.0.30001581"
-  checksum: 34b048156514eab5932212807428905cbecdef918f7c3d2153d5e8b6885d929e5c0b649f9e135cb1e03e413fbad8e00d1f24ed04cbcca52adc660ef98cad9032
+  version: 1.0.30001582
+  resolution: "caniuse-lite@npm:1.0.30001582"
+  checksum: 6fe9dede07b61755a1ca55e7e6381d113a166942196c98828038524eb0adc8f0001d492a7c0e81a568a6c6edfe76051e0a0dc5a435d72a77d351144be31998ec
   languageName: node
   linkType: hard
 
@@ -8246,22 +8246,6 @@ __metadata:
 "immersve-docs@workspace:.":
   version: 0.0.0-use.local
   resolution: "immersve-docs@workspace:."
-  dependencies:
-    "@docusaurus/core": "npm:2.2.0"
-    "@docusaurus/module-type-aliases": "npm:2.2.0"
-    "@docusaurus/preset-classic": "npm:2.2.0"
-    "@mdx-js/react": "npm:^1.6.22"
-    clsx: "npm:^1.2.1"
-    docusaurus-lunr-search: "npm:2.2.0"
-    docusaurus-plugin-openapi-docs: "npm:1.6.1"
-    docusaurus-theme-openapi-docs: "npm:1.6.1"
-    mdx-mermaid: "npm:2.0.0"
-    mermaid: "npm:^9.1.7"
-    prettier: "npm:^2.8.5"
-    prism-react-renderer: "npm:^1.3.5"
-    react: "npm:^17.0.2"
-    react-dom: "npm:^17.0.2"
-    unist-util-visit: "npm:4.1.2"
   languageName: unknown
   linkType: soft
 
@@ -8281,6 +8265,28 @@ __metadata:
   checksum: c5e5f507d26ee23c5b2ed64577155810361ac37863b322cae0c17f16b6a8cdd15adf370288384ddd95ef9de05602fb8d87bf76ff835190eb037333c84db8062c
   languageName: node
   linkType: hard
+
+"imsv-docs-docusaurus@workspace:imsv-docs-docusaurus":
+  version: 0.0.0-use.local
+  resolution: "imsv-docs-docusaurus@workspace:imsv-docs-docusaurus"
+  dependencies:
+    "@docusaurus/core": "npm:2.2.0"
+    "@docusaurus/module-type-aliases": "npm:2.2.0"
+    "@docusaurus/preset-classic": "npm:2.2.0"
+    "@mdx-js/react": "npm:^1.6.22"
+    clsx: "npm:^1.2.1"
+    docusaurus-lunr-search: "npm:2.2.0"
+    docusaurus-plugin-openapi-docs: "npm:1.6.1"
+    docusaurus-theme-openapi-docs: "npm:1.6.1"
+    mdx-mermaid: "npm:2.0.0"
+    mermaid: "npm:^9.1.7"
+    prettier: "npm:^2.8.5"
+    prism-react-renderer: "npm:^1.3.5"
+    react: "npm:^17.0.2"
+    react-dom: "npm:^17.0.2"
+    unist-util-visit: "npm:4.1.2"
+  languageName: unknown
+  linkType: soft
 
 "imurmurhash@npm:^0.1.4":
   version: 0.1.4
