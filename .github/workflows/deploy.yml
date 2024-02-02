@@ -10,8 +10,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 18, cache: npm }
+      - run: scripts/github-build-info.mjs | tee build-info.json
       - run: npm install --frozen-lockfile
       - run: npm run build
+      - run: cp build-info.json build
       - run: zip -rq site.zip build
       - uses: actions/upload-artifact@v4
         with: { name: site, path: site.zip }
