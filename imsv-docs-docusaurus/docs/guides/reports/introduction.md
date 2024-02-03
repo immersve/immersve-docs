@@ -19,15 +19,6 @@ The report is in CSV format.
 
 Once a report is generated, Immersve will send a notification to your [webhook](/guides/webhooks) endpoint.
 
-```mermaid
-sequenceDiagram
-	participant API Client
-	participant Immersve
-
-	API Client->>Immersve: Register webhook endpoint
-	Immersve->>Immersve: Create report
-	Immersve->>API Client: Send report notification
-```
 
 ## Notification
 

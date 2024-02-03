@@ -21,15 +21,7 @@ Once a card is acquired you can go to https://app.immersve.com/simulator to use 
 Once on the simulator app, you will be given a form to enter your card details into, as well as a series of options as indicated
 by the flow diagram below.
 
-```mermaid
-graph TD;
-    A[Enter Card Details] --> B[Clear Without Auth]
-    A --> C[Authorize]
-		C --> D[Clear]
-    B --> E[Reverse]
-		C --> E
-		D --> E
-
-```
+<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577780347157&cot=14 -->
+![Simulator Flowchart](/img/diagrams/simulator-flowchart.svg)
 
 At any point the `reset` button can be used to restore the application to its initial state, not maintaining any previous transaction history.

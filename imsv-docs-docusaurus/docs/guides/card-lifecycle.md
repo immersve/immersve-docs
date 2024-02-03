@@ -14,13 +14,8 @@ tags:
 
 Short-lived virtual cards are activated and ready to use by default. When the card is either expired or cancelled by the user it will transition to the `cancelled` state.
 
-```mermaid
-stateDiagram-v2
-    [*]--> Created: Create
-    Created-->Active: Provisioning
-    Active-->Cancelled : Cancel card, Expired
-    Cancelled --> [*]
-```
+<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577780819385&cot=14 -->
+![Card Lifecycle Diagram](/img/diagrams/card-lifecycle.svg)
 
 ## State Transitions
 

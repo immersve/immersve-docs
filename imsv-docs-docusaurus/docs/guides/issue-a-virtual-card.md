@@ -25,8 +25,8 @@ See [Create a Funding Source for an account](/api-reference/create-a-funding-sou
 
 Call the [create a card](/api-reference/create-a-card) operation to request Immersve to generate a card.
 
-If successful a [create a card](/api-reference/create-a-card) request will return a card ID. Immersve will provision and activate the card by default. 
-It is provisioned and activated when the [get card details](/api-reference/get-card-details) response payload includes a `status` of `"active"`. 
+If successful a [create a card](/api-reference/create-a-card) request will return a card ID. Immersve will provision and activate the card by default.
+It is provisioned and activated when the [get card details](/api-reference/get-card-details) response payload includes a `status` of `"active"`.
 All cards are currently short-lived and the time to expiry begins at the time of activation, the expiry timestamp is returned in the `immersveExpiration` field.
 ## Issue a Card
 
@@ -51,21 +51,5 @@ To obtain the full PAN and CVV2 for display to the cardholder your client-side a
 
 ## Virtual Card Issuance Sequence Diagram
 
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant C as Your Application
-    participant I as Immersve
-    note over U: Authentication as per authentication guide
-
-    C->>I: Create Funding Source
-    I-->>C: Funding Source ID
-    par Get spending prerequisites and create card
-    C->>I: Get spending prerequisites
-    I-->>C: prerequisites collection
-    U->>C: Request card
-    C->>+I: Create a card
-    I-->>C: cardId
-    I->>I: Provision Card
-    end
-```
+<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577778509789&cot=14 -->
+![Card Issuing Sequence](/img/diagrams/card-issuing-sequence.svg)

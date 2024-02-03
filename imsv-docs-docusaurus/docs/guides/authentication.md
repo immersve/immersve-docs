@@ -38,19 +38,8 @@ Subsequent requests for protected resources from the Immersve API may be authent
 
 ### Login Flow
 
-```mermaid
-sequenceDiagram
-    participant W as Web3 Wallet
-    participant C as API Client
-    participant I as Immersve
-    C->>+I: Generate challenge
-    I-->>-C: Challenge
-    C->>W: Request to sign a message
-    W-->>C: Signature
-    C->>+I: Send challenge + signature
-    I-->>-C: Return access token
-	  note over C: Access token will be used for subsequent requests for protected resources from the Immersve API
-```
+<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577781765320&cot=14 -->
+![Login Sequence Diagram](/img/diagrams/login-sequence.svg)
 
 1.  [Generate a challenge](/api-reference/generate-challenge). The response is an [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) message in plain text to be signed by the wallet.
 
