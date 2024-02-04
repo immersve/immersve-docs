@@ -14,8 +14,61 @@
   [inert] ::-webkit-scrollbar {
     display: none;
   }
+
+  /*
+   * Tailwind preflight is disabled by the starlight tailwind plugin but some
+   * styles are still needed. If tailwind components are behaving weird then there
+   * might be other base styles missing.
+   *
+   * If in future we replace the Starlight left nav or top header components
+   * with custom components then restoring preflight in the tailwind config may be
+   * a better option.
+   *
+   * See: https://github.com/tailwindlabs/tailwindcss/blob/f57678e29ba7a9b7b2c1c5862bc9d4fd5b03d240/src/css/preflight.css
+   */
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  blockquote,
+  dl,
+  dd,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  hr,
+  figure,
+  p,
+  pre {
+    margin: 0;
+  }
+
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* make mermaid diagrams readable on dark mode */
+  [data-theme="dark"] p img[src*=".svg"] {
+    filter: invert(0.7);
+  }
+}

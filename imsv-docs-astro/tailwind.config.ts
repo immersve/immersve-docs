@@ -1,12 +1,16 @@
 import { type Config } from 'tailwindcss'
+import colors from 'tailwindcss/colors';
 import typographyStyles from './typography'
 import typographyPlugin from '@tailwindcss/typography'
+import starlightPlugin from '@astrojs/starlight-tailwind';
+
+/*
+ * Tailwind config based on Tailwind UI Protocol Template.
+ * https://tailwindui.com/templates/protocol
+ */
 
 export default {
   content: ['./src/**/*.{astro,html,js,ts,md,mdoc}'],
-  // Starlight theme selector populates "dark" or "light" into the data-theme attribute:
-  // https://github.com/withastro/starlight/blob/main/packages/starlight/components/ThemeSelect.astro#L65
-  darkMode: [ 'class', '[data-theme="dark"]'], 
   theme: {
     fontSize: {
       '2xs': ['0.75rem', { lineHeight: '1.25rem' }],
@@ -26,6 +30,10 @@ export default {
     },
     typography: typographyStyles,
     extend: {
+      colors: {
+        accent: colors.indigo,
+        gray: colors.zinc,
+      },
       boxShadow: {
         glow: '0 0 4px rgb(0 0 0 / 0.1)',
       },
@@ -43,5 +51,8 @@ export default {
       },
     },
   },
-  plugins: [ typographyPlugin ],
+  plugins: [
+    starlightPlugin(),
+    typographyPlugin,
+  ],
 } satisfies Config

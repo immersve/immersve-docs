@@ -1,19 +1,40 @@
-import { URL } from 'node:url';
-import { glob } from 'glob';
-import { defineMarkdocConfig, component } from '@astrojs/markdoc/config';
+import { component, defineMarkdocConfig } from '@astrojs/markdoc/config';
+import shiki from '@astrojs/markdoc/shiki';
 
-const tagsDir = new URL('markdoc', import.meta.url).pathname;
-const tagConfigs = await Promise.all(glob
-  .sync('*.tag.mjs', { cwd: tagsDir })
-  .map(f => f.replace('.tag.mjs', ''))
-  .map(async tagName => ({
-    tagName,
-    tag: (await import(`./markdoc/${tagName}.tag.mjs`)).default,
-  })));
-
-const tags = {};
-tagConfigs.forEach(config => {
-  tags[config.tagName] = config.tag;
-})
-
-export default defineMarkdocConfig({ tags });
+export default defineMarkdocConfig({
+  extends: [
+    shiki({
+      theme: 'rose-pine-dawn',
+    }),
+  ],
+  tags: {
+    button: {
+      render: component('./src/components/Button.astro'),
+      attributes: {
+        href: { type: String },
+        variant: { type: String, matches: [ 'primary', 'secondary', 'filled', 'outline', 'text' ] },
+        arrow: { type: String, matches: [ 'left', 'right'] },
+        class: { type: String },
+      },
+    },
+    code: {
+      render: component('./src/components/Code.astro'),
+      attributes: {
+        title: { type: String },
+        class: { type: String },
+      },
+    },
+    note: {
+      render: component('./src/components/Note.astro'),
+      attributes: {
+        class: { type: String },
+      },
+    },
+    fundingTypeTable: {
+      render: component('./src/components/FundingTypeTable.astro'),
+      attributes: {
+        categories: { type: Array },
+      }
+    },
+  }
+});

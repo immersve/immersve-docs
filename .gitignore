@@ -18,7 +18,8 @@ netlify-deploy.json
 .astro/
 .docusaurus
 .cache-loader
-/imsv-docs-docusaurus/docs/api-reference
+/imsv-docs-docusaurus/docs/*
+!/imsv-docs-docusaurus/docs/redirects
 
 # Misc
 .DS_Store

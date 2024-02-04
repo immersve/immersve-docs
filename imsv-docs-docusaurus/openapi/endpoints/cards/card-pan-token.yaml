@@ -5,7 +5,7 @@ post:
   description: |
     Generate a card token to enable the subsequent retrieval of the card's sensitive details including full PAN, expiry, CVV2 and embossedName.
 
-    Refer to the [fetching secure card information guide](/guides/fetching-secure-card-information) for more information.
+    Refer to the [fetching secure card information guide](https://docs.immersve.com/guides/fetching-secure-card-information) for more information.
 
     The callback URL responds with an object containing the card's sensitive details.
 

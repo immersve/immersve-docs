@@ -3,10 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "yarn workspace imsv-docs-docusaurus start",
-    "build": "yarn workspace imsv-docs-docusaurus build",
-    "astro:start": "yarn workspace imsv-docs-astro start",
-    "astro:build": "yarn workspace imsv-docs-astro build"
+    "start": "yarn start:astro",
+    "build": "./build.sh",
+    "api-re-gen": "yarn workspace imsv-docs-docusaurus api-re-gen",
+    "start:docusaurus": "yarn workspace imsv-docs-docusaurus start",
+    "build:docusaurus": "yarn workspace imsv-docs-docusaurus build",
+    "api:regen": "yarn workspace imsv-docs-docusaurus api:regen",
+    "start:astro": "yarn workspace imsv-docs-astro start",
+    "build:astro": "yarn workspace imsv-docs-astro build"
   },
   "workspaces": [
     "imsv-docs-astro",
