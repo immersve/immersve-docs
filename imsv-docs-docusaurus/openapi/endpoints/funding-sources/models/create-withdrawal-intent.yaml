@@ -1,5 +1,9 @@
 type: object
 properties:
+  amount:
+    type: number
+    description: Amount to withdraw.
+    example: 300
   id:
     type: string
     description: ID of the Withdrawal Intent.

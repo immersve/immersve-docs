@@ -1,4 +1,4 @@
-get:
+post:
   tags:
     - funding-source
   summary: Create Withdrawal Intent
@@ -12,13 +12,19 @@ get:
       required: true
       schema:
         type: string
-    - name: amount
-      in: query
-      description: Amount to withdraw.
-      example: 300
-      required: true
-      schema:
-        type: number
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: number
+              description: Amount to withdraw.
+              example: 300
+          required:
+            - amount
+    required: true
   responses:
     "200":
       description: Successful operation
