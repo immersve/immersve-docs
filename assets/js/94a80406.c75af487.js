@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkimsv_docs_docusaurus=self.webpackChunkimsv_docs_docusaurus||[]).push([[4376],{44553:s=>{s.exports=JSON.parse('{"label":"physical card","permalink":"/tags/physical-card","allTagsPath":"/tags","count":1,"items":[{"id":"guides/card-lifecycle","title":"Card Lifecycle","description":"Card States","permalink":"/guides/card-lifecycle"}]}')}}]);
