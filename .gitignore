@@ -15,6 +15,7 @@ site.zip
 netlify-deploy.json
 
 # Generated files
+.astro/
 .docusaurus
 .cache-loader
 /imsv-docs-docusaurus/docs/api-reference

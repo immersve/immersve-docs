@@ -4,13 +4,16 @@
   "private": true,
   "scripts": {
     "start": "yarn workspace imsv-docs-docusaurus start",
-    "build": "yarn workspace imsv-docs-docusaurus build"
+    "build": "yarn workspace imsv-docs-docusaurus build",
+    "astro:start": "yarn workspace imsv-docs-astro start",
+    "astro:build": "yarn workspace imsv-docs-astro build"
   },
   "workspaces": [
+    "imsv-docs-astro",
     "imsv-docs-docusaurus"
   ],
   "packageManager": "yarn@4.0.2",
   "engines": {
-    "node": ">=16.14"
+    "node": ">=18"
   }
 }
