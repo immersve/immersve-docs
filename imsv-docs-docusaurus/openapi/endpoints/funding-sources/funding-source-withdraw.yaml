@@ -14,7 +14,7 @@ get:
         type: string
     - name: amount
       in: query
-      description: Amount to withdraw
+      description: Amount to withdraw.
       example: 300
       required: true
       schema:
