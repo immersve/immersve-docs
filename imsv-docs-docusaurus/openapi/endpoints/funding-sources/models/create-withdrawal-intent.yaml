@@ -2,15 +2,15 @@ type: object
 properties:
   id:
     type: string
-    description: ID of the withdrawal intent.
+    description: ID of the Withdrawal Intent.
     example: 91ad6fea3b52ca58d60d7fd310f789ec
   createdAt:
     type: string
-    description: Creation date of the withdrawal intent.
+    description: Creation date of the Withdrawal Intent.
     example: "2023-08-14T12:32:54"
   expiresAt:
     type: string
-    description: Expiration date of the withdrawal intent.
+    description: Expiration date of the Withdrawal Intent.
     example: "2023-08-14T12:32:54"
   execution:
     type: object
@@ -36,7 +36,7 @@ properties:
             example: 12345
           nonce:
             type: number
-            description: Unique identifier of current withdrawal intent. 
+            description: Unique identifier of current Withdrawal Intent. 
             example: 1
           signature:
             type: string

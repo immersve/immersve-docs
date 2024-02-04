@@ -1,9 +1,9 @@
 get:
   tags:
     - funding-source
-  summary: Withdraw Funding Source
+  summary: Create Withdrawal Intent
   description: |
-    Withdraw funds from a given Funding Source.
+    Create a Withdrawal Intent for a given Funding Source.
   parameters:
     - name: fundingSourceId
       in: path
@@ -25,7 +25,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: "./models/withdraw-funding-source.yaml"
+            $ref: "./models/create-withdrawal-intent.yaml"
     "403":
       description: No Authorization to access resource
       content:
