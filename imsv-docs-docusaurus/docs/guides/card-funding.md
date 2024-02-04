@@ -81,8 +81,8 @@ and sent to the relevant blockchain.
 
 The [get spending prerequisites](/api-reference/get-spending-prerequisites)
 endpoint returns an array of both regulatory and smart contract prerequisite
-transactions.  
-Each object in the array has `type` and `params`.  
+transactions.
+Each object in the array has `type` and `params`.
 Type `"smart_contract_write"` means that this action is about interaction with
 the smart contract. `params` contains all the details required to perform this
 interaction.
@@ -130,25 +130,5 @@ Polygonscan interface.
 
 ### Funding Sequence Diagram
 
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant C as Your Application
-    participant I as Immersve
-    participant W as Wallet
-    participant B as Blockchain
-    note over U: Authentication as per authentication guide
-
-    C->>I: Create Funding Source
-    I-->>C: Funding Source ID
-    C->>I: Get spending prerequisites
-    I-->>C: prerequisites collection
-      loop For each smart-contract-write transaction
-      C->>C: Construct raw transaction message
-      C->>W: Transmit raw transaction to wallet
-      U->>W: Confirm / authorize transaction
-      W->>B: Transmit transaction
-      end
-    C->>I: List Funding Sources
-    I-->>C: Funding Source list
-```
+<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577778509789&cot=14 -->
+![Card Funding Sequence](/img/diagrams/card-funding-sequence.svg)

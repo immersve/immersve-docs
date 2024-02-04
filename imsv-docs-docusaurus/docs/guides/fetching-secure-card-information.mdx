@@ -13,19 +13,8 @@ The steps for retrieving secure card details are as follows:
 
 ### Sequence Diagram
 
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant C as Your Client Application
-    participant I as Immersve
-    note over U: Authentication as per authentication guide
-
-    C->>I: Get card token
-    I-->>C: Card token
-    C->>I: Request sensitive card data
-    I-->>C: Return sensitive card data
-    C-->>U: Display sensitive card data
-```
+<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577780819385&cot=14 -->
+![Card Secure Details Sequence Diagram](/img/diagrams/card-secure-details-sequence.svg)
 
 # Example code snippet
 

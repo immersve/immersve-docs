@@ -5,7 +5,6 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 async function createConfig() {
-  const mdxMermaid = await import('mdx-mermaid');
   return {
     title: 'Immersve Documentation',
     tagline: 'Immersve Documentation',
@@ -37,7 +36,6 @@ async function createConfig() {
           docs: {
             routeBasePath: '/',
             sidebarPath: require.resolve('./sidebars.js'),
-            remarkPlugins: [mdxMermaid.default],
             docLayoutComponent: '@theme/DocPage',
             docItemComponent: '@theme/ApiItem', // add @theme/ApiItem here
           },
