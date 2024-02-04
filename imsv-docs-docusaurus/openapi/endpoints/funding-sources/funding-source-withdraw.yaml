@@ -1,0 +1,34 @@
+get:
+  tags:
+    - funding-source
+  summary: Withdraw Funding Source
+  description: |
+    Withdraw funds from a given Funding Source.
+  parameters:
+    - name: fundingSourceId
+      in: path
+      description: ID for the Funding Source.
+      example: 2be03cd65da12fe29b8910af7b4b85e7
+      required: true
+      schema:
+        type: string
+    - name: amount
+      in: query
+      description: Amount to withdraw
+      example: 300
+      required: true
+      schema:
+        type: number
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/withdraw-funding-source.yaml"
+    "403":
+      description: No Authorization to access resource
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
