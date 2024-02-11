@@ -1,0 +1,31 @@
+---
+interface Props {
+  title?: string;
+  class?: string;
+}
+
+const { title, class: className } = Astro.props;
+const classList = [ className, "not-prose" ];
+---
+
+{/*
+FIXME Would be better to setup Expressive Code. Example:
+https://github.com/Princesseuh/erika.florist/blob/4d82e4e34069e51d3bfbba905f1ef3f96aac3d16/markdoc.config.mjs#L5-L8
+*/}
+<div class="[&amp;>:first-child]:mt-0 [&amp;>:last-child]:mb-0">
+  <div class="my-6 overflow-hidden rounded-2xl shadow-md dark:ring-1 dark:ring-white/10">
+    <div class="not-prose">
+      { title && (
+        <div class="flex min-h-[calc(theme(spacing.12)+1px)] flex-wrap items-start gap-x-4 border-b border-zinc-300 bg-zinc-100 px-4 dark:border-zinc-800 dark:bg-transparent">
+          <h3 class="mr-auto pt-3 text-xs font-semibold dark:text-white">{title}</h3>
+        </div>
+      )}
+      <div class="group dark:bg-white/2.5 dark:invert">
+        <!-- hack: set bg-color to same as shiki theme bg -->
+        <div class="relative p-2" style="background-color:#faf4ed;">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
