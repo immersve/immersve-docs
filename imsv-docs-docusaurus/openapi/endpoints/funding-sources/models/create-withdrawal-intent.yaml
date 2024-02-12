@@ -23,14 +23,41 @@ properties:
   execution:
     type: object
     properties:
-      contractAddress: 
+      contractAddress:
         type: string
         description: The address of smart contract to invoke.
         example: '0xEe076427B04DDD26729889C869d3aE524A6362fD'
-      method:  
+      method:
         type: string
         description: The contract function to call.
         example: 'withdraw'
+      abi:
+        description: The JSON ABI of the smart contract (contains only required details. more details here https://docs.soliditylang.org/en/v0.8.19/abi-spec.html#json)
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+              description: The name of the function
+              example: 'withdraw'
+              enum:
+                - withdraw
+            type:
+              type: string
+              example: 'function'
+              enum:
+                - function
+            input:
+              type: array
+              items:
+                type: object
+              example: []
+            output:
+              type: array
+              items:
+                type: object
+              example: []
       params:
         type: object
         properties:
@@ -44,11 +71,10 @@ properties:
             example: 12345
           nonce:
             type: number
-            description: Unique identifier of current Withdrawal Intent. 
+            description: Unique identifier of current Withdrawal Intent.
             example: 1
           signature:
             type: string
             description: The signed withdrawal approval.
             example: '0x30450221...'
-  
-  
+
