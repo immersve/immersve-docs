@@ -41,7 +41,9 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false
     }),
-    markdoc(),
+    markdoc({
+      allowHTML: true,
+    }),
   ],
 
   redirects: {
