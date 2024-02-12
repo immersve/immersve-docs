@@ -5,29 +5,31 @@ properties:
     description: The address of the smart contract
   abi:
     description: The JSON ABI of the smart contract (contains only required details. more details here https://docs.soliditylang.org/en/v0.8.19/abi-spec.html#json)
-    type: object
-    properties:
-      type:
-        type: string
-        enum:
-          - function
-      name:
-        type: string
-        example: approve
-        description: The name of the function
-      inputs:
-        type: array
-        items:
-          type: object
-          properties:
-            name:
-              description: The name of the parameter
-              type: string
-              example: _spender
-            type:
-              description: The type of the parameter
-              type: string
-              example: address
+    type: array
+    items:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - function
+        name:
+          type: string
+          example: approve
+          description: The name of the function
+        inputs:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                description: The name of the parameter
+                type: string
+                example: _spender
+              type:
+                description: The type of the parameter
+                type: string
+                example: address
       outputs:
         type: array
         items:
