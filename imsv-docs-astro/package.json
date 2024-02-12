@@ -1,0 +1,27 @@
+{
+  "name": "imsv-docs-astro",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "astro dev",
+    "debug": "node --inspect-brk node_modules/astro/astro.js dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.4.1",
+    "@astrojs/markdoc": "^0.8.3",
+    "@astrojs/starlight": "^0.16.0",
+    "@astrojs/starlight-tailwind": "^2.0.1",
+    "@astrojs/tailwind": "^5.1.0",
+    "@tailwindcss/typography": "^0.5.10",
+    "astro": "^4.2.1",
+    "glob": "^10.3.10",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "yarn@4.0.2",
+  "devDependencies": {
+    "@astrojs/ts-plugin": "^1.4.0"
+  }
+}

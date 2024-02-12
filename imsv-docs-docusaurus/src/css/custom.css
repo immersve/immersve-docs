@@ -58,6 +58,11 @@ footer {
   --ifm-color-primary-lightest: #bbd4fe;
 }
 
+/* make mermaid diagrams readable on dark mode */
+[data-theme='dark'] p img[src$=".svg"] {
+  filter: invert(0.7);
+}
+
 table {
   table-layout: fixed;
 }

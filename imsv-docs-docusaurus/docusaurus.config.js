@@ -5,12 +5,11 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 async function createConfig() {
-  const mdxMermaid = await import('mdx-mermaid');
   return {
     title: 'Immersve Documentation',
     tagline: 'Immersve Documentation',
     url: 'https://docs.immersve.com',
-    baseUrl: '/',
+    baseUrl: '/api-reference',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon-2.ico',
@@ -19,7 +18,7 @@ async function createConfig() {
     // If you aren't using GitHub pages, you don't need these.
     organizationName: 'immersve', // Usually your GitHub org/user name.
     projectName: 'immersve-docs', // Usually your repo name.
-    trailingSlash: false,
+    trailingSlash: true,
 
     // Even if you don't use internalization, you can use this field to set useful
     // metadata like html lang. For example, if your site is Chinese, you may want
@@ -37,7 +36,6 @@ async function createConfig() {
           docs: {
             routeBasePath: '/',
             sidebarPath: require.resolve('./sidebars.js'),
-            remarkPlugins: [mdxMermaid.default],
             docLayoutComponent: '@theme/DocPage',
             docItemComponent: '@theme/ApiItem', // add @theme/ApiItem here
           },
@@ -64,9 +62,20 @@ async function createConfig() {
           items: [
             {
               label: 'Docs',
-              to: '/',
-              position: 'left',
-              className: 'navbar-title',
+              href: '//docs.immersve.com/',
+              position: 'right',
+              target: '_self',
+            },
+            {
+            label: 'Guides',
+              position: 'right',
+              href: '//docs.immersve.com/guides/',
+              target: '_self',
+            },
+            {
+              label: 'API',
+              href: '/',
+              position: 'right',
             },
           ],
         },
@@ -98,7 +107,7 @@ async function createConfig() {
           config: {
             immersve: {
               specPath: 'openapi/immersve.yaml', // path or URL to the OpenAPI spec
-              outputDir: 'docs/api-reference', // output directory for generated *.mdx and sidebar.js files
+              outputDir: 'docs', // output directory for generated *.mdx and sidebar.js files
               sidebarOptions: {
                 groupPathsBy: 'tag', // generate a sidebar.js slice that groups operations by tag
                 categoryLinkSource: 'tag',
