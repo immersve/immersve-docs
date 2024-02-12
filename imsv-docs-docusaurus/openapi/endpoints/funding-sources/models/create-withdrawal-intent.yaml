@@ -40,7 +40,7 @@ properties:
             example: 5000000
           expiryDate:
             type: number
-            description: The timestamp when the signature expires.
+            description: The unix timestamp when the signature expires.
             example: 12345
           nonce:
             type: number
