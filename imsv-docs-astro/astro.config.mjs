@@ -12,6 +12,9 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Immersve Docs',
+      logo: {
+        src: './src/assets/logo-small.svg',
+      },
       social: {
         github: 'https://github.com/immersve/'
       },
