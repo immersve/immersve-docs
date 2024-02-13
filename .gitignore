@@ -20,6 +20,7 @@ netlify-deploy.json
 .cache-loader
 /imsv-docs-docusaurus/docs/*
 !/imsv-docs-docusaurus/docs/redirects
+linkchecker-out.csv
 
 # Misc
 .DS_Store

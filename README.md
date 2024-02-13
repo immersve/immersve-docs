@@ -91,3 +91,16 @@ Select text then hit the chord `Alt + Q`
 
 Check your spelling, grammar and readability using [Hemingway
 Editor](https://hemingwayapp.com/)
+
+
+## Run Link Checker
+
+Check for broken links by running link checker.
+
+```
+docker compose run linkchecker -F csv --check-extern --verbose http://nginx
+```
+
+The status of all links will be reported in the generated `linkchecker-out.csv`
+file.
+
