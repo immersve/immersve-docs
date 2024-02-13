@@ -32,7 +32,7 @@ properties:
         description: The contract function to call.
         example: 'withdraw'
       abi:
-        description: The JSON ABI of the smart contract (contains only required details. more details here https://docs.soliditylang.org/en/v0.8.19/abi-spec.html#json)
+        description: The JSON ABI of the function being executed (contains only required details. more details here https://docs.soliditylang.org/en/v0.8.19/abi-spec.html#json)
         type: array
         items:
           type: object
