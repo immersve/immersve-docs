@@ -3,9 +3,9 @@ title: Card Funding
 slug: guides/card-funding
 ---
 
-A Funding Source is an off-chain record of available balance against which card
+A Funding Source is a record of available balance against which card
 transactions are authorized. A Funding Source is owned by a cardholder and can
-be associated with many cards transacting against the same available balance . A
+be associated with many cards transacting against the same available balance. A
 Funding Source must have sufficient balance for a transaction to be authorized.
 
 A Funding Source balance is eventually consistent with the on-chain deposits and withdrawals.
@@ -45,9 +45,9 @@ successful interactions with the Immersve smart contract.
 If multiple transactions are present then they should be carried out in the
 order in which they are presented.
 
-The client application is to parse and formulate the raw blockchain transaction
-message such that it is presented to the user within the web3 wallet and signed
-and sent to the relevant blockchain.
+The client application is responsible for creating the raw blockchain transaction
+so that it can be signed and submitted to the relevant blockchain through the
+cardholder's web3 wallet.
 
 <!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577778509789&cot=14 -->
 ![Card Funding Sequence](@assets/diagrams/card-funding-sequence.svg)
@@ -57,11 +57,15 @@ and sent to the relevant blockchain.
 
 Withdrawals are a two step process, first a withdrawal intent is submitted, which
 is asking Immersve to create a signature to authorize the release of funds to the users
-wallet, this signature is submitted in the users wallet to complete the withdrawal.
+wallet, this signature is submitted by the cardholder's web3 wallet to complete the withdrawal.
+
+Multiple withdrawal intents can be created before the withdrawal is executed on-chain. All of the
+simultaneous intents will have the same nonce and the funding source will be decreased by the amount
+of the highest intent. Once one of the withdrawal intents has been executed on the cardholder's wallet,
+they will be able to create further withdrawal intents with a new nonce.
 
 <!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764578946735882&cot=14 -->
-<!-- TODO: replace with withdrawals diagram -->
-![Card Funding Sequence](@assets/diagrams/card-funding-sequence.svg)
+![Card Funding Sequence](@assets/diagrams/withdrawal-sequence.svg)
 
 
 ### Currency Conversion
@@ -88,6 +92,24 @@ interaction.
 ```js
 const { abi, contractAddress, method, params } =
   response.data.prerequisites.params;
+
+const contract = new Contract(contractAddress, abi, signer); // third param Signer is required
+
+const { hash } = await contract[method](...Object.values(params));
+```
+{% /code %}
+
+
+### How to create a withdrawal intent example for ts/js
+
+The the [create withdrawal intent endpoint](/api-reference/create-withdrawal-intent) creates a withdrawal
+intent for a given amount and returns the parameters needed to execute the withdrawal on the cardholder's
+web3 wallet.
+
+{% code title="Code example with ethers.js" %}
+```js
+const { abi, contractAddress, method, params } =
+  response.data.execution.params;
 
 const contract = new Contract(contractAddress, abi, signer); // third param Signer is required
 
