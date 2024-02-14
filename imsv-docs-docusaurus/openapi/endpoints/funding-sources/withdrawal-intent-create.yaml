@@ -4,6 +4,9 @@ post:
   summary: Create Withdrawal Intent
   description: |
     Create a Withdrawal Intent for a given Funding Source.
+
+    For more information on Withdrawal Intents
+    see the [Card Funding guide](https://docs.immersve.com/guides/card-funding)
   parameters:
     - name: fundingSourceId
       in: path
@@ -33,7 +36,15 @@ post:
           schema:
             $ref: "./models/create-withdrawal-intent.yaml"
     "403":
-      description: No Authorization to access resource
+      description: |
+        **INSUFFICIENT_BALANCE**
+        Withdrawal amount exceeds funding source balance.
+
+        **CONCURRENT_WITHDRAW_LIMIT_REACHED**
+        Maximum amount of intents exceeded (10).
+
+        **FUNDING_STRATEGY_NOT_SUPPORTED**
+        Funding strategy is not supported.
       content:
         application/json:
           schema:
