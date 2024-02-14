@@ -55,14 +55,33 @@ cardholder's web3 wallet.
 
 ## Withdrawing Funds
 
-Withdrawals are a two step process, first a withdrawal intent is submitted, which
-is asking Immersve to create a signature to authorize the release of funds to the users
-wallet, this signature is submitted by the cardholder's web3 wallet to complete the withdrawal.
+Withdrawals are conducted as a two-stage process being;
 
-Multiple withdrawal intents can be created before the withdrawal is executed on-chain. All of the
-simultaneous intents will have the same nonce and the funding source will be decreased by the amount
-of the highest intent. Once one of the withdrawal intents has been executed on the cardholder's wallet,
-they will be able to create further withdrawal intents with a new nonce.
+1. Obtaining an Immersve-generated signature permitting a given withdrawal
+2. Executing a withdrawal and observing the effect on the funding source
+
+To begin the withdrawal process your application will
+[create a withdrawal intent](https://docs.immersve.com/api-reference/create-withdrawal-intent/),
+providing the amount of the intended withdrawal and a reference to the relevant funding source.
+
+Prior to returning a response, Immersve will identify the current blockchain nonce for the cardholder.
+The nonce is used to ensure only the intended withdrawal intent can be executed by the cardholder.
+The returned withdrawal intent is valid for the period indicated by the `expiresAt` property.
+
+When a withdrawal intent is created, the relevant funding source balance is debited by the amount of
+the funding source interaction. The funding source interaction `status` will be "pending" at this time
+and will remain so until such time as the withdrawal intent is executed.
+
+The cardholder may create further withdrawal intents to change the amount of the withdrawal prior
+to having executed it. If there are multiple withdrawal intents created with the same nonce, the
+funding source will be reduced by the amount of the highest withdrawal intent.
+
+To execute a withdrawal the cardholder must submit the transaction contained in the `execution` property
+of the withdrawal intent prior to the `expiresAt` timestamp of the intent. Your application should prompt
+the cardholder to sign and submit the transaction. Upon observation of the the execution of the withdrawal
+intent on the blockchain, Immersve will update the `status` of the funding source interaction.
+Your application should query the interaction to observe the change to the `status` and make this known to
+the cardholder accordingly.
 
 <!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764578946735882&cot=14 -->
 ![Card Funding Sequence](@assets/diagrams/withdrawal-sequence.svg)
