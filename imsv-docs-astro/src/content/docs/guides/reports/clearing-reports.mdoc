@@ -29,11 +29,13 @@ The clearing report can be used to review all card purchase clearings for a give
 | mcc                | Four-digit number listed in [ISO 18245](https://www.iso.org/obp/ui/#iso:std:iso:18245:ed-2:v1:en). Used to classify a business by the types of goods or services it provides. |
 | channel            | Channel used to initialize the [transaction](/api-reference/transactions). Examples include `ATM`, and `Online`.                                                              |
 
+
 ## Example
 
-`169286b0603e6a75122cc0b217d3b850_clearing_2023-04-18T00:00:00.000Z_2023-04-18T00:00:00.000Z.csv`
 
-```
+{% code title="169286b_clearing_2023-04-18T00:00:00.000Z_2023-04-18T00:00:00.000Z.csv" %}
+```csv
 card_token,transaction_id,authorization_id,transaction_type,merchant_currency,merchant_amount,billing_currency,billing_amount,settlement_currency,settlement_amount,exchange_rate,account_id,merchant_id,merchant_name,merchant_city,merchant_country,creation_at,approved_at,mcc,channel
 789f7719eab12100789653487c136165,1000000324137,1000000324138,1200,USD,500,USD,500,USDC,6000000,1.0000000000,e64aa69f0a9af2d664e5989bd7f22562,000000000000000,Family Clothing Store,Auckland,NZL,2023-04-18T01:08:06.435Z,2023-04-18T01:08:09.144Z,5651,Online
 ```
+{% /code %}
