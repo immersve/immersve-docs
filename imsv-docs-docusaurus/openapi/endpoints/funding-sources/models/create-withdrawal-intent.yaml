@@ -2,8 +2,8 @@ type: object
 properties:
   amount:
     type: number
-    description: Amount to withdraw.
-    example: 300
+    description: Withdrawal amount in minor units.
+    example: 300000000
   id:
     type: string
     description: ID of the Withdrawal Intent.
@@ -63,7 +63,7 @@ properties:
         properties:
           amount:
             type: number
-            description: The amount being withdrawn.
+            description: Withdrawal amount in minor units.
             example: 5000000
           expiryDate:
             type: number
