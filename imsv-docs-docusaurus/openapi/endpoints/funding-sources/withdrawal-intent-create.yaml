@@ -23,8 +23,8 @@ post:
           properties:
             amount:
               type: number
-              description: Amount to withdraw.
-              example: 300
+              description: Withdrawal amount in minor units.
+              example: 300000000
           required:
             - amount
     required: true
@@ -40,7 +40,7 @@ post:
         **INSUFFICIENT_BALANCE**
         Withdrawal amount exceeds funding source balance.
 
-        **CONCURRENT_WITHDRAW_LIMIT_REACHED**
+        **TOO_MANY_PENDING_WITHDRAWALS**
         Maximum amount of intents exceeded (10).
 
         **FUNDING_STRATEGY_NOT_SUPPORTED**
