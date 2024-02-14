@@ -126,6 +126,8 @@ paths:
     $ref: "./endpoints/funding-sources/create-funding-source.yaml"
   "/api/funding-sources/{fundingSourceId}/interactions":
     $ref: "./endpoints/funding-sources/funding-source-interactions-get.yaml"
+  "/api/funding-sources/{fundingSourceId}/withdraw":
+    $ref: "./endpoints/funding-sources/withdrawal-intent-create.yaml"
   "/api/funding-channel/{fundingChannelId}":
     $ref: "./endpoints/funding-channel/funding-channel-get.yaml"
   "/api/funding-channels":
@@ -138,7 +140,6 @@ paths:
     $ref: "./endpoints/client-application/client-application-get.yaml"
   "/api/client-applications/{clientApplicationId}/update-origins":
     $ref: "./endpoints/client-application/client-application-update-origins.yaml"
-
 components:
   securitySchemes:
     immersve_auth:
