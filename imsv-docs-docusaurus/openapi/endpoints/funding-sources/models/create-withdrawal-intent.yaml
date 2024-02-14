@@ -64,7 +64,7 @@ properties:
           amount:
             type: number
             description: Withdrawal amount in minor units.
-            example: 5000000
+            example: 300000000
           expiryDate:
             type: number
             description: The unix timestamp when the signature expires.
