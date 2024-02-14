@@ -31,9 +31,9 @@ funding wallet may be an EOA or a smart contract implementing the ERC-1271
 interface.
 
 
-## Funding Process
+## Depositing Funds
 
-On-chain funding can be done at any time regardless of card or Funding Source
+On-chain funds deposits can be made any time regardless of card or Funding Source
 provisioning. A Funding Source can be loaded with digital assets without using
 Immersve APIs by depositing funds directly to our smart contract.
 
@@ -41,6 +41,27 @@ However, our APIs aim to reduce the complexity of determining what is the amount
 of digital assets needed to meet a users desired spend in their desired fiat
 currency. They also provide pre-built `"smart-contract-write"` transactions for
 successful interactions with the Immersve smart contract.
+
+If multiple transactions are present then they should be carried out in the
+order in which they are presented.
+
+The client application is to parse and formulate the raw blockchain transaction
+message such that it is presented to the user within the web3 wallet and signed
+and sent to the relevant blockchain.
+
+<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577778509789&cot=14 -->
+![Card Funding Sequence](@assets/diagrams/card-funding-sequence.svg)
+
+
+## Withdrawing Funds
+
+Withdrawals are a two step process, first a withdrawal intent is submitted, which
+is asking Immersve to create a signature to authorize the release of funds to the users
+wallet, this signature is submitted in the users wallet to complete the withdrawal.
+
+<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764578946735882&cot=14 -->
+<!-- TODO: replace with withdrawals diagram -->
+![Card Funding Sequence](@assets/diagrams/card-funding-sequence.svg)
 
 
 ### Currency Conversion
@@ -52,31 +73,6 @@ conversion](/api-reference/currency-conversion) API endpoint.
 
 The returned value can passed to the get spending prerequisites endpoint as
 detailed below.
-
-
-### Lock Funds
-
-To ensure that funds are sufficiently locked within the [smart
-contract](/guides/universal-evm-smart-contract) such that Immersve are in a position to
-approve an authorization request received via the card scheme network you will
-need to have first locked sufficient digital assets within the smart contract
-via digital asset transfer and smart contract invocations as instructed by the
-[get spending prerequisites](/api-reference/get-spending-prerequisites)
-operation. The necessary blockchain transactions are contained within the
-`prerequisites` collection returned.
-
-If the user has not transacted using the solution before then the [get spending
-prerequisites](/api-reference/get-spending-prerequisites) response will
-typically call for an ERC20 `approve` in favour of the smart contract followed
-by a `depositAndLock` invocation of the smart contract.
-
-If multiple transactions are present then they should be carried out in the
-order in which they are presented.
-
-The client application is to parse and formulate the raw blockchain transaction
-message such that it is presented to the user within the web3 wallet and signed
-and sent to the relevant blockchain.
-
 
 #### How to use prerequisites example for ts/js
 
@@ -112,8 +108,7 @@ to ERC20 smart contract will refer to the "IMMUSDC" token. The "IMMUSDC" token
 has a `mint` function allowing for the unlimited minting of the token to any
 wallet address.
 
-One particularly convenient way to get the necessary tokens is to use the
-Polygonscan interface.
+Polygonscan can be used to get the necessary tokens.
 
 - Open the [IMMUSDC token in
   Polygonscan](https://mumbai.polygonscan.com/address/0x2FaC06acFAeB42CC3B5327fcF53F48D9Da72749d#code)
@@ -124,8 +119,3 @@ Polygonscan interface.
   field. Set an amount in the `amount` field.
 - Initiate the web3 transaction by clicking the `Write` button
 - Confirm the transaction in the web3 wallet and pay the gas fees
-
-### Funding Sequence Diagram
-
-<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577778509789&cot=14 -->
-![Card Funding Sequence](@assets/diagrams/card-funding-sequence.svg)
