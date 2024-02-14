@@ -37,6 +37,9 @@ post:
             $ref: "./models/create-withdrawal-intent.yaml"
     "403":
       description: |
+        **FORBIDDEN**
+        Insufficient permissions to perform the action.
+
         **INSUFFICIENT_BALANCE**
         Withdrawal amount exceeds funding source balance.
 
