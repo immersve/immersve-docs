@@ -1,0 +1,11 @@
+services:
+  nginx:
+    image: nginx:latest
+    volumes: [ "./dist:/usr/share/nginx/html" ]
+    ports: [ "8080:80" ]
+
+  linkchecker:
+    init: true
+    image: ghcr.io/linkchecker/linkchecker:latest
+    volumes: [ "./:/mnt" ]
+    depends_on: [ nginx ]
