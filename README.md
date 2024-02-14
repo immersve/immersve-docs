@@ -1,6 +1,6 @@
 # Immersve Docs
 
-This website hosts documentation for [immersve.com](https://immersve.com). is
+This website hosts documentation for [docs.immersve.com](https://docs.immersve.com). It is
 built using [Astro](https://astro.build/), [Tailwind](https://tailwindcss.com/)
 and [Markdoc](https://markdoc.dev/).
 
