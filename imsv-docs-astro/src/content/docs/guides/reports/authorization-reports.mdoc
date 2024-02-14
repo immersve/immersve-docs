@@ -21,7 +21,7 @@ The authorization report can be used to review all card purchase authorizations 
 | settlementCurrency | Currency the card issuer selects to be paid in.                                                                                                                               |
 | settlementAmount   | Amount to be settled, in minor units of the settlement currency. This amount may include fees.                                                                                |
 | exchangeRate       | Exchange rate applied between the merchant amount and the billing amount.                                                                                                     |
-| accountId          | Unique identifier of the [account](/api-reference/accounts-custodial) which the [card](/api-reference/card) belongs to.                                                       |
+| accountId          | Unique identifier of the [account](/use-cases/custodial-wallets) which the [card](/api-reference/card) belongs to.                                                       |
 | merchantId         | Unique identifier of the merchant.                                                                                                                                            |
 | merchantName       | Name of the merchant.                                                                                                                                                         |
 | merchantCity       | City of the merchant.                                                                                                                                                         |
@@ -51,9 +51,10 @@ The authorization report can be used to review all card purchase authorizations 
 
 ## Example
 
-`82cc0b217d3b850169286b0603e6a756_authorization_2023-03-28T00:00:00.000Z_2023-03-28T00:00:00.000Z.csv`
 
-```
+{% code title="82cc0b2_authorization_2023-03-28T00:00:00.000Z_2023-03-28T00:00:00.000Z.csv" %}
+```csv
   cardToken,transactionId,authorizationId,authorizationCode,transactionType,status,merchantCurrency,merchantAmount,billingCurrency,billingAmount,settlementCurrency,settlementAmount,exchangeRate,accountId,merchantId,merchantName,merchantCity,merchantCountry,createdAt,approvedAt,mcc,channel
   6c474aa7a5dc45bff721b5a207cf0f47,1000000318081,1000000318080,5,0100,approved,USD,10000,NZD,16172,USDC,100000000,1.6172000000,225d85e65495722bf6517ea0ba0d6f56,47e4d565f99457119fd9c672f6edf0aa,Family Clothing Store,Auckland,NZL,2023-03-28T23:23:22.958Z,2023-03-28T23:23:24.533Z,5651,Online
 ```
+{% /code %}
