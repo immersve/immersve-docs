@@ -3,12 +3,12 @@ title: Card Funding
 slug: guides/card-funding
 ---
 
-A Funding Source is an off-chain record of available balance against which card
+A Funding Source is a record of available balance against which card
 transactions are authorized. A Funding Source is owned by a cardholder and can
-be associated with many cards transacting against the same available balance . A
+be associated with many cards transacting against the same available balance. A
 Funding Source must have sufficient balance for a transaction to be authorized.
 
-A Funding Source balance is eventually consistent with the on-chain deposits.
+A Funding Source balance is eventually consistent with the on-chain deposits and withdrawals.
 However, the balance available to spend may differ. This could happen if deposit
 or load limits are exceeded. AML/CFT rules can dictate that the funds should not
 be included in the balance.
@@ -26,14 +26,14 @@ guide](/guides/authentication).
 ## Funding Source Provisioning
 
 A Funding Source is created by a request to the [create a Funding Source for an
-account](/api-reference/create-a-funding-source-for-an-account) endpoint. The
+account endpoint](/api-reference/create-a-funding-source-for-an-account). The
 funding wallet may be an EOA or a smart contract implementing the ERC-1271
 interface.
 
 
-## Funding Process
+## Depositing Funds
 
-On-chain funding can be done at any time regardless of card or Funding Source
+On-chain funds deposits can be made any time regardless of card or Funding Source
 provisioning. A Funding Source can be loaded with digital assets without using
 Immersve APIs by depositing funds directly to our smart contract.
 
@@ -42,46 +42,65 @@ of digital assets needed to meet a users desired spend in their desired fiat
 currency. They also provide pre-built `"smart-contract-write"` transactions for
 successful interactions with the Immersve smart contract.
 
+If multiple transactions are present then they should be carried out in the
+order in which they are presented.
+
+The client application is responsible for creating the raw blockchain transaction
+so that it can be signed and submitted to the relevant blockchain through the
+cardholder's web3 wallet.
+
+<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577778509789&cot=14 -->
+![Card Funding Sequence](@assets/diagrams/card-funding-sequence.svg)
+
+
+## Withdrawing Funds
+
+Withdrawals are conducted as a two-stage process:
+
+1. Obtaining an Immersve-generated signature permitting a given withdrawal
+2. Executing a withdrawal and observing the effect on the funding source
+
+To begin the withdrawal process your application will
+[create a withdrawal intent](/api-reference/create-withdrawal-intent),
+providing the amount of the intended withdrawal and a reference to the relevant funding source.
+
+Prior to returning a response, Immersve will identify the current blockchain nonce for the cardholder.
+The nonce is used to ensure only the intended withdrawal intent can be executed by the cardholder.
+The returned withdrawal intent is valid for the period indicated by the `expiresAt` property.
+
+When a withdrawal intent is created, the relevant funding source balance is debited by the amount of
+the funding source interaction. The funding source interaction `status` will be "pending" at this time
+and will remain so until such time as the withdrawal intent is executed.
+
+The cardholder may create further withdrawal intents to change the amount of the withdrawal prior
+to having executed it. If there are multiple withdrawal intents created with the same nonce, the
+funding source will be reduced by the amount of the highest withdrawal intent.
+
+To execute a withdrawal the cardholder must submit the transaction contained in the `execution` property
+of the withdrawal intent prior to the `expiresAt` timestamp of the intent. Your application should prompt
+the cardholder to sign and submit the transaction. Upon observation of the the execution of the withdrawal
+intent on the blockchain, Immersve will update the `status` of the funding source interaction.
+Your application should query the [List Funding Source Interactions endpoint](/api-reference/list-funding-source-interactions),
+and inform the cardholder when the withdrawal `status` is no longer pending.
+
+<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764578946735882&cot=14 -->
+![Card Funding Sequence](@assets/diagrams/withdrawal-sequence.svg)
+
 
 ### Currency Conversion
 
 A user may be quoted a price for a purchase by a merchant in a local fiat
 currency. To determine the sufficient amount of local fiat currency to fund a
 card in its billing currency (USD), use the [currency
-conversion](/api-reference/currency-conversion) API endpoint.
+conversion endpoint](/api-reference/currency-conversion).
 
-The returned value can passed to the get spending prerequisites endpoint as
+The returned value can be passed to the [get spending prerequisites endpoint](/api-reference/get-spending-prerequisites) as
 detailed below.
-
-
-### Lock Funds
-
-To ensure that funds are sufficiently locked within the [smart
-contract](/guides/universal-evm-smart-contract) such that Immersve are in a position to
-approve an authorization request received via the card scheme network you will
-need to have first locked sufficient digital assets within the smart contract
-via digital asset transfer and smart contract invocations as instructed by the
-[get spending prerequisites](/api-reference/get-spending-prerequisites)
-operation. The necessary blockchain transactions are contained within the
-`prerequisites` collection returned.
-
-If the user has not transacted using the solution before then the [get spending
-prerequisites](/api-reference/get-spending-prerequisites) response will
-typically call for an ERC20 `approve` in favour of the smart contract followed
-by a `depositAndLock` invocation of the smart contract.
-
-If multiple transactions are present then they should be carried out in the
-order in which they are presented.
-
-The client application is to parse and formulate the raw blockchain transaction
-message such that it is presented to the user within the web3 wallet and signed
-and sent to the relevant blockchain.
-
 
 #### How to use prerequisites example for ts/js
 
-The [get spending prerequisites](/api-reference/get-spending-prerequisites)
-endpoint returns an array of both regulatory and smart contract prerequisite
+The [get spending prerequisites endpoint](/api-reference/get-spending-prerequisites)
+returns an array of both regulatory and smart contract prerequisite
 transactions.
 Each object in the array has `type` and `params`.
 Type `"smart_contract_write"` means that this action is about interaction with
@@ -92,6 +111,24 @@ interaction.
 ```js
 const { abi, contractAddress, method, params } =
   response.data.prerequisites.params;
+
+const contract = new Contract(contractAddress, abi, signer); // third param Signer is required
+
+const { hash } = await contract[method](...Object.values(params));
+```
+{% /code %}
+
+
+### How to create a withdrawal intent example for ts/js
+
+The [create withdrawal intent endpoint](/api-reference/create-withdrawal-intent) creates a withdrawal
+intent for a given amount and returns the parameters needed to execute the withdrawal on the cardholder's
+web3 wallet.
+
+{% code title="Code example with ethers.js" %}
+```js
+const { abi, contractAddress, method, params } =
+  response.data.execution.params;
 
 const contract = new Contract(contractAddress, abi, signer); // third param Signer is required
 
@@ -112,8 +149,7 @@ to ERC20 smart contract will refer to the "IMMUSDC" token. The "IMMUSDC" token
 has a `mint` function allowing for the unlimited minting of the token to any
 wallet address.
 
-One particularly convenient way to get the necessary tokens is to use the
-Polygonscan interface.
+Polygonscan can be used to get the necessary tokens.
 
 - Open the [IMMUSDC token in
   Polygonscan](https://mumbai.polygonscan.com/address/0x2FaC06acFAeB42CC3B5327fcF53F48D9Da72749d#code)
@@ -124,8 +160,3 @@ Polygonscan interface.
   field. Set an amount in the `amount` field.
 - Initiate the web3 transaction by clicking the `Write` button
 - Confirm the transaction in the web3 wallet and pay the gas fees
-
-### Funding Sequence Diagram
-
-<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577778509789&cot=14 -->
-![Card Funding Sequence](@assets/diagrams/card-funding-sequence.svg)
