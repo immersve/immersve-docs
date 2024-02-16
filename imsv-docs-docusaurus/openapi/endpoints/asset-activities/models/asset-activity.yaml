@@ -37,7 +37,7 @@ properties:
     description: Target actor of the transaction containing this event, in the form of a smart contract or wallet address
     example: "0xa0947892376e8c4da58ce68cdb100412aa126222"
   amount:
-    type: number
+    type: string
     description: Value of the transaction
     example: 10
 required:

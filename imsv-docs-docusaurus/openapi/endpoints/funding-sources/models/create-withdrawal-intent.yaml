@@ -1,7 +1,7 @@
 type: object
 properties:
   amount:
-    type: number
+    type: string
     description: Withdrawal amount in minor units.
     example: 300000000
   id:
@@ -62,7 +62,7 @@ properties:
         type: object
         properties:
           amount:
-            type: number
+            type: string
             description: Withdrawal amount in minor units.
             example: 300000000
           expiryDate:
