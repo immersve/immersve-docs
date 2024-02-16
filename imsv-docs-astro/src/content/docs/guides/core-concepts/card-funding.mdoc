@@ -87,7 +87,25 @@ and inform the cardholder when the withdrawal `status` is no longer pending.
 ![Card Funding Sequence](@assets/diagrams/withdrawal-sequence.svg)
 
 
-### Currency Conversion
+### How to create a withdrawal intent example for ts/js
+
+The [create withdrawal intent endpoint](/api-reference/create-withdrawal-intent) creates a withdrawal
+intent for a given amount and returns the parameters needed to execute the withdrawal on the cardholder's
+web3 wallet.
+
+{% code title="Code example with ethers.js" %}
+```js
+const { abi, contractAddress, method, params } =
+  response.data.execution.params;
+
+const contract = new Contract(contractAddress, abi, signer); // third param Signer is required
+
+const { hash } = await contract[method](...Object.values(params));
+```
+{% /code %}
+
+
+## Currency Conversion
 
 A user may be quoted a price for a purchase by a merchant in a local fiat
 currency. To determine the sufficient amount of local fiat currency to fund a
@@ -97,7 +115,7 @@ conversion endpoint](/api-reference/currency-conversion).
 The returned value can be passed to the [get spending prerequisites endpoint](/api-reference/get-spending-prerequisites) as
 detailed below.
 
-#### How to use prerequisites example for ts/js
+### How to use prerequisites example for ts/js
 
 The [get spending prerequisites endpoint](/api-reference/get-spending-prerequisites)
 returns an array of both regulatory and smart contract prerequisite
@@ -119,25 +137,7 @@ const { hash } = await contract[method](...Object.values(params));
 {% /code %}
 
 
-### How to create a withdrawal intent example for ts/js
-
-The [create withdrawal intent endpoint](/api-reference/create-withdrawal-intent) creates a withdrawal
-intent for a given amount and returns the parameters needed to execute the withdrawal on the cardholder's
-web3 wallet.
-
-{% code title="Code example with ethers.js" %}
-```js
-const { abi, contractAddress, method, params } =
-  response.data.execution.params;
-
-const contract = new Contract(contractAddress, abi, signer); // third param Signer is required
-
-const { hash } = await contract[method](...Object.values(params));
-```
-{% /code %}
-
-
-### Wallet Funding for Development and Testing
+## Wallet Funding for Development and Testing
 
 To ensure that integrators can obtain sufficient ERC-20 tokens to facilitate
 development and testing, Immersve uses an ERC-20 token contract that allows
