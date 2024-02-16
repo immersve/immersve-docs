@@ -4,6 +4,8 @@ get:
   summary: List Funding Source Interactions
   description: |
     Retrieves a list of Funding Source Interactions for a given Funding Source.
+
+    This API uses cursor-based pagination. Start by making a request without a cursor to get the first page. Use the nextCursor from the pageInfo in the response as the cursor for subsequent requests to retrieve further pages. Continue until nextCursor is undefined, indicating no more data.
   parameters:
     - name: fundingSourceId
       in: path

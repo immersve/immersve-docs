@@ -2,7 +2,10 @@ post:
   tags:
     - transactions
   summary: List transactions
-  description: List card purchase transactions by account
+  description: |
+    List card purchase transactions by account
+
+    This API uses cursor-based pagination. Start by making a request without a cursor to get the first page. Use the nextCursor from the pageInfo in the response as the cursor for subsequent requests to retrieve further pages. Continue until nextCursor is undefined, indicating no more data.
   parameters:
     - name: accountId
       in: path
