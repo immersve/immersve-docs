@@ -1,5 +1,46 @@
 ---
 title: Card Payments 101
+slug: guides/card-payments-101
 sidebar:
-  hidden: true
+  order: 1
 ---
+
+
+Immersve facilitates payments on the Mastercard<sup>®</sup> network by
+implementing the required card payment protocols. The main protocol
+instructions are: Authorization, Clearing, and Settlement.
+
+{% note %}
+Integrators can test card payment protocols with the Immersve [payment
+simulator](/guides/simulator). The payment simulator uses test assets and a
+mock payment network.
+{% /note %}
+
+
+## Authorization
+
+An Authorization message is sent when a cardholder taps their card at a payment
+terminal or when an e-commerce payment gateway authorizes a card payment. In
+response to an Authorization request, Immersve must check the validity of a
+card and check if funds are available. At this point the transaction is
+initialized, with an initial hold being made on the funds. Authorization
+messages are received and processed in real-time. Authorized funds are no
+longer available to the cardholder for withdrawal or spend. Authorizations that
+have not yet cleared appear to the cardholder as “pending” transactions.
+
+
+## Clearing
+
+A Clearing message indicates finalization of a payment. In an e-commerce
+setting, this often happens after order fulfillment. A clearing message may
+have a value that is greater or less than the authorized amount. Authorized
+funds are not settled until cleared. Authorizations expire when not cleared
+within a month. Cardholders regain full control of funds held by expired
+Authorizations.
+
+## Settlement
+
+All cleared transactions need to be paid out to Mastercard so that merchants
+can receive payment. The process of paying out cleared transactions is referred
+to as Settlement. Settlements are batched daily or at a cadence that is
+appropriate based on the current transaction volume.
