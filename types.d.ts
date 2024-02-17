@@ -245,7 +245,7 @@ declare module 'astro:content' {
 } & { render(): Render[".mdoc"] };
 "guides/core-concepts/card-payments-101.mdoc": {
 	id: "guides/core-concepts/card-payments-101.mdoc";
-  slug: "guides/core-concepts/card-payments-101";
+  slug: "guides/card-payments-101";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
