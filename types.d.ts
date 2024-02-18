@@ -313,6 +313,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"resources/smart-contracts.mdoc": {
+	id: "resources/smart-contracts.mdoc";
+  slug: "resources/smart-contracts";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "use-cases/custodial-wallets.mdoc": {
 	id: "use-cases/custodial-wallets.mdoc";
   slug: "use-cases/custodial-wallets";
