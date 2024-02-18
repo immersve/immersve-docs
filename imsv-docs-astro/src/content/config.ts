@@ -2,7 +2,15 @@ import { z, defineCollection } from 'astro:content';
 import { docsSchema, i18nSchema } from '@astrojs/starlight/schema';
 
 export const collections = {
-  docs: defineCollection({ schema: docsSchema() }),
+  docs: defineCollection({
+    schema: docsSchema({
+      extend: z.object({
+        'funding-protocol': z.object({
+          source: z.string(),
+        }).optional(),
+      }),
+    })
+  }),
   i18n: defineCollection({ type: 'data', schema: i18nSchema() }),
   'funding-types': defineCollection({
     schema: z.object({

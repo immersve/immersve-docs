@@ -39,6 +39,7 @@ export default defineConfig({
             { label: 'Webhooks', link: 'guides/webhooks' } ,
           ]
         },
+        { label: 'Resources', autogenerate: { directory: 'resources' } },
         {
           label: 'API Reference',
           link: '/api-reference/',

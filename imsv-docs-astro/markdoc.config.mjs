@@ -36,5 +36,8 @@ export default defineMarkdocConfig({
         categories: { type: Array },
       }
     },
+    fundingContractsTable: {
+      render: component('./src/components/FundingContractsTable.astro'),
+    },
   }
 });
