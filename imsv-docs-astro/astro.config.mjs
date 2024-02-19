@@ -18,6 +18,9 @@ export default defineConfig({
       social: {
         github: 'https://github.com/immersve/'
       },
+      editLink: {
+        baseUrl: 'https://github.com/immersve/immersve-docs/edit/main/imsv-docs-astro',
+      },
       favicon: '/favicon.ico',
       customCss: ['./src/styles/tailwind.css'],
       components: {
