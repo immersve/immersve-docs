@@ -18,6 +18,9 @@ export default defineConfig({
       social: {
         github: 'https://github.com/immersve/'
       },
+      editLink: {
+        baseUrl: 'https://github.com/immersve/immersve-docs/edit/main/imsv-docs-astro',
+      },
       favicon: '/favicon.ico',
       customCss: ['./src/styles/tailwind.css'],
       components: {
@@ -39,6 +42,7 @@ export default defineConfig({
             { label: 'Webhooks', link: 'guides/webhooks' } ,
           ]
         },
+        { label: 'Resources', autogenerate: { directory: 'resources' } },
         {
           label: 'API Reference',
           link: '/api-reference/',

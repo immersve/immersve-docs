@@ -1,6 +1,6 @@
 # Immersve Docs
 
-This website hosts documentation for [immersve.com](https://immersve.com). is
+This website hosts documentation for [docs.immersve.com](https://docs.immersve.com). It is
 built using [Astro](https://astro.build/), [Tailwind](https://tailwindcss.com/)
 and [Markdoc](https://markdoc.dev/).
 
@@ -34,7 +34,8 @@ Important locations for content authoring:
  - `imsv-docs-astro/src/content/docs/` -- Content authored as Markdoc.
  - `imsv-docs-astro/src/components/` -- Custom Astro components.
  - `imsv-docs-astro/markdoc.config.mjs` -- Markdoc tag declarations.
- - `imsv-docs-astro/astro.config.mjs` -- Sidebar nav configuration and redirects.
+ - `imsv-docs-astro/astro.config.mjs` -- Sidebar nav configuration.
+ - `imsv-docs-astro/src/redirects.yml` -- Redirects.
  - `imsv-docs-docusaurus/openapi/` -- Open API specs for API Reference section.
  - `imsv-docs-docusaurus/docs/redirects/` -- API Reference redirects.
 
@@ -71,7 +72,7 @@ yarn api-re-gen
 When changing URLs, redirects should be declared to preserve inbound links to
 old content locations.
 
- * Guides redirects are defined at: `imsv-docs-astro/astro.config.mjs`.
+ * Guides redirects are defined at: `imsv-docs-astro/src/redirects.yml`.
  * API Reference redirects are defind at: `imsv-docs-docusaurus/docs/redirects/`.
 
 To avoid changing URLs, Astro offers the `slug` frontmatter attribute which
