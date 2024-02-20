@@ -19,12 +19,13 @@ post:
               description: Either the `authCode` or `refreshToken` is required.
               example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
             clientApplicationId:
-              type: number
+              type: string
               description: Id of the client application.
-              example: 29097f50d221858223a17633e36716f9
+              example: '29097f50d221858223a17633e36716f9'
             clientSecret:
               type: string
               description: The client secret for the client application. Required if the client application is confidential.
+              example: 'c94dbd582d594e8aa04934f9c7ef0f52'
           required:
             - clientApplicationId
     required: true
