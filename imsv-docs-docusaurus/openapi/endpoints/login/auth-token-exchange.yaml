@@ -1,0 +1,48 @@
+post:
+  tags:
+    - authentication
+  summary: Auth Token Exchange
+  description: |
+    The token endpoint returns a new access token for a user without requiring the user to re-authenticate.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            refreshToken:
+              type: string
+              description: The token previously issued to the client when login.
+              example: "cda232434dsfds342923frENnKthng3ji4.dseyJ1c2VyX2lkIjoidXNlcl8xMjM0NTYiLCJ0b2tlbl9pZCI6InRva2VuXzc4OTEwIiwiaWF0IjoxNjE1MjY5MTIyLCJleHAiOjE2MTU4NzM5MjJ9.Qy4f3hK6S9DqibtV78iqMzT0NSXx8OH8R3qL_UfzpM4km1ujGbnkIjUn"
+            authCode:
+              type: string
+              description: Either the `authCode` or `refreshToken` is required.
+              example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+            clientApplicationId:
+              type: number
+              description: Id of the client application.
+              example: 29097f50d221858223a17633e36716f9
+            clientSecret:
+              type: string
+              description: The client secret for the client application. Required if the client application is confidential.
+          required:
+            - clientApplicationId
+    required: true
+  responses:
+    "200":
+      description: successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/auth-token-exchange.yaml"
+    "403":
+      description: |
+        **REFRESH_TOKEN_EXPIRED**
+        The refresh token has expired.
+
+        **CLIENT_APPLICATION_MISMATCH**
+        The client application does not match the refresh token.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
