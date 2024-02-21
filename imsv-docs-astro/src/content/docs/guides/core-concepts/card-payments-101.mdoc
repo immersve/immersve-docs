@@ -34,13 +34,17 @@ have not yet cleared appear to the cardholder as “pending” transactions.
 A Clearing message indicates finalization of a payment. In an e-commerce
 setting, this often happens after order fulfillment. A clearing message may
 have a value that is greater or less than the authorized amount. Authorized
-funds are not settled until cleared. Authorizations expire when not cleared
-within a month. Cardholders regain full control of funds held by expired
-Authorizations.
+funds are not settled until cleared.
+
+Authorizations expire when not cleared. The expiry period is between 7 and 30
+days dependent upon the particulars of the Authorization. Cardholders regain
+full control of funds held by expired Authorizations.
+
 
 ## Settlement
 
-All cleared transactions need to be paid out to Mastercard so that merchants
-can receive payment. The process of paying out cleared transactions is referred
-to as Settlement. Settlements are batched daily or at a cadence that is
-appropriate based on the current transaction volume.
+All cleared payment transactions need to be paid to Mastercard by Immersve. The
+process of paying out cleared transactions is referred to as Settlement.
+Settlements are conducted by Immersve at a cadence as instructed by
+Mastercard. An Immersve partner organisation does not actively participate in
+the settlement process nor have visibility of it.
