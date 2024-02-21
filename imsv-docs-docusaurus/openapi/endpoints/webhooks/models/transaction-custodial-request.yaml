@@ -38,7 +38,7 @@ properties:
     description: |
       The transaction type:
 
-      1200 - clearing 
+      1200 - clearing
 
       1400 - refund
     example: 1200
@@ -66,7 +66,7 @@ properties:
     description: Card acceptor currency
     example: USD
   merchantAmount:
-    type: number
+    type: string
     description: Card acceptor amount in minor units of the merchant currency
     example: 100
   billingCurrency:
@@ -74,14 +74,14 @@ properties:
     description: Billing currency
     example: USDC
   billingAmount:
-    type: number
+    type: string
     description: Billing amount in minor units of the billing currency
     example: 100
   settlementCurrency:
     type: string
     example: USDC
   settlementAmount:
-    type: number
+    type: string
     description: Settlement amount in minor units of the settlement currency
     example: 10000
   mcc:

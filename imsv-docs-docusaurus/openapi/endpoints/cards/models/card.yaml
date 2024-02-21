@@ -56,7 +56,7 @@ properties:
     type: string
     example: "58"
   lockedFundAmount:
-    type: number
+    type: string
     example: 10
   lockedFundCurrency:
     type: string

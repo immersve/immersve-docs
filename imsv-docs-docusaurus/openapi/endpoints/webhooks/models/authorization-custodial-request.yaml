@@ -33,9 +33,9 @@ properties:
       - 100
       - 200
     description: |
-      The transaction type: 
+      The transaction type:
 
-      100 - auth request 
+      100 - auth request
 
       200 - sales request
     example: 100
@@ -48,7 +48,7 @@ properties:
     description: Card acceptor currency
     example: USD
   merchantAmount:
-    type: number
+    type: string
     description: Card acceptor amount in minor units of the merchant currency
     example: 100
   billingCurrency:
@@ -56,14 +56,14 @@ properties:
     description: Billing currency
     example: USDC
   billingAmount:
-    type: number
+    type: string
     description: Billing amount in minor units of the billing currency
     example: 100
   settlementCurrency:
     type: string
     example: USDC
   settlementAmount:
-    type: number
+    type: string
     description: Settlement amount in minor units of the settlement currency
     example: 10000
   mcc:
@@ -102,6 +102,6 @@ properties:
     nullable: true
     example: ISO8583v2003
   feeAmount:
-    type: number
+    type: string
     description: The amount charged by IMMERSVE for this transaction in minor units of the settlement currency
     example: 100

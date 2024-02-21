@@ -17,9 +17,9 @@ properties:
     enum: [Deposit, Withdrawal, Refund, Payment]
     description: >
       The type of Funding Source Interaction:
-        * `Deposit` - Funds added to the Funding Source.  
+        * `Deposit` - Funds added to the Funding Source.
         * `Withdrawal` - Funds removed from the Funding Source.
-        * `Refund` - Return of paid funds to the Funding Source. 
+        * `Refund` - Return of paid funds to the Funding Source.
         * `Payment` - Transfer of funds from the Funding Source.
     example: Payment
   status:
@@ -27,7 +27,7 @@ properties:
     description: The current status of the interaction. It will vary depending on the interaction type.
     example: processing-successful
   amount:
-    type: number
+    type: string
     description: The minor units amount of the transaction.
     example: 20000
   token:
