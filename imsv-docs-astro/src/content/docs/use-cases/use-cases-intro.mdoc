@@ -1,8 +1,430 @@
 ---
-title: Use Cases
+title: API Key Integration guide
 slug: use-cases
 sidebar:
-  label: Introduction
+  label: API Key Integration guide
 ---
 
 <!-- {/* TODO render use-cases summary component */} -->
+# Get an Access Token for Immersve APIs
+
+{% note %}
+⏱️ Immersve Access Tokens expire after ~4 hours
+{% /note %}
+
+{% code title="Set up initial variables" %}
+  ```bash
+    wallet_address=<your_wallet_address>
+    client_application_id=<your_client_application_id>
+    card_program_id=<your_card_program_id>
+    app_url=<your_client_application_url>
+
+    : "Use the Immersve's default app credentials for a quick start
+    client_application_id=15472f6212cdc45ffd7ef707fd4186c1
+    card_program_id=NZ_Prepaid
+    app_url=app.immersve.com"
+  ```
+{% /code %}
+
+{% note %}
+ The above “app_url” and “client_application_id” variables should be substituted with your own values. Contact Immersve support to get your own client id. You will need to provide your app’s URL.
+{% /note %}
+
+{% code title="Generate SIWE challenge" %}
+  ```bash
+    message=$(
+      curl -X POST https://test.immersve.com/siwe/generate-challenge \
+        -H 'Content-Type: application/json' \
+        --data '{
+          "walletAddress": "'${wallet_address}'",
+          "chainId": 80001,
+          "url": "'${app_url}'",
+          "scopes": [ "full-access:partner" ],
+          "clientApplicationId": "'${client_application_id}'"
+        }'
+    )
+  ```
+{% /code %}
+### Sign the SIWE challenge
+Use your ethereum account to sign the message returned in the body of the “generate SIWE challenge” response.
+
+
+**1. Copy message to clipboard:**
+`echo -n $message | pbcopy`
+
+  **2. Then, for convenience, use [this link](https://codepen.io/ncjones-the-builder/full/YzRZXrg) to sign the SIWE challenge with your wallet.**
+
+{% note %}
+  You will receive a warning that the codepen domain doesn’t match the domain of the signature request.
+{% /note %}
+
+{% code title="3. Save the signature as a shell variable:" %}
+  ```bash
+    signature=0xf0896511ab6dfa1f051d00f672412288e8222be3559f23c7c42c72e5cbd26ed34f0373edc88eef5aa871f664ccb5d3d6b193facf88896968e8003b7150e0df591
+  ```
+{% /code %}
+
+### Submit the signed challenge to the “login” endpoint
+
+{% code title="Use the following code" %}
+
+  ```bash
+    login_result=$(
+      curl -X POST https://test.immersve.com/siwe/login \
+        -H 'Content-Type: application/json' \
+        --data "$(
+          jq -n --arg msg "$message" --arg sig "$signature" \
+          '{message: $msg, signature: $sig, createCardholderAccount: true}'
+        )"
+    )
+
+    token=$(echo "$login_result" | jq -r .token)
+    cardholder_account_id=$(echo "$login_result" | jq -r .cardholderAccountId)
+  ```
+{% /code %}
+
+* * *
+
+# Register a Funding Source
+
+<br/>
+
+{% code title="Register a wallet address as a source of funds and record the returned fundingSourceId." %}
+
+  ```bash
+    curl -X POST 'https://test.immersve.com/api/funding-sources' \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $token" \
+    -H "X-Account-Id: $cardholder_account_id" \
+    --data '{
+      "accountId": "'${cardholder_account_id}'",
+      "fundingAddress": "'${wallet_address}'",
+      "fundingSourceType": "ImmersvePolygonMumbaiUSDC"
+    }'
+  ```
+{% /code %}
+
+<br/>
+
+{% code title="Or get the existing one if it exists" %}
+
+  ```bash
+    curl -X GET "https://test.immersve.com/api/accounts/${cardholder_account_id}/funding-sources" \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $token" \
+    -H "X-Account-Id: $cardholder_account_id"
+  ```
+{% /code %}
+
+<br/>
+
+{% code title="Set funding_source_id variable" %}
+
+  ```js
+    funding_source_id=<funding source id from Register a Funding Source>
+  ```
+{% /code %}
+
+* * *
+
+# Complete headless KYC checks
+
+{% note %}
+ Partner account must be configured to allow headless KYC checks. This is subject to an agreement between Immersve and the partner. Ask Immersve support for more details.
+{% /note %}
+
+KYC verification is an essential prerequisite for using the Immersve card. The following are the steps to complete headless KYC verification:
+
+{% code title="Set up additional environment variables" %}
+
+  ```js
+    kyc_api_key=<api_key_with_kyc_manager_role>
+    kyc_api_secret=<api_key_secret_with_kyc_manager_role>
+  ```
+{% /code %}
+
+<br/>
+
+{% code title="Submit KYC statements statement about the cardholder account.  Provide ‘passall’ as the middle name, the check should be successful regardless of the validity of the rest of the details." %}
+
+  ```bash
+    curl --location --request PUT "https://test.immersve.com/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
+    --header 'Content-Type: application/json' \
+    --header 'Accept: application/json' \
+    --header "x-api-key: ${kyc_api_key}" \
+    --header "x-api-secret: ${kyc_api_secret}" \
+    --data '{
+        "idempotencyKey": "some_random_key_thats_unique_for_each_request",
+        "timestamp": "2023-08-08T04:15:48.013Z",
+        "claims": [
+            {
+                "claimType": "FULL_NAME",
+                "attributes": {
+                    "givenName": "RONALD",
+                    "honorific": "Mr",
+                    "familyName": "Lopez"
+                }
+            },
+            {
+                "claimType": "ADDRESS",
+                "attributes": {
+                    "addressType": "RESIDENTIAL",
+                    "country": "NZL",
+                    "streetNumber": "73",
+                    "streetName": "Great Southern",
+                    "streetType": "ROAD",
+                    "suburb": "Auckland CBD",
+                    "town": "Auckland",
+                    "region": "Auckland",
+                    "state": "AKL",
+                    "postalCode": "6140"
+                }
+            },
+            {
+                "claimType": "DOB",
+                "attributes": {
+                    "country": "NZL",
+                    "dateOfBirth": "1980-05-09",
+                    "locality": "Brisbane",
+                    "yearOfBirth": "1978"
+                }
+            }
+        ],
+        "evidence": [
+            {
+                "evidenceType": "PASSPORT",
+                "documentId": "LZ651555",
+                "country": "NZL",
+                "expiry": "2024-10-12"
+            }
+        ]
+    }'
+  ```
+{% /code %}
+  See [docs](https://docs.immersve.com/api-reference/submit-partner-kyc-statement#submit-partner-kyc-statement) for more info on the above endpoint.
+
+{% code title="Poll spending prerequisites until KYC Check is not required" %}
+
+  ```bash
+    curl --location 'https://test.immersve.com/api/spending-prerequisites' \
+    --header 'Content-Type: application/json' \
+    --header 'Accept: application/json' \
+    --header "Authorization: Bearer $token" \
+    --data '{
+      "cardProgramId": "'${card_program_id}'",
+      "fundingSourceId": "'${funding_source_id}'",
+      "spendableAmount": 100,
+      "spendableCurrency": "USD"
+    }'
+
+    # the response should contain:
+    # {
+    # 	prerequisites: [
+    #     ...,
+    # 		{
+    # 			type: 'kyc',
+    # 		  params: {
+    # 		    status: 'check_in_progress',
+    # 		  }
+    # 		},
+    # 		...
+    #   ]
+    # }
+  ```
+{% /code %}
+Calling the "get spending prerequisites" endpoints queues a KYC check. When the KYC check is queued, a KYC profile for that account is created with a 'created' status. The status changes to 'pending' when the check is started and the KYC statements are submitted for verification.
+
+Once the check is complete we will update the user's KYC profile with the appropriate status: 'passed' or 'failed'.
+If a KYC profile status is 'passed' and the region of the profile matches card program region, the response should no longer include KYC prerequisite.
+However, if the status is 'failed', the response will state ‘kyc_required’.
+
+* * *
+
+# Contact Details
+
+{% note %}
+  Immersve will not perform contact details validation.
+{% /note %}
+
+Immersve requires users contact details (phone number & email) for the following reasons, this should be explained to customers:
+
+- Adding cards to Apple/Google Pay wallets (X-Pay)
+- Performing 3DS validation for online transactions
+
+If user doesn’t provide contact details, they risk online transactions being rejected and might not be able to add cards to X-Pay wallets.
+
+Before you share contact details with Immersve you must collect user consent via checkbox, can be done at the same time as KYC information sharing.
+
+{% code title="To create contact details use the following API call" %}
+  ```bash
+    curl -L -X PATCH "https://test.immersve.com/api/accounts/${cardholder_account_id}/contact-details" \
+    --header 'Content-Type: application/json' \
+    --header "Authorization: Bearer $token" \
+    --data-raw '{
+      "email": {
+          "emailAddress": "joe@cardholder.email"
+        },
+      "phone": {
+          "phoneNumber": "+64123456789"
+        }
+    }'
+  ```
+{% /code %}
+
+<br/>
+
+{% code title="To check existing contact details use the following API call" %}
+  ```bash
+    curl -L -X GET "https://amethyst/api/accounts/${cardholder_account_id}/contact-details" \
+    --header 'Content-Type: application/json' \
+    --header "Authorization: Bearer $token"
+  ```
+{% /code %}
+
+* * *
+
+# Contact Details
+
+{% code title="(Optional) Get prerequisite transactions" %}
+  ```bash
+    # Get hints for the required transactions before a card can be issued. For Mumbai Polygon (chain id 80001), prerequisites can be checked with:
+    curl -X POST https://test.immersve.com/api/spending-prerequisites \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $token" \
+    -H "X-Account-Id: $cardholder_account_id" \
+    --data '{
+    "cardProgramId": "'${card_program_id}'",
+    "fundingSourceId": "'${funding_source_id}'",
+    "spendableAmount": 100,
+    "spendableCurrency": "USD"
+    }'
+  ```
+{% /code %}
+{% note %}
+  IMPORTANT: spendableAmount is in minor units (2 decimals for USD). Example $1 USD in minor units is 100. $22.78 USD in minor units is 2278.
+{% /note %}
+{% note %}
+  [Endpoint Docs](https://docs.immersve.com/api-reference/get-spending-prerequisites)
+{% /note %}
+
+## On-Chain Prerequisite Transaction: ERC20 Approval for USDC
+Invoke the Immersve Fake USDC ERC20 “approve” function with the Immersve Smart Contract (`0x91a4ee183763d9fd67F878abCCfFb2D6E51433eA`) as the spender address.
+
+- **For convenience, use Polygonscan to write the transaction:** [https://mumbai.polygonscan.com/address/0x2FaC06acFAeB42CC3B5327fcF53F48D9Da72749d#writeProxyContract](https://mumbai.polygonscan.com/address/0x2FaC06acFAeB42CC3B5327fcF53F48D9Da72749d#writeProxyContract)
+
+- **For context, all the Polygon USDC contracts are:**
+
+    USDC : [https://polygonscan.com/token/0x2791bca1f2de4661ed88a30c99a7a9449aa84174](https://polygonscan.com/token/0x2791bca1f2de4661ed88a30c99a7a9449aa84174)
+
+    Test USDC : [https://mumbai.polygonscan.com/token/0x0fa8781a83e46826621b3bc094ea2a0212e71b23](https://mumbai.polygonscan.com/token/0x0fa8781a83e46826621b3bc094ea2a0212e71b23)
+
+    Imsv Fake USDC : [https://mumbai.polygonscan.com/token/0x2FaC06acFAeB42CC3B5327fcF53F48D9Da72749d](https://mumbai.polygonscan.com/token/0x2FaC06acFAeB42CC3B5327fcF53F48D9Da72749d)
+
+## On-Chain Prerequisite Transaction: Deposit USDC**
+
+  Invoke the Immersve Card Funding Smart Contract “depositAndLock” function with your address and amount.
+
+- **For convenience, use Polygonscan to write the transaction:** [https://mumbai.polygonscan.com/address/0x91a4ee183763d9fd67F878abCCfFb2D6E51433eA#writeProxyContract](https://mumbai.polygonscan.com/address/0x91a4ee183763d9fd67F878abCCfFb2D6E51433eA#writeProxyContract)
+
+## Create a Card
+Post the funding source id and your provided card program id to the card orders endpoint and record the returned card id.
+{% note %}
+  Please be aware that, as a default setting, a Card expires after a five-minute period.
+{% /note %}
+{% note %}
+  [Endpoint Docs](https://docs.immersve.com/api-reference/create-a-card)
+{% /note %}
+
+{% code title="Create a Card" %}
+  ```bash
+    card_id=$(curl -X POST https://test.immersve.com/api/cards \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $token" \
+    -H "X-Account-Id: $cardholder_account_id" \
+    --data '{
+      "cardProgramId": "'${card_program_id}'",
+      "fundingSourceId": "'${funding_source_id}'"
+    }' | jq -r .cardId)
+  ```
+{% /code %}
+
+## Get Card Details
+{% note %}
+  [Endpoint Docs](https://docs.immersve.com/api-reference/get-card-details)
+{% /note %}
+
+{% code title="Get Card Details" %}
+  ```bash
+    curl -X GET "https://test.immersve.com/api/cards/${card_id}" \
+    -H "Authorization: Bearer $token" \
+    -H "X-Account-Id: ${cardholder_account_id}"
+  ```
+{% /code %}
+
+## Get Sensitive Card Details
+{% note %}
+  [Endpoint Docs]( https://docs.immersve.com/api-reference/get-a-card-token)
+{% /note %}
+
+{% code title="1- Generate the secure card details token:" %}
+  ```bash
+    curl -X POST "https://test.immersve.com/api/cards/${card_id}/pan-token" \
+    -H "Authorization: Bearer $token" \
+    -H "X-Account-Id: ${cardholder_account_id}"
+
+    # The response will contain a secure time-limited callback URL
+    # which can be used to obtain the sensitive card details:
+    # {
+    #   "callbackUrl": "https://test-sec.immersve.com/api/cards/secure?tokenId=C4762D4F15BB1EC617999FDE15B41F33-1000881758"
+    # }
+
+
+  ```
+{% /code %}
+
+`pan_token_callback_url=<callbackUrl>`
+
+{% code title="2- Get the sensitive card details:" %}
+  ```bash
+    curl -X GET "${pan_token_callback_url}"
+  ```
+{% /code %}
+
+* * *
+
+# Spend With Test Card
+
+## Ensure the card is funded
+Confirm that the funds are loaded in the Immersve System with a call to List Funding Sources
+{% note %}
+  [Endpoint Docs](https://docs.immersve.com/api-reference/list-funding-sources)
+{% /note %}
+
+{% code title="Ensure the card is funded" %}
+  ```bash
+    curl -X GET "https://test.immersve.com/api/accounts/${cardholder_account_id}/funding-sources" \
+    -H "Authorization: Bearer $token"
+  ```
+{% /code %}
+## Authorize a test transaction against the card.
+{% note %}
+  Endpoint uses minor units and USD eg. transactionAmount: “10” is USD $0.1
+
+  [Endpoint Docs](https://docs.immersve.com/api-reference/authorize-a-transaction)
+{% /note %}
+
+{% code title="Authorize a test transaction against the card." %}
+  ```bash
+    curl -X POST https://test.immersve.com/api/simulator/authorize \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $token" \
+    -H "X-Account-Id: ${cardholder_account_id}" \
+    --data '{
+      "transactionType": "purchase",
+      "transactionAmount": "10",
+      "cardPan": "1234567812345678",
+      "cardExpiry": "202310",
+      "cardCvv": "896"
+    }'
+  ```
+{% /code %}
