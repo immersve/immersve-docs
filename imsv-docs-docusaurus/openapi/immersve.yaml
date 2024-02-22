@@ -72,7 +72,7 @@ paths:
     $ref: "./endpoints/currency/currency-convert.yaml"
   "/api/cards/{cardId}":
     $ref: "./endpoints/cards/card-get.yaml"
-  "/api/cards/account/{accountId}":
+  "/api/accounts/{accountId}/cards":
     $ref: "./endpoints/cards/cards-list.yaml"
   "/api/cards/orders":
     $ref: "./endpoints/cards/card-order.yaml"
@@ -134,7 +134,7 @@ paths:
     $ref: "./endpoints/funding-channel/funding-channel-create.yaml"
   "/api/accounts/{accountId}":
     $ref: "./endpoints/accounts/accounts-get.yaml"
-  "/api/account/{accountId}/funding-channels":
+  "/api/accounts/{accountId}/funding-channels":
     $ref: "./endpoints/funding-channel/funding-channels-list.yaml"
   "/api/client-applications/{clientApplicationId}":
     $ref: "./endpoints/client-application/client-application-get.yaml"
