@@ -3,7 +3,7 @@ post:
     - authentication
   summary: Auth Token Exchange
   description: |
-    The token endpoint returns a new access token for a user without requiring the user to re-authenticate.
+This endpoint cant be used to refresh an Access Token using the Refresh Token
   requestBody:
     content:
       application/json:
