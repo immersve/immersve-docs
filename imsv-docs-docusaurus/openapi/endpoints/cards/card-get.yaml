@@ -16,7 +16,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: "./models/get-card.yaml"
+            $ref: "./models/card.yaml"
     "403":
       description: No Authorization to access resource.
       content:
