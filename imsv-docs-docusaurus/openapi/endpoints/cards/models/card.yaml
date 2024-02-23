@@ -7,6 +7,8 @@ required:
   - modifiedAt
   - isBlocked
   - status
+  - fundingSourceIds
+  - expiresAt
 properties:
   id:
     type: string
@@ -29,6 +31,10 @@ properties:
     type: string
     description: Timestamp of card modification
     example: "2022-11-16T03:13:18.142Z"
+  expiresAt:
+    type: string
+    description: Timestamp of card expiration
+    example: "2029-02-28T23:59:59.999Z"
   isBlocked:
     type: boolean
     description: Whether the card is blocked
@@ -40,6 +46,9 @@ properties:
       - cancelled
       - created
       - shipped
+  fundingSourceIds:
+    type: array
+    description: List of Funding Source IDs linked to the card
   expiry:
     type: string
     description: Expiry date of the card of physical cards
@@ -58,12 +67,8 @@ properties:
     example: "1920"
   immersveExpiration:
     type: string
-    description: Expiry as set by Immersve for short-lived cards
+    description: Deprecated field, use expiresAt
     example: "2022-11-16T03:18:23.431Z"
-  lockedFundId:
-    type: string
-    description: Legacy cards only. ID of AssetLockedFund on the Immersve Payment Protocol
-    example: "58"
   lockedFundAmount:
     type: string
     description: Legacy cards only. An integer in the smallest denomination for the given currency
