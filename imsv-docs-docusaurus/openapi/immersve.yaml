@@ -72,10 +72,6 @@ paths:
     $ref: "./endpoints/cards/card-get.yaml"
   "/api/accounts/{accountId}/cards":
     $ref: "./endpoints/cards/cards-list.yaml"
-  "/api/cards/orders":
-    $ref: "./endpoints/cards/card-order.yaml"
-  "/api/cards/{cardId}/cancel":
-    $ref: "./endpoints/cards/card-cancel-deprecated.yaml"
   "/api/transactions/{transactionId}":
     $ref: "./endpoints/transactions/transaction-get.yaml"
   "/api/accounts/{accountId}/transactions":
