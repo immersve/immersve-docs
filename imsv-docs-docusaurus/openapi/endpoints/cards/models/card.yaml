@@ -63,7 +63,7 @@ properties:
     example: "123456"
   panLast4:
     type: string
-    description: Last 4 digits of the card's (Primary Account Number)
+    description: Last 4 digits of the card's PAN (Primary Account Number)
     example: "1920"
   immersveExpiration:
     type: string
