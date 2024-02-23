@@ -7,6 +7,7 @@
 /api-reference/cards-custodial: "/api-reference/card"
 /api-reference/claim-a-funding-source-for-an-account: "/api-reference/create-a-funding-source-for-an-account"
 /api-reference/close-a-card: "/api-reference/cancel-a-card"
+/api-reference/cancel-a-card-synchronously: "/api-reference/cancel-a-card"
 /api-reference/create-a-new-card: "/api-reference/order-card"
 /api-reference/create-an-account: "/use-cases/custodial-wallets"
 /api-reference/get-card-information: "/api-reference/get-card-details"
