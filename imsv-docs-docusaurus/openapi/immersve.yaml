@@ -74,8 +74,6 @@ paths:
     $ref: "./endpoints/cards/card-get.yaml"
   "/api/accounts/{accountId}/cards":
     $ref: "./endpoints/cards/cards-list.yaml"
-  "/api/cards/orders":
-    $ref: "./endpoints/cards/card-order.yaml"
   "/api/assets/{assetId}/activities":
     $ref: "./endpoints/asset-activities/asset-activities-list.yaml"
   "/api/assets/{assetId}/activities/{eventId}":
