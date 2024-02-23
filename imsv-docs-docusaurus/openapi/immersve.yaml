@@ -8,8 +8,6 @@ info:
 tags:
   - name: authentication
     x-displayName: Authentication
-  - name: asset-activities
-    x-displayName: Asset Activities
   - name: accounts
     x-displayName: Accounts
   - name: card
@@ -78,8 +76,6 @@ paths:
     $ref: "./endpoints/cards/card-order.yaml"
   "/api/cards/{cardId}/cancel":
     $ref: "./endpoints/cards/card-cancel-deprecated.yaml"
-  "/api/assets":
-    $ref: "./endpoints/assets/asset-balance-get.yaml"
   "/api/transactions/{transactionId}":
     $ref: "./endpoints/transactions/transaction-get.yaml"
   "/api/accounts/{accountId}/transactions":

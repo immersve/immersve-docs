@@ -21,6 +21,8 @@
 /api-reference/upload-a-kyc-resource: "/api-reference/submit-partner-kyc-statement"
 /api-reference/list-asset-activities: "/api-reference/list-funding-source-interactions"
 /api-reference/get-activity: "/api-reference/list-funding-source-interactions"
+/api-reference/get-balance: "/api-reference/list-funding-sources"
+/api-reference/asset-activities: "/api-reference/funding-source"
 /category/api-reference: "/api-reference/category/api-reference"
 /category/custodial-wallets: "/use-cases/custodial-wallets"
 /category/non-custodial-wallets: "/use-cases/non-custodial-wallets"
