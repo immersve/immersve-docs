@@ -51,7 +51,7 @@ properties:
     description: List of Funding Source IDs linked to the card
   expiry:
     type: string
-    description: Expiry date of the card of physical cards
+    description: Expiry date of the card
     example: "202409"
   currency:
     type: string
@@ -59,11 +59,11 @@ properties:
     example: "USDC | USD"
   panFirst6:
     type: string
-    description: First 6 digits of the card Primary Account Number
+    description: First 6 digits of the card's PAN (Primary Account Number)
     example: "123456"
   panLast4:
     type: string
-    description: Last 4 digits of the card Primary Account Number
+    description: Last 4 digits of the card's (Primary Account Number)
     example: "1920"
   immersveExpiration:
     type: string
