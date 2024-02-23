@@ -78,8 +78,6 @@ paths:
     $ref: "./endpoints/cards/card-order.yaml"
   "/api/cards/{cardId}/cancel":
     $ref: "./endpoints/cards/card-cancel-deprecated.yaml"
-  "/api/assets/{assetId}/activities":
-    $ref: "./endpoints/asset-activities/asset-activities-list.yaml"
   "/api/assets/{assetId}/activities/{eventId}":
     $ref: "./endpoints/asset-activities/asset-activities-get.yaml"
   "/api/assets":
