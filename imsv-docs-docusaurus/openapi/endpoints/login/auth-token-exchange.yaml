@@ -3,7 +3,7 @@ post:
     - authentication
   summary: Auth Token Exchange
   description: |
-This endpoint cant be used to refresh an Access Token using the Refresh Token
+    This endpoint cant be used to refresh an Access Token using the Refresh Token
   requestBody:
     content:
       application/json:
@@ -14,10 +14,6 @@ This endpoint cant be used to refresh an Access Token using the Refresh Token
               type: string
               description: JWT token that is used to obtain more access tokens.
               example: "cda232434dsfds342923frENnKthng3ji4.dseyJ1c2VyX2lkIjoidXNlcl8xMjM0NTYiLCJ0b2tlbl9pZCI6InRva2VuXzc4OTEwIiwiaWF0IjoxNjE1MjY5MTIyLCJleHAiOjE2MTU4NzM5MjJ9.Qy4f3hK6S9DqibtV78iqMzT0NSXx8OH8R3qL_UfzpM4km1ujGbnkIjUn"
-            authCode:
-              type: string
-              description: Either the `authCode` or `refreshToken` is required.
-              example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
             clientApplicationId:
               type: string
               description: Id of the client application.
