@@ -11,3 +11,6 @@ properties:
       - check_in_progress
       - kyc_required
       - kyc_check_failed
+  kycUrl:
+    type: string
+    description: A URL for the KYC process (if conducted by Immersve)
