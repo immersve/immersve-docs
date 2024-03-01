@@ -27,4 +27,4 @@ properties:
       - partner-conducted
   kycRedirectUrl:
     type: string
-    description: A URL to which the user can be redirected after they have completed or opted out of the kyc process.
+    description: A URL to which the user can be redirected after they have completed or exited the kyc process.
