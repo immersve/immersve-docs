@@ -86,7 +86,7 @@ post:
                   "type": "kyc",
                   "params": {
                     "status": "kyc_required",
-                    "kycUrl": "https://kyc.immersve.com"
+                    "kycUrl": "https://verify.immersve.com"
                   }
                 },
                 {
