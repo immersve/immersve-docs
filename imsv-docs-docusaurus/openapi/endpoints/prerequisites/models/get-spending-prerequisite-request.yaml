@@ -19,3 +19,12 @@ properties:
     description: Currency to be used when creating the card. Currently only supports USD
     enum:
       - USD
+  kycType:
+    type: string
+    description: Type of KYC depending on which party is conducting it
+    enum:
+      - immersve-conducted
+      - partner-conducted
+  kycRedirectUrl:
+    type: string
+    description: A URL to which the user can be redirected after they have completed or exited the kyc process.

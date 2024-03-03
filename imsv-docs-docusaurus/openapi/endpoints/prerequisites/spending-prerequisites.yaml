@@ -3,8 +3,8 @@ post:
     - prerequisites
   summary: Get spending prerequisites
   description: |
-    This endpoint specifies the necessary prerequisites that must be met for a cardholder to successfully create a card and transact with it against a specified Funding Source. 
-    The caller can specify the desired spend and receive the necessary transactions required, accounting for existing deposits, to deposit funds on-chain to meet that spend. 
+    This endpoint specifies the necessary prerequisites that must be met for a cardholder to successfully create a card and transact with it against a specified Funding Source.
+    The caller can specify the desired spend and receive the necessary transactions required, accounting for existing deposits, to deposit funds on-chain to meet that spend.
     It includes any KYC and AML requirements.
   requestBody:
     content:
@@ -85,7 +85,8 @@ post:
                 {
                   "type": "kyc",
                   "params": {
-                    "status": "check_in_progress"
+                    "status": "kyc_required",
+                    "kycUrl": "https://verify.immersve.com"
                   }
                 },
                 {
@@ -109,7 +110,7 @@ post:
         **FORBIDDEN**
         Insufficient permissions to perform the action.
 
-        **LIVENESS_MISMATCH** 
+        **LIVENESS_MISMATCH**
         Resource liveness does not match request liveness.
 
         **CARD_PROGRAM_INVALID**
@@ -132,4 +133,4 @@ post:
       content:
         application/json:
           schema:
-            $ref: '../../models/api-error-400.yaml'
+            $ref: "../../models/api-error-400.yaml"
