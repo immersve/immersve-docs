@@ -24,12 +24,9 @@ properties:
     items:
       type: string
       enum:
-        - full-access
-        - full-access:partner
         - cardholder-partner
-        - update-kyc-profile
     example:
-      - full-access
+      - cardholder-partner
   url:
     description: |
       Domain in the "\<domain\> wants you to sign in.." of the EIP-4361 is derived from the host fragment of this parameter.
