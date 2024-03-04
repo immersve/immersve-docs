@@ -3,7 +3,7 @@ post:
     - authentication
   summary: Auth Token Exchange
   description: |
-    This endpoint cant be used to refresh an Access Token using the Refresh Token
+    This endpoint can be used to request a new access token using a refresh token.
   requestBody:
     content:
       application/json:
@@ -12,16 +12,16 @@ post:
           properties:
             refreshToken:
               type: string
-              description: JWT token that is used to obtain more access tokens.
+              description: JWT token that is used to request a new access token. (Valid for 30 days.)
               example: "cda232434dsfds342923frENnKthng3ji4.dseyJ1c2VyX2lkIjoidXNlcl8xMjM0NTYiLCJ0b2tlbl9pZCI6InRva2VuXzc4OTEwIiwiaWF0IjoxNjE1MjY5MTIyLCJleHAiOjE2MTU4NzM5MjJ9.Qy4f3hK6S9DqibtV78iqMzT0NSXx8OH8R3qL_UfzpM4km1ujGbnkIjUn"
             clientApplicationId:
               type: string
               description: Id of the client application.
-              example: '29097f50d221858223a17633e36716f9'
+              example: "29097f50d221858223a17633e36716f9"
             clientSecret:
               type: string
               description: The client secret for the client application. Required if the client application is confidential.
-              example: 'c94dbd582d594e8aa04934f9c7ef0f52'
+              example: "c94dbd582d594e8aa04934f9c7ef0f52"
           required:
             - clientApplicationId
     required: true
