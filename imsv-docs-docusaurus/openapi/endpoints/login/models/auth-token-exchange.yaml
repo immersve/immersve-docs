@@ -3,8 +3,8 @@ properties:
   accessToken:
     type: string
     description: The new access token that will be used for subsequent authenticated requests. This token replaces the previous access token that has expired or is about to expire.
-    example: "cda232434dsfds342923frENnKthng3ji4.dseyJ1c2VyX2lkIjoidXNlcl8xMjM0NTYiLCJ0b2tlbl9pZCI6InRva2VuXzc4OTEwIiwiaWF0IjoxNjE1MjY5MTIyLCJleHAiOjE2MTU4NzM5MjJ9.Qy4f3hK6S9DqibtV78iqMzT0NSXx8OH8R3qL_UfzpM4km1ujGbnkIjUn"
+    example: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiJlM2QyZWMyOGFiODg2Nzg0ZWU4Nzg4NWUxZGMxYTQ0NCIsInRva2VuX3VzZSI6InJlZnJlc2giLCJqdGkiOiI1NTA3NGJlN2ZmZTBhMTZjZj."
   refreshToken:
     type: string
-    description: Token used to obtain a new access token.
+    description: Token to request a new access token.
     example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
