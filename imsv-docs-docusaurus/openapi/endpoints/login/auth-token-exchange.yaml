@@ -4,6 +4,15 @@ post:
   summary: Auth Token Exchange
   description: |
     This endpoint can be used to request a new access token using a refresh token.
+  parameters:
+    - name: origin
+      in: header
+      description: origin header to specify the origin of the request.
+      required: true
+      schema:
+        type: string
+        example: "https://example.com"
+  security: []
   requestBody:
     content:
       application/json:
