@@ -7,11 +7,8 @@ post:
   parameters:
     - name: origin
       in: header
-      description: origin header to specify the origin of the request.
+      description: Origin header to specify the origin of the request.
       required: true
-      schema:
-        type: string
-        example: "https://example.com"
   security: []
   requestBody:
     content:
