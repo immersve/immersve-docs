@@ -9,6 +9,8 @@ post:
       in: header
       description: Origin header to specify the origin of the request.
       required: true
+      schema:
+        type: string
   security: []
   requestBody:
     content:
