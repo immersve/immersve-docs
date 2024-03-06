@@ -7,6 +7,8 @@ import yaml from 'yaml';
 
 const redirects = yaml.parse(await fs.promises.readFile('./src/redirects.yml', 'utf-8'));
 
+export const siteBaseUrl = 'https://docs.immersve.com/';
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -24,6 +26,7 @@ export default defineConfig({
       favicon: '/favicon.ico',
       customCss: ['./src/styles/tailwind.css'],
       components: {
+        Head: './src/components/Head.astro',
         MarkdownContent: './src/components/MarkdownContent.astro',
         Pagination: './src/components/FooterNavigation.astro',
       },
