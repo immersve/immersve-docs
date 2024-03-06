@@ -26,10 +26,6 @@ post:
               type: string
               description: Id of the client application.
               example: "29097f50d221858223a17633e36716f9"
-            clientSecret:
-              type: string
-              description: The client secret for the client application. Required if the client application is confidential.
-              example: "c94dbd582d594e8aa04934f9c7ef0f52"
           required:
             - clientApplicationId
             - refreshToken
@@ -48,6 +44,9 @@ post:
 
         **CLIENT_APPLICATION_MISMATCH**
         The client application does not match the refresh token.
+
+        **ORIGIN_NOT_ALLOWED**
+        The origin is not allowed to access this endpoint.
       content:
         application/json:
           schema:
