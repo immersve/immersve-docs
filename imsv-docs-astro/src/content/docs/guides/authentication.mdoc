@@ -42,7 +42,7 @@ an address is based upon a process of authentication by way of verification of
 [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) challenges signed by the
 private key underlying an address. Upon successful authentication, Immersve
 will issue an access token for subsequent use in interactions with the Immersve
-API.
+API. Additionally, a refresh token will also be provided, enabling the request of a new access token when the current one expires.
 
 Subsequent requests for protected resources from the Immersve API may be
 authenticated by supplying the access token in the `Authorization` header.
@@ -129,7 +129,28 @@ authenticated by supplying the access token in the `Authorization` header.
     {% /code %}
 
 3.  [Submit the signed challenge along with the
-    signature](/api-reference/login) to get the access token.
+    signature](/api-reference/login) to get the access token and a refresh token.
+    The refresh token is used to obtain a new access token when the current
+    access token expires, ensuring continuous access without requiring the user to log in again.
 4.  The access token should be used for subsequent requests for protected
     resources from the Immersve API by supplying it in the `Authorization`
     header.
+
+## Refresh Tokens
+
+The refresh token is a long-lived token that can be used to obtain a new access
+token without requiring the user to re-authenticate.
+
+### Refresh Token Flow
+
+Before making a request, check the expiry of the access token. If the token is
+expired, use the refresh token to obtain a new access token.
+
+To obtain a new access token, call the [Auth Token Exchange
+API](/api-reference/auth-token-exchange) using the refresh token you received
+during authentication. This will return a new access token and refresh token to
+be exchanged when the new access token expires.
+
+
+<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764581446931419&cot=14 -->
+![Refresh Token Sequence Diagram](@assets/diagrams/refresh-token-sequence.svg)
