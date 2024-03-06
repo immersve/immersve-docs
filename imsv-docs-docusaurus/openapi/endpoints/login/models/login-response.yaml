@@ -6,6 +6,10 @@ properties:
     description: The authentication token
     type: string
     example: "eyJhbGciOiJSUzI1NiIsI..."
+  refreshToken:
+    description: JWT that is used to request a new access token. Refresh tokens are valid for 30 days.
+    type: string
+    example: "eyJhbGciOiJSUzI1NiIsI..."
   cardholderAccountId:
     description: The unique identifier of the cardholder.
     type: string

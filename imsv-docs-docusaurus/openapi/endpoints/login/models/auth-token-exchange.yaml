@@ -1,0 +1,10 @@
+type: object
+properties:
+  accessToken:
+    type: string
+    description: The new access token that will be used for subsequent authenticated requests. This token replaces the previous access token that has expired or is about to expire.
+    example: "eyJhbGciOiJSUzI1NiIsI..."
+  refreshToken:
+    type: string
+    description: The new refresh token to request a new access token.
+    example: "eyJhbGciOiJSUzI1NiIsI..."

@@ -1,0 +1,53 @@
+post:
+  tags:
+    - authentication
+  summary: Auth Token Exchange
+  description: |
+    This endpoint can be used to request a new access token using a refresh token.
+  parameters:
+    - name: origin
+      in: header
+      description: Origin header to specify the origin of the request.
+      required: true
+      schema:
+        type: string
+  security: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            refreshToken:
+              type: string
+              description: JWT that is used to request a new access token. (Valid for 30 days.)
+              example: "eyJhbGciOiJSUzI1NiIsI..."
+            clientApplicationId:
+              type: string
+              description: Id of the client application.
+              example: "29097f50d221858223a17633e36716f9"
+          required:
+            - clientApplicationId
+            - refreshToken
+    required: true
+  responses:
+    "200":
+      description: successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/auth-token-exchange.yaml"
+    "403":
+      description: |
+        **REFRESH_TOKEN_EXPIRED**
+        The refresh token has expired.
+
+        **CLIENT_APPLICATION_MISMATCH**
+        The client application does not match the refresh token.
+
+        **ORIGIN_NOT_ALLOWED**
+        The origin is not allowed to access this endpoint.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
