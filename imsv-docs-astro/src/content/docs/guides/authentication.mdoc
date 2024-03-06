@@ -136,15 +136,21 @@ authenticated by supplying the access token in the `Authorization` header.
     resources from the Immersve API by supplying it in the `Authorization`
     header.
 
-## Use Refresh Tokens
+## Refresh Tokens
 
-The refresh token is a long-lived token that can be used to obtain a new access token without requiring the user to re-authenticate.
+The refresh token is a long-lived token that can be used to obtain a new access
+token without requiring the user to re-authenticate.
 
-Managing Refresh Token
-- Before making a request, check the expiry of the access token. If the token is expired, use the refresh token to obtain a new access token.
-- To obtain a new access token, call the [Auth Token Exchange API](/api-reference/auth-token-exchange) using the refresh token you received during authentication. This will return a new access token and refresh token to be exchanged when the new access token expires
+### Refresh Token Flow
 
-## Refresh Token Flow
+Before making a request, check the expiry of the access token. If the token is
+expired, use the refresh token to obtain a new access token.
+
+To obtain a new access token, call the [Auth Token Exchange
+API](/api-reference/auth-token-exchange) using the refresh token you received
+during authentication. This will return a new access token and refresh token to
+be exchanged when the new access token expires.
+
 
 <!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764581391822418&cot=14 -->
 ![Refresh Token Sequence Diagram](@assets/diagrams/refresh-token-sequence.svg)
