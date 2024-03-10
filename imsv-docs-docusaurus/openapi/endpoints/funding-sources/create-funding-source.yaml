@@ -3,8 +3,8 @@ post:
     - funding-source
   summary: Create a funding source for an account
   description: |
-    This endpoint can be used to claim a wallet address as a source of funds. The funding wallet may be an EOA or a smart contract 
-    implementing the ERC-1271 interface. If the wallet is a smart contract, the `ownerAddress`, `message`, and `signature` fields 
+    This endpoint can be used to claim a wallet address as a source of funds. The funding wallet may be an EOA or a smart contract
+    implementing the ERC-1271 interface. If the wallet is a smart contract, the `ownerAddress`, `message`, and `signature` fields
     are required.
   requestBody:
     content:
@@ -16,23 +16,24 @@ post:
     required: true
   responses:
     "200":
+      description: Successful operation
       content:
         application/json:
           schema:
-            type: object
+            $ref: "./models/funding-source.yaml"
     "403":
       description: |
         User is not allowed to perform the action with the reason stated in the `errorCode`
 
         **FORBIDDEN**
         Insufficient permissions to perform the action.
-        
+
         **SIGNATURE_DENIED**
         The signature was rejected by the ERC-1271 contract `isValidSignature` function.
 
         **SIGNATURE_INVALID**
         The message signature was invalid.
-        
+
         **ADDRESS_MISMATCH**
         The `ownerAddress` does not match the EIP-4361 message address.
       content:
