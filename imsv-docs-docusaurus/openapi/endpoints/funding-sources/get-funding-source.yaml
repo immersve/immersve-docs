@@ -1,0 +1,27 @@
+get:
+  tags:
+    - funding-source
+  summary: Get a Funding Source
+  description: Retrieves a specific Funding Source for the given account
+  parameters:
+  - name: fundingSourceId
+    in: path
+    description: id for the Funding Source
+    example: 315bad4e81ce0f26966a41b9d451638b
+    required: true
+    schema:
+      type: string
+
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/funding-source.yaml"
+    "403":
+      description: No Authorization to access resource
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-403.yaml'

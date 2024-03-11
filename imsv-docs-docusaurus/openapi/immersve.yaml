@@ -112,6 +112,8 @@ paths:
     servers:
       - url: https://<partnerBaseUrl>/card/notification
     $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
+  "/api/funding-source/{fundingSourceId}":
+    $ref: "./endpoints/funding-sources/get-funding-source.yaml"
   "/api/funding-sources":
     $ref: "./endpoints/funding-sources/create-funding-source.yaml"
   "/api/funding-sources/{fundingSourceId}/interactions":
