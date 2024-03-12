@@ -154,3 +154,20 @@ be exchanged when the new access token expires.
 
 <!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764581446931419&cot=14 -->
 ![Refresh Token Sequence Diagram](@assets/diagrams/refresh-token-sequence.svg)
+
+
+## Logout
+
+Logging out of the application involves invalidating the current access token to ensure it can no longer be used for accessing protected resources within the Immersve API.
+
+
+### Logout Flow
+
+Initiate Logout Request: The client application sends a logout request to the [Logout API](/api-reference/logout), including the current access token for validation.
+
+Token Invalidated: Immersve invalidates the provided access token, ending the current session and ensuring that the token cannot be used for further requests.
+
+Client Cleanup: The client application clears any stored session information, such as the access token and refresh token, effectively logging the user out.
+
+<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764582094189185&cot=14 -->
+![Logout Diagram](@assets/diagrams/logout-sequence.svg)
