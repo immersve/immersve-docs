@@ -165,7 +165,7 @@ Logging out of the application involves invalidating the current session to ensu
 
 Initiate Logout Request: The client application sends a logout request to the [Logout API](/api-reference/logout), including the current access token for validation.
 
-Token Invalidated: Immersve invalidates the provided access token, ending the current session and ensuring that the token cannot be used for further requests.
+Session Invalidated: Immersve invalidates the session and ensures that all access tokens related to the session are rejected by future requests.
 
 Client Cleanup: The client application clears any stored session information, such as the access token and refresh token, effectively logging the user out.
 
