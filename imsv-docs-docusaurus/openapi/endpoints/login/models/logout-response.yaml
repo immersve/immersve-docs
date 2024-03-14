@@ -1,0 +1,2 @@
+type: object
+description: No content returned. Successful logout is indicated by a 200 OK status code.

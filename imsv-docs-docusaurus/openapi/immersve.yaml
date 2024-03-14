@@ -44,6 +44,8 @@ paths:
     $ref: "./endpoints/login/siwe-login.yaml"
   "/auth/token":
     $ref: "./endpoints/login/auth-token-exchange.yaml"
+  "/auth/logout":
+    $ref: "./endpoints/login/logout.yaml"
   "/api/accounts":
     get:
       $ref: "./endpoints/accounts/accounts-list.yaml"

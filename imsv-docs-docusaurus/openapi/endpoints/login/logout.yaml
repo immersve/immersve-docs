@@ -1,0 +1,21 @@
+post:
+  tags:
+    - authentication
+  summary: Logout
+  description: |
+    The logout endpoint invalidates  the current session to ensure it
+    can no longer be used for accessing protected resources within the Immersve API.
+    All access tokens connected with the session will become unusable.
+  responses:
+    "200":
+      description: Successful logout
+      content:
+        application/json:
+          schema:
+            $ref: "./models/logout-response.yaml"
+    "403":
+      description: No Authorization to access resource.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
