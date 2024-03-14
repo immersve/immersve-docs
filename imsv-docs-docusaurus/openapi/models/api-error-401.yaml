@@ -1,0 +1,19 @@
+type: object
+properties:
+  statusCode:
+    type: integer
+    example: 401
+  statusName:
+    type: string
+    example: Unauthorized
+  errorCode:
+    type: string
+    example: UNAUTHORIZED
+  reason:
+    type: string
+    example: 'Authentication credentials were missing or incorrect.'
+required:
+  - statusCode
+  - statusName
+  - errorCode
+  - reason

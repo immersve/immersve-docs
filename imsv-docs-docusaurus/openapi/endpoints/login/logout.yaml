@@ -13,9 +13,9 @@ post:
         application/json:
           schema:
             $ref: "./models/logout-response.yaml"
-    "403":
-      description: No Authorization to access resource.
+    "401":
+      description: Unauthorized or missing authentication credentials.
       content:
         application/json:
           schema:
-            $ref: "../../models/api-error-403.yaml"
+            $ref: "../../models/api-error-401.yaml"
