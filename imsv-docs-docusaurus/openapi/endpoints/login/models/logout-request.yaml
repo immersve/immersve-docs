@@ -1,0 +1,2 @@
+type: object
+description: Logout request body is empty as the session is identified and invalidated via the Authorization header.
