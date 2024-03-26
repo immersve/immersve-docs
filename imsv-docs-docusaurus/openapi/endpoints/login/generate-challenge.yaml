@@ -1,0 +1,27 @@
+post:
+  tags:
+    - authentication
+  summary: Generate Challenge
+  description: |
+    This endpoint is used to generate a challenge for the user to sign to prove ownership of their web3 walletAddress and agree to perform an action.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: './models/generate-challenge-request.yaml'
+    required: true
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/generate-challenge-response.yaml"
+    '403':
+      description: |
+        **INVALID_CHAIN**
+        Chain not supported.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"

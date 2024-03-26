@@ -1,0 +1,43 @@
+type: object
+required:
+  - purpose
+  - address
+  - chain
+properties:
+  purpose:
+    description: The purpose of the challenge.
+    type: string
+    example: "validate-funding-address"
+  address:
+    description: The wallet address to which the challenge is directed.
+    type: string
+    example: "0x123..."
+  chain:
+    description: The blockchain network associated with the wallet address.
+    type: string
+    example: "polygon"
+  clientApplicationId:
+    description: ID of the client application.
+    type: string
+    example: "29097f50d221858223a17633e36716f9"
+  description:
+    description: The description of the challenge.
+    type: string
+    example: "Prove ownership of ...."
+  id:
+    description: The unique identifier of the challenge.
+    type: string
+    example: "GlSDzZHcxrSDeJbKu"
+  expiresAt:
+    description: The time the challenge expires.
+    type: string
+    example: "2024-03-20T08:20:00Z"
+  createdAt:
+    description: The time the challenge was created.
+    type: string
+    example: "2024-03-20T08:20:00Z"
+  message:
+    description: Raw message for wallet to sign.
+    type: string
+    example: "Please sign this message to ..."
+

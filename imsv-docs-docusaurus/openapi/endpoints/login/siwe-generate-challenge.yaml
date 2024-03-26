@@ -1,9 +1,9 @@
 post:
   tags:
     - authentication
-  summary: Generate challenge
+  summary: Generate SIWE Challenge for Login
   description: |
-    Generating the challenge is the first step in the process of getting the authentication token.
+    Generating the SIWE challenge is the first step in the process of getting the authentication token.
 
     For detailed information on scopes, see the [Authentication Guide](https://docs.immersve.com/guides/authentication).
   security:

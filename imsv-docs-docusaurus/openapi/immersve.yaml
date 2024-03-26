@@ -134,6 +134,8 @@ paths:
     $ref: "./endpoints/client-application/client-application-get.yaml"
   "/api/client-applications/{clientApplicationId}/update-origins":
     $ref: "./endpoints/client-application/client-application-update-origins.yaml"
+  "/api/generate-challenge":
+    $ref: "./endpoints/login/generate-challenge.yaml"
 components:
   securitySchemes:
     immersve_auth:
