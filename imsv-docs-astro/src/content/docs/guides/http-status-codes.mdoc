@@ -35,7 +35,7 @@ Resource is missing, permission is denied or there is a business rule
 violation.
 
 ### Resource missing or permission denied
-- Check the resource id is correct
+- Check the resource id is correct.
 - Check your user or API key has membership for the account that owns the
 resource you are accessing.
 - Check your user or API key's roles for the account allow the required action.
@@ -50,8 +50,9 @@ values and their meanings will be documented on each endpoint.
 ```json
 {
   "statusCode": 403,
-  "error": "Forbidden",
-  "message": "INSUFFICIENT_FUNDS"
+  "statusName": "Forbidden",
+  "errorCode": "INSUFFICIENT_FUNDS",
+  "reason": "Withdrawal amount exceeds Funding Source balance"
 }
 ```
 {% /code %}
@@ -75,4 +76,4 @@ limits.
 Errors in the 5xx range suggest a problem on our side. Usually, retrying your
 request might resolve the issue. Our engineering team monitors these errors
 closely but bug reports are also welcome at
-[support@immersve.com](mailto:support@immersve.com)
+[support@immersve.com](mailto:support@immersve.com).
