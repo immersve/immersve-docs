@@ -1,0 +1,79 @@
+---
+title: HTTP Status Codes
+---
+
+Immersve APIs respond with 200, 400, 401, 403, 404, or 429 HTTP status codes.
+In rare cases endpoints may respond with status codes in the 5xx range.
+
+Please note that certain legacy or deprecated endpoints API endpoints could
+operate slightly outside the norms described below. Any such exceptions will
+be documented on the endpoints.
+
+## 200 OK
+
+Your request was successfully processed, enjoy!
+
+## 400 Malformed request
+
+This code indicates a syntax error in your request and that adjustments are
+required on your end. Usually, the response body will contain more information
+on what went wrong.
+
+Don't try again, as it will result in the same response.
+
+### Troubleshooting
+- Make sure your HTTP body fields are set correctly.
+- Check query parameters are set correctly.
+- Check path parameters are set correctly.
+
+## 401 Unauthorized
+API key or JWT is missing, expired or invalid. Refer to our [Authentication
+guide](/guides/authentication) for more information.
+
+## 403 Forbidden
+Resource is missing, permission is denied or there is a business rule
+violation.
+
+### Resource missing or permission denied
+- Check the resource id is correct.
+- Check your user or API key has membership for the account that owns the
+resource you are accessing.
+- Check your user or API key's roles for the account allow the required action.
+
+### Business rule violated
+In cases where access to a resource is granted but a request is still forbidden
+due to a business rule violation, a 403 status code is returned with additional
+details in the `errorCode` field of the response body. Specific `errorCode`
+values and their meanings will be documented on each endpoint.
+
+{% code title="Example response" %}
+```json
+{
+  "statusCode": 403,
+  "statusName": "Forbidden",
+  "errorCode": "INSUFFICIENT_FUNDS",
+  "reason": "Withdrawal amount exceeds Funding Source balance"
+}
+```
+{% /code %}
+
+
+## 404 Not Found
+Similar to a 400 code but specific to scenarios where an incorrect URL or HTTP
+method is used. Review our [API reference](/api-reference/) to ensure you are
+making the correct request.
+
+## 429 Too Many Requests
+Rate limits have been exceeded.
+
+### Troubleshooting
+- Check the Retry-After HTTP response header for the number of seconds before
+the next request will be accepted.
+- Contact [support@immersve.com](mailto:support@immersve.com) to increase your
+limits.
+
+## 5xx Server Error
+Errors in the 5xx range suggest a problem on our side. Usually, retrying your
+request might resolve the issue. Our engineering team monitors these errors
+closely but bug reports are also welcome at
+[support@immersve.com](mailto:support@immersve.com).
