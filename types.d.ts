@@ -271,6 +271,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/http-status-codes.mdoc": {
+	id: "guides/http-status-codes.mdoc";
+  slug: "guides/http-status-codes";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/reports/authorization-reports.mdoc": {
 	id: "guides/reports/authorization-reports.mdoc";
   slug: "guides/reports/authorization-reports";
