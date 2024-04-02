@@ -1,0 +1,8 @@
+type: object
+required:
+  - accountId
+properties:
+  accountId:
+    type: string
+    description: The ID of the cardholder account that needs support
+    example: 65a7e8ef0d230d0a6bf755e07d39eb02

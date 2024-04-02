@@ -1,0 +1,37 @@
+post:
+  tags:
+    - cardholder-support
+  summary: Create a support session
+  description: |
+    This endpoint can be used to create a support session for a cardholder account
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./models/create-support-session.yaml"
+    required: true
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/create-support-session-result.yaml"
+    "403":
+      description: |
+        User is not allowed to perform the action with the reason stated in the `errorCode`
+
+        **FORBIDDEN**
+        Insufficient permissions to perform the action.
+
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
+
+    "400":
+      description: Request fields are invalid
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-400.yaml"
