@@ -34,8 +34,8 @@ tags:
     x-displayName: Funding source
   - name: client-application
     x-displayName: Client application
-  - name: cardholder-support
-    x-displayName: Cardholder support
+  - name: support
+    x-displayName: Support
 security:
   - immersve_auth: []
   - $ref: "./models/api-key-auth.yaml"

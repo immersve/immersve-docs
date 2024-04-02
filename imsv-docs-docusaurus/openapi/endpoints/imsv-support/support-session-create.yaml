@@ -1,6 +1,6 @@
 post:
   tags:
-    - cardholder-support
+    - support
   summary: Create a support session
   description: |
     This endpoint can be used to create a support session for a cardholder account
