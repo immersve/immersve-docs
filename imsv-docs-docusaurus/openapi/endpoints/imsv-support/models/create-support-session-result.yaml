@@ -1,0 +1,8 @@
+type: object
+required:
+  - url
+properties:
+  url:
+    type: string
+    description: The URL to the support session
+    example: https://help.immersve.com/
