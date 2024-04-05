@@ -2,42 +2,38 @@ type: object
 required:
   - purpose
   - address
-  - chain
+  - network
 properties:
-  purpose:
-    description: The purpose of the challenge.
-    type: string
-    example: "validate-funding-address"
-  address:
-    description: The wallet address to which the challenge is directed.
-    type: string
-    example: "0x123..."
-  chain:
-    description: The blockchain network associated with the wallet address.
-    type: string
-    example: "polygon"
-  clientApplicationId:
-    description: ID of the client application.
-    type: string
-    example: "29097f50d221858223a17633e36716f9"
-  description:
-    description: The description of the challenge.
-    type: string
-    example: "Prove ownership of ...."
   id:
     description: The unique identifier of the challenge.
     type: string
     example: "GlSDzZHcxrSDeJbKu"
+  purpose:
+    description: The purpose of the challenge.
+    type: string
+    example: "claim-web3-address"
+  address:
+    description: The web3 address to which the challenge is directed.
+    type: string
+    example: "0x123..."
+  network:
+    description: The blockchain network associated with the web3 address.
+    type: string
+    example: "polygon-mainnet"
+  description:
+    description: The description of the challenge.
+    type: string
+    example: "To verify ownership of the web3 address...."
   expiresAt:
     description: The time the challenge expires.
     type: string
-    example: "2024-03-20T08:20:00Z"
+    example: "2024-03-20T08:20:00.000Z"
   createdAt:
     description: The time the challenge was created.
     type: string
-    example: "2024-03-20T08:20:00Z"
+    example: "2024-03-20T08:20:00.000Z"
   message:
-    description: Raw message for wallet to sign.
+    description: The message displayed to the web3 address owner to request their signature.
     type: string
-    example: "Please sign this message to ..."
+    example: "To verify ownership of the web3 address ..."
 
