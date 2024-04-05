@@ -1,18 +1,18 @@
 type: object
 required:
   - purpose
-  - chain
+  - network
   - address
 properties:
   purpose:
     description: The purpose of the challenge.
     type: string
-    example: "validate-funding-address"
+    example: "claim-web3-address"
   chain:
-    description: The blockchain network associated with the wallet address.
+    description: The blockchain network associated with the web3 address.
     type: string
-    example: "polygon"
+    example: "polygon-mainnet"
   address:
-    description: The wallet address to which the challenge is directed.
+    description: The web3 address to which the challenge is directed.
     type: string
     example: "0x123..."
