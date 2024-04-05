@@ -42,7 +42,9 @@ export default defineConfig({
             { label: 'Reports', autogenerate: { directory: 'guides/reports' } } ,
             { label: 'Testing', autogenerate: { directory: 'guides/testing' } } ,
             { label: 'Authentication', link: 'guides/authentication' } ,
+            { label: 'HTTP Status Codes', link: 'guides/http-status-codes' } ,
             { label: 'Webhooks', link: 'guides/webhooks' } ,
+            { label: 'Cardholder Support', link: 'guides/cardholder-support' } ,
           ]
         },
         { label: 'Resources', autogenerate: { directory: 'resources' } },
