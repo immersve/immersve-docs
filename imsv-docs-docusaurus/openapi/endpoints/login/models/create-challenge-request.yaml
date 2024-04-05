@@ -8,7 +8,7 @@ properties:
     description: The purpose of the challenge.
     type: string
     example: "claim-web3-address"
-  chain:
+  network:
     description: The blockchain network associated with the web3 address.
     type: string
     example: "polygon-mainnet"
