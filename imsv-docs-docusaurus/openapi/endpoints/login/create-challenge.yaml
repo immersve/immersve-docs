@@ -1,14 +1,14 @@
 post:
   tags:
     - authentication
-  summary: Generate Challenge
+  summary: Create Challenge
   description: |
-    This endpoint is used to generate a challenge for the user to sign to prove ownership of their web3 address. This signed challenge can then be used to perform actions such as creating a funding source.
+    This endpoint is used to create a challenge for the user to sign to prove ownership of their web3 address. This signed challenge can then be used to perform actions such as creating a funding source.
   requestBody:
     content:
       application/json:
         schema:
-          $ref: './models/generate-challenge-request.yaml'
+          $ref: './models/create-challenge-request.yaml'
     required: true
   responses:
     "200":
@@ -16,7 +16,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: "./models/generate-challenge-response.yaml"
+            $ref: "./models/create-challenge-response.yaml"
     '403':
       description: |
         **INVALID_CHAIN**
