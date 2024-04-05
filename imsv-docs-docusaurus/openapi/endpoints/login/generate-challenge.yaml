@@ -3,7 +3,7 @@ post:
     - authentication
   summary: Generate Challenge
   description: |
-    This endpoint is used to generate a challenge for the user to sign to prove ownership of their web3 walletAddress and agree to perform an action.
+    This endpoint is used to generate a challenge for the user to sign to prove ownership of their web3 address. This signed challenge can then be used to perform actions such as creating a funding source.
   requestBody:
     content:
       application/json:
