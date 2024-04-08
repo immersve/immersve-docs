@@ -30,6 +30,12 @@ account endpoint](/api-reference/create-a-funding-source-for-an-account). The
 funding wallet may be an EOA or a smart contract implementing the ERC-1271
 interface.
 
+A Funding Source can be created using API Key authentication by first proving ownership
+of the web3 address that will be the `fundingAddress` for the Funding Source. Use the
+[create challenge endpoint](/api-reference/create-challenge) to generate a challenge
+for the web3 address owner to sign. Then use the resulting signature and challenge ID
+in the [create Funding Source endpoint](/api-reference/create-a-funding-source-for-an-account) request.
+
 
 ## Depositing Funds
 
