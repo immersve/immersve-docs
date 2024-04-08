@@ -23,6 +23,7 @@ properties:
     enum:
       - polygon-mainnet
       - polygon-mumbai
+      - polygon-amoy
   description:
     description: The description of the challenge.
     type: string
