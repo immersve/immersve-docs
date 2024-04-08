@@ -1,8 +1,4 @@
 type: object
-required:
-  - purpose
-  - address
-  - network
 properties:
   id:
     description: The unique identifier of the challenge.
