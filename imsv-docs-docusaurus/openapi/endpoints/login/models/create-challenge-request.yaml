@@ -11,7 +11,9 @@ properties:
   network:
     description: The blockchain network associated with the web3 address.
     type: string
-    example: "polygon-mainnet"
+    enum:
+      - polygon-mainnet
+      - polygon-mumbai
   address:
     description: The web3 address to which the challenge is directed.
     type: string
