@@ -33,7 +33,7 @@ properties:
     type: string
     example: "2024-03-20T08:20:00.000Z"
   message:
-    description: The message displayed to the web3 address owner to request their signature.
+    description: The message to be signed by the web3 address owner.
     type: string
     example: "To verify ownership of the web3 address ..."
 
