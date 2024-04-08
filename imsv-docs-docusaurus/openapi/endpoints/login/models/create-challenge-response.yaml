@@ -11,7 +11,8 @@ properties:
   purpose:
     description: The purpose of the challenge.
     type: string
-    example: "claim-web3-address"
+    enum:
+      - claim-web3-address
   address:
     description: The web3 address to which the challenge is directed.
     type: string
