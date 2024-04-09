@@ -12,8 +12,8 @@ post:
         schema:
           oneOf:
             - $ref: "./models/create-funding-source-erc-1271.yaml"
-            - $ref: "./models/create-funding-source-eoa.yaml"
             - $ref: "./models/create-funding-source-challenge.yaml"
+            - $ref: "./models/create-funding-source-eoa.yaml"
     required: true
   responses:
     "200":
