@@ -3,9 +3,9 @@ post:
     - funding-source
   summary: Create a funding source for an account
   description: |
-    This endpoint can be used to claim a wallet address as a source of funds. The funding wallet may be an EOA or a smart contract
-    implementing the ERC-1271 interface. If the wallet is a smart contract, the `ownerAddress`, `message`, and `signature` fields
-    are required.
+    This endpoint can be used to claim a web3 address as a source of funds. The funding address may be an EOA or a smart contract implementing the ERC-1271 interface. If the address is a smart contract, the `ownerAddress`, `message`, and `signature` fields are required.<br/>
+    The [Create challenge endpoint](/api-reference/create-challenge) can be used to prove ownership of a web3 address by signing the returned message.
+
   requestBody:
     content:
       application/json:
