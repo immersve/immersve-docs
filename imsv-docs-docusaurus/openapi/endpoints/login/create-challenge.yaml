@@ -1,0 +1,27 @@
+post:
+  tags:
+    - authentication
+  summary: Create Challenge
+  description: |
+    This endpoint creates a challenge for the user to sign to verify ownership of their web3 address. By signing the message actions such as creating a funding source can be performed.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: './models/create-challenge-request.yaml'
+    required: true
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/create-challenge-response.yaml"
+    '403':
+      description: |
+        **INVALID_CHAIN**
+        Chain not supported.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"

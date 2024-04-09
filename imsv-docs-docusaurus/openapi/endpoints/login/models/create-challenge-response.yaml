@@ -1,0 +1,39 @@
+type: object
+properties:
+  id:
+    description: The unique identifier of the challenge.
+    type: string
+    example: "GlSDzZHcxrSDeJbKu"
+  purpose:
+    description: The purpose of the challenge.
+    type: string
+    enum:
+      - claim-web3-address
+  address:
+    description: The web3 address to which the challenge is directed.
+    type: string
+    example: "0x123..."
+  network:
+    description: The blockchain network associated with the web3 address.
+    type: string
+    enum:
+      - polygon-mainnet
+      - polygon-mumbai
+      - polygon-amoy
+  description:
+    description: The description of the challenge.
+    type: string
+    example: "To verify ownership of the web3 address...."
+  expiresAt:
+    description: The time the challenge expires.
+    type: string
+    example: "2024-03-20T08:20:00.000Z"
+  createdAt:
+    description: The time the challenge was created.
+    type: string
+    example: "2024-03-20T08:20:00.000Z"
+  message:
+    description: The message to be signed by the web3 address owner.
+    type: string
+    example: "To verify ownership of the web3 address ..."
+

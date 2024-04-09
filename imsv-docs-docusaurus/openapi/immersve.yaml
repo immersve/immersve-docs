@@ -138,6 +138,8 @@ paths:
     $ref: "./endpoints/client-application/client-application-update-origins.yaml"
   "/api/support-sessions":
     $ref: "./endpoints/imsv-support/support-session-create.yaml"
+  "/api/challenges":
+    $ref: "./endpoints/login/create-challenge.yaml"
 components:
   securitySchemes:
     immersve_auth:

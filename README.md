@@ -73,7 +73,7 @@ When changing URLs, redirects should be declared to preserve inbound links to
 old content locations.
 
  * Guides redirects are defined at: `imsv-docs-astro/src/redirects.yml`.
- * API Reference redirects are defind at: `imsv-docs-docusaurus/docs/redirects/`.
+ * API Reference redirects are defined at: `imsv-docs-docusaurus/docs/redirects/`.
 
 To avoid changing URLs, Astro offers the `slug` frontmatter attribute which
 overrides the content URL. By default, Astro content uses the file path of a

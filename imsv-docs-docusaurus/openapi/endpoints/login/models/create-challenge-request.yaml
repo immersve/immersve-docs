@@ -1,0 +1,22 @@
+type: object
+required:
+  - purpose
+  - network
+  - address
+properties:
+  purpose:
+    description: The purpose of the challenge.
+    type: string
+    enum:
+      - claim-web3-address
+  network:
+    description: The blockchain network associated with the web3 address.
+    type: string
+    enum:
+      - polygon-mainnet
+      - polygon-mumbai
+      - polygon-amoy
+  address:
+    description: The web3 address to which the challenge is directed.
+    type: string
+    example: "0x123..."
