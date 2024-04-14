@@ -3,7 +3,7 @@ module.exports = {
   trailingComma: 'es5',
   overrides: [
     {
-      files: ['*.yaml', '*.yml'],
+      files: ['*.yaml', '*.yml', '*.md'],
       options: {
         singleQuote: false,
       },
