@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+
+const allNetworks = await getCollection('networks');
+interface Props {
+  chain: string;
+  netType: string;
+}
+
+const { chain, netType } = Astro.props;
+
+const targetNetworks = allNetworks.filter(ft => ft.data.netType === netType && ft.data.chain === chain);
+
+function wrappableAddress(addr: string) {
+  return addr.match(/.{1,30}/g)!.join('<wbr>');
+}
+
+---
+<div class="overflow-x-auto">
+  <table>
+    <thead>
+      <tr>
+        <th>Network</th>
+        <th>Protocol</th>
+        <th>Funds Manager Address</th>
+      </tr>
+    </thead>
+      <tbody>
+      {targetNetworks.map(network => (network.data.protocols.map(protocol => (
+        <td><nobr>{network.data.label}</nobr></td>
+        <td><a href={protocol.docsUrl} >{protocol.protocolLabel}</a></td>
+        <td><a href={protocol.fundsManagerUrl} target="_blank" set:html={wrappableAddress(protocol.fundsManagerAddress)}></a></td>
+      ))
+      ))}
+    </tbody>
+  </table>
+</div>

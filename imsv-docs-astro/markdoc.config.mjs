@@ -34,10 +34,34 @@ export default defineMarkdocConfig({
       render: component('./src/components/FundingTypeTable.astro'),
       attributes: {
         categories: { type: Array },
-      }
+        chain: { type: String },
+      },
+    },
+    networkProtocolTable: {
+      render: component('./src/components/NetworkProtocolTable.astro'),
+      attributes: {
+        chain: { type: String },
+        netType: { type: String },
+      },
     },
     fundingContractsTable: {
       render: component('./src/components/FundingContractsTable.astro'),
     },
-  }
+    tokenTable: {
+      render: component('./src/components/TokenTable.astro'),
+      attributes: {
+        token: { type: String },
+        type: { type: String },
+      },
+    },
+    testTokenFaucetTable: {
+      render: component('./src/components/TestTokenFaucetTable.astro'),
+      attributes: {
+        token: { type: String },
+      },
+    },
+    supportedChainsTable: {
+      render: component('./src/components/SupportedChainsTable.astro'),
+    },
+  },
 });
