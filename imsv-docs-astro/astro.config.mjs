@@ -45,6 +45,8 @@ export default defineConfig({
             { label: 'HTTP Status Codes', link: 'guides/http-status-codes' } ,
             { label: 'Webhooks', link: 'guides/webhooks' } ,
             { label: 'Cardholder Support', link: 'guides/cardholder-support' } ,
+            { label: 'Supported Tokens', autogenerate: { directory: 'guides/supported-tokens' } },
+            { label: 'Supported Chains', autogenerate: { directory: 'guides/supported-chains' } },
           ]
         },
         { label: 'Resources', autogenerate: { directory: 'resources' } },
