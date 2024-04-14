@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+
+const allTokensInstalledOnNetwork = await getCollection('tokens-installed-on-network');
+
+interface Props {
+  token: string;
+  type: string;
+}
+
+const { token, type } = Astro.props;
+
+const targetTokens = allTokensInstalledOnNetwork.filter(ft => ft.slug.includes(token) && ft.data.netType === type)
+
+function wrappableAddress(addr: string) {
+  return addr.match(/.{1,30}/g)!.join('<wbr>');
+}
+
+function chainFromSlug(slug: string) {
+  const chain = slug.split('-').slice(1).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+  return chain;
+}
+---
+<div class="overflow-x-auto">
+  <table>
+    <thead>
+      <tr>
+        <th>Chain</th>
+        <th>Token Address</th>
+      </tr>
+    </thead>
+      <tbody>
+      {targetTokens?.map(token => (
+        <tr>
+          <td><nobr>{chainFromSlug(token.slug)}</nobr></td>
+          <td><a href={token.data.url} target="_blank" set:html={wrappableAddress(token.data.address)}></a></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

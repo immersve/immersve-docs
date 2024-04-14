@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+
+const allTokensInstalledOnNetwork = await getCollection('tokens-installed-on-network');
+
+interface Props {
+  token: string;
+}
+
+const { token } = Astro.props;
+
+const targetTokens = allTokensInstalledOnNetwork.filter(ft => ft.slug.includes(token));
+const targetTestTokens = targetTokens.filter(ft => ft.data.netType === 'testnet');
+
+function wrappableAddress(addr: string) {
+  return addr.match(/.{1,30}/g)!.join('<wbr>');
+}
+
+function chainFromSlug(slug: string) {
+  const chain = slug.split('-').slice(1).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+  return chain;
+}
+---
+<div class="overflow-x-auto">
+  <table>
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Chain</th>
+        <th>Token Address</th>
+        <th>Faucet</th>
+      </tr>
+    </thead>
+      <tbody>
+      {targetTestTokens?.map(token => (
+        <tr>
+          <td><nobr>{token.data.label}</nobr></td>
+          <td><nobr>{chainFromSlug(token.slug)}</nobr></td>
+          <td><a href={token.data.url} target="_blank" set:html={wrappableAddress(token.data.address)}></a></td>
+          <td><a href={token.data.faucet} target="_blank" set:html={token.data.faucetLabel}></a></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
