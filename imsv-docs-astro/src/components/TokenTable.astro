@@ -16,6 +16,11 @@ function isTargetType(tokenSlug: string, type: string ) {
   return network?.data.netType === type;
 }
 
+function getNetworkTitleFromTokenSlug(tokenSlug: string) {
+  const network = allNetworks.find(n => tokenSlug.includes(n.slug));
+  return network?.data.title;
+}
+
 const targetTokens = allNetworkTokens.filter(t => t.slug.includes(token) && isTargetType(t.slug, type));
 
 function wrappableAddress(addr: string) {
@@ -34,7 +39,7 @@ function wrappableAddress(addr: string) {
       <tbody>
       {targetTokens?.map(token => (
         <tr>
-          <td><nobr>{token.data.title}</nobr></td>
+          <td><nobr>{getNetworkTitleFromTokenSlug(token.slug)}</nobr></td>
           <td><a href={token.data.url} target="_blank" set:html={wrappableAddress(token.data.address)}></a></td>
         </tr>
       ))}
