@@ -53,8 +53,8 @@ const supportedNetworks = filteredFundingTypes.map(
         {supportedNetworks.map(network => (
           network.network?.data.protocols.map(protocol => (
             <tr>
-              <td><nobr>{network.network?.data.label}</nobr></td>
-              <td><nobr>{network.token[0].data.label}</nobr></td>
+              <td><nobr>{network.network?.data.title}</nobr></td>
+              <td><nobr>{network.token[0].data.title}</nobr></td>
               <td><nobr><code>{network.fundingType}</code></nobr></td>
             </tr>
           ))

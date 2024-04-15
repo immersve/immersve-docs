@@ -7,7 +7,7 @@ const allDocs = await getCollection('docs');
 const supportedChains = allDocs.filter(doc => doc.data['supported-chain']);
 
 function sourceUrl(doc: CollectionEntry<'docs'>) {
-  return doc.data['supported-chain']?.docsUrl;
+  return doc.data['supported-chain']?.docsPath;
 }
 
 ---

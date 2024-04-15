@@ -34,10 +34,10 @@ function chainFromSlug(slug: string) {
       <tbody>
       {targetTestTokens?.map(token => (
         <tr>
-          <td><nobr>{token.data.label}</nobr></td>
+          <td><nobr>{token.data.title}</nobr></td>
           <td><nobr>{chainFromSlug(token.slug)}</nobr></td>
           <td><a href={token.data.url} target="_blank" set:html={wrappableAddress(token.data.address)}></a></td>
-          <td><a href={token.data.faucet} target="_blank" set:html={token.data.faucetLabel}></a></td>
+          <td><a href={token.data.faucet} target="_blank" set:html={token.data.faucetTitle}></a></td>
         </tr>
       ))}
     </tbody>
