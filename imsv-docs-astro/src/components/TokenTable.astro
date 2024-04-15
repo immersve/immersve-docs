@@ -1,7 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 
-const allTokensInstalledOnNetwork = await getCollection('network-tokens');
+const allNetworkTokens = await getCollection('network-tokens');
+const allNetworks = await getCollection('networks');
 
 interface Props {
   token: string;
@@ -10,7 +11,12 @@ interface Props {
 
 const { token, type } = Astro.props;
 
-const targetTokens = allTokensInstalledOnNetwork.filter(ft => ft.slug.includes(token) && ft.data.netType === type)
+function isTargetType(tokenSlug: string, type: string ) {
+  const network = allNetworks.find(n => tokenSlug.includes(n.slug));
+  return network?.data.netType === type;
+}
+
+const targetTokens = allNetworkTokens.filter(t => t.slug.includes(token) && isTargetType(t.slug, type));
 
 function wrappableAddress(addr: string) {
   return addr.match(/.{1,30}/g)!.join('<wbr>');
