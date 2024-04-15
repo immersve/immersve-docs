@@ -27,9 +27,9 @@ function wrappableAddress(addr: string) {
     </thead>
       <tbody>
       {targetNetworks.map(network => (network.data.protocols.map(protocol => (
-        <td><nobr>{network.data.label}</nobr></td>
-        <td><a href={protocol.docsUrl} >{protocol.protocolLabel}</a></td>
-        <td><a href={protocol.fundsManagerUrl} target="_blank" set:html={wrappableAddress(protocol.fundsManagerAddress)}></a></td>
+        <td><nobr>{network.data.title}</nobr></td>
+        <td><a href={protocol.docsPath} >{protocol.title}</a></td>
+        <td><a href={protocol.masterContractUrl} target="_blank" set:html={wrappableAddress(protocol.masterContractAddress)}></a></td>
       ))
       ))}
     </tbody>

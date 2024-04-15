@@ -12,7 +12,7 @@ export const collections = {
           .optional(),
         'supported-chain': z
           .object({
-            docsUrl: z.string(),
+            docsPath: z.string(),
           })
           .optional(),
       }),
@@ -28,26 +28,26 @@ export const collections = {
   }),
   'network-tokens': defineCollection({
     schema: z.object({
-      label: z.string(),
+      title: z.string(),
       netType: z.string(),
       address: z.string(),
       url: z.string(),
       faucet: z.string().optional(),
-      faucetLabel: z.string().optional(),
+      faucetTitle: z.string().optional(),
     }),
   }),
   networks: defineCollection({
     schema: z.object({
-      label: z.string(),
+      title: z.string(),
       chain: z.string(),
       netType: z.string(),
       protocols: z
         .object({
-          protocolName: z.string(),
-          protocolLabel: z.string(),
-          docsUrl: z.string(),
-          fundsManagerAddress: z.string(),
-          fundsManagerUrl: z.string(),
+          name: z.string(),
+          title: z.string(),
+          docsPath: z.string(),
+          masterContractAddress: z.string(),
+          masterContractUrl: z.string(),
         })
         .array(),
     }),
