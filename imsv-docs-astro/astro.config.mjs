@@ -38,7 +38,7 @@ export default defineConfig({
             { label: 'Introduction', link: 'guides' } ,
             { label: 'Core Concepts', autogenerate: { directory: 'guides/core-concepts' } },
             { label: 'Card Issuing Apps', autogenerate: { directory: 'guides/card-issuing-apps' } },
-            {label:'KYC Modes' , autogenerate :{ directory: 'guides/kyc-modes'}},
+            { label: 'KYC Modes' , autogenerate : { directory: 'guides/kyc-modes' } },
             { label: 'Funding Protocols', autogenerate: { directory: 'guides/funding-protocols' } },
             { label: 'Reports', autogenerate: { directory: 'guides/reports' } } ,
             { label: 'Testing', autogenerate: { directory: 'guides/testing' } } ,
