@@ -29,7 +29,6 @@ export const collections = {
   'network-tokens': defineCollection({
     schema: z.object({
       title: z.string(),
-      netType: z.string(),
       address: z.string(),
       url: z.string(),
       faucet: z.string().optional(),
