@@ -264,6 +264,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/funding-protocols/funding-types.mdoc": {
+	id: "guides/funding-protocols/funding-types.mdoc";
+  slug: "guides/funding-types";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/funding-protocols/universal-evm-smart-contract.mdoc": {
 	id: "guides/funding-protocols/universal-evm-smart-contract.mdoc";
   slug: "guides/universal-evm-smart-contract";
@@ -302,6 +309,41 @@ declare module 'astro:content' {
 "guides/reports/introduction.mdoc": {
 	id: "guides/reports/introduction.mdoc";
   slug: "guides/reports";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
+"guides/supported-chains/ethereum.mdoc": {
+	id: "guides/supported-chains/ethereum.mdoc";
+  slug: "guides/ethereum";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
+"guides/supported-chains/polygon.mdoc": {
+	id: "guides/supported-chains/polygon.mdoc";
+  slug: "guides/polygon";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
+"guides/supported-chains/supported-chains.mdoc": {
+	id: "guides/supported-chains/supported-chains.mdoc";
+  slug: "guides/supported-chains";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
+"guides/supported-tokens/usdc.mdoc": {
+	id: "guides/supported-tokens/usdc.mdoc";
+  slug: "guides/usdc";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
+"guides/testing/obtaining-test-tokens.mdoc": {
+	id: "guides/testing/obtaining-test-tokens.mdoc";
+  slug: "guides/obtaining-test-tokens";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
@@ -377,6 +419,52 @@ declare module 'astro:content' {
   body: string;
   collection: "funding-types";
   data: InferEntrySchema<"funding-types">
+} & { render(): Render[".md"] };
+};
+"network-tokens": {
+"usdc-ethereum-sepolia.md": {
+	id: "usdc-ethereum-sepolia.md";
+  slug: "usdc-ethereum-sepolia";
+  body: string;
+  collection: "network-tokens";
+  data: InferEntrySchema<"network-tokens">
+} & { render(): Render[".md"] };
+"usdc-polygon-amoy.md": {
+	id: "usdc-polygon-amoy.md";
+  slug: "usdc-polygon-amoy";
+  body: string;
+  collection: "network-tokens";
+  data: InferEntrySchema<"network-tokens">
+} & { render(): Render[".md"] };
+"usdc-polygon-pos.md": {
+	id: "usdc-polygon-pos.md";
+  slug: "usdc-polygon-pos";
+  body: string;
+  collection: "network-tokens";
+  data: InferEntrySchema<"network-tokens">
+} & { render(): Render[".md"] };
+};
+"networks": {
+"ethereum-sepolia.md": {
+	id: "ethereum-sepolia.md";
+  slug: "ethereum-sepolia";
+  body: string;
+  collection: "networks";
+  data: InferEntrySchema<"networks">
+} & { render(): Render[".md"] };
+"polygon-amoy.md": {
+	id: "polygon-amoy.md";
+  slug: "polygon-amoy";
+  body: string;
+  collection: "networks";
+  data: InferEntrySchema<"networks">
+} & { render(): Render[".md"] };
+"polygon-pos.md": {
+	id: "polygon-pos.md";
+  slug: "polygon-pos";
+  body: string;
+  collection: "networks";
+  data: InferEntrySchema<"networks">
 } & { render(): Render[".md"] };
 };
 
