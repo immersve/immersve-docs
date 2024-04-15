@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 
 const allFundingTypes = await getCollection('funding-types');
 const allNetworks = await getCollection('networks');
-const allTokensInstalledOnNetworks = await getCollection('tokens-installed-on-network');
+const allTokensInstalledOnNetworks = await getCollection('network-tokens');
 
 interface Props {
   categories: Array<string>;

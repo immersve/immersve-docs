@@ -1,7 +1,6 @@
 ---
 label: Ethereum Sepolia
 chain: ethereum
-liveness: test
 netType: testnet
 protocols:
   - protocolName: universal-evm
