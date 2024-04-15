@@ -63,5 +63,8 @@ export default defineMarkdocConfig({
     supportedChainsTable: {
       render: component('./src/components/SupportedChainsTable.astro'),
     },
+    supportedTokensTable: {
+      render: component('./src/components/SupportedTokensTable.astro'),
+    },
   },
 });
