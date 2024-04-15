@@ -1,10 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
 
 const allDocs = await getCollection('docs');
 
-const supportedChains = allDocs.filter(doc => doc.data['supported-token']);
+const supportedTokens = allDocs.filter(doc => doc.data['supported-token']);
 
 ---
 <div class="overflow-x-auto">
@@ -15,7 +14,7 @@ const supportedChains = allDocs.filter(doc => doc.data['supported-token']);
       </tr>
     </thead>
       <tbody>
-      {supportedChains.map(doc => (
+      {supportedTokens.map(doc => (
         <tr>
           <td><a href={'/' + doc.slug}>{doc.data.title}</a></td>
         </tr>
