@@ -26,7 +26,7 @@ export const collections = {
       networks: z.string().array(),
     }),
   }),
-  'tokens-installed-on-network': defineCollection({
+  'network-tokens': defineCollection({
     schema: z.object({
       label: z.string(),
       netType: z.string(),
@@ -40,7 +40,6 @@ export const collections = {
     schema: z.object({
       label: z.string(),
       chain: z.string(),
-      liveness: z.string(),
       netType: z.string(),
       protocols: z
         .object({

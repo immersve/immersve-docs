@@ -1,7 +1,6 @@
 ---
 label: Polygon Amoy
 chain: polygon
-liveness: test
 netType: testnet
 protocols:
   - protocolName: universal-evm

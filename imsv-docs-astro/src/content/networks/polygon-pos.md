@@ -1,7 +1,6 @@
 ---
 label: Polygon POS
 chain: polygon
-liveness: live
 netType: mainnet
 protocols:
   - protocolName: universal-evm
