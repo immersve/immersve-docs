@@ -1,0 +1,60 @@
+---
+title: Creating a Partner Funding Channel
+slug: guides/creating-a-partner-funding-channel
+---
+
+Immserve supports different funding types which is a combination of crypto assets
+and networks, such as USDC on Polygon, or USDC on Ethereum. For each partner, they
+needs to create one or many funding storage contracts for each funding type they want
+to support. A funding channel is a configuration that links a partner account to a
+funding storage contract that supports a funding type.
+
+Therefore, for each supported funding type, a partner should create a channel for it.
+This guide explains how to create a partner funding channel. According to different
+Funding Modes, there are three variants of funding channels:
+
+## Universal EVM
+
+This funding type is used for any EVM-compatible chains. The partner needs to deploy
+a storage contract on the target chain, and then create a funding channel with the
+storage contract address.
+
+Parameter explanation:
+
+- **fundingTypeName:** defines chain, token integration type protocol and liveness
+(see [Funding Types](/guides/funding-protocols/funding-types/) for possible values)
+- **storageAddress**: web3 address of deployed funds storage contract
+
+{% code title="Curl to create a partner funding channel" %}
+
+```bash
+  api_key="<your_api_key>"
+  api_secret="<your_api_secret>"
+  partner_account_id="<your_partner_account_id>"
+  funds_storage_address="<your_storage_address>"
+
+  funding_channel_id=$(curl -X POST 'https://test.immersve.com/api/funding-channels' \
+    -H "Content-Type: application/json" \
+    -H "x-api-key: ${api_key}" \
+    -H "x-api-secret: ${api_secret}" \
+    --data '{
+      "accountId": "'${partner_account_id}'",
+      "fundingTypeName": "polygon-usdc-universal-evm-test",
+      "params": {
+        "storageAddress": "'${funds_storage_address}'"
+      }
+  }' | jq -r .id)
+```
+{% /code %}
+
+
+
+## Flexi
+{% note %}
+Coming soon
+{% /note %}
+
+## Real-Time Funding Webhook
+{% note %}
+Coming soon
+{% /note %}
