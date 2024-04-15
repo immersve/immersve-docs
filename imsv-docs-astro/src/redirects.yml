@@ -31,6 +31,7 @@
 /category/non-custodial-wallets: "/use-cases/non-custodial-wallets"
 /contracts/payment-protocol: "/guides/universal-evm-smart-contract"
 /guides/add-card-to-digital-wallet: "/guides/add-card-to-xpay-wallet"
+/guides/complete-headless-kyc-checks: "/guides/partner-conducted-kyc"
 /guides/custodial wallets/authentication: "/guides/authentication"
 /guides/custodial wallets/card-lifecycle: "/guides/card-lifecycle"
 /guides/custodial wallets/physical-cards: "/guides/issue-a-virtual-card"
