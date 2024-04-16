@@ -1,0 +1,61 @@
+---
+title: Creating a Funding Channel
+slug: guides/creating-a-funding-channel
+---
+
+A Funding Channel is the configuration of the card funding method. Before creating
+a Funding Channel read [Funding Modes and Protocols](/guides/funding-modes-and-protocols).
+
+Choose a protocol, token, and network that suits your use case. The combination of
+these parameters dictates the [Funding Type](/guides/funding-types/) to use when
+creating a Funding Channel.
+
+## On-Chain Funding
+
+### Universal EVM
+
+Call [create a funding channel](/api-reference/create-a-funding-channel/) to
+create a funding channel using the Universal EVM protocol.
+
+**Set up environment variables**
+
+{% code %}
+```bash
+  account_admin_api_key="<your_account_admin_api_key>"
+  account_admin_api_secret="<your_account_admin_api_secret>"
+  partner_account_id="<your_partner_account_id>"
+  funds_storage_address="<your_storage_address>"
+  funding_type_name="polygon-amoy-usdc-universal-evm-test"
+```
+{% /code %}
+
+**Create a funding channel**
+
+{% code %}
+
+```bash
+  funding_channel_id=$(curl -X POST "https://test.immersve.com/api/funding-channels" \
+    -H "Content-Type: application/json" \
+    -H "x-api-key: ${account_admin_api_key}" \
+    -H "x-api-secret: ${account_admin_api_secret}" \
+    --data '{
+      "accountId": "'${partner_account_id}'",
+      "fundingTypeName": "'${funding_type_name}'",
+      "params": {
+        "storageAddress": "'${funds_storage_address}'"
+      }
+  }' | jq -r .id)
+```
+{% /code %}
+
+
+
+### Flexi
+{% note %}
+Coming soon
+{% /note %}
+
+## Webhook Funding
+{% note %}
+Coming soon
+{% /note %}
