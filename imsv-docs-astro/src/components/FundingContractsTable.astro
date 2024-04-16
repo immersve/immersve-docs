@@ -4,10 +4,10 @@ import type { CollectionEntry } from 'astro:content';
 
 const allDocs = await getCollection('docs');
 
-const fundingProtocolDocs = allDocs.filter(doc => doc.data['funding-protocol']);
+const fundingProtocolDocs = allDocs.filter(doc => doc.data['fundingProtocol']);
 
 function sourceUrl(doc: CollectionEntry<'docs'>) {
-  return doc.data['funding-protocol']?.source;
+  return doc.data['fundingProtocol']?.source;
 }
 
 ---
