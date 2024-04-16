@@ -18,7 +18,6 @@ properties:
     type: string
     enum:
       - polygon-mainnet
-      - polygon-mumbai
       - polygon-amoy
   description:
     description: The description of the challenge.
@@ -36,4 +35,3 @@ properties:
     description: The message to be signed by the web3 address owner.
     type: string
     example: "To verify ownership of the web3 address ..."
-
