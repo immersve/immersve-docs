@@ -208,13 +208,6 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
-"guides/card-issuing-apps/complete-headless-kyc-checks.mdoc": {
-	id: "guides/card-issuing-apps/complete-headless-kyc-checks.mdoc";
-  slug: "guides/complete-headless-kyc-checks";
-  body: string;
-  collection: "docs";
-  data: InferEntrySchema<"docs">
-} & { render(): Render[".mdoc"] };
 "guides/card-issuing-apps/fetching-secure-card-information.mdoc": {
 	id: "guides/card-issuing-apps/fetching-secure-card-information.mdoc";
   slug: "guides/fetching-secure-card-information";
@@ -288,6 +281,13 @@ declare module 'astro:content' {
 "guides/http-status-codes.mdoc": {
 	id: "guides/http-status-codes.mdoc";
   slug: "guides/http-status-codes";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
+"guides/kyc-modes/partner-conducted-kyc.mdoc": {
+	id: "guides/kyc-modes/partner-conducted-kyc.mdoc";
+  slug: "guides/partner-conducted-kyc";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
