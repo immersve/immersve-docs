@@ -406,9 +406,16 @@ declare module 'astro:content' {
 } & { render(): Render[".mdoc"] };
 };
 "funding-types": {
-"ethereum-usdc-universal-evm-test.md": {
-	id: "ethereum-usdc-universal-evm-test.md";
-  slug: "ethereum-usdc-universal-evm-test";
+"ethereum-sepolia-usdc-universal-evm-test.md": {
+	id: "ethereum-sepolia-usdc-universal-evm-test.md";
+  slug: "ethereum-sepolia-usdc-universal-evm-test";
+  body: string;
+  collection: "funding-types";
+  data: InferEntrySchema<"funding-types">
+} & { render(): Render[".md"] };
+"polygon-amoy-usdc-universal-evm-test.md": {
+	id: "polygon-amoy-usdc-universal-evm-test.md";
+  slug: "polygon-amoy-usdc-universal-evm-test";
   body: string;
   collection: "funding-types";
   data: InferEntrySchema<"funding-types">
@@ -416,13 +423,6 @@ declare module 'astro:content' {
 "polygon-usdc-universal-evm-live.md": {
 	id: "polygon-usdc-universal-evm-live.md";
   slug: "polygon-usdc-universal-evm-live";
-  body: string;
-  collection: "funding-types";
-  data: InferEntrySchema<"funding-types">
-} & { render(): Render[".md"] };
-"polygon-usdc-universal-evm-test.md": {
-	id: "polygon-usdc-universal-evm-test.md";
-  slug: "polygon-usdc-universal-evm-test";
   body: string;
   collection: "funding-types";
   data: InferEntrySchema<"funding-types">
