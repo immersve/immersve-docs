@@ -12,15 +12,15 @@ properties:
     type: string
     description: The name of the Funding Type.
     enum:
-      - polygon-usdc-universal-evm-test
+      - polygon-amoy-usdc-universal-evm-test
       - polygon-usdc-universal-evm-live
 
-    example: polygon-usdc-universal-evm-test
+    example: polygon-amoy-usdc-universal-evm-test
   params:
     type: object
     description: Parameters for the Funding Channel. The valid parameters depend on the Funding Type.
     properties:
-      storageAddress: 
+      storageAddress:
         type: string
         description: The address of the storage contract. Required for universal evm Funding Types.
         example: '0x1234567890123456789012345678901234567890'
