@@ -14,7 +14,6 @@ properties:
     type: string
     enum:
       - polygon-mainnet
-      - polygon-mumbai
       - polygon-amoy
   address:
     description: The web3 address to which the challenge is directed.

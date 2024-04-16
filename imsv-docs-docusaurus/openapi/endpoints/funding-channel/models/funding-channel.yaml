@@ -15,7 +15,7 @@ properties:
   fundingTypeName:
     type: string
     description: The type of Funding Channel registered.
-    example: polygon-usdc-universal-evm-test
+    example: polygon-amoy-usdc-universal-evm-test
   name:
     type: string
     description: Name of the Funding Channel.
