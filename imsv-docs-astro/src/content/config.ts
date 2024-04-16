@@ -15,7 +15,7 @@ export const collections = {
             docsPath: z.string(),
           })
           .optional(),
-        'supported-token': z
+        supportedToken: z
           .object({
             docsPath: z.string(),
           })
