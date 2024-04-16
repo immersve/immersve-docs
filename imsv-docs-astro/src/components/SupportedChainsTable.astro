@@ -4,7 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 
 const allDocs = await getCollection('docs');
 
-const supportedChains = allDocs.filter(doc => doc.data['supported-chain']);
+const supportedChains = allDocs.filter(doc => doc.data['supportedChain']);
 
 ---
 <div class="overflow-x-auto">

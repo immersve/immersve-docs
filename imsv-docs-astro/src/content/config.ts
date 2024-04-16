@@ -10,7 +10,7 @@ export const collections = {
             source: z.string(),
           })
           .optional(),
-        'supported-chain': z
+        supportedChain: z
           .object({
             docsPath: z.string(),
           })
