@@ -5,7 +5,7 @@ export const collections = {
   docs: defineCollection({
     schema: docsSchema({
       extend: z.object({
-        'funding-protocol': z
+        fundingProtocol: z
           .object({
             source: z.string(),
           })
