@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 
 const allDocs = await getCollection('docs');
 
-const supportedTokens = allDocs.filter(doc => doc.data['supported-token']);
+const supportedTokens = allDocs.filter(doc => doc.data['supportedToken']);
 
 ---
 <div class="overflow-x-auto">

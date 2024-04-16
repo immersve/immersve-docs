@@ -5,7 +5,7 @@ const allFundingTypes = await getCollection('funding-types');
 const allNetworks = await getCollection('networks');
 const allTokensInstalledOnNetworks = await getCollection('network-tokens');
 const allDocs = await getCollection('docs');
-const supportedTokens = allDocs.filter(doc => doc.data['supported-token']);
+const supportedTokens = allDocs.filter(doc => doc.data['supportedToken']);
 interface Props {
   categories: Array<string>;
 }
