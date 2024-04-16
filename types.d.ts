@@ -334,6 +334,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/supported-tokens/supported-tokens.mdoc": {
+	id: "guides/supported-tokens/supported-tokens.mdoc";
+  slug: "guides/supported-tokens";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/supported-tokens/usdc.mdoc": {
 	id: "guides/supported-tokens/usdc.mdoc";
   slug: "guides/usdc";
