@@ -10,16 +10,8 @@ export const collections = {
             source: z.string(),
           })
           .optional(),
-        supportedChain: z
-          .object({
-            docsPath: z.string(),
-          })
-          .optional(),
-        supportedToken: z
-          .object({
-            docsPath: z.string(),
-          })
-          .optional(),
+        supportedChain: z.boolean().optional(),
+        supportedToken: z.boolean().optional(),
       }),
     }),
   }),
