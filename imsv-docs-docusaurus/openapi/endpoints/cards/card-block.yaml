@@ -1,6 +1,6 @@
 post:
   tags:
-    - cards-custodial
+    - card
   summary: Block a card
   security:
     - $ref: '../../models/api-key-auth.yaml'

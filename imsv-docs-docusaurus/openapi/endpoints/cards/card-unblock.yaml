@@ -1,6 +1,6 @@
 post:
   tags:
-    - cards-custodial
+    - card
   summary: Unblock a card
   security:
     - $ref: '../../models/api-key-auth.yaml'

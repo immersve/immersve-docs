@@ -63,6 +63,10 @@ paths:
     $ref: "./endpoints/cards/card-cancel.yaml"
   "/api/cards/{cardId}/pan-token":
     $ref: "./endpoints/cards/card-pan-token.yaml"
+  "/api/cards/{cardId}/block":
+    $ref: "./endpoints/cards/card-block.yaml"
+  "/api/cards/{cardId}/unblock":
+    $ref: "./endpoints/cards/card-unblock.yaml"
   "/api/accounts/{accountId}/contact-details":
     get:
       $ref: "./endpoints/contact-details/get-contact-details.yaml"
