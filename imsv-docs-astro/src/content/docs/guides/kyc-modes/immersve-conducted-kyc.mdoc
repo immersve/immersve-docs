@@ -1,0 +1,84 @@
+---
+title: Immersve Conducted KYC
+---
+
+For Immersve card users, we have customized the KYC (Know Your Customer) process
+to make it as smooth and secure as possible. At Immersve, we handle everything
+ourselves, from collecting to verifying  documents through detailed scans and
+biometric data. This means we have full control over the verification process,
+ensuring that your identity is confirmed accurately and securely with a personal touch.
+
+
+See the [KYC API endpoint references](https://docs.immersve.com/api-reference/kyc/).
+
+## The KYC Process for Immersve Card
+
+### Initiating KYC Verification
+
+Setting Spending Prerequisites: To begin the KYC process, the client must pass the KYC type,
+specifically kycType: `immersve-conducted`. Optionally, a `redirectUrl` can be provided where
+the user should be redirected upon completion of the KYC process.
+
+### Example request
+{% code %}
+  ```bash
+    curl -X "https://test.immersve.com/api/spending-prerequisites" \
+      -H "Content-Type: application/json" \
+      -H "X-Api-Key: ${card_issuer_api_key}" \
+      -H "X-Api-Secret: ${card_issuer_api_secret}" \
+      -H "X-Account-Id: ${cardholder_account_id}" \
+      --data '{
+        "cardProgramId": "'${card_program_id}'",
+        "fundingSourceId": "'${funding_source_id}'",
+        "spendableAmount": 100,
+        "spendableCurrency": "USD",
+        "kycType": "immersve-conducted",
+        "kycRegion":"NZL"
+      }'
+  ```
+{% /code %}
+
+### Example response
+{% code %}
+  ```json
+    {
+      "prerequisites": [
+        {
+          "type": "kyc",
+          "params": {
+            "status": "check_in_progress"
+          }
+        }
+      ]
+    }
+  ```
+{% /code %}
+
+
+### Redirection for KYC Completion
+
+KYC Verification URL: If KYC is required, our partner will receive a URL to which they should
+redirect their users. This URL initiates the verification sequence necessary for user identity
+confirmation.
+
+### Details of the KYC Verification
+
+Address Collection and Identity Verification: The core of the KYC process involves the
+collection of the user’s address and the verification of their identity.
+
+ID Verification (IDV) Without Real Documents: To support testing and simplify the integration
+process in test environments, we employ a method that enables the use of simulated documents.
+This approach ensures the verification workflow can be thoroughly tested without compromising
+the security of actual operations.
+
+### Completion and Redirection
+
+Final Redirection: Upon completing the KYC process, users are redirected back to the
+`redirectUrl` provided initially. This step marks the completion of the verification process,
+linking back to the client’s platform seamlessly.
+
+### Confirmation of KYC Completion
+Verifying Prerequisites Post-KYC: Once redirected, it is crucial to check the spending
+prerequisites again to ensure no further KYC actions are required. This verification
+ensures that all necessary checks are complete and the user’s identity is fully established,
+allowing them to use their Immersve card without restrictions.
