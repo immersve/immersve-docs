@@ -271,13 +271,6 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
-"guides/funding-protocols/funding-types.mdoc": {
-	id: "guides/funding-protocols/funding-types.mdoc";
-  slug: "guides/funding-types";
-  body: string;
-  collection: "docs";
-  data: InferEntrySchema<"docs">
-} & { render(): Render[".mdoc"] };
 "guides/funding-protocols/universal-evm-smart-contract.mdoc": {
 	id: "guides/funding-protocols/universal-evm-smart-contract.mdoc";
   slug: "guides/universal-evm-smart-contract";
@@ -457,9 +450,9 @@ declare module 'astro:content' {
   collection: "network-tokens";
   data: InferEntrySchema<"network-tokens">
 } & { render(): Render[".md"] };
-"usdc-polygon-pos.md": {
-	id: "usdc-polygon-pos.md";
-  slug: "usdc-polygon-pos";
+"usdc-polygon.md": {
+	id: "usdc-polygon.md";
+  slug: "usdc-polygon";
   body: string;
   collection: "network-tokens";
   data: InferEntrySchema<"network-tokens">
@@ -480,9 +473,9 @@ declare module 'astro:content' {
   collection: "networks";
   data: InferEntrySchema<"networks">
 } & { render(): Render[".md"] };
-"polygon-pos.md": {
-	id: "polygon-pos.md";
-  slug: "polygon-pos";
+"polygon.md": {
+	id: "polygon.md";
+  slug: "polygon";
   body: string;
   collection: "networks";
   data: InferEntrySchema<"networks">
