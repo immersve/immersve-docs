@@ -3,6 +3,33 @@ title: Funding Protocols
 slug: guides/funding-protocols
 ---
 
-{% note %}
-Coming soon
-{% /note %}
+A funding protocol determines the method by which a card is provided with available balance. How a cardholder can deposit or withdraw, and how the Immersve platform can settle or refund.
+
+Cards can be funded by a variety of protocols. These variants and their use cases are described in the following sections.
+
+## On-Chain Funding
+
+Whether your app is custodial or non-custodial you can pre-fund cardholder spend with deposits on-chain.
+
+### **Non-custodial On-Chain Funding**
+
+Users pre-fund card spend by making deposits to your instance of the Protocol.
+
+### **Custodial On-Chain Funding**
+
+Your app funds card spend by making deposits to your instance of the Protocol.
+
+### Universal Variant
+
+A protocol designed for gas optimisation, that can be deployed on any EVM chain. It can be used by both custodial and non-custodial users. Individual cardholder balances are recorded off-chain.
+See [Universal EVM Smart Contract](/guides/universal-evm-smart-contract) for more information.
+
+## Flexi Variant - Coming soon
+
+A flexible protocol that supports individual Funds Storage Contracts per cardholder, supporting on-chain balances  and permission-less, decentralized withdrawal.
+
+## Webhook Funding - Coming soon
+
+Funding via webhook. Authorization requests are forwarded and decisioned by your app.
+
+
