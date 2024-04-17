@@ -1,5 +1,5 @@
 ---
 categories: [universal-evm, test]
 chain: ethereum
-networks: [ethereum-sepolia]
+network: ethereum-sepolia
 ---

@@ -20,7 +20,7 @@ export const collections = {
     schema: z.object({
       categories: z.string().array(),
       chain: z.string(),
-      networks: z.string().array(),
+      network: z.string(),
     }),
   }),
   'network-tokens': defineCollection({

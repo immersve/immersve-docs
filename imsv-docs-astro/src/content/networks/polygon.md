@@ -1,5 +1,5 @@
 ---
-title: Polygon POS
+title: Polygon
 chain: polygon
 netType: mainnet
 protocols:
