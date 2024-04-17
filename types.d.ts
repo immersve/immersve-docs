@@ -215,6 +215,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/card-issuing-apps/custodial-on-chain-card-issuing-integration.mdoc": {
+	id: "guides/card-issuing-apps/custodial-on-chain-card-issuing-integration.mdoc";
+  slug: "guides/custodial-on-chain-card-issuing-integration";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/card-issuing-apps/fetching-secure-card-information.mdoc": {
 	id: "guides/card-issuing-apps/fetching-secure-card-information.mdoc";
   slug: "guides/fetching-secure-card-information";
