@@ -208,6 +208,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/card-issuing-apps/creating-a-funding-channel.mdoc": {
+	id: "guides/card-issuing-apps/creating-a-funding-channel.mdoc";
+  slug: "guides/creating-a-funding-channel";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/card-issuing-apps/fetching-secure-card-information.mdoc": {
 	id: "guides/card-issuing-apps/fetching-secure-card-information.mdoc";
   slug: "guides/fetching-secure-card-information";
@@ -253,6 +260,13 @@ declare module 'astro:content' {
 "guides/core-concepts/monetary-units.mdoc": {
 	id: "guides/core-concepts/monetary-units.mdoc";
   slug: "guides/monetary-units";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
+"guides/funding-protocols/funding-protocols.mdoc": {
+	id: "guides/funding-protocols/funding-protocols.mdoc";
+  slug: "guides/funding-protocols";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
