@@ -221,7 +221,8 @@ obtain the sensitive card details for a cardholder to spend with the card.
 {% code %}
 ```bash
 curl -X POST "https://test.immersve.com/api/cards/${card_id}/pan-token" \
-  -H "Authorization: Bearer $token" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}"
 
 # The response will contain a secure time-limited callback URL
