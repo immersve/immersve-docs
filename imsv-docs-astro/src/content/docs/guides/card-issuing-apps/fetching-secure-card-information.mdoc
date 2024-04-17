@@ -3,13 +3,20 @@ title: Fetching Secure Card Information
 slug: guides/fetching-secure-card-information
 ---
 
+Secure card information describes the details of a card that only a cardholder
+should have access to. This includes the card's 16 digit PAN (Primary Account
+Number), expiry date, and security code (CVC/CVV).
 
-In order to retrieve the secure details of a card (CVV, expiry, PAN), a
-one-time token must be generated.
+{% note %}
+It is not recommended that the sensitive card details are supplied to any application
+other than one that resides within the cardholder environment (i.e. their mobile
+application or web application running in their browser) unless that system is
+sufficiently compliant with PCI-DSS requirements and is audited as such.
+{% /note %}
 
 The steps for retrieving secure card details are as follows:
 
-1. Call the [get a card token](/api-reference/get-a-card-token) endpoint with
+1. Call the [Get a card token](/api-reference/get-a-card-token) endpoint with
    the card ID.
 2. Call the GET URL specified in the `callbackUrl` response body field. The
    `callbackUrl` can only be used once, subsequent calls to this URL will return a
