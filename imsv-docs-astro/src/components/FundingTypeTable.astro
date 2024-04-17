@@ -12,40 +12,32 @@ interface Props {
 
 const { categories } = Astro.props;
 
-function findTokenFromFundingType(fundingTypeSlug: string) {
-  return fundingTypeSlug.split('-')[1];
-}
-
-function findNetworkToken(networkSlug: string, fundingTypeSlug: string) {
-  return allTokensInstalledOnNetworks.filter(
-    token => token.slug.includes(networkSlug) && token.slug.includes(findTokenFromFundingType(fundingTypeSlug))
-    );
+function findNetworkToken(networkSlug: string) {
+  return allTokensInstalledOnNetworks.find(token => {
+    const tokenOnNetwork = token.slug.slice(token.slug.indexOf('-') + 1)
+    return tokenOnNetwork === networkSlug
+  })
 }
 
 function findToken(networkTokenTitle: string) {
-  // console.log('networkTokenTitle', networkTokenTitle, supportedTokens)
   return supportedTokens.find(token => token.data.title.includes(networkTokenTitle));
 }
 
 const filteredFundingTypes = allFundingTypes.filter(ft => categories?.every(c => ft.data.categories.includes(c)));
 
-const fundingTypes = filteredFundingTypes.map(
-    ft => ft.data.networks.map(
-      n =>  { const supportedNetwork = allNetworks.find(
-        nw => nw.slug.includes(n)
-      )
-      const networkToken = findNetworkToken(supportedNetwork!.slug, ft.slug)
-      const token = findToken(networkToken[0].data.title)
+const fundingTypes = filteredFundingTypes.map(ft => {
+      const network = allNetworks.find(n => n.slug === ft.data.network);
+      const networkToken = findNetworkToken(network!.slug)
+      const token = findToken(networkToken!.data.title)
 
       return {
-        network: supportedNetwork,
-        fundingType: ft.slug,
+        network: network,
+        fundingTypeName: ft.slug,
         networkToken: networkToken,
         token: token
-      }}
-    )
-  )
-  .flat()
+      }
+
+  }).flat()
 
 ---
 <div class="overflow-x-auto">
@@ -54,16 +46,19 @@ const fundingTypes = filteredFundingTypes.map(
       <tr>
         <th>Network</th>
         <th>Token</th>
+        <th>Funding Protocol</th>
         <th>Funding Type</th>
       </tr>
     </thead>
       <tbody>
         {fundingTypes.map(fundingType => (
+          // todo use token from network token
           fundingType.network?.data.protocols.map(protocol => (
             <tr>
               <td><nobr>{fundingType.network?.data.title}</nobr></td>
-              <td><a href={'/' + fundingType.token?.slug}><nobr>{fundingType.networkToken[0].data.title}</nobr></a></td>
-              <td><nobr><code>{fundingType.fundingType}</code></nobr></td>
+              <td><a href={'/' + fundingType.token?.slug}><nobr>{fundingType.token?.data.title}</nobr></a></td>
+              <td><a href={protocol.docsPath}><nobr>{protocol.title}</nobr></a></td>
+              <td><nobr><code>{fundingType.fundingTypeName}</code></nobr></td>
             </tr>
           ))
         ))}
