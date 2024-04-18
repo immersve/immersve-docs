@@ -41,6 +41,7 @@ process.
 {% code %}
 ```bash
 curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
+-H 'Content-Type: application/json'
 -H "Authorization: Bearer $token" \
 --data '{
   "cardProgramId": "'${card_program_id}'",
@@ -109,6 +110,7 @@ allowed to create and use their Immersve card.
 {% code %}
 ```bash
 curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
+-H 'Content-Type: application/json'
 -H "Authorization: Bearer $token" \
 --data '{
   "cardProgramId": "'${card_program_id}'",
@@ -136,10 +138,15 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 ## Testing
 
 **ID Verification (IDV) Without Real Documents**: To support testing and
-simplify the integration process in test environments, we use simulated
-documents. This allows testing the KYC verification workflow without putting real
-details into test environments. Below are the front and back images of a driver license that can
-be scanned with a phone directly:
+simplify the integration process in test environments, we use mock documents.
+This allows testing the KYC verification workflow without putting real details
+into test environments.
+
+The facial scan still needs to be done with the testing person's face, but no data
+will be stored in our test environment.
+
+Below are the front and back images of a driver license that can be scanned with
+a phone camera directly:
 
 **Front of a drivers license**
 
@@ -148,9 +155,3 @@ be scanned with a phone directly:
 **Back of a drivers license**
 
 ![mock-licence-back (1).jpg](@assets/kyc/mock-driver-licence-back.jpg)
-
-
-{% note %}
-Facial scan still needs to be done with the testing person's face, but no data will
-be stored in our test environment.
-{% /note %}
