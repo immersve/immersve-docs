@@ -299,8 +299,22 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
-"guides/kyc-modes/partner-conducted-kyc.mdoc": {
-	id: "guides/kyc-modes/partner-conducted-kyc.mdoc";
+"guides/kyc/immersve-conducted-kyc.mdoc": {
+	id: "guides/kyc/immersve-conducted-kyc.mdoc";
+  slug: "guides/immersve-conducted-kyc";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
+"guides/kyc/introduction.mdoc": {
+	id: "guides/kyc/introduction.mdoc";
+  slug: "guides/kyc-modes";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
+"guides/kyc/partner-conducted-kyc.mdoc": {
+	id: "guides/kyc/partner-conducted-kyc.mdoc";
   slug: "guides/partner-conducted-kyc";
   body: string;
   collection: "docs";
