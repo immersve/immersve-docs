@@ -35,8 +35,7 @@
     color: inherit;
     text-decoration: inherit;
   }
-  /* This is breaking the standard markdown styling */
-  /* h1,
+  h1,
   h2,
   h3,
   h4,
@@ -44,7 +43,7 @@
   h6 {
     font-size: inherit;
     font-weight: inherit;
-  } */
+  }
   blockquote,
   dl,
   dd,
