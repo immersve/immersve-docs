@@ -3,17 +3,14 @@ title: Immersve Conducted KYC
 slug: guides/immersve-conducted-kyc
 ---
 
-In the Immersve conducted KYC mode, Immersve facilitates the entire KYC process
-directly with the cardholder, from collecting address to verifying documents
-scans and biometric data. This goes in contrast with [Partner Conducted KYC
+In the Immersve-conducted KYC mode, partner application directs their users to
+complete KYC through the Immersve UI. This contrasts with [Partner Conducted KYC
 mode](/guides/partner-conducted-kyc) where Immersve is not directly involved
 with partners' cardholders.
 
-This mode of KYC is recommended for partners who are not required to do KYC as
-part of their main product offering, such as crypto wallets, as implementing
-one's own KYC process can require a significant effort. However, this means
-partner cardholders are exposed to Immersve's user experience and
-communications, which may or may not align with the vision for their product.
+We recommend this mode of KYC for partners not obligated to perform KYC as part
+of their main product, like crypto wallets. That's because implementing one's
+own KYC process can require a significant effort.
 
 # Integration steps
 
@@ -96,6 +93,8 @@ will eventually inform about success or failure.
 
 Upon exiting the page, users are sent back to the **`redirectUrl`** provided
 initially. If no URL was provided, exiting leads to closing the browser tab.
+
+![KYC UI screenshot](@assets/kyc/kyc-ui.png)
 
 
 ### 4. Confirmation of KYC Completion
