@@ -1,0 +1,143 @@
+---
+title: Immersve Conducted KYC
+slug: guides/immersve-conducted-kyc
+---
+
+In the Immersve conducted KYC mode, Immersve facilitates the entire KYC process
+directly with the cardholder, from collecting address to verifying documents
+scans and biometric data. This goes in contrast with [Partner Conducted KYC
+mode](/guides/partner-conducted-kyc) where Immersve is not directly involved
+with partners' cardholders.
+
+This mode of KYC is recommended for partners who are not required to do KYC as
+part of their main product offering, such as crypto wallets, as implementing
+one's own KYC process can require a significant effort. However, this means
+partner cardholders are exposed to Immersve's user experience and
+communications, which may or may not align with the vision for their product.
+
+# Integration steps
+
+
+### 1. Request spending prerequisites:
+
+To begin the KYC process, call spending prerequisites specifying KYC type as
+**`immersve-conducted`**. Optionally, a **`redirectUrl`** can be provided to
+indicate where the user should be redirected upon completion of the KYC
+process.
+
+**Example Request:**
+{% code %}
+```bash
+curl --location 'https://test.immersve.com/api/spending-prerequisites' \
+-H "Authorization: Bearer $token" \
+--data '{
+  "cardProgramId": "'${card_program_id}'",
+  "fundingSourceId": "'${funding_source_id}'",
+  "spendableAmount": 100,
+  "spendableCurrency": "USD",
+  "kycType": "**immersve-conducted**",
+  "kycRedirectUrl: "app.example.io"
+  "kycRegion":"NZL"
+}'
+```
+{% /code %}
+
+**Example Response:**
+{% code %}
+```json
+{
+  "prerequisites": [
+    {
+      "type": "kyc",
+      "params": {
+        "status": "kyc_required",
+        "kycUrl": "https://verify.test.immersve.com/kyc/session/hg40904ddkr43?code=r938j9g"
+      }
+    },
+  ]
+}
+```
+{% /code %}
+
+### 2. Redirect user to the KYC page:
+
+If KYC is required, the response to the spending prerequisites request will
+contain a URL, where the user must be redirected to to complete the KYC
+verification. If KYC is not required, is already in progress, or the maximum
+number of retries has been exceeded, the URL will not be returned and the status
+will indicate the problem. See
+https://docs.immersve.com/api-reference/get-spending-prerequisites/ for more
+details on possible statuses.
+
+### 3. User goes through the KYC flow:
+
+Upon being redirected to the Immersve KYC page, the user will go through the
+process that involves the collection of the user's address and the verification
+of their identity through document and biometry (facial scan) collection.
+
+At the end of the process they are presented with a screen indicating that their
+profile is under review. The user does not have to stay on the page to know
+the outcome, as it will be communicated via email. If they stay on the page, it
+will eventually inform about success or failure.
+
+Upon exiting the page, users are sent back to the **`redirectUrl`** provided
+initially. If no URL was provided, exiting leads to closing the browser tab.
+
+
+### 4. Confirmation of KYC Completion
+
+Once redirected, it is crucial to check the spending prerequisites again to
+ensure no further KYC actions are required. Once there is no KYC prerequisite
+returned, and given all other checks are completed, the cardholder will be
+allowed to create and use their Immersve card.
+
+**Example Request:**
+
+{% code %}
+```bash
+curl --location 'https://test.immersve.com/api/spending-prerequisites' \
+-H "Authorization: Bearer $token" \
+--data '{
+  "cardProgramId": "'${card_program_id}'",
+  "fundingSourceId": "'${funding_source_id}'",
+  "spendableAmount": 100,
+  "spendableCurrency": "USD",
+  "kycType": "**immersve-conducted**",
+  "kycRedirectUrl: "app.example.io"
+  "kycRegion":"NZL"
+}'
+```
+{% /code %}
+
+**Example Response:**
+
+{% code %}
+```json
+{
+  "prerequisites": []
+}
+```
+{% /code %}
+##
+
+# Testing
+
+- **ID Verification (IDV) Without Real Documents**: To support testing and
+simplify the integration process in test environments, we use simulated
+documents. This allows testing the KYC verification workflow without putting real
+details into test environments. Below are the front and back images of a driver license that can
+be scanned with a phone directly off-screen:
+
+  - **Front of a drivers license**
+
+  ![mock-licence-front (1).jpg](@assets/kyc/mock-driver-licence-front.jpg)
+
+  - **Back of a drivers license**
+
+  ![mock-licence-back (1).jpg](@assets/kyc/mock-driver-licence-back.jpg)
+
+
+{% note %}
+Facial scan still needs to be done with the testing person's face, but no data will
+be stored in our test environment
+{% /note %}
