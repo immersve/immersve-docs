@@ -17,8 +17,23 @@ communications, which may or may not align with the vision for their product.
 
 # Integration steps
 
+The following steps are for manual integration via a terminal. An integrating
+application should implement this flow with whatever technology stack is
+convenient.
 
-### 1. Request spending prerequisites:
+### 1. Prerequisites:
+This guide assumes that the partner has already obtained an access token or API
+keys, and has the card program and funding source IDs ready.
+
+{% code %}
+  ```bash
+    token="<your_access_token>"
+    card_program_id="<your_card_program_id>"
+    funding_source_id="<funding_source_id>"
+  ```
+{% /code %}
+
+### 2. Request spending prerequisites:
 
 To begin the KYC process, call spending prerequisites specifying KYC type as
 **`immersve-conducted`**. Optionally, a **`redirectUrl`** can be provided to
@@ -59,15 +74,14 @@ curl --location 'https://test.immersve.com/api/spending-prerequisites' \
 ```
 {% /code %}
 
-### 2. Redirect user to the KYC page:
-
 If KYC is required, the response to the spending prerequisites request will
 contain a URL, where the user must be redirected to to complete the KYC
 verification. If KYC is not required, is already in progress, or the maximum
 number of retries has been exceeded, the URL will not be returned and the status
-will indicate the problem. See
-https://docs.immersve.com/api-reference/get-spending-prerequisites/ for more
-details on possible statuses.
+will indicate the problem. See [Spending Prerequisites endpoint
+reference](https://docs.immersve.com/api-reference/get-spending-prerequisites/)
+for more details on possible statuses.
+
 
 ### 3. User goes through the KYC flow:
 
