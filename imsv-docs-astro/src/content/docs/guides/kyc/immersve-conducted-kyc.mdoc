@@ -12,13 +12,13 @@ We recommend this mode of KYC for partners not obligated to perform KYC as part
 of their main product, like crypto wallets. That's because implementing one's
 own KYC process can require a significant effort.
 
-# Integration steps
+## Integration steps
 
 The following steps are for manual integration via a terminal. An integrating
 application should implement this flow with whatever technology stack is
 convenient.
 
-### 1. Prerequisites:
+### 1. Prerequisites
 This guide assumes that the partner has already obtained an access token or API
 keys, and has the card program and funding source IDs ready.
 
@@ -30,7 +30,7 @@ keys, and has the card program and funding source IDs ready.
   ```
 {% /code %}
 
-### 2. Request spending prerequisites:
+### 2. Request spending prerequisites
 
 To begin the KYC process, call spending prerequisites specifying KYC type as
 **`immersve-conducted`**. Optionally, a **`redirectUrl`** can be provided to
@@ -80,7 +80,7 @@ reference](https://docs.immersve.com/api-reference/get-spending-prerequisites/)
 for more details on possible statuses.
 
 
-### 3. User goes through the KYC flow:
+### 3. User goes through the KYC flow
 
 Upon being redirected to the Immersve KYC page, the user will go through the
 process that involves the collection of the user's address and the verification
@@ -133,7 +133,7 @@ curl --location 'https://test.immersve.com/api/spending-prerequisites' \
 {% /code %}
 ##
 
-# Testing
+## Testing
 
 - **ID Verification (IDV) Without Real Documents**: To support testing and
 simplify the integration process in test environments, we use simulated
