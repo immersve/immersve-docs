@@ -18,7 +18,7 @@ The following steps are for manual integration via a terminal. An integrating
 application should implement this flow with whatever technology stack is
 convenient.
 
-### 1. Prerequisites
+### Prerequisites
 This guide assumes that the partner has already obtained an access token or API
 keys, and has the card program and funding source IDs ready.
 
@@ -30,7 +30,7 @@ keys, and has the card program and funding source IDs ready.
   ```
 {% /code %}
 
-### 2. Request spending prerequisites
+### Request spending prerequisites
 
 To begin the KYC process, call spending prerequisites specifying KYC type as
 **`immersve-conducted`**. Optionally, a **`redirectUrl`** can be provided to
@@ -81,7 +81,7 @@ reference](https://docs.immersve.com/api-reference/get-spending-prerequisites/)
 for more details on possible statuses.
 
 
-### 3. User goes through the KYC flow
+### User goes through the KYC flow
 
 Upon being redirected to the Immersve KYC page, the user will go through the
 process that involves the collection of the user's address and the verification
@@ -98,7 +98,7 @@ initially. If no URL was provided, exiting leads to closing the browser tab.
 ![KYC UI screenshot](@assets/kyc/kyc-ui.png)
 
 
-### 4. Confirmation of KYC Completion
+### Confirmation of KYC Completion
 
 Once redirected, check the spending prerequisites again to
 ensure no further KYC actions are required. Once there is no KYC prerequisite
