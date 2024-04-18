@@ -36,10 +36,6 @@ export default defineConfig({
           label: 'Guides',
           items: [
             { label: 'Introduction', link: 'guides' } ,
-            { label: 'Authentication', link: 'guides/authentication' } ,
-            { label: 'HTTP Status Codes', link: 'guides/http-status-codes' } ,
-            { label: 'Webhooks', link: 'guides/webhooks' } ,
-            { label: 'Cardholder Support', link: 'guides/cardholder-support' } ,
             { label: 'Core Concepts', autogenerate: { directory: 'guides/core-concepts' } },
             { label: 'Card Issuing Apps', autogenerate: { directory: 'guides/card-issuing-apps' } },
             { label: 'KYC' , items: [
@@ -50,6 +46,10 @@ export default defineConfig({
             { label: 'Funding Protocols', autogenerate: { directory: 'guides/funding-protocols' } },
             { label: 'Reports', autogenerate: { directory: 'guides/reports' } } ,
             { label: 'Testing', autogenerate: { directory: 'guides/testing' } } ,
+            { label: 'Authentication', link: 'guides/authentication' } ,
+            { label: 'HTTP Status Codes', link: 'guides/http-status-codes' } ,
+            { label: 'Webhooks', link: 'guides/webhooks' } ,
+            { label: 'Cardholder Support', link: 'guides/cardholder-support' } ,
             { label: 'Supported Tokens', autogenerate: { directory: 'guides/supported-tokens' } },
             { label: 'Supported Chains', autogenerate: { directory: 'guides/supported-chains' } },
           ]
