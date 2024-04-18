@@ -6,33 +6,43 @@ fundingProtocol:
   source: https://github.com/immersve/funding-contract-universal-evm
 ---
 
-The Immersve Universal EVM protocol allows client applications to fund Immersve
-cards via simple ERC-20 transfers. Depositors can withdraw funds at any time
-with signed withdrawal approvals. Depositor funds can only be settled to
-Immersve’s approved settlement address. Deposits are scoped to the client
-application that registers the Funds Storage contract as an Immersve Funding
-Channel.
+The Immersve Universal EVM [funding protocol](/guides/funding-protocols) allows
+client applications to fund Immersve cards via simple ERC-20 transfers.
+Depositors can withdraw funds at any time with signed withdrawal approvals.
+Depositor funds can only be settled to Immersve’s approved settlement address.
+Deposits are scoped to the client application that registers the Funds Storage
+contract as an Immersve Funding Channel.
 
-## Components
+## Smart Contract
+
+The Universal EVM protocol has a master "Funds Manager" contract and many
+partner "Funds Storage" contracts.
+
+
+### Source
+{% link href="https://github.com/immersve/funding-contract-universal-evm" /%}.
+
+### Deployed Contract Addresses
+
+The Funds Manager contract is designed to work on any EVM. Funds Manager Contract addresses
+can be found at [Supported Chains](/guides/supported-chains/)
+
+
+### Smart Contract Overview
+
+The Funds Manager contract is the main entry point and is a factory for the
+Funds Storage contracts. Funds Storage contracts are the target for depositor
+ERC-20 transfers that are scoped to an integrated partner application. The
+Funds Manager contract is also used by Immersve for performing settlements and
+refunds.
+
 
 ![polygonscan-contract-landing](@assets/universal-evm/overview-2.png)
 
-### Funds Manager Contract
 
-The Funds Manager contract is the main entry point and is a factory for Funds
-Storage contracts. It is also used by Immersve for performing administrative
-operations. The `createFundsStorage` function can be used by any message signer
-to deploy a Funds Storage contract address.
+## Protocol Mechanics
 
-### Funds Storage Contract
-
-Funds Storage contracts are the target for depositor ERC-20 transfers. The
-Funds Storage contract is scoped to the integrating application. It only needs
-to be deployed once for all depositors. After it has been deployed it must be
-registered with the Immersve backend using the [Create Funding Channel
-API](https://docs.immersve.com/api-reference/create-a-funding-channel).
-
-## Deposits
+### Deposits
 
 Depositors can send ERC-20 transfers directly to the Funds Storage address.
 Each depositor address needs to have a [Funding
@@ -46,78 +56,46 @@ API](https://docs.immersve.com/api-reference/get-spending-prerequisites) can be
 used to reliably obtain the Web3 transaction parameters for depositing into a
 Funding Source.
 
-When a Funding Source is created, any deposits made prior to the creation of
-the Funding Source and associated with the depositing address will be credited
+When a Funding Source is created, any deposits made before the creation of
+the Funding Source associated with the depositing address will be credited
 immediately.
 
-## Deployed Contract Addresses
 
-The Funds Manager contract is designed to work on any EVM. Funds Manager Contract addresses
-can be found at [Supported Chains](/guides/supported-chains/)
+### Withdrawals
 
-## Creating a Funds Storage Instance
+Withdrawals are approved by the Immersve platform and executed by calling the
+`withdraw()` function on the partner Funds Storage contract. The signed
+withdrawal approval, and all other parameters required for submitting the
+withdrawal transaction to the EVM chain, are obtained by calling the [Create
+Withdrawal Intent](https://docs.immersve.com/api-reference/create-withdrawal-intent/)
+API endpoint. See [Card Funding](/guides/card-funding/) for more details.
 
-Once a Funds Manager Address is selected, open it in it’s corresponding
-Etherscan like page link from the tables above. We are going to use the Polygon
-one as an example:
 
-Link will land in the following page:
+## Partner Setup
 
-![polygonscan-contract-landing](@assets/universal-evm/polygonscan-contract-landing.png)
+### Creating a Partner Funds Storage Instance
 
-1. Open the `Contract` section
-2. Open the `Write as Proxy` section
-3. Connect with the desired web3 wallet:
+A partner Funds Storage instance needs to be created for each token you wish to
+support. It only needs to be deployed once for all depositors. The address of
+the created Funds Storage will need to be supplied when [Creating a Funding
+Channel](/guides/creating-a-funding-channel/).
 
-    ![polygonscan-connect-web3](@assets/universal-evm/polygonscan-connect-web3.png)
+To create the partner Funds Storage instance, invoke the
+`createFundsStorage(address, string)` function on the master Funds Manager
+contract. Find the master contract address for your target chain from "Contract
+Addresses" above. The params have the following semantics:
 
-4. Some Etherscan like pages will give a warning like the following.
+`token` *(address)*: The address of the ERC-20 token that will be used to fund your
+cardholders' cards. See [Supported Tokens](/guides/supported-tokens/) for possible values.
 
-    ![polygonscan-disclosure](@assets/universal-evm/polygonscan-disclosure.png)
+`name` *(string)*: The name of the deployed contract. This is used only for
+debugging purposes and must be globally unique. Using your app name, token name
+, and "liveness" in the name are recommended, for example: "Acme Wallet USDC
+Live".
 
-    It can be ignored. Press OK to continue
-
-5. Select the desired wallet connection mechanism
-
-    ![polygonscan-connect-wallet](@assets/universal-evm/polygonscan-connect-wallet.png)
-
-6. Accept the connection in the wallet
-7. Once the wallet is connected, the following indicator should turn green and
-   would indicate the connected wallet address
-
-    ![polygonscan-wallet-connected](@assets/universal-evm/polygonscan-wallet-connected.png)
-
-8. Now that the wallet is connected, the next step is to actually create the
-   Funds Storage instance. This is done via the `createFundsStorage` function
-   on the contract, and it can be invoked directly here:
-
-    ![create-funds-storage-emtpy](@assets/universal-evm/create-funds-storage-emtpy.png)
-
-9. Token address is the ERC-20 token that the integrator wants to support. Grab
-   the address of the supported token from the table above. Integrator can
-   provide any alphanumeric name for their own reference. Here is an example
-   with the IMMUSDC token address:
-
-    ![create-funds-storage-sample](@assets/universal-evm/create-funds-storage-sample.png)
-
-10. Click on `Write` to submit the transaction
-11. Accept the transaction on the connected wallet. Once the transaction is
-    accepted on the wallet, it is submitted to the blockchain and a button will
-    appear to keep track of the transaction:
-
-    ![create-funds-storage-submitted](@assets/universal-evm/create-funds-storage-submitted.png)
-
-12. This will open up the transaction details page. Details will appear once
-    the transaction is confirmed so it can take up a few seconds to show up
-
-    ![create-funds-storage-trx](@assets/universal-evm/create-funds-storage-trx.png)
-
-13. Go To the `Logs` section and find the `FundsStorageCreated` event log:
-
-    ![create-funds-storage-trx-logs](@assets/universal-evm/create-funds-storage-trx-logs.png)
-
-14. In this example, the created funds storage instance address is
-    `0x53C6A0cd42d8115B84BE3D5458b6cde15428752D`
-15. Use the created funds storage address as the storageAddress in the [Create
-    Funding Channel](https://docs.immersve.com/api-reference/create-a-funding-channel)
-    endpoint
+The address of the deployed Funds Storage instance can be discovered from the
+EVM transaction logs. In a block explorer, find the `FundsStorageCreated` event
+within the logs for the transaction that created the Funds Storage instance.
+Use the created funds storage address as the `storageAddress` when calling the
+[Create Funding Channel](https://docs.immersve.com/api-reference/create-a-funding-channel)
+endpoint.

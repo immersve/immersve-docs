@@ -17,6 +17,12 @@ export default defineMarkdocConfig({
         class: { type: String },
       },
     },
+    link: {
+      render: component('./src/components/Link.astro'),
+      attributes: {
+        href: { type: String },
+      },
+    },
     code: {
       render: component('./src/components/Code.astro'),
       attributes: {
