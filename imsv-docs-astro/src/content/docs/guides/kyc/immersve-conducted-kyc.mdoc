@@ -40,7 +40,7 @@ process.
 **Example Request:**
 {% code %}
 ```bash
-curl --location 'https://test.immersve.com/api/spending-prerequisites' \
+curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 -H "Authorization: Bearer $token" \
 --data '{
   "cardProgramId": "'${card_program_id}'",
@@ -99,7 +99,7 @@ initially. If no URL was provided, exiting leads to closing the browser tab.
 
 ### 4. Confirmation of KYC Completion
 
-Once redirected, it is crucial to check the spending prerequisites again to
+Once redirected, check the spending prerequisites again to
 ensure no further KYC actions are required. Once there is no KYC prerequisite
 returned, and given all other checks are completed, the cardholder will be
 allowed to create and use their Immersve card.
@@ -108,7 +108,7 @@ allowed to create and use their Immersve card.
 
 {% code %}
 ```bash
-curl --location 'https://test.immersve.com/api/spending-prerequisites' \
+curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 -H "Authorization: Bearer $token" \
 --data '{
   "cardProgramId": "'${card_program_id}'",
@@ -139,7 +139,7 @@ curl --location 'https://test.immersve.com/api/spending-prerequisites' \
 simplify the integration process in test environments, we use simulated
 documents. This allows testing the KYC verification workflow without putting real
 details into test environments. Below are the front and back images of a driver license that can
-be scanned with a phone directly off-screen:
+be scanned with a phone directly:
 
   - **Front of a drivers license**
 
