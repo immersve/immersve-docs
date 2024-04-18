@@ -124,6 +124,9 @@ post:
 
         **AML_CHECK_FAILED**
         AML check failed. This cannot be resolved.
+
+        **UNSUPPORTED_KYC_REGION**
+        The KYC region is not yet supported.
       content:
         application/json:
           schema:
