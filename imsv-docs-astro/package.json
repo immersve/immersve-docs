@@ -5,6 +5,7 @@
   "scripts": {
     "start": "astro dev",
     "debug": "node --inspect-brk node_modules/astro/astro.js dev",
+    "test": "vitest",
     "build": "astro check && astro build",
     "preview": "astro preview"
   },
@@ -22,6 +23,7 @@
   },
   "packageManager": "yarn@4.0.2",
   "devDependencies": {
-    "@astrojs/ts-plugin": "^1.4.0"
+    "@astrojs/ts-plugin": "^1.4.0",
+    "vitest": "^1.5.0"
   }
 }

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "yarn start:astro",
+    "test": "yarn workspace imsv-docs-astro test",
     "build": "./build.sh",
     "api-re-gen": "yarn workspace imsv-docs-docusaurus api-re-gen",
     "start:docusaurus": "yarn workspace imsv-docs-docusaurus start",
