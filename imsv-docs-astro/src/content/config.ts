@@ -21,6 +21,7 @@ export const collections = {
       categories: z.string().array(),
       chain: z.string(),
       network: z.string(),
+      protocol: z.string(),
     }),
   }),
   'network-tokens': defineCollection({
@@ -37,6 +38,7 @@ export const collections = {
       title: z.string(),
       chain: z.string(),
       netType: z.string(),
+      addressUrlTemplate: z.string(),
       protocols: z
         .object({
           name: z.string(),
