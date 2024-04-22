@@ -105,6 +105,13 @@ export class ContentRegistry {
     this.#networksByName[network.name] = network;
   }
 
+  getNetwork(name) {
+    if (!this.#networksByName[name]) {
+      throw Error(`Unregistered network: ${name}`);
+    }
+    return this.#networksByName[name];
+  }
+
   /**
    * @param {CollectionEntry} content
    */
@@ -120,13 +127,6 @@ export class ContentRegistry {
    */
   getNetworkToken({ tokenName, networkName }) {
     return this.getToken(tokenName).getInstance(networkName);
-  }
-
-  getNetwork(name) {
-    if (!this.#networksByName[name]) {
-      throw Error(`Unregistered network: ${name}`);
-    }
-    return this.#networksByName[name];
   }
 
   /**

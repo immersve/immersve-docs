@@ -1,4 +1,3 @@
-import path from 'node:path';
 import { ContentRegistry } from './ContentRegistry.mjs';
 import { FundingProtocol } from './FundingProtocol.mjs';
 import { SupportedNetwork } from './SupportedNetwork.mjs';
