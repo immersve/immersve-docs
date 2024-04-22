@@ -1,11 +1,20 @@
 ---
+import { getEntry } from 'astro:content';
 
 interface Props {
   href: string;
+  title: string;
+  page: string;
 }
 
-const { href } = Astro.props;
+const { href, title, page } = Astro.props;
+const entry = page ? (await getEntry('docs', page)) : null;
+if (page && !entry) {
+  throw Error(`Linked page not found: ${page}`);
+}
+const linkHref = href ?? '/' + entry?.slug;
+const linkTitle = title ?? entry?.data?.title ?? href;
 
 ---
 
-<a href={href}>{href}</a>
+<a href={linkHref}>{linkTitle}</a>

@@ -20,17 +20,17 @@ and create and test a card.
 Before you begin integrating ensure your chain and token combination is
 supported.
 
-{% note %} [Supported Chains](/guides/supported-chains) {% /note %} {% note %}
-[Supported Tokens](/guides/supported-tokens) {% /note %}
+{% note %} {% link page="guides/supported-chains" /%} {% /note %}
+{% note %} {% link page="guides/supported-tokens" /%} {% /note %}
 
 ### Select Funding Protocol
 
-See the [Funding Protocols](/guides/funding-protocols/)
+See the {% link page="guides/funding-protocols" /%}
 guide to find which protocol would best suit your use case.
 
 ### Select KYC Mode
 
-[Partner Conducted KYC](/guides/partner-conducted-kyc/) is the recommended KYC mode for custodial apps
+{% link page="guides/partner-conducted-kyc" /%} is the recommended KYC mode for custodial apps
 that have already verified their users.
 
 ### Set up your partner account
@@ -48,8 +48,7 @@ Contact support to get your:
 The number and types of Funding Channels to create depend on your specific use
 case and protocol.
 
-See: [Creating a Partner Funding
-Channel](/guides/creating-a-funding-channel/)
+See: {% link page="guides/creating-a-funding-channel" /%}.
 
 ## Per cardholder setup
 
@@ -146,7 +145,7 @@ transactions on a Funding Storage contract to individual cardholders.
 `signature` is the signature hash of the signed message from the previous step.
 
 For more context and information on card funding and executing deposits and
-withdrawals see the [Card Funding](/guides/card-funding/) guide.
+withdrawals see the {% link page="guides/card-funding" /%} guide.
 
 Call [Create a funding source for an
 account](/api-reference/create-a-funding-source-for-an-account/):
@@ -174,8 +173,7 @@ funding_source_id=$(curl -X POST "https://test.immersve.com/api/funding-sources"
 
 ### Request a Card
 
-For a more complete guide on card creation see [Issue a Virtual
-Card](https://docs.immersve.com/guides/issue-a-virtual-card/)
+For a more complete guide on card creation see {% link page="guides/issue-a-virtual-card" /%}.
 
 **Create a card**
 
@@ -214,7 +212,7 @@ curl -X GET "https://test.immersve.com/api/cards/${card_id}" \
 
 **Get sensitive card details**
 
-See the [Fetching Secure Card Information](/guides/fetching-secure-card-information/) for a fuller picture on how to securely
+See the {% link page="guides/fetching-secure-card-information" /%} for a fuller picture on how to securely
 obtain the sensitive card details for a cardholder to spend with the card.
 
 1. Generate the secure card details token:
@@ -308,7 +306,7 @@ curl -X PATCH "https://test.immersve.com/api/accounts/${cardholder_account_id}/c
 {% /code %}
 
 ### Partner Conducted KYC
-See: [Partner Conducted KYC Guide](/guides/partner-conducted-kyc/)
+See: {% link page="guides/partner-conducted-kyc" /%}.
 
 ## Perform a test card transaction
 
@@ -323,8 +321,7 @@ prerequisites](/api-reference/get-spending-prerequisites)
 endpoint to get the correct Smart Contract write transaction for the specified
 amount, chain, and token.
 
-For more information on executing deposits and withdrawals see the [Card
-Funding](/guides/card-funding/) guide.
+For more information on executing deposits and withdrawals see the {% link page="guides/card-funding" /%} guide.
 
 {% note %}
 IMPORTANT: `spendableAmount` is in minor units (2 decimals for USD). Example $1
