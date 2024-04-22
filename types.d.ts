@@ -278,8 +278,8 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
-"guides/funding-protocols/universal-evm-smart-contract.mdoc": {
-	id: "guides/funding-protocols/universal-evm-smart-contract.mdoc";
+"guides/funding-protocols/universal-evm-funding-protocol.mdoc": {
+	id: "guides/funding-protocols/universal-evm-funding-protocol.mdoc";
   slug: "guides/universal-evm-funding-protocol";
   body: string;
   collection: "docs";
