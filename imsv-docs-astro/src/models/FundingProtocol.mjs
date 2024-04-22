@@ -24,6 +24,10 @@ export class FundingProtocol {
     return '/' + this.content.slug;
   }
 
+  get sourceUrl() {
+    return this.content.data.fundingProtocol.source;
+  }
+
   /**
    * @param {DeployedFundingProtocol} deployedInstance
    */

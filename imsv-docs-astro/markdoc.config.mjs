@@ -39,40 +39,36 @@ export default defineMarkdocConfig({
       },
     },
     fundingTypeTable: {
-      render: component('./src/components/FundingTypeTable.astro'),
+      render: component('./src/components/registry-views/FundingTypeTable.astro'),
       attributes: {
         netType: { type: String },
         chain: { type: String },
+        columns: { type: Array }
       },
     },
-    networkProtocolTable: {
-      render: component('./src/components/NetworkProtocolTable.astro'),
+    supportedNetworksTable: {
+      render: component('./src/components/registry-views/SupportedNetworksTable.astro'),
       attributes: {
         chain: { type: String },
         netType: { type: String },
       },
     },
-    fundingContractsTable: {
-      render: component('./src/components/FundingContractsTable.astro'),
+    fundingProtocolsTable: {
+      render: component('./src/components/registry-views/FundingProtocolsTable.astro'),
     },
-    tokenTable: {
-      render: component('./src/components/TokenTable.astro'),
+    networkTokensTable: {
+      render: component('./src/components/registry-views/NetworkTokensTable.astro'),
       attributes: {
         token: { type: String },
-        type: { type: String },
-      },
-    },
-    testTokenFaucetTable: {
-      render: component('./src/components/TestTokenFaucetTable.astro'),
-      attributes: {
-        token: { type: String },
+        netType: { type: String },
+        columns: { type: Array },
       },
     },
     supportedChainsTable: {
-      render: component('./src/components/SupportedChainsTable.astro'),
+      render: component('./src/components/registry-views/SupportedChainsTable.astro'),
     },
     supportedTokensTable: {
-      render: component('./src/components/SupportedTokensTable.astro'),
+      render: component('./src/components/registry-views/SupportedTokensTable.astro'),
     },
   },
 });

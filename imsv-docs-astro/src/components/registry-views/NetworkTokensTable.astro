@@ -1,0 +1,57 @@
+---
+import { registry } from 'src/content/registry.mjs';
+
+const {
+  netType,
+  token,
+  columns=[ 'symbol', 'chain', 'address', 'faucet' ],
+} = Astro.props;
+
+function wrappableAddress(addr: string) {
+  return addr.match(/.{1,30}/g)!.join('<wbr>');
+}
+
+const networkTokens = registry.allNetworkTokens()
+  .filter(networkToken => !netType || networkToken.network.type == netType)
+  .filter(networkToken => !token || networkToken.token.name == token);
+
+const columnTitle = {
+  symbol: 'Symbol',
+  chain: 'Chain',
+  address: 'Token Address',
+  faucet: 'Faucet',
+};
+
+---
+
+<div class="overflow-x-auto">
+  <table>
+    <thead>
+      <tr>
+        {columns.map(column => (
+          <th>{columnTitle[column]}</th>
+        ))}
+      </tr>
+    </thead>
+      <tbody>
+      {networkTokens.map(networkToken => (
+        <tr>
+          {columns.map(column=> {
+            switch(column) {
+              case 'symbol':
+                return <td><nobr>{networkToken.token.title}</nobr></td>
+              case 'chain':
+                return <td><nobr>{networkToken.network.chain.title}</nobr></td>
+              case 'address':
+                return <td><a href={networkToken.url} set:html={wrappableAddress(networkToken.address)}></a></td>
+              case 'faucet':
+                return <td><a href={networkToken.faucetUrl}>{networkToken.faucetTitle}</a></td>
+              default:
+                return <td></td>
+            }
+          })}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

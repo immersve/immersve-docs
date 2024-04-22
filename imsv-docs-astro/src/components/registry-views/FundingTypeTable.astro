@@ -1,0 +1,54 @@
+---
+import { registry } from 'src/content/registry.mjs';
+
+interface Props {
+  categories: Array<string>;
+  netType: string;
+  columns: Array<string>;
+}
+
+const { netType, columns=[ 'network', 'token', 'protocol', 'fundingType' ] } = Astro.props;
+
+const registeredFundingTypes = registry
+  .allFundingTypes()
+  .filter(ft => ft.network.type == netType);
+
+const columnTitle = {
+  network: 'Network',
+  token: 'Token',
+  protocol: 'Funding Protocol',
+  fundingType: 'Funding Type',
+};
+
+---
+<div class="overflow-x-auto">
+  <table>
+    <thead>
+      <tr>
+        {columns.map(column => (
+          <th>{columnTitle[column]}</th>
+        ))}
+      </tr>
+    </thead>
+      <tbody>
+        {registeredFundingTypes.map(fundingType => (
+          <tr>
+            {columns.map(column=> {
+              switch(column) {
+                case 'network':
+                  return <td><nobr>{fundingType.network.title}</nobr></td>
+                case 'token':
+                  return <td><a href={fundingType.token.docsPath}><nobr>{fundingType.token.title}</nobr></a></td>
+                case 'protocol':
+                  return <td><a href={fundingType.protocol.docsPath}><nobr>{fundingType.protocol.title}</nobr></a></td>
+                case 'fundingType':
+                  return <td><nobr><code>{fundingType.name}</code></nobr></td>
+                default:
+                  return <td></td>
+              }
+            })}
+          </tr>
+        ))}
+    </tbody>
+  </table>
+</div>

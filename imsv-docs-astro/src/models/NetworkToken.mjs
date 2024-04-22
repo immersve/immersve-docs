@@ -1,4 +1,3 @@
-import path from 'node:path';
 import { ContentRegistry } from './ContentRegistry.mjs';
 import { SupportedToken } from './SupportedToken.mjs';
 import { SupportedNetwork } from './SupportedNetwork.mjs';
@@ -23,10 +22,6 @@ export class NetworkToken {
 
   get url() {
     return this.network.formatAddressUrl(this.address);
-  }
-
-  get title() {
-    return this.content.data.title;
   }
 
   /**

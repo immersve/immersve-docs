@@ -57,6 +57,10 @@ export class ContentRegistry {
     return this.#tokensByName[name];
   }
 
+  allTokens() {
+    return Object.values(this.#tokensByName);
+  }
+
   /**
    * @param {CollectionEntry} content
    */
@@ -70,6 +74,10 @@ export class ContentRegistry {
       throw Error(`Unregistered protocol: ${name}`);
     }
     return this.#protocolsByName[name];
+  }
+
+  allFundingProtocols() {
+    return Object.values(this.#protocolsByName);
   }
 
   /**
@@ -127,6 +135,10 @@ export class ContentRegistry {
    */
   getNetworkToken({ tokenName, networkName }) {
     return this.getToken(tokenName).getInstance(networkName);
+  }
+
+  allNetworkTokens() {
+    return this.allTokens().flatMap(token => token.instances);
   }
 
   /**
