@@ -41,7 +41,7 @@ export default defineMarkdocConfig({
     fundingTypeTable: {
       render: component('./src/components/FundingTypeTable.astro'),
       attributes: {
-        categories: { type: Array },
+        netType: { type: String },
         chain: { type: String },
       },
     },

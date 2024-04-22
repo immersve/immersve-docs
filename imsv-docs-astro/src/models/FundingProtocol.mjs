@@ -20,6 +20,10 @@ export class FundingProtocol {
     return this.content.data.title;
   }
 
+  get docsPath() {
+    return '/' + this.content.slug;
+  }
+
   /**
    * @param {DeployedFundingProtocol} deployedInstance
    */

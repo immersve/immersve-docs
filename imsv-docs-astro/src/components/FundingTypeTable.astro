@@ -1,43 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
+import { registry } from 'src/content/registry.mjs';
 
-const allFundingTypes = await getCollection('funding-types');
-const allNetworks = await getCollection('networks');
-const allTokensInstalledOnNetworks = await getCollection('network-tokens');
-const allDocs = await getCollection('docs');
-const supportedTokens = allDocs.filter(doc => doc.data['supportedToken']);
 interface Props {
   categories: Array<string>;
+  netType: string;
 }
 
-const { categories } = Astro.props;
+const { netType } = Astro.props;
 
-function findNetworkToken(networkSlug: string) {
-  return allTokensInstalledOnNetworks.find(token => {
-    const tokenOnNetwork = token.slug.slice(token.slug.indexOf('-') + 1)
-    return tokenOnNetwork === networkSlug
-  })
-}
-
-function findToken(networkTokenTitle: string) {
-  return supportedTokens.find(token => token.data.title.includes(networkTokenTitle));
-}
-
-const filteredFundingTypes = allFundingTypes.filter(ft => categories?.every(c => ft.data.categories.includes(c)));
-
-const fundingTypes = filteredFundingTypes.map(ft => {
-      const network = allNetworks.find(n => n.slug === ft.data.network);
-      const networkToken = findNetworkToken(network!.slug)
-      const token = findToken(networkToken!.data.title)
-
-      return {
-        network: network,
-        fundingTypeName: ft.slug,
-        networkToken: networkToken,
-        token: token
-      }
-
-  }).flat()
+const registeredFundingTypes = registry
+  .allFundingTypes()
+  .filter(ft => ft.network.type == netType);
 
 ---
 <div class="overflow-x-auto">
@@ -51,16 +24,13 @@ const fundingTypes = filteredFundingTypes.map(ft => {
       </tr>
     </thead>
       <tbody>
-        {fundingTypes.map(fundingType => (
-          // todo use token from network token
-          fundingType.network?.data.protocols.map(protocol => (
-            <tr>
-              <td><nobr>{fundingType.network?.data.title}</nobr></td>
-              <td><a href={'/' + fundingType.token?.slug}><nobr>{fundingType.token?.data.title}</nobr></a></td>
-              <td><a href={protocol.docsPath}><nobr>{protocol.title}</nobr></a></td>
-              <td><nobr><code>{fundingType.fundingTypeName}</code></nobr></td>
-            </tr>
-          ))
+        {registeredFundingTypes.map(fundingType => (
+          <tr>
+            <td><nobr>{fundingType.network.title}</nobr></td>
+            <td><a href={fundingType.token.docsPath}><nobr>{fundingType.token.title}</nobr></a></td>
+            <td><a href={fundingType.protocol.docsPath}><nobr>{fundingType.protocol.title}</nobr></a></td>
+            <td><nobr><code>{fundingType.name}</code></nobr></td>
+          </tr>
         ))}
     </tbody>
   </table>

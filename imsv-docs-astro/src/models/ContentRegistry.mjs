@@ -137,6 +137,10 @@ export class ContentRegistry {
     this.#fundingTypesByName[fundingType.name] = fundingType;
   }
 
+  allFundingTypes() {
+    return Object.values(this.#fundingTypesByName);
+  }
+
   getFundingType(name) {
     if (!this.#fundingTypesByName[name]) {
       throw Error(`Unregistered funding type: ${name}`);
