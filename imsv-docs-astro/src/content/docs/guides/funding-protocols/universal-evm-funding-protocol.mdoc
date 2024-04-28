@@ -6,7 +6,7 @@ fundingProtocol:
   source: https://github.com/immersve/funding-contract-universal-evm
 ---
 
-The Immersve Universal EVM [funding protocol](/guides/funding-protocols) allows
+The Immersve Universal EVM {% link page="guides/funding-protocols" title="funding protocol" /%} allows
 client applications to fund Immersve cards via simple ERC-20 transfers.
 Depositors can withdraw funds at any time with signed withdrawal approvals.
 Depositor funds can only be settled to Immersve’s approved settlement address.
@@ -25,7 +25,7 @@ partner "Funds Storage" contracts.
 ### Deployed Contract Addresses
 
 The Funds Manager contract is designed to work on any EVM. Funds Manager Contract addresses
-can be found at [Supported Chains](/guides/supported-chains/)
+can be found at {% link page="guides/supported-chains" /%}.
 
 
 ### Smart Contract Overview
@@ -68,7 +68,7 @@ Withdrawals are approved by the Immersve platform and executed by calling the
 withdrawal approval, and all other parameters required for submitting the
 withdrawal transaction to the EVM chain, are obtained by calling the [Create
 Withdrawal Intent](https://docs.immersve.com/api-reference/create-withdrawal-intent/)
-API endpoint. See [Card Funding](/guides/card-funding/) for more details.
+API endpoint. See {% link page="guides/card-funding" /%} for more details.
 
 
 ## Partner Setup
@@ -77,8 +77,7 @@ API endpoint. See [Card Funding](/guides/card-funding/) for more details.
 
 A partner Funds Storage instance needs to be created for each token you wish to
 support. It only needs to be deployed once for all depositors. The address of
-the created Funds Storage will need to be supplied when [Creating a Funding
-Channel](/guides/creating-a-funding-channel/).
+the created Funds Storage will need to be supplied when {% link page="guides/creating-a-funding-channel" /%}.
 
 To create the partner Funds Storage instance, invoke the
 `createFundsStorage(address, string)` function on the master Funds Manager

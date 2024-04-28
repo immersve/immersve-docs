@@ -21,6 +21,8 @@ export default defineMarkdocConfig({
       render: component('./src/components/Link.astro'),
       attributes: {
         href: { type: String },
+        title: { type: String },
+        page: { type: String },
       },
     },
     code: {
