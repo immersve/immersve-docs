@@ -19,6 +19,7 @@ const protocolDeployments = registry
 const columnTitles = {
   network: 'Network',
   address: 'Address',
+  protocol: 'Protocol',
 };
 
 ---
@@ -40,6 +41,8 @@ const columnTitles = {
                   return <td><nobr>{deployment.network.title}</nobr></td>
                 case 'address':
                   return <td><a href={deployment.url} set:html={wrappableAddress(deployment.address)}></a></td>
+                case 'protocol':
+                  return <td><a href={deployment.protocol.docsPath}>{deployment.protocol.title}</a></td>
                 default:
                   return <td></td>
               }

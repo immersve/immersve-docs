@@ -65,7 +65,6 @@ export default defineMarkdocConfig({
     },
     ...registryViewComponents([
       'chains/SupportedChainsTable',
-      'chains/SupportedNetworksTable',
       'protocols/FundingProtocolsTable',
       'protocols/DeployedFundingProtocolsTable',
       'protocols/FundingTypeTable',

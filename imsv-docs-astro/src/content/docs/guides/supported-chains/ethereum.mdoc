@@ -17,7 +17,17 @@ _Coming Soon_
 
 ## Testnet
 
-{% supportedNetworksTable chain="ethereum" netType="testnet" /%}
+{%
+  deployedFundingProtocolsTable
+  chain="ethereum"
+  netType="testnet"
+  columns=[
+    "network",
+    "protocol",
+    "address",
+  ]
+/%}
+
 
 ## See Also
 {% link page="guides/funding-protocols" /%}
