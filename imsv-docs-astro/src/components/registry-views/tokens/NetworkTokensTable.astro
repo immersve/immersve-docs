@@ -1,15 +1,12 @@
 ---
 import { registry } from 'src/content/registry.mjs';
+import { wrappableAddress } from 'src/components/registry-views/wrappableAddress';
 
 const {
   netType,
   token,
   columns=[ 'symbol', 'chain', 'address', 'faucet' ],
 } = Astro.props;
-
-function wrappableAddress(addr: string) {
-  return addr.match(/.{1,30}/g)!.join('<wbr>');
-}
 
 const networkTokens = registry.allNetworkTokens()
   .filter(networkToken => !netType || networkToken.network.type == netType)

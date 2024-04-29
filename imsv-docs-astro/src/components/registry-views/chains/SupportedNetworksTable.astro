@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { wrappableAddress } from 'src/components/registry-views/wrappableAddress';
 
 const allNetworks = await getCollection('networks');
 interface Props {
@@ -10,10 +11,6 @@ interface Props {
 const { chain, netType } = Astro.props;
 
 const targetNetworks = allNetworks.filter(ft => ft.data.netType === netType && ft.data.chain === chain);
-
-function wrappableAddress(addr: string) {
-  return addr.match(/.{1,30}/g)!.join('<wbr>');
-}
 
 ---
 <div class="overflow-x-auto">
