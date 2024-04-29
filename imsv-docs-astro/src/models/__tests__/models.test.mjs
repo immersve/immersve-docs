@@ -243,7 +243,7 @@ describe('models', () => {
           protocolName: 'universal-evm',
         });
         const deployedProtocols = registry.findDeployedFundingProtocols({
-          chainName: 'ethereum',
+          chainName: 'universal-evm',
           networkType: 'testnet',
         });
         expect(deployedProtocols).toContain(universalEvmSepolia);

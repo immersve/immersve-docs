@@ -1,18 +1,24 @@
 ---
 import { registry } from 'src/content/registry.mjs';
-import { wrappableAddress } from 'src/components/registry-views/wrappableAddress';
+import { wrappableAddress } from 'src/components/registry-views/wrappableAddress.mjs';
+
+interface Props {
+  netType: string;
+  token: string;
+  columns: Array<string>;
+}
 
 const {
   netType,
   token,
-  columns=[ 'symbol', 'chain', 'address', 'faucet' ],
-} = Astro.props;
+  columns = [ 'symbol', 'chain', 'address', 'faucet' ],
+}: Props = Astro.props;
 
 const networkTokens = registry.allNetworkTokens()
   .filter(networkToken => !netType || networkToken.network.type == netType)
   .filter(networkToken => !token || networkToken.token.name == token);
 
-const columnTitle = {
+const columnTitles: Record<string,string> = {
   symbol: 'Symbol',
   chain: 'Chain',
   address: 'Token Address',
@@ -26,7 +32,7 @@ const columnTitle = {
     <thead>
       <tr>
         {columns.map(column => (
-          <th>{columnTitle[column]}</th>
+          <th>{columnTitles[column]}</th>
         ))}
       </tr>
     </thead>

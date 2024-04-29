@@ -1,10 +1,10 @@
 ---
-import { registry } from 'src/content/registry';
+import { registry } from 'src/content/registry.mjs';
 
 const supportedChains = registry.allChains();
 const columns = [ 'chain', 'protocols' ];
 
-const columnTitles = {
+const columnTitles: Record<string,string> = {
   chain: 'Chain',
   protocols: 'Protocols',
 };

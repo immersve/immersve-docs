@@ -92,9 +92,9 @@ export class ContentRegistry {
 
   /**
    * @param {Object} opts
-   * @param {string} opts.chainName
-   * @param {string} opts.protocolName
-   * @param {string} opts.networkType
+   * @param {string} [opts.chainName]
+   * @param {string} [opts.protocolName]
+   * @param {string} [opts.networkType]
    * @returns {Array<DeployedFundingProtocol>}
    * */
   findDeployedFundingProtocols({ chainName, networkType, protocolName }) {
@@ -120,6 +120,9 @@ export class ContentRegistry {
     return this.#chainsByName[name];
   }
 
+  /**
+   * @returns {Array<SupportedChain>}
+   */
   allChains() {
     return Object.values(this.#chainsByName);
   }

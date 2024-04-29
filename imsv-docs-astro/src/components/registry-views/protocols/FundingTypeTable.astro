@@ -2,7 +2,6 @@
 import { registry } from 'src/content/registry.mjs';
 
 interface Props {
-  categories: Array<string>;
   netType: string;
   columns: Array<string>;
 }
@@ -13,7 +12,7 @@ const registeredFundingTypes = registry
   .allFundingTypes()
   .filter(ft => ft.network.type == netType);
 
-const columnTitle = {
+const columnTitles: Record<string,string> = {
   network: 'Network',
   token: 'Token',
   protocol: 'Funding Protocol',
@@ -26,7 +25,7 @@ const columnTitle = {
     <thead>
       <tr>
         {columns.map(column => (
-          <th>{columnTitle[column]}</th>
+          <th>{columnTitles[column]}</th>
         ))}
       </tr>
     </thead>

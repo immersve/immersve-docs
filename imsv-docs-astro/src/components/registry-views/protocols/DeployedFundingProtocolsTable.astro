@@ -1,6 +1,6 @@
 ---
 import { registry } from 'src/content/registry.mjs';
-import { wrappableAddress } from 'src/components/registry-views/wrappableAddress';
+import { wrappableAddress } from 'src/components/registry-views/wrappableAddress.mjs';
 
 interface Props {
   protocol: string;
@@ -16,7 +16,7 @@ const protocolDeployments = registry
     protocolName: protocol,
   });
 
-const columnTitles = {
+const columnTitles: Record<string,string> = {
   network: 'Network',
   address: 'Address',
   protocol: 'Protocol',
