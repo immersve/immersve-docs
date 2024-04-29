@@ -111,6 +111,10 @@ export class ContentRegistry {
     return this.#chainsByName[name];
   }
 
+  allChains() {
+    return Object.values(this.#chainsByName);
+  }
+
   /**
    * @param {CollectionEntry} content
    */

@@ -1,23 +1,41 @@
 ---
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
+import { registry } from 'src/content/registry';
 
-const allDocs = await getCollection('docs');
+const supportedChains = registry.allChains();
+const columns = [ 'chain', 'protocols' ];
 
-const supportedChains = allDocs.filter(doc => doc.data['supportedChain']);
+const columnTitles = {
+  chain: 'Chain',
+  protocols: 'Protocols',
+};
 
 ---
 <div class="overflow-x-auto">
   <table>
     <thead>
       <tr>
-        <th>Chain</th>
+        {columns.map(column => (
+          <th>{columnTitles[column]}</th>
+        ))}
       </tr>
     </thead>
       <tbody>
-      {supportedChains.map(doc => (
+      {supportedChains.map(chain => (
         <tr>
-          <td><a href={'/' + doc.slug}>{doc.data.title}</a></td>
+            {columns.map(column=> {
+              switch(column) {
+                case 'chain':
+                  return <td><a href={chain.docsPath}>{chain.title}</a></td>
+                case 'protocols':
+                  return <td>
+                    {Array(...chain.supportedProtocols).map(protocol => {
+                      return <a href={protocol.docsPath}>{protocol.title}</a>
+                    })}
+                    </td>
+                default:
+                  return <td></td>
+              }
+            })}
         </tr>
       ))}
     </tbody>

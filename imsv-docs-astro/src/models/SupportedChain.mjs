@@ -1,6 +1,10 @@
 import path from 'node:path';
+import { FundingProtocol } from './FundingProtocol.mjs';
 
 export class SupportedChain {
+
+  /** @type {Set<FundingProtocol>} */
+  supportedProtocols = new Set();
 
   /**
    * @param {Object} opts
@@ -14,6 +18,14 @@ export class SupportedChain {
 
   get title() {
     return this.content.data.title;
+  }
+
+  get docsPath() {
+    return '/' + this.content.slug;
+  }
+
+  addSupportedProtocol(protocol) {
+    this.supportedProtocols.add(protocol);
   }
 
   /**
