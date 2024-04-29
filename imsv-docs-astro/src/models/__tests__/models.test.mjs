@@ -208,6 +208,48 @@ describe('models', () => {
       });
 
     });
+
+    describe('findDeployedFundingProtocols', async () => {
+
+      test('deployed instances are found by networkType', async () => {
+        const registry = await ContentRegistry.create();
+        const universalEvmSepolia = registry.getDeployedFundingProtocol({
+          networkName: 'ethereum-sepolia',
+          protocolName: 'universal-evm',
+        });
+        const deployedProtocols = registry.findDeployedFundingProtocols({
+          networkType: 'testnet',
+        });
+        expect(deployedProtocols).toContain(universalEvmSepolia);
+      });
+
+      test('deployed instances are found by protocolName and networkType', async () => {
+        const registry = await ContentRegistry.create();
+        const universalEvmSepolia = registry.getDeployedFundingProtocol({
+          networkName: 'ethereum-sepolia',
+          protocolName: 'universal-evm',
+        });
+        const deployedProtocols = registry.findDeployedFundingProtocols({
+          protocolName: 'universal-evm',
+          networkType: 'testnet',
+        });
+        expect(deployedProtocols).toContain(universalEvmSepolia);
+      });
+
+      test('deployed instances are found by chainName and networkType', async () => {
+        const registry = await ContentRegistry.create();
+        const universalEvmSepolia = registry.getDeployedFundingProtocol({
+          networkName: 'ethereum-sepolia',
+          protocolName: 'universal-evm',
+        });
+        const deployedProtocols = registry.findDeployedFundingProtocols({
+          chainName: 'ethereum',
+          networkType: 'testnet',
+        });
+        expect(deployedProtocols).toContain(universalEvmSepolia);
+      });
+
+    });
   });
 
 });

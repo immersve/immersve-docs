@@ -11,11 +11,23 @@ Always use the spending prerequisites endpoint to discover the correct address
 for user deposits.
 {% /note %}
 
-## Mainnet - Coming soon
+## Mainnet
+
+_Coming Soon_
 
 ## Testnet
 
-{% networkProtocolTable chain="ethereum" netType="testnet" /%}
+{%
+  deployedFundingProtocolsTable
+  chain="ethereum"
+  netType="testnet"
+  columns=[
+    "network",
+    "protocol",
+    "address",
+  ]
+/%}
+
 
 ## See Also
 {% link page="guides/funding-protocols" /%}

@@ -1,0 +1,21 @@
+---
+import { registry } from 'src/content/registry.mjs';
+---
+<div class="overflow-x-auto">
+  <table>
+    <thead>
+      <tr>
+        <th>Protocol</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+      <tbody>
+      {registry.allFundingProtocols().map(fundingProtocol => (
+        <tr>
+          <td><a href={fundingProtocol.docsPath}>{fundingProtocol.title}</a></td>
+          <td><a href={fundingProtocol.sourceUrl}>{fundingProtocol.sourceUrl}</a></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

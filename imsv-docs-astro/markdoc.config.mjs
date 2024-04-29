@@ -1,5 +1,30 @@
+import path from 'node:path';
 import { component, defineMarkdocConfig } from '@astrojs/markdoc/config';
 import shiki from '@astrojs/markdoc/shiki';
+
+function registryViewComponent(componentPath) {
+  return {
+    name: path.basename(componentPath).replace(/^./, s => s.toLowerCase()),
+    render: component(`./src/components/registry-views/${componentPath}.astro`),
+    attributes: {
+      chain: { type: String },
+      token: { type: String },
+      protocol: { type: String },
+      netType: { type: String },
+      columns: { type: Array },
+    },
+  }
+}
+
+function registryViewComponents(paths) {
+  const components = {};
+  paths
+    .map(registryViewComponent)
+    .forEach(component => {
+      components[component.name] = component;
+    });
+  return components;
+}
 
 export default defineMarkdocConfig({
   extends: [
@@ -38,41 +63,13 @@ export default defineMarkdocConfig({
         class: { type: String },
       },
     },
-    fundingTypeTable: {
-      render: component('./src/components/FundingTypeTable.astro'),
-      attributes: {
-        categories: { type: Array },
-        chain: { type: String },
-      },
-    },
-    networkProtocolTable: {
-      render: component('./src/components/NetworkProtocolTable.astro'),
-      attributes: {
-        chain: { type: String },
-        netType: { type: String },
-      },
-    },
-    fundingContractsTable: {
-      render: component('./src/components/FundingContractsTable.astro'),
-    },
-    tokenTable: {
-      render: component('./src/components/TokenTable.astro'),
-      attributes: {
-        token: { type: String },
-        type: { type: String },
-      },
-    },
-    testTokenFaucetTable: {
-      render: component('./src/components/TestTokenFaucetTable.astro'),
-      attributes: {
-        token: { type: String },
-      },
-    },
-    supportedChainsTable: {
-      render: component('./src/components/SupportedChainsTable.astro'),
-    },
-    supportedTokensTable: {
-      render: component('./src/components/SupportedTokensTable.astro'),
-    },
+    ...registryViewComponents([
+      'chains/SupportedChainsTable',
+      'protocols/FundingProtocolsTable',
+      'protocols/DeployedFundingProtocolsTable',
+      'protocols/FundingTypeTable',
+      'tokens/NetworkTokensTable',
+      'tokens/SupportedTokensTable',
+    ]),
   },
 });

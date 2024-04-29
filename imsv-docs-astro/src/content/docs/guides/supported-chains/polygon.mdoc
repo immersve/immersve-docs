@@ -13,11 +13,29 @@ for user deposits.
 
 ## Mainnet
 
-{% networkProtocolTable chain="polygon" netType="mainnet" /%}
+{%
+  deployedFundingProtocolsTable
+  chain="polygon"
+  netType="mainnet"
+  columns=[
+    "network",
+    "protocol",
+    "address",
+  ]
+/%}
 
 ## Testnet
 
-{% networkProtocolTable chain="polygon" netType="testnet" /%}
+{%
+  deployedFundingProtocolsTable
+  chain="polygon"
+  netType="mainnet"
+  columns=[
+    "network",
+    "protocol",
+    "address",
+  ]
+/%}
 
 ## See Also
 {% link page="guides/funding-protocols" /%}
