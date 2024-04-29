@@ -1,23 +1,24 @@
 ---
 import { registry } from 'src/content/registry.mjs';
+import { wrappableAddress } from 'src/components/registry-views/wrappableAddress';
 
 interface Props {
-  categories: Array<string>;
+  protocol: string;
   netType: string;
   columns: Array<string>;
 }
 
-const { protocol, columns=[ 'network', 'address' ] } = Astro.props;
+const { protocol, netType, columns=[ 'network', 'address' ] } = Astro.props;
 
-const registeredFundingTypes = registry
-  .allFundingTypes()
-  .filter(ft => ft.network.type == netType);
+const protocolDeployments = registry
+  .findDeployedFundingProtocols({
+    networkType: netType,
+    protocolName: protocol,
+  });
 
-const columnTitle = {
+const columnTitles = {
   network: 'Network',
-  token: 'Token',
-  protocol: 'Funding Protocol',
-  fundingType: 'Funding Type',
+  address: 'Address',
 };
 
 ---
@@ -26,23 +27,19 @@ const columnTitle = {
     <thead>
       <tr>
         {columns.map(column => (
-          <th>{columnTitle[column]}</th>
+          <th>{columnTitles[column]}</th>
         ))}
       </tr>
     </thead>
       <tbody>
-        {registeredFundingTypes.map(fundingType => (
+        {protocolDeployments.map(deployment => (
           <tr>
             {columns.map(column=> {
               switch(column) {
                 case 'network':
-                  return <td><nobr>{fundingType.network.title}</nobr></td>
-                case 'token':
-                  return <td><a href={fundingType.token.docsPath}><nobr>{fundingType.token.title}</nobr></a></td>
-                case 'protocol':
-                  return <td><a href={fundingType.protocol.docsPath}><nobr>{fundingType.protocol.title}</nobr></a></td>
-                case 'fundingType':
-                  return <td><nobr><code>{fundingType.name}</code></nobr></td>
+                  return <td><nobr>{deployment.network.title}</nobr></td>
+                case 'address':
+                  return <td><a href={deployment.url} set:html={wrappableAddress(deployment.address)}></a></td>
                 default:
                   return <td></td>
               }

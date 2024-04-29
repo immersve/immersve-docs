@@ -90,6 +90,12 @@ export class ContentRegistry {
     return this.getFundingProtocol(protocolName).getDeployedInstance(networkName);
   }
 
+  findDeployedFundingProtocols({ networkType, protocolName }) {
+    return this.getFundingProtocol(protocolName)
+      .deployedInstances
+      .filter(i => i.network.type == networkType);
+  }
+
   /**
    * @param {CollectionEntry} content
    */

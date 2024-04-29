@@ -67,6 +67,7 @@ export default defineMarkdocConfig({
       'chains/SupportedChainsTable',
       'chains/SupportedNetworksTable',
       'protocols/FundingProtocolsTable',
+      'protocols/DeployedFundingProtocolsTable',
       'protocols/FundingTypeTable',
       'tokens/NetworkTokensTable',
       'tokens/SupportedTokensTable',
