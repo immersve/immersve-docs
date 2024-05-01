@@ -1,0 +1,39 @@
+post:
+  tags:
+    - authentication
+  summary: Login Init
+  description: |
+    A generic login endpoint that supports multiple methods of authentication.
+  security:
+    - none: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./models/login-init-request.yaml"
+    required: true
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/login-init-response.yaml"
+    "403":
+      description: |
+        **RESOURCE_INACTIVE**
+        Resource is not active.
+        **CLIENT_APPLICATION_DOMAIN_NOT_ALLOWED**
+        Client application domain not allowed.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
+    "400":
+      description: |
+        **INVALID_REQUEST_INPUT**
+        Request fields are invalid.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-400.yaml"

@@ -1,0 +1,56 @@
+type: object
+required:
+  - clientApplicationId
+  - scopes
+properties:
+  loginMethod:
+    description: The login method to use.
+    type: string
+    enum:
+      - siwe
+      - sms
+      - email
+      - password
+      - algorand
+      - xrpl
+    example: "siwe"
+  network:
+    description: The blockchain network associated with the web3 address.
+    type: string
+    enum:
+      - algorand-mainnet
+      - algorand-testnet
+      - polygon-mainnet
+      - polygon-amoy
+      - eth-sepolia
+    example: "polygon-mainnet"
+  clientApplicationId:
+    description: ID of the client application created in an Immersve partner profile.
+    type: string
+    example: "29097f50d221858223a17633e36716f9"
+  scopes:
+    description: An array of authorization scopes requested by the client application.
+    type: array
+    items:
+      type: string
+    example: ["cardholder-partner"]
+  params:
+    type: object
+    required:
+      - address
+      - email
+    properties:
+      url:
+        description: |
+          Required if loginMethod is `siwe`.
+          Domain in the "\<domain\> wants you to sign in.." of the EIP-4361 is derived from the host fragment of this parameter. The client application identified by clientApplicationId must allow this URL.
+        type: url
+        example: "https://app.immersve.com"
+      address:
+        description: The web3 address to which the challenge is directed.
+        type: string
+        example: "0x4d6c3443..."
+      email:
+        description: The email address of the user.
+        type: string
+        example: "email@example.com"

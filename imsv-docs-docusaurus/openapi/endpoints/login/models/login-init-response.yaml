@@ -1,0 +1,57 @@
+type: object
+properties:
+  id:
+    description: The unique identifier of the login request.
+    type: string
+    example: "49ae8f3a3928491"
+  loginMethod:
+    description: The login method used.
+    type: string
+    example: "siwe"
+  network:
+    description: The blockchain network associated with the web3 address.
+    type: string
+    example: "polygon-mainnet"
+  clientApplicationId:
+    description: ID of the client application created in an Immersve partner profile.
+    type: string
+    example: "29097f50d221858223a17633e36716f9"
+  scopes:
+    description: An array of authorization scopes requested by the client application.
+    type: array
+    items:
+      type: string
+    example: ["cardholder-partner"]
+  createdAt:
+    description: The date and time the login request was created.
+    type: string
+    example: "2024-02-26T08:24:11.047Z"
+  params:
+    type: object
+    properties:
+      url:
+        description: Domain in the "\<domain\> wants you to sign in.." of the EIP-4361 is derived from the host fragment of this parameter. The client application identified by clientApplicationId must allow this URL.
+        type: url
+        example: "https://app.immersve.com"
+      address:
+        description: The web3 address to which the challenge is directed.
+        type: string
+        example: "0x4d6c3443..."
+  signingChallenge:
+    type: object
+    properties:
+      description:
+        description: The description of the challenge.
+        type: string
+        example: "Immersve wants to ..."
+      createdAt:
+        description: The date and time the challenge was created.
+        type: string
+        example: "2024-02-26T08:24:11.047Z"
+      expiresAt:
+        description: The date and time the challenge expires.
+        type: string
+        example: "2024-03-20T08:20:00Z"
+      message:
+        description: The message to be signed by the web3 address owner.
+        example: "Immersve wants to ..."
