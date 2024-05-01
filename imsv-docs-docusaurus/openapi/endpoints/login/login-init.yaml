@@ -23,6 +23,7 @@ post:
       description: |
         **RESOURCE_INACTIVE**
         Resource is not active.
+
         **CLIENT_APPLICATION_DOMAIN_NOT_ALLOWED**
         Client application domain not allowed.
       content:
