@@ -26,6 +26,9 @@ post:
 
         **CLIENT_APPLICATION_DOMAIN_NOT_ALLOWED**
         Client application domain not allowed.
+
+        **MODE_INCORRECT**
+        Mode is incorrect.
       content:
         application/json:
           schema:
