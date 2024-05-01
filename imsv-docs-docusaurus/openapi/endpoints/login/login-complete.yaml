@@ -21,9 +21,6 @@ post:
             $ref: "./models/login-complete-response.yaml"
     "403":
       description: |
-        **RESOURCE_INACTIVE**
-        Resource is not active.
-
         **INVALID_SIGNATURE**
         Invalid signature.
 
