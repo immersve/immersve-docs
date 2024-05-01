@@ -24,8 +24,11 @@ post:
         **CLIENT_APPLICATION_DOMAIN_NOT_ALLOWED**
         Client application domain not allowed.
 
-        **MODE_INCORRECT**
-        Mode is incorrect.
+        **ACCOUNT_EXISTS**
+        Unable to sign up. Account already exists.
+
+        **ACCOUNT_DOES_NOT_EXIST**
+        Unable to log in. Account does not exist.
       content:
         application/json:
           schema:
