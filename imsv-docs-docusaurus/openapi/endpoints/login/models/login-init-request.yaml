@@ -14,6 +14,13 @@ properties:
       - algorand
       - xrpl
     example: "siwe"
+  mode:
+    description: Identifies intention of the user.
+    type: string
+    enum:
+      - cardholder-signup
+      - cardholder-login
+    example: "cardholder-signup"
   network:
     description: The blockchain network associated with the web3 address.
     type: string
