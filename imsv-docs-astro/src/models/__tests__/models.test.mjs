@@ -242,11 +242,16 @@ describe('models', () => {
           networkName: 'ethereum-sepolia',
           protocolName: 'universal-evm',
         });
+        const universalEvmAmoy = registry.getDeployedFundingProtocol({
+          networkName: 'polygon-amoy',
+          protocolName: 'universal-evm',
+        });
         const deployedProtocols = registry.findDeployedFundingProtocols({
           chainName: 'ethereum',
           networkType: 'testnet',
         });
         expect(deployedProtocols).toContain(universalEvmSepolia);
+        expect(deployedProtocols).not.toContain(universalEvmAmoy);
       });
 
     });
