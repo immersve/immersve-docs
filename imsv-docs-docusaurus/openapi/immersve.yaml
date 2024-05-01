@@ -142,6 +142,8 @@ paths:
     $ref: "./endpoints/login/create-challenge.yaml"
   "/auth/login-init":
     $ref: "./endpoints/login/login-init.yaml"
+  "/auth/login-complete":
+    $ref: "./endpoints/login/login-complete.yaml"
 components:
   securitySchemes:
     immersve_auth:
