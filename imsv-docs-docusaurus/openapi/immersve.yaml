@@ -140,6 +140,8 @@ paths:
     $ref: "./endpoints/imsv-support/support-session-create.yaml"
   "/api/challenges":
     $ref: "./endpoints/login/create-challenge.yaml"
+  "/auth/login-complete":
+    $ref: "./endpoints/login/login-complete.yaml"
 components:
   securitySchemes:
     immersve_auth:
