@@ -4,16 +4,18 @@ import { wrappableAddress } from 'src/components/registry-views/wrappableAddress
 
 interface Props {
   protocol: string;
+  chain: string;
   netType: string;
   columns: Array<string>;
 }
 
-const { protocol, netType, columns=[ 'network', 'address' ] } = Astro.props;
+const { chain, protocol, netType, columns=[ 'network', 'address' ] } = Astro.props;
 
 const protocolDeployments = registry
   .findDeployedFundingProtocols({
     networkType: netType,
     protocolName: protocol,
+    chainName: chain,
   });
 
 const columnTitles: Record<string,string> = {
