@@ -11,7 +11,12 @@ supportedToken: true
 
 
 ### Supported Chains
-{% tokenTable token="usdc" type="mainnet"/%}
+{%
+  networkTokensTable
+  token="usdc"
+  netType="mainnet"
+  columns=["chain", "address"]
+/%}
 
 ## See Also
 {% link page="guides/obtaining-test-tokens" /%}

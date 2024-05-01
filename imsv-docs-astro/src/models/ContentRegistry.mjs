@@ -57,6 +57,10 @@ export class ContentRegistry {
     return this.#tokensByName[name];
   }
 
+  allTokens() {
+    return Object.values(this.#tokensByName);
+  }
+
   /**
    * @param {CollectionEntry} content
    */
@@ -72,6 +76,10 @@ export class ContentRegistry {
     return this.#protocolsByName[name];
   }
 
+  allFundingProtocols() {
+    return Object.values(this.#protocolsByName);
+  }
+
   /**
    * @param {Object} opts
    * @param {string} opts.networkName
@@ -80,6 +88,21 @@ export class ContentRegistry {
    * */
   getDeployedFundingProtocol({ networkName, protocolName }) {
     return this.getFundingProtocol(protocolName).getDeployedInstance(networkName);
+  }
+
+  /**
+   * @param {Object} opts
+   * @param {string} [opts.chainName]
+   * @param {string} [opts.protocolName]
+   * @param {string} [opts.networkType]
+   * @returns {Array<DeployedFundingProtocol>}
+   * */
+  findDeployedFundingProtocols({ chainName, networkType, protocolName }) {
+    return Object.values(this.#protocolsByName)
+      .flatMap(p => p.deployedInstances)
+      .filter(i => !chainName || i.network.chain.name == chainName)
+      .filter(i => !protocolName || i.protocol.name == protocolName)
+      .filter(i => i.network.type == networkType);
   }
 
   /**
@@ -95,6 +118,13 @@ export class ContentRegistry {
       throw Error(`Unregistered chain: ${name}`);
     }
     return this.#chainsByName[name];
+  }
+
+  /**
+   * @returns {Array<SupportedChain>}
+   */
+  allChains() {
+    return Object.values(this.#chainsByName);
   }
 
   /**
@@ -129,12 +159,20 @@ export class ContentRegistry {
     return this.getToken(tokenName).getInstance(networkName);
   }
 
+  allNetworkTokens() {
+    return this.allTokens().flatMap(token => token.instances);
+  }
+
   /**
    * @param {CollectionEntry} content
    */
   registerFundingType(content) {
     const fundingType = FundingType.fromContent({ registry: this, content });
     this.#fundingTypesByName[fundingType.name] = fundingType;
+  }
+
+  allFundingTypes() {
+    return Object.values(this.#fundingTypesByName);
   }
 
   getFundingType(name) {

@@ -1,0 +1,56 @@
+---
+import { registry } from 'src/content/registry.mjs';
+import { wrappableAddress } from 'src/components/registry-views/wrappableAddress.mjs';
+
+interface Props {
+  protocol: string;
+  chain: string;
+  netType: string;
+  columns: Array<string>;
+}
+
+const { chain, protocol, netType, columns=[ 'network', 'address' ] } = Astro.props;
+
+const protocolDeployments = registry
+  .findDeployedFundingProtocols({
+    networkType: netType,
+    protocolName: protocol,
+    chainName: chain,
+  });
+
+const columnTitles: Record<string,string> = {
+  network: 'Network',
+  address: 'Address',
+  protocol: 'Protocol',
+};
+
+---
+<div class="overflow-x-auto">
+  <table>
+    <thead>
+      <tr>
+        {columns.map(column => (
+          <th>{columnTitles[column]}</th>
+        ))}
+      </tr>
+    </thead>
+      <tbody>
+        {protocolDeployments.map(deployment => (
+          <tr>
+            {columns.map(column=> {
+              switch(column) {
+                case 'network':
+                  return <td><nobr>{deployment.network.title}</nobr></td>
+                case 'address':
+                  return <td><a href={deployment.url} set:html={wrappableAddress(deployment.address)}></a></td>
+                case 'protocol':
+                  return <td><a href={deployment.protocol.docsPath}>{deployment.protocol.title}</a></td>
+                default:
+                  return <td></td>
+              }
+            })}
+          </tr>
+        ))}
+    </tbody>
+  </table>
+</div>

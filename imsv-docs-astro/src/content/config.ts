@@ -18,8 +18,6 @@ export const collections = {
   i18n: defineCollection({ type: 'data', schema: i18nSchema() }),
   'funding-types': defineCollection({
     schema: z.object({
-      categories: z.string().array(),
-      chain: z.string(),
       network: z.string(),
       protocol: z.string(),
     }),
@@ -28,7 +26,6 @@ export const collections = {
     schema: z.object({
       title: z.string(),
       address: z.string(),
-      url: z.string(),
       faucet: z.string().optional(),
       faucetTitle: z.string().optional(),
     }),
@@ -42,10 +39,7 @@ export const collections = {
       protocols: z
         .object({
           name: z.string(),
-          title: z.string(),
-          docsPath: z.string(),
           masterContractAddress: z.string(),
-          masterContractUrl: z.string(),
         })
         .array(),
     }),

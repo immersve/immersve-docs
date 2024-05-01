@@ -24,6 +24,10 @@ export class SupportedToken {
     return this.content.data.title;
   }
 
+  get docsPath() {
+    return '/' + this.content.slug;
+  }
+
   /**
    * @param {NetworkToken} networkToken
    */

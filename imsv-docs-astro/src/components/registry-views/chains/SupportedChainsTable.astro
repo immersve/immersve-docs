@@ -1,0 +1,43 @@
+---
+import { registry } from 'src/content/registry.mjs';
+
+const supportedChains = registry.allChains();
+const columns = [ 'chain', 'protocols' ];
+
+const columnTitles: Record<string,string> = {
+  chain: 'Chain',
+  protocols: 'Protocols',
+};
+
+---
+<div class="overflow-x-auto">
+  <table>
+    <thead>
+      <tr>
+        {columns.map(column => (
+          <th>{columnTitles[column]}</th>
+        ))}
+      </tr>
+    </thead>
+      <tbody>
+      {supportedChains.map(chain => (
+        <tr>
+            {columns.map(column=> {
+              switch(column) {
+                case 'chain':
+                  return <td><a href={chain.docsPath}>{chain.title}</a></td>
+                case 'protocols':
+                  return <td>
+                    {Array(...chain.supportedProtocols).map(protocol => {
+                      return <a href={protocol.docsPath}>{protocol.title}</a>
+                    })}
+                    </td>
+                default:
+                  return <td></td>
+              }
+            })}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

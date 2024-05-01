@@ -24,9 +24,32 @@ partner "Funds Storage" contracts.
 
 ### Deployed Contract Addresses
 
-The Funds Manager contract is designed to work on any EVM. Funds Manager Contract addresses
-can be found at {% link page="guides/supported-chains" /%}.
+The Universal EVM protocol is designed to work on any EVM. The deployed
+contract addresses for supported EVM networks are listed below.
 
+#### Mainnet Deployments
+
+{%
+  deployedFundingProtocolsTable
+  protocol="universal-evm"
+  netType="mainnet"
+  columns=[
+    "network",
+    "address",
+  ]
+/%}
+
+#### Testnet Deployments
+
+{%
+  deployedFundingProtocolsTable
+  protocol="universal-evm"
+  netType="testnet"
+  columns=[
+    "network",
+    "address",
+  ]
+/%}
 
 ### Smart Contract Overview
 

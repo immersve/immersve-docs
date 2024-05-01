@@ -32,6 +32,7 @@ export class DeployedFundingProtocol {
       protocol,
       address: data.masterContractAddress,
     });
+    network.chain.addSupportedProtocol(protocol);
     network.addDeployedProtocol(deployedInstance);
     protocol.addDeployedInstance(deployedInstance);
     return deployedInstance;
