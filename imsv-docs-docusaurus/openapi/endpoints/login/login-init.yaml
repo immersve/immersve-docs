@@ -4,8 +4,8 @@ post:
   summary: Login Init
   description: |
     Initiate the login sequence for an existing user. Multiple authentication methods are supported.
-    To initiate login for a new user, use [Signup](/api-reference/signup/). To complete the login flow,
-    use [Login COmplete](/api-reference/login-init/). For more details, see [Authentication](/guides/authentication).
+    To initiate login for a new user, use [Sign Up](/api-reference/sign-up/). To complete the login flow,
+    use [Login Complete](/api-reference/login-complete/). For more details, see [Authentication](https://docs.immersve.com/guides/authentication).
   security:
     - none: []
   requestBody:
@@ -32,10 +32,3 @@ post:
         application/json:
           schema:
             $ref: "../../models/api-error-403.yaml"
-    "400":
-      description: |
-        Request fields are invalid.
-      content:
-        application/json:
-          schema:
-            $ref: "../../models/api-error-400.yaml"

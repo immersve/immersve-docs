@@ -5,8 +5,8 @@ post:
   description: |
     Complete a login sequence to obtain access and refresh tokens.
     The login sequence is initialized by [Login Init](/api-reference/login-init/)
-    or [Signup](/api-reference/signup/). For more details, see
-    [Authentication](/guides/authentication).
+    or [Sign Up](/api-reference/sign-up/). For more details, see
+    [Authentication](https://docs.immersve.com/guides/authentication).
   security:
     - none: []
   requestBody:
