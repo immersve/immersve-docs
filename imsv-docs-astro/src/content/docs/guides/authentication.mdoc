@@ -3,9 +3,9 @@ title: Authentication
 ---
 
 Depending on the use case and operation, either API key or
-generic authentication mechanism may be used.
+user session authentication mechanism may be used.
 
-The generic authentication method allows client applications to act on behalf of users within
+The user session authentication method allows client applications to act on behalf of users within
 scopes explicitly granted by the user and is typically used by [decentralized
 applications and web3 wallets](/use-cases/non-custodial-wallets). API keys might
 be used for administrative operations and for applications not using SIWE
@@ -31,11 +31,17 @@ Target account:
 The caller must have the correct permissions over this account to perform the
 requested operation.
 
-## Generic Authentication
+## User Session Authentication
 
 The use of web3-native authentication mechanisms within the context of card
 issuance means that the same level of protection to a user's funds in
 self-custodial wallets is applied to their activities as a cardholder.
+
+The following authentication methods are supported:
+- SIWE
+- Algorand
+- Ripple (coming soon)
+- Email (maybe later)
 
 Accounts are identified by way of blockchain addresses. Proof of ownership of
 an address is based upon a process of authentication by way of verification of
@@ -53,13 +59,15 @@ authenticated by supplying the access token in the `Authorization` header.
 ![Login Sequence Diagram](@assets/diagrams/login-sequence.svg)
 
     <!--TODO: add signup url-->
-1.  [Signup](). For first time users, the client
-    application initiates the signup process by sending a request to the Signup
-    API and a cardholder account will be created.
+#### 1.  Sign up
+    For first time users, the client
+    application initiates the signup process by sending a request to the [Signup
+    API]() and a cardholder account will be created.
 
     <!--TODO: add login init url-->
-2.  [Login Init](). The client application initiates
-    the login process by sending a request to this endpoint. The response contains a
+#### 2.  Login
+    The client application initiates
+    the login process by sending a request to the [Login Init API](). The response contains a
     challenge message to be signed by the user's wallet. Users must first
     authenticate with this endpoint before performing other actions such as creating
     a funding source.
@@ -93,7 +101,8 @@ authenticated by supplying the access token in the `Authorization` header.
     ```
     {% /code %}
 
-3.  Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
+#### 3.  Sign Message
+    Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
 
     For a quick start, Metamask users can sign the challenge message using this
     [CodePen](https://codepen.io/imsv/full/zYMpExJ). Alternatively, use this
@@ -138,12 +147,16 @@ authenticated by supplying the access token in the `Authorization` header.
     signIn();
     ```
     {% /code %}
+
     <!--TODO: add logoin complete url-->
-4.  [Submit the signed challenge along with the
+#### 4.  Submit Signed Challenge
+    [Submit the signed challenge along with the
     signature]() to get the access token and a refresh token.
     The refresh token is used to obtain a new access token when the current
     access token expires, ensuring continuous access without requiring the user to log in again.
-5.  The access token should be used for subsequent requests for protected
+
+#### 5.  Use Access Token
+    The access token should be used for subsequent requests for protected
     resources from the Immersve API by supplying it in the `Authorization`
     header.
 
