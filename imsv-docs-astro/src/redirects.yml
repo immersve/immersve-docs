@@ -26,6 +26,8 @@
 /api-reference/assets: "/api-reference/funding-source"
 /api-reference/asset-activities: "/api-reference/funding-source"
 /api-reference/generate-challenge: "/api-reference/generate-siwe-challenge-for-login"
+/api-reference/generate-siwe-challenge-for-login: "/api-reference/siwe-login-init"
+/api-reference/login: "/api-reference/siwe-login-complete"
 /category/api-reference: "/api-reference/category/api-reference"
 /category/custodial-wallets: "/use-cases/custodial-wallets"
 /category/non-custodial-wallets: "/use-cases/non-custodial-wallets"
