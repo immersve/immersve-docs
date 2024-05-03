@@ -7,10 +7,6 @@ properties:
     description: The unique identifier of the login request.
     type: string
     example: "49ae8f3a3928491"
-  createCardHolder:
-    description: Indicates if the cardholder should be created.
-    type: boolean
-    example: true
   signature:
     description: The signature of the challenge.
     type: string

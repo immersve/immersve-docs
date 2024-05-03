@@ -1,16 +1,16 @@
 post:
   tags:
     - authentication
-  summary: Login Init
+  summary: Sign Up
   description: |
-    A generic login endpoint that supports multiple methods of authentication.
+    This endpoint can be used to sign up a new user.
   security:
     - none: []
   requestBody:
     content:
       application/json:
         schema:
-          $ref: "./models/login-init-request.yaml"
+          $ref: "./models/signup-request.yaml"
     required: true
   responses:
     "200":
@@ -18,14 +18,14 @@ post:
       content:
         application/json:
           schema:
-            $ref: "./models/login-init-response.yaml"
+            $ref: "./models/signup-response.yaml"
     "403":
       description: |
         **CLIENT_APPLICATION_DOMAIN_NOT_ALLOWED**
         Client application domain not allowed.
 
-        **ACCOUNT_DOES_NOT_EXIST**
-        Unable to log in. Account does not exist.
+        **ACCOUNT_EXISTS**
+        Unable to sign up. Account already exists.
       content:
         application/json:
           schema:

@@ -144,6 +144,8 @@ paths:
     $ref: "./endpoints/login/login-init.yaml"
   "/auth/login-complete":
     $ref: "./endpoints/login/login-complete.yaml"
+  "/auth/signup":
+    $ref: "./endpoints/login/signup.yaml"
 components:
   securitySchemes:
     immersve_auth:

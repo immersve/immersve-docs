@@ -18,8 +18,8 @@ properties:
     description: Identifies intention of the user.
     type: string
     enum:
-      - cardholder-login
-    example: "cardholder-login"
+      - cardholder-signup
+    example: "cardholder-signup"
   network:
     description: |
       The blockchain network associated with the web3 address.
