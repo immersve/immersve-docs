@@ -8,11 +8,7 @@ properties:
     type: string
     enum:
       - siwe
-      - sms
-      - email
-      - password
       - algorand
-      - xrpl
     example: "siwe"
   mode:
     description: Identifies intention of the user.
