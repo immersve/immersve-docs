@@ -77,16 +77,16 @@ authenticated by supplying the access token in the `Authorization` header.
     determine the level of access the user is granting to the application. The
     following scopes are available:
 
-    - `cardholder-partner` - Manage cards within your {partnerName} Immersve account
+- `cardholder-partner` - Manage cards within your {partnerName} Immersve account
 
-    For example:
+For example:
 
     {% code title="SIWE" %}
     ```
     app.immersve.com wants you to sign in with your Ethereum account:
     0xA3058369d6A481B1ff08F62B352409c3D709De9b
 
-    Sign in with Ethereum to the app. This request will not trigger a blockchain transaction or cost any gas fees.
+Sign in with Ethereum to the app. This request will not trigger a blockchain transaction or cost any gas fees.
 
     URI: https://app.immersve.com
     Version: 1
@@ -104,35 +104,35 @@ authenticated by supplying the access token in the `Authorization` header.
 #### 3.  Sign Message
     Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
 
-    For a quick start, Metamask users can sign the challenge message using this
-    [CodePen](https://codepen.io/imsv/full/zYMpExJ). Alternatively, use this
-    Node.js script to create a wallet and sign the challenge.
+For a quick start, Metamask users can sign the challenge message using this
+[CodePen](https://codepen.io/imsv/full/zYMpExJ). Alternatively, use this
+Node.js script to create a wallet and sign the challenge.
 
-    {% code title="signing-script.js" %}
-    ```js
-    const ethers = require('ethers');
-    const axios = require('axios');
+{% code title="signing-script.js" %}
+```js
+const ethers = require('ethers');
+const axios = require('axios');
 
-    const baseUrl = 'https://api.immersve.com';
-    const log = (...data) => {
-      console.log.apply(null, data);
-    }
+const baseUrl = 'https://api.immersve.com';
+const log = (...data) => {
+  console.log.apply(null, data);
+}
 
     // Create a wallet to sign the message with
     const privateKey = ''; //TODO: Set Private key here
     const walletAddress = ''; //TODO: Set wallet address here
 
-    if (!privateKey || privateKey.length === 0) {
-      console.error('WALLET_PRIVATE_KEY missing');
-      process.exit(1);
-    }
-    if (!walletAddress || walletAddress.length === 0) {
-      console.error('WALLET_ADDRESS missing');
-      process.exit(1);
-    }
+if (!privateKey || privateKey.length === 0) {
+  console.error('WALLET_PRIVATE_KEY missing');
+  process.exit(1);
+}
+if (!walletAddress || walletAddress.length === 0) {
+  console.error('WALLET_ADDRESS missing');
+  process.exit(1);
+}
 
-    const wallet = new ethers.Wallet(privateKey);
-    const clientInstance = axios.create({ baseURL: baseUrl });
+const wallet = new ethers.Wallet(privateKey);
+const clientInstance = axios.create({ baseURL: baseUrl });
 
     const signIn = async () => {
       const getSignInChallenge = await clientInstance.post('/auth/login-init', {
@@ -144,9 +144,9 @@ authenticated by supplying the access token in the `Authorization` header.
       log(JSON.stringify(output));
     }
 
-    signIn();
-    ```
-    {% /code %}
+signIn();
+```
+{% /code %}
 
     <!--TODO: add logoin complete url-->
 #### 4.  Submit Signed Challenge
