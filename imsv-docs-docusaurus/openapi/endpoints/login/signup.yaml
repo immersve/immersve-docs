@@ -32,7 +32,6 @@ post:
             $ref: "../../models/api-error-403.yaml"
     "400":
       description: |
-        **INVALID_REQUEST_INPUT**
         Request fields are invalid.
       content:
         application/json:

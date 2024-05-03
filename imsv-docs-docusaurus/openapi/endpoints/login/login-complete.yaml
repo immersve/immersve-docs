@@ -3,7 +3,10 @@ post:
     - authentication
   summary: Login Complete
   description: |
-    This endpoint handles the completion of the login sequence started by the [Login Init](/api-reference/login-init/) endpoint and issues an access token and a refresh token.
+    Complete a login sequence to obtain access and refresh tokens.
+    The login sequence is initialized by [Login Init](/api-reference/login-init/)
+    or [Signup](/api-reference/signup/). For more details, see
+    [Authentication](/guides/authentication).
   security:
     - none: []
   requestBody:

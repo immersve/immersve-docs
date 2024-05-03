@@ -3,7 +3,9 @@ post:
     - authentication
   summary: Login Init
   description: |
-    A generic login endpoint that supports multiple methods of authentication.
+    Initiate the login sequence for an existing user. Multiple authentication methods are supported.
+    To initiate login for a new user, use [Signup](/api-reference/signup/). To complete the login flow,
+    use [Login COmplete](/api-reference/login-init/). For more details, see [Authentication](/guides/authentication).
   security:
     - none: []
   requestBody:
@@ -32,7 +34,6 @@ post:
             $ref: "../../models/api-error-403.yaml"
     "400":
       description: |
-        **INVALID_REQUEST_INPUT**
         Request fields are invalid.
       content:
         application/json:
