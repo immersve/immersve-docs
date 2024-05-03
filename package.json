@@ -20,5 +20,9 @@
   "packageManager": "yarn@4.0.2",
   "engines": {
     "node": ">=18"
+  },
+  "resolutions": {
+    "tar": "6.2.1",
+    "ip": "2.0.1"
   }
 }
