@@ -7,15 +7,8 @@ properties:
     description: The login method to use.
     type: string
     enum:
-      - siwe
       - algorand
-    example: "siwe"
-  mode:
-    description: Identifies intention of the user.
-    type: string
-    enum:
-      - cardholder-login
-    example: "cardholder-login"
+    example: "algorand"
   network:
     description: |
       The blockchain network associated with the web3 address.
@@ -32,18 +25,17 @@ properties:
     type: array
     items:
       type: string
+      enum:
+        - cardholder-partner
     example: ["cardholder-partner"]
-  url:
-    description: |
-      Required if loginMethod is `siwe`.
-      Domain in the "\<domain\> wants you to sign in.." of the EIP-4361 is derived from the host fragment of this parameter. The client application identified by clientApplicationId must allow this URL.
-    type: url
-    example: "https://app.immersve.com"
+  # TODO: Uncomment when siwe is supported
+  # url:
+  #   description: |
+  #     Required if loginMethod is `siwe`.
+  #     Domain in the "\<domain\> wants you to sign in.." of the EIP-4361 is derived from the host fragment of this parameter. The client application identified by clientApplicationId must allow this URL.
+  #   type: url
+  #   example: "https://app.immersve.com"
   address:
     description: The web3 address to which the challenge is directed.
     type: string
     example: "0x4d6c3443..."
-  email:
-    description: The email address of the user.
-    type: string
-    example: "email@example.com"

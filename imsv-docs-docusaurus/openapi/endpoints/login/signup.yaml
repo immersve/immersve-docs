@@ -3,14 +3,14 @@ post:
     - authentication
   summary: Sign Up
   description: |
-    This endpoint can be used to sign up a new user.
+    Sign up a new user and create a new cardholder account.
   security:
     - none: []
   requestBody:
     content:
       application/json:
         schema:
-          $ref: "./models/signup-request.yaml"
+          $ref: "./models/login-init-request.yaml"
     required: true
   responses:
     "200":
