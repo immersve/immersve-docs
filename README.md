@@ -67,6 +67,11 @@ references, modify immersve.yaml (not the derived mdx files). Then run:
 yarn api-re-gen
 ```
 
+To generate a self-contained OpenAPI sprecification file use swagger-codegen CLI:
+```shell
+swagger-codegen generate -l openapi-yaml -i ./imsv-docs-docusaurus/openapi/immersve.yaml -o ./output
+```
+
 ## Redirects
 
 When changing URLs, redirects should be declared to preserve inbound links to
