@@ -66,8 +66,8 @@ export default defineMarkdocConfig({
     tab: {
       render: component('./src/components/Tab.astro'),
     },
-    tabItem: {
-      render: component('./src/components/TabItem.astro'),
+    item: {
+      render: component('./src/components/Item.astro'),
       attributes: {
         title: { type: String },
       },

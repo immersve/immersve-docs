@@ -77,7 +77,7 @@ authenticated by supplying the access token in the `Authorization` header.
 
 For example:
 {% tab %}
-  {% tabItem title="SIWE" %}
+  {% item title="SIWE" %}
     {% code %}
     ```
     app.immersve.com wants you to sign in with your Ethereum account:
@@ -92,14 +92,14 @@ For example:
     Issued At: 2022-08-11T22:29:48.244Z
     ```
     {% /code %}
-  {% /tabItem %}
-  {% tabItem title="Algorand" %}
+  {% /item %}
+  {% item title="Algorand" %}
     {% code %}
     ```
     GlSDzZHcxrSDeJbKu: Login with your algorand address 0xA3058369d6A481B1ff08F62B352409c3D709De9b
     ```
     {% /code %}
-  {% /tabItem %}
+  {% /item %}
 {% /tab %}
 
 #### 3.  Sign Message
@@ -110,7 +110,7 @@ For a quick start, Metamask users can sign the challenge message using this
 Node.js script to create a wallet and sign the challenge.
 
 {% tab %}
-  {% tabItem title="SIWE" %}
+  {% item title="SIWE" %}
     {% code %}
     ```js
     const ethers = require('ethers');
@@ -152,14 +152,14 @@ Node.js script to create a wallet and sign the challenge.
     signIn();
     ```
     {% /code %}
-  {% /tabItem %}
-  {% tabItem title="Algorand" %}
+  {% /item %}
+  {% item title="Algorand" %}
     {% code %}
     ```js
     <!-- TODO: Algorand code example -->
     ```
     {% /code %}
-  {% /tabItem %}
+  {% /item %}
 {% /tab %}
 
 #### 4.  Submit Signed Challenge
