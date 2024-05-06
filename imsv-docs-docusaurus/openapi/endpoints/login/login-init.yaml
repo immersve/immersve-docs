@@ -1,0 +1,34 @@
+post:
+  tags:
+    - authentication
+  summary: Initiate Login
+  description: |
+    Initiate the login sequence for an existing user. Multiple authentication methods are supported.
+    To initiate login for a new user, use [Sign Up](/api-reference/sign-up/). To complete the login flow,
+    use [Login Complete](/api-reference/complete-login). For more details, see [Authentication](https://docs.immersve.com/guides/authentication).
+  security:
+    - none: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./models/login-init-request.yaml"
+    required: true
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/login-init-response.yaml"
+    "403":
+      description: |
+        **CLIENT_APPLICATION_DOMAIN_NOT_ALLOWED**
+        Client application domain not allowed.
+
+        **ACCOUNT_DOES_NOT_EXIST**
+        Unable to log in. Account does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
