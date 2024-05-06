@@ -76,13 +76,14 @@ authenticated by supplying the access token in the `Authorization` header.
 - `cardholder-partner` - Manage cards within your {partnerName} Immersve account
 
 For example:
-
-    <!-- {% code title="SIWE" %}
+{% tab %}
+  {% tabItem title="SIWE" %}
+    {% code %}
     ```
     app.immersve.com wants you to sign in with your Ethereum account:
     0xA3058369d6A481B1ff08F62B352409c3D709De9b
 
-Sign in with Ethereum to the app. This request will not trigger a blockchain transaction or cost any gas fees.
+    Sign in with Ethereum to the app. This request will not trigger a blockchain transaction or cost any gas fees.
 
     URI: https://app.immersve.com
     Version: 1
@@ -91,14 +92,15 @@ Sign in with Ethereum to the app. This request will not trigger a blockchain tra
     Issued At: 2022-08-11T22:29:48.244Z
     ```
     {% /code %}
-    {% code title="Algorand"%}
+  {% /tabItem %}
+  {% tabItem title="Algorand" %}
+    {% code %}
     ```
     GlSDzZHcxrSDeJbKu: Login with your algorand address 0xA3058369d6A481B1ff08F62B352409c3D709De9b
     ```
-    {% /code %} -->
-    {% tab %}
-
-    {% /tab %}
+    {% /code %}
+  {% /tabItem %}
+{% /tab %}
 
 #### 3.  Sign Message
     Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
@@ -107,32 +109,34 @@ For a quick start, Metamask users can sign the challenge message using this
 [CodePen](https://codepen.io/imsv/full/zYMpExJ). Alternatively, use this
 Node.js script to create a wallet and sign the challenge.
 
-{% code title="signing-script.js" %}
-```js
-const ethers = require('ethers');
-const axios = require('axios');
+{% tab %}
+  {% tabItem title="SIWE" %}
+    {% code %}
+    ```js
+    const ethers = require('ethers');
+    const axios = require('axios');
 
-const baseUrl = 'https://api.immersve.com';
-const log = (...data) => {
-  console.log.apply(null, data);
-}
+    const baseUrl = 'https://api.immersve.com';
+    const log = (...data) => {
+    console.log.apply(null, data);
+    }
 
     // Create a wallet to sign the message with
     const privateKey = ''; //TODO: Set Private key here
     const walletAddress = ''; //TODO: Set wallet address here
     const chainId = 137; //Chain ID Reference: https://chainlist.org/
 
-if (!privateKey || privateKey.length === 0) {
-  console.error('WALLET_PRIVATE_KEY missing');
-  process.exit(1);
-}
-if (!walletAddress || walletAddress.length === 0) {
-  console.error('WALLET_ADDRESS missing');
-  process.exit(1);
-}
+    if (!privateKey || privateKey.length === 0) {
+      console.error('WALLET_PRIVATE_KEY missing');
+      process.exit(1);
+    }
+    if (!walletAddress || walletAddress.length === 0) {
+      console.error('WALLET_ADDRESS missing');
+      process.exit(1);
+    }
 
-const wallet = new ethers.Wallet(privateKey);
-const clientInstance = axios.create({ baseURL: baseUrl });
+    const wallet = new ethers.Wallet(privateKey);
+    const clientInstance = axios.create({ baseURL: baseUrl });
 
     const signIn = async () => {
       const getSignInChallenge = await clientInstance.post('/siwe/generate-challenge', {
@@ -145,9 +149,18 @@ const clientInstance = axios.create({ baseURL: baseUrl });
       log(JSON.stringify(output));
     }
 
-signIn();
-```
-{% /code %}
+    signIn();
+    ```
+    {% /code %}
+  {% /tabItem %}
+  {% tabItem title="Algorand" %}
+    {% code %}
+    ```js
+    <!-- TODO: Algorand code example -->
+    ```
+    {% /code %}
+  {% /tabItem %}
+{% /tab %}
 
 #### 4.  Submit Signed Challenge
     [Submit the signed challenge along with the
