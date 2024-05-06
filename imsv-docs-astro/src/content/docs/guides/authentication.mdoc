@@ -118,7 +118,7 @@ Node.js script to create a wallet and sign the challenge.
 
     const baseUrl = 'https://api.immersve.com';
     const log = (...data) => {
-    console.log.apply(null, data);
+      console.log.apply(null, data);
     }
 
     // Create a wallet to sign the message with
@@ -156,7 +156,70 @@ Node.js script to create a wallet and sign the challenge.
   {% item title="Algorand" %}
     {% code %}
     ```js
-    <!-- TODO: Algorand code example -->
+    const algosdk = require('algosdk');
+    const axios = require('axios');
+
+    (async () => {
+      const { addr, sk } = algosdk.generateAccount();
+
+      const clientApplicationId = ''; // TODO: Set client application ID here
+
+      const { data: registerRequest } = await axios.post('/auth/signup', {
+        loginMethod: 'algorand',
+        network: 'algorand-mainnet',
+        clientApplicationId,
+        scopes: ['cardholder-partner'],
+        address: addr,
+      });
+
+    console.log('registerRequest', registerRequest);
+
+    const encodedData = new TextEncoder().encode(
+      registerRequest.signingChallenge.message
+    );
+
+    const signature = Buffer.from(algosdk.signBytes(encodedData, sk)).toString(
+      'base64'
+    );
+
+    const { data: registerCompleteRequest } = await axios.post(
+      '/auth/login-complete',
+      {
+        loginRequestId: registerRequest.id,
+        signature,
+      }
+    );
+
+    console.log('registerCompleteRequest', registerCompleteRequest);
+
+    const { data: loginRequest } = await axios.post('/auth/login-init', {
+      loginMethod: 'algorand',
+      network: 'algorand-mainnet',
+      clientApplicationId,
+      scopes: ['cardholder-partner'],
+      address: addr,
+    });
+
+    console.log('loginRequest', loginRequest);
+
+    const encodedData2 = new TextEncoder().encode(
+      loginRequest.signingChallenge.message
+    );
+
+    const signature2 = Buffer.from(algosdk.signBytes(encodedData2, sk)).toString(
+      'base64'
+    );
+
+    const { data: loginCompleteRequest } = await axios.post(
+      '/auth/login-complete',
+      {
+        loginRequestId: loginRequest.id,
+        signature: signature2,
+      }
+    );
+
+    console.log('loginCompleteRequest', loginCompleteRequest);
+    })().catch((err) => console.log(err));
     ```
     {% /code %}
   {% /item %}
