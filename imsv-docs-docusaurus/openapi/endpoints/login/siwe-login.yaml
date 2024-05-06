@@ -1,7 +1,7 @@
 post:
   tags:
     - authentication
-  summary: SIWE Login Complete
+  summary: Complete SIWE Login
   description: |
     The login endpoint returns the authentication token in exchange
     for the previously-issued challenge signed with the users wallet.

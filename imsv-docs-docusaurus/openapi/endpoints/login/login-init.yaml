@@ -1,11 +1,11 @@
 post:
   tags:
     - authentication
-  summary: Login Init
+  summary: Initiate Login
   description: |
     Initiate the login sequence for an existing user. Multiple authentication methods are supported.
     To initiate login for a new user, use [Sign Up](/api-reference/sign-up/). To complete the login flow,
-    use [Login Complete](/api-reference/login-complete). For more details, see [Authentication](https://docs.immersve.com/guides/authentication).
+    use [Login Complete](/api-reference/complete-login). For more details, see [Authentication](https://docs.immersve.com/guides/authentication).
   security:
     - none: []
   requestBody:

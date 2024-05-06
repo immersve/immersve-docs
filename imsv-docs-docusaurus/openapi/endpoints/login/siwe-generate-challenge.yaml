@@ -1,7 +1,7 @@
 post:
   tags:
     - authentication
-  summary: SIWE Login Init
+  summary: Initiate SIWE Login
   description: |
     Generating the SIWE challenge is the first step in the process of getting the authentication token.
 

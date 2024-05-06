@@ -1,10 +1,10 @@
 post:
   tags:
     - authentication
-  summary: Login Complete
+  summary: Complete Login
   description: |
     Complete a login sequence to obtain access and refresh tokens, and cardholder account id.
-    The login sequence is initialized by [Login Init](/api-reference/login-init)
+    The login sequence is initialized by [Login Init](/api-reference/initiate-login)
     or [Sign Up](/api-reference/sign-up/). For more details, see
     [Authentication](https://docs.immersve.com/guides/authentication).
   security:
