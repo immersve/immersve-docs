@@ -63,6 +63,13 @@ export default defineMarkdocConfig({
         class: { type: String },
       },
     },
+    tab: {
+      render: component('./src/components/Tab.astro'),
+      attributes: {
+        title: { type: String },
+        group: { type: String},
+      }
+    },
     ...registryViewComponents([
       'chains/SupportedChainsTable',
       'protocols/FundingProtocolsTable',

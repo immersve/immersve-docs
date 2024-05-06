@@ -77,7 +77,7 @@ authenticated by supplying the access token in the `Authorization` header.
 
 For example:
 
-    {% code title="SIWE" %}
+    <!-- {% code title="SIWE" %}
     ```
     app.immersve.com wants you to sign in with your Ethereum account:
     0xA3058369d6A481B1ff08F62B352409c3D709De9b
@@ -95,7 +95,10 @@ Sign in with Ethereum to the app. This request will not trigger a blockchain tra
     ```
     GlSDzZHcxrSDeJbKu: Login with your algorand address 0xA3058369d6A481B1ff08F62B352409c3D709De9b
     ```
-    {% /code %}
+    {% /code %} -->
+    {% tab %}
+
+    {% /tab %}
 
 #### 3.  Sign Message
     Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
@@ -117,6 +120,7 @@ const log = (...data) => {
     // Create a wallet to sign the message with
     const privateKey = ''; //TODO: Set Private key here
     const walletAddress = ''; //TODO: Set wallet address here
+    const chainId = 137; //Chain ID Reference: https://chainlist.org/
 
 if (!privateKey || privateKey.length === 0) {
   console.error('WALLET_PRIVATE_KEY missing');
@@ -131,8 +135,9 @@ const wallet = new ethers.Wallet(privateKey);
 const clientInstance = axios.create({ baseURL: baseUrl });
 
     const signIn = async () => {
-      const getSignInChallenge = await clientInstance.post('/auth/login-init', {
+      const getSignInChallenge = await clientInstance.post('/siwe/generate-challenge', {
         walletAddress,
+        chainId,
       });
       const challenge = getSignInChallenge.data;
       const signature = await wallet.signMessage(challenge);
