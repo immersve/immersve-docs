@@ -53,7 +53,7 @@ authenticated by supplying the access token in the `Authorization` header.
 ![Login Sequence Diagram](@assets/diagrams/login-sequence.svg)
 
 #### 1. Generate Challenge
-[Generate a challenge](/api-reference/generate-siwe-challenge-for-login). The response is
+[Generate a challenge](/api-reference/initiate-siwe-login). The response is
 an [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) message in plain
 text to be signed by the wallet.
 
@@ -133,7 +133,7 @@ signIn();
 
 #### 3. Submit Signed Challenge
 [Submit the signed challenge along with the
-signature](/api-reference/login) to get the access token and a refresh token.
+signature](/api-reference/siwe-login-complete) to get the access token and a refresh token.
 The refresh token is used to obtain a new access token when the current
 access token expires, ensuring continuous access without requiring the user to log in again.
 

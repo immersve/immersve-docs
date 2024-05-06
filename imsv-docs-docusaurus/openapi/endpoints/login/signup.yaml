@@ -1,0 +1,32 @@
+post:
+  tags:
+    - authentication
+  summary: Sign Up
+  description: |
+    Sign up a new user and create a new cardholder account.
+  security:
+    - none: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./models/login-init-request.yaml"
+    required: true
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/signup-response.yaml"
+    "403":
+      description: |
+        **CLIENT_APPLICATION_DOMAIN_NOT_ALLOWED**
+        Client application domain not allowed.
+
+        **ACCOUNT_EXISTS**
+        Unable to sign up. Account already exists.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"

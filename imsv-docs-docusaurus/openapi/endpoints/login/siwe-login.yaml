@@ -1,9 +1,9 @@
 post:
   tags:
     - authentication
-  summary: Login
+  summary: Complete SIWE Login
   description: |
-    The login endpoint returns the authentication token in exchange 
+    The login endpoint returns the authentication token in exchange
     for the previously-issued challenge signed with the users wallet.
   security:
     - none: []
@@ -20,9 +20,3 @@ post:
         application/json:
           schema:
             $ref: "./models/login-response.yaml"
-    "400":
-      description: Request fields are invalid
-      content:
-        application/json:
-          schema:
-            $ref: '../../models/api-error-400.yaml'
