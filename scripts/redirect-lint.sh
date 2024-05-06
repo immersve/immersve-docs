@@ -57,7 +57,7 @@ do
   link_match="$(grep \
     --exclude redirects.yml \
     --exclude "*.bak" \
-    -rl "${redirect_from}" \
+    -rl "${redirect_from}[^a-z-]" \
     "${astro_dir}/src" \
     "${docusaurus_dir}/openapi" \
       || true)"
