@@ -56,16 +56,14 @@ authenticated by supplying the access token in the `Authorization` header.
 <!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577781765320&cot=14 -->
 ![Login Sequence Diagram](@assets/diagrams/login-sequence.svg)
 
-    <!--TODO: add signup url-->
 #### 1.  Sign up
     For first time users, the client
     application initiates the signup process by sending a request to the [Signup
-    API]() and a cardholder account will be created.
+    API](/api-reference/sign-up) and a cardholder account will be created.
 
-    <!--TODO: add login init url-->
 #### 2.  Login
     The client application initiates
-    the login process by sending a request to the [Login Init API](). The response contains a
+    the login process by sending a request to the [Initiate Login API](/api-reference/initiate-login). The response contains a
     challenge message to be signed by the user's wallet. Users must first
     authenticate with this endpoint before performing other actions such as creating
     a funding source.
@@ -146,10 +144,9 @@ signIn();
 ```
 {% /code %}
 
-    <!--TODO: add logoin complete url-->
 #### 4.  Submit Signed Challenge
     [Submit the signed challenge along with the
-    signature]() to get the access token and a refresh token.
+    signature](/api-reference/complete-login) to get the access token and a refresh token.
     The refresh token is used to obtain a new access token when the current
     access token expires, ensuring continuous access without requiring the user to log in again.
 
