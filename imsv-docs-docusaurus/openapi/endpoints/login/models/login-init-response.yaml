@@ -17,7 +17,7 @@ properties:
   network:
     description: The blockchain network associated with the web3 address.
     type: string
-    example: "polygon-mainnet"
+    example: "algorand-mainnet"
   clientApplicationId:
     description: ID of the client application created in an Immersve partner profile.
     type: string
