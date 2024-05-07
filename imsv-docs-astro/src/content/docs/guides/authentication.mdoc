@@ -56,11 +56,13 @@ authenticated by supplying the access token in the `Authorization` header.
 
 #### 1.  Sign up
     For first time users, the client
-    application initiates the signup process by sending a request to the [Signup
-    API](/api-reference/sign-up) and a cardholder account will be created.
+    application initiates the signup process by sending a request to the [Sign up
+    API](/api-reference/sign-up) and a cardholder account will be created. The Sign up
+    endpoint operates exactly like the Initiate Login endpoint mentioned below, except
+    Initiate Login does not create a cardholder account.
 
 #### 2.  Login
-    The client application initiates
+    For returning users, the client application initiates
     the login process by sending a request to the [Initiate Login API](/api-reference/initiate-login). The response contains a
     challenge message to be signed by the user's wallet. Users must first
     authenticate with this endpoint before performing other actions such as creating
