@@ -54,30 +54,23 @@ authenticated by supplying the access token in the `Authorization` header.
 <!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577781765320&cot=14 -->
 ![Login Sequence Diagram](@assets/diagrams/login-sequence.svg)
 
-#### 1.  Sign up
-    For first time users, the client
-    application initiates the signup process by sending a request to the [Sign up
-    API](/api-reference/sign-up) and a cardholder account will be created. The Sign up
-    endpoint operates exactly like the Initiate Login endpoint mentioned below, except
-    Initiate Login does not create a cardholder account.
+{% tab %}
+  {% item title="SIWE" %}
 
-#### 2.  Login
-    For returning users, the client application initiates
-    the login process by sending a request to the [Initiate Login API](/api-reference/initiate-login). The response contains a
-    challenge message to be signed by the user's wallet. Users must first
-    authenticate with this endpoint before performing other actions such as creating
-    a funding source.
+    #### 1. Generate Challenge
+    [Generate a challenge](/api-reference/initiate-siwe-login). The response is
+    an [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) message in plain
+    text to be signed by the wallet.
 
-    When sending the login request, authorization scopes must be passed. These scopes
+    When generating a challenge, authorization scopes must be passed. These scopes
     are presented to the user when signing the challenge message and are used to
     determine the level of access the user is granting to the application. The
     following scopes are available:
 
-- `cardholder-partner` - Manage cards within your {partnerName} Immersve account
+    - `cardholder-partner` - Manage cards within your {partnerName} Immersve account
 
-For example:
-{% tab %}
-  {% item title="SIWE" %}
+    For example:
+
     {% code %}
     ```
     app.immersve.com wants you to sign in with your Ethereum account:
@@ -92,26 +85,16 @@ For example:
     Issued At: 2022-08-11T22:29:48.244Z
     ```
     {% /code %}
-  {% /item %}
-  {% item title="Algorand" %}
-    {% code %}
-    ```
-    GlSDzZHcxrSDeJbKu: Login with your algorand address 0xA3058369d6A481B1ff08F62B352409c3D709De9b
-    ```
-    {% /code %}
-  {% /item %}
-{% /tab %}
 
-#### 3.  Sign Message
-    Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
+    #### 2. Sign Message
+    Invoke the wallet's message signing capability to get a signature for the given challenge message. The specific nature
+    of the invocation of the message signing function is specific to the particular wallet in use.
 
-For a quick start, Metamask users can sign the challenge message using this
-[CodePen](https://codepen.io/imsv/full/zYMpExJ). Alternatively, use this
-Node.js script to create a wallet and sign the challenge.
+    For a quick start, Metamask users can sign the challenge message using this
+    [CodePen](https://codepen.io/imsv/full/zYMpExJ). Alternatively, use this
+    Node.js script to create a wallet and sign the challenge:
 
-{% tab %}
-  {% item title="SIWE" %}
-    {% code %}
+    {% code title="signing-script.js" %}
     ```js
     const ethers = require('ethers');
     const axios = require('axios');
@@ -152,8 +135,56 @@ Node.js script to create a wallet and sign the challenge.
     signIn();
     ```
     {% /code %}
+
+    #### 3. Submit Signed Challenge
+    [Submit the signed challenge along with the
+    signature](/api-reference/complete-siwe-login) to get the access token and a refresh token.
+    The refresh token is used to obtain a new access token when the current
+    access token expires, ensuring continuous access without requiring the user to log in again.
+
+    #### 4. Use Access Token
+    The access token should be used for subsequent requests for protected
+    resources from the Immersve API by supplying it in the `Authorization`
+    header.
+
   {% /item %}
   {% item title="Algorand" %}
+
+    #### 1. Sign up
+    For first time users, the client
+    application initiates the signup process by sending a request to the [Sign up
+    API](/api-reference/sign-up) and a cardholder account will be created. The Sign up
+    endpoint operates exactly like the Initiate Login endpoint mentioned below, except
+    Initiate Login does not create a cardholder account.
+
+    #### 2. Login
+    For returning users, the client application initiates
+    the login process by sending a request to the [Initiate Login API](/api-reference/initiate-login). The response contains a
+    challenge message to be signed by the user's wallet. Users must first
+    authenticate with this endpoint before performing other actions such as creating
+    a funding source.
+
+    When sending the login request, authorization scopes must be passed. These scopes
+    are presented to the user when signing the challenge message and are used to
+    determine the level of access the user is granting to the application. The
+    following scopes are available:
+
+    - `cardholder-partner` - Manage cards within your {partnerName} Immersve account
+
+    For example:
+
+    {% code %}
+    ```
+    GlSDzZHcxrSDeJbKu: Login with your algorand address 0xA3058369d6A481B1ff08F62B352409c3D709De9b
+    ```
+    {% /code %}
+
+    #### 3. Sign Message
+    Invoke the wallet's message signing capability to get a signature for the given challenge message.
+    The specific nature of the invocation of the message signing function is specific to the particular wallet in use.
+
+    Below is an example Node.js script which will create an Algorand account and use it to sign a challenge:
+
     {% code %}
     ```js
     const algosdk = require('algosdk');
@@ -222,19 +253,20 @@ Node.js script to create a wallet and sign the challenge.
     })().catch((err) => console.log(err));
     ```
     {% /code %}
-  {% /item %}
-{% /tab %}
 
-#### 4.  Submit Signed Challenge
+    #### 4. Submit Signed Challenge
     [Submit the signed challenge along with the
     signature](/api-reference/complete-login) to get the access token and a refresh token.
     The refresh token is used to obtain a new access token when the current
     access token expires, ensuring continuous access without requiring the user to log in again.
 
-#### 5.  Use Access Token
+    #### 5. Use Access Token
     The access token should be used for subsequent requests for protected
     resources from the Immersve API by supplying it in the `Authorization`
     header.
+
+  {% /item %}
+{% /tab %}
 
 ## Refresh Tokens
 
