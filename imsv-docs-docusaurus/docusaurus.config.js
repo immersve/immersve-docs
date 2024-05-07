@@ -30,13 +30,13 @@ async function createConfig() {
 
     presets: [
       [
-        'classic',
+        '@docusaurus/preset-classic',
         /** @type {import('@docusaurus/preset-classic').Options} */
         ({
           docs: {
             routeBasePath: '/',
             sidebarPath: require.resolve('./sidebars.js'),
-            docLayoutComponent: '@theme/DocPage',
+            // docLayoutComponent: '@theme/DocPage',
             docItemComponent: '@theme/ApiItem', // add @theme/ApiItem here
           },
           blog: false,
