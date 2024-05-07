@@ -41,10 +41,8 @@ The following authentication methods are supported:
 - SIWE
 - Algorand
 
-Accounts are identified by way of blockchain addresses. Proof of ownership of
-an address is based upon a process of authentication by way of verification of
-[EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) challenges signed by the
-private key underlying an address. Upon successful authentication, Immersve
+Accounts are identified by blockchain address. The cardholder can prove ownership
+of an address by signing a challenge using their web3 wallet. Upon successful authentication, Immersve
 will issue an access token for subsequent use in interactions with the Immersve
 API. Additionally, a refresh token will also be provided, enabling the request of a new access token when the current one expires.
 
