@@ -1,8 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer').themes.github;
+const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 
 async function createConfig() {
   return {
@@ -67,7 +67,7 @@ async function createConfig() {
               target: '_self',
             },
             {
-            label: 'Guides',
+              label: 'Guides',
               position: 'right',
               href: '//docs.immersve.com/guides/',
               target: '_self',
