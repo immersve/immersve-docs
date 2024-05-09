@@ -32,5 +32,5 @@ properties:
       $ref: './evidence.yaml'
   region:
     type: string
-    description: The country code representing the country in which the user is being KYC.
+    description: The country code representing the country in which the user is being verified.
     example: "NZ"
