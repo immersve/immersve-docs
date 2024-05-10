@@ -15,7 +15,7 @@ properties:
 
       For more information on supported networks, see [Supported Chains](https://docs.immersve.com/guides/supported-chains/).
     type: string
-    example: "polygon-mainnet"
+    example: "algorand-mainnet"
   clientApplicationId:
     description: ID of the client application created in an Immersve partner profile.
     type: string
