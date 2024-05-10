@@ -1,6 +1,6 @@
 openapi: 3.0.0
 servers:
-  - url: https://api.immersve.com/
+  - url: https://api.immersve.com
     description: Sandbox server
 info:
   version: 1.0.0
@@ -68,7 +68,7 @@ paths:
   "/api/cards/{cardId}/set-pin":
     $ref: "./endpoints/cards/card-set-pin.yaml"
     servers:
-      - url: https://api-sec.immersve.com/
+      - url: https://api-sec.immersve.com
   "/api/cards/{cardId}/cancel-async":
     $ref: "./endpoints/cards/card-cancel.yaml"
   "/api/cards/{cardId}/pan-token":
@@ -105,15 +105,15 @@ paths:
   "/api/simulator/authorize":
     $ref: "./endpoints/simulator/authorize.yaml"
     servers:
-      - url: https://test.immersve.com/
+      - url: https://test.immersve.com
   "/api/simulator/clear":
     $ref: "./endpoints/simulator/clear.yaml"
     servers:
-      - url: https://test.immersve.com/
+      - url: https://test.immersve.com
   "/api/simulator/reverse":
     $ref: "./endpoints/simulator/reverse.yaml"
     servers:
-      - url: https://test.immersve.com/
+      - url: https://test.immersve.com
   "/authorizations":
     servers:
       - url: https://<partnerBaseUrl>/transactions
