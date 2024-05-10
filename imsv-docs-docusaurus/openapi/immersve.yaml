@@ -39,15 +39,25 @@ tags:
 security:
   - immersve_auth: []
   - $ref: "./models/api-key-auth.yaml"
+# The order of the paths defines the order of pages in the sidebar navigation.
+# The tags field in the yaml files defines the grouping in the sidebar navigation.
 paths:
+  "/auth/signup":
+    $ref: "./endpoints/login/signup.yaml"
+  "/auth/login-init":
+    $ref: "./endpoints/login/login-init.yaml"
+  "/auth/login-complete":
+    $ref: "./endpoints/login/login-complete.yaml"
+  "/auth/logout":
+    $ref: "./endpoints/login/logout.yaml"
+  "/auth/token":
+    $ref: "./endpoints/login/auth-token-exchange.yaml"
+  "/api/challenges":
+    $ref: "./endpoints/login/create-challenge.yaml"
   "/siwe/generate-challenge":
     $ref: "./endpoints/login/siwe-generate-challenge.yaml"
   "/siwe/login":
     $ref: "./endpoints/login/siwe-login.yaml"
-  "/auth/token":
-    $ref: "./endpoints/login/auth-token-exchange.yaml"
-  "/auth/logout":
-    $ref: "./endpoints/login/logout.yaml"
   "/api/accounts":
     get:
       $ref: "./endpoints/accounts/accounts-list.yaml"
@@ -138,14 +148,6 @@ paths:
     $ref: "./endpoints/client-application/client-application-update-origins.yaml"
   "/api/support-sessions":
     $ref: "./endpoints/imsv-support/support-session-create.yaml"
-  "/api/challenges":
-    $ref: "./endpoints/login/create-challenge.yaml"
-  "/auth/login-init":
-    $ref: "./endpoints/login/login-init.yaml"
-  "/auth/login-complete":
-    $ref: "./endpoints/login/login-complete.yaml"
-  "/auth/signup":
-    $ref: "./endpoints/login/signup.yaml"
 components:
   securitySchemes:
     immersve_auth:
