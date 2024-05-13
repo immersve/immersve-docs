@@ -6,10 +6,11 @@ post:
     The logout endpoint invalidates  the current session to ensure it
     can no longer be used for accessing protected resources within the Immersve API.
     All access tokens connected with the session will become unusable.
+  # Logout request body is empty as the session is identified and invalidated via the Authorization header.
   responses:
     "200":
       description: Successful logout
       content:
         application/json:
           schema:
-            $ref: "./models/logout-response.yaml"
+            type: object

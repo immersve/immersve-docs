@@ -1,8 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer').themes.github;
+const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 
 async function createConfig() {
   return {
@@ -30,13 +30,13 @@ async function createConfig() {
 
     presets: [
       [
-        'classic',
+        '@docusaurus/preset-classic',
         /** @type {import('@docusaurus/preset-classic').Options} */
         ({
           docs: {
             routeBasePath: '/',
             sidebarPath: require.resolve('./sidebars.js'),
-            docLayoutComponent: '@theme/DocPage',
+            // docLayoutComponent: '@theme/DocPage',
             docItemComponent: '@theme/ApiItem', // add @theme/ApiItem here
           },
           blog: false,
@@ -67,7 +67,7 @@ async function createConfig() {
               target: '_self',
             },
             {
-            label: 'Guides',
+              label: 'Guides',
               position: 'right',
               href: '//docs.immersve.com/guides/',
               target: '_self',
@@ -85,6 +85,15 @@ async function createConfig() {
           copyright: `Copyright © ${new Date().getFullYear()} Immersve. All rights reserved. Built with Docusaurus.`,
         },
         prism: {
+          additionalLanguages: [
+            'bash',
+            'ruby',
+            'csharp',
+            'php',
+            'java',
+            'powershell',
+            'json',
+          ],
           theme: lightCodeTheme,
           darkTheme: darkCodeTheme,
         },
