@@ -85,6 +85,15 @@ async function createConfig() {
           copyright: `Copyright © ${new Date().getFullYear()} Immersve. All rights reserved. Built with Docusaurus.`,
         },
         prism: {
+          additionalLanguages: [
+            'bash',
+            'ruby',
+            'csharp',
+            'php',
+            'java',
+            'powershell',
+            'json',
+          ],
           theme: lightCodeTheme,
           darkTheme: darkCodeTheme,
         },
