@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkimsv_docs_docusaurus=self.webpackChunkimsv_docs_docusaurus||[]).push([[5216],{66230:e=>{e.exports=JSON.parse('{"title":"API Reference","slug":"/category/api-reference","permalink":"/api-reference/category/api-reference","navigation":{"next":{"title":"Authentication","permalink":"/api-reference/authentication"}}}')}}]);
