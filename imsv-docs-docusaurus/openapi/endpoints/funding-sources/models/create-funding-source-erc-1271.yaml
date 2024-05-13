@@ -14,7 +14,7 @@ properties:
   fundingAddress:
     type: string
     description: The address to claim as a Funding Source. This can be a smart contract implementing ERC-1271 or an EOA address.
-    example: 0x1234567890123456789012345678901234567890
+    example: "0x1234567890123456789012345678901234567890"
   ownerAddress:
     type: string
     description: EOA address that matches a login wallet.
