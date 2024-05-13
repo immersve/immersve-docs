@@ -5588,9 +5588,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"astro@npm:^4.8.2":
-  version: 4.8.2
-  resolution: "astro@npm:4.8.2"
+"astro@npm:^4.8.3":
+  version: 4.8.3
+  resolution: "astro@npm:4.8.3"
   dependencies:
     "@astrojs/compiler": "npm:^2.8.0"
     "@astrojs/internal-helpers": "npm:0.4.0"
@@ -5621,7 +5621,7 @@ __metadata:
     dlv: "npm:^1.1.3"
     dset: "npm:^3.1.3"
     es-module-lexer: "npm:^1.5.2"
-    esbuild: "npm:^0.21.1"
+    esbuild: "npm:^0.21.2"
     estree-walker: "npm:^3.0.3"
     execa: "npm:^8.0.1"
     fast-glob: "npm:^3.3.2"
@@ -5642,9 +5642,9 @@ __metadata:
     prompts: "npm:^2.4.2"
     rehype: "npm:^13.0.1"
     resolve: "npm:^1.22.8"
-    semver: "npm:^7.6.1"
+    semver: "npm:^7.6.2"
     sharp: "npm:^0.33.3"
-    shiki: "npm:^1.5.0"
+    shiki: "npm:^1.5.1"
     string-width: "npm:^7.1.0"
     strip-ansi: "npm:^7.1.0"
     tsconfck: "npm:^3.0.3"
@@ -5661,7 +5661,7 @@ __metadata:
       optional: true
   bin:
     astro: astro.js
-  checksum: 4d47efceef6762c5e510f9f45d30fa2828b3a147dc678d475a185324edf4bb886f6813d973da79dcfbea24fb1dc9558e4b36e1ff4bb03d2c78070ce74322abe0
+  checksum: 050fd8b57e9c32087b442cf81c4a0d91c8bfaae8a2602ac30922fd7beb7d650de7380dfe5c590cb429e954bc314782a0f781b17fb69d8b33020c0bd4d36b4179
   languageName: node
   linkType: hard
 
@@ -8166,7 +8166,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.21.1":
+"esbuild@npm:^0.21.2":
   version: 0.21.2
   resolution: "esbuild@npm:0.21.2"
   dependencies:
@@ -10287,7 +10287,7 @@ __metadata:
     "@astrojs/tailwind": "npm:^5.1.0"
     "@astrojs/ts-plugin": "npm:^1.6.1"
     "@tailwindcss/typography": "npm:^0.5.13"
-    astro: "npm:^4.8.2"
+    astro: "npm:^4.8.3"
     glob: "npm:^10.3.15"
     tailwindcss: "npm:^3.4.3"
     typescript: "npm:^5.3.3"
@@ -15953,7 +15953,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.6.1":
+"semver@npm:^7.6.2":
   version: 7.6.2
   resolution: "semver@npm:7.6.2"
   bin:
@@ -16232,7 +16232,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shiki@npm:^1.5.0":
+"shiki@npm:^1.5.1":
   version: 1.5.1
   resolution: "shiki@npm:1.5.1"
   dependencies:
