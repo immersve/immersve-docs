@@ -36,7 +36,6 @@ export default defineConfig({
           label: 'Guides',
           items: [
             { label: 'Introduction', link: 'guides' } ,
-            { label: 'Regions', link: 'guides/regions' } ,
             { label: 'Core Concepts', autogenerate: { directory: 'guides/core-concepts' } },
             { label: 'Card Issuing Apps', autogenerate: { directory: 'guides/card-issuing-apps' } },
             { label: 'KYC' , items: [
@@ -53,6 +52,7 @@ export default defineConfig({
             { label: 'Cardholder Support', link: 'guides/cardholder-support' } ,
             { label: 'Supported Tokens', autogenerate: { directory: 'guides/supported-tokens' } },
             { label: 'Supported Chains', autogenerate: { directory: 'guides/supported-chains' } },
+            { label: 'Supported Regions', link: 'guides/regions' } ,
           ]
         },
         { label: 'Resources', autogenerate: { directory: 'resources' } },
