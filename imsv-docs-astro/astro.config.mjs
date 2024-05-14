@@ -52,6 +52,7 @@ export default defineConfig({
             { label: 'Cardholder Support', link: 'guides/cardholder-support' } ,
             { label: 'Supported Tokens', autogenerate: { directory: 'guides/supported-tokens' } },
             { label: 'Supported Chains', autogenerate: { directory: 'guides/supported-chains' } },
+            { label: 'Supported Regions', link: 'guides/regions' } ,
           ]
         },
         { label: 'Resources', autogenerate: { directory: 'resources' } },
