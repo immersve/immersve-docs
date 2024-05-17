@@ -34,7 +34,16 @@ See the [KYC API endpoint references](https://docs.immersve.com/api-reference/ky
 
 ## Submit cardholder KYC statement
 [Submit KYC statement](https://docs.immersve.com/api-reference/submit-partner-kyc-statement#submit-partner-kyc-statement) about the cardholder account.
-Provide "passall" as the middle name, the check should be successful regardless of the validity of the rest of the details.
+
+{% note %}
+Pro tip: When testing, to improve chances of a successful response, please provide "passall" as the middleName, and generate a random givenName and familyName.
+See example below.
+{% /note %}
+
+{% warning %}
+Be careful when setting the region as this cannot be changed. You will need to create a new wallet if this is incorrectly supplied.
+{% /warning %}
+
 {% code %}
   ```bash
     curl -X PUT "https://test.immersve.com/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
@@ -49,9 +58,10 @@ Provide "passall" as the middle name, the check should be successful regardless 
               {
                   "claimType": "FULL_NAME",
                   "attributes": {
-                      "givenName": "RONALD",
+                      "givenName": "RONALD_EayrWpaOEZ",
+                      "middleName": "PASSALL",
                       "honorific": "Mr",
-                      "familyName": "Lopez"
+                      "familyName": "Lopez_enzjaPOIXM"
                   }
               },
               {
