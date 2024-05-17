@@ -6,7 +6,7 @@ properties:
       - DRIVERS_LICENSE
   documentId:
     type: string
-    description: The passport number or the license number.
+    description: The license number.
     example: DS230475
   country:
     type: string
@@ -17,7 +17,7 @@ properties:
     example: NZL
   version:
     type: string
-    description: The driver's license version. Required for DRIVERS_LICENSE.
+    description: The driver's license version
     example: "978"
 required:
   - evidenceType

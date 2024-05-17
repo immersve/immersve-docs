@@ -6,7 +6,7 @@ properties:
       - PASSPORT
   documentId:
     type: string
-    description: The passport number or the license number.
+    description: The passport number.
     example: DS230475
   country:
     type: string
@@ -17,7 +17,7 @@ properties:
     example: NZL
   expiry:
     type: string
-    description: The passport expiry formatted as YYYY-MM-DD. Required for PASSPORT.
+    description: The passport expiry formatted as YYYY-MM-DD.
     example: "2024-10-12"
 required:
   - evidenceType
