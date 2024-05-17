@@ -1,0 +1,26 @@
+properties:
+  evidenceType:
+    type: string
+    description: The type of evidence.
+    enum:
+      - DRIVERS_LICENSE
+  documentId:
+    type: string
+    description: The passport number or the license number.
+    example: DS230475
+  country:
+    type: string
+    description: The country that issued the document.
+    enum:
+      - NZL
+      - AUS
+    example: NZL
+  version:
+    type: string
+    description: The driver's license version. Required for DRIVERS_LICENSE.
+    example: "978"
+required:
+  - evidenceType
+  - documentId
+  - country
+  - version
