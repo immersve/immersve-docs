@@ -3,7 +3,9 @@ post:
     - cards-custodial
   summary: Activate a card (for physical cards only)
   security:
-    - $ref: '../../models/api-key-auth.yaml'
+    - apiKeyHeader: [ ]
+    - apiSecretHeader: [ ]
+    - accountIdHeader: [ ]
   parameters:
     $ref: '../../models/card-id-path.yaml'
   responses:

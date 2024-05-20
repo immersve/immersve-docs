@@ -4,8 +4,7 @@ post:
   summary: Sign Up
   description: |
     Sign up a new user and create a new cardholder account.
-  security:
-    - none: []
+  security: []
   requestBody:
     content:
       application/json:

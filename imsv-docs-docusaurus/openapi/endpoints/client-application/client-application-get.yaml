@@ -1,4 +1,4 @@
-get:  
+get:
   tags:
     - client-application
   summary: Get a client application
@@ -11,7 +11,9 @@ get:
       schema:
         type: string
   security:
-    - $ref: '../../models/api-key-auth.yaml'
+    - apiKeyHeader: [ ]
+    - apiSecretHeader: [ ]
+    - accountIdHeader: [ ]
   responses:
     '200':
       content:

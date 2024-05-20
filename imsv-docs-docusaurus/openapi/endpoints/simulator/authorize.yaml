@@ -27,3 +27,5 @@ post:
         application/json:
           schema:
             $ref: '../../models/api-error-400.yaml'
+  servers:
+    - url: https://test.immersve.com

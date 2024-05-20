@@ -4,7 +4,9 @@ get:
   summary: Get card information
   description: Returns the non-sensitive details of a card by a given ID.
   security:
-    - $ref: "../../models/api-key-auth.yaml"
+    - apiKeyHeader: [ ]
+    - apiSecretHeader: [ ]
+    - accountIdHeader: [ ]
   parameters:
     $ref: "../../models/card-id-path.yaml"
   responses:

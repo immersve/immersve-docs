@@ -1,0 +1,63 @@
+get:
+  tags:
+    - accounts
+  summary: List Accounts
+  description: Get accounts for authenticated subject
+
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: './models/list-accounts-response.yaml'
+    '403':
+      description: No Authorization to access resource.
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-403.yaml'
+
+post:
+  tags:
+    - accounts
+  summary: Create Account
+  description: Create account
+
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: './models/create-account-request.yaml'
+    required: true
+
+  responses:
+    '200':
+      description: Account created successfully
+      content:
+        application/json:
+          schema:
+            $ref: './models/create-account-response.yaml'
+    '403':
+      description: |
+        User is not allowed to perform the action with the reason stated in the `errorCode`
+
+        **FORBIDDEN**
+        Insufficient permissions to perform the action.
+
+        **INVALID_PARTNER_ACCOUNT**
+        The provided partner account is not of type partner.
+
+        **INVALID_PARENT_ACCOUNT**
+        The provided parent account is not of type partner.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
+    '400':
+      description: Request fields are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'
+

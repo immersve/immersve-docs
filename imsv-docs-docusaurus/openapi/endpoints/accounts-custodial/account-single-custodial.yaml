@@ -3,7 +3,9 @@ get:
     - accounts-custodial
   summary: Get detailed account info
   security:
-    - $ref: '../../models/api-key-auth.yaml'
+    - apiKeyHeader: [ ]
+    - apiSecretHeader: [ ]
+    - accountIdHeader: [ ]
   parameters:
     $ref: '../../models/account-id-path.yaml'
   responses:
@@ -24,7 +26,9 @@ post:
     - accounts-custodial
   summary: Update an Account
   security:
-    - $ref: '../../models/api-key-auth.yaml'
+    - apiKeyHeader: [ ]
+    - apiSecretHeader: [ ]
+    - accountIdHeader: [ ]
   parameters:
     $ref: '../../models/account-id-path.yaml'
   requestBody:

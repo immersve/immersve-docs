@@ -3,7 +3,9 @@ post:
     - cards-custodial
   summary: Block a card
   security:
-    - $ref: '../../models/api-key-auth.yaml'
+    - apiKeyHeader: [ ]
+    - apiSecretHeader: [ ]
+    - accountIdHeader: [ ]
   parameters:
     $ref: '../../models/card-id-path.yaml'
   requestBody:

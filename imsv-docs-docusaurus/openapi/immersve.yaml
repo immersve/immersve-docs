@@ -35,8 +35,10 @@ tags:
   - name: support
     x-displayName: Support
 security:
-  - immersve_auth: []
-  - $ref: "./models/api-key-auth.yaml"
+  - immersve_auth: [ ]
+  - apiKeyHeader: [ ]
+  - apiSecretHeader: [ ]
+  - accountIdHeader: [ ]
 # The order of the paths defines the order of pages in the sidebar navigation.
 # The tags field in the yaml files defines the grouping in the sidebar navigation.
 paths:
@@ -57,83 +59,71 @@ paths:
   "/siwe/login":
     $ref: "./endpoints/login/siwe-login.yaml"
   "/api/accounts":
-    get:
-      $ref: "./endpoints/accounts/accounts-list.yaml"
-    post:
-      $ref: "./endpoints/accounts/accounts-create.yaml"
+    $ref: "./endpoints/accounts/accounts.yaml"
   "/api/cards":
     $ref: "./endpoints/cards/create-card-async.yaml"
   "/api/cards/{cardId}/set-pin":
     $ref: "./endpoints/cards/card-set-pin.yaml"
-    servers:
-      - url: https://api-sec.immersve.com
-  "/api/cards/{cardId}/cancel-async":
-    $ref: "./endpoints/cards/card-cancel.yaml"
-  "/api/cards/{cardId}/pan-token":
-    $ref: "./endpoints/cards/card-pan-token.yaml"
-  "/api/accounts/{accountId}/contact-details":
-    get:
-      $ref: "./endpoints/contact-details/get-contact-details.yaml"
-    patch:
-      $ref: "./endpoints/contact-details/update-contact-details.yaml"
-  "/api/spending-prerequisites":
-    $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"
-  "/api/currencies":
-    $ref: "./endpoints/currency/currency-list.yaml"
-  "/api/currency/convert":
-    $ref: "./endpoints/currency/currency-convert.yaml"
-  "/api/cards/{cardId}":
-    $ref: "./endpoints/cards/card-get.yaml"
-  "/api/accounts/{accountId}/cards":
-    $ref: "./endpoints/cards/cards-list.yaml"
-  "/api/transactions/{transactionId}":
-    $ref: "./endpoints/transactions/transaction-get.yaml"
-  "/api/accounts/{accountId}/transactions":
-    $ref: "./endpoints/transactions/transactions-list.yaml"
-  "/api/accounts/{accountId}/funding-sources":
-    $ref: "./endpoints/funding-sources/list-funding-sources.yaml"
-  "/api/accounts/{cardholderAccountId}/partner-kyc-statement":
-    put:
-      $ref: "./endpoints/kyc/submit-partner-kyc-statement.yaml"
-    get:
-      $ref: "./endpoints/kyc/retrieve-partner-kyc-statement.yaml"
-  "/api/accounts/{accountId}/kyc-profile":
-    get:
-      $ref: "./endpoints/kyc/get-kyc-profile.yaml"
-  "/api/simulator/authorize":
-    $ref: "./endpoints/simulator/authorize.yaml"
-    servers:
-      - url: https://test.immersve.com
-  "/api/simulator/clear":
-    $ref: "./endpoints/simulator/clear.yaml"
-    servers:
-      - url: https://test.immersve.com
-  "/api/simulator/reverse":
-    $ref: "./endpoints/simulator/reverse.yaml"
-    servers:
-      - url: https://test.immersve.com
-  "/api/funding-source/{fundingSourceId}":
-    $ref: "./endpoints/funding-sources/get-funding-source.yaml"
-  "/api/funding-sources":
-    $ref: "./endpoints/funding-sources/create-funding-source.yaml"
-  "/api/funding-sources/{fundingSourceId}/interactions":
-    $ref: "./endpoints/funding-sources/funding-source-interactions-get.yaml"
-  "/api/funding-sources/{fundingSourceId}/withdraw":
-    $ref: "./endpoints/funding-sources/withdrawal-intent-create.yaml"
-  "/api/funding-channel/{fundingChannelId}":
-    $ref: "./endpoints/funding-channel/funding-channel-get.yaml"
-  "/api/funding-channels":
-    $ref: "./endpoints/funding-channel/funding-channel-create.yaml"
-  "/api/accounts/{accountId}":
-    $ref: "./endpoints/accounts/accounts-get.yaml"
-  "/api/accounts/{accountId}/funding-channels":
-    $ref: "./endpoints/funding-channel/funding-channels-list.yaml"
-  "/api/client-applications/{clientApplicationId}":
-    $ref: "./endpoints/client-application/client-application-get.yaml"
-  "/api/client-applications/{clientApplicationId}/update-origins":
-    $ref: "./endpoints/client-application/client-application-update-origins.yaml"
-  "/api/support-sessions":
-    $ref: "./endpoints/imsv-support/support-session-create.yaml"
+#  "/api/cards/{cardId}/cancel-async":
+#    $ref: "./endpoints/cards/card-cancel.yaml"
+#  "/api/cards/{cardId}/pan-token":
+#    $ref: "./endpoints/cards/card-pan-token.yaml"
+#  "/api/accounts/{accountId}/contact-details":
+#    $ref: "./endpoints/contact-details/contact-details.yaml"
+#  "/api/spending-prerequisites":
+#    $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"
+#  "/api/currencies":
+#    $ref: "./endpoints/currency/currency-list.yaml"
+#  "/api/currency/convert":
+#    $ref: "./endpoints/currency/currency-convert.yaml"
+#  "/api/cards/{cardId}":
+#    $ref: "./endpoints/cards/card-get.yaml"
+#  "/api/accounts/{accountId}/cards":
+#    $ref: "./endpoints/cards/cards-list.yaml"
+#  "/api/transactions/{transactionId}":
+#    $ref: "./endpoints/transactions/transaction-get.yaml"
+#  "/api/accounts/{accountId}/transactions":
+#    $ref: "./endpoints/transactions/transactions-list.yaml"
+#  "/api/accounts/{accountId}/funding-sources":
+#    $ref: "./endpoints/funding-sources/list-funding-sources.yaml"
+#  "/api/accounts/{cardholderAccountId}/partner-kyc-statement":
+#    $ref: "./endpoints/kyc/partner-kyc-statement.yaml"
+#  "/api/accounts/{accountId}/kyc-profile":
+#    $ref: "./endpoints/kyc/kyc-profile.yaml"
+#  "/api/simulator/authorize":
+#    $ref: "./endpoints/simulator/authorize.yaml"
+#  "/api/simulator/clear":
+#    $ref: "./endpoints/simulator/clear.yaml"
+#  "/api/simulator/reverse":
+#    $ref: "./endpoints/simulator/reverse.yaml"
+#  "/authorizations":
+#    $ref: "./endpoints/webhooks/authorization-custodial.yaml"
+#  "/transactions":
+#    $ref: "./endpoints/webhooks/transaction-custodial.yaml"
+#  "/card-status-change":
+#    $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
+#  "/api/funding-source/{fundingSourceId}":
+#    $ref: "./endpoints/funding-sources/get-funding-source.yaml"
+#  "/api/funding-sources":
+#    $ref: "./endpoints/funding-sources/create-funding-source.yaml"
+#  "/api/funding-sources/{fundingSourceId}/interactions":
+#    $ref: "./endpoints/funding-sources/funding-source-interactions-get.yaml"
+#  "/api/funding-sources/{fundingSourceId}/withdraw":
+#    $ref: "./endpoints/funding-sources/withdrawal-intent-create.yaml"
+#  "/api/funding-channel/{fundingChannelId}":
+#    $ref: "./endpoints/funding-channel/funding-channel-get.yaml"
+#  "/api/funding-channels":
+#    $ref: "./endpoints/funding-channel/funding-channel-create.yaml"
+#  "/api/accounts/{accountId}":
+#    $ref: "./endpoints/accounts/accounts-get.yaml"
+#  "/api/accounts/{accountId}/funding-channels":
+#    $ref: "./endpoints/funding-channel/funding-channels-list.yaml"
+#  "/api/client-applications/{clientApplicationId}":
+#    $ref: "./endpoints/client-application/client-application-get.yaml"
+#  "/api/client-applications/{clientApplicationId}/update-origins":
+#    $ref: "./endpoints/client-application/client-application-update-origins.yaml"
+#  "/api/support-sessions":
+#    $ref: "./endpoints/imsv-support/support-session-create.yaml"
 components:
   securitySchemes:
     immersve_auth:

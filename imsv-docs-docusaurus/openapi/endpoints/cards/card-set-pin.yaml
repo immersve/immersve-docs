@@ -3,8 +3,10 @@ post:
     - card
   summary: Set a card PIN
   security:
-    - immersve_auth: []
-    - $ref: "../../models/api-key-auth.yaml"
+    - immersve_auth: [ ]
+    - apiKeyHeader: [ ]
+    - apiSecretHeader: [ ]
+    - accountIdHeader: [ ]
   parameters:
     $ref: "../../models/card-id-path.yaml"
   description: |
@@ -31,24 +33,20 @@ post:
       description: |
         User is not allowed to perform the action with the reason stated in the `errorCode`
 
-        **FORBIDDEN**  
+        **FORBIDDEN**
         The card or cardholder does not exist or the user has insufficient permissions.
 
-        **LIVENESS_MISMATCH**  
+        **LIVENESS_MISMATCH**
         Resource liveness does not match request liveness.
 
-        **INVALID_PIN_FORMAT**  
+        **INVALID_PIN_FORMAT**
         The PIN did not pass the validation rules.
 
-        **CARD_SET_PIN_FORBIDDEN**  
+        **CARD_SET_PIN_FORBIDDEN**
         The card is blocked, expired, or not active.
-      content:
-        application/json:
-          schema:
-            $ref: "../../models/api-error-403.yaml"
+      $ref: "../../models/api-error-403.yaml"
     "400":
       description: Request fields are invalid
-      content:
-        application/json:
-          schema:
-            $ref: "../../models/api-error-400.yaml"
+      $ref: "../../models/api-error-400.yaml"
+  servers:
+    - url: https://api-sec.immersve.com
