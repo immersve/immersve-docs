@@ -7712,9 +7712,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docusaurus-lunr-search@npm:^3.3.2":
-  version: 3.3.2
-  resolution: "docusaurus-lunr-search@npm:3.3.2"
+"docusaurus-lunr-search@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "docusaurus-lunr-search@npm:3.4.0"
   dependencies:
     autocomplete.js: "npm:^0.37.0"
     clsx: "npm:^1.2.1"
@@ -7734,7 +7734,7 @@ __metadata:
     "@docusaurus/core": ^2.0.0-alpha.60 || ^2.0.0 || ^3.0.0
     react: ^16.8.4 || ^17 || ^18
     react-dom: ^16.8.4 || ^17 || ^18
-  checksum: 051589fa2e984832407102aa544c1d89b9df9f6988d29c19fabd95101a85efd7ed6b37c548e2f6f9bcdf6fd3ad877f5efaf9f59cf40dbdb18c8f2c2997ac6148
+  checksum: 81aac7d8aa4a8be2f54c83198978d5a2a9a8a88eb798f54c075fe10860fd0b52b35f5943b5b2e18f24bdb96a97fe386349837905b386477a5d635177e4ed7f68
   languageName: node
   linkType: hard
 
@@ -10385,7 +10385,7 @@ __metadata:
     "@mdx-js/react": "npm:^3.0.1"
     "@types/react": "npm:^18.3.1"
     clsx: "npm:^1.2.1"
-    docusaurus-lunr-search: "npm:^3.3.2"
+    docusaurus-lunr-search: "npm:^3.4.0"
     docusaurus-plugin-openapi-docs: "npm:^3.0.0-beta.10"
     docusaurus-theme-openapi-docs: "npm:^3.0.0-beta.10"
     prettier: "npm:^2.8.5"
