@@ -15,6 +15,13 @@ properties:
       - NZL
       - AUS
     example: NZL
+  region:
+    type: string
+    description: |
+      Where appropriate, the state or region that issued the document, in the format provided by the issuer.
+      e.g. for Australia a Victorian Drivers license, this would be 'VIC'.
+      For New Zealand no value is required.
+    example: VIC
   version:
     type: string
     description: The driver's license card number or version
