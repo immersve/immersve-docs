@@ -23,7 +23,7 @@
   },
   "packageManager": "yarn@4.0.2",
   "devDependencies": {
-    "@astrojs/ts-plugin": "^1.6.1",
+    "@astrojs/ts-plugin": "^1.8.0",
     "vitest": "^1.6.0"
   }
 }
