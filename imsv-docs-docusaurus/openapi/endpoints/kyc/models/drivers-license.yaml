@@ -17,7 +17,7 @@ properties:
     example: NZL
   version:
     type: string
-    description: The driver's license version
+    description: The driver's license card number or version
     example: "978"
 required:
   - evidenceType
