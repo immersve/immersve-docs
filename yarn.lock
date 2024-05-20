@@ -592,17 +592,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/ts-plugin@npm:^1.6.1":
-  version: 1.6.1
-  resolution: "@astrojs/ts-plugin@npm:1.6.1"
+"@astrojs/ts-plugin@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "@astrojs/ts-plugin@npm:1.8.0"
   dependencies:
     "@astrojs/compiler": "npm:^2.7.0"
     "@jridgewell/sourcemap-codec": "npm:^1.4.15"
-    "@volar/language-core": "npm:~2.1.5"
-    "@volar/typescript": "npm:~2.1.5"
+    "@volar/language-core": "npm:~2.2.3"
+    "@volar/typescript": "npm:~2.2.3"
     semver: "npm:^7.3.8"
     vscode-languageserver-textdocument: "npm:^1.0.11"
-  checksum: ddf63f08b2405ef60d15032c59b495965d75e55c1c363f3ca6d00c562a45d6272538ac8fe847a6220ab251f1ae1f879d36ffc6272c78824ebd0955687463c98f
+  checksum: b49faf86ea2b33caded8c0f8262eeb08178f8784f967f4e9aaeb555bef6f4b9f60f9780f923c85bcec32ff806618a93cebadaa6c82b7d8bb877b9d38b5e6106b
   languageName: node
   linkType: hard
 
@@ -4990,15 +4990,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@volar/language-core@npm:2.1.6, @volar/language-core@npm:~2.1.5":
-  version: 2.1.6
-  resolution: "@volar/language-core@npm:2.1.6"
-  dependencies:
-    "@volar/source-map": "npm:2.1.6"
-  checksum: 629da137d622b438545ea558f33c29ca87304f130f121537b3900fa314416f365b76d749cfe29a7a8a498da7296693cd275e1487fd75c90d4377348362268e2a
-  languageName: node
-  linkType: hard
-
 "@volar/language-core@npm:2.2.4, @volar/language-core@npm:~2.2.3":
   version: 2.2.4
   resolution: "@volar/language-core@npm:2.2.4"
@@ -5049,15 +5040,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@volar/source-map@npm:2.1.6":
-  version: 2.1.6
-  resolution: "@volar/source-map@npm:2.1.6"
-  dependencies:
-    muggle-string: "npm:^0.4.0"
-  checksum: 12c10f53cfdc3eab49e6aa4a837de4b474ce7f6aca71f0ff72b089e940cb760c06e5ec7e3520018f498e7f268f6062c6255a752bc7deebdcbfb88cf771c5dd10
-  languageName: node
-  linkType: hard
-
 "@volar/source-map@npm:2.2.4":
   version: 2.2.4
   resolution: "@volar/source-map@npm:2.2.4"
@@ -5074,16 +5056,6 @@ __metadata:
     "@volar/language-core": "npm:2.2.4"
     path-browserify: "npm:^1.0.1"
   checksum: 8b5e3eff64afc614201b4dc4285e52ec37814e1a7d2dee911e65d46d0e79eed376934757d7629490e103653fd4dadcc668bc30392ef1f51a34a273420d473b95
-  languageName: node
-  linkType: hard
-
-"@volar/typescript@npm:~2.1.5":
-  version: 2.1.6
-  resolution: "@volar/typescript@npm:2.1.6"
-  dependencies:
-    "@volar/language-core": "npm:2.1.6"
-    path-browserify: "npm:^1.0.1"
-  checksum: f9c8d653cc972ad02794e4455764bbf75183f8e9f2fc8e683b96b7a193514ac6f7198352741ed4ef6b21bbaa52b8e49aee9115f6dde780b74c10773c59840855
   languageName: node
   linkType: hard
 
@@ -10426,7 +10398,7 @@ __metadata:
     "@astrojs/starlight": "npm:^0.23.1"
     "@astrojs/starlight-tailwind": "npm:^2.0.1"
     "@astrojs/tailwind": "npm:^5.1.0"
-    "@astrojs/ts-plugin": "npm:^1.6.1"
+    "@astrojs/ts-plugin": "npm:^1.8.0"
     "@tailwindcss/typography": "npm:^0.5.13"
     astro: "npm:^4.8.3"
     glob: "npm:^10.3.15"
