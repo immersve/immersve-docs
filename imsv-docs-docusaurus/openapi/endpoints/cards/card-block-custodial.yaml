@@ -7,7 +7,7 @@ post:
     - apiSecretHeader: [ ]
     - accountIdHeader: [ ]
   parameters:
-    $ref: '../../models/card-id-path.yaml'
+    - $ref: '../../models/card-id-path.yaml'
   requestBody:
     content:
       application/json:

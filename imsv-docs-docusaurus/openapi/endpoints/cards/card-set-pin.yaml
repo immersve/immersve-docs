@@ -8,7 +8,7 @@ post:
     - apiSecretHeader: [ ]
     - accountIdHeader: [ ]
   parameters:
-    $ref: "../../models/card-id-path.yaml"
+    - $ref: "../../models/card-id-path.yaml"
   description: |
     Set a new PIN on a card.
     ___________________________________________________________

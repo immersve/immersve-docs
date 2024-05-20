@@ -4,7 +4,7 @@ post:
   summary: Cancel a card
   description: Cancel a card
   parameters:
-    $ref: "../../models/card-id-path.yaml"
+    - $ref: "../../models/card-id-path.yaml"
   responses:
     "202":
       description: Successful operation
