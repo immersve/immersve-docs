@@ -17,6 +17,60 @@ requestBody:
     application/json:
       schema:
         $ref: './models/submit-kyc-statement-request.yaml'
+      examples:
+        NZ Passport:
+          summary: NZL Passport for Person in New Zealand
+          value:
+            {
+              "region": "NZL",
+              "idempotencyKey": "21ede8ef0d230d0a6bf755e07d39la54",
+              "claims": [
+                {
+                  "claimType": "FULL_NAME",
+                  "attributes": {
+                    "givenName": "John",
+                    "middleName": "Foo Bar",
+                    "familyName": "Doe",
+                    "honorific": "Mr"
+                  }
+                }
+              ],
+              "evidence": [
+                {
+                  "evidenceType": "PASSPORT",
+                  "documentId": "DS230475",
+                  "country": "NZL",
+                  "expiry": "2024-10-12"
+                },
+              ]
+            }
+        Australian Drivers License:
+          summary: Australian Drivers License issued by State of Victoria for Person in Australia
+          value:
+            {
+              "idempotencyKey": "21ede8ef0d230d0a6bf755e07d39la54",
+              "region": "AUS",
+              "claims": [
+                {
+                  "claimType": "FULL_NAME",
+                  "attributes": {
+                    "givenName": "John",
+                    "middleName": "Foo Bar",
+                    "familyName": "Doe",
+                    "honorific": "Mr"
+                  }
+                }
+              ],
+              "evidence": [
+                {
+                  "evidenceType": "DRIVERS_LICENSE",
+                  "documentId": "DS230475",
+                  "country": "AUS",
+                  "region": "VIC",
+                  "version": "978"
+                }
+              ]
+            }
   required: true
 responses:
   '200':
@@ -31,7 +85,7 @@ responses:
         **FORBIDDEN**
         Resource does not exist or there are no sufficient permissions to perform the action.
 
-        **KYC_STATEMENTS_NOT_ALLOWED** 
+        **KYC_STATEMENTS_NOT_ALLOWED**
         Partner is not configured to submit KYC statements
     content:
       application/json:
