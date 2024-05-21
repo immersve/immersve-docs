@@ -5746,7 +5746,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"async@npm:^3.2.4":
+"async@npm:^3.2.3, async@npm:^3.2.4":
   version: 3.2.5
   resolution: "async@npm:3.2.5"
   checksum: 1408287b26c6db67d45cb346e34892cee555b8b59e6c68e6f8c3e495cad5ca13b4f218180e871f3c2ca30df4ab52693b66f2f6ff43644760cab0b2198bda79c1
@@ -6683,6 +6683,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"co@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "co@npm:4.6.0"
+  checksum: c0e85ea0ca8bf0a50cbdca82efc5af0301240ca88ebe3644a6ffb8ffe911f34d40f8fbcf8f1d52c5ddd66706abd4d3bfcd64259f1e8e2371d4f47573b0dc8c28
+  languageName: node
+  linkType: hard
+
 "collapse-white-space@npm:^2.0.0":
   version: 2.1.0
   resolution: "collapse-white-space@npm:2.1.0"
@@ -6832,6 +6839,13 @@ __metadata:
   version: 8.3.0
   resolution: "commander@npm:8.3.0"
   checksum: 8b043bb8322ea1c39664a1598a95e0495bfe4ca2fad0d84a92d7d1d8d213e2a155b441d2470c8e08de7c4a28cf2bc6e169211c49e1b21d9f7edc6ae4d9356060
+  languageName: node
+  linkType: hard
+
+"commander@npm:^9.0.0":
+  version: 9.5.0
+  resolution: "commander@npm:9.5.0"
+  checksum: 5f7784fbda2aaec39e89eb46f06a999e00224b3763dc65976e05929ec486e174fe9aac2655f03ba6a5e83875bd173be5283dc19309b7c65954701c02025b3c1d
   languageName: node
   linkType: hard
 
@@ -8876,6 +8890,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fmtconv@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "fmtconv@npm:1.1.0"
+  dependencies:
+    commander: "npm:^9.0.0"
+    js-yaml: "npm:^4.1.0"
+  bin:
+    fmtconv: bin/fmtconv.js
+  checksum: 87ff84d7a8f29df9ca38e46adbe61db5c3114c463eb7b367b2832008ec33cc827e51b652c77ef7f140227bb8a73e84e552025e83c6488b31e19835b9ed0ccce3
+  languageName: node
+  linkType: hard
+
 "follow-redirects@npm:^1.0.0":
   version: 1.15.5
   resolution: "follow-redirects@npm:1.15.5"
@@ -10425,6 +10451,7 @@ __metadata:
     prism-react-renderer: "npm:^2.3.1"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
+    swagger-merger: "npm:^1.5.4"
     unist-util-visit: "npm:4.1.2"
   languageName: unknown
   linkType: soft
@@ -17100,6 +17127,20 @@ __metadata:
   bin:
     svgo: ./bin/svgo
   checksum: 28fa9061ccbcf2e3616d48d1feb613aaa05f8f290a329beb0e585914f1864385152934a7d4d683a4609fafbae3d51666633437c359c5c5ef74fb58ad09092a7c
+  languageName: node
+  linkType: hard
+
+"swagger-merger@npm:^1.5.4":
+  version: 1.5.4
+  resolution: "swagger-merger@npm:1.5.4"
+  dependencies:
+    async: "npm:^3.2.3"
+    co: "npm:^4.6.0"
+    commander: "npm:^9.0.0"
+    fmtconv: "npm:^1.1.0"
+  bin:
+    swagger-merger: bin/swagger-merger.js
+  checksum: 9cba6734bf4a3c5a97a3822c4a2a101c84be64fae3314762f2e940bcd980c5fb6940f4e4b20739473717f0233e00c7564992c16c48cb6c58012a11af7ebc9389
   languageName: node
   linkType: hard
 
