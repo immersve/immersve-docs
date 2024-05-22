@@ -119,8 +119,8 @@ post:
         **FUNDING_SOURCE_INVALID**
         Funding source cannot be used with this card program.
 
-        **KYC_PROFILE_ALREADY_PASSED_IN_ANOTHER_REGION**
-        The KYC profile passed for a region different from the request region. Use [Get a KYC profile](/get-a-kyc-profile/) endpoint to get the region of the KYC profile.
+        **KYC_PROFILE_REGION_MISMATCH**
+        The KYC profile is already passed for a region different from the requested region. Use [Get a KYC profile](/get-a-kyc-profile/) endpoint to get the current region of the KYC profile. If the current region suits, request spending prerequisites again, while specifying that region, to get the remaining prerequisites. If your integration requires a specific region other than the current one, the user cannot proceed with getting their Immersve card and they must register with a new wallet.
 
         **AML_CHECK_FAILED**
         AML check failed. This cannot be resolved.
