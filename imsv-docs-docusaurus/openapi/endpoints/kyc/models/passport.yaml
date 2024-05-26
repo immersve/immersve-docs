@@ -1,0 +1,26 @@
+properties:
+  evidenceType:
+    type: string
+    description: The type of evidence.
+    enum:
+      - PASSPORT
+  documentId:
+    type: string
+    description: The passport number.
+    example: DS230475
+  country:
+    type: string
+    description: The country that issued the document.
+    enum:
+      - NZL
+      - AUS
+    example: NZL
+  expiry:
+    type: string
+    description: The passport expiry formatted as YYYY-MM-DD.
+    example: "2024-10-12"
+required:
+  - evidenceType
+  - documentId
+  - country
+  - expiry

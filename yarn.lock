@@ -366,11 +366,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/check@npm:^0.5.10":
-  version: 0.5.10
-  resolution: "@astrojs/check@npm:0.5.10"
+"@astrojs/check@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "@astrojs/check@npm:0.7.0"
   dependencies:
-    "@astrojs/language-server": "npm:^2.8.4"
+    "@astrojs/language-server": "npm:^2.10.0"
     chokidar: "npm:^3.5.3"
     fast-glob: "npm:^3.3.1"
     kleur: "npm:^4.1.5"
@@ -379,7 +379,7 @@ __metadata:
     typescript: ^5.0.0
   bin:
     astro-check: dist/bin.js
-  checksum: af06be34d7d6adc5768576426186d92ef6d0b673d082d7a79c9183290bb9ae75544f10696906edf17a91cd9ba5034353b153abc83ed55479e8bf6df7b9ace98a
+  checksum: 7e247dacb45fa8a0ac85ee5c95476e53fa8a1d73ef176913be9be10294dc4ccc535d96246e07c7f447d9a8f159b179e1b89c12c5c384228ec5e6a2d1f34590c4
   languageName: node
   linkType: hard
 
@@ -397,25 +397,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/language-server@npm:^2.8.4":
-  version: 2.8.4
-  resolution: "@astrojs/language-server@npm:2.8.4"
+"@astrojs/language-server@npm:^2.10.0":
+  version: 2.10.0
+  resolution: "@astrojs/language-server@npm:2.10.0"
   dependencies:
     "@astrojs/compiler": "npm:^2.7.0"
     "@jridgewell/sourcemap-codec": "npm:^1.4.15"
-    "@volar/kit": "npm:~2.1.5"
-    "@volar/language-core": "npm:~2.1.5"
-    "@volar/language-server": "npm:~2.1.5"
-    "@volar/language-service": "npm:~2.1.5"
-    "@volar/typescript": "npm:~2.1.5"
+    "@volar/kit": "npm:~2.2.3"
+    "@volar/language-core": "npm:~2.2.3"
+    "@volar/language-server": "npm:~2.2.3"
+    "@volar/language-service": "npm:~2.2.3"
+    "@volar/typescript": "npm:~2.2.3"
     fast-glob: "npm:^3.2.12"
-    volar-service-css: "npm:0.0.34"
-    volar-service-emmet: "npm:0.0.34"
-    volar-service-html: "npm:0.0.34"
-    volar-service-prettier: "npm:0.0.34"
-    volar-service-typescript: "npm:0.0.34"
-    volar-service-typescript-twoslash-queries: "npm:0.0.34"
-    vscode-html-languageservice: "npm:^5.1.2"
+    volar-service-css: "npm:0.0.45"
+    volar-service-emmet: "npm:0.0.45"
+    volar-service-html: "npm:0.0.45"
+    volar-service-prettier: "npm:0.0.45"
+    volar-service-typescript: "npm:0.0.45"
+    volar-service-typescript-twoslash-queries: "npm:0.0.45"
+    vscode-html-languageservice: "npm:^5.2.0"
     vscode-uri: "npm:^3.0.8"
   peerDependencies:
     prettier: ^3.0.0
@@ -427,7 +427,7 @@ __metadata:
       optional: true
   bin:
     astro-ls: bin/nodeServer.js
-  checksum: 92ad14465cfd0f17b70805f7885f9f98f4d667244e36b65eddcc57d0a07208bb2642d0a55db760759e1eb9d27f273b4ecaf514e0fcd1f4e69f0a6a2403a83a67
+  checksum: 0fd7d9f9684b114cba65ddd56624e29d01178d03c13409533cb26b2fc46d07ea78272fd0bf8fa53cc2f78830ea564865d19a85119ecf719ecf7e31942fe92f58
   languageName: node
   linkType: hard
 
@@ -477,28 +477,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/mdx@npm:^2.1.1":
-  version: 2.3.1
-  resolution: "@astrojs/mdx@npm:2.3.1"
+"@astrojs/mdx@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@astrojs/mdx@npm:3.0.0"
   dependencies:
     "@astrojs/markdown-remark": "npm:5.1.0"
-    "@mdx-js/mdx": "npm:^3.0.0"
-    acorn: "npm:^8.11.2"
-    es-module-lexer: "npm:^1.4.1"
+    "@mdx-js/mdx": "npm:^3.0.1"
+    acorn: "npm:^8.11.3"
+    es-module-lexer: "npm:^1.5.2"
     estree-util-visit: "npm:^2.0.0"
     github-slugger: "npm:^2.0.0"
     gray-matter: "npm:^4.0.3"
-    hast-util-to-html: "npm:^9.0.0"
-    kleur: "npm:^4.1.4"
+    hast-util-to-html: "npm:^9.0.1"
+    kleur: "npm:^4.1.5"
     rehype-raw: "npm:^7.0.0"
     remark-gfm: "npm:^4.0.0"
-    remark-smartypants: "npm:^2.0.0"
+    remark-smartypants: "npm:^3.0.1"
     source-map: "npm:^0.7.4"
     unist-util-visit: "npm:^5.0.0"
     vfile: "npm:^6.0.1"
   peerDependencies:
-    astro: ^4.0.0
-  checksum: a2f377239f666f7935af7670e23191740a7fdfd8c0b4f7bd9fbc268c24dd0ffb5c7eb3045373748227d256e51bf323dcb5b1de51a6fd6a1eb8cf16d6c7487d72
+    astro: ^4.8.0
+  checksum: 2494a924cb7cf063b9cac625218d7b3a782e8bd4e642eb6a504934c3c88772e08fa96ea273dc355b4a7a556841171689952cf5a3acf9ad18c6e0a5892e2b4ba5
   languageName: node
   linkType: hard
 
@@ -533,11 +533,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/starlight@npm:^0.22.1":
-  version: 0.22.1
-  resolution: "@astrojs/starlight@npm:0.22.1"
+"@astrojs/starlight@npm:^0.23.1":
+  version: 0.23.1
+  resolution: "@astrojs/starlight@npm:0.23.1"
   dependencies:
-    "@astrojs/mdx": "npm:^2.1.1"
+    "@astrojs/mdx": "npm:^3.0.0"
     "@astrojs/sitemap": "npm:^3.0.5"
     "@pagefind/default-ui": "npm:^1.0.3"
     "@types/hast": "npm:^3.0.3"
@@ -552,13 +552,14 @@ __metadata:
     mdast-util-to-markdown: "npm:^2.1.0"
     pagefind: "npm:^1.0.3"
     rehype: "npm:^13.0.1"
+    rehype-format: "npm:^5.0.0"
     remark-directive: "npm:^3.0.0"
     unified: "npm:^11.0.4"
     unist-util-visit: "npm:^5.0.0"
     vfile: "npm:^6.0.1"
   peerDependencies:
-    astro: ^4.2.7
-  checksum: 5e3c886f671576d39a7117440771d32e847e22b2d732389cd3b2762c0402cc7ed726e8d53274268d5b5ff72f077b4b870f48ef99c85fac1a8ea44d35fb985674
+    astro: ^4.8.6
+  checksum: 20f22193d8c6411cd721f4d70a03bc6dcb41474e750fe098f547e0f1cd3445ea90ea5b06f3cedc52c16c1b39a94861e548808ebe62823f36448f4888245dc08d
   languageName: node
   linkType: hard
 
@@ -591,17 +592,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/ts-plugin@npm:^1.6.1":
-  version: 1.6.1
-  resolution: "@astrojs/ts-plugin@npm:1.6.1"
+"@astrojs/ts-plugin@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "@astrojs/ts-plugin@npm:1.8.0"
   dependencies:
     "@astrojs/compiler": "npm:^2.7.0"
     "@jridgewell/sourcemap-codec": "npm:^1.4.15"
-    "@volar/language-core": "npm:~2.1.5"
-    "@volar/typescript": "npm:~2.1.5"
+    "@volar/language-core": "npm:~2.2.3"
+    "@volar/typescript": "npm:~2.2.3"
     semver: "npm:^7.3.8"
     vscode-languageserver-textdocument: "npm:^1.0.11"
-  checksum: ddf63f08b2405ef60d15032c59b495965d75e55c1c363f3ca6d00c562a45d6272538ac8fe847a6220ab251f1ae1f879d36ffc6272c78824ebd0955687463c98f
+  checksum: b49faf86ea2b33caded8c0f8262eeb08178f8784f967f4e9aaeb555bef6f4b9f60f9780f923c85bcec32ff806618a93cebadaa6c82b7d8bb877b9d38b5e6106b
   languageName: node
   linkType: hard
 
@@ -2853,10 +2854,43 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emmetio/scanner@npm:^1.0.4":
+"@emmetio/css-parser@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@emmetio/css-parser@npm:0.4.0"
+  dependencies:
+    "@emmetio/stream-reader": "npm:^2.2.0"
+    "@emmetio/stream-reader-utils": "npm:^0.1.0"
+  checksum: 44606cb3220c4d1c910439271c5cf903ec89ce602fa25c527a25e8a744ca8e84df3ffbb82d3b44923b890884a7f889eff34c462568e5866e2ab5d98dda99c6f0
+  languageName: node
+  linkType: hard
+
+"@emmetio/html-matcher@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "@emmetio/html-matcher@npm:1.3.0"
+  dependencies:
+    "@emmetio/scanner": "npm:^1.0.0"
+  checksum: 354f6d4d52ffb124883cc350d6a09942f2ec352b03dfb928ba8c3078b0f570041b6095367367094a307388c158e6b053565c09a9c1db699517801435a0eadb5c
+  languageName: node
+  linkType: hard
+
+"@emmetio/scanner@npm:^1.0.0, @emmetio/scanner@npm:^1.0.4":
   version: 1.0.4
   resolution: "@emmetio/scanner@npm:1.0.4"
   checksum: ae6244e563caaff0f88d7afefc33fd6cfb7cc767ce914b54d35b46002637948cfc65951dba6d6941328afa54c721c225836fafce2de40fb7643660ba09fe7372
+  languageName: node
+  linkType: hard
+
+"@emmetio/stream-reader-utils@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@emmetio/stream-reader-utils@npm:0.1.0"
+  checksum: 8630a066200976aa07ce25708484e5c2458182961280dc4637a7a6e98e1f3bb59fb7bf3bf26380f74c6ff1fd40d3dbf1143f21c721833199e45f669614a33b87
+  languageName: node
+  linkType: hard
+
+"@emmetio/stream-reader@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@emmetio/stream-reader@npm:2.2.0"
+  checksum: d1a5c83b1ef062ce89b48e1fc170cd5f21b0dfa6132dc41421ef7eda455563227c047977cd4c7b70f072fa73b5af553b04cafe381c600df9bd17c58ca8238e8b
   languageName: node
   linkType: hard
 
@@ -3624,6 +3658,37 @@ __metadata:
     unist-util-visit: "npm:^5.0.0"
     vfile: "npm:^6.0.0"
   checksum: 42e631bc12f5dda528f00833f9592d05f4728fc673209f4cb08948c45751c479724f890379810baf60dfa32857793644c8ceb868f162f3798d81caa775b89aac
+  languageName: node
+  linkType: hard
+
+"@mdx-js/mdx@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@mdx-js/mdx@npm:3.0.1"
+  dependencies:
+    "@types/estree": "npm:^1.0.0"
+    "@types/estree-jsx": "npm:^1.0.0"
+    "@types/hast": "npm:^3.0.0"
+    "@types/mdx": "npm:^2.0.0"
+    collapse-white-space: "npm:^2.0.0"
+    devlop: "npm:^1.0.0"
+    estree-util-build-jsx: "npm:^3.0.0"
+    estree-util-is-identifier-name: "npm:^3.0.0"
+    estree-util-to-js: "npm:^2.0.0"
+    estree-walker: "npm:^3.0.0"
+    hast-util-to-estree: "npm:^3.0.0"
+    hast-util-to-jsx-runtime: "npm:^2.0.0"
+    markdown-extensions: "npm:^2.0.0"
+    periscopic: "npm:^3.0.0"
+    remark-mdx: "npm:^3.0.0"
+    remark-parse: "npm:^11.0.0"
+    remark-rehype: "npm:^11.0.0"
+    source-map: "npm:^0.7.0"
+    unified: "npm:^11.0.0"
+    unist-util-position-from-estree: "npm:^2.0.0"
+    unist-util-stringify-position: "npm:^4.0.0"
+    unist-util-visit: "npm:^5.0.0"
+    vfile: "npm:^6.0.0"
+  checksum: 8cd7084f1242209bbeef81f69ea670ffffa0656dda2893bbd46b1b2b26078a57f9d993f8f82ad8ba16bc969189235140007185276d7673471827331521eae2e0
   languageName: node
   linkType: hard
 
@@ -4593,6 +4658,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/nlcst@npm:^2.0.0":
+  version: 2.0.3
+  resolution: "@types/nlcst@npm:2.0.3"
+  dependencies:
+    "@types/unist": "npm:*"
+  checksum: d83549aaee59681ae8fa2a78d8a1b968a41eb7c0422773dff12acbf3661e4b2b2859740c3effdad9d0cd12ea14a0ec33ca302da12106476b627e09d2a029d3c1
+  languageName: node
+  linkType: hard
+
 "@types/node-forge@npm:^1.3.0":
   version: 1.3.11
   resolution: "@types/node-forge@npm:1.3.11"
@@ -4847,92 +4921,92 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/expect@npm:1.5.0":
-  version: 1.5.0
-  resolution: "@vitest/expect@npm:1.5.0"
+"@vitest/expect@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@vitest/expect@npm:1.6.0"
   dependencies:
-    "@vitest/spy": "npm:1.5.0"
-    "@vitest/utils": "npm:1.5.0"
+    "@vitest/spy": "npm:1.6.0"
+    "@vitest/utils": "npm:1.6.0"
     chai: "npm:^4.3.10"
-  checksum: 12138caf0831a9bcdf475750fdff27588f03f11ee5101124f9d39951bbcdec39aa6a19a1a30f3ab0ca17374ddfc7399b861e2fcb1548bba302943e8e88512a9c
+  checksum: a4351f912a70543e04960f5694f1f1ac95f71a856a46e87bba27d3eb72a08c5d11d35021cbdc6077452a152e7d93723fc804bba76c2cc53c8896b7789caadae3
   languageName: node
   linkType: hard
 
-"@vitest/runner@npm:1.5.0":
-  version: 1.5.0
-  resolution: "@vitest/runner@npm:1.5.0"
+"@vitest/runner@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@vitest/runner@npm:1.6.0"
   dependencies:
-    "@vitest/utils": "npm:1.5.0"
+    "@vitest/utils": "npm:1.6.0"
     p-limit: "npm:^5.0.0"
     pathe: "npm:^1.1.1"
-  checksum: a7b693e4121b6159a77f6cbffc03c228cd18c3734e27a968fe26579777f6d7a4d55a02fba396d564df996a91881ee76de80ee5a526d27a4b508f44a9af62d95a
+  checksum: 27d67fa51f40effe0e41ee5f26563c12c0ef9a96161f806036f02ea5eb9980c5cdf305a70673942e7a1e3d472d4d7feb40093ae93024ef1ccc40637fc65b1d2f
   languageName: node
   linkType: hard
 
-"@vitest/snapshot@npm:1.5.0":
-  version: 1.5.0
-  resolution: "@vitest/snapshot@npm:1.5.0"
+"@vitest/snapshot@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@vitest/snapshot@npm:1.6.0"
   dependencies:
     magic-string: "npm:^0.30.5"
     pathe: "npm:^1.1.1"
     pretty-format: "npm:^29.7.0"
-  checksum: d897070b3a7c008eb58d44ca0dc324c69dfc1f787335e59fb930ae2e8d02a148e6b3c13497a588083a0654bdc430281fdd84276ead4888230314a2984dd9f93d
+  checksum: be027fd268d524589ff50c5fad7b4faa1ac5742b59ac6c1dc6f5a3930aad553560e6d8775e90ac4dfae4be746fc732a6f134ba95606a1519707ce70db3a772a5
   languageName: node
   linkType: hard
 
-"@vitest/spy@npm:1.5.0":
-  version: 1.5.0
-  resolution: "@vitest/spy@npm:1.5.0"
+"@vitest/spy@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@vitest/spy@npm:1.6.0"
   dependencies:
     tinyspy: "npm:^2.2.0"
-  checksum: 0206f1e8431f543474dc6d252b553227d0f286b27226b987b63babb18865e8320e6c3d822c67782aae68555728a57ecdeb7c4e16283dbad49791608a691f26d1
+  checksum: df66ea6632b44fb76ef6a65c1abbace13d883703aff37cd6d062add6dcd1b883f19ce733af8e0f7feb185b61600c6eb4042a518e4fb66323d0690ec357f9401c
   languageName: node
   linkType: hard
 
-"@vitest/utils@npm:1.5.0":
-  version: 1.5.0
-  resolution: "@vitest/utils@npm:1.5.0"
+"@vitest/utils@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@vitest/utils@npm:1.6.0"
   dependencies:
     diff-sequences: "npm:^29.6.3"
     estree-walker: "npm:^3.0.3"
     loupe: "npm:^2.3.7"
     pretty-format: "npm:^29.7.0"
-  checksum: b9d779ea5c1a5759df4f59e3ba3f3a94816d6c600afe7a2d14b963ea114ce1acedbfe678cbfacb0a20d33cabcce890a08b2ce3fd52e3465f2e0969cc39f7686b
+  checksum: 8b0d19835866455eb0b02b31c5ca3d8ad45f41a24e4c7e1f064b480f6b2804dc895a70af332f14c11ed89581011b92b179718523f55f5b14787285a0321b1301
   languageName: node
   linkType: hard
 
-"@volar/kit@npm:~2.1.5":
-  version: 2.1.6
-  resolution: "@volar/kit@npm:2.1.6"
+"@volar/kit@npm:~2.2.3":
+  version: 2.2.4
+  resolution: "@volar/kit@npm:2.2.4"
   dependencies:
-    "@volar/language-service": "npm:2.1.6"
-    "@volar/typescript": "npm:2.1.6"
+    "@volar/language-service": "npm:2.2.4"
+    "@volar/typescript": "npm:2.2.4"
     typesafe-path: "npm:^0.2.2"
     vscode-languageserver-textdocument: "npm:^1.0.11"
     vscode-uri: "npm:^3.0.8"
   peerDependencies:
     typescript: "*"
-  checksum: 7aa3f3a1e254474df0d4233b316563b89ce6baae1cfe398622d2b67d5d296cd15f445d7acf7dd0d17f4cc8aa77ca43b06b07d42ab3a265f9a86705b7115ca0fa
+  checksum: dbb76d9cc0f86b28f33fe62a11d2d34aae4264708358dea738691e0b6b44c7cdea41d02a3b60073a4117362a950e20070754dfd698deb6d72c5e26273fe37cb1
   languageName: node
   linkType: hard
 
-"@volar/language-core@npm:2.1.6, @volar/language-core@npm:~2.1.5":
-  version: 2.1.6
-  resolution: "@volar/language-core@npm:2.1.6"
+"@volar/language-core@npm:2.2.4, @volar/language-core@npm:~2.2.3":
+  version: 2.2.4
+  resolution: "@volar/language-core@npm:2.2.4"
   dependencies:
-    "@volar/source-map": "npm:2.1.6"
-  checksum: 629da137d622b438545ea558f33c29ca87304f130f121537b3900fa314416f365b76d749cfe29a7a8a498da7296693cd275e1487fd75c90d4377348362268e2a
+    "@volar/source-map": "npm:2.2.4"
+  checksum: 2929944dc21e6e9db1942e4903228520cfb90f3cf39bd5c5f49266dfe43527d91f23ca31d94dd0a799eb164ed9856b4355b30f9d2fb26f88eaa873649654fd76
   languageName: node
   linkType: hard
 
-"@volar/language-server@npm:~2.1.5":
-  version: 2.1.6
-  resolution: "@volar/language-server@npm:2.1.6"
+"@volar/language-server@npm:~2.2.3":
+  version: 2.2.4
+  resolution: "@volar/language-server@npm:2.2.4"
   dependencies:
-    "@volar/language-core": "npm:2.1.6"
-    "@volar/language-service": "npm:2.1.6"
-    "@volar/snapshot-document": "npm:2.1.6"
-    "@volar/typescript": "npm:2.1.6"
+    "@volar/language-core": "npm:2.2.4"
+    "@volar/language-service": "npm:2.2.4"
+    "@volar/snapshot-document": "npm:2.2.4"
+    "@volar/typescript": "npm:2.2.4"
     "@vscode/l10n": "npm:^0.0.16"
     path-browserify: "npm:^1.0.1"
     request-light: "npm:^0.7.0"
@@ -4940,48 +5014,48 @@ __metadata:
     vscode-languageserver-protocol: "npm:^3.17.5"
     vscode-languageserver-textdocument: "npm:^1.0.11"
     vscode-uri: "npm:^3.0.8"
-  checksum: 8b7f26620989a2c8bd70d9613796dfc367e8a48a89e317277804440b2b5ee5e7201df43d7664e7ea671bc37a10aa7c671ad3ebb3277f0f0e898f3db9d8321218
+  checksum: 635ad8cb4eb9b6641c7fa1463b2e9484a40e3160a64b145decefad20c486921f85e20cad815ad330e0e07617e9fc42e85875fa693e8f4f504ab519b8448b652d
   languageName: node
   linkType: hard
 
-"@volar/language-service@npm:2.1.6, @volar/language-service@npm:~2.1.5":
-  version: 2.1.6
-  resolution: "@volar/language-service@npm:2.1.6"
+"@volar/language-service@npm:2.2.4, @volar/language-service@npm:~2.2.3":
+  version: 2.2.4
+  resolution: "@volar/language-service@npm:2.2.4"
   dependencies:
-    "@volar/language-core": "npm:2.1.6"
+    "@volar/language-core": "npm:2.2.4"
     vscode-languageserver-protocol: "npm:^3.17.5"
     vscode-languageserver-textdocument: "npm:^1.0.11"
     vscode-uri: "npm:^3.0.8"
-  checksum: 2529d32076dbf7e94831f35e6df7b2c484e6fc25f6b40e0d3b5c32b8066c788ec3391dca9701d72853ba025a496f68067229232010d4a03977d0e8de1df9ec9f
+  checksum: 6099356c90f782bff2f705084f3ea8cd0db5fd18a57a99ac3879fcb4a1f192abba94fb8e872f5925a5c5b60e257af4edb81562d520aa9163e13b6e8e60b601f2
   languageName: node
   linkType: hard
 
-"@volar/snapshot-document@npm:2.1.6":
-  version: 2.1.6
-  resolution: "@volar/snapshot-document@npm:2.1.6"
+"@volar/snapshot-document@npm:2.2.4":
+  version: 2.2.4
+  resolution: "@volar/snapshot-document@npm:2.2.4"
   dependencies:
     vscode-languageserver-protocol: "npm:^3.17.5"
     vscode-languageserver-textdocument: "npm:^1.0.11"
-  checksum: d72e81b5c07c991153939fe33874ad5f49d14563b69ab808d1a0ee801543f36aba862284a199acecdd8339fe11fcfd0e4cbf181a6c3b1f3043fedcc2772fc50a
+  checksum: 4f839f79400328125574b033eb8f54a9ff4bea572b24a6f97a8751dc65650555f3474cbb333e0809397d38684c42fb3b3112c19a30115492b4e6b75dad04607b
   languageName: node
   linkType: hard
 
-"@volar/source-map@npm:2.1.6":
-  version: 2.1.6
-  resolution: "@volar/source-map@npm:2.1.6"
+"@volar/source-map@npm:2.2.4":
+  version: 2.2.4
+  resolution: "@volar/source-map@npm:2.2.4"
   dependencies:
     muggle-string: "npm:^0.4.0"
-  checksum: 12c10f53cfdc3eab49e6aa4a837de4b474ce7f6aca71f0ff72b089e940cb760c06e5ec7e3520018f498e7f268f6062c6255a752bc7deebdcbfb88cf771c5dd10
+  checksum: 8d9c880d354bf20b74fdfdd8ee51a20681338b16196c701fbe07191fbd6f737dbe1cd9c2b4d6d4a478b250c99d4cbe1a34073cc099f2e24645d68c9086629bf4
   languageName: node
   linkType: hard
 
-"@volar/typescript@npm:2.1.6, @volar/typescript@npm:~2.1.5":
-  version: 2.1.6
-  resolution: "@volar/typescript@npm:2.1.6"
+"@volar/typescript@npm:2.2.4, @volar/typescript@npm:~2.2.3":
+  version: 2.2.4
+  resolution: "@volar/typescript@npm:2.2.4"
   dependencies:
-    "@volar/language-core": "npm:2.1.6"
+    "@volar/language-core": "npm:2.2.4"
     path-browserify: "npm:^1.0.1"
-  checksum: f9c8d653cc972ad02794e4455764bbf75183f8e9f2fc8e683b96b7a193514ac6f7198352741ed4ef6b21bbaa52b8e49aee9115f6dde780b74c10773c59840855
+  checksum: 8b5e3eff64afc614201b4dc4285e52ec37814e1a7d2dee911e65d46d0e79eed376934757d7629490e103653fd4dadcc668bc30392ef1f51a34a273420d473b95
   languageName: node
   linkType: hard
 
@@ -5235,7 +5309,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn@npm:^8.0.0, acorn@npm:^8.0.4, acorn@npm:^8.11.2, acorn@npm:^8.11.3, acorn@npm:^8.7.1, acorn@npm:^8.8.2":
+"acorn@npm:^8.0.0, acorn@npm:^8.0.4, acorn@npm:^8.11.3, acorn@npm:^8.7.1, acorn@npm:^8.8.2":
   version: 8.11.3
   resolution: "acorn@npm:8.11.3"
   bin:
@@ -5588,9 +5662,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"astro@npm:^4.8.2":
-  version: 4.8.2
-  resolution: "astro@npm:4.8.2"
+"astro@npm:^4.8.3":
+  version: 4.8.3
+  resolution: "astro@npm:4.8.3"
   dependencies:
     "@astrojs/compiler": "npm:^2.8.0"
     "@astrojs/internal-helpers": "npm:0.4.0"
@@ -5621,7 +5695,7 @@ __metadata:
     dlv: "npm:^1.1.3"
     dset: "npm:^3.1.3"
     es-module-lexer: "npm:^1.5.2"
-    esbuild: "npm:^0.21.1"
+    esbuild: "npm:^0.21.2"
     estree-walker: "npm:^3.0.3"
     execa: "npm:^8.0.1"
     fast-glob: "npm:^3.3.2"
@@ -5642,9 +5716,9 @@ __metadata:
     prompts: "npm:^2.4.2"
     rehype: "npm:^13.0.1"
     resolve: "npm:^1.22.8"
-    semver: "npm:^7.6.1"
+    semver: "npm:^7.6.2"
     sharp: "npm:^0.33.3"
-    shiki: "npm:^1.5.0"
+    shiki: "npm:^1.5.1"
     string-width: "npm:^7.1.0"
     strip-ansi: "npm:^7.1.0"
     tsconfck: "npm:^3.0.3"
@@ -5661,7 +5735,7 @@ __metadata:
       optional: true
   bin:
     astro: astro.js
-  checksum: 4d47efceef6762c5e510f9f45d30fa2828b3a147dc678d475a185324edf4bb886f6813d973da79dcfbea24fb1dc9558e4b36e1ff4bb03d2c78070ce74322abe0
+  checksum: 050fd8b57e9c32087b442cf81c4a0d91c8bfaae8a2602ac30922fd7beb7d650de7380dfe5c590cb429e954bc314782a0f781b17fb69d8b33020c0bd4d36b4179
   languageName: node
   linkType: hard
 
@@ -7671,9 +7745,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docusaurus-lunr-search@npm:^3.3.2":
-  version: 3.3.2
-  resolution: "docusaurus-lunr-search@npm:3.3.2"
+"docusaurus-lunr-search@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "docusaurus-lunr-search@npm:3.4.0"
   dependencies:
     autocomplete.js: "npm:^0.37.0"
     clsx: "npm:^1.2.1"
@@ -7693,7 +7767,7 @@ __metadata:
     "@docusaurus/core": ^2.0.0-alpha.60 || ^2.0.0 || ^3.0.0
     react: ^16.8.4 || ^17 || ^18
     react-dom: ^16.8.4 || ^17 || ^18
-  checksum: 051589fa2e984832407102aa544c1d89b9df9f6988d29c19fabd95101a85efd7ed6b37c548e2f6f9bcdf6fd3ad877f5efaf9f59cf40dbdb18c8f2c2997ac6148
+  checksum: 81aac7d8aa4a8be2f54c83198978d5a2a9a8a88eb798f54c075fe10860fd0b52b35f5943b5b2e18f24bdb96a97fe386349837905b386477a5d635177e4ed7f68
   languageName: node
   linkType: hard
 
@@ -8065,7 +8139,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es-module-lexer@npm:^1.2.1, es-module-lexer@npm:^1.4.1":
+"es-module-lexer@npm:^1.2.1":
   version: 1.4.1
   resolution: "es-module-lexer@npm:1.4.1"
   checksum: b7260a138668554d3f0ddcc728cb4b60c2fa463f15545cf155ecbdd5450a1348952d58298a7f48642e900ee579f21d7f5304b6b3c61b3d9fc2d4b2109b5a9dff
@@ -8166,7 +8240,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.21.1":
+"esbuild@npm:^0.21.2":
   version: 0.21.2
   resolution: "esbuild@npm:0.21.2"
   dependencies:
@@ -9401,6 +9475,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hast-util-embedded@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "hast-util-embedded@npm:3.0.0"
+  dependencies:
+    "@types/hast": "npm:^3.0.0"
+    hast-util-is-element: "npm:^3.0.0"
+  checksum: 054c3d3b96fcd5c1d1c6f8d38ce1f7f33022ba6362129a022673d0b539f876acdcababbb9df29812fb927294f98ef7a2f44519a80d637fe3eea1819c9e69eeac
+  languageName: node
+  linkType: hard
+
 "hast-util-from-html@npm:^2.0.0, hast-util-from-html@npm:^2.0.1":
   version: 2.0.1
   resolution: "hast-util-from-html@npm:2.0.1"
@@ -9476,6 +9560,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hast-util-is-body-ok-link@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "hast-util-is-body-ok-link@npm:3.0.0"
+  dependencies:
+    "@types/hast": "npm:^3.0.0"
+  checksum: 8569590d9ec2038da71ef8ccaf3a3f89556df1c73e2fff6ba3281e04fd6c3a833b82c665518e01df98f83b7b0b91734abddbe5d105fff9709a3b9705411beeda
+  languageName: node
+  linkType: hard
+
 "hast-util-is-element@npm:^1.0.0":
   version: 1.1.0
   resolution: "hast-util-is-element@npm:1.1.0"
@@ -9514,6 +9607,19 @@ __metadata:
   dependencies:
     "@types/hast": "npm:^3.0.0"
   checksum: 5e98168cb44470dc274aabf1a28317e4feb09b1eaf7a48bbaa8c1de1b43a89cd195cb1284e535698e658e3ec26ad91bc5e52c9563c36feb75abbc68aaf68fb9f
+  languageName: node
+  linkType: hard
+
+"hast-util-phrasing@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "hast-util-phrasing@npm:3.0.1"
+  dependencies:
+    "@types/hast": "npm:^3.0.0"
+    hast-util-embedded: "npm:^3.0.0"
+    hast-util-has-property: "npm:^3.0.0"
+    hast-util-is-body-ok-link: "npm:^3.0.0"
+    hast-util-is-element: "npm:^3.0.0"
+  checksum: d77e186ea3d7d62f6db9c4a55c3e6d9f1f6affd5f40250e8de9d73f167ae19fcc02fafe1601dfbe36e90f76ed5013ac004f0b6b398aee3a04a7a81de12788600
   languageName: node
   linkType: hard
 
@@ -9997,6 +10103,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"html-whitespace-sensitive-tag-names@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "html-whitespace-sensitive-tag-names@npm:3.0.0"
+  checksum: 720e383c33dca6170c6ecae2f66c87fc2afbc466a80f470a80257d4071ab8406ad13e2525d03aa1cf576f0c2b3f68cb7e3d0358750d2e5daf8076ff6170d3378
+  languageName: node
+  linkType: hard
+
 "htmlparser2@npm:^6.1.0":
   version: 6.1.0
   resolution: "htmlparser2@npm:6.1.0"
@@ -10280,18 +10393,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "imsv-docs-astro@workspace:imsv-docs-astro"
   dependencies:
-    "@astrojs/check": "npm:^0.5.10"
+    "@astrojs/check": "npm:^0.7.0"
     "@astrojs/markdoc": "npm:^0.11.0"
-    "@astrojs/starlight": "npm:^0.22.1"
+    "@astrojs/starlight": "npm:^0.23.1"
     "@astrojs/starlight-tailwind": "npm:^2.0.1"
     "@astrojs/tailwind": "npm:^5.1.0"
-    "@astrojs/ts-plugin": "npm:^1.6.1"
+    "@astrojs/ts-plugin": "npm:^1.8.0"
     "@tailwindcss/typography": "npm:^0.5.13"
-    astro: "npm:^4.8.2"
+    astro: "npm:^4.8.3"
     glob: "npm:^10.3.15"
     tailwindcss: "npm:^3.4.3"
     typescript: "npm:^5.3.3"
-    vitest: "npm:^1.5.0"
+    vitest: "npm:^1.6.0"
   languageName: unknown
   linkType: soft
 
@@ -10305,7 +10418,7 @@ __metadata:
     "@mdx-js/react": "npm:^3.0.1"
     "@types/react": "npm:^18.3.1"
     clsx: "npm:^1.2.1"
-    docusaurus-lunr-search: "npm:^3.3.2"
+    docusaurus-lunr-search: "npm:^3.4.0"
     docusaurus-plugin-openapi-docs: "npm:^3.0.0-beta.10"
     docusaurus-theme-openapi-docs: "npm:^3.0.0-beta.10"
     prettier: "npm:^2.8.5"
@@ -11068,7 +11181,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kleur@npm:^4.0.3, kleur@npm:^4.1.4, kleur@npm:^4.1.5":
+"kleur@npm:^4.0.3, kleur@npm:^4.1.5":
   version: 4.1.5
   resolution: "kleur@npm:4.1.5"
   checksum: e9de6cb49657b6fa70ba2d1448fd3d691a5c4370d8f7bbf1c2f64c24d461270f2117e1b0afe8cb3114f13bbd8e51de158c2a224953960331904e636a5e4c0f2a
@@ -12921,6 +13034,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nlcst-to-string@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "nlcst-to-string@npm:4.0.0"
+  dependencies:
+    "@types/nlcst": "npm:^2.0.0"
+  checksum: a192c8b3365a7c076812004e72ae5b4a1734e582be2a6f3c062f3beecf18868a9fe2d1bad870bfead320fb39830f2c4f3752e5ae6574c4e59157126fd1ddba70
+  languageName: node
+  linkType: hard
+
 "no-case@npm:^3.0.4":
   version: 3.0.4
   resolution: "no-case@npm:3.0.4"
@@ -13582,6 +13704,20 @@ __metadata:
     unist-util-modify-children: "npm:^3.0.0"
     unist-util-visit-children: "npm:^2.0.0"
   checksum: 7da3059ffd71217233c0a65be75696b16297aa7eda4a5dd5a2c96d32738002afd81ce084821ab8f8e3e2724b719d2124ae0fff8383000989b2fda08dec8454fe
+  languageName: node
+  linkType: hard
+
+"parse-latin@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "parse-latin@npm:7.0.0"
+  dependencies:
+    "@types/nlcst": "npm:^2.0.0"
+    "@types/unist": "npm:^3.0.0"
+    nlcst-to-string: "npm:^4.0.0"
+    unist-util-modify-children: "npm:^4.0.0"
+    unist-util-visit-children: "npm:^3.0.0"
+    vfile: "npm:^6.0.0"
+  checksum: 4232a464f98c41c6680575c54bc2c9b21ac4b82a1f796a871bfef5efa6eddaab9bccf734b08cde6b0a5504ef46a0a14041ddd0bc5d9cc70f73a507f93f610596
   languageName: node
   linkType: hard
 
@@ -15212,6 +15348,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rehype-format@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "rehype-format@npm:5.0.0"
+  dependencies:
+    "@types/hast": "npm:^3.0.0"
+    hast-util-embedded: "npm:^3.0.0"
+    hast-util-is-element: "npm:^3.0.0"
+    hast-util-phrasing: "npm:^3.0.0"
+    hast-util-whitespace: "npm:^3.0.0"
+    html-whitespace-sensitive-tag-names: "npm:^3.0.0"
+    rehype-minify-whitespace: "npm:^6.0.0"
+    unist-util-visit-parents: "npm:^6.0.0"
+  checksum: df14a2ea3d1d9448ffb0bb1c79f181114312366ceb95b4c442ba0eb5bf393296241d100391c66e9f36bff6ba3233d4def7971fbfd7f99d2bf2e04d51fd1f88a9
+  languageName: node
+  linkType: hard
+
+"rehype-minify-whitespace@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "rehype-minify-whitespace@npm:6.0.0"
+  dependencies:
+    "@types/hast": "npm:^3.0.0"
+    hast-util-embedded: "npm:^3.0.0"
+    hast-util-is-element: "npm:^3.0.0"
+    hast-util-whitespace: "npm:^3.0.0"
+    unist-util-is: "npm:^6.0.0"
+  checksum: 4102748d5e9dbceca29465e9e53e48e8554604e471acaadbea6ef7e9d6b37932dec94087aad0971df9bed9460eb1ff59132890842ccc21510528f40a16654527
+  languageName: node
+  linkType: hard
+
 "rehype-parse@npm:^7.0.1":
   version: 7.0.1
   resolution: "rehype-parse@npm:7.0.1"
@@ -15405,6 +15570,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"remark-smartypants@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "remark-smartypants@npm:3.0.1"
+  dependencies:
+    retext: "npm:^9.0.0"
+    retext-smartypants: "npm:^6.0.0"
+    unified: "npm:^11.0.4"
+    unist-util-visit: "npm:^5.0.0"
+  checksum: db0cc1aafa0aa6d5a599a343f0b27cf929f86051b7bcc1daa0e028ea58fd0bf195932e26f50678949562f2e0400a71c427cd15a6851b4ba76806ae457998e318
+  languageName: node
+  linkType: hard
+
 "remark-stringify@npm:^11.0.0":
   version: 11.0.0
   resolution: "remark-stringify@npm:11.0.0"
@@ -15563,6 +15740,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"retext-latin@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "retext-latin@npm:4.0.0"
+  dependencies:
+    "@types/nlcst": "npm:^2.0.0"
+    parse-latin: "npm:^7.0.0"
+    unified: "npm:^11.0.0"
+  checksum: 51530be66db9ef6ab8e9cda5dd0598377ff4321481d6a941bf70dac16fa6e9123ff7d8ff093a05c30a3e00e282e37094b845b6130a8005a3cb7186a961ab99cb
+  languageName: node
+  linkType: hard
+
 "retext-smartypants@npm:^5.2.0":
   version: 5.2.0
   resolution: "retext-smartypants@npm:5.2.0"
@@ -15572,6 +15760,17 @@ __metadata:
     unified: "npm:^10.0.0"
     unist-util-visit: "npm:^4.0.0"
   checksum: 446e7649f3886e79aa5ed3f625e4f2cd2001b592123b576e358284f4ac5835f17bc851220b64938e08e854095c77cbdb184a850ae416493284f423c5d200a9ed
+  languageName: node
+  linkType: hard
+
+"retext-smartypants@npm:^6.0.0":
+  version: 6.1.0
+  resolution: "retext-smartypants@npm:6.1.0"
+  dependencies:
+    "@types/nlcst": "npm:^2.0.0"
+    nlcst-to-string: "npm:^4.0.0"
+    unist-util-visit: "npm:^5.0.0"
+  checksum: 9247095884c192377b40309c48f2185fd6bee9800c34cf60c4886ab0653353bd9b1617007da655147a680b3e869730c017abcdcda5d64299aecda4d5173dda49
   languageName: node
   linkType: hard
 
@@ -15586,6 +15785,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"retext-stringify@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "retext-stringify@npm:4.0.0"
+  dependencies:
+    "@types/nlcst": "npm:^2.0.0"
+    nlcst-to-string: "npm:^4.0.0"
+    unified: "npm:^11.0.0"
+  checksum: eb2930356c85999a8978092a5d6ba3695fea859c71f221dcdc485704552922641bc17e50fea2ae0599d665192eaad002e98bb4236ecac94a570b73581b99004d
+  languageName: node
+  linkType: hard
+
 "retext@npm:^8.1.0":
   version: 8.1.0
   resolution: "retext@npm:8.1.0"
@@ -15595,6 +15805,18 @@ __metadata:
     retext-stringify: "npm:^3.0.0"
     unified: "npm:^10.0.0"
   checksum: aec880d16feeb47b2d21dd639c5f2717424a4d6b2f4fe21521159572f610caa02f376a75fcc8d35fa6ac91f2dc44f76a7da2be4e1f41976f707cbdf48bd4e63f
+  languageName: node
+  linkType: hard
+
+"retext@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "retext@npm:9.0.0"
+  dependencies:
+    "@types/nlcst": "npm:^2.0.0"
+    retext-latin: "npm:^4.0.0"
+    retext-stringify: "npm:^4.0.0"
+    unified: "npm:^11.0.0"
+  checksum: eee9f66ff6fae5670a5eeccc0b5e2639112f868475273ce307d3079cfe7deb9d1b0f2b8fa28b4ab30abaf8538345185a44908f461a27bbf43c4f94feda90ecac
   languageName: node
   linkType: hard
 
@@ -15953,7 +16175,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.6.1":
+"semver@npm:^7.6.2":
   version: 7.6.2
   resolution: "semver@npm:7.6.2"
   bin:
@@ -16232,7 +16454,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shiki@npm:^1.5.0":
+"shiki@npm:^1.5.1":
   version: 1.5.1
   resolution: "shiki@npm:1.5.1"
   dependencies:
@@ -17461,6 +17683,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"unist-util-modify-children@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "unist-util-modify-children@npm:4.0.0"
+  dependencies:
+    "@types/unist": "npm:^3.0.0"
+    array-iterate: "npm:^2.0.0"
+  checksum: 63d44b09a2e4c674c72816d4328d668972e68cc965ea719fef1c642b66a3ebe3b102e284a3213b4920ebccff05e0f689b4eaae8a0e5c3dafcad117d1577496da
+  languageName: node
+  linkType: hard
+
 "unist-util-position-from-estree@npm:^2.0.0":
   version: 2.0.0
   resolution: "unist-util-position-from-estree@npm:2.0.0"
@@ -17531,6 +17763,15 @@ __metadata:
   dependencies:
     "@types/unist": "npm:^2.0.0"
   checksum: d43d80f35b6845a37d6a52ff8b9065401e779c30ba7323e83fb54b980007483027db955ae6a34904754b8b1b5e7d764d921546251b85096203ca5116c1b05596
+  languageName: node
+  linkType: hard
+
+"unist-util-visit-children@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "unist-util-visit-children@npm:3.0.0"
+  dependencies:
+    "@types/unist": "npm:^3.0.0"
+  checksum: 51e95f54fbf11d414952c011c761c3960864948ad3fd2abe3989eb18b18d96b8f48e7ea5ab6f23264d1a3f4f5a1ff76312dd8f2196c78b762098403505c3abb9
   languageName: node
   linkType: hard
 
@@ -17911,9 +18152,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-node@npm:1.5.0":
-  version: 1.5.0
-  resolution: "vite-node@npm:1.5.0"
+"vite-node@npm:1.6.0":
+  version: 1.6.0
+  resolution: "vite-node@npm:1.6.0"
   dependencies:
     cac: "npm:^6.7.14"
     debug: "npm:^4.3.4"
@@ -17922,7 +18163,7 @@ __metadata:
     vite: "npm:^5.0.0"
   bin:
     vite-node: vite-node.mjs
-  checksum: 85f9e8616f3612c71193a2bbdfb00f610685108a65eaa7ac535655ca1bd65dda5436ee577465436f715966f34e4b25b54140bbd584fe2c95ea0726acf4ecd351
+  checksum: 0807e6501ac7763e0efa2b4bd484ce99fb207e92c98624c9f8999d1f6727ac026e457994260fa7fdb7060d87546d197081e46a705d05b0136a38b6f03715cbc2
   languageName: node
   linkType: hard
 
@@ -18018,15 +18259,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "vitest@npm:1.5.0"
+"vitest@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "vitest@npm:1.6.0"
   dependencies:
-    "@vitest/expect": "npm:1.5.0"
-    "@vitest/runner": "npm:1.5.0"
-    "@vitest/snapshot": "npm:1.5.0"
-    "@vitest/spy": "npm:1.5.0"
-    "@vitest/utils": "npm:1.5.0"
+    "@vitest/expect": "npm:1.6.0"
+    "@vitest/runner": "npm:1.6.0"
+    "@vitest/snapshot": "npm:1.6.0"
+    "@vitest/spy": "npm:1.6.0"
+    "@vitest/utils": "npm:1.6.0"
     acorn-walk: "npm:^8.3.2"
     chai: "npm:^4.3.10"
     debug: "npm:^4.3.4"
@@ -18040,13 +18281,13 @@ __metadata:
     tinybench: "npm:^2.5.1"
     tinypool: "npm:^0.8.3"
     vite: "npm:^5.0.0"
-    vite-node: "npm:1.5.0"
+    vite-node: "npm:1.6.0"
     why-is-node-running: "npm:^2.2.2"
   peerDependencies:
     "@edge-runtime/vm": "*"
     "@types/node": ^18.0.0 || >=20.0.0
-    "@vitest/browser": 1.5.0
-    "@vitest/ui": 1.5.0
+    "@vitest/browser": 1.6.0
+    "@vitest/ui": 1.6.0
     happy-dom: "*"
     jsdom: "*"
   peerDependenciesMeta:
@@ -18064,7 +18305,7 @@ __metadata:
       optional: true
   bin:
     vitest: vitest.mjs
-  checksum: 87f6666cccd52678a0e1dbf32e7492e4003580a168114221e4c2d404d53097d886a8be4c5c379e347d0e749affa0ea5416e4e3a0356aeca228a77ee54891ca3c
+  checksum: 065da5b8ead51eb174d93dac0cd50042ca9539856dc25e340ea905d668c41961f7e00df3e388e6c76125b2c22091db2e8465f993d0f6944daf9598d549e562e7
   languageName: node
   linkType: hard
 
@@ -18075,85 +18316,86 @@ __metadata:
   languageName: node
   linkType: hard
 
-"volar-service-css@npm:0.0.34":
-  version: 0.0.34
-  resolution: "volar-service-css@npm:0.0.34"
+"volar-service-css@npm:0.0.45":
+  version: 0.0.45
+  resolution: "volar-service-css@npm:0.0.45"
   dependencies:
     vscode-css-languageservice: "npm:^6.2.10"
     vscode-languageserver-textdocument: "npm:^1.0.11"
     vscode-uri: "npm:^3.0.8"
   peerDependencies:
-    "@volar/language-service": ~2.1.0
+    "@volar/language-service": ~2.2.3
   peerDependenciesMeta:
     "@volar/language-service":
       optional: true
-  checksum: 191464a957fed14cf6e0391343d60b9b2896a47efb54293e5c4ffb35de6aade1f68e0a00ebabfdd4511eafa1a0e9e1aada3a0f7c33da66d64c8e0a796257934e
+  checksum: 0578d29f3a79fab269500a28f2cbd4970e399029742cc7411c2a5240fee3634bf31a4fb2e1c06f5348dd3376762b3d61198769e546bf50646d269380df17c4c1
   languageName: node
   linkType: hard
 
-"volar-service-emmet@npm:0.0.34":
-  version: 0.0.34
-  resolution: "volar-service-emmet@npm:0.0.34"
+"volar-service-emmet@npm:0.0.45":
+  version: 0.0.45
+  resolution: "volar-service-emmet@npm:0.0.45"
   dependencies:
+    "@emmetio/css-parser": "npm:^0.4.0"
+    "@emmetio/html-matcher": "npm:^1.3.0"
     "@vscode/emmet-helper": "npm:^2.9.2"
-    vscode-html-languageservice: "npm:^5.1.0"
   peerDependencies:
-    "@volar/language-service": ~2.1.0
+    "@volar/language-service": ~2.2.3
   peerDependenciesMeta:
     "@volar/language-service":
       optional: true
-  checksum: ef8fc1e162f78f00dd39a0695d4f755b823af8f2a4d9ff5a22636ea7eeb9dbc38e0384214d967e1d750ddce03650a8c5999baf625cc5ec703a2bbb8c1bb7f6d8
+  checksum: fcd5d40565e2f4b4b57c3c7ba3cf977e97aeef054e383b2eb7aa1a71670dd7a8ebb90722b13f29711e7a91ccd0260423e331600f0b95e993119fe30cc5ce74c0
   languageName: node
   linkType: hard
 
-"volar-service-html@npm:0.0.34":
-  version: 0.0.34
-  resolution: "volar-service-html@npm:0.0.34"
+"volar-service-html@npm:0.0.45":
+  version: 0.0.45
+  resolution: "volar-service-html@npm:0.0.45"
   dependencies:
-    vscode-html-languageservice: "npm:^5.1.0"
+    vscode-html-languageservice: "npm:@johnsoncodehk/vscode-html-languageservice@5.2.0-34a5462"
     vscode-languageserver-textdocument: "npm:^1.0.11"
     vscode-uri: "npm:^3.0.8"
   peerDependencies:
-    "@volar/language-service": ~2.1.0
+    "@volar/language-service": ~2.2.3
   peerDependenciesMeta:
     "@volar/language-service":
       optional: true
-  checksum: f5e8547e6bf13d8c37df5eb4393d130b52ebb36cd58e6b3fbcfa40d7165352c9c2f2d6ebf174754131609725893b129832ab3805ad1c0d37ac4fd4a5cc05e6ab
+  checksum: b4d9c6fdbd55334ddf3ee1d3783c3e96e4835725c47b2a9417af670800cdb2e9476fed9dd9ad15f68101e6b1de2aaaf5e73aecaa185832e46633d7e57c2da4cb
   languageName: node
   linkType: hard
 
-"volar-service-prettier@npm:0.0.34":
-  version: 0.0.34
-  resolution: "volar-service-prettier@npm:0.0.34"
+"volar-service-prettier@npm:0.0.45":
+  version: 0.0.45
+  resolution: "volar-service-prettier@npm:0.0.45"
   dependencies:
     vscode-uri: "npm:^3.0.8"
   peerDependencies:
-    "@volar/language-service": ~2.1.0
+    "@volar/language-service": ~2.2.3
     prettier: ^2.2 || ^3.0
   peerDependenciesMeta:
     "@volar/language-service":
       optional: true
     prettier:
       optional: true
-  checksum: f0f8f67b8826c9117626cd92a772d53286baf336986672529876c50b624d745e01d7bad2deab9d8441f7e4e0d15f1b9ad1a3dbe214d555ea501a9e9f2f29a923
+  checksum: 18172c2579a58e749e36a218573ccaba095d91f43629c737258a77c5a31284e909ec4d468e056b1ae606c267e2f40061c14a0084422250061eb8fcd815df4d16
   languageName: node
   linkType: hard
 
-"volar-service-typescript-twoslash-queries@npm:0.0.34":
-  version: 0.0.34
-  resolution: "volar-service-typescript-twoslash-queries@npm:0.0.34"
+"volar-service-typescript-twoslash-queries@npm:0.0.45":
+  version: 0.0.45
+  resolution: "volar-service-typescript-twoslash-queries@npm:0.0.45"
   peerDependencies:
-    "@volar/language-service": ~2.1.0
+    "@volar/language-service": ~2.2.3
   peerDependenciesMeta:
     "@volar/language-service":
       optional: true
-  checksum: 8efa8c1a8f8f8c439cb649772c8c7d87801625cc439d681514fef88186544afc66529f48d69dc4668cb7a560d41cb2fb36e17014a4dd8c0659bff7bad76b2c36
+  checksum: 6ae7e56a35afbd35a11ce8a447f03a9fb1376c2260204d28e23a8f459f4bbd6c48af13ed96641a7ae5cd4158f487321a0f5746dd26c5c4fab7590f4e123905be
   languageName: node
   linkType: hard
 
-"volar-service-typescript@npm:0.0.34":
-  version: 0.0.34
-  resolution: "volar-service-typescript@npm:0.0.34"
+"volar-service-typescript@npm:0.0.45":
+  version: 0.0.45
+  resolution: "volar-service-typescript@npm:0.0.45"
   dependencies:
     path-browserify: "npm:^1.0.1"
     semver: "npm:^7.5.4"
@@ -18161,11 +18403,11 @@ __metadata:
     vscode-languageserver-textdocument: "npm:^1.0.11"
     vscode-nls: "npm:^5.2.0"
   peerDependencies:
-    "@volar/language-service": ~2.1.0
+    "@volar/language-service": ~2.2.3
   peerDependenciesMeta:
     "@volar/language-service":
       optional: true
-  checksum: 063214f45b98ae85b43d94e097c3d5cc84f390a505df2323e24ed53843773e9b0f966ff644672f17e309ec6d0c64abca18a63a9c6f5b20370434b7c09c5d84db
+  checksum: 3e9eebb6d7b3918b872096e5426675eb46dd873ddd0c76f12f7fa62a63f9073c265aa9576c4074c429e290f7f7250e78f7184d42ae1cd352b7e77db28e4f7cae
   languageName: node
   linkType: hard
 
@@ -18181,19 +18423,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vscode-html-languageservice@npm:^5.1.0":
-  version: 5.1.2
-  resolution: "vscode-html-languageservice@npm:5.1.2"
+"vscode-html-languageservice@npm:@johnsoncodehk/vscode-html-languageservice@5.2.0-34a5462":
+  version: 5.2.0-34a5462
+  resolution: "@johnsoncodehk/vscode-html-languageservice@npm:5.2.0-34a5462"
   dependencies:
     "@vscode/l10n": "npm:^0.0.18"
     vscode-languageserver-textdocument: "npm:^1.0.11"
     vscode-languageserver-types: "npm:^3.17.5"
     vscode-uri: "npm:^3.0.8"
-  checksum: e0a876f2eea44d21b3f9ceb0ac9bc356f467d5a650df4664445a107d8826c639d8e2f9425b05d204f7ca9cd04dac34255661d35e8d4e3bb4e072068d00fd8025
+  checksum: 36aa0ff48e6735d3d2731bee65eb2ba0ce40ef62376506f95895f6163cef9252e66902bf6c23f6e307f0fe40b055efde3541b5483b0d534e955f9979a352d0c0
   languageName: node
   linkType: hard
 
-"vscode-html-languageservice@npm:^5.1.2":
+"vscode-html-languageservice@npm:^5.2.0":
   version: 5.2.0
   resolution: "vscode-html-languageservice@npm:5.2.0"
   dependencies:

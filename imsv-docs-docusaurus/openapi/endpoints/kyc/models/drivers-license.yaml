@@ -1,0 +1,33 @@
+properties:
+  evidenceType:
+    type: string
+    description: The type of evidence.
+    enum:
+      - DRIVERS_LICENSE
+  documentId:
+    type: string
+    description: The license number.
+    example: DS230475
+  country:
+    type: string
+    description: The country that issued the document.
+    enum:
+      - NZL
+      - AUS
+    example: NZL
+  region:
+    type: string
+    description: |
+      Where appropriate, the state or region that issued the document, in the format provided by the issuer.
+      e.g. for Australia a Victorian Drivers license, this would be 'VIC'.
+      For New Zealand no value is required.
+    example: VIC
+  version:
+    type: string
+    description: The driver's license card number or version
+    example: "978"
+required:
+  - evidenceType
+  - documentId
+  - country
+  - version

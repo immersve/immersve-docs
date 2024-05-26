@@ -67,6 +67,16 @@ references, modify immersve.yaml (not the derived mdx files). Then run:
 yarn api-re-gen
 ```
 
+To generate a self-contained OpenAPI specification file use [swagger-codegen](https://github.com/swagger-api/swagger-codegen):
+```shell
+swagger-codegen generate -l openapi-yaml -i ./imsv-docs-docusaurus/openapi/immersve.yaml -o ./output
+```
+
+The easiest way to install `swagger-codegen` on macOS is using Homebrew:
+```shell
+brew install swagger-codegen
+```
+
 ## Redirects
 
 When changing URLs, redirects should be declared to preserve inbound links to

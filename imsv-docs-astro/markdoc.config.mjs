@@ -63,6 +63,12 @@ export default defineMarkdocConfig({
         class: { type: String },
       },
     },
+    warning:{
+      render: component('./src/components/Warning.astro'),
+      attributes: {
+        class: { type: String },
+      },
+    },
     tab: {
       render: component('./src/components/Tab.astro'),
     },

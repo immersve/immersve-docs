@@ -34,7 +34,16 @@ See the [KYC API endpoint references](https://docs.immersve.com/api-reference/ky
 
 ## Submit cardholder KYC statement
 [Submit KYC statement](https://docs.immersve.com/api-reference/submit-partner-kyc-statement#submit-partner-kyc-statement) about the cardholder account.
-Provide "passall" as the middle name, the check should be successful regardless of the validity of the rest of the details.
+
+{% note %}
+When testing, to improve chances of a successful response, please provide "passall" as the middleName, and generate a random givenName, familyName, and dateOfBirth.
+See example below.
+{% /note %}
+
+{% warning %}
+Be careful when setting the region as this cannot be changed. You will need to create a new wallet if this is incorrectly supplied.
+{% /warning %}
+
 {% code %}
   ```bash
     curl -X PUT "https://test.immersve.com/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
@@ -44,14 +53,15 @@ Provide "passall" as the middle name, the check should be successful regardless 
       -H "x-api-secret: ${card_issuer_api_secret}" \
       --data '{
           "idempotencyKey": "some_random_key_thats_unique_for_each_request",
-          "timestamp": "2023-08-08T04:15:48.013Z",
+          "region": "NZL",
           "claims": [
               {
                   "claimType": "FULL_NAME",
                   "attributes": {
-                      "givenName": "RONALD",
+                      "givenName": "RONALD_EayrWpaOEZ",
+                      "middleName": "PASSALL",
                       "honorific": "Mr",
-                      "familyName": "Lopez"
+                      "familyName": "Lopez_enzjaPOIXM"
                   }
               },
               {
@@ -72,7 +82,7 @@ Provide "passall" as the middle name, the check should be successful regardless 
               {
                   "claimType": "DOB",
                   "attributes": {
-                      "country": "NZL",
+                      "country": "AUS",
                       "dateOfBirth": "1980-05-09",
                       "locality": "Brisbane",
                       "yearOfBirth": "1978"
@@ -81,10 +91,12 @@ Provide "passall" as the middle name, the check should be successful regardless 
           ],
           "evidence": [
               {
-                  "evidenceType": "PASSPORT",
-                  "documentId": "LZ651555",
-                  "country": "NZL",
-                  "expiry": "2024-10-12"
+                  "evidenceType": "DRIVERS_LICENSE",
+                  "documentId": "80513",
+                  "country": "AUS",
+                  "region": "VIC"
+                  "version": "P0001975"
+                  "expiry": "2027-06-29"
               }
           ]
       }'
@@ -119,7 +131,7 @@ However, if the status is "failed", the response will state "kyc_check_failed".
         "spendableAmount": 100,
         "spendableCurrency": "USD",
         "kycType": "partner-conducted",
-        "kycRegion":"NZL"
+        "kycRegion": "NZL"
       }'
   ```
 {% /code %}
