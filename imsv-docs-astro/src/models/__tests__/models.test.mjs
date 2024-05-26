@@ -76,7 +76,7 @@ describe('models', () => {
       expect(deployedProtocol.protocol).toEqual(registry.getFundingProtocol('universal-evm'));
       expect(deployedProtocol.network).toEqual(network);
       expect(deployedProtocol.address).toEqual('0xe50FF3C352C');
-      expect(deployedProtocol.url).toEqual('https://www.oklink.com/amoy/address/0xe50FF3C352C');
+      expect(deployedProtocol.url).toEqual('https://amoy.polygonscan.com/address/0xe50FF3C352C');
     });
 
   });
