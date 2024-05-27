@@ -109,18 +109,15 @@ Be careful when setting the region as this cannot be changed. You will need to c
 {% /code %}
 
 ## Poll spending prerequisites
-Poll [spending prerequisites](https://docs.immersve.com/api-reference/get-spending-prerequisites/) until KYC Check is not returned in the response.
+Poll [spending prerequisites](https://docs.immersve.com/api-reference/get-spending-prerequisites/) endpoint. The initial
+call to the endpoint when there is a new KYC statement for the cardholder will create a new KYC check and the endpoint
+will return “check_in_progress” for the KYC prerequisite status.
 
-Calling the "get spending prerequisites" endpoints queues a KYC check. When the
-KYC check is queued, a KYC profile for that account is created with a "created"
-status.
+The endpoint will keep returning “check_in_progress” until the check is completed.
 
-The status changes to "pending" when the check is started and the KYC
-statements are submitted for verification. Once the check is complete we will
-update the user's KYC profile with the appropriate status: "passed" or "failed".
-If a KYC profile status is "passed" and the region of the profile matches card
-program region, the response should no longer include KYC prerequisite.
-However, if the status is "failed", the response will state "kyc_check_failed".
+Once the check is completed successfully, the response should no longer include KYC prerequisite. However, if the check
+failed, the response will return "kyc_check_failed" for the KYC prerequisite status. Check the KYC statement and submit
+it again or contact Immersve support.
 
 ### Example request
 {% code %}
@@ -157,5 +154,3 @@ However, if the status is "failed", the response will state "kyc_check_failed".
     }
   ```
 {% /code %}
-
-

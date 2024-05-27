@@ -119,8 +119,9 @@ post:
         **FUNDING_SOURCE_INVALID**
         Funding source cannot be used with this card program.
 
-        **KYC_CARD_PROGRAM_REGION_MISMATCH**
-        The card program and the KYC profile are not is the same region.
+        **KYC_PROFILE_REGION_MISMATCH**
+        The KYC profile is already approved for a region different from the requested region.
+        Use the [Get a KYC profile](/get-a-kyc-profile/) endpoint to determine the current region of the KYC profile.
 
         **AML_CHECK_FAILED**
         AML check failed. This cannot be resolved.
