@@ -46,6 +46,11 @@ Be careful when setting the region as this cannot be changed. You will need to c
 
 {% code %}
   ```bash
+    your_given_name=""
+    your_family_name=""
+    date_of_birth="" # YYYY-MM-DD
+    year_of_birth="" # YYYY
+
     curl -X PUT "https://test.immersve.com/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
       -H "Content-Type: application/json" \
       -H "Accept: application/json" \
@@ -58,10 +63,10 @@ Be careful when setting the region as this cannot be changed. You will need to c
               {
                   "claimType": "FULL_NAME",
                   "attributes": {
-                      "givenName": "RONALD_EayrWpaOEZ",
+                      "givenName": "'${your_given_name}'",
                       "middleName": "PASSALL",
                       "honorific": "Mr",
-                      "familyName": "Lopez_enzjaPOIXM"
+                      "familyName": "'${your_family_name}'"
                   }
               },
               {
@@ -83,9 +88,9 @@ Be careful when setting the region as this cannot be changed. You will need to c
                   "claimType": "DOB",
                   "attributes": {
                       "country": "AUS",
-                      "dateOfBirth": "1980-05-09",
+                      "dateOfBirth": "'${date_of_birth}'",
                       "locality": "Brisbane",
-                      "yearOfBirth": "1978"
+                      "yearOfBirth": "'${year_of_birth}'"
                   }
               }
           ],
