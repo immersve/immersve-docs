@@ -19,7 +19,7 @@
     "@docusaurus/core": "^3.3.2",
     "@docusaurus/preset-classic": "^3.3.2",
     "@mdx-js/react": "^3.0.1",
-    "clsx": "^1.2.1",
+    "clsx": "^2.1.1",
     "docusaurus-lunr-search": "^3.4.0",
     "docusaurus-plugin-openapi-docs": "^3.0.0-beta.10",
     "docusaurus-theme-openapi-docs": "^3.0.0-beta.10",
