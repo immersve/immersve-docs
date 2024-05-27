@@ -26,8 +26,6 @@ tags:
     x-displayName: KYC
   - name: prerequisites
     x-displayName: Prerequisites
-  - name: immersve-webhooks
-    x-displayName: Webhooks
   - name: simulator
     x-displayName: Simulator
   - name: funding-source
@@ -114,18 +112,6 @@ paths:
     $ref: "./endpoints/simulator/reverse.yaml"
     servers:
       - url: https://test.immersve.com
-  "/authorizations":
-    servers:
-      - url: https://<partnerBaseUrl>/transactions
-    $ref: "./endpoints/webhooks/authorization-custodial.yaml"
-  "/transactions":
-    servers:
-      - url: https://<partnerBaseUrl>/transactions
-    $ref: "./endpoints/webhooks/transaction-custodial.yaml"
-  "/card-status-change":
-    servers:
-      - url: https://<partnerBaseUrl>/card/notification
-    $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
   "/api/funding-source/{fundingSourceId}":
     $ref: "./endpoints/funding-sources/get-funding-source.yaml"
   "/api/funding-sources":

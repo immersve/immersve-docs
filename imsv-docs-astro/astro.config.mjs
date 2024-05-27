@@ -48,7 +48,6 @@ export default defineConfig({
             { label: 'Testing', autogenerate: { directory: 'guides/testing' } } ,
             { label: 'Authentication', link: 'guides/authentication' } ,
             { label: 'HTTP Status Codes', link: 'guides/http-status-codes' } ,
-            { label: 'Webhooks', link: 'guides/webhooks' } ,
             { label: 'Cardholder Support', link: 'guides/cardholder-support' } ,
             { label: 'Supported Tokens', autogenerate: { directory: 'guides/supported-tokens' } },
             { label: 'Supported Chains', autogenerate: { directory: 'guides/supported-chains' } },
