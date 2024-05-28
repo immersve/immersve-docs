@@ -4,7 +4,7 @@ post:
   summary: Update the allowed origins
   description: |
     Add url origins to the client application whitelist.
-    The [Generate a challenge endpoint](/api-reference/initiate-siwe-login) will reject non-whitelisted origins.
+    The [Generate a challenge endpoint](/api-reference/initiate-login) will reject non-whitelisted origins.
     **Warning!** This is a destructive operation. The allowed origins will be overwritten with the provided list.
     Use the [Get a client application endpoint](/api-reference/get-a-client-application) to retrieve the current list of allowed origins.
   parameters:

@@ -52,10 +52,6 @@ paths:
     $ref: "./endpoints/login/auth-token-exchange.yaml"
   "/api/challenges":
     $ref: "./endpoints/login/create-challenge.yaml"
-  "/siwe/generate-challenge":
-    $ref: "./endpoints/login/siwe-generate-challenge.yaml"
-  "/siwe/login":
-    $ref: "./endpoints/login/siwe-login.yaml"
   "/api/accounts":
     get:
       $ref: "./endpoints/accounts/accounts-list.yaml"

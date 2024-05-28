@@ -58,7 +58,7 @@ authenticated by supplying the access token in the `Authorization` header.
   {% item title="SIWE Login Flow" %}
 
     #### 1. Generate Challenge
-    [Generate a challenge](/api-reference/initiate-siwe-login). The response is
+    [Generate a challenge](/api-reference/initiate-login). The response is
     an [EIP-4361](https://eips.ethereum.org/EIPS/eip-4361) message in plain
     text to be signed by the wallet.
 
@@ -107,6 +107,7 @@ authenticated by supplying the access token in the `Authorization` header.
     // Create a wallet to sign the message with
     const privateKey = ''; //TODO: Set Private key here
     const walletAddress = ''; //TODO: Set wallet address here
+    const url = ''; //TODO: Set the URL here
     const chainId = 137; //Chain ID Reference: https://chainlist.org/
 
     if (!privateKey || privateKey.length === 0) {
@@ -122,9 +123,13 @@ authenticated by supplying the access token in the `Authorization` header.
     const clientInstance = axios.create({ baseURL: baseUrl });
 
     const signIn = async () => {
-      const getSignInChallenge = await clientInstance.post('/siwe/generate-challenge', {
-        walletAddress,
-        chainId,
+      const getSignInChallenge = await clientInstance.post('/auth/login-init', {
+        loginMethod: 'siwe',
+        network: 'polygon-mainnet',
+        clientApplicationId,
+        scopes: ['cardholder-partner'],
+        address: walletAddress,
+        url
       });
       const challenge = getSignInChallenge.data;
       const signature = await wallet.signMessage(challenge);
@@ -138,7 +143,7 @@ authenticated by supplying the access token in the `Authorization` header.
 
     #### 3. Submit Signed Challenge
     [Submit the signed challenge along with the
-    signature](/api-reference/complete-siwe-login) to get the access token and a refresh token.
+    signature](/api-reference/complete-login) to get the access token and a refresh token.
     The refresh token is used to obtain a new access token when the current
     access token expires, ensuring continuous access without requiring the user to log in again.
 
