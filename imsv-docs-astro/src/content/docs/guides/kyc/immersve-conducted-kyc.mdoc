@@ -32,10 +32,28 @@ keys, and has the card program and funding source IDs ready.
 
 ### Request spending prerequisites
 
-To begin the KYC process, call spending prerequisites specifying KYC type as
-**`immersve-conducted`**. Optionally, a **`redirectUrl`** can be provided to
-indicate where the user should be redirected upon completion of the KYC
-process.
+To begin the KYC process, call spending prerequisites specifying KYC type as **`immersve-conducted`**. Optionally, a **`redirectUrl`** can be provided to indicate where the user should be redirected upon completion of the KYC process.
+
+If KYC is required, the response to the spending prerequisites request will
+contain a URL, where the user must be redirected to to complete the KYC
+verification.
+
+{% note %}
+If Immersve already has complete KYC information in the requested region for the individual owning the wallet, the user will not be required to go through KYC
+{% /note %}
+
+{% warning %}
+Once Immersve conducted KYC has been completed for an Individual, the supported region associated with the wallet of the individual cannot be changed.
+
+In the event that an individual wished to go through KYC in another supported region, a new wallet would be required.
+
+{% /warning %}
+
+If KYC is not required, is already in progress, or the maximum
+number of retries has been exceeded, the URL will not be returned and the status
+will indicate the problem. See [Spending Prerequisites endpoint
+reference](/api-reference/get-spending-prerequisites/)
+for more details on possible statuses.
 
 **Example Request:**
 {% code %}
@@ -72,13 +90,6 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 ```
 {% /code %}
 
-If KYC is required, the response to the spending prerequisites request will
-contain a URL, where the user must be redirected to to complete the KYC
-verification. If KYC is not required, is already in progress, or the maximum
-number of retries has been exceeded, the URL will not be returned and the status
-will indicate the problem. See [Spending Prerequisites endpoint
-reference](https://docs.immersve.com/api-reference/get-spending-prerequisites/)
-for more details on possible statuses.
 
 
 ### User goes through the KYC flow
