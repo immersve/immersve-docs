@@ -21,7 +21,7 @@ In the event that an individual wished to go through KYC in another supported re
 Below, we've outlined the steps for completion of this verification process, assuming all necessary details, such as document scans and biometrics, have been collected and verified.
 
 
-See the [KYC API endpoint references](https://docs.immersve.com/api-reference/kyc/).
+See the [KYC API endpoint references](/api-reference/kyc/).
 
 ## Set up environment variables
 
@@ -37,7 +37,7 @@ See the [KYC API endpoint references](https://docs.immersve.com/api-reference/ky
 {% /code %}
 
 ## Submit cardholder KYC statement
-[Submit KYC statement](https://docs.immersve.com/api-reference/submit-partner-kyc-statement#submit-partner-kyc-statement) about the cardholder account.
+[Submit KYC statement](/api-reference/submit-partner-kyc-statement#submit-partner-kyc-statement) about the cardholder account.
 
 {% note %}
 When testing, to improve chances of a successful response, please provide "passall" as the middleName, and generate a random givenName, familyName, and dateOfBirth.
@@ -109,7 +109,7 @@ Be careful when setting the region as this cannot be changed. You will need to c
 {% /code %}
 
 ## Poll spending prerequisites
-Poll [spending prerequisites](https://docs.immersve.com/api-reference/get-spending-prerequisites/) endpoint. The initial
+Poll [spending prerequisites](/api-reference/get-spending-prerequisites/) endpoint. The initial
 call to the endpoint when there is a new KYC statement for the cardholder will create a new KYC check and the endpoint
 will return “check_in_progress” for the KYC prerequisite status.
 

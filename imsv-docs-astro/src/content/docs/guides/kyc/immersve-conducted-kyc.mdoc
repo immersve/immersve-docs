@@ -148,16 +148,25 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 
 ## Testing
 
-**ID Verification (IDV) Without Real Documents**: To support testing and
-simplify the integration process in test environments, we use mock documents.
-This allows testing the KYC verification workflow without putting real details
-into test environments.
+### Overview
+We have configured our test environment to ensure random identity information is received by our systems regardless of what identity documents and facial scan have been captured during the course of Immersve Conducted KYC.
 
-The facial scan still needs to be done with the testing person's face, but no data
-will be stored in our test environment.
+This highly increases the chances of receiving a successful KYC result when testing.
 
-Below are the front and back images of a driver license that can be scanned with
-a phone camera directly:
+{% note %}
+In test, you should be be able to use any valid supported identity document (regardless of region) when going through Immersve KYC
+{% /note %}
+
+{% warning %}
+You must always perform a facial scan of a real person
+{% /warning %}
+
+### ID Verification (IDV) Without Real Documents
+If you’re not comfortable using your identity documents, we have provided a dummy drivers license that can be used instead of a real identity document.
+
+Facial scan **must** be done with the a real person’s face. No actual data will be sent to our test environment
+
+Below are the front and back images of a driver license that can be scanned with a phone camera:
 
 **Front of a drivers license**
 
