@@ -32,10 +32,31 @@ keys, and has the card program and funding source IDs ready.
 
 ### Request spending prerequisites
 
-To begin the KYC process, call spending prerequisites specifying KYC type as
-**`immersve-conducted`**. Optionally, a **`redirectUrl`** can be provided to
-indicate where the user should be redirected upon completion of the KYC
-process.
+To begin the KYC process, call spending prerequisites specifying KYC type as **`immersve-conducted`**. Optionally, a
+ **`redirectUrl`** can be provided to indicate where the user should be redirected upon completion of the KYC process.
+
+If KYC is required, the response to the spending prerequisites request will
+contain a URL, where the user must be redirected to complete the KYC
+verification.
+
+{% note %}
+If Immersve already has complete KYC information in the requested region for the individual owning the wallet, the
+user will not be required to go through KYC.
+{% /note %}
+
+{% warning %}
+Once Immersve conducted KYC has been completed for an Individual, the supported region associated with the wallet of
+the individual cannot be changed.
+
+In the event that an individual wished to go through KYC in another supported region, a new wallet would be required.
+
+{% /warning %}
+
+If KYC is not required, is already in progress, or the maximum
+number of retries has been exceeded, the URL will not be returned and the status
+will indicate the problem. See [Spending Prerequisites endpoint
+reference](/api-reference/get-spending-prerequisites/)
+for more details on possible statuses.
 
 **Example Request:**
 {% code %}
@@ -72,13 +93,6 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 ```
 {% /code %}
 
-If KYC is required, the response to the spending prerequisites request will
-contain a URL, where the user must be redirected to to complete the KYC
-verification. If KYC is not required, is already in progress, or the maximum
-number of retries has been exceeded, the URL will not be returned and the status
-will indicate the problem. See [Spending Prerequisites endpoint
-reference](https://docs.immersve.com/api-reference/get-spending-prerequisites/)
-for more details on possible statuses.
 
 
 ### User goes through the KYC flow
@@ -137,16 +151,28 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 
 ## Testing
 
-**ID Verification (IDV) Without Real Documents**: To support testing and
-simplify the integration process in test environments, we use mock documents.
-This allows testing the KYC verification workflow without putting real details
-into test environments.
+### Overview
+We have configured our test environment to ensure random identity information is received by our systems regardless
+of what identity document and facial scan has been captured during the course of Immersve Conducted KYC.
 
-The facial scan still needs to be done with the testing person's face, but no data
-will be stored in our test environment.
+This highly increases the chances of receiving a successful KYC result when testing.
 
-Below are the front and back images of a driver license that can be scanned with
-a phone camera directly:
+{% note %}
+ In test, you should be be able to use any valid supported identity document (regardless of region) when going through
+ Immersve KYC.
+{% /note %}
+
+{% warning %}
+You must always perform a facial scan of a real person.
+{% /warning %}
+
+### ID Verification (IDV) Without Real Documents
+If you’re not comfortable using your identity documents, we have provided a dummy drivers license that can be used
+instead of a real identity document.
+
+Facial scan **must** be done with the a real person’s face. No actual data will be sent to our test environment.
+
+Below are the front and back images of a driver license that can be scanned with a phone camera:
 
 **Front of a drivers license**
 
