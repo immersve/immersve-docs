@@ -139,24 +139,14 @@ const { hash } = await contract[method](...Object.values(params));
 
 ## Wallet Funding for Development and Testing
 
-To ensure that integrators can obtain sufficient ERC-20 tokens to facilitate
-development and testing, Immersve uses an ERC-20 token contract that allows
-tokens to be freely minted as needed.
+Immersve uses the official USDC ERC-20 token from Circle. Circle provides
+a testnet [faucet](https://faucet.circle.com/). Make sure you select an [Immersve
+supported testnet](https://docs.immersve.com/guides/funding-protocols/#testnets)
+on the network selection. If the global quota of testnet USDC minting has been reached,
+[Circle Discord](https://discord.com/invite/buildoncircle) support can also help
+providing testnet USDC on demand.
 
 In non-production environments, any transaction returned by [get spending
 prerequisites](/api-reference/get-spending-prerequisites) with actions related
-to ERC20 smart contract will refer to the "IMMUSDC" token. The "IMMUSDC" token
-has a `mint` function allowing for the unlimited minting of the token to any
-wallet address.
-
-Polygonscan can be used to get the necessary tokens.
-
-- Open the [IMMUSDC token in
-  Polygonscan](https://mumbai.polygonscan.com/address/0x2FaC06acFAeB42CC3B5327fcF53F48D9Da72749d#code)
-- Click `Write as Proxy`
-- Click `Connect to Web3` to connect your wallet with Polygonscan
-- Open the `mint` function
-- Set the destination wallet address (where assets are to be sent) in the `to`
-  field. Set an amount in the `amount` field.
-- Initiate the web3 transaction by clicking the `Write` button
-- Confirm the transaction in the web3 wallet and pay the gas fees
+to ERC-20 smart contract will refer to the Circle "USDC"
+[testnet token](https://developers.circle.com/stablecoins/docs/usdc-on-test-networks).
