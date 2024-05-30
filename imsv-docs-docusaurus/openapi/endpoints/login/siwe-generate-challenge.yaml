@@ -4,7 +4,7 @@ post:
   summary: Initiate SIWE Login
   description: |
     :::warning Deprecated
-    This endpoint is deprecated, please use [Initiate Login](/api-reference/initiate-login) instead.
+    This endpoint is deprecated, please use [Sign Up](/api-reference/sign-up/) or [Initiate Login](/api-reference/initiate-login) instead.
     :::
     Generating the SIWE challenge is the first step in the process of getting the authentication token.
 
