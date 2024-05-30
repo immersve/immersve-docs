@@ -3,6 +3,9 @@ post:
     - authentication
   summary: Complete SIWE Login
   description: |
+    :::warning Deprecated
+    This endpoint is deprecated, please use [Complete Login](/api-reference/complete-login) instead.
+    :::
     The login endpoint returns the authentication token in exchange
     for the previously-issued challenge signed with the users wallet.
   security:
