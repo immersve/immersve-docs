@@ -1,0 +1,32 @@
+post:
+  tags:
+    - authentication
+  summary: Initiate SIWE Login
+  description: |
+    Generating the SIWE challenge is the first step in the process of getting the authentication token.
+
+    For detailed information on scopes, see the [Authentication Guide](https://docs.immersve.com/guides/authentication).
+  security:
+    - none: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./models/challenge-request.yaml"
+    required: true
+  responses:
+    "200":
+      description: Challenge to be signed in EIP-4361 format. ([Quick start signing](https://replit.com/@Immersve/Authentication-Sign-Challenge?v=1))
+      content:
+        text/plain:
+          example: |
+            app.immersve.com wants you to sign in with your Ethereum account:
+            0xA3058369d6A481B1ff08F62B352409c3D709De9b
+
+            Immersve wants to access your Immersve account. Immersve will be able to: Have full access to all your Immersve resources. By connecting your wallet and using Immersve, you agree to our Terms of services and Privacy Policy
+
+            URI: https://app.immersve.com
+            Version: 1
+            Chain ID: 1
+            Nonce: 2hFm7TDbZmerUgnrJ
+            Issued At: 2022-08-11T22:29:48.244Z

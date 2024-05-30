@@ -1,0 +1,17 @@
+type: object
+required:
+  - message
+  - signature
+properties:
+  message:
+    description: The EIP-4361 challenge
+    type: string
+    example: "app.immersve.com wants you to sign in with your Ethereum account:\n0xA3058369d6A481B1ff08F62B352409c3D709De9b\n\nSign in with Ethereum to the app. This request will not trigger a blockchain transaction or cost any gas fees.\n\nURI: https://app.immersve.com\nVersion: 1\nChain ID: 1\nNonce: 2hFm7TDbZmerUgnrJ\nIssued At: 2022-08-11T22:29:48.244Z"
+  signature:
+    description: Signature obtained by signing the message with the wallet
+    type: string
+    example: "OxAC12.."
+  createCardholderAccount:
+    description: A flag to indicate whether a cardholder should be automatically created. Defaults to `false`.
+    type: boolean
+    example: true
