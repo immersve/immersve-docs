@@ -34,11 +34,10 @@ properties:
     description: The date and time the login request was created.
     type: string
     example: "2024-02-26T08:24:11.047Z"
-  # TODO: Uncomment when siwe is supported
-  # url:
-  #   description: Domain in the "\<domain\> wants you to sign in.." of the EIP-4361 is derived from the host fragment of this parameter. The client application identified by clientApplicationId must allow this URL.
-  #   type: url
-  #   example: "https://app.immersve.com"
+  url:
+    description: Domain in the "\<domain\> wants you to sign in.." of the EIP-4361 is derived from the host fragment of this parameter. The client application identified by clientApplicationId must allow this URL.
+    type: url
+    example: "https://app.immersve.com"
   address:
     description: The web3 address to which the challenge is directed.
     type: string

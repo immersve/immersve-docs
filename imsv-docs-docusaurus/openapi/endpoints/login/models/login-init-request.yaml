@@ -8,6 +8,7 @@ properties:
     type: string
     enum:
       - algorand
+      - siwe
     example: "algorand"
   network:
     description: |
@@ -28,13 +29,12 @@ properties:
       enum:
         - cardholder-partner
     example: ["cardholder-partner"]
-  # TODO: Uncomment when siwe is supported
-  # url:
-  #   description: |
-  #     Required if loginMethod is `siwe`.
-  #     Domain in the "\<domain\> wants you to sign in.." of the EIP-4361 is derived from the host fragment of this parameter. The client application identified by clientApplicationId must allow this URL.
-  #   type: url
-  #   example: "https://app.immersve.com"
+  url:
+    description: |
+      Required if loginMethod is `siwe`.
+      Domain in the "\<domain\> wants you to sign in.." of the EIP-4361 is derived from the host fragment of this parameter. The client application identified by clientApplicationId must allow this URL.
+    type: url
+    example: "https://app.immersve.com"
   address:
     description: The web3 address to which the challenge is directed.
     type: string
