@@ -11,10 +11,10 @@ post:
     content:
       application/json:
         schema:
-          $ref: "./models/login-request.yaml"
+          $ref: './models/login-request.yaml'
     required: true
   responses:
-    "200":
+    '200':
       description: successful login
       content:
         application/json:

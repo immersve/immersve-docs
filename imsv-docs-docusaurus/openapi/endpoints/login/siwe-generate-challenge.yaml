@@ -12,10 +12,10 @@ post:
     content:
       application/json:
         schema:
-          $ref: "./models/challenge-request.yaml"
+          $ref: './models/challenge-request.yaml'
     required: true
   responses:
-    "200":
+    '200':
       description: Challenge to be signed in EIP-4361 format. ([Quick start signing](https://replit.com/@Immersve/Authentication-Sign-Challenge?v=1))
       content:
         text/plain:
