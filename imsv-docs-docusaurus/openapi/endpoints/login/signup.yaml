@@ -10,7 +10,9 @@ post:
     content:
       application/json:
         schema:
-          $ref: "./models/login-init-request.yaml"
+          oneOf:
+            - $ref: "./models/algorand-login-request.yaml"
+            - $ref: "./models/xrpl-login-request.yaml"
     required: true
   responses:
     "200":
