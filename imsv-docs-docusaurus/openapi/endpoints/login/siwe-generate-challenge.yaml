@@ -3,6 +3,9 @@ post:
     - authentication
   summary: Initiate SIWE Login
   description: |
+    :::warning Deprecated
+    This endpoint is deprecated, please use [Sign Up](/api-reference/sign-up/) or [Initiate Login](/api-reference/initiate-login) instead.
+    :::
     Generating the SIWE challenge is the first step in the process of getting the authentication token.
 
     For detailed information on scopes, see the [Authentication Guide](https://docs.immersve.com/guides/authentication).
