@@ -35,6 +35,10 @@ export class SupportedNetwork {
     return this.content.data.title;
   }
 
+  get networkName() {
+    return this.content.data.networkName;
+  }
+
   /**
    * @param {DeployedFundingProtocol} deployedProtocol
    */

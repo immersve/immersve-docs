@@ -22,6 +22,7 @@ const columnTitles: Record<string,string> = {
   network: 'Network',
   address: 'Address',
   protocol: 'Protocol',
+  networkName:'Network Name'
 };
 
 ---
@@ -45,6 +46,8 @@ const columnTitles: Record<string,string> = {
                   return <td><a href={deployment.url} set:html={wrappableAddress(deployment.address)}></a></td>
                 case 'protocol':
                   return <td><a href={deployment.protocol.docsPath}>{deployment.protocol.title}</a></td>
+                case 'networkName':
+                  return <td><nobr>{deployment.network.networkName}</nobr></td>
                 default:
                   return <td></td>
               }
