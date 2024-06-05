@@ -40,7 +40,7 @@ self-custodial wallets is applied to their activities as a cardholder.
 The following authentication methods are supported:
 - SIWE
 - Algorand
-- Xrpl
+- XRPL
 
 Accounts are identified by blockchain address. The cardholder can prove ownership
 of an address by signing a challenge using their web3 wallet. Upon successful authentication, Immersve
@@ -120,7 +120,7 @@ The specific nature of the invocation of the message signing function is specifi
 Below is example Node.js scripts which will create an account and use it to sign a challenge:
 
 {% tab key="auth-method" %}
-  {% item title="Siwe" %}
+  {% item title="SIWE" %}
     {% code title="signing-script.js" %}
       ```js
       const ethers = require('ethers');
@@ -247,7 +247,7 @@ Below is example Node.js scripts which will create an account and use it to sign
       ```
     {% /code %}
   {% /item %}
-  {% item title="Xrpl" %}
+  {% item title="XRPL" %}
     {% code title="signing-script.js" %}
       ```js
       const xrplSdk = require('xrpl');
