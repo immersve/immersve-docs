@@ -11,7 +11,3 @@ properties:
     description: Signature obtained by signing the message with the wallet
     type: string
     example: "OxAC12.."
-  createCardholderAccount:
-    description: A flag to indicate whether a cardholder should be automatically created. Defaults to `false`.
-    type: boolean
-    example: true
