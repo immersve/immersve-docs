@@ -1,0 +1,226 @@
+---
+title: Algorand Funding Protocol
+description: Overview of Immersve's Algorand Funding Protocol.
+slug: guides/algorand-funding-protocol
+fundingProtocol:
+  source: https://github.com/immersve/funding-contract-algorand
+---
+
+{% warning %}
+**Note**: This functionality is currently available for Developer Preview only
+and not for general use.
+{% /warning %}
+
+The Immersve Flexi Algorand {% link page="guides/funding-protocols"
+title="funding protocol" /%} allows client applications to fund Immersve cards
+via simple native Algorand {% link
+href="https://developer.algorand.org/docs/get-details/asa" title="Asset" /%}
+transfers.
+
+Depositors can withdraw funds at any time with signed withdrawal approvals.
+Deposits are scoped to a single Immersve partner application. Depositor funds
+can only be settled to Immersve's approved settlement address.
+
+## Smart Contract
+
+The Flexi Algorand protocol has a "Master" contract and many partner "Partner
+Channels" contracts. Partner Channel contracts are used to keep track of the
+funds associated to the cardholders under a specific partner. The cardholder
+funds are stored in a "Card Fund" contract. Both "Partner Channels" and "Card
+Funds" are managed by the "Master" Contract
+
+
+### Source
+{% link href="https://github.com/immersve/funding-contract-algorand" /%}.
+
+### Deployed Contract Addresses
+
+The Flexi Algorand protocol is designed to work on the Algorand networks. The deployed
+contract addresses are listed below.
+
+{%
+  deployedFundingProtocolsTable
+  protocol="flexi-algorand"
+  columns=[
+    "network",
+    "address",
+  ]
+/%}
+
+### Smart Contract Overview
+
+The Master contract is the main entry point and is a factory for the Partner
+Channel and Card Funds contracts. Card Fund contracts are the target for
+depositor native asset transfers that are scoped to an integrated partner
+application. The Master contract is also used by Immersve for performing
+settlements and refunds.
+
+The Partner Channel contract is used to identify the partner to which a Card
+Fund contract belongs. The Partner Channel is provisioned by the Immersve card
+issuing partner.
+
+The Card Fund contract holds assets for funding a cardholders card. Deposits are
+made via native token transfers. The card fund is provisioned by the cardholder.
+A card fund contract is uniquely identified by the address of the owner (the
+cardholder's primary algorand address) and the address of the related partner
+contract.
+
+![flexi-algorand-overview](./assets/algorand-component-diagram.png "Algorand
+smart contract component diagram.")
+
+Upon receiving a card payment request, a Card Fund contract will be debited by
+Immersve. The debited funds move to the Master Contract where they wait to be
+cleared for settlement.
+
+![flexi-algorand-overview](./assets/algorand-funds-flow-diagram.png "Algorand
+funds flow diagram.")
+
+
+## Protocol Mechanics
+
+### Deposits
+
+Depositors can send native asset transfers directly to the Card Funds address.
+Each depositor address needs to have a [Funding
+Source](https://docs.immersve.com/api-reference/create-a-funding-source-for-an-account)
+created that is linked with the Card Fund. After an asset transfer
+transaction is observed by Immersve, the connected Funding Source will be
+credited with the deposited amount.
+
+The [Spending Pre-requisites
+API](https://docs.immersve.com/api-reference/get-spending-prerequisites) can be
+used to reliably obtain the Web3 transaction parameters for depositing into a
+Funding Source.
+
+When a Funding Source is created, any deposits made before the creation of
+the Funding Source associated with the depositing address will be credited
+immediately.
+
+
+### Withdrawals
+
+Withdrawals are approved by the Immersve platform and executed by calling the
+[`cardFundExecuteApprovedWithdrawal()`](#cardFundExecuteApprovedWithdrawal)
+function on the Card Funds contract. The signed withdrawal approval, and all
+other parameters required for submitting the withdrawal transaction to the
+Algorand chain, are obtained by calling the [Create Withdrawal
+Intent](https://docs.immersve.com/api-reference/create-withdrawal-intent/) API
+endpoint. See {% link page="guides/card-funding" /%} for more details.
+
+
+## Partner Setup
+
+### Creating a Partner Channel Instance
+
+A Partner Channel instance needs to be created for an Immersve partner to start
+supporting funding on the Algorand network. It only needs to be created once for
+all depositors. Partner Channels supports multiple assets. The address of the
+created Partner Channel will need to be supplied when {% link
+page="guides/creating-a-funding-channel" /%}.
+
+To create the partner Partner Channel instance, invoke the
+[`partnerChannelCreate()`](#partnerChannelCreate) function on the Master
+contract. Find the Master contract address for your target chain from "Contract
+Addresses" above.
+
+The address of the deployed Partner Channel instance can be discovered from the
+Algorand transaction logs. In a block explorer, find the `PartnerChannelCreated` event
+within the logs for the transaction that created the Partner Channel instance.
+
+Use the created funds storage address as the `contractAddress` when calling the
+[Create Funding Channel](https://docs.immersve.com/api-reference/create-a-funding-channel)
+endpoint.
+
+
+### Creating a Card Funds Instance
+
+A Card Fund instance needs to be created for each partner Cardholder account. To
+create the Card Fund instance, invoke the [`cardFundCreate()`](#cardFundCreate)
+function on the Master contract. Use the created Card Fund address as the
+`fundingAddress` when calling the [Create Funding
+Source](https://docs.immersve.com/api-reference/create-a-funding-source-for-an-account/)
+endpoint.
+
+
+The Algorand account that creates the Card Fund address is the owner. There can
+only be a single Card Fund contract instance per owner address per Partner
+Channel. Only the owner address can receive withdrawals from a Card Fund
+address.
+
+
+The address of the deployed Card Fund instance
+The Card Fund address can also be discovered from the
+Algorand transaction logs. In a block explorer, find the `CardFundCreated` event
+within the logs for the transaction that created the Card Fund instance.
+
+Card Fund can support multiple Assets at the same time. They just need to be
+enabled via [`cardFundEnableAsset()`](#cardFundEnableAsset). Only assets already
+supported by Immersve can be opted-in.
+For each opted-in asset, a separate Funding Source needs to be registered.
+
+
+## Functions
+
+### partnerChannelCreate(mbr, name) <a id="partnerChannelCreate"/>
+Deploy a new Partner Channel contract.
+<br>
+*Params*
+<br>
+`mbr`: PayTxn — The Minimum balance requirement Payment transaction used to store the partner
+state on the Master contract. The amount can be fetched from `getPartnerChannelMbr(string)`.
+<br>
+`name`: string — The name of the deployed contract. This is used only for
+debugging purposes and must be globally unique. Using your app name, and
+"liveness" in the name are recommended, for example: "Acme Wallet USDC Live".
+
+
+### cardFundCreate(mbr, channel, asset) <a id="cardFundCreate"/>
+Deploy a new Card Fund contract.<br>
+*Returns*<br>
+(Address) — The created Card Fund address.
+<br>
+*Params*
+<br>
+`mbr` (PayTxn) — The payment transaction to supply the minimum balance
+requirement for creating the Card Fund address. The amount for the MBR
+transaction can be fetched from `getCardFundMbr(AssetID)`.
+<br>
+`channel` (Address) — The Partner Channel address. Card Funds are always related to partners
+<br>
+`asset` (AssetID) — The asset id to initially opt-in.
+
+
+### cardFundEnableAsset(mbr, cardFund, asset) <a id="cardFundEnableAsset"/>
+Opt-in a Card Fund to an additional asset.<br>
+*Params*
+<br>
+`mbr`: PayTxn — The payment transaction supplying the minimum balance
+requirement for the asset opt-in. The amount for the MBR transaction can
+be fetched from `getCardFundAssetMbr()`.
+<br>
+`cardFund`: Address — The Card Fund address that is opting in to the asset.
+<br>
+`asset`: AssetID — The asset id to opt-in. The asset must be supported by Immersve.
+
+
+### getCardFundByPartner(channel, owner)
+Find an existing Card Fund address for a Partner Channel and owner
+combination.<br>
+*Params*
+<br>
+`channel`: Address — The address of the Partner Channel contract.
+<br>
+`owner`: Address — The address of the Card Fund owner.
+
+### cardFundExecuteApprovedWithdrawal(cardFund, asset, amount, expiry, nonce, signature) <a id="cardFundExecuteApprovedWithdrawal"/>
+Execute a withdrawal initiated by calling the [Create Withdrawal
+Intent](https://docs.immersve.com/api-reference/create-withdrawal-intent/)
+API.<br>
+*Params*
+<br>
+`cardFund`: Address — The address of the card being withdrawn from.<br>
+`asset`: AssetID — The id of the asset being withdrawn.<br>
+`amount`: uint64 — The amount of the withdrawal.<br>
+`expiry`: uint64 — The expiry of the withdrawal signature.<br>
+`nonce`: uint64 — The next withdrawal nonce.<br>
+`signature`: bytes64 — The withdrawal signature issued by Immersve.<br>

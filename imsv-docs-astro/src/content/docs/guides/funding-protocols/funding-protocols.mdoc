@@ -1,6 +1,8 @@
 ---
 title: Funding Protocols
 slug: guides/funding-protocols
+sidebar:
+  order: 1
 ---
 
 A funding protocol determines the method by which a card is provided with
@@ -15,25 +17,28 @@ cases are described in the following sections.
 Whether your app is custodial or non-custodial you can pre-fund cardholder
 spend with deposits on-chain.
 
-### **Non-custodial On-Chain Funding**
+### Non-custodial On-Chain Funding
 
 Users pre-fund card spend by making deposits to your instance of the Protocol.
 
-### **Custodial On-Chain Funding**
+### Custodial On-Chain Funding
 
 Your app funds card spend by making deposits to your instance of the Protocol.
 
-### Universal Variant
-
-A protocol designed for gas optimisation, that can be deployed on any EVM
-chain. It can be used by both custodial and non-custodial users. Individual
-cardholder balances are recorded off-chain. See {% link page="guides/universal-evm-funding-protocol" /%} for more information.
-
 ### Flexi Variant
 
-A flexible protocol that supports individual Funds Storage Contracts per
-cardholder, supporting on-chain balances  and permission-less, decentralized
-withdrawal.
+An on-chain funding protocol variant that is designed to optimize decentralization.
+Each individual cardholder has their own funding address. Cardholder balance can
+be inspected on-chain and permission-less withdrawal is supported. See {% link
+page="guides/algorand-funding-protocol" /%} for more information.
+
+### Universal Variant
+
+An on-chain funding protocol variant that is designed to optimize gas fees. It
+can be used by both custodial and non-custodial users. Individual cardholder
+balances are pooled together and recorded off-chain. See {% link
+page="guides/universal-evm-funding-protocol" /%} for more information.
+
 
 ## Webhook Funding
 
