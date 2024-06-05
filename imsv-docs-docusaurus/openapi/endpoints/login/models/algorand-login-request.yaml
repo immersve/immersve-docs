@@ -13,7 +13,7 @@ properties:
       - algorand
     example: "algorand"
   network:
-    #add these values onto supported chain once protocol is defined
+#add these values onto supported chain once protocol is defined
     description: The blockchain network associated with the web3 address.
     type: string
     enum:
