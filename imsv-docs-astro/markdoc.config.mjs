@@ -4,7 +4,7 @@ import shiki from '@astrojs/markdoc/shiki';
 
 function registryViewComponent(componentPath) {
   return {
-    name: path.basename(componentPath).replace(/^./, (s) => s.toLowerCase()),
+    name: path.basename(componentPath).replace(/^./, s => s.toLowerCase()),
     render: component(`./src/components/registry-views/${componentPath}.astro`),
     attributes: {
       chain: { type: String },
@@ -13,14 +13,16 @@ function registryViewComponent(componentPath) {
       netType: { type: String },
       columns: { type: Array },
     },
-  };
+  }
 }
 
 function registryViewComponents(paths) {
   const components = {};
-  paths.map(registryViewComponent).forEach((component) => {
-    components[component.name] = component;
-  });
+  paths
+    .map(registryViewComponent)
+    .forEach(component => {
+      components[component.name] = component;
+    });
   return components;
 }
 
@@ -35,8 +37,8 @@ export default defineMarkdocConfig({
       render: component('./src/components/Button.astro'),
       attributes: {
         href: { type: String },
-        variant: { type: String, matches: ['primary', 'secondary', 'filled', 'outline', 'text'] },
-        arrow: { type: String, matches: ['left', 'right'] },
+        variant: { type: String, matches: [ 'primary', 'secondary', 'filled', 'outline', 'text' ] },
+        arrow: { type: String, matches: [ 'left', 'right'] },
         class: { type: String },
       },
     },
@@ -61,7 +63,7 @@ export default defineMarkdocConfig({
         class: { type: String },
       },
     },
-    warning: {
+    warning:{
       render: component('./src/components/Warning.astro'),
       attributes: {
         class: { type: String },
