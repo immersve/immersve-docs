@@ -36,6 +36,7 @@ export const collections = {
       chain: z.string(),
       netType: z.string(),
       addressUrlTemplate: z.string(),
+      networkName: z.string(),
       protocols: z
         .object({
           name: z.string(),
