@@ -1,0 +1,38 @@
+type: object
+required:
+  - clientApplicationId
+  - scopes
+  - publicKey
+  - loginMethod
+  - network
+properties:
+  loginMethod:
+    description: The login method to use.
+#add these values onto supported chain once protocol is defined
+    type: string
+    enum:
+      - xrpl
+    example: "xrpl"
+  network:
+    description: The blockchain network associated with the web3 address.
+    type: string
+    enum:
+      - xahau-mainnet
+      - xahau-testnet
+    example: "xahau-mainnet"
+  clientApplicationId:
+    description: ID of the client application created in an Immersve partner profile.
+    type: string
+    example: "29097f50d221858223a17633e36716f9"
+  scopes:
+    description: An array of authorization scopes requested by the client application.
+    type: array
+    items:
+      type: string
+      enum:
+        - cardholder-partner
+    example: ["cardholder-partner"]
+  publicKey:
+    description: The public key of the web3 address to which the challenge is directed.
+    type: string
+    example: "EDA2F521129EC961DABA759DA.."
