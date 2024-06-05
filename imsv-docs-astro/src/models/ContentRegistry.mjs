@@ -80,6 +80,16 @@ export class ContentRegistry {
     return Object.values(this.#protocolsByName);
   }
 
+
+  /**
+ * Retrieves all networks associated with a specific chain name.
+ * @param {string} chainName The name of the chain.
+ * @returns {Array<SupportedNetwork>} A list of supported networks for the specified chain.
+ */
+allNetworksByChainName(chainName) {
+  return Object.values(this.#networksByName).filter(network => network.chain.name === chainName);
+}
+
   /**
    * @param {Object} opts
    * @param {string} opts.networkName

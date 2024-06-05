@@ -2,11 +2,13 @@
 import { registry } from 'src/content/registry.mjs';
 
 const supportedChains = registry.allChains();
-const columns = [ 'chain', 'protocols' ];
+const fetchNetworksForChains = (chain) => registry.allNetworksByChainName(chain.name);
+const columns = [ 'chain', 'protocols','networkNames' ];
 
 const columnTitles: Record<string,string> = {
   chain: 'Chain',
   protocols: 'Protocols',
+  networkNames:'Network Names'
 };
 
 ---
@@ -32,6 +34,9 @@ const columnTitles: Record<string,string> = {
                       return <a href={protocol.docsPath}>{protocol.title}</a>
                     })}
                     </td>
+                  case 'networkNames':
+                    const networks = fetchNetworksForChains(chain);
+                    return <td>{networks.map(network => network.networkName).join(', ')}</td>;
                 default:
                   return <td></td>
               }
