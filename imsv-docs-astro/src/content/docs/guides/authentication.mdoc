@@ -2,101 +2,359 @@
 title: Authentication
 ---
 
-Depending on the use case and operation, either API key or user session authentication mechanism may be used. The user
-session authentication method allows client applications to act on behalf of users within scopes explicitly granted by
-the user and is typically used by [decentralized applications and web3 wallets](/use-cases/non-custodial-wallets). API
-keys might be used for administrative operations and for applications not using SIWE authentication for their users such
-as [custodial wallets and exchanges](/use-cases/custodial-wallets). [Contact us](https://immersve.com/contact/) to
-provision credentials for your application. ## API Key Authentication Each request must be made with the following
-headers: Authentication: - **x-api-key** - The API key issued by Immersve - **x-api-secret** - The API secret issued by
-Immersve Target account: - **x-account-id** - The account ID targeted by the operation. This can be omitted if the
-target is the root account (such as when creating an account for example) The caller must have the correct permissions
-over this account to perform the requested operation. ## User Session Authentication The use of web3-native
-authentication mechanisms within the context of card issuance means that the same level of protection to a user's funds
-in self-custodial wallets is applied to their activities as a cardholder. The following authentication methods are
-supported: - SIWE - Algorand - XRPL Accounts are identified by blockchain address. The cardholder can prove ownership of
-an address by signing a challenge using their web3 wallet. Upon successful authentication, Immersve will issue an access
-token for subsequent use in interactions with the Immersve API. Additionally, a refresh token will also be provided,
-enabling the request of a new access token when the current one expires. Subsequent requests for protected resources
-from the Immersve API may be authenticated by supplying the access token in the `Authorization` header. ### Login Flow
+Depending on the use case and operation, either API key or
+user session authentication mechanism may be used.
+
+The user session authentication method allows client applications to act on behalf of users within
+scopes explicitly granted by the user and is typically used by [decentralized
+applications and web3 wallets](/use-cases/non-custodial-wallets). API keys might
+be used for administrative operations and for applications not using SIWE
+authentication for their users such as [custodial wallets and
+exchanges](/use-cases/custodial-wallets).
+
+[Contact us](https://immersve.com/contact/) to provision credentials for your
+application.
+
+## API Key Authentication
+
+Each request must be made with the following headers:
+
+Authentication:
+- **x-api-key** - The API key issued by Immersve
+- **x-api-secret** - The API secret issued by Immersve
+
+Target account:
+- **x-account-id** - The account ID targeted by the operation. This can be
+  omitted if the target is the root account (such as when creating an account
+  for example)
+
+The caller must have the correct permissions over this account to perform the
+requested operation.
+
+## User Session Authentication
+
+The use of web3-native authentication mechanisms within the context of card
+issuance means that the same level of protection to a user's funds in
+self-custodial wallets is applied to their activities as a cardholder.
+
+The following authentication methods are supported:
+- SIWE
+- Algorand
+- XRPL
+
+Accounts are identified by blockchain address. The cardholder can prove ownership
+of an address by signing a challenge using their web3 wallet. Upon successful authentication, Immersve
+will issue an access token for subsequent use in interactions with the Immersve
+API. Additionally, a refresh token will also be provided, enabling the request of a new access token when the current one expires.
+
+Subsequent requests for protected resources from the Immersve API may be
+authenticated by supplying the access token in the `Authorization` header.
+
+### Login Flow
 
 <!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577781765320&cot=14 -->
-![Login Sequence Diagram](@assets/diagrams/login-sequence.svg) #### 1. Sign up For first time users, the client
-application initiates the signup process by sending a request to the [Sign up API](/api-reference/sign-up) and a
-cardholder account will be created. The Sign up endpoint operates exactly like the Initiate Login endpoint mentioned
-below, except Initiate Login does not create a cardholder account. #### 2. Login For returning users, the client
-application initiates the login process by sending a request to the [Initiate Login API](/api-reference/initiate-login).
-The response contains a challenge message to be signed by the user's wallet. Users must first authenticate with this
-endpoint before performing other actions such as creating a funding source. When sending a login or sign up request,
-authorization scopes must be passed. These scopes are presented to the user when signing the challenge message and are
-used to determine the level of access the user is granting to the application. The following scopes are available: -
-`cardholder-partner` - Manage cards within your {partnerName} Immersve account For example: {% tab key="auth-method" %}
-{% item title="SIWE" %} {% code title="Challenge message" %} ``` app.immersve.com wants you to sign in with your
-Ethereum account: 0xA3058369d6A481B1ff08F62B352409c3D709De9b Sign in with Ethereum to the app. This request will not
-trigger a blockchain transaction or cost any gas fees. URI: https://app.immersve.com Version: 1 Chain ID: 1 Nonce:
-2hFm7TDbZmerUgnrJ Issued At: 2022-08-11T22:29:48.244Z ``` {% /code %} {% /item %} {% item title="Algorand" %} {% code
-title="Challenge message" %} ``` GlSDzZHcxrSDeJbKu: Login with your algorand address
-0xA3058369d6A481B1ff08F62B352409c3D709De9b ``` {% /code %} {% /item %} {% item title="XRPL" %} {% code title="Challenge
-message" %} ``` //encoded transaction 7321ED86C55E77C731F33313A3A47A7E... ``` {% /code %} {% /item %} {% /tab %} #### 3.
-Sign Message Invoke the wallet's message signing capability to get a signature for the given challenge message. Each
-network does message signing differently. Below are example scripts for each login method which create an account and
-use it to sign a challenge: {% tab key="auth-method" %} {% item title="SIWE" %} {% code title="signing-script.js" %}
-```js const ethers = require('ethers'); const axios = require('axios'); (async () => { const privateKey = ''; // TODO:
-Set private key here const clientApplicationId = ''; // TODO: Set client application ID here const addr = ''; // TODO:
-Set address here const url = ''; // TODO: Set URL here const wallet = new ethers.Wallet(privateKey); const { data:
-registerRequest } = await axios.post('/auth/signup', { loginMethod: 'siwe', network: 'polygon-mainnet',
-clientApplicationId, scopes: ['cardholder-partner'], address: addr, url, }); console.log('registerRequest',
-registerRequest); const signature = await wallet.signMessage(registerRequest.signingChallenge.message); const { data:
-registerCompleteRequest } = await axios.post('/auth/login-complete', { loginRequestId: registerRequest.id, signature,
-}); console.log('registerCompleteRequest', registerCompleteRequest); const { data: loginRequest } = await
-axios.post('/auth/login-init', { loginMethod: 'siwe', network: 'polygon-mainnet', clientApplicationId, scopes:
-['cardholder-partner'], address: addr, url, }); console.log('loginRequest', loginRequest); const signature2 = await
-wallet.signMessage(registerRequest.signingChallenge.message); const { data: loginCompleteRequest } = await
-axios.post('/auth/login-complete', { loginRequestId: loginRequest.id, signature: signature2, });
-console.log('loginCompleteRequest', loginCompleteRequest); })().catch((err) => console.log(err)); ``` {% /code %} {%
-/item %} {% item title="Algorand" %} {% code title="signing-script.js" %} ```js const algosdk = require('algosdk');
-const axios = require('axios'); (async () => { const { addr, sk } = algosdk.generateAccount(); const clientApplicationId
-= ''; // TODO: Set client application ID here const { data: registerRequest } = await axios.post('/auth/signup', {
-loginMethod: 'algorand', network: 'algorand-mainnet', clientApplicationId, scopes: ['cardholder-partner'], address:
-addr, }); console.log('registerRequest', registerRequest); const encodedData = new TextEncoder().encode(
-registerRequest.signingChallenge.message ); const signature = Buffer.from(algosdk.signBytes(encodedData, sk)).toString(
-'base64' ); const { data: registerCompleteRequest } = await axios.post( '/auth/login-complete', { loginRequestId:
-registerRequest.id, signature, } ); console.log('registerCompleteRequest', registerCompleteRequest); const { data:
-loginRequest } = await axios.post('/auth/login-init', { loginMethod: 'algorand', network: 'algorand-mainnet',
-clientApplicationId, scopes: ['cardholder-partner'], address: addr, }); console.log('loginRequest', loginRequest); const
-encodedData2 = new TextEncoder().encode( loginRequest.signingChallenge.message ); const signature2 =
-Buffer.from(algosdk.signBytes(encodedData2, sk)).toString( 'base64' ); const { data: loginCompleteRequest } = await
-axios.post( '/auth/login-complete', { loginRequestId: loginRequest.id, signature: signature2, } );
-console.log('loginCompleteRequest', loginCompleteRequest); })().catch((err) => console.log(err)); ``` {% /code %} {%
-/item %} {% item title="XRPL" %} {% code title="signing-script.js" %} ```js const xrplSdk = require('xrpl'); const
-rippleKeyPairs = require('ripple-keypairs'); const axios = require('axios'); (async () => { const { publicKey,
-privateKey } = xrplSdk.Wallet.generate(); const clientApplicationId = ''; // TODO: Set client application ID here const
-{ data: registerRequest } = await axios.post('/auth/signup', { loginMethod: 'xrpl', network: 'xahau-testnet',
-clientApplicationId, scopes: ['cardholder-partner'], publicKey, }); console.log('registerRequest', registerRequest);
-const signature = rippleKeyPairs.sign( registerRequest.signingChallenge.message, privateKey ); const { data:
-registerCompleteRequest } = await axios.post( '/auth/login-complete', { loginRequestId: registerRequest.id, signature, }
-); console.log('registerCompleteRequest', registerCompleteRequest); const { data: loginRequest } = await
-axios.post('/auth/login-init', { loginMethod: 'xrpl', network: 'xahau-testnet', clientApplicationId, scopes:
-['cardholder-partner'], publicKey, }); console.log('loginRequest', loginRequest); const signature2 =
-rippleKeyPairs.sign( loginRequest.signingChallenge.message, privateKey ); const { data: loginCompleteRequest } = await
-axios.post( '/auth/login-complete', { loginRequestId: loginRequest.id, signature: signature2, } );
-console.log('loginCompleteRequest', loginCompleteRequest); })().catch((err) => console.log(err)); ``` {% /code %} {%
-/item %} {% /tab %} #### 4. Submit Signed Challenge [Submit the signed challenge along with the
-signature](/api-reference/complete-login) to get the access token and a refresh token. The refresh token is used to
-obtain a new access token when the current access token expires, ensuring continuous access without requiring the user
-to log in again. #### 5. Use Access Token The access token should be used for subsequent requests for protected
-resources from the Immersve API by supplying it in the `Authorization` header. ## Refresh Tokens The refresh token is a
-long-lived token that can be used to obtain a new access token without requiring the user to re-authenticate. ###
-Refresh Token Flow Before making a request, check the expiry of the access token. If the token is expired, use the
-refresh token to obtain a new access token. To obtain a new access token, call the [Auth Token Exchange
-API](/api-reference/auth-token-exchange) using the refresh token you received during authentication. This will return a
-new access token and refresh token to be exchanged when the new access token expires.
+![Login Sequence Diagram](@assets/diagrams/login-sequence.svg)
+
+
+#### 1. Sign up
+For first time users, the client
+application initiates the signup process by sending a request to the [Sign up
+API](/api-reference/sign-up) and a cardholder account will be created. The Sign up
+endpoint operates exactly like the Initiate Login endpoint mentioned below, except
+Initiate Login does not create a cardholder account.
+
+#### 2. Login
+For returning users, the client application initiates
+the login process by sending a request to the [Initiate Login API](/api-reference/initiate-login). The response contains a
+challenge message to be signed by the user's wallet. Users must first
+authenticate with this endpoint before performing other actions such as creating
+a funding source.
+
+When sending a login or sign up request, authorization scopes must be passed. These scopes
+are presented to the user when signing the challenge message and are used to
+determine the level of access the user is granting to the application. The
+following scopes are available:
+
+- `cardholder-partner` - Manage cards within your {partnerName} Immersve account
+
+For example:
+
+{% tab key="auth-method" %}
+  {% item title="SIWE" %}
+    {% code title="Challenge message" %}
+      ```
+      app.immersve.com wants you to sign in with your Ethereum account:
+      0xA3058369d6A481B1ff08F62B352409c3D709De9b
+
+      Sign in with Ethereum to the app. This request will not trigger a blockchain transaction or cost any gas fees.
+
+      URI: https://app.immersve.com
+      Version: 1
+      Chain ID: 1
+      Nonce: 2hFm7TDbZmerUgnrJ
+      Issued At: 2022-08-11T22:29:48.244Z
+      ```
+    {% /code %}
+  {% /item %}
+  {% item title="Algorand" %}
+    {% code title="Challenge message" %}
+      ```
+      GlSDzZHcxrSDeJbKu: Login with your algorand address 0xA3058369d6A481B1ff08F62B352409c3D709De9b
+      ```
+    {% /code %}
+  {% /item %}
+  {% item title="XRPL" %}
+    {% code title="Challenge message" %}
+      ```
+      //encoded transaction
+      7321ED86C55E77C731F33313A3A47A7E...
+      ```
+    {% /code %}
+  {% /item %}
+{% /tab %}
+
+#### 3. Sign Message
+Invoke the wallet's message signing capability to get a signature for the given challenge message.
+Each network does message signing differently.
+
+Below are example scripts for each login method which create an account and use it to sign a challenge:
+
+{% tab key="auth-method" %}
+  {% item title="SIWE" %}
+    {% code title="signing-script.js" %}
+      ```js
+      const ethers = require('ethers');
+      const axios = require('axios');
+
+      (async () => {
+        const privateKey = ''; // TODO: Set private key here
+        const clientApplicationId = ''; // TODO: Set client application ID here
+        const addr = ''; // TODO: Set address here
+        const url = ''; // TODO: Set URL here
+
+        const wallet = new ethers.Wallet(privateKey);
+
+        const { data: registerRequest } = await axios.post('/auth/signup', {
+          loginMethod: 'siwe',
+          network: 'polygon-mainnet',
+          clientApplicationId,
+          scopes: ['cardholder-partner'],
+          address: addr,
+          url,
+        });
+
+        console.log('registerRequest', registerRequest);
+
+        const signature = await wallet.signMessage(registerRequest.signingChallenge.message);
+
+        const { data: registerCompleteRequest } = await axios.post('/auth/login-complete', {
+          loginRequestId: registerRequest.id,
+          signature,
+        });
+
+        console.log('registerCompleteRequest', registerCompleteRequest);
+
+        const { data: loginRequest } = await axios.post('/auth/login-init', {
+          loginMethod: 'siwe',
+          network: 'polygon-mainnet',
+          clientApplicationId,
+          scopes: ['cardholder-partner'],
+          address: addr,
+          url,
+        });
+
+        console.log('loginRequest', loginRequest);
+
+        const signature2 = await wallet.signMessage(registerRequest.signingChallenge.message);
+
+        const { data: loginCompleteRequest } = await axios.post('/auth/login-complete', {
+          loginRequestId: loginRequest.id,
+          signature: signature2,
+        });
+
+        console.log('loginCompleteRequest', loginCompleteRequest);
+      })().catch((err) => console.log(err));
+      ```
+    {% /code %}
+  {% /item %}
+  {% item title="Algorand" %}
+    {% code title="signing-script.js" %}
+      ```js
+      const algosdk = require('algosdk');
+      const axios = require('axios');
+
+      (async () => {
+        const { addr, sk } = algosdk.generateAccount();
+
+        const clientApplicationId = ''; // TODO: Set client application ID here
+
+        const { data: registerRequest } = await axios.post('/auth/signup', {
+          loginMethod: 'algorand',
+          network: 'algorand-mainnet',
+          clientApplicationId,
+          scopes: ['cardholder-partner'],
+          address: addr,
+        });
+
+        console.log('registerRequest', registerRequest);
+
+        const encodedData = new TextEncoder().encode(
+          registerRequest.signingChallenge.message
+        );
+
+        const signature = Buffer.from(algosdk.signBytes(encodedData, sk)).toString(
+          'base64'
+        );
+
+        const { data: registerCompleteRequest } = await axios.post(
+          '/auth/login-complete',
+          {
+            loginRequestId: registerRequest.id,
+            signature,
+          }
+        );
+
+        console.log('registerCompleteRequest', registerCompleteRequest);
+
+        const { data: loginRequest } = await axios.post('/auth/login-init', {
+          loginMethod: 'algorand',
+          network: 'algorand-mainnet',
+          clientApplicationId,
+          scopes: ['cardholder-partner'],
+          address: addr,
+        });
+
+        console.log('loginRequest', loginRequest);
+
+        const encodedData2 = new TextEncoder().encode(
+          loginRequest.signingChallenge.message
+        );
+
+        const signature2 = Buffer.from(algosdk.signBytes(encodedData2, sk)).toString(
+          'base64'
+        );
+
+        const { data: loginCompleteRequest } = await axios.post(
+          '/auth/login-complete',
+          {
+            loginRequestId: loginRequest.id,
+            signature: signature2,
+          }
+        );
+
+        console.log('loginCompleteRequest', loginCompleteRequest);
+      })().catch((err) => console.log(err));
+      ```
+    {% /code %}
+  {% /item %}
+  {% item title="XRPL" %}
+    {% code title="signing-script.js" %}
+      ```js
+      const xrplSdk = require('xrpl');
+      const rippleKeyPairs = require('ripple-keypairs');
+      const axios = require('axios');
+
+      (async () => {
+        const { publicKey, privateKey } = xrplSdk.Wallet.generate();
+
+        const clientApplicationId = ''; // TODO: Set client application ID here
+
+        const { data: registerRequest } = await axios.post('/auth/signup', {
+          loginMethod: 'xrpl',
+          network: 'xahau-testnet',
+          clientApplicationId,
+          scopes: ['cardholder-partner'],
+          publicKey,
+        });
+
+        console.log('registerRequest', registerRequest);
+
+        const signature = rippleKeyPairs.sign(
+          registerRequest.signingChallenge.message,
+          privateKey
+        );
+
+        const { data: registerCompleteRequest } = await axios.post(
+          '/auth/login-complete',
+          {
+            loginRequestId: registerRequest.id,
+            signature,
+          }
+        );
+
+        console.log('registerCompleteRequest', registerCompleteRequest);
+
+        const { data: loginRequest } = await axios.post('/auth/login-init', {
+          loginMethod: 'xrpl',
+          network: 'xahau-testnet',
+          clientApplicationId,
+          scopes: ['cardholder-partner'],
+          publicKey,
+        });
+
+        console.log('loginRequest', loginRequest);
+
+        const signature2 = rippleKeyPairs.sign(
+          loginRequest.signingChallenge.message,
+          privateKey
+        );
+
+        const { data: loginCompleteRequest } = await axios.post(
+          '/auth/login-complete',
+          {
+            loginRequestId: loginRequest.id,
+            signature: signature2,
+          }
+        );
+
+        console.log('loginCompleteRequest', loginCompleteRequest);
+      })().catch((err) => console.log(err));
+      ```
+    {% /code %}
+  {% /item %}
+{% /tab %}
+
+#### 4. Submit Signed Challenge
+[Submit the signed challenge along with the
+signature](/api-reference/complete-login) to get the access token and a refresh token.
+The refresh token is used to obtain a new access token when the current
+access token expires, ensuring continuous access without requiring the user to log in again.
+
+#### 5. Use Access Token
+The access token should be used for subsequent requests for protected
+resources from the Immersve API by supplying it in the `Authorization`
+header.
+
+## Refresh Tokens
+
+The refresh token is a long-lived token that can be used to obtain a new access
+token without requiring the user to re-authenticate.
+
+### Refresh Token Flow
+
+Before making a request, check the expiry of the access token. If the token is
+expired, use the refresh token to obtain a new access token.
+
+To obtain a new access token, call the [Auth Token Exchange
+API](/api-reference/auth-token-exchange) using the refresh token you received
+during authentication. This will return a new access token and refresh token to
+be exchanged when the new access token expires.
+
 
 <!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764581446931419&cot=14 -->
-![Refresh Token Sequence Diagram](@assets/diagrams/refresh-token-sequence.svg) ## Logout Logging out of the application
-involves invalidating the current session to ensure it can no longer be used for accessing protected resources within
-the Immersve API. All access tokens connected with the session will become unusable. ### Logout Flow Initiate Logout
-Request: The client application sends a logout request to the [Logout API](/api-reference/logout), including the current
-access token for validation. Session Invalidated: Immersve invalidates the session and ensures that all access tokens
-related to the session are rejected by future requests. Client Cleanup: The client application may discard the stored
-session information such as the access token and refresh token.
+![Refresh Token Sequence Diagram](@assets/diagrams/refresh-token-sequence.svg)
+
+
+## Logout
+
+Logging out of the application involves invalidating the current session to ensure it can no longer be used for accessing protected resources within the Immersve API. All access tokens connected with the session will become unusable.
+
+
+### Logout Flow
+
+Initiate Logout Request: The client application sends a logout request to the [Logout API](/api-reference/logout), including the current access token for validation.
+
+Session Invalidated: Immersve invalidates the session and ensures that all access tokens related to the session are rejected by future requests.
+
+Client Cleanup: The client application may discard the stored session information such as the access token and refresh token.
+
