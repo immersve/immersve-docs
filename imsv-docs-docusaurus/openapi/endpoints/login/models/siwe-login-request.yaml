@@ -23,7 +23,6 @@ properties:
     enum:
       - polygon-mainnet
       - polygon-amoy
-      - eth-sepolia
     example: "polygon-mainnet"
   clientApplicationId:
     description: ID of the client application created in an Immersve partner profile.
