@@ -1,4 +1,4 @@
 ---
 protocol: universal-evm
-network: polygon
+network: polygon-mainnet
 ---
