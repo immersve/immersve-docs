@@ -33,11 +33,7 @@ post:
             $ref: "../../models/api-error-403.yaml"
 
     "400":
-      description: |
-        Request fields are invalid
-
-        **PARAMETER_VALIDATION_FAILED**
-        Signature Invalid
+      description: Request fields are invalid
       content:
         application/json:
           schema:
