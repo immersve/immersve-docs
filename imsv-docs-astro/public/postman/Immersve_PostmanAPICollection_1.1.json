@@ -1,0 +1,2285 @@
+{
+	"info": {
+		"_postman_id": "1c6c37da-0312-4933-9dec-38f3386b7f03",
+		"name": "Immersve API Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7415297",
+		"_collection_link": "https://immersve-charmander.postman.co/workspace/Hashlock-Testing~be6e4444-b0ea-4f83-ba01-433959de5c12/collection/7415297-1c6c37da-0312-4933-9dec-38f3386b7f03?action=share&source=collection_link&creator=7415297"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Create Challenge",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"purpose\": \"claim-web3-address\",\n  \"network\": \"polygon-amoy\",\n  \"address\": \"{{siweWalletAddress}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/challenges",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"challenges"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1. SIWE Signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody);",
+									"",
+									"if(response.id){",
+									"    const {id, signingChallenge: { message } } = response",
+									"",
+									"    pm.environment.set(\"loginRequestId\", id);",
+									"",
+									"    pm.environment.set(\"signingChallenge\", message);",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"loginMethod\":\"siwe\",\n  \"network\":\"polygon-amoy\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"address\": \"{{siweWalletAddress}}\",\n  \"url\": \"http://localhost\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. SIWE Initiate login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody);",
+									"",
+									"if(response.id){",
+									"    const {id, signingChallenge: { message } } = response",
+									"",
+									"    pm.environment.set(\"loginRequestId\", id);",
+									"",
+									"    pm.environment.set(\"signingChallenge\", message);",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"loginMethod\":\"siwe\",\n  \"network\":\"polygon-amoy\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"address\": \"{{siweWalletAddress}}\",\n  \"url\": \"http://localhost:3000\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login-init",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login-init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1. Algorand Signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody);",
+									"",
+									"if(response.id){",
+									"    const {id, signingChallenge: { message } } = response",
+									"",
+									"    pm.environment.set(\"loginRequestId\", id);",
+									"",
+									"    pm.environment.set(\"signingChallenge\", message);",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"loginMethod\":\"algorand\",\n  \"network\":\"algorand-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"address\": \"{{algorandWalletAddress}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Algorand Initiate login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody);",
+									"",
+									"if(response.id){",
+									"    const {id, signingChallenge: { message } } = response",
+									"",
+									"    pm.environment.set(\"loginRequestId\", id);",
+									"",
+									"    pm.environment.set(\"signingChallenge\", message);",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"loginMethod\":\"algorand\",\n  \"network\":\"algorand-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"address\": \"{{algorandWalletAddress}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login-init",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login-init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1. XRPL Signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody);",
+									"",
+									"if(response.id){",
+									"    const {id, signingChallenge: { message } } = response",
+									"",
+									"    pm.environment.set(\"loginRequestId\", id);",
+									"",
+									"    pm.environment.set(\"signingChallenge\", message);",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"loginMethod\":\"xrpl\",\n  \"network\":\"xahau-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"publicKey\": \"{{xrplWalletPublicKey}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. XRPL Initiate login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody);",
+									"",
+									"if(response.id){",
+									"    const {id, signingChallenge: { message } } = response",
+									"",
+									"    pm.environment.set(\"loginRequestId\", id);",
+									"",
+									"    pm.environment.set(\"signingChallenge\", message);",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"loginMethod\":\"xrpl\",\n  \"network\":\"xahau-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"publicKey\": \"{{xrplWalletPublicKey}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login-init",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login-init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Complete login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const result = JSON.parse(responseBody);",
+									"",
+									"if(result.accessToken) {",
+									"    pm.environment.set(\"refreshToken\", result.refreshToken);",
+									"",
+									"    pm.environment.set(\"accessToken\", result.accessToken);",
+									"",
+									"    pm.environment.set(\"cardholderAccountId\", result.cardholderAccountId);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"loginRequestId\":\"{{loginRequestId}}\",\n  \"signature\":\"paste signature here\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login-complete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login-complete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth token exchange",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const result = JSON.parse(responseBody);",
+									"if(result.accessToken) {",
+									"    pm.environment.set(\"refreshToken\", result.refreshToken);",
+									"",
+									"    pm.environment.set(\"accessToken\", result.accessToken);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Origin",
+								"value": "{{origin}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refreshToken\":\"{{refreshToken}}\",\n    \"clientApplicationId\":\"{{clientApplicationId}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"refreshToken\", undefined);",
+									"",
+									"pm.environment.set(\"accessToken\", undefined);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(Deprecated) Initiate SIWE login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"siweMessage\", JSON.stringify(responseBody));",
+									"",
+									"// Sign message with wallet for the next step"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"walletAddress\":\"{{siweWalletAddress}}\",\n    \"chainId\": {{chainId}},\n    \"clientApplicationId\": \"{{clientApplicationId}}\",\n    \"scopes\":[\"cardholder-partner\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/siwe/generate-challenge",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"siwe",
+								"generate-challenge"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "with full-access (required for KYC)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"walletAddress\":\"{{walletAddress}}\",\n    \"chainId\": {{chainId}},\n    \"clientApplicationId\": \"{{clientApplicationId}}\",\n    \"scopes\":[\"full-access\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/siwe/generate-challenge",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"siwe",
+										"generate-challenge"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "(Deprecated) Complete SIWE login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const result = JSON.parse(responseBody);",
+									"if(result.token) {",
+									"    pm.environment.set(\"refreshToken\", result.refreshToken);",
+									"",
+									"    pm.environment.set(\"accessToken\", result.token);",
+									"",
+									"    pm.environment.set(\"cardholderAccountId\", result.cardholderAccountId);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Primitive script to sign message",
+									"",
+									"/*",
+									"const { Wallet } = require(\"ethers\");",
+									"",
+									"const privateKey = \"private_key_here\";",
+									"",
+									"const message = `message_here`;",
+									"",
+									"const wallet = new Wallet(privateKey);",
+									"",
+									"const signature = wallet.signMessageSync(message);",
+									"",
+									"console.log(signature);",
+									"",
+									"*/"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": {{siweMessage}},\n    \"signature\": \"paste signature here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/siwe/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"siwe",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "List accounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{cardIssuerApiKey}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{cardIssuerApiSecret}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}",
+								"disabled": true
+							},
+							{
+								"key": "x-account-id",
+								"value": "e203ddaa82152349b64dd4a77df82a50",
+								"description": "cardholder id",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts/:accountId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								":accountId"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "{{cardholderAccountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create partner account",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{cardIssuerApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{cardIssuerApiSecret}}"
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\":\"partner\",\n    \"name\":\"test-account: {{$randomFullName}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create non-custodial cardholder account",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const jwt = pm.environment.get(\"accessToken\");",
+									"",
+									"const [jwtHeader, jwtPayload, jwtSignature] = jwt.split('.');",
+									"",
+									"const jwtPayloadJsonString = atob(jwtPayload);",
+									"",
+									"const {sub} = JSON.parse(jwtPayloadJsonString);",
+									"",
+									"pm.environment.set(\"sub\", sub);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{cardIssuerApiKey}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{cardIssuerApiSecret}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\":\"cardholder\",\n    \"name\":\"test-{{$randomNoun}}\",\n    \"partnerAccountId\": \"{{partnerAccountId}}\",\n    \"ownerUserId\": \"{{sub}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create custodial cardholder account",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{cardIssuerApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{cardIssuerApiSecret}}"
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\":\"cardholder\",\n    \"name\":\"test-{{$randomNoun}}\",\n    \"parentAccountId\": \"{{partnerAccountId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Funding channels",
+			"item": [
+				{
+					"name": "Create funding channel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This api has to be called by account admin",
+									"// Use api key and api secret for auth",
+									"",
+									"// Uncomment following code to store funding ChannelId",
+									"",
+									"// const result = JSON.parse(responseBody);",
+									"// pm.environment.set(\"fundingChannelId\", result.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{cardIssuerApiKey}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{cardIssuerApiSecret}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountId\":\"{{partnerAccountId}}\",\n    \"fundingTypeName\":\"{{fundingTypeName}}\",\n    \"params\":{\n        \"storageAddress\":\"{{fundsStorageAddress}}\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/funding-channels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"funding-channels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List funding channels",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This api has to be called by account admin",
+									"// Use api key and api secret for auth",
+									"const result = JSON.parse(responseBody);",
+									"if(result.items[0].id){",
+									"    pm.environment.set(\"fundingChannelId\", result.items[0].id);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{cardIssuerApiKey}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{cardIssuerApiSecret}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts/:accountId/funding-channels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								":accountId",
+								"funding-channels"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "{{partnerAccountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a funding channel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This api has to be called by account admin",
+									"// Use api key and api secret for auth"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/funding-channel/:fundingChannelId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"funding-channel",
+								":fundingChannelId"
+							],
+							"variable": [
+								{
+									"key": "fundingChannelId",
+									"value": "{{fundingChannelId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Funding sources",
+			"item": [
+				{
+					"name": "1. Create a funding source for an account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const result = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set(\"fundingSourceId\", result.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountId\":\"{{cardholderAccountId}}\",\n    \"fundingAddress\":\"{{siweWalletAddress}}\",\n    \"fundingChannelId\":\"{{fundingChannelId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/funding-sources",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"funding-sources"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. List funding sources",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const result = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set(\"fundingSourceId\", result.items[0].id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts/:accountId/funding-sources",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								":accountId",
+								"funding-sources"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "{{cardholderAccountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Get a funding source",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/funding-source/:fundingSourceId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"funding-source",
+								":fundingSourceId"
+							],
+							"variable": [
+								{
+									"key": "fundingSourceId",
+									"value": "{{fundingSourceId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Create withdrawal intent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 0\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/funding-sources/:fundingSourceId/withdraw",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"funding-sources",
+								":fundingSourceId",
+								"withdraw"
+							],
+							"variable": [
+								{
+									"key": "fundingSourceId",
+									"value": "{{fundingSourceId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. List funding source interactions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/funding-sources/:fundingSourceId/interactions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"funding-sources",
+								":fundingSourceId",
+								"interactions"
+							],
+							"variable": [
+								{
+									"key": "fundingSourceId",
+									"value": "{{fundingSourceId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prerequisites",
+			"item": [
+				{
+					"name": "Get spending prerequisites (immersve-conducted)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"immersve-conducted\",\n  \"kycRegion\": \"NZL\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/spending-prerequisites",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"spending-prerequisites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get spending prerequisites (partner-conducted)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"partner-conducted\",\n  \"kycRegion\": \"NZL\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/spending-prerequisites",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"spending-prerequisites"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "KYC",
+			"item": [
+				{
+					"name": "Get KYC profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{cardIssuerApiKey}}",
+								"disabled": true
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{cardIssuerApiSecret}}",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts/:accountId/kyc-profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								":accountId",
+								"kyc-profile"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "{{identityAccountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit partner KYC Statement",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{cardIssuerApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{cardIssuerApiSecret}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idempotencyKey\": \"{{$guid}}\", \n    \"region\": \"AUS\",\n    \"claims\": [\n        {\n            \"claimType\": \"FULL_NAME\",\n            \"attributes\": {\n                \"givenName\": \"{{$randomFirstName}}\",\n                \"honorific\": \"Mr\",\n                \"familyName\": \"{{$randomLastName}}\",\n                \"middleName\": \"passall\"\n            }\n        },\n        {   \n            \"claimType\": \"ADDRESS\",\n            \"attributes\": {\n                \"addressType\": \"RESIDENTIAL\",\n                \"country\": \"AUS\",\n                \"streetNumber\": \"{{$randomAlphaNumeric}}\",\n                \"streetName\": \"Oldham\",\n                \"streetType\": \"ROAD\",\n                \"town\": \"Manchester\",\n                \"postalCode\": \"M4 6BG\"\n            }\n        },\n        {\n            \"claimType\": \"DOB\",\n            \"attributes\": {\n                \"country\": \"GBR\",\n                \"dateOfBirth\": \"1984-01-01\",\n                \"yearOfBirth\": \"1984\"\n            }\n        }\n    ],\n    \"evidence\": [\n        {\n            \"evidenceType\": \"PASSPORT\",\n            \"country\": \"AUS\",\n            \"expiry\": \"2030-01-01\",\n            \"documentId\": \"E07148293\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts/:cardholderAccountId/partner-kyc-statement",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								":cardholderAccountId",
+								"partner-kyc-statement"
+							],
+							"variable": [
+								{
+									"key": "cardholderAccountId",
+									"value": "{{cardholderAccountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cards",
+			"item": [
+				{
+					"name": "Create a card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const result = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set(\"createdCardId\", result.cardId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cardProgramId\":\"{{cardProgramId}}\",\n    \"fundingSourceId\": \"{{fundingSourceId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/cards",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"cards"
+							],
+							"query": [
+								{
+									"key": "useKycCheck",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get card details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/cards/:cardId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"cards",
+								":cardId"
+							],
+							"variable": [
+								{
+									"key": "cardId",
+									"value": "{{createdCardId}}",
+									"description": "card id returned by \"create card\""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List cards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts/:accountId/cards",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								":accountId",
+								"cards"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "{{cardholderAccountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set card PIN",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"newPin\":\"7913\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlSecure}}/api/cards/:cardId/set-pin",
+							"host": [
+								"{{baseUrlSecure}}"
+							],
+							"path": [
+								"api",
+								"cards",
+								":cardId",
+								"set-pin"
+							],
+							"variable": [
+								{
+									"key": "cardId",
+									"value": "{{createdCardId}}",
+									"description": "id of the card the PIN to be set for"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a card token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const result = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set(\"secureCardDetailsTokenId\", result.tokenId);",
+									"pm.environment.set(\"secureCardDetailsCallbackUrl\", result.callbackUrl);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/cards/:cardId/pan-token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"cards",
+								":cardId",
+								"pan-token"
+							],
+							"variable": [
+								{
+									"key": "cardId",
+									"value": "{{createdCardId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/cards/:cardId/cancel-async",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"cards",
+								":cardId",
+								"cancel-async"
+							],
+							"variable": [
+								{
+									"key": "cardId",
+									"value": "",
+									"description": "id of the card to cancel"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get secure card details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const result = JSON.parse(pm.response.text());",
+									"if (result) {",
+									"    pm.environment.set(\"cardPan\", result.pan);",
+									"    pm.environment.set(\"cardExpiry\", result.expiry);",
+									"    pm.environment.set(\"cardCVV2\", result.cvv2);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-sec.8dev.lol/api/cards/secure?tokenId={{secureCardDetailsTokenId}}",
+							"protocol": "https",
+							"host": [
+								"api-sec",
+								"8dev",
+								"lol"
+							],
+							"path": [
+								"api",
+								"cards",
+								"secure"
+							],
+							"query": [
+								{
+									"key": "tokenId",
+									"value": "{{secureCardDetailsTokenId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Currency",
+			"item": [
+				{
+					"name": "List currencies",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							},
+							{
+								"key": "x-account-id",
+								"value": "{{partnerAccountId}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/currencies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"currencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Currency conversion",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							},
+							{
+								"key": "x-account-id",
+								"value": "{{partnerAccountId}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/currency/convert?currency=NZD&amount=100&targetCurrency=USD",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"currency",
+								"convert"
+							],
+							"query": [
+								{
+									"key": "currency",
+									"value": "NZD"
+								},
+								{
+									"key": "amount",
+									"value": "100"
+								},
+								{
+									"key": "targetCurrency",
+									"value": "USD"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contact details",
+			"item": [
+				{
+					"name": "Get contact details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{cardIssuerApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{cardIssuerApiSecret}}"
+							},
+							{
+								"key": "x-account-id",
+								"value": "{{cardholderAccountId}}",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts/:accountId/contact-details",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								":accountId",
+								"contact-details"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "{{cardholderAccountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update contact details",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": {\n    \"emailAddress\": \"joe@joecajlder.com\"\n  },\n  \"phone\": {\n    \"phoneNumber\": \"+1234567\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts/:accountId/contact-details",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								":accountId",
+								"contact-details"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "{{cardholderAccountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "List transaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts/:accountId/transactions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								":accountId",
+								"transactions"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "{{cardholderAccountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a transaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions/:transactionId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								":transactionId"
+							],
+							"variable": [
+								{
+									"key": "transactionId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Simulator",
+			"item": [
+				{
+					"name": "Authorize a transaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const { requestMsg, responseMsg } = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set(\"authorizationRequestMsg\", JSON.stringify(requestMsg));",
+									"",
+									"pm.environment.set(\"authorizationResponseMsg\", JSON.stringify(responseMsg));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"transactionType\": \"purchase\",\n  \"transactionAmount\": \"1\",\n  \"cardPan\": \"{{cardPan}}\",\n  \"cardExpiry\": \"{{cardExpiry}}\",\n  \"cardCvv\": \"{{cardCVV2}}\",\n  \"fxAmount\": {\n    \"amount\": \"1\",\n    \"currencyCode\": \"NZD\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/simulator/authorize",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"simulator",
+								"authorize"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reverse the authorisation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"transactionType\": \"purchase\",\n  \"reversalAmount\": \"1\",\n  \"fxReversalAmount\": {\n    \"amount\": \"1\",\n    \"currencyCode\": \"NZD\"\n  },\n  \"authorizationRequestMsg\": {{authorizationRequestMsg}}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/simulator/reverse",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"simulator",
+								"reverse"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear a transaction",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const { requestMsg } = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set(\"clearingRequestMsg\", JSON.stringify(requestMsg));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"authorizationRequestMsg\": {{authorizationRequestMsg}},\n  \"authorizationResponseMsg\": {{authorizationResponseMsg}},\n  \"transactionType\": \"purchase\",\n  \"transactionAmount\": \"1\",\n  \"cardPan\": \"{{cardPan}}\",\n  \"cardExpiry\": \"{{cardExpiry}}\",\n  \"cardCvv\": \"{{cardCVV2}}\",\n  \"fxAmount\": {\n    \"amount\": \"1\",\n    \"currencyCode\": \"NZD\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/simulator/clear",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"simulator",
+								"clear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reverse the clearing",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"transactionType\": \"purchase\",\n  \"reversalAmount\": \"1\",\n  \"fxReversalAmount\": {\n    \"amount\": \"1\",\n    \"currencyCode\": \"NZD\"\n  },\n  \"clearingRequestMsg\": {{clearingRequestMsg}}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/simulator/reverse",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"simulator",
+								"reverse"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client application",
+			"item": [
+				{
+					"name": "Get Client Application",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							},
+							{
+								"key": "x-account-id",
+								"value": "{{partnerAccountId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/client-applications/:clientApplicationId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"client-applications",
+								":clientApplicationId"
+							],
+							"variable": [
+								{
+									"key": "clientApplicationId",
+									"value": "{{clientApplicationId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update allowed origins",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							},
+							{
+								"key": "x-account-id",
+								"value": "{{partnerAccountId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"allowedOrigins\": [\"localhost\", \"http://localhost:3000\", \"http://localhost\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/client-applications/:clientApplicationId/update-origins",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"client-applications",
+								":clientApplicationId",
+								"update-origins"
+							],
+							"variable": [
+								{
+									"key": "clientApplicationId",
+									"value": "{{clientApplicationId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Support",
+			"item": [
+				{
+					"name": "Create a support session",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountId\": \"{{cardholderAccountId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/support-sessions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"support-sessions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
