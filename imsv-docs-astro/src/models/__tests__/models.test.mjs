@@ -99,14 +99,32 @@ describe('models', () => {
 
   describe('FundingType', () => {
 
-    test('fromContent', async () => {
-      const registry = await ContentRegistry.create();
-      const content = await getEntry('funding-types', 'ethereum-sepolia-usdc-universal-evm-test');
-      const fundingType = FundingType.fromContent({ registry, content });
-      expect(fundingType.network).toEqual(registry.getNetwork('ethereum-sepolia'));
-      expect(fundingType.token).toEqual(registry.getToken('usdc'));
-      expect(fundingType.protocol.name).toEqual('universal-evm');
-      expect(fundingType.deployedProtocol.address).toEqual('0xe50FF3C352C0176c12c0a130dCa7655eC518fc40');
+    describe('fromContent', () => {
+
+      test('should parse universal-evm funding type', async () => {
+        const registry = await ContentRegistry.create();
+        const content = await getEntry('funding-types', 'ethereum-sepolia-usdc-universal-evm-test');
+        const fundingType = FundingType.fromContent({ registry, content });
+        expect(fundingType.network).toEqual(registry.getNetwork('ethereum-sepolia'));
+        expect(fundingType.token).toEqual(registry.getToken('usdc'));
+        expect(fundingType.protocol.name).toEqual('universal-evm');
+        expect(fundingType.deployedProtocol.address).toEqual('0xe50FF3C352C0176c12c0a130dCa7655eC518fc40');
+      });
+
+      test('should allow arbitrary file name', async () => {
+        const registry = await ContentRegistry.create();
+        const content = {
+          id: 'algorand-usdc-flexi-live.md',
+          data: {
+            protocol: 'universal-evm',
+            network: 'polygon-mainnet',
+            token: 'usdc',
+          }
+        };
+        const fundingType = FundingType.fromContent({ registry, content });
+        expect(fundingType.token).toEqual(registry.getToken('usdc'));
+      });
+
     });
 
   });
