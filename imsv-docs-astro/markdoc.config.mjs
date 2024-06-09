@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { component, defineMarkdocConfig } from '@astrojs/markdoc/config';
+import { component, defineMarkdocConfig, nodes } from '@astrojs/markdoc/config';
 import shiki from '@astrojs/markdoc/shiki';
 
 function registryViewComponent(componentPath) {
@@ -32,6 +32,19 @@ export default defineMarkdocConfig({
       theme: 'rose-pine-dawn',
     }),
   ],
+  nodes: {
+    image:{
+      ...nodes.image,
+      render: component('./src/components/Figure.astro'),
+      attributes: {
+        src: { type: String },
+        alt: { type: String },
+        title: { type: String },
+        // https://discord.com/channels/830184174198718474/1182681722215743578/1204466454922002452
+        __optimizedSrc: { type: 'Object' },
+      },
+    },
+  },
   tags: {
     button: {
       render: component('./src/components/Button.astro'),
