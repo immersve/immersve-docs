@@ -148,10 +148,11 @@ only be a single Card Fund contract instance per owner address per Partner
 Channel. Only the owner address can receive withdrawals from a Card Fund
 address.
 
-
-The address of the deployed Card Fund instance can also be discovered from the
-Algorand transaction logs. In a block explorer, find the `CardFundCreated` event
-within the logs for the transaction that created the Card Fund instance.
+The address of a deployed Card Fund instance can be discovered by calling
+[`getCardFundByPartner()`](#getCardFundByPartner). The address can also be found
+in the Algorand transaction event logs. In a block explorer, find the
+`CardFundCreated` event within the logs for the transaction that created the
+Card Fund instance.
 
 Card Fund can support multiple Assets at the same time. They just need to be
 enabled via [`cardFundEnableAsset()`](#cardFundEnableAsset). Only assets already
@@ -205,7 +206,7 @@ be fetched from `getCardFundAssetMbr()`.
 page="guides/supported-tokens" /%} for available assets to opt-in.
 
 
-### getCardFundByPartner(channel, owner)
+### getCardFundByPartner(channel, owner) <a id="getCardFundByPartner"/>
 Find an existing Card Fund address for a Partner Channel and owner
 combination.<br>
 *Params*
