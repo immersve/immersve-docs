@@ -1,0 +1,19 @@
+---
+// https://docs.astro.build/en/guides/integrations-guide/markdoc/#custom-image-components
+// https://discord.com/channels/830184174198718474/1182681722215743578/1204466454922002452
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: ImageMetadata | string;
+  alt: string;
+  title: string;
+  __optimizedSrc: any;
+}
+
+const { src, alt, title, __optimizedSrc } = Astro.props;
+---
+<figure>
+  <img class="rounded" src={__optimizedSrc.src} height={__optimizedSrc.height} width={__optimizedSrc.width} alt={alt} />
+  {title && <figcaption class="text-center italic">{title}</figcaption>}
+</figure>
