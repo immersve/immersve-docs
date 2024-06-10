@@ -81,20 +81,22 @@ funds flow diagram.")
 ### Deposits
 
 Depositors can send native asset transfers directly to the Card Funds address.
-Each depositor address needs to have a [Funding
-Source](https://docs.immersve.com/api-reference/create-a-funding-source-for-an-account)
-created that is linked with the Card Fund. After an asset transfer
-transaction is observed by Immersve, the connected Funding Source will be
-credited with the deposited amount.
+The depositor needs to have an Immersve Funding Source registered for each
+asset supported by their Card Fund. The Funding Source is an off-chain
+representation of available balance that is connected with the Immersve
+cardholder account and used to authorize payments.
+
+After an asset transfer transaction is observed by Immersve, the connected
+Funding Source will be credited with the deposited amount. When a Funding Source
+is created, any deposits made before the creation of the Funding Source
+associated with the depositing address will be credited immediately.
 
 The [Spending Pre-requisites
 API](https://docs.immersve.com/api-reference/get-spending-prerequisites) can be
 used to reliably obtain the Web3 transaction parameters for depositing into a
 Funding Source.
 
-When a Funding Source is created, any deposits made before the creation of
-the Funding Source associated with the depositing address will be credited
-immediately.
+See {% link page="guides/card-funding" /%} for more details.
 
 
 ### Withdrawals
