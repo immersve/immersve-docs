@@ -6,29 +6,27 @@ slug: resources/postman-collection
 We've built a [Postman Collection](https://www.postman.com/collection/) including example requests for all of our API
 endpoints to enable our partners to get hands on with our API as quickly as possible.
 
-[Postman](https://www.postman.com/downloads/) is a free to use API platform for building and using APIs. Follow these easy steps to get up and running with
-our API in minutes:
+[Postman](https://www.postman.com/downloads/) is a free to use API platform for building and using APIs. Follow these
+easy steps to get up and running with our API in minutes:
 
 1. Download our <a href="/postman/Immersve_PostmanAPICollection_1.1.json" download="Immersve_PostmanAPICollection_1.1.json">Postman Collection JSON file</a> and import it using Postman.
-<TODO: screenshot of import?>
 
 2. Download our <a href="/postman/Immersve_PostmanAPIEnvironment_1.1.json" download="Immersve_PostmanAPIEnvironment_1.1.json">Postman Environment JSON file</a> and import it using Postman.
 
 3. Either use the [Public Sandbox](/resources/public-sandbox-account) partner account credentials that are already
-loaded into our Postman Environment file, or replace these with your own `partnerAccountid`, `clientApplicationId`,
+loaded into our Postman Environment file, or replace these with your own `partnerAccountId`, `clientApplicationId`,
 `fundsStorageAddress`, `cardProgramId` and card issuer/account admin API keys and API secrets.
 
 4. Add the address for the wallet you wish to authenticate with to the Postman Environment:
-<TODO: screenshot of siwe/algo/xrpl wallet address fields in environment
+![Wallet Addresses](@assets/walletAddress.png)
 
-5. Use the signup (for first time users) or initiate login (returning users), as well as complete login endpoints to
-sign a challenge with your web3 wallet and obtain an access token and refresh token.
-<TODO: add link to auth guide for message signing instructions>
+5. Use the [signup](/api-reference/sign-up) (for first time users) or [initiate login](/api-reference/initiate-login)
+(returning users), as well as [complete login](/api-reference/complete-login) endpoints to sign a challenge with your
+web3 wallet and obtain an access token and refresh token. See our
+[authentication guide](/guides/authentication) for more details.
 
-5. KYC instructions here
-
-6. Spending prerequisite instructions here
-- KYC
-- Deposit 1 USDC in the smart contract if you wish to use simulator endpoints
-
-7. Select endpoints from the list that you'd like to try, or run them in bulk using the 'Run' button (insert screenshot)
+5. Some endpoints have additional requirements that must be met before they can be used. Once you have [created a
+funding source](/api-reference/create-a-funding-source-for-an-account) you can call
+[get spending prerequisites](/api-reference/get-spending-prerequisites) to see a list of unmet requirements.
+    * Before creating cards cardholders must pass a [KYC Check](/guides/kyc).
+    * See our [card funding guide](/guides/card-funding) for details on depositing funds.
