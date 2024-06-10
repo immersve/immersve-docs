@@ -236,6 +236,18 @@ describe('models', () => {
         expect(deployedProtocols).toContain(universalEvmSepolia);
       });
 
+      test('deployed instances are found by protocolName only', async () => {
+        const registry = await ContentRegistry.create();
+        const universalEvmSepolia = registry.getDeployedFundingProtocol({
+          networkName: 'ethereum-sepolia',
+          protocolName: 'universal-evm',
+        });
+        const deployedProtocols = registry.findDeployedFundingProtocols({
+          protocolName: 'universal-evm',
+        });
+        expect(deployedProtocols).toContain(universalEvmSepolia);
+      });
+
       test('deployed instances are found by chainName and networkType', async () => {
         const registry = await ContentRegistry.create();
         const universalEvmSepolia = registry.getDeployedFundingProtocol({
