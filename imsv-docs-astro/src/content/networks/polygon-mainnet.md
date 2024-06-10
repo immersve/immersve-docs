@@ -1,7 +1,6 @@
 ---
 title: Polygon
 chain: polygon
-networkName: polygon-mainnet
 netType: mainnet
 addressUrlTemplate: https://polygonscan.com/address/{address}
 protocols:

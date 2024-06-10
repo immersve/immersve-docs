@@ -193,24 +193,34 @@ allNetworksByChainName(chainName) {
     return this.#fundingTypesByName[name];
   }
 
+  tryWithContent(method) {
+    return content => {
+      try {
+        method.bind(this)(content);
+      } catch(err) {
+        throw Error(`Content registration failed (${content.id}): ${err.message}`);
+      }
+    }
+  }
+
   static async create() {
     const registry = new ContentRegistry();
     const allDocs = await getCollection('docs');
     allDocs
       .filter(content => content.data.supportedToken)
-      .forEach(content => registry.registerToken(content));
+      .forEach(registry.tryWithContent(registry.registerToken));
     allDocs
       .filter(content => content.data.fundingProtocol)
-      .forEach(content => registry.registerFundingProtocol(content));
+      .forEach(registry.tryWithContent(registry.registerFundingProtocol));
     allDocs
       .filter(content => content.data.supportedChain)
-      .forEach(content => registry.registerChain(content));
+      .forEach(registry.tryWithContent(registry.registerChain));
     (await getCollection('networks'))
-      .forEach(content => registry.registerNetwork(content));
+      .forEach(registry.tryWithContent(registry.registerNetwork));
     (await getCollection('network-tokens'))
-      .forEach(content => registry.registerNetworkToken(content));
+      .forEach(registry.tryWithContent(registry.registerNetworkToken));
     (await getCollection('funding-types'))
-      .forEach(content => registry.registerFundingType(content));
+      .forEach(registry.tryWithContent(registry.registerFundingType));
     return registry;
   }
 }

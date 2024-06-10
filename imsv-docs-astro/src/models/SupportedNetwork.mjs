@@ -36,7 +36,7 @@ export class SupportedNetwork {
   }
 
   get networkName() {
-    return this.content.data.networkName;
+    return this.name;
   }
 
   /**
