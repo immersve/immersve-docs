@@ -36,15 +36,18 @@ export class FundingType {
    */
   static fromContent({ registry, content }) {
     const name = path.basename(content.id).split('.')[0];
-    const networkName = content.data.network;
-    const protocolName = content.data.protocol;
+    const network = registry.getNetwork(content.data.network);
+    const protocol = registry.getFundingProtocol(content.data.protocol);
+    const networkName = network.name;
+    const protocolName = protocol.name;
     const tokenName = name
       .replace(/(-test|-live)$/, '')
       .replace(protocolName, '')
       .split('-')
       .reverse()[1];
+    const token = registry.getToken(tokenName);
     const deployedProtocol = registry.getDeployedFundingProtocol({ networkName, protocolName });
-    const networkToken = registry.getNetworkToken({ networkName, tokenName });
+    const networkToken = registry.getNetworkToken({ networkName, tokenName: token.name });
     const fundingType = new FundingType({ name, networkToken, deployedProtocol });
     networkToken.network.addFundingType(fundingType);
     networkToken.token.addFundingType(fundingType);
