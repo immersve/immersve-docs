@@ -24,17 +24,13 @@ post:
 
         **FORBIDDEN**
         Insufficient permissions to perform the action.
-        
+
         **ACCOUNT_TYPE_INVALID**
         `accountType` of the `accountId` is not of type `PARTNER`.
 
         **FUNDING_CHANNEL_EXISTS**
-        Instance of this FundingChannel has already been claimed.
-        
-        **STORAGE_ADDRESS_INVALID**
-        `storageAddress` provided is invalid.
+        Instance of this FundingChannel has already been claimed
       content:
         application/json:
           schema:
             $ref: "../../models/api-error-403.yaml"
-
