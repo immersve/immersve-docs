@@ -23,11 +23,11 @@ can only be settled to Immersve's approved settlement address.
 
 ## Smart Contract
 
-The Flexi Algorand protocol has a "Master" contract and many partner "Partner
-Channels" contracts. Partner Channel contracts are used to scope the
-funds associated to the cardholders under a specific partner. The cardholder
-funds are stored in a "Card Fund" contract. Both "Partner Channels" and "Card
-Funds" are managed by the "Master" Contract
+The Flexi Algorand protocol has a Master contract and many partner Partner
+Channel and Card Fund contracts. Card Fund contracts hold deposits for a
+cardholder. Partner Channel contracts scope the Card Fund contracts to an
+Immersve partner application. Both Partner Channels and "Card Funds" are managed
+by the Master Contract.
 
 
 ### Source
@@ -60,7 +60,7 @@ Fund contract belongs. The Partner Channel is provisioned by the Immersve card
 issuing partner.
 
 The Card Fund contract holds assets for funding a cardholders card. Deposits are
-made via native token transfers. The card fund is provisioned by the cardholder.
+made via native token transfers. The Card Fund is provisioned by the cardholder.
 A Card Fund contract is uniquely identified by the address of the owner (the
 cardholder's primary algorand address) and the address of the related partner
 contract.
