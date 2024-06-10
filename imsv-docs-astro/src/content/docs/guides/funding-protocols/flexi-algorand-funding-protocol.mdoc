@@ -115,8 +115,7 @@ endpoint. See {% link page="guides/card-funding" /%} for more details.
 
 A Partner Channel instance needs to be created for an Immersve partner to start
 supporting funding on the Algorand network. It only needs to be created once for
-all depositors. Partner Channels supports multiple assets. The address of the
-created Partner Channel will need to be supplied when {% link
+all depositors. The address of the created Partner Channel will need to be supplied when {% link
 page="guides/creating-a-funding-channel" /%}.
 
 To create the partner Partner Channel instance, invoke the
@@ -130,7 +129,7 @@ within the logs for the transaction that created the Partner Channel instance.
 
 Use the created funds storage address as the `contractAddress` when calling the
 [Create Funding Channel](https://docs.immersve.com/api-reference/create-a-funding-channel)
-endpoint.
+endpoint. A Funding Channel is required for each supported asset.
 
 
 ### Creating a Card Funds Instance
