@@ -9,6 +9,7 @@ endpoints to enable our partners to get hands on with our API as quickly as poss
 [Postman](https://www.postman.com/downloads/) is a free to use API platform for building and using APIs. Follow these
 easy steps to get up and running with our API in minutes:
 
+## Set up Postman Collection and Environment
 1. Download our <a href="/postman/Immersve_PostmanAPICollection_1.1.json" download="Immersve_PostmanAPICollection_1.1.json">Postman Collection JSON file</a> and import it using Postman.
 
 2. Download our <a href="/postman/Immersve_PostmanAPIEnvironment_1.1.json" download="Immersve_PostmanAPIEnvironment_1.1.json">Postman Environment JSON file</a> and import it using Postman.
@@ -17,6 +18,7 @@ easy steps to get up and running with our API in minutes:
 loaded into our Postman Environment file, or replace these with your own `partnerAccountId`, `clientApplicationId`,
 `fundsStorageAddress`, `cardProgramId` and card issuer/account admin API keys and API secrets.
 
+## Authenticate
 4. Add the address for the wallet you wish to authenticate with to the Postman Environment:
 ![Wallet Addresses](@assets/walletAddress.png)
 
@@ -25,7 +27,8 @@ loaded into our Postman Environment file, or replace these with your own `partne
 web3 wallet and obtain an access token and refresh token. See our
 [authentication guide](/guides/authentication) for more details.
 
-5. Some endpoints have additional requirements that must be met before they can be used. Once you have [created a
+## Additional Requirements
+Some endpoints have additional requirements that must be met before they can be used. Once you have [created a
 funding source](/api-reference/create-a-funding-source-for-an-account) you can call
 [get spending prerequisites](/api-reference/get-spending-prerequisites) to see a list of unmet requirements.
     * Before creating cards cardholders must pass a [KYC Check](/guides/kyc).
