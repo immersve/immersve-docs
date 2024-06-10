@@ -107,12 +107,13 @@ allNetworksByChainName(chainName) {
    * @param {string} [opts.networkType]
    * @returns {Array<DeployedFundingProtocol>}
    * */
-  findDeployedFundingProtocols({ chainName, networkType, protocolName }) {
+  findDeployedFundingProtocols({ chainName, networkType='*', protocolName }) {
+    const networkTypes = networkType == '*' ? [ 'mainnet', 'testnet' ] : [ networkType ];
     return Object.values(this.#protocolsByName)
       .flatMap(p => p.deployedInstances)
       .filter(i => !chainName || i.network.chain.name == chainName)
       .filter(i => !protocolName || i.protocol.name == protocolName)
-      .filter(i => i.network.type == networkType);
+      .filter(i => networkTypes.includes(i.network.type));
   }
 
   /**
