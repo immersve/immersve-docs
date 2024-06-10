@@ -83,16 +83,57 @@ describe('models', () => {
 
   describe('NetworkToken', () => {
 
-    test('fromContent', async () => {
-      const registry = await ContentRegistry.create();
-      const content = await getEntry('network-tokens', 'usdc-ethereum-sepolia');
-      const networkToken = NetworkToken.fromContent({ registry, content });
-      expect(networkToken.network).toEqual(registry.getNetwork('ethereum-sepolia'));
-      expect(networkToken.token).toEqual(registry.getToken('usdc'));
-      expect(networkToken.address).toEqual('0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238');
-      expect(networkToken.url).toEqual('https://sepolia.etherscan.io/address/0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238');
-      expect(networkToken.faucetTitle).toEqual('Circle USDC Faucet');
-      expect(networkToken.faucetUrl).toEqual('https://faucet.circle.com/');
+    describe('fromContent', async () => {
+
+      test('valid content', async () => {
+        const registry = await ContentRegistry.create();
+        const content = await getEntry('network-tokens', 'usdc-ethereum-sepolia');
+        const networkToken = NetworkToken.fromContent({ registry, content });
+        expect(networkToken.network).toEqual(registry.getNetwork('ethereum-sepolia'));
+        expect(networkToken.token).toEqual(registry.getToken('usdc'));
+        expect(networkToken.address).toEqual('0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238');
+        expect(networkToken.url).toEqual('https://sepolia.etherscan.io/address/0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238');
+        expect(networkToken.faucetTitle).toEqual('Circle USDC Faucet');
+        expect(networkToken.faucetUrl).toEqual('https://faucet.circle.com/');
+      });
+
+      test('fails when faucet configured on mainnet', async () => {
+        const registry = await ContentRegistry.create();
+        const content = {
+          id: 'usdc-polygon-mainnet',
+          data: {
+            address: '0x1234',
+            faucet: 'http://faucet',
+            faucetTitle: 'USDC Faucet',
+          }
+        };
+        expect(() => NetworkToken.fromContent({ registry, content })).toThrow('Faucet should not be defined on mainnet asset');
+      });
+
+      test('fails when faucet url missing on testnet', async () => {
+        const registry = await ContentRegistry.create();
+        const content = {
+          id: 'usdc-algorand-testnet',
+          data: {
+            address: 'ADDR1234',
+            faucetTitle: 'USDC Faucet',
+          }
+        };
+        expect(() => NetworkToken.fromContent({ registry, content })).toThrow('Faucet url must be defined on testnet asset');
+      });
+
+      test('fails when faucet title missing on testnet', async () => {
+        const registry = await ContentRegistry.create();
+        const content = {
+          id: 'usdc-algorand-testnet',
+          data: {
+            address: 'ADDR1234',
+            faucet: 'http://faucet',
+          }
+        };
+        expect(() => NetworkToken.fromContent({ registry, content })).toThrow('Faucet title must be defined on testnet asset');
+      });
+
     });
 
   });
