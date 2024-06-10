@@ -11,31 +11,13 @@ Always use the spending prerequisites endpoint to discover the correct address
 for user deposits.
 {% /note %}
 
-## Mainnet
-
 {%
   deployedFundingProtocolsTable
   chain="polygon"
-  netType="mainnet"
   columns=[
     "network",
     "protocol",
     "address",
-    "networkName",
-  ]
-/%}
-
-## Testnet
-
-{%
-  deployedFundingProtocolsTable
-  chain="polygon"
-  netType="testnet"
-  columns=[
-    "network",
-    "protocol",
-    "address",
-    "networkName",
   ]
 /%}
 

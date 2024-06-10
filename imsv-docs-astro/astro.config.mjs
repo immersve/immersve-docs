@@ -39,7 +39,7 @@ export default defineConfig({
             { label: 'Core Concepts', autogenerate: { directory: 'guides/core-concepts' } },
             { label: 'Card Issuing Apps', autogenerate: { directory: 'guides/card-issuing-apps' } },
             { label: 'KYC' , items: [
-              { label: 'Introduction', link: 'guides/kyc-modes' },
+              { label: 'Introduction', link: 'guides/kyc' },
               { label: 'Partner Conducted KYC', link: 'guides/partner-conducted-kyc' },
               { label: 'Immersve Conducted KYC', link: 'guides/immersve-conducted-kyc' },
             ]},
