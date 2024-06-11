@@ -1,0 +1,34 @@
+get:
+  tags:
+    - kyc
+  summary: Get a KYC profile
+  description: Get a KYC profile by account id if it exists.
+  parameters:
+    - name: accountId
+      in: path
+      description: Id of the account.
+      example: 225d85e65495722bf6517ea0ba0d6f56
+      required: true
+      schema:
+        type: string
+  security:
+    - immersve_auth: []
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: './models/get-kyc-profile-response.yaml'
+    '403':
+      description: |
+          Subject is not allowed to perform the action with the reason stated in the `errorCode`
+
+          **FORBIDDEN**
+          Account does not exist or there are no sufficient permissions to view KYC profile for this account.
+
+          **KYC_PROFILE_DOES_NOT_EXIST**
+          KYC profile does not exist for this account. It gets created upon initiating the first KYC check.
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-403.yaml'

@@ -3,7 +3,7 @@ post:
     - immersve-webhooks
   summary: Card Status Change
   security:
-    $ref: './models/auth.yaml'
+    - apiKeyHeaderWebhook: []
   description: |
     This custodial integrator webhook endpoint is called when a card status is changed.
 
@@ -18,3 +18,5 @@ post:
   responses:
     '200':
       description: 'Card status change request accepted'
+  servers:
+    - url: https://<partnerBaseUrl>/card/notification

@@ -3,7 +3,9 @@ post:
     - accounts-custodial
   summary: Create an account
   security:
-    - $ref: '../../models/api-key-auth.yaml'
+    - apiKeyHeader: [ ]
+    - apiSecretHeader: [ ]
+    - accountIdHeader: [ ]
   requestBody:
     content:
       application/json:

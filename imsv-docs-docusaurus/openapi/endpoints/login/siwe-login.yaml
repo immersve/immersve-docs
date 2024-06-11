@@ -8,8 +8,7 @@ post:
     :::
     The login endpoint returns the authentication token in exchange
     for the previously-issued challenge signed with the users wallet.
-  security:
-    - none: []
+  security: []
   requestBody:
     content:
       application/json:

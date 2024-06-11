@@ -35,8 +35,10 @@ tags:
   - name: support
     x-displayName: Support
 security:
-  - immersve_auth: []
-  - $ref: "./models/api-key-auth.yaml"
+  - immersve_auth: [ ]
+  - apiKeyHeader: [ ]
+  - apiSecretHeader: [ ]
+  - accountIdHeader: [ ]
 # The order of the paths defines the order of pages in the sidebar navigation.
 # The tags field in the yaml files defines the grouping in the sidebar navigation.
 paths:
@@ -57,25 +59,17 @@ paths:
   "/siwe/login":
     $ref: "./endpoints/login/siwe-login.yaml"
   "/api/accounts":
-    get:
-      $ref: "./endpoints/accounts/accounts-list.yaml"
-    post:
-      $ref: "./endpoints/accounts/accounts-create.yaml"
+    $ref: "./endpoints/accounts/accounts.yaml"
   "/api/cards":
     $ref: "./endpoints/cards/create-card-async.yaml"
   "/api/cards/{cardId}/set-pin":
     $ref: "./endpoints/cards/card-set-pin.yaml"
-    servers:
-      - url: https://api-sec.immersve.com
   "/api/cards/{cardId}/cancel-async":
     $ref: "./endpoints/cards/card-cancel.yaml"
   "/api/cards/{cardId}/pan-token":
     $ref: "./endpoints/cards/card-pan-token.yaml"
   "/api/accounts/{accountId}/contact-details":
-    get:
-      $ref: "./endpoints/contact-details/get-contact-details.yaml"
-    patch:
-      $ref: "./endpoints/contact-details/update-contact-details.yaml"
+    $ref: "./endpoints/contact-details/contact-details.yaml"
   "/api/spending-prerequisites":
     $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"
   "/api/currencies":
@@ -93,25 +87,21 @@ paths:
   "/api/accounts/{accountId}/funding-sources":
     $ref: "./endpoints/funding-sources/list-funding-sources.yaml"
   "/api/accounts/{cardholderAccountId}/partner-kyc-statement":
-    put:
-      $ref: "./endpoints/kyc/submit-partner-kyc-statement.yaml"
-    get:
-      $ref: "./endpoints/kyc/retrieve-partner-kyc-statement.yaml"
+    $ref: "./endpoints/kyc/partner-kyc-statement.yaml"
   "/api/accounts/{accountId}/kyc-profile":
-    get:
-      $ref: "./endpoints/kyc/get-kyc-profile.yaml"
+    $ref: "./endpoints/kyc/kyc-profile.yaml"
   "/api/simulator/authorize":
     $ref: "./endpoints/simulator/authorize.yaml"
-    servers:
-      - url: https://test.immersve.com
   "/api/simulator/clear":
     $ref: "./endpoints/simulator/clear.yaml"
-    servers:
-      - url: https://test.immersve.com
   "/api/simulator/reverse":
     $ref: "./endpoints/simulator/reverse.yaml"
-    servers:
-      - url: https://test.immersve.com
+  "/authorizations":
+    $ref: "./endpoints/webhooks/authorization-custodial.yaml"
+  "/transactions":
+    $ref: "./endpoints/webhooks/transaction-custodial.yaml"
+  "/card-status-change":
+    $ref: "./endpoints/webhooks/card-status-change-custodial.yaml"
   "/api/funding-source/{fundingSourceId}":
     $ref: "./endpoints/funding-sources/get-funding-source.yaml"
   "/api/funding-sources":

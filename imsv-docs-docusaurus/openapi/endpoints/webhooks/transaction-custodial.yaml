@@ -3,7 +3,7 @@ post:
     - immersve-webhooks
   summary: Transaction
   security:
-    $ref: './models/auth.yaml'
+    - apiKeyHeaderWebhook: []
   description: |
     This custodial integrator webhook endpoint is called when a clearing or refund request is made.
 
@@ -18,3 +18,5 @@ post:
   responses:
     '200':
       description: 'Transaction request accepted'
+  servers:
+    - url: https://<partnerBaseUrl>/transactions

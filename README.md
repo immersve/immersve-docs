@@ -67,9 +67,10 @@ references, modify immersve.yaml (not the derived mdx files). Then run:
 yarn api-re-gen
 ```
 
-To generate a self-contained OpenAPI specification file use [swagger-codegen](https://github.com/swagger-api/swagger-codegen):
+To generate a self-contained OpenAPI specification use
 ```shell
-swagger-codegen generate -l openapi-yaml -i ./imsv-docs-docusaurus/openapi/immersve.yaml -o ./output
+cd imsv-docs-docusaurus
+yarn consolidate
 ```
 
 The easiest way to install `swagger-codegen` on macOS is using Homebrew:

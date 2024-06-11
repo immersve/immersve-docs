@@ -3,7 +3,9 @@ post:
     - accounts-custodial
   summary: Cancel an account
   security:
-    - $ref: '../../models/api-key-auth.yaml'
+    - apiKeyHeader: [ ]
+    - apiSecretHeader: [ ]
+    - accountIdHeader: [ ]
   parameters:
     $ref: '../../models/account-id-path.yaml'
   requestBody:

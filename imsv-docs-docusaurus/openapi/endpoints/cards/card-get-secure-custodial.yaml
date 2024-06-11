@@ -3,9 +3,11 @@ get:
     - cards-custodial
   summary: Get secure card information
   security:
-    - $ref: '../../models/api-key-auth.yaml'
+    - apiKeyHeader: [ ]
+    - apiSecretHeader: [ ]
+    - accountIdHeader: [ ]
   parameters:
-    $ref: '../../models/card-id-path.yaml'
+    - $ref: '../../models/card-id-path.yaml'
   responses:
     '200':
       content:
