@@ -1,0 +1,231 @@
+{
+	"id": "e6d40b55-d997-4891-a27d-1d9f83fc6eb1",
+	"name": "Prod Test Public Sandbox",
+	"values": [
+		{
+			"key": "baseUrl",
+			"value": "https://test.immersve.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "baseUrlSecure",
+			"value": "https://test-sec.immersve.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "siweWalletAddress",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "algorandWalletAddress",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "xrplWalletPublicKey",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "walletPrivateKey",
+			"value": "",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "chainId",
+			"value": "80002",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "clientApplicationId",
+			"value": "d0b05d44204810fc61991a49e289dda3",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cardProgramId",
+			"value": "7dfa2e3ed390493ab307fac622f05ae9",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "partnerAccountId",
+			"value": "d1bc97edfa4f7dc9b56726c7d82a9956",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "fundsStorageAddress",
+			"value": "0xF9e148F4D48350042fB8F18e98b089c9aDA07BfB",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "fundingTypeName",
+			"value": "polygon-amoy-usdc-universal-evm-test",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cardIssuerApiKey",
+			"value": "imm-key-test-c6779bf1255f5ff6e8d9f6439c0099afa5f81c4bb22c9b7ecab124e1d920fd35",
+			"type": "secret",
+			"enabled": true
+		},
+		{
+			"key": "cardIssuerApiSecret",
+			"value": "imm-secret-test-3c55c0d889b1a6e5ec1962b17eb94281be08bc3aeee30af2b10a3cedc5f11a21",
+			"type": "secret",
+			"enabled": true
+		},
+		{
+			"key": "accountAdminApiKey",
+			"value": "imm-key-test-88432e8f7c559430c405c93bf61c9318636f1fa477f38173bba45682b12b82ff",
+			"type": "secret",
+			"enabled": true
+		},
+		{
+			"key": "accountAdminApiSecret",
+			"value": "imm-secret-test-75cf3ee0a31818e118c2d17f91067d4bdefa1094ba424d16b466f2e752bea1b1",
+			"type": "secret",
+			"enabled": true
+		},
+		{
+			"key": "origin",
+			"value": "http://localhost",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "accessToken",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "refreshToken",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "siweMessage",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cardholderAccountId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "fundingSourceId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "fundingChannelId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "identityAccountId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "createdCardId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "authorizationRequestMsg",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "authorizationResponseMsg",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "clearingRequestMsg",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "transactionId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "sub",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "secureCardDetailsTokenId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "secureCardDetailsCallbackUrl",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "cardPan",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "cardExpiry",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "cardCVV2",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "loginRequestId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "signingChallenge",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2024-06-07T05:17:22.355Z",
+	"_postman_exported_using": "Postman/11.1.25"
+}
