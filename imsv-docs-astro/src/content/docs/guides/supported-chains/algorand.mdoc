@@ -1,0 +1,25 @@
+---
+title: Algorand
+description: What tokens and protocols are supported on Algorand
+slug: guides/algorand
+supportedChain: true
+---
+
+{% note %}
+Do not transfer assets directly to these addresses or funds will be lost.
+Always use the spending prerequisites endpoint to discover the correct address
+for user deposits.
+{% /note %}
+
+{%
+  deployedFundingProtocolsTable
+  chain="algorand"
+  columns=[
+    "networkName",
+    "protocol",
+    "address",
+  ]
+/%}
+
+## See Also
+{% link page="guides/funding-protocols" /%}

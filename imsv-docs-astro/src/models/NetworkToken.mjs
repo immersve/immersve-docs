@@ -24,6 +24,21 @@ export class NetworkToken {
     return this.network.formatAddressUrl(this.address);
   }
 
+  validate() {
+    if (this.network.type == 'mainnet') {
+      if (this.faucetUrl || this.faucetTitle) {
+        throw Error('Faucet should not be defined on mainnet asset');
+      }
+    } else {
+      if (!this.faucetUrl) {
+        throw Error('Faucet url must be defined on testnet asset');
+      }
+      if(!this.faucetTitle) {
+        throw Error('Faucet title must be defined on testnet asset');
+      }
+    }
+  }
+
   /**
    * @param {Object} opts
    * @param {CollectionEntry} opts.content
@@ -41,6 +56,7 @@ export class NetworkToken {
       faucetUrl: content.data.faucet,
       faucetTitle: content.data.faucetTitle,
     });
+    networkToken.validate();
     network.addToken(networkToken);
     token.addInstance(networkToken);
     return networkToken;
