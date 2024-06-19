@@ -1,6 +1,5 @@
 import path from 'node:path';
 import { FundingProtocol } from './FundingProtocol.mjs';
-import SupportedChainsTable from '@components/registry-views/chains/SupportedChainsTable.astro';
 
 export class SupportedChain {
 
