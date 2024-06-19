@@ -1,0 +1,21 @@
+type: object
+description: Simulator strategy deposit instructions.
+properties:
+  url:
+    type: string
+    description: The `payload` instructions should be send to this URL using an HTTP POST.
+  payload:
+    type: object
+    description: The payload with the instructions for the deposit.
+    properties:
+      amount:
+        type: string
+        description: The simulated deposit amount in minor units of the funding source token.
+      fundingSourceId:
+        type: string
+        description: The funding source to deposit funds to.
+example:
+  url: https://test.immersve.com/api/simulator/execute-deposit
+  payload:
+    amount: 1000000
+    fundingSourceId: 91ad6fea3b52ca58d60d7fd310f789ec

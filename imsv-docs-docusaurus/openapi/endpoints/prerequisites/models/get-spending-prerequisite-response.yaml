@@ -12,6 +12,7 @@ properties:
             - kyc
             - contact_email
             - contact_phone
+            - simulator_call
         params:
           oneOf:
             - $ref: '../../../models/smart-contract-write-params.yaml'
@@ -22,3 +23,5 @@ properties:
               title: contact_email
             - $ref: '../../../models/contact-channel-phone-params.yaml'
               title: contact_phone
+            - $ref: '../../../models/simulator-deposit.yaml'
+              title: simulator_call

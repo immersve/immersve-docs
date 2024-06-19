@@ -1,0 +1,46 @@
+type: object
+properties:
+  id:
+    type: string
+    description: ID of the Funding Source Interaction.
+    example: f0220f084a182e3f4b4d605cda1d3340
+  fundingSourceId:
+    type: string
+    description: The ID of the Funding Source that this Interaction relates to.
+    example: 2be03cd65da12fe29b8910af7b4b85e7
+  accountId:
+    type: string
+    description: The ID of the account that this Interaction relates to.
+    example: 979254377d0e05002242d038926a5691
+  type:
+    type: string
+    description: The type of Funding Source Interaction.
+    example: Deposit
+  status:
+    type: string
+    description: The current status of the interaction.
+    example: confirmed
+  amount:
+    type: number
+    description: The minor units amount of the transaction.
+    example: 20000
+  token:
+    type: string
+    description: The token used in the transaction.
+    example: USDC
+  createdAt:
+    type: string
+    description: Date time on which the interaction was created.
+    example: "2023-11-15T00:48:48.902Z"
+  modifiedAt:
+    type: string
+    description: Last modified date of this interaction.
+    example: "2023-11-15T00:49:59.261Z"
+  description:
+    type: string
+    description: A description of the interaction.
+    example: "1 Queen Street Auckland NZ"
+  creditOrDebitIndicator:
+    type: string
+    description: The credit or debit indicator of the interaction.
+    example: credit
