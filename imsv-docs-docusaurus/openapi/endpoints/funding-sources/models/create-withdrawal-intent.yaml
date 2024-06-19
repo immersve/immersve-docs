@@ -21,60 +21,9 @@ properties:
     description: The wallet address to which the funds will be sent.
     example: "0xA3058369d6A481B1ff08F62B352409c3D709De9b"
   execution:
-    type: object
-    properties:
-      contractAddress:
-        type: string
-        description: The address of smart contract to invoke.
-        example: '0xEe076427B04DDD26729889C869d3aE524A6362fD'
-      method:
-        type: string
-        description: The contract function to call.
-        example: 'withdraw'
-      abi:
-        description: The JSON ABI of the function being executed (contains only required details. more details here https://docs.soliditylang.org/en/v0.8.19/abi-spec.html#json)
-        type: array
-        items:
-          type: object
-          properties:
-            name:
-              type: string
-              description: The name of the function
-              example: 'withdraw'
-              enum:
-                - withdraw
-            type:
-              type: string
-              example: 'function'
-              enum:
-                - function
-            input:
-              type: array
-              items:
-                type: object
-              example: []
-            output:
-              type: array
-              items:
-                type: object
-              example: []
-      params:
-        type: object
-        properties:
-          amount:
-            type: number
-            description: Withdrawal amount in minor units.
-            example: 300000000
-          expiryDate:
-            type: number
-            description: The unix timestamp when the signature expires.
-            example: 12345
-          nonce:
-            type: number
-            description: Unique identifier of current Withdrawal Intent.
-            example: 1
-          signature:
-            type: string
-            description: The signed withdrawal approval.
-            example: '0x30450221...'
+    oneOf:
+    - $ref: '../../../models/smart-contract-write-params.yaml'
+      title: smart_contract_write
+    - $ref: '../../../models/simulator-deposit.yaml'
+      title: simulator_call
 

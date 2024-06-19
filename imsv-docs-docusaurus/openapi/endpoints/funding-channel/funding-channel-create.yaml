@@ -4,6 +4,7 @@ post:
   summary: Create a Funding Channel
   description: |
     This endpoint can be used to create a Funding Channel.
+    See [Funding Protocols](https://docs.immersve.com/guides/funding-protocols/) for available funding types.
   requestBody:
     content:
       application/json:
