@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { FundingProtocol } from './FundingProtocol.mjs';
+import SupportedChainsTable from '@components/registry-views/chains/SupportedChainsTable.astro';
 
 export class SupportedChain {
 
@@ -15,6 +16,15 @@ export class SupportedChain {
     this.name = name;
     this.content = content;
   }
+
+  static NULL_CHAIN = new SupportedChain({
+    name: 'none',
+    content: {
+      data: {
+        title: 'None',
+      }
+    }
+  });
 
   get title() {
     return this.content.data.title;

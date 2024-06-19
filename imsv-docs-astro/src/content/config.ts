@@ -18,7 +18,7 @@ export const collections = {
   i18n: defineCollection({ type: 'data', schema: i18nSchema() }),
   'funding-types': defineCollection({
     schema: z.object({
-      network: z.string(),
+      network: z.string().optional(),
       protocol: z.string(),
       token: z.string(),
     }),
