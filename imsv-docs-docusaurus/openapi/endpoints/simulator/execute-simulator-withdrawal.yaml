@@ -17,7 +17,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: "../funding-sources/models/funding-source-interaction.yaml"
+            $ref: "./models/simulator-withdrawal-funding-source-interaction.yaml"
     "403":
       description: |
         User is not allowed to perform the action with the reason stated in the `errorCode`
