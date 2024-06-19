@@ -1,0 +1,4 @@
+---
+protocol: simulator
+token: usdc
+---

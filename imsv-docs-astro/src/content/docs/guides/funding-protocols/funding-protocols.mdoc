@@ -39,11 +39,17 @@ can be used by both custodial and non-custodial users. Individual cardholder
 balances are pooled together and recorded off-chain. See {% link
 page="guides/universal-evm-funding-protocol" /%} for more information.
 
-
 ## Webhook Funding
 
 Funding via webhook. Authorization requests are forwarded and decisioned by
 your app.
+
+## Funding Simulator
+
+A test funding protocol which can be used for experimenting with
+Immersve APIs without configuring on-chain components. See {% link
+page="guides/simulator-funding-protocol" /%}.
+
 
 ## Funding Types
 
@@ -53,10 +59,9 @@ Funding Channel.
 
 The table below shows the supported Funding Types on the Immersve Platform.
 
-### Mainnets
-
-{% fundingTypeTable netType="mainnet" /%}
-
-### Testnets
-
-{% fundingTypeTable netType="testnet" /%}
+{% fundingTypeTable columns=[
+  "fundingType",
+  "network",
+  "protocol",
+  "token",
+] /%}
