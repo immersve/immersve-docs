@@ -112,6 +112,14 @@ paths:
     $ref: "./endpoints/simulator/reverse.yaml"
     servers:
       - url: https://test.immersve.com
+  "/api/simulator/execute-deposit":
+    $ref: "./endpoints/simulator/execute-simulator-deposit.yaml"
+    servers:
+      - url: https://test.immersve.com
+  "/api/simulator/execute-withdrawal":
+    $ref: "./endpoints/simulator/execute-simulator-withdrawal.yaml"
+    servers:
+      - url: https://test.immersve.com
   "/api/funding-source/{fundingSourceId}":
     $ref: "./endpoints/funding-sources/get-funding-source.yaml"
   "/api/funding-sources":

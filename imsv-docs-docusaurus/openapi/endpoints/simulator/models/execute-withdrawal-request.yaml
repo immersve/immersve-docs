@@ -1,0 +1,18 @@
+type: object
+properties:
+  amount:
+    type: number
+    description: Withdrawal amount in minor units.
+    example: 300000000
+  fundingSourceId:
+    type: string
+    description: ID of the funding source to simulate a deposit to.
+    example: 91ad6fea3b52ca58d60d7fd310f789ec
+  id:
+    type: string
+    description: ID of the withdrawal interaction
+    example: 057aa15913a57f50577234c8426534c0
+  expiresAt:
+    type: string
+    description: The withdrawal intent expiration date
+    example: 88ad6fea3b52ca58d69f7fd310f789ab
