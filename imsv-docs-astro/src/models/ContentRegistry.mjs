@@ -97,7 +97,7 @@ allNetworksByChainName(chainName) {
    * @returns {DeployedFundingProtocol}
    * */
   getDeployedFundingProtocol({ networkName, protocolName }) {
-    return this.getFundingProtocol(protocolName).getDeployedInstance(networkName);
+    return this.getNetwork(networkName).getDeployedProtocol(protocolName);
   }
 
   /**
@@ -119,9 +119,15 @@ allNetworksByChainName(chainName) {
   /**
    * @param {CollectionEntry} content
    */
-  registerChain(content) {
-    const chain = SupportedChain.fromContent(content);
-    this.#chainsByName[chain.name] = chain;
+  registerChainForContent(content) {
+    this.registerChain(SupportedChain.fromContent(content));
+  }
+
+  /**
+   * @param {SupportedChain} supportedChain
+   */
+  registerChain(supportedChain) {
+    this.#chainsByName[supportedChain.name] = supportedChain;
   }
 
   getChain(name) {
@@ -141,11 +147,20 @@ allNetworksByChainName(chainName) {
   /**
    * @param {CollectionEntry} content
    */
-  registerNetwork(content) {
-    const network = SupportedNetwork.fromContent({ registry: this, content });
-    this.#networksByName[network.name] = network;
+  registerNetworkForContent(content) {
+    this.registerNetwork(SupportedNetwork.fromContent({ registry: this, content }));
   }
 
+  /**
+   * @param {SupportedNetwork} supportedNetwork
+   */
+  registerNetwork(supportedNetwork) {
+    this.#networksByName[supportedNetwork.name] = supportedNetwork;
+  }
+
+  /**
+   * @returns {SupportedNetwork}
+   */
   getNetwork(name) {
     if (!this.#networksByName[name]) {
       throw Error(`Unregistered network: ${name}`);
@@ -214,13 +229,15 @@ allNetworksByChainName(chainName) {
       .forEach(registry.tryWithContent(registry.registerFundingProtocol));
     allDocs
       .filter(content => content.data.supportedChain)
-      .forEach(registry.tryWithContent(registry.registerChain));
+      .forEach(registry.tryWithContent(registry.registerChainForContent));
     (await getCollection('networks'))
-      .forEach(registry.tryWithContent(registry.registerNetwork));
+      .forEach(registry.tryWithContent(registry.registerNetworkForContent));
     (await getCollection('network-tokens'))
       .forEach(registry.tryWithContent(registry.registerNetworkToken));
     (await getCollection('funding-types'))
       .forEach(registry.tryWithContent(registry.registerFundingType));
+    registry.registerChain(SupportedChain.NULL_CHAIN);
+    registry.registerNetwork(SupportedNetwork.NULL_NETWORK);
     return registry;
   }
 }

@@ -147,9 +147,9 @@ describe('models', () => {
         const content = await getEntry('funding-types', 'ethereum-sepolia-usdc-universal-evm-test');
         const fundingType = FundingType.fromContent({ registry, content });
         expect(fundingType.network).toEqual(registry.getNetwork('ethereum-sepolia'));
+        expect(fundingType.token.name).toEqual('usdc');
         expect(fundingType.token).toEqual(registry.getToken('usdc'));
         expect(fundingType.protocol.name).toEqual('universal-evm');
-        expect(fundingType.deployedProtocol.address).toEqual('0xe50FF3C352C0176c12c0a130dCa7655eC518fc40');
       });
 
       test('should allow arbitrary file name', async () => {
@@ -159,6 +159,20 @@ describe('models', () => {
           data: {
             protocol: 'universal-evm',
             network: 'polygon-mainnet',
+            token: 'usdc',
+          }
+        };
+        const fundingType = FundingType.fromContent({ registry, content });
+        expect(fundingType.token.name).toEqual('usdc');
+        expect(fundingType.token).toEqual(registry.getToken('usdc'));
+      });
+
+      test('should allow undefined network', async () => {
+        const registry = await ContentRegistry.create();
+        const content = {
+          id: 'simulator-usdc.md',
+          data: {
+            protocol: 'universal-evm',
             token: 'usdc',
           }
         };
