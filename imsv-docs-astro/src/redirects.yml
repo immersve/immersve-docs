@@ -49,3 +49,5 @@
 /guides/simulator/introduction: "/guides/simulator"
 /guides/simulator/reversal: "/guides/simulator"
 /guides/universal-evm-smart-contract: "/guides/universal-evm-funding-protocol"
+/guides: "/"
+/use-cases: "/"
