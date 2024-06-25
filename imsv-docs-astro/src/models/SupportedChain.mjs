@@ -16,6 +16,15 @@ export class SupportedChain {
     this.content = content;
   }
 
+  static NULL_CHAIN = new SupportedChain({
+    name: 'none',
+    content: {
+      data: {
+        title: 'None',
+      }
+    }
+  });
+
   get title() {
     return this.content.data.title;
   }

@@ -1,7 +1,7 @@
 ---
 import { registry } from 'src/content/registry.mjs';
 
-const supportedChains = registry.allChains();
+const supportedChains = registry.allChains().filter(chain => chain.name != 'none');
 const fetchNetworksForChains = (chain: any) => registry.allNetworksByChainName(chain.name);
 const columns = [ 'chain', 'protocols','networkNames' ];
 

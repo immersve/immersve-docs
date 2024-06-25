@@ -1,0 +1,61 @@
+---
+title: Simulator Funding Protocol
+description: Overview of Immersve's Simulator Funding Protocol.
+slug: guides/simulator-funding-protocol
+fundingProtocol:
+  source: ""
+---
+
+The Immersve Simulator {% link page="guides/funding-protocols"
+title="funding protocol" /%} allows client applications to fund Immersve test cards
+without interacting with a blockchain.
+This is useful for client applications experimenting with Immersve APIs when the
+preferred blockchain is not yet supported. The
+{% link page="guides/simulator" /%} can be used to test cards that are connected
+ test funding sources.
+
+{% note %}
+**Note**: The simulator funding protocol will not work with the Immersve live
+environment. When interacting with test resources, the endpoint base URL needs
+to be https://test.immersve.com.
+{% /note %}
+
+
+## Protocol Mechanics
+
+### Deposits
+
+The [Simulator Execute
+Deposit](https://docs.immersve.com/api-reference/execute-simulator-deposit)
+endpoint can be used to increase the balance on a simulator funding source. The
+[Spending
+Pre-requisites](https://docs.immersve.com/api-reference/get-spending-prerequisites)
+endpoint can be used to reliably obtain the parameters for completing the
+Funding Source deposit.
+See {% link page="guides/card-funding" /%} for more details.
+
+
+### Withdrawals
+
+The [Simulator Execute
+Withdrawal](https://docs.immersve.com/api-reference/execute-simulator-deposit)
+endpoint can be used to decrease the balance on a simulator funding source. The
+parameters required for executing the withdrawal transaction are obtained by
+calling the [Create Withdrawal
+Intent](https://docs.immersve.com/api-reference/create-withdrawal-intent/) API
+endpoint. See {% link page="guides/card-funding" /%} for more details.
+
+
+## Partner Setup
+
+
+A Funding Channel must be created using the
+[Create Funding Channel](https://docs.immersve.com/api-reference/create-a-funding-channel)
+endpoint.
+
+
+### Cardholder Setup
+
+A funding source must be created for each Cardholder using the [Create Funding
+Source](https://docs.immersve.com/api-reference/create-a-funding-source-for-an-account/)
+endpoint.
