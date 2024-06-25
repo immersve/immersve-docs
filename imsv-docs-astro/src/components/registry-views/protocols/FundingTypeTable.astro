@@ -9,8 +9,7 @@ interface Props {
 const { netType, columns=[ 'network', 'token', 'protocol', 'fundingType' ] } = Astro.props;
 
 const registeredFundingTypes = registry
-  .allFundingTypes()
-  .filter(ft => ft.network.type == netType);
+  .allFundingTypes();
 
 const columnTitles: Record<string,string> = {
   network: 'Network',

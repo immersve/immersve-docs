@@ -31,6 +31,17 @@ export class SupportedNetwork {
     this.content = content;
   }
 
+  static NULL_NETWORK = new SupportedNetwork({
+    name: 'none',
+    addressUrlTemplate: '',
+    chain: SupportedChain.NULL_CHAIN,
+    content: {
+      data: {
+        title: 'No Network',
+      },
+    },
+  });
+
   get title() {
     return this.content.data.title;
   }
@@ -43,7 +54,25 @@ export class SupportedNetwork {
    * @param {DeployedFundingProtocol} deployedProtocol
    */
   addDeployedProtocol(deployedProtocol) {
+    if (this.name == 'none') {
+      throw Error('Cannot add protocol to "none" network');
+    }
     this.deployedProtocols.push(deployedProtocol);
+  }
+
+  /**
+   * @param {string} protocolName
+   * @returns {DeployedFundingProtocol}
+   */
+  getDeployedProtocol(protocolName) {
+    if (this.name == 'none') {
+      return undefined;
+    }
+    const deployedInstance = this.deployedProtocols.find(i => i.protocol.name == protocolName);
+    if (!deployedInstance) {
+      throw Error(`Network ${this.name} does not have protocol registered: ${protocolName}`);
+    }
+    return deployedInstance;
   }
 
   /**
