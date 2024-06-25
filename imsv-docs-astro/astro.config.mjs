@@ -35,7 +35,6 @@ export default defineConfig({
         {
           label: 'Guides',
           items: [
-            { label: 'Introduction', link: 'guides' } ,
             { label: 'Core Concepts', autogenerate: { directory: 'guides/core-concepts' } },
             { label: 'Card Issuing Apps', autogenerate: { directory: 'guides/card-issuing-apps' } },
             { label: 'KYC' , items: [

@@ -51,13 +51,15 @@ $(echo "${double_redirect_match}" | awk '{ print "  " $0 }')"
 done
 [[ "${found_double_redirect}" == "yes" ]] && err_exit "Double redirects found"
 
+# FIXME the following link detection produces false positives
+# It should be improved by searching against the AST or compiled HTML.
 IFS=$'\n'
 for redirect_from in ${redirect_from_paths}
 do
   link_match="$(grep \
     --exclude redirects.yml \
     --exclude "*.bak" \
-    -rl "${redirect_from}[^a-z-]" \
+    -rl "${redirect_from}[^a-z\-\/]" \
     "${astro_dir}/src" \
     "${docusaurus_dir}/openapi" \
       || true)"
