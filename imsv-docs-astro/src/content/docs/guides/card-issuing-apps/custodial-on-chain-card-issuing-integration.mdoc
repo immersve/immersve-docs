@@ -4,24 +4,19 @@ description: End to end guide for custodial apps use on-chain deposits to pre-fu
 slug: guides/custodial-on-chain-card-issuing-integration
 ---
 
-## Introduction
-
-**Audience:** For apps that have custody of user funds. Card spending will be pre-funded with
+For apps that have custody of user funds, this guide provides an end-to-end
+reference linking all necessary guides and API documentation. It includes
+detailed curl commands for each API call required to set up a partner, onboard
+users, and create and test a card, with card spending pre-funded through
 deposits to an on-chain contract.
 
-**Purpose:** Link the guides and API reference into one end-to-end guide.
-This guide includes curls for each API call required to setup a partner, user
-and create and test a card.
 
 ## Before You Get Started
 
-### Verify your chain is supported
+### Verify your asset is supported
 
 Before you begin integrating ensure your chain and token combination is
-supported.
-
-{% note %} {% link page="guides/supported-chains" /%} {% /note %}
-{% note %} {% link page="guides/supported-tokens" /%} {% /note %}
+supported. See {% link page="guides/supported-chains" /%} and {% link page="guides/supported-tokens" /%}.
 
 ### Select Funding Protocol
 
@@ -33,21 +28,16 @@ guide to find which protocol would best suit your use case.
 {% link page="guides/partner-conducted-kyc" /%} is the recommended KYC mode for custodial apps
 that have already verified their users.
 
+## Provision application resources
+
 ### Set up your partner account
 
-Contact support to get your:
-- API key
-- API secret
-- Partner account ID
-- Card program ID
+Contact support to get your: API Key, Partner Account ID, and Card Program ID.
 
-## Provision application resources
 
 ### Register a Funding Channel
 
-The number and types of Funding Channels to create depend on your specific use
-case and protocol.
-
+You will need a funding channel per token and chain.
 See: {% link page="guides/creating-a-funding-channel" /%}.
 
 ## Per cardholder setup
