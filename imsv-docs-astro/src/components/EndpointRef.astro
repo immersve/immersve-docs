@@ -1,0 +1,24 @@
+---
+import BookmarkIcon from './icons/Bookmark.astro';
+interface Props {
+  name: string;
+}
+
+function kebabToTitle(kebabString: string) {
+  return kebabString
+    .toLowerCase()
+    .split('-')
+    .map(word => word.replace(/^./, s => s.toUpperCase()))
+    .join(' ');
+}
+
+const { name } = Astro.props;
+const linkHref = `https://docs.immersve.com/api-reference/${name}/`;
+const linkTitle = kebabToTitle(name);
+---
+<div class="my-6 flex gap-2.5 rounded-2xl border border-indigo-500/20 bg-indigo-50/50 p-4 leading-6 text-indigo-900 dark:border-indigo-500/30 dark:bg-indigo-500/5 dark:text-indigo-200 dark:[--tw-prose-links-hover:theme(colors.indigo.300)] dark:[--tw-prose-links:theme(colors.white)]">
+  <BookmarkIcon class="mt-1 h-4 w-4 flex-none fill-indigo-500 stroke-white dark:fill-indigo-200/20 dark:stroke-indigo-200" />
+  <div class="[&>:first-child]:mt-0 [&>:last-child]:mb-0">
+    API Reference: <a href={linkHref}>{linkTitle}</a>
+  </div>
+</div>
