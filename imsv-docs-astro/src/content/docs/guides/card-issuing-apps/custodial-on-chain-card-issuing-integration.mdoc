@@ -45,8 +45,8 @@ See: {% link page="guides/creating-a-funding-channel" /%}.
 **Set credentials**
 
 {% note %}
-All curls in this guide use [jq](https://jqlang.github.io/jq/) for parsing JSON
-responses.
+This guide uses Bash, curl and [jq](https://jqlang.github.io/jq/) for example
+API interactions.
 {% /note %}
 
 {% code %}
@@ -80,11 +80,11 @@ cardholder_account_id=$(curl \
   -H "Content-Type: application/json" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
-  --data "{
-    \"parentAccountId\": \"${partner_account_id}\",
-    \"type\": \"cardholder\",
-    \"name\": \"<e.g. Cardholder Account of Joe>\"
-  }" | jq -r .id)
+  --data '{
+    "parentAccountId": "'${partner_account_id}'",
+    "type": "cardholder",
+    "name": "<e.g. Cardholder Account of Joe>"
+  }' | jq -r .id)
 
 ```
 {% /code %}
@@ -111,15 +111,15 @@ Call [Create challenge endpoint](/api-reference/create-challenge/):
 wallet_address="<wallet_address>"
 
 response=$(curl -X POST "https://test.immersve.com/api/challenges" \
--H "Content-Type: application/json" \
--H "X-Api-Key: ${card_issuer_api_key}" \
--H "X-Api-Secret: ${card_issuer_api_secret}" \
--H "x-account-id: ${cardholder_account_id}" \
---data "{
-    \"purpose\": \"claim-web3-address\",
-    \"network\": \"<network name e.g polygon-amoy>\",
-    \"address\": \"${wallet_address}\"
-}")
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "x-account-id: ${cardholder_account_id}" \
+  --data '{
+    "purpose": "claim-web3-address",
+    "network": "<network name e.g polygon-amoy>",
+    "address": "'${wallet_address}'"
+  }')
 
 challenge_id=$(echo $response | jq -r '.id')
 message=$(echo $response | jq -r '.message')
@@ -146,17 +146,17 @@ account](/api-reference/create-a-funding-source-for-an-account/):
 signature="<signature hash of cardholder signing the challenge message with their wallet>"
 
 funding_source_id=$(curl -X POST "https://test.immersve.com/api/funding-sources" \
--H "Content-Type: application/json" \
--H "X-Api-Key: ${card_issuer_api_key}" \
--H "X-Api-Secret: ${card_issuer_api_secret}" \
--H "X-Account-Id: ${cardholder_account_id}" \
---data "{
-    \"accountId\": \"${cardholder_account_id}\",
-    \"fundingAddress\": \"${wallet_address}\",
-    \"fundingChannelId\": \"${funding_channel_id}\",
-    \"signature\": \"${signature}\",
-    \"challengeId\": \"${challenge_id}\"
-}" | jq -r '.id')
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}" \
+  --data '{
+    "accountId": "'${cardholder_account_id}'",
+    "fundingAddress": "'${wallet_address}'",
+    "fundingChannelId": "'${funding_channel_id}'",
+    "signature": "'${signature}'",
+    "challengeId": "'${challenge_id}'"
+  }' | jq -r '.id')
 
 ```
 {% /code %}
@@ -195,42 +195,29 @@ ensure it is active:
 ```bash
 curl -X GET "https://test.immersve.com/api/cards/${card_id}" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
-	-H "X-Api-Secret: ${card_issuer_api_secret}" \
-	-H "X-Account-Id: ${cardholder_account_id}"
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}"
 ```
 {% /code %}
 
 **Get sensitive card details**
 
-See the {% link page="guides/fetching-secure-card-information" /%} for a fuller picture on how to securely
-obtain the sensitive card details for a cardholder to spend with the card.
+Card sensitive details are obtained by generating a unique time-limited token.
+The response contains a callback URL which can be used to obtain the
+sensitive card details. See {% link
+page="guides/fetching-secure-card-information" /%} for more details.
 
-1. Generate the secure card details token:
+Call [Generate Card Token](https://docs.immersve.com/api-reference/get-a-card-token/):
+
 {% code %}
 ```bash
 curl -X POST "https://test.immersve.com/api/cards/${card_id}/pan-token" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}"
-
-# The response will contain a secure time-limited callback URL
-# which can be used to obtain the sensitive card details:
-# {
-#   "callbackUrl": "https://test-sec.immersve.com/api/cards/secure?tokenId=C4762D4F15BB1EC617999FDE15B41F33-1000881758"
-# }
-
-pan_token_callback_url=<callbackUrl>
-
 ```
 {% /code %}
 
-2. Get the sensitive card details:
-{% code %}
-
-```bash
-  curl -X GET "${pan_token_callback_url}"
-```
-{% /code %}
 
 ### Get KYC and Contact Details Prerequisites
 
@@ -244,7 +231,7 @@ are returned it means that all requirements have been met.
 curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
   -H "Content-Type: application/json" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
-	-H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}" \
   --data '{
     "cardProgramId": "'${card_program_id}'",
@@ -285,12 +272,12 @@ curl -X PATCH "https://test.immersve.com/api/accounts/${cardholder_account_id}/c
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}" \
   --data '{
-	  "email": {
-		  "emailAddress": "joe@cardholder.email",
-		},
+    "email": {
+      "emailAddress": "joe@cardholder.email",
+    },
     "phone": {
-		  "phoneNumber": "+64123456789",
-	  }
+      "phoneNumber": "+64123456789",
+    }
   }'
 ```
 {% /code %}
@@ -323,13 +310,13 @@ USD in minor units is 100. $22.78 USD in minor units is 2278.
 curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
   -H "Content-Type: application/json" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
-	-H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}" \
   --data '{
-   "cardProgramId": "'${card_program_id}'",
-   "fundingSourceId": "'${funding_source_id}'",
-   "spendableAmount": 100,
-   "spendableCurrency": "USD"
+    "cardProgramId": "'${card_program_id}'",
+    "fundingSourceId": "'${funding_source_id}'",
+    "spendableAmount": 100,
+    "spendableCurrency": "USD"
   }'
 ```
 {% /code %}
@@ -364,7 +351,7 @@ Endpoint uses minor units and USD eg. transactionAmount: “10” is USD $0.1
 ```bash
 curl -X POST "https://test.immersve.com/api/simulator/authorize" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
-	-H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}"
   --data '{
     "transactionType": "purchase",
