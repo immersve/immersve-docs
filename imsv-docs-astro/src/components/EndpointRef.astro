@@ -1,12 +1,10 @@
 ---
 import BookmarkIcon from './icons/Bookmark.astro';
 interface Props {
-  href: string;
-  title: string;
-  page: string;
+  name: string;
 }
 
-function kebabToTitle(kebabString) {
+function kebabToTitle(kebabString: string) {
   return kebabString
     .toLowerCase()
     .split('-')
