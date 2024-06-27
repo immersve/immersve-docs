@@ -83,13 +83,6 @@ export function ComponentConfigSchema() {
 			 */
 			Header: z.string().default('@astrojs/starlight/components/Header.astro'),
 			/**
-			 * Component rendered at the start of the site header to render the site title.
-			 * The default implementation includes logic for rendering logos defined in Starlight config.
-			 *
-			 * @see {@link https://github.com/withastro/starlight/blob/main/packages/starlight/components/SiteTitle.astro `SiteTitle` default implementation}
-			 */
-			SiteTitle: z.string().default('@astrojs/starlight/components/SiteTitle.astro'),
-			/**
 			 * Component used to render Starlight’s search UI. The default implementation includes the
 			 * button in the header and the code for displaying a search modal when it is clicked.
 			 *
