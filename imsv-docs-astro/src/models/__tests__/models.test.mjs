@@ -61,6 +61,50 @@ describe('models', () => {
       expect(network.type).toEqual('testnet');
     });
 
+    test('format address url', async () => {
+      const registry = await ContentRegistry.create();
+      const content = {
+        id: 'test',
+        data: {
+          chain: 'algorand',
+          addressUrlTemplate: 'address/{address}',
+          contractUrlTemplate: 'application/{address}',
+          protocols: []
+        }
+      };
+      const network = SupportedNetwork.fromContent({ registry, content });
+      expect(network.formatAddressUrl('abc123')).toEqual('address/abc123');
+    });
+
+    test('format contract url defaults to address url', async () => {
+      const registry = await ContentRegistry.create();
+      const content = {
+        id: 'test',
+        data: {
+          chain: 'algorand',
+          addressUrlTemplate: 'address/{address}',
+          protocols: []
+        }
+      };
+      const network = SupportedNetwork.fromContent({ registry, content });
+      expect(network.formatContractUrl('abc123')).toEqual('address/abc123');
+    });
+
+    test('format contract url uses contract url template', async () => {
+      const registry = await ContentRegistry.create();
+      const content = {
+        id: 'test',
+        data: {
+          chain: 'algorand',
+          addressUrlTemplate: 'address/{address}',
+          contractUrlTemplate: 'app/{address}',
+          protocols: []
+        }
+      };
+      const network = SupportedNetwork.fromContent({ registry, content });
+      expect(network.formatContractUrl('abc123')).toEqual('app/abc123');
+    });
+
   });
 
   describe('DeployedFundingProtocol', () => {

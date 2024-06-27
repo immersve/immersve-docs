@@ -16,7 +16,7 @@ export class DeployedFundingProtocol {
   }
 
   get url() {
-    return this.network.formatAddressUrl(this.address);
+    return this.network.formatContractUrl(this.address);
   }
 
   /**

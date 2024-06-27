@@ -63,6 +63,10 @@ export default defineMarkdocConfig({
         page: { type: String },
       },
     },
+    endpointref: {
+      render: component('./src/components/EndpointRef.astro'),
+      attributes: { name: { type: String } },
+    },
     code: {
       render: component('./src/components/Code.astro'),
       attributes: {
