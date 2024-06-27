@@ -38,6 +38,7 @@ export const collections = {
       netType: z.string(),
       addressUrlTemplate: z.string(),
       contractUrlTemplate: z.string().optional(),
+      assetUrlTemplate: z.string().optional(),
       protocols: z
         .object({
           name: z.string(),
