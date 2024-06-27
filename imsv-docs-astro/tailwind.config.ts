@@ -10,7 +10,10 @@ import starlightPlugin from '@astrojs/starlight-tailwind';
  */
 
 export default {
-  content: ['./src/**/*.{astro,html,js,ts,md,mdoc}'],
+  content: [
+    './src/**/*.{astro,html,js,ts,md,mdoc}',
+    '../starlight/components/**/*.astro',
+  ],
   theme: {
     fontSize: {
       '2xs': ['0.75rem', { lineHeight: '1.25rem' }],

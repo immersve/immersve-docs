@@ -62,10 +62,6 @@
       "types": "./components/MobileMenuFooter.astro.tsx",
       "import": "./components/MobileMenuFooter.astro"
     },
-    "./components/SiteTitle.astro": {
-      "types": "./components/SiteTitle.astro.tsx",
-      "import": "./components/SiteTitle.astro"
-    },
     "./components/EditLink.astro": {
       "types": "./components/EditLink.astro.tsx",
       "import": "./components/EditLink.astro"
