@@ -13,6 +13,7 @@
     "build:astro": "yarn workspace imsv-docs-astro build"
   },
   "workspaces": [
+    "starlight",
     "imsv-docs-astro",
     "imsv-docs-docusaurus"
   ],
