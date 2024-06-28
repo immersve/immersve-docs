@@ -1,0 +1,13 @@
+---
+import Hero from 'virtual:starlight/components/Hero';
+import PageTitle from 'virtual:starlight/components/PageTitle';
+
+---
+          {
+          Astro.props.entry.data.hero ? (
+            <Hero {...Astro.props} />
+          ) : (
+              <PageTitle {...Astro.props} />
+            )
+          }
+

@@ -1,0 +1,39 @@
+---
+import type { TocItem } from '../../../utils/generateToC';
+
+interface Props {
+  items: TocItem[];
+  depth?: number;
+  isMobile?: boolean;
+}
+
+const { items, isMobile = false, depth = 0 } = Astro.props;
+---
+
+<ul class:list={{ isMobile }} class="text-sm text-zinc-500 dark:text-zinc-400">
+  {
+    items.map((item) => (
+      <li class:list={{ 'ml-4': depth }}>
+        <a href={'#' + item.slug} class="font-normal
+          hover:text-indigo-700 dark:hover:text-indigo-300">
+          <div class="py-1">{item.text}</div>
+        </a>
+        {item.children.length > 0 && (
+          <Astro.self items={item.children} depth={depth + 1} isMobile={isMobile} />
+        )}
+      </li>
+    ))
+  }
+</ul>
+
+<style is:global>
+	a[aria-current='true'] {
+    font-weight: 600;
+	}
+	[data-theme='dark'] a[aria-current='true'] {
+		color: white;
+  }
+	[data-theme='light'] a[aria-current='true'] {
+		color: black;
+  }
+</style>

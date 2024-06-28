@@ -1,7 +1,6 @@
 ---
 import '@pagefind/default-ui/css/ui.css';
-import Icon from '../user-components/Icon.astro';
-import project from 'virtual:starlight/project-context';
+import Icon from '../../user-components/Icon.astro';
 import type { Props } from '../props';
 
 const { labels } = Astro.props;
@@ -17,34 +16,37 @@ const pagefindTranslations = {
 ---
 
 <site-search
+  class="contents"
 	data-translations={JSON.stringify(pagefindTranslations)}
-	data-strip-trailing-slash={project.trailingSlash === 'never'}
+	data-strip-trailing-slash=false
 >
-	<button data-open-modal disabled>
+	<button data-open-modal disabled class="h-10 px-3 text-xl md:text-sm
+    flex items-center gap-2 bg-transparent
+    cursor-pointer text-zinc-400
+    md:border rounded-lg border-zinc-300 hover:border-zinc-400
+    dark:border-zinc-500 dark:hover:border-zinc-400">
 		{
 			/* The span is `aria-hidden` because it is not shown on small screens. Instead, the icon label is used for accessibility purposes. */
 		}
-		<Icon name="magnifier" label={labels['search.label']} />
-		<span class="sl-hidden md:sl-block" aria-hidden="true">{labels['search.label']}</span>
-		<Icon
-			name="forward-slash"
-			class="sl-hidden md:sl-block"
-			label={labels['search.shortcutLabel']}
-		/>
+		<Icon name="magnifier" label="Search" />
+		<span class="hidden md:block" aria-hidden="true">Search</span>
+    <span class="hidden md:block md:border rounded-md border-zinc-300
+      dark:border-zinc-500 px-2 py-1 ms-6 leading-none text-xs">/</span>
 	</button>
 
-	<dialog style="padding:0" aria-label={labels['search.label']}>
-		<div class="dialog-frame sl-flex">
-			{
-				/* TODO: Make the layout of this button flexible to accommodate different word lengths. Currently hard-coded for English: “Cancel” */
-			}
-			<button data-close-modal class="sl-flex md:sl-hidden">
-				{labels['search.cancelLabel']}
+	<dialog aria-label="Search"
+    class="p-0 m-0 md:mt-16 md:mx-auto md:mb-auto
+    bg-zinc-300 border border-zinc-400 md:rounded-lg shadow-xl
+    h-full max-h-full md:h-max md:min-h-60 md:max-h-[calc(100%-8rem)]
+    w-full max-w-full md:w-11/12 md:max-w-2xl" >
+		<div class="dialog-frame flex flex-col grow gap-4 p-4 md:p-6">
+			<button data-close-modal class="flex md:hidden">
+				Cancel
 			</button>
 			{
 				import.meta.env.DEV ? (
-					<div style="margin: auto; text-align: center; white-space: pre-line;" dir="ltr">
-						<p>{labels['search.devWarning']}</p>
+					<div class="m-auto text-center white-space-pre-line">
+						<p>Search is only available in production builds. <br>Try building and previewing the site to test it out locally.</p>
 					</div>
 				) : (
 					<div class="search-container">
@@ -149,68 +151,15 @@ const pagefindTranslations = {
 </script>
 
 <style>
-	site-search {
-		display: contents;
-	}
-	button[data-open-modal] {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		border: 0;
-		background-color: transparent;
-		color: var(--sl-color-gray-1);
-		cursor: pointer;
-		height: 2.5rem;
-		font-size: var(--sl-text-xl);
-	}
 
-	@media (min-width: 50rem) {
-		button[data-open-modal] {
-			border: 1px solid var(--sl-color-gray-5);
-			border-radius: 0.5rem;
-			padding-inline-start: 0.75rem;
-			padding-inline-end: 1rem;
-			background-color: var(--sl-color-black);
-			color: var(--sl-color-gray-2);
-			font-size: var(--sl-text-sm);
-			width: 100%;
-			max-width: 22rem;
-		}
-		button[data-open-modal]:hover {
-			border-color: var(--sl-color-gray-2);
-			color: var(--sl-color-white);
-		}
-
-		button[data-open-modal] > :last-child {
-			margin-inline-start: auto;
-		}
-	}
-
-	dialog {
-		margin: 0;
-		background-color: var(--sl-color-gray-6);
-		border: 1px solid var(--sl-color-gray-5);
-		width: 100%;
-		max-width: 100%;
-		height: 100%;
-		max-height: 100%;
-		box-shadow: var(--sl-shadow-lg);
-	}
 	dialog[open] {
 		display: flex;
 	}
 
 	dialog::backdrop {
-		background-color: var(--sl-color-backdrop-overlay);
+		background-color: rgb(161 161 170 / 20%);
 		-webkit-backdrop-filter: blur(0.25rem);
-		backdrop-filter: blur(0.25rem);
-	}
-
-	.dialog-frame {
-		flex-direction: column;
-		flex-grow: 1;
-		gap: 1rem;
-		padding: 1rem;
+		backdrop-filter: blur(2px);
 	}
 
 	button[data-close-modal] {
@@ -241,19 +190,6 @@ const pagefindTranslations = {
 			--sl-search-cancel-space: 0px;
 		}
 
-		dialog {
-			margin: 4rem auto auto;
-			border-radius: 0.5rem;
-			width: 90%;
-			max-width: 40rem;
-			height: max-content;
-			min-height: 15rem;
-			max-height: calc(100% - 8rem);
-		}
-
-		.dialog-frame {
-			padding: 1.5rem;
-		}
 	}
 </style>
 

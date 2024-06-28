@@ -1,0 +1,69 @@
+---
+// Built-in CSS styles.
+import '../../style/shiki.css';
+
+// Components — can override built-in CSS, but not user CSS.
+import Footer from 'virtual:starlight/components/Footer';
+import Head from 'virtual:starlight/components/Head';
+import Header from './Header.astro';
+import Prose from './Prose.astro';
+import DocHeader from './DocHeader.astro';
+import TableOfContents from './TableOfContents.astro';
+import Navigation from './Navigation.astro';
+import ThemeProvider from 'virtual:starlight/components/ThemeProvider';
+
+// Remark component CSS (needs to override `MarkdownContent.astro`)
+import '../../style/asides.css';
+
+// Important that this is the last import so it can override built-in styles.
+import 'virtual:starlight/user-css';
+
+const pagefindEnabled =
+  Astro.props.entry.slug !== '404' &&
+  !Astro.props.entry.slug.endsWith('/404') &&
+  Astro.props.entry.data.pagefind !== false;
+---
+
+<html
+  lang={Astro.props.lang}
+  dir={Astro.props.dir}
+  data-has-toc={Boolean(Astro.props.toc)}
+  data-has-sidebar={Astro.props.hasSidebar}
+  data-has-hero={Boolean(Astro.props.entry.data.hero)}
+  data-theme="dark"
+  class="h-full antialiased"
+>
+  <head>
+    <Head {...Astro.props} />
+    <ThemeProvider {...Astro.props} />
+  </head>
+  <body class="flex min-h-full
+    bg-white dark:bg-zinc-900
+    text-zinc-900 dark:text-zinc-200">
+    <div class="flex w-full flex-col">
+      <Header {...Astro.props} />
+
+      <div class="relative mx-auto flex w-full flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
+        <div class="hidden lg:relative lg:block lg:flex-none">
+          <div class="sticky top-[4.75rem] -ml-0.5 h-[calc(100vh-4.75rem)] w-64
+            overflow-y-auto overflow-x-hidden pt-4 pb-16 pl-0.5 pr-4 xl:w-72">
+            <Navigation {...Astro.props} />
+          </div>
+        </div>
+
+        <main
+          data-pagefind-body={pagefindEnabled}
+          class="min-w-0 max-w-3xl flex-auto px-4 py-16 lg:px-8 xl:px-16">
+          <article>
+            <DocHeader {...Astro.props}/>
+            <Prose {...Astro.props}><slot /></Prose>
+          </article>
+          <Footer {...Astro.props} />
+        </main>
+        <TableOfContents {...Astro.props} />
+
+      </div>
+
+    </div>
+  </body>
+</html>

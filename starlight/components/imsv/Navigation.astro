@@ -1,0 +1,14 @@
+---
+import type { Props } from '../props';
+
+import MobileMenuFooter from 'virtual:starlight/components/MobileMenuFooter';
+import NavigationList from './NavigationList.astro';
+
+const navigation = [];
+
+const { sidebar } = Astro.props;
+---
+
+<nav class="text-base lg:text-sm">
+  <NavigationList items={sidebar}/>
+</nav>

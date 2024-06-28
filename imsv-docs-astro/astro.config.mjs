@@ -17,9 +17,6 @@ export default defineConfig({
       logo: {
         src: './src/assets/logo-small.svg',
       },
-      social: {
-        github: 'https://github.com/immersve/'
-      },
       editLink: {
         baseUrl: 'https://github.com/immersve/immersve-docs/edit/main/imsv-docs-astro',
       },
@@ -31,6 +28,7 @@ export default defineConfig({
         Pagination: './src/components/FooterNavigation.astro',
       },
       sidebar: [
+        { label: 'Home', link: '/' },
         { label: 'Use Cases', autogenerate: { directory: 'use-cases' } },
         {
           label: 'Guides',
