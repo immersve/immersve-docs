@@ -6,10 +6,6 @@ import TocList from './TocList.astro';
 
 const { toc } = Astro.props;
 ---
-
-<div class="lg:hidden">
-  <MobileTableOfContents {...Astro.props} />
-</div>
 <div class="right-sidebar-panel hidden lg:block min-w-56 w-72">
 { toc && (
     <starlight-toc data-min-h={toc.minHeadingLevel} data-max-h={toc.maxHeadingLevel}>
