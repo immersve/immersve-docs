@@ -48,9 +48,9 @@ If successful a [create a card](/api-reference/create-a-card) request will
 return a card ID. Immersve will provision and activate the card by default. It
 is provisioned and activated when the [get card
 details](/api-reference/get-card-details) response payload includes a `status`
-of `"active"`. All cards are currently short-lived and the time to expiry
-begins at the time of activation, the expiry timestamp is returned in the
-`immersveExpiration` field.
+of `"active"`. All cards are currently long-lived. `expiresAt` field returns
+exact card expiry timestamp. `expiry` field returns expiry date usually printed
+on physical cards.
 
 
 ## Issue a Card
