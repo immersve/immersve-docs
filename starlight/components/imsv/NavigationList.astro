@@ -1,0 +1,41 @@
+---
+import { flattenSidebar, type SidebarEntry } from '../../utils/navigation';
+import ChevronDownIcon from './icons/ChevronDown.astro';
+import Badge from '../../user-components/Badge.astro';
+
+interface Props {
+  items: SidebarEntry[];
+  nested: boolean;
+}
+
+const navigation = [];
+const { items, nested, class: className } = Astro.props;
+---
+<ul role="list" class:list={[ className, 'text-zinc-600 dark:text-zinc-400' ]}>
+  {
+    items.map((entry) => (
+      <li class:list={{ 'font-bold text-black dark:text-white': entry.isCurrent,  }} class="leading-4">
+        {entry.type === 'link' ? (
+          <div class="ml-4">
+            <a
+              href={entry.href}
+              aria-current={entry.isCurrent && 'page'}
+              class:list={{ 'hover:text-indigo-700 dark:hover:text-indigo-400': !entry.isCurrent }}
+              {...entry.attrs}
+            >
+              <div class="py-1.5">{entry.label}</div>
+            </a>
+          </div>
+        ) : (
+          <div>
+            <div class:list={{ 'uppercase text-zinc-900 dark:text-zinc-200 font-medium': nested }} class="flex items-center py-2 ">
+              <ChevronDownIcon name="right-caret" size="1.25rem" />
+              {entry.label}
+            </div>
+            <Astro.self items={entry.entries} nested class="ml-4"/>
+          </div>
+        )}
+      </li>
+    ))
+  }
+</ul>

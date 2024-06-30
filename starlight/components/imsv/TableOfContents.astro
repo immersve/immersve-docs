@@ -1,0 +1,27 @@
+---
+import type { Props } from '../props';
+
+import TocList from './TocList.astro';
+
+const { toc, class: className } = Astro.props;
+---
+<div class="right-sidebar-panel hidden md:block min-w-56 w-72">
+{ toc && (
+    <starlight-toc data-min-h={toc.minHeadingLevel} data-max-h={toc.maxHeadingLevel}>
+      <div class:list={[
+        className,
+        "sticky top-[4.75rem] h-[calc(100vh-4.75rem)] flex-none overflow-y-auto"]}>
+        <nav aria-labelledby="on-this-page-title">
+          <h2 id="on-this-page-title"
+            class="font-display text-md font-medium text-slate-900 dark:text-white"
+          >
+            On This Page
+          </h2>
+          <TocList items={toc.items} />
+        </nav>
+      </div>
+    </starlight-toc>
+)}
+</div>
+
+<script src="../TableOfContents/starlight-toc"></script>

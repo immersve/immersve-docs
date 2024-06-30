@@ -1,23 +1,28 @@
 ---
-import Select from './Select.astro';
-import type { Props } from '../props';
+import SunIcon from './icons/Sun.astro';
+const options = [
+  { label: 'Dark', selected: false, value: 'dark' },
+  { label: 'Light', selected: false, value: 'light' },
+  { label: 'Auto', selected: true, value: 'auto' },
+];
 
-const { labels } = Astro.props;
+const { class: className } = Astro.props;
 ---
 
-<starlight-theme-select>
-	{/* TODO: Can we give this select a width that works well for each language’s strings? */}
-	<Select
-		icon="laptop"
-		label={labels['themeSelect.accessibleLabel']}
-		value="auto"
-		options={[
-			{ label: labels['themeSelect.dark'], selected: false, value: 'dark' },
-			{ label: labels['themeSelect.light'], selected: false, value: 'light' },
-			{ label: labels['themeSelect.auto'], selected: true, value: 'auto' },
-		]}
-		width="6.25em"
-	/>
+<starlight-theme-select class={className}>
+  <label class="flex items-center">
+    <span class="sr-only">Select Theme</span>
+    <div class="theme-icon">
+      <SunIcon />
+    </div>
+    <select value="auto" class="bg-transparent ml-1 cursor-pointer">
+      {
+        options.map(({ value, selected, label }) => (
+          <option value={value} selected={selected} set:html={label} />
+        ))
+      }
+    </select>
+  </label>
 </starlight-theme-select>
 
 {/* Inlined to avoid FOUC. Uses global scope from `ThemeProvider.astro` */}
