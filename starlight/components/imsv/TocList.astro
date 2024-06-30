@@ -7,6 +7,10 @@ interface Props {
   isMobile?: boolean;
 }
 
+export function wrappableTitle(s: string) {
+  return s.replaceAll(/[a-z](?=[A-Z])/g, m => `${m}<wbr>`);
+}
+
 const { items, isMobile = false, depth = 0 } = Astro.props;
 ---
 
@@ -16,7 +20,7 @@ const { items, isMobile = false, depth = 0 } = Astro.props;
       <li class:list={{ 'ml-4': depth }}>
         <a href={'#' + item.slug} class="font-normal
           hover:text-indigo-700 dark:hover:text-indigo-300">
-          <div class="py-1">{item.text}</div>
+          <div class="py-1 text-balance" set:html={wrappableTitle(item.text)}></div>
         </a>
         {item.children.length > 0 && (
           <Astro.self items={item.children} depth={depth + 1} isMobile={isMobile} />
