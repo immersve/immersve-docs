@@ -42,10 +42,11 @@ const pagefindEnabled =
     bg-white dark:bg-zinc-900
     text-zinc-900 dark:text-zinc-200">
     <div class="flex w-full flex-col">
-      <Header {...Astro.props} />
+      <Header {...Astro.props} class="border-b border-zinc-200 dark:border-zinc-600 bg-zinc-50 dark:bg-zinc-800" />
 
       <div class="relative mx-auto flex w-full flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
-        <div class="hidden lg:relative lg:block lg:flex-none">
+        <div class="hidden lg:relative lg:block lg:flex-none
+          border-r border-zinc-200 dark:border-zinc-600">
           <div class="sticky top-[4.75rem] -ml-0.5 h-[calc(100vh-4.75rem)] w-64
             overflow-y-auto overflow-x-hidden py-12 pl-0.5 pr-4 xl:w-72">
             <Navigation {...Astro.props} />
