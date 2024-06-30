@@ -21,7 +21,7 @@ export class NetworkToken {
   }
 
   get url() {
-    return this.network.formatAddressUrl(this.address);
+    return this.network.formatAssetUrl(this.address);
   }
 
   validate() {

@@ -19,15 +19,18 @@ export class SupportedNetwork {
    * @param {string} opts.name
    * @param {string} opts.type
    * @param {string} opts.addressUrlTemplate
+   * @param {string} opts.contractUrlTemplate
+   * @param {string} opts.assetUrlTemplate
    * @param {SupportedChain} opts.chain
    * @param {Array<DeployedFundingProtocol>} opts.deployedProtocols
    * @param {CollectionEntry} opts.content
    */
-  constructor({ name, type, addressUrlTemplate, contractUrlTemplate, chain, content }) {
+  constructor({ name, type, addressUrlTemplate, contractUrlTemplate, assetUrlTemplate, chain, content }) {
     this.name = name;
     this.type = type;
     this.addressUrlTemplate = addressUrlTemplate;
     this.contractUrlTemplate = contractUrlTemplate;
+    this.assetUrlTemplate = assetUrlTemplate;
     this.chain = chain;
     this.content = content;
   }
@@ -108,6 +111,15 @@ export class SupportedNetwork {
   }
 
   /**
+   * @param {string} address
+   * @returns {string}
+   */
+  formatAssetUrl(address) {
+    const template = this.assetUrlTemplate ?? this.addressUrlTemplate;
+    return template.replace('{address}', address);
+  }
+
+  /**
    * @param {Object} opts
    * @param {CollectionEntry} opts.content
    * @param {ContentRegistry} opts.registry
@@ -118,7 +130,8 @@ export class SupportedNetwork {
     const name = path.basename(content.id).split('.')[0];
     const addressUrlTemplate = content.data.addressUrlTemplate;
     const contractUrlTemplate = content.data.contractUrlTemplate;
-    const network = new SupportedNetwork({ name, type, addressUrlTemplate, contractUrlTemplate, chain, content });
+    const assetUrlTemplate = content.data.assetUrlTemplate;
+    const network = new SupportedNetwork({ name, type, addressUrlTemplate, contractUrlTemplate, assetUrlTemplate, chain, content });
     content.data.protocols.forEach(data => {
       DeployedFundingProtocol.create({ network, registry, data });
     });
