@@ -37,6 +37,7 @@ const pagefindEnabled =
     <Head {...Astro.props} />
     <ThemeProvider {...Astro.props} />
   </head>
+
   <body class="flex min-h-full
     bg-white dark:bg-zinc-900
     text-zinc-900 dark:text-zinc-200">
@@ -46,21 +47,21 @@ const pagefindEnabled =
       <div class="relative mx-auto flex w-full flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
         <div class="hidden lg:relative lg:block lg:flex-none">
           <div class="sticky top-[4.75rem] -ml-0.5 h-[calc(100vh-4.75rem)] w-64
-            overflow-y-auto overflow-x-hidden pt-4 pb-16 pl-0.5 pr-4 xl:w-72">
+            overflow-y-auto overflow-x-hidden py-12 pl-0.5 pr-4 xl:w-72">
             <Navigation {...Astro.props} />
           </div>
         </div>
 
         <main
           data-pagefind-body={pagefindEnabled}
-          class="min-w-0 max-w-3xl flex-auto px-4 py-16 md:px-8 xl:px-16">
+          class="min-w-0 max-w-3xl flex-auto px-4 py-12 xl:px-16">
           <article>
             <DocHeader {...Astro.props}/>
             <Prose {...Astro.props}><slot /></Prose>
           </article>
           <Footer {...Astro.props} />
         </main>
-        <TableOfContents {...Astro.props} />
+        <TableOfContents {...Astro.props} class="py-12"/>
 
       </div>
 

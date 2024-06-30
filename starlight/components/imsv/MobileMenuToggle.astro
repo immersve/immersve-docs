@@ -1,0 +1,31 @@
+---
+import BarsIcon from './icons/Bars.astro';
+
+const { class: className } = Astro.props;
+---
+
+<starlight-menu-button>
+  <button
+    aria-label="Open Menu"
+    class:list={[ className, "flex" ]}
+  >
+    <BarsIcon class="stroke-current"/>
+  </button>
+</starlight-menu-button>
+
+<script>
+  class StarlightMenuButton extends HTMLElement {
+    btn = this.querySelector('button')!;
+
+    constructor() {
+      super();
+      this.btn.addEventListener('click', () => this.setExpanded());
+    }
+
+    setExpanded() {
+      document.body.toggleAttribute('data-mobile-menu-expanded', true);
+    }
+  }
+
+  customElements.define('starlight-menu-button', StarlightMenuButton);
+</script>

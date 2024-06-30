@@ -1,0 +1,50 @@
+---
+import Navigation from './Navigation.astro';
+import ImsvLogo from './icons/ImsvLogo.astro';
+import XMarkIcon from './icons/XMark.astro';
+import MobileMenuToggle from './MobileMenuToggle.astro';
+const { sidebar } = Astro.props;
+---
+<nav-menu>
+  <div class="fixed inset-0 z-50 flex items-start overflow-y-auto bg-zinc-900/50 pr-10 backdrop-blur lg:hidden"
+    aria-label="Navigation" role="dialog" tabindex="-1" aria-modal="true">
+    <div id="__menu_content" class="min-h-full w-full max-w-xs bg-white px-4 pb-12 pt-5 sm:px-6 dark:bg-zinc-900">
+      <div class="flex items-center">
+        <button
+          aria-label="Close"
+          class:list={[ "flex" ]}
+        >
+          <XMarkIcon class="h-6 w-6 stroke-zinc-500 stroke-2">
+        </button>
+      </div>
+      <Navigation {...Astro.props} class="mt-5"/>
+    </div>
+  </div>
+</nav-menu>
+
+<script>
+  class NavMenu extends HTMLElement {
+    closeBtn = this.querySelector('button');
+    content = this.querySelector('#__menu_content');
+
+    constructor() {
+      super();
+      this.addEventListener('click', () => this.close());
+      this.closeBtn.addEventListener('click', () => this.close());
+      this.content.addEventListener('click', (e) => e.stopPropagation());
+      document.body.addEventListener('keyup', (e) => this.closeOnEscape(e));
+    }
+
+    close() {
+      document.body.toggleAttribute('data-mobile-menu-expanded', false);
+    }
+
+    closeOnEscape(e: KeyboardEvent) {
+      if (e.code === 'Escape') {
+        this.close();
+      }
+    }
+  }
+
+  customElements.define('nav-menu', NavMenu);
+</script>

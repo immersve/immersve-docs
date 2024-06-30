@@ -1,16 +1,16 @@
 ---
 import type { Props } from '../props';
 
-import MobileTableOfContents from 'virtual:starlight/components/MobileTableOfContents';
 import TocList from './TocList.astro';
 
-const { toc } = Astro.props;
+const { toc, class: className } = Astro.props;
 ---
 <div class="right-sidebar-panel hidden md:block min-w-56 w-72">
 { toc && (
     <starlight-toc data-min-h={toc.minHeadingLevel} data-max-h={toc.maxHeadingLevel}>
-      <div class="sticky top-[4.75rem] -mr-6
-      h-[calc(100vh-4.75rem)] flex-none overflow-y-auto pt-4 pb-16 pr-6">
+      <div class:list={[
+        className,
+        "sticky top-[4.75rem] h-[calc(100vh-4.75rem)] flex-none overflow-y-auto"]}>
         <nav aria-labelledby="on-this-page-title">
           <h2 id="on-this-page-title"
             class="font-display text-md font-medium text-slate-900 dark:text-white"

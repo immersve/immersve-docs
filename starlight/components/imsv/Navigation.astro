@@ -6,9 +6,9 @@ import NavigationList from './NavigationList.astro';
 
 const navigation = [];
 
-const { sidebar } = Astro.props;
+const { sidebar, class: className } = Astro.props;
 ---
 
-<nav class="text-base lg:text-sm">
+<nav class:list={["text-sm", className]}>
   <NavigationList items={sidebar}/>
 </nav>

@@ -1,6 +1,9 @@
 ---
 import Search from './Search.astro';
 import ThemeSelect from './ThemeSelect.astro';
+import MobileMenu from './MobileMenu.astro';
+import MobileMenuToggle from './MobileMenuToggle.astro';
+import ImsvLogo from './icons/ImsvLogo.astro';
 
 const socialLinks = [
   {
@@ -22,27 +25,16 @@ const socialLinks = [
   shadow-md shadow-slate-900/5 dark:shadow-none
   transition duration-500">
 
-  <!-- Mobile Menu -->
-  <div class="flex lg:hidden pr-4">
-    <svg width="29" height="28" viewBox="0 0 29 28" class="stroke-current">
-      <path d="M4.875 7.875H24.125M4.875 14H24.125M4.875 20.125H24.125" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+  <MobileMenuToggle class="lg:hidden pr-4"/>
+  <div id="starlight__sidebar" class="hidden">
+    <MobileMenu {...Astro.props} />
   </div>
 
   <div class="relative flex flex-grow basis-0 items-center overflow-hidden">
     <a href="/" class="flex items-end space-x-1 fill-black dark:fill-white
       ">
 
-      <!-- logo -->
-      <svg viewBox="0 0 37 36" class="mr-2 w-[24px] h-[24px] md:w-[37px] md:h-[36px]">
-        <g id="Group 480966022">
-          <g id="Group">
-            <path id="Vector" d="M2.39604e-06 3.57305C2.39604e-06 6.23108 -0.0328908 8.38282 7.60942 11.0092C6.14017 9.47715 5.92636 7.42825 5.92636 5.30288L5.90717 0H0.0164493L2.39604e-06 3.57305Z" />
-            <path id="Vector_2" d="M25.945 35.3245H20.0542V22.6144C20.0542 20.4785 19.824 18.4402 18.3465 16.9081C25.9888 19.5345 25.9395 21.6862 25.9395 24.3469L25.9477 35.3245H25.945ZM36.6985 30.2194C36.6985 27.5613 36.7314 25.4096 29.089 22.7806C30.5583 24.3126 30.7968 26.3615 30.7968 28.4869V35.3139H36.704L36.6957 30.2167L36.6985 30.2194ZM15.2106 18.4481C15.2106 15.79 15.2435 13.6383 7.6012 11.0093C9.07046 12.5413 9.30071 14.5902 9.30071 16.7156V35.3139H15.2079V18.4454L15.2106 18.4481Z" />
-          </g>
-          <path id="Vector_3" d="M25.9449 35.3245H20.0542V22.6144C20.0542 20.4785 19.824 18.4402 18.3465 16.9081C25.9888 19.5345 25.9395 21.6862 25.9395 24.3469L25.9477 35.3245H25.9449ZM36.6985 30.2194C36.6985 27.5613 36.7314 25.4096 29.089 22.7806C30.5583 24.3126 30.7968 26.3615 30.7968 28.4869V35.3139H36.7039L36.6957 30.2167L36.6985 30.2194ZM15.2106 18.4481C15.2106 15.79 15.2435 13.6383 7.6012 11.0093C9.07045 12.5413 9.30071 14.5902 9.30071 16.7156V35.3139H15.2079V18.4454L15.2106 18.4481Z" />
-        </g>
-      </svg>
+      <ImsvLogo class="mr-2 w-[24px] h-[24px] md:w-[37px] md:h-[36px]"/>
 
       <!-- "Immersve" -->
       <svg viewBox="0 0 107 18" class="w-[71px] h-[12px] md:w-[107px] md:h-[18px]">
@@ -86,3 +78,14 @@ const socialLinks = [
     <ThemeSelect {...Astro.props} class="hidden md:block" />
   </div>
 </header>
+
+<style is:global>
+[data-mobile-menu-expanded] #starlight__sidebar {
+  display: block;
+}
+@media (min-width: 1024px) {
+  [data-mobile-menu-expanded] #starlight__sidebar {
+    display: none;
+  }
+}
+</style>
