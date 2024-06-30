@@ -1,14 +1,15 @@
 ---
-import Icon from '../user-components/Icon.astro';
-import SunIcon from './imsv/icons/Sun.astro';
+import SunIcon from './icons/Sun.astro';
 const options = [
   { label: 'Dark', selected: false, value: 'dark' },
   { label: 'Light', selected: false, value: 'light' },
   { label: 'Auto', selected: true, value: 'auto' },
 ];
+
+const { class: className } = Astro.props;
 ---
 
-<starlight-theme-select>
+<starlight-theme-select class={className}>
   <label class="flex items-center">
     <span class="sr-only">Select Theme</span>
     <div class="theme-icon">
