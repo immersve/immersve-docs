@@ -27,15 +27,21 @@ const { items, nested, class: className } = Astro.props;
             </a>
           </div>
         ) : (
-          <div>
-            <div class:list={{ 'uppercase text-zinc-900 dark:text-zinc-200 font-medium': nested }} class="flex items-center py-2 ">
-              <ChevronDownIcon name="right-caret" size="1.25rem" />
+          <details class="list-none" open>
+            <summary class:list={{ 'uppercase text-zinc-900 dark:text-zinc-200 font-medium': nested }} class="flex items-center py-2 cursor-pointer">
+              <ChevronDownIcon name="right-caret" size="1.25rem" class="-rotate-90" />
               {entry.label}
-            </div>
+            </summary>
             <Astro.self items={entry.entries} nested class="ml-4"/>
-          </div>
+          </details>
         )}
       </li>
     ))
   }
 </ul>
+
+<style>
+details[open] > summary > svg {
+  transform: rotate(0deg);
+}
+</style>
