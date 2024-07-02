@@ -46,17 +46,17 @@ const pagefindTranslations = {
 			<button data-close-modal class="flex md:hidden">
 				Cancel
 			</button>
-			{
-				import.meta.env.DEV ? (
-					<div class="m-auto text-center white-space-pre-line">
-						<p>Search is only available in production builds. <br>Try building and previewing the site to test it out locally.</p>
-					</div>
-				) : (
-					<div class="search-container">
-						<div id="starlight__search" />
-					</div>
-				)
-			}
+      {
+        import.meta.env.DEV ? (
+          <div class="m-auto text-center white-space-pre-line">
+            <p>Search is only available in production builds. <br>Try building and previewing the site to test it out locally.</p>
+          </div>
+         ) : (
+          <div class="search-container">
+            <div id="starlight__search" />
+          </div>
+         )
+      }
 		</div>
 	</dialog>
 </site-search>
@@ -183,7 +183,7 @@ const pagefindTranslations = {
 		--pagefind-ui-text: var(--sl-color-gray-2);
 		--pagefind-ui-font: var(--__sl-font);
 		--pagefind-ui-background: var(--sl-color-black);
-		--pagefind-ui-border: var(--sl-color-gray-5);
+		--pagefind-ui-border: var(--sl-color-gray-3);
 		--pagefind-ui-border-width: 1px;
 		--sl-search-cancel-space: 5rem;
 	}
@@ -207,7 +207,7 @@ const pagefindTranslations = {
 		--sl-search-result-pad-inline-end: calc(1.25rem * var(--pagefind-ui-scale));
 		--sl-search-result-pad-block: calc(0.9375rem * var(--pagefind-ui-scale));
 		--sl-search-result-nested-pad-block: calc(0.625rem * var(--pagefind-ui-scale));
-		--sl-search-corners: calc(0.3125rem * var(--pagefind-ui-scale));
+		--sl-search-corners: calc(0.5rem * var(--pagefind-ui-scale));
 		--sl-search-page-icon-size: calc(1.875rem * var(--pagefind-ui-scale));
 		--sl-search-page-icon-inline-start: calc(
 			(var(--sl-search-result-pad-inline-start) - var(--sl-search-page-icon-size)) / 2
@@ -224,13 +224,14 @@ const pagefindTranslations = {
 	}
 
 	#starlight__search .pagefind-ui__search-input {
-		color: var(--sl-color-white);
+		color: var(--sl-color-gray-6);
+		background-color: var(--sl-color-gray-1);
 		font-weight: 400;
 		width: calc(100% - var(--sl-search-cancel-space));
 	}
 
 	#starlight__search input:focus {
-		--pagefind-ui-border: var(--sl-color-accent);
+		--pagefind-ui-border: var(--sl-color-accent-high);
 	}
 
 	#starlight__search .pagefind-ui__search-clear {
@@ -249,21 +250,27 @@ const pagefindTranslations = {
 			center / 50% no-repeat;
 		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m13.41 12 6.3-6.29a1 1 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1 1 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 .33 1.64 1 1 0 0 0 1.09-.22l6.29-6.3 6.29 6.3a1 1 0 0 0 1.64-.33 1 1 0 0 0-.22-1.09L13.41 12Z'/%3E%3C/svg%3E")
 			center / 50% no-repeat;
-		background-color: var(--sl-color-text-accent);
+		background-color: var(--sl-color-accent-low);
 		display: block;
 		width: 100%;
 		height: 100%;
 	}
 
+	#starlight__search .pagefind-ui__results-area {
+    padding-bottom: 1.5rem;
+  }
 	#starlight__search .pagefind-ui__results > * + * {
 		margin-top: var(--sl-search-result-spacing);
 	}
 	#starlight__search .pagefind-ui__result {
 		border: 0;
 		padding: 0;
+    border-radius: var(--sl-search-corners);
+    background-color: var(--sl-color-gray-1);
 	}
 
 	#starlight__search .pagefind-ui__result-nested {
+    margin-top: -1px;
 		position: relative;
 		padding: var(--sl-search-result-nested-pad-block) var(--sl-search-result-pad-inline-end);
 		padding-inline-start: var(--sl-search-result-pad-inline-start);
@@ -272,7 +279,6 @@ const pagefindTranslations = {
 	#starlight__search .pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)),
 	#starlight__search .pagefind-ui__result-nested {
 		position: relative;
-		background-color: var(--sl-color-black);
 	}
 
 	#starlight__search .pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)):hover,
@@ -280,7 +286,7 @@ const pagefindTranslations = {
 		.pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)):focus-within,
 	#starlight__search .pagefind-ui__result-nested:hover,
 	#starlight__search .pagefind-ui__result-nested:focus-within {
-		outline: 1px solid var(--sl-color-accent-high);
+		outline: 1px solid var(--sl-color-accent-low);
 	}
 
 	#starlight__search
@@ -312,10 +318,9 @@ const pagefindTranslations = {
 		inset-inline-start: var(--sl-search-page-icon-inline-start);
 		width: var(--sl-search-page-icon-size);
 		background: var(--sl-color-gray-3);
-		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3E%3Cpath d='M9 10h1a1 1 0 1 0 0-2H9a1 1 0 0 0 0 2Zm0 2a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2H9Zm11-3V8l-6-6a1 1 0 0 0-1 0H7a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V9Zm-6-4 3 3h-2a1 1 0 0 1-1-1V5Zm4 14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5v3a3 3 0 0 0 3 3h3v9Zm-3-3H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2Z'/%3E%3C/svg%3E")
-			center no-repeat;
-		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3E%3Cpath d='M9 10h1a1 1 0 1 0 0-2H9a1 1 0 0 0 0 2Zm0 2a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2H9Zm11-3V8l-6-6a1 1 0 0 0-1 0H7a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V9Zm-6-4 3 3h-2a1 1 0 0 1-1-1V5Zm4 14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5v3a3 3 0 0 0 3 3h3v9Zm-3-3H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2Z'/%3E%3C/svg%3E")
-			center no-repeat;
+		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1' stroke='currentColor' class='size-6'%3E  %3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z' /%3E%3C/svg%3E") center no-repeat;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1' stroke='currentColor' class='size-6'%3E  %3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z' /%3E%3C/svg%3E") center no-repeat;
+
 	}
 
 	#starlight__search .pagefind-ui__result-inner {
@@ -325,8 +330,8 @@ const pagefindTranslations = {
 
 	#starlight__search .pagefind-ui__result-link {
 		position: unset;
-		--pagefind-ui-text: var(--sl-color-white);
-		font-weight: 600;
+		--pagefind-ui-text: var(--sl-color-gray-4);
+		font-weight: 400;
 	}
 
 	#starlight__search .pagefind-ui__result-link:hover {
@@ -344,14 +349,14 @@ const pagefindTranslations = {
 		inset-inline-start: var(--sl-search-tree-diagram-inline-start);
 		width: var(--sl-search-tree-diagram-size);
 		background: var(--sl-color-gray-4);
-		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' viewBox='0 0 16 1000' preserveAspectRatio='xMinYMin slice'%3E%3Cpath d='M8 0v1000m6-988H8'/%3E%3C/svg%3E")
+		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-width='.5' stroke-linecap='round' viewBox='0 0 16 1000' preserveAspectRatio='xMinYMin slice'%3E%3Cpath d='M8 0v1000m6-988H8'/%3E%3C/svg%3E")
 			0% 0% / 100% no-repeat;
-		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' viewBox='0 0 16 1000' preserveAspectRatio='xMinYMin slice'%3E%3Cpath d='M8 0v1000m6-988H8'/%3E%3C/svg%3E")
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-width='.5' stroke-linecap='round' viewBox='0 0 16 1000' preserveAspectRatio='xMinYMin slice'%3E%3Cpath d='M8 0v1000m6-988H8'/%3E%3C/svg%3E")
 			0% 0% / 100% no-repeat;
 	}
 	#starlight__search .pagefind-ui__result-nested:last-child::before {
-		-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 16 16'%3E%3Cpath d='M8 0v12m6 0H8'/%3E%3C/svg%3E");
-		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 16 16'%3E%3Cpath d='M8 0v12m6 0H8'/%3E%3C/svg%3E");
+		-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-width='.5' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 16 16'%3E%3Cpath d='M8 0v12m6 0H8'/%3E%3C/svg%3E");
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-width='.5' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 16 16'%3E%3Cpath d='M8 0v12m6 0H8'/%3E%3C/svg%3E");
 	}
 
 	/* Flip page and tree icons around the vertical axis when in an RTL layout. */
@@ -368,12 +373,61 @@ const pagefindTranslations = {
 
 	#starlight__search .pagefind-ui__result-excerpt {
 		font-size: calc(1rem * var(--pagefind-ui-scale));
+		color: var(--sl-color-gray-3);
 		overflow-wrap: anywhere;
 	}
 
 	#starlight__search mark {
-		color: var(--sl-color-gray-2);
+		color: var(--sl-color-gray-5);
 		background-color: transparent;
 		font-weight: 600;
 	}
+
+  #starlight__search .pagefind-ui__button {
+		color: var(--sl-color-gray-4);
+		background-color: var(--sl-color-gray-1);
+  }
+
+
+:root,
+::backdrop {
+
+  --pagefind-ui-scale: 0.7;
+
+	/* Colors (light mode) */
+	--sl-color-white: hsl(0, 0%, 100%); /* “white” */
+	--sl-color-gray-1: hsl(224, 20%, 94%);
+	--sl-color-gray-2: hsl(224, 6%, 77%);
+	--sl-color-gray-3: hsl(224, 6%, 56%);
+	--sl-color-gray-4: hsl(224, 7%, 36%);
+	--sl-color-gray-5: hsl(224, 10%, 23%);
+	--sl-color-gray-6: hsl(224, 14%, 16%);
+	--sl-color-black: hsl(224, 10%, 10%);
+	--sl-color-accent-low: hsl(224, 54%, 20%);
+	--sl-color-accent: hsl(224, 100%, 60%);
+	--sl-color-accent-high: hsl(224, 100%, 85%);
+	--sl-color-text: var(--sl-color-gray-2);
+	--sl-color-text-accent: var(--sl-color-accent-high);
+	--sl-color-text-invert: var(--sl-color-accent-low);
+}
+
+:root[data-theme='dark'],
+[data-theme='dark'] ::backdrop {
+	--sl-color-white: hsl(224, 10%, 10%);
+	/* --sl-color-gray-1: hsl(224, 14%, 16%); */
+	--sl-color-gray-1: rgb(24, 24, 27);
+	--sl-color-gray-2: hsl(224, 10%, 23%);
+	--sl-color-gray-3: hsl(224, 7%, 36%);
+	--sl-color-gray-4: hsl(224, 6%, 56%);
+	--sl-color-gray-5: hsl(224, 6%, 77%);
+	--sl-color-gray-6: hsl(224, 20%, 94%);
+	--sl-color-gray-7: hsl(224, 19%, 97%);
+	--sl-color-black: hsl(0, 0%, 100%);
+	--sl-color-accent-high: hsl(234, 80%, 30%);
+	--sl-color-accent: hsl(234, 90%, 60%);
+	--sl-color-accent-low: hsl(234, 88%, 90%);
+	--sl-color-text-accent: var(--sl-color-accent);
+	--sl-color-text-invert: var(--sl-color-black);
+}
+
 </style>
