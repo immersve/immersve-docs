@@ -42,7 +42,8 @@ const pagefindEnabled =
         <div class="hidden lg:relative lg:block lg:flex-none
           border-r border-zinc-200 dark:border-zinc-600">
           <div class="sticky top-[4.75rem] -ml-0.5 h-[calc(100vh-4.75rem)] w-64
-            overflow-y-auto overflow-x-hidden py-12 pl-0.5 pr-4 xl:w-72">
+            overflow-y-auto overflow-x-hidden no-scrollbar
+            py-12 pl-0.5 pr-4 xl:w-72">
             <Navigation {...Astro.props} />
           </div>
         </div>
@@ -63,3 +64,16 @@ const pagefindEnabled =
     </div>
   </body>
 </html>
+
+<style>
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+</style>
