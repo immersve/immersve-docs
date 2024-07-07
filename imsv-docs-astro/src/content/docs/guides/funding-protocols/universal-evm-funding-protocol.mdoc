@@ -53,14 +53,19 @@ contract addresses for supported EVM networks are listed below.
 
 ### Smart Contract Overview
 
-The Funds Manager contract is the main entry point and is a factory for the
-Funds Storage contracts. Funds Storage contracts are the target for depositor
-ERC-20 transfers that are scoped to an integrated partner application. The
-Funds Manager contract is also used by Immersve for performing settlements and
+The master contract is the main entry point and is a factory for the
+Funds Storage contracts. Funds Storage contracts pool together all deposits  scoped to an integrated partner application. The
+master contract is also used by Immersve for performing settlements and
 refunds.
 
 
-![polygonscan-contract-landing](@assets/universal-evm/overview-2.png)
+![Component Diagram](./assets/universal-evm-component-diagram.png "Universal EVM smart contract component diagram.")
+
+Deposits are performed by sending ERC-20 transfers to the partner Funds Storage
+contract.
+
+
+![Funds Flow Diagram](./assets/universal-evm-funds-flow-diagram.png "Universal EVM funds flow diagram.")
 
 
 ## Protocol Mechanics

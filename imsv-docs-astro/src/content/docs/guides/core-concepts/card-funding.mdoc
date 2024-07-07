@@ -35,7 +35,8 @@ interface.
 
 On-chain funds deposits can be made any time regardless of card or Funding Source
 provisioning. A Funding Source can be loaded with digital assets without using
-Immersve APIs by depositing funds directly to our smart contract.
+Immersve APIs by depositing funds directly to the deposit-holding address
+relating to the Funding Source.
 
 However, our APIs aim to reduce the complexity of determining what is the amount
 of digital assets needed to meet a users desired spend in their desired fiat
@@ -49,8 +50,7 @@ The client application is responsible for creating the raw blockchain transactio
 so that it can be signed and submitted to the relevant blockchain through the
 cardholder's web3 wallet.
 
-<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764577778509789&cot=14 -->
-![Card Funding Sequence](@assets/diagrams/card-funding-sequence.svg)
+![Deposit Sequence](./assets/funds-deposit-sequence.png "Deposit Sequence Diagram")
 
 
 ## Withdrawing Funds
@@ -83,8 +83,7 @@ intent on the blockchain, Immersve will update the `status` of the funding sourc
 Your application should query the [List Funding Source Interactions endpoint](/api-reference/list-funding-source-interactions),
 and inform the cardholder when the withdrawal `status` is no longer pending.
 
-<!-- https://miro.com/app/board/uXjVNxzJMjE=/?moveToWidget=3458764578946735882&cot=14 -->
-![Card Funding Sequence](@assets/diagrams/withdrawal-sequence.svg)
+![Withdrawal Sequence](./assets/funds-withdraw-sequence.png "Withdraw Sequence Diagram")
 
 
 ### Withdrawal Intent Javascript Example
@@ -117,13 +116,13 @@ detailed below.
 
 ## Prerequisites Execution Javascript Example
 
-The [get spending prerequisites endpoint](/api-reference/get-spending-prerequisites)
-returns an array of both regulatory and smart contract prerequisite
-transactions.
-Each object in the array has `type` and `params`.
-Type `"smart_contract_write"` means that this action is about interaction with
-the smart contract. `params` contains all the details required to perform this
-interaction.
+The [get spending prerequisites](/api-reference/get-spending-prerequisites) endpoint returns a list of
+checks that must be passed before the cardholder can spend with the provided
+funding source. Funding prerequisites, when not completed, will have
+action `type` and `params` attributes which indicate how to satisfy the
+prerequisite. The value of the `type` attribute will depend on the funding
+protocol in use. For example, an action type of `"smart_contract_write"`
+indicates that an EVM smart contract interaction is required.
 
 {% code title="Code example with ethers.js" %}
 ```js
