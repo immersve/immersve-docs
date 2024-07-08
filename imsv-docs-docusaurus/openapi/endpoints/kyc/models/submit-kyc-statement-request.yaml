@@ -11,8 +11,8 @@ properties:
     example: 21ede8ef0d230d0a6bf755e07d39la54
   region:
     type: string
-    description: An Alpha3 (ISO-3166-1) country code representing the country in which the user is being verified.
-    example: "NZL"
+    description: An Alpha2 (ISO-3166-1) country code representing the country in which the user is being verified.
+    example: "NZ"
   claims:
     type: array
     description: A list of claims about the cardholder's identity.
