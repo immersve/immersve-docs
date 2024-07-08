@@ -47,5 +47,5 @@ properties:
     type: string
     description: Country code.
     enum:
-      - NZL
-    example: NZL
+      - NZ
+    example: NZ

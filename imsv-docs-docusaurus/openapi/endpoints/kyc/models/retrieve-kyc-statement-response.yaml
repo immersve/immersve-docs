@@ -32,5 +32,5 @@ properties:
       $ref: './evidence.yaml'
   region:
     type: string
-    description: An Alpha3 (ISO-3166-1) country code representing the country in which the user is being verified.
-    example: "NZL"
+    description: An Alpha2 (ISO-3166-1) country code representing the country in which the user is being verified.
+    example: "NZ"

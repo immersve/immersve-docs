@@ -12,9 +12,9 @@ properties:
     type: string
     description: The country that issued the document.
     enum:
-      - NZL
-      - AUS
-    example: NZL
+      - NZ
+      - AU
+    example: NZ
   expiry:
     type: string
     description: The passport expiry formatted as YYYY-MM-DD.
