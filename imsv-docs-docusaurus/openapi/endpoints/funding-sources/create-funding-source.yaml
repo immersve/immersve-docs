@@ -12,7 +12,6 @@ post:
         schema:
           oneOf:
             - $ref: "./models/create-funding-source-eoa.yaml"
-            - $ref: "./models/create-funding-source-erc-1271.yaml"
             - $ref: "./models/create-funding-source-challenge.yaml"
     required: true
   responses:
@@ -28,15 +27,6 @@ post:
 
         **FORBIDDEN**
         Insufficient permissions to perform the action.
-
-        **SIGNATURE_DENIED**
-        The signature was rejected by the ERC-1271 contract `isValidSignature` function.
-
-        **SIGNATURE_INVALID**
-        The message signature was invalid.
-
-        **ADDRESS_MISMATCH**
-        The `ownerAddress` does not match the EIP-4361 message address.
       content:
         application/json:
           schema:
