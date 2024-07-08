@@ -1302,7 +1302,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"immersve-conducted\",\n  \"kycRegion\": \"NZL\"\n}"
+							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"immersve-conducted\",\n  \"kycRegion\": \"NZ\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/spending-prerequisites",
@@ -1329,7 +1329,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"partner-conducted\",\n  \"kycRegion\": \"NZL\"\n}"
+							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"partner-conducted\",\n  \"kycRegion\": \"NZ\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/spending-prerequisites",
@@ -1427,7 +1427,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"idempotencyKey\": \"{{$guid}}\", \n    \"region\": \"AUS\",\n    \"claims\": [\n        {\n            \"claimType\": \"FULL_NAME\",\n            \"attributes\": {\n                \"givenName\": \"{{$randomFirstName}}\",\n                \"honorific\": \"Mr\",\n                \"familyName\": \"{{$randomLastName}}\",\n                \"middleName\": \"passall\"\n            }\n        },\n        {   \n            \"claimType\": \"ADDRESS\",\n            \"attributes\": {\n                \"addressType\": \"RESIDENTIAL\",\n                \"country\": \"AUS\",\n                \"streetNumber\": \"{{$randomAlphaNumeric}}\",\n                \"streetName\": \"Oldham\",\n                \"streetType\": \"ROAD\",\n                \"town\": \"Manchester\",\n                \"postalCode\": \"M4 6BG\"\n            }\n        },\n        {\n            \"claimType\": \"DOB\",\n            \"attributes\": {\n                \"country\": \"GBR\",\n                \"dateOfBirth\": \"1984-01-01\",\n                \"yearOfBirth\": \"1984\"\n            }\n        }\n    ],\n    \"evidence\": [\n        {\n            \"evidenceType\": \"PASSPORT\",\n            \"country\": \"AUS\",\n            \"expiry\": \"2030-01-01\",\n            \"documentId\": \"E07148293\"\n        }\n    ]\n}",
+							"raw": "{\n    \"idempotencyKey\": \"{{$guid}}\", \n    \"region\": \"AU\",\n    \"claims\": [\n        {\n            \"claimType\": \"FULL_NAME\",\n            \"attributes\": {\n                \"givenName\": \"{{$randomFirstName}}\",\n                \"honorific\": \"Mr\",\n                \"familyName\": \"{{$randomLastName}}\",\n                \"middleName\": \"passall\"\n            }\n        },\n        {   \n            \"claimType\": \"ADDRESS\",\n            \"attributes\": {\n                \"addressType\": \"RESIDENTIAL\",\n                \"country\": \"AU\",\n                \"streetNumber\": \"{{$randomAlphaNumeric}}\",\n                \"streetName\": \"Oldham\",\n                \"streetType\": \"ROAD\",\n                \"town\": \"Manchester\",\n                \"postalCode\": \"M4 6BG\"\n            }\n        },\n        {\n            \"claimType\": \"DOB\",\n            \"attributes\": {\n                \"country\": \"GBR\",\n                \"dateOfBirth\": \"1984-01-01\",\n                \"yearOfBirth\": \"1984\"\n            }\n        }\n    ],\n    \"evidence\": [\n        {\n            \"evidenceType\": \"PASSPORT\",\n            \"country\": \"AU\",\n            \"expiry\": \"2030-01-01\",\n            \"documentId\": \"E07148293\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
