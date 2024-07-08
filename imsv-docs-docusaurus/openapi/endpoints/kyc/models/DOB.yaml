@@ -1,7 +1,17 @@
-required:
-  - dateOfBirth
+type: object
 properties:
-  dateOfBirth:
-    type: string
-    description: The cardholder's date of birth formatted as YYYY-MM-DD
-    example: "1981-11-03"
+  claimType:
+    type: enum
+    description: The type of claim.
+    enum:
+      - DOB
+  attributes:
+    type: object
+    description: The attributes that support the DOB claim.
+    required:
+      - dateOfBirth
+    properties:
+      dateOfBirth:
+        type: string
+        description: The cardholder's date of birth formatted as YYYY-MM-DD
+        example: "1981-11-03"
