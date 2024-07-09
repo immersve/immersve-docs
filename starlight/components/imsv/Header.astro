@@ -22,7 +22,7 @@ const { class: className } = Astro.props;
 <header class:list={[
   className,
   "sticky top-0 z-50",
-  "flex flex-none flex-wrap items-center justify-between",
+  "flex flex-none flex-wrap items-end justify-between",
   "px-4 py-2 md:py-5 sm:px-6 lg:px-8",
   "transition duration-500" ]}>
 
@@ -54,7 +54,7 @@ const { class: className } = Astro.props;
       </span>
     </a>
   </div>
-  <div class="relative hidden lg:flex min-[1500px]:basis-[50rem] xl:px-16 justify-start gap-10 items-center w-3xl">
+  <div class="relative hidden lg:flex min-[1500px]:basis-[50rem] xl:px-16 justify-start gap-10 items-end w-3xl top-0.5">
     <a href="https://docs.immersve.com/">Guides</a>
     <a href="https://docs.immersve.com/api-reference/" class="text-zinc-400">APIs</a>
     <a href="https://help.immersve.com/" class="text-zinc-400">Support</a>
