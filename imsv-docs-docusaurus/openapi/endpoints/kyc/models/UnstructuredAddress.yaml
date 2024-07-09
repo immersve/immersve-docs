@@ -16,7 +16,7 @@ properties:
       into individual components (e.g. unit number, street number,
       street name, etc.) This is useful when the address cannot be provided in
       a structured way. We recommend using a structured address whenever
-      possible as correct parsing in not guaranteed.
+      possible as correct parsing is not guaranteed.
     example: 2/45 Laddier Road, Centurion, The Reeds, Auckland, Auckland 0100, New Zealand
   country:
     type: string
