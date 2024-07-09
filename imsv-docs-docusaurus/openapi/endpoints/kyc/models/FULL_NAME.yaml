@@ -3,6 +3,7 @@ properties:
   claimType:
     type: enum
     description: The type of claim.
+    example: FULL_NAME
     enum:
       - FULL_NAME
   attributes:

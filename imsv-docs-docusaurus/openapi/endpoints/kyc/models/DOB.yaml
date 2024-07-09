@@ -3,6 +3,7 @@ properties:
   claimType:
     type: enum
     description: The type of claim.
+    example: DOB
     enum:
       - DOB
   attributes:
