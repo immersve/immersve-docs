@@ -20,7 +20,7 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/immersve/immersve-docs/edit/main/imsv-docs-astro',
       },
-      favicon: '/favicon.ico',
+      favicon: '/favicon.svg',
       customCss: ['./src/styles/tailwind.css'],
       components: {
         Head: './src/components/Head.astro',
