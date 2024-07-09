@@ -22,7 +22,7 @@ const { class: className } = Astro.props;
 <header class:list={[
   className,
   "sticky top-0 z-50",
-  "flex flex-none flex-wrap items-center justify-between",
+  "flex flex-none flex-wrap items-end justify-between",
   "px-4 py-2 md:py-5 sm:px-6 lg:px-8",
   "transition duration-500" ]}>
 
@@ -31,9 +31,8 @@ const { class: className } = Astro.props;
     <MobileMenu {...Astro.props} />
   </div>
 
-  <div class="relative flex flex-grow basis-0 items-center overflow-hidden">
-    <a href="/" class="flex items-end space-x-1 fill-black dark:fill-white
-      ">
+  <div class="relative flex flex-grow basis-0 items-center overflow-hidden max-[1500px]:max-w-[19rem] max-xl:max-w-[17rem]">
+    <a href="/" class="flex items-end space-x-1 fill-black dark:fill-white">
 
       <ImsvLogo class="mr-2 w-[24px] h-[24px] md:w-[37px] md:h-[36px]"/>
 
@@ -55,11 +54,15 @@ const { class: className } = Astro.props;
       </span>
     </a>
   </div>
-  <div class="relative flex basis-0 justify-end gap-4 md:flex-grow
-    items-center">
+  <div class="relative hidden lg:flex min-[1500px]:basis-[50rem] xl:px-16 justify-start gap-10 items-end w-3xl top-0.5">
+    <a href="https://docs.immersve.com/">Guides</a>
+    <a href="https://docs.immersve.com/api-reference/" class="text-zinc-400">APIs</a>
+    <a href="https://help.immersve.com/" class="text-zinc-400">Support</a>
+  </div>
+  <div class="relative flex basis-0 justify-end gap-6 md:flex-grow items-center">
     <Search {...Astro.props} />
     <div class="flex">
-      <div class="flex gap-4 items-center">
+      <div class="flex gap-6 items-center">
         {socialLinks.map((link) => (
           <a href={link.url} rel="me" class="flex hover:opacity-70">
             <span class="sr-only">{link.label}</span>
