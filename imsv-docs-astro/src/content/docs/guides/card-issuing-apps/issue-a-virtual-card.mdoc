@@ -3,15 +3,11 @@ title: Issue a Virtual Card
 slug: guides/issue-a-virtual-card
 ---
 
-A virtual card is a payment card that exists only in digital form. As such,
-virtual cards are most suitable for online e-commerce purchases as opposed to
-in-store purchases at brick-and-mortar merchants. By default, virtual cards are
-logically time-bound and ephemeral. Beginning at the time of issuance of a
-virtual card, it has a finite useable lifespan which is often represented
-within the UI of the issuing client application as a stopwatch-type timer. This
-model presents certain benefits over a persistent payment card model (be they
-virtual, tokenized or physical) in that the potential for card fraud is
-dramatically reduced.
+A virtual card is a payment card that exists only in digital form. It is
+activated for immediate use upon creation. Once funded it
+enables online purchases, and other card-not-present transactions. Add the card
+to a {% link page="guides/add-card-to-xpay-wallet" title="digital wallet" /%}
+for in-store contactless payments.
 
 Before being permitted to [create a card](/api-reference/create-a-card) a user
 must first have successfully [authenticated](/guides/authentication) and
@@ -61,11 +57,11 @@ presented to the cardholder.
 
 There are two steps in this process;
 
- 1. Obtaining a token for transmission to the client application to which the
-    card details are to be provided (i.e. the application that will display the
-    card data to the cardholder) and;
- 2. The exchange, by that client application,
-    of the token for the card data.
+1. Obtaining a token for transmission to the client application to which the
+card details are to be provided (i.e. the application that will display the
+card data to the cardholder) and;
+2. The exchange, by that client application,
+of the token for the card data.
 
 {% note %}
 It is not recommended that the card token is supplied to any application other
