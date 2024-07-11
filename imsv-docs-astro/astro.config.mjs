@@ -35,7 +35,6 @@ export default defineConfig({
           items: [
             { label: 'Authentication', link: 'guides/authentication' } ,
             { label: 'HTTP Status Codes', link: 'guides/http-status-codes' } ,
-            { label: 'Cardholder Support', link: 'guides/cardholder-support' } ,
             { label: 'Supported Regions', link: 'guides/regions' } ,
             { label: 'Core Concepts', autogenerate: { directory: 'guides/core-concepts' } },
             { label: 'Card Issuing Apps', autogenerate: { directory: 'guides/card-issuing-apps' } },
