@@ -90,7 +90,7 @@ post:
                 },
                 {
                   "stage": "kyc",
-                  "status": "action-required"
+                  "status": "action-required",
                   "type": "kyc",
                   "actionType": "follow_kyc_url",
                   "params": {

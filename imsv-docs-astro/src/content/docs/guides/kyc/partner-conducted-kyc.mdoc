@@ -150,7 +150,10 @@ failed, the response will return "kyc_check_failed". Check the KYC statement and
     {
       "prerequisites": [
         {
+          "stage": "kyc",
+          "status": "action-required",
           "type": "kyc",
+          "actionType": "submit_kyc_statement",
           "params": {
             "status": "check_in_progress"
           }
