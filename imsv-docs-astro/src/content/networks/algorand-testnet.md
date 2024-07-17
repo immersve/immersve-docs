@@ -7,5 +7,5 @@ contractUrlTemplate: https://testnet.explorer.perawallet.app/application/{addres
 assetUrlTemplate: https://testnet.explorer.perawallet.app/asset/{address}
 protocols:
   - name: flexi-algorand
-    masterContractAddress: "693015772"
+    masterContractAddress: "702773232"
 ---
