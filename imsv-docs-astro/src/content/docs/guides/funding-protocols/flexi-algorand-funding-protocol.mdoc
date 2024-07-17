@@ -93,9 +93,7 @@ associated with the depositing address will be credited immediately.
 The [Spending Pre-requisites
 API](https://docs.immersve.com/api-reference/get-spending-prerequisites) can be
 used to reliably obtain the Algorand transaction parameters for depositing into a
-Funding Source.
-
-See {% link page="guides/card-funding" /%} for more details.
+Funding Source. See {% link page="guides/card-funding" /%} for more details.
 
 
 ### Withdrawals
@@ -121,18 +119,14 @@ page="guides/creating-a-funding-channel" /%}.
 Creating a Partner Channel instance requires two steps: deployment init and complete.
 To initialize the creation of the Partner Channel instance, invoke the
 [`partnerChannelDeployInit()`](#partnerChannelDeployInit) function on the Master
-contract. Find the Master contract address for your target chain from "Contract
-Addresses" above. This function will return the address of the Partner Channel
-to be used in the next step [`partnerChannelDeployComplete()`](#partnerChannelDeployComplete).
-
+contract. The init function will return the address of the Partner Channel.
 Once a Partner Channel instance is initialized, the deployment can be completed
 calling the [`partnerChannelDeployComplete()`](#partnerChannelDeployComplete) function.
 
-The address of the deployed Partner Channel instance can also be discovered from the
-Algorand transaction logs. In a block explorer, find the `PartnerChannelCreated` event
-within the logs for the transaction that created the Partner Channel instance. This event
-will be emitted by the [`partnerChannelDeployComplete()`](#partnerChannelDeployComplete)
-function.
+After deployment is completed, the address of the deployed Partner Channel
+instance can also be discovered from the Algorand transaction logs. In a block
+explorer, find the `PartnerChannelCreated` event within the logs for the
+transaction that created the Partner Channel instance.
 
 Use the created partner channel address as the `contractAddress` when calling the
 [Create Funding Channel](https://docs.immersve.com/api-reference/create-a-funding-channel)
@@ -141,19 +135,15 @@ endpoint. A Funding Channel is required for each supported asset.
 
 ### Creating a Card Funds Instance
 
-A Card Fund instance needs to be created for each partner Cardholder account. To
-create the Card Fund instance, invoke the [`cardFundCreate()`](#cardFundCreate)
-function on the Master contract. Use the created Card Fund address as the
-`fundingAddress` when calling the [Create Funding
+A Card Fund instance needs to be created for each partner Cardholder account.
+Use the created Card Fund address as the `fundingAddress` when calling the [Create Funding
 Source](https://docs.immersve.com/api-reference/create-a-funding-source-for-an-account/)
-endpoint.
-
-Creating a Card Fund instance requires two steps: deployment init and complete.
-The Algorand address that creates the Card Fund address is the owner. There can
-only be a single Card Fund contract instance per owner address per Partner
+endpoint. The Algorand address that creates the Card Fund address is the owner.
+There can only be a single Card Fund contract instance per owner address per Partner
 Channel. Only the owner address can receive withdrawals from a Card Fund
 address.
 
+Creating a Card Fund instance requires two steps: deployment init and complete.
 To initialize the creation of the Card Fund instance, invoke the
 [`cardFundDeployInit()`](#cardFundDeployInit) function on the Master
 contract. Find the Master contract address for your target chain from "Contract
@@ -178,79 +168,83 @@ For each opted-in asset, a separate Funding Source needs to be registered.
 
 ## Functions
 
+
 ### partnerChannelDeployInit(mbr, partnerChannelName) <a id="partnerChannelDeployInit"/>
 Initializes the deployment of a new Partner Channel contract.
 <br>
-*Returns*<br>
-(Address) — The Partner Channel address that can be used to complete the deployment
-when calling `partnerChannelDeployComplete`.
+***Returns***
 <br>
-*Params*
+Address — The Partner Channel address that can be used to complete the deployment
+when calling partnerChannelDeployComplete().
 <br>
-`mbr`: PayTxn — The Minimum account balance requirement Payment transaction: `0.1` Algo
+***Params***
+<br>
+`mbr`: PayTxn — A payment transaction to supply the minimum balance requirement
+for the partner channel account. The amount must be `0.1` Algo.
 <br>
 `partnerChannelName`: string — The name of the deployed contract. This is used only for
 debugging purposes and must be globally unique. Using your app name, and
 "liveness" in the name are recommended, for example: "Acme Wallet USDC Live".
 
+
 ### partnerChannelDeployComplete(mbr, partnerChannelAddr) <a id="partnerChannelDeployComplete"/>
 Completes the setup of a new Partner Channel contract.
 <br>
-*Returns*<br>
-(Address) — The created Partner Channel address.
+***Params***
 <br>
-*Params*
+`mbr`: PayTxn — A payment transaction to supply the minimum balance requirement
+for storing the partner state on the Master contract. The amount can be fetched
+from getPartnerChannelBoxMbr().
 <br>
-`mbr`: PayTxn — The Minimum balance requirement Payment transaction used to store the partner
-state on the Master contract. The amount can be fetched from `getPartnerChannelBoxMbr(partnerChannelName: string)`.
-<br>
-`partnerChannelAddr`: (Address) — The address of the partnerChannel created on
-the `partnerChannelDeployInit` step.
+`partnerChannelAddr`: Address — The address of the partnerChannel created by
+partnerChannelDeployInit().
 
-### cardFundDeployInit(accountMbr, partnerChannel, asset, reference) <a id="cardFundDeployInit"/>
+
+### cardFundDeployInit(mbr, partnerChannel, asset, reference) <a id="cardFundDeployInit"/>
 Initializes the deployment of a new Card Fund contract.
 <br>
-*Returns*<br>
-(Address) — The Card Fund address that can be used to complete the deployment
-when calling `cardFundDeployComplete`.
+***Returns***
 <br>
-*Params*
+Address — The Card Fund address that can be used to complete the deployment
+when calling cardFundDeployComplete().
 <br>
-`accountMbr` (PayTxn) — The Minimum account balance requirement Payment transaction
-Amount required to create the Card Fund address init:
-**0.1 Algo** for Minimum account balance requirement.
-**0.1 Algo** for Asset optIn. Making a total of **0.2 Algo** for the accountMbr payment amount
+***Params***
 <br>
-`partnerChannel` (Address) — The Partner Channel address. Card Funds are always related to partners
+`mbr`: PayTxn — A payment transaction to supply the minimum balance requirement
+for creating the Card Fund address. The amount must be `0.2` Algo
 <br>
-`asset` (AssetID) — The asset id to initially opt-in. See {% link
+`partnerChannel`: Address — The Partner Channel address to which the Card Fund
+is bound. Deposits to the created Card Fund will only be spendable by an
+Immersve cardholder who is connected with this partner.
+<br>
+`asset`: AssetID — The asset id to initially opt-in. See {% link
 page="guides/supported-tokens" /%} for available assets to opt-in.
 <br>
-`reference` (string) — The external reference string to be stored
+`reference`: string — The external reference string to be stored
 on the Card Fund contract data. This could be used to back link a card fund
 with a cardholder account or any other user defined data
 
-### cardFundDeployComplete(boxMbr, cardFundAddr) <a id="cardFundDeployComplete"/>
-Completes the setup of a new Card Fund contract.<br>
-*Returns*<br>
-(Address) — The created Card Fund address.
+
+### cardFundDeployComplete(mbr, cardFundAddr) <a id="cardFundDeployComplete"/>
+Completes the setup of a new Card Fund contract.
 <br>
-*Params*
+***Params***
 <br>
-`boxMbr` (PayTxn) — The payment transaction to supply the minimum balance
+`mbr`: PayTxn — A payment transaction to supply the minimum balance
 requirement for creating the Card Fund address. The amount for the MBR
-transaction can be fetched from `getCardFundBoxMbr(reference: string)`.
+transaction can be fetched from getCardFundBoxMbr().
 <br>
-`cardFundAddr`: (Address) — The address of the Card Fund created on
-the `cardFundDeployInit` step.
+`cardFundAddr`: Address — The address of the Card Fund created by cardFundDeployInit().
+
 
 ### cardFundEnableAsset(mbr, cardFund, asset) <a id="cardFundEnableAsset"/>
-Opt-in a Card Fund to an additional asset.<br>
-*Params*
+Opt-in a Card Fund to an additional asset.
 <br>
-`mbr`: PayTxn — The payment transaction supplying the minimum balance
+***Params***
+<br>
+`mbr`: PayTxn — A payment transaction to supply the minimum balance
 requirement for the asset opt-in. The amount for the MBR transaction can
-be fetched from `getCardFundAssetMbr()`.
+be fetched from getCardFundAssetMbr().
 <br>
 `cardFund`: Address — The Card Fund address that is opting in to the asset.
 <br>
@@ -261,17 +255,17 @@ page="guides/supported-tokens" /%} for available assets to opt-in.
 ### getCardFundByPartner(channel, owner) <a id="getCardFundByPartner"/>
 Find an existing Card Fund address for a Partner Channel and owner
 combination.<br>
-*Params*
+***Params***
 <br>
-`channel`: Address — The address of the Partner Channel contract.
-<br>
-`owner`: Address — The address of the Card Fund owner.
+`channel`: Address — The address of the Partner Channel contract.<br>
+`owner`: Address — The address of the Card Fund owner.<br>
+
 
 ### cardFundExecuteApprovedWithdrawal(cardFund, asset, amount, expiry, nonce, signature) <a id="cardFundExecuteApprovedWithdrawal"/>
 Execute a withdrawal initiated by calling the [Create Withdrawal
 Intent](https://docs.immersve.com/api-reference/create-withdrawal-intent/)
-API.<br>
-*Params*
+endpoint.<br>
+***Params***
 <br>
 `cardFund`: Address — The address of the card being withdrawn from.<br>
 `asset`: AssetID — The id of the asset being withdrawn.<br>
