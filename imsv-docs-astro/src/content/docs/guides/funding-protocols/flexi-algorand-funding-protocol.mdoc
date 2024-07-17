@@ -170,7 +170,8 @@ For each opted-in asset, a separate Funding Source needs to be registered.
 
 
 ### partnerChannelDeployInit(mbr, partnerChannelName) <a id="partnerChannelDeployInit"/>
-Initializes the deployment of a new Partner Channel contract.
+Initializes the deployment of a new Partner Channel contract. The caller must be
+opted-in to the app to complete this function call.
 <br>
 ***Returns***
 <br>
@@ -201,7 +202,8 @@ partnerChannelDeployInit().
 
 
 ### cardFundDeployInit(mbr, partnerChannel, asset, reference) <a id="cardFundDeployInit"/>
-Initializes the deployment of a new Card Fund contract.
+Initializes the deployment of a new Card Fund contract. The caller must be
+opted-in to the app to complete this function call.
 <br>
 ***Returns***
 <br>
