@@ -121,9 +121,8 @@ will return “check_in_progress” for the KYC prerequisite status.
 
 The endpoint will keep returning “check_in_progress” until the check is completed.
 
-Once the check is completed successfully, the response should no longer include KYC prerequisite. However, if the check
-failed, the response will return "kyc_check_failed" for the KYC prerequisite status. Check the KYC statement and submit
-it again or contact Immersve support.
+Once the check is completed successfully, the response should contain 'ok' status for the KYC prerequisite. However, if the check
+failed, the response will return "kyc_check_failed". Check the KYC statement and submit it again or contact Immersve support.
 
 ### Example request
 {% code %}
@@ -151,7 +150,10 @@ it again or contact Immersve support.
     {
       "prerequisites": [
         {
+          "stage": "kyc",
+          "status": "action-required",
           "type": "kyc",
+          "actionType": "submit_kyc_statement",
           "params": {
             "status": "check_in_progress"
           }

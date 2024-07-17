@@ -5,23 +5,46 @@ properties:
     items:
       type: object
       properties:
+        stage:
+          type: string
+          enum:
+            - funding
+            - kyc
+            - aml
+        status:
+          type: string
+          enum:
+            - action-required
+            - pending
+            - blocked
+            - ok
         type:
           type: string
           enum:
             - smart_contract_write
             - kyc
+            - aml-review
             - contact_email
             - contact_phone
             - simulator_call
+        actionType:
+          type: string
+          enum:
+            - smart_contract_write
+            - submit_contact_email
+            - submit_contact_phone
+            - follow_kyc_url
+            - submit_kyc_statement
+            - aml-review
         params:
           oneOf:
-            - $ref: '../../../models/smart-contract-write-params.yaml'
+            - $ref: "../../../models/smart-contract-write-params.yaml"
               title: smart_contract_write
-            - $ref: '../../../models/kyc-params.yaml'
+            - $ref: "../../../models/kyc-params.yaml"
               title: kyc
-            - $ref: '../../../models/contact-channel-email-params.yaml'
+            - $ref: "../../../models/contact-channel-email-params.yaml"
               title: contact_email
-            - $ref: '../../../models/contact-channel-phone-params.yaml'
+            - $ref: "../../../models/contact-channel-phone-params.yaml"
               title: contact_phone
-            - $ref: '../../../models/simulator-deposit.yaml'
+            - $ref: "../../../models/simulator-deposit.yaml"
               title: simulator_call

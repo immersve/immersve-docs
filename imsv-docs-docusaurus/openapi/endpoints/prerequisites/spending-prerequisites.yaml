@@ -22,7 +22,10 @@ post:
             {
               "prerequisites": [
                 {
+                  "stage": "funding",
+                  "status": "action-required",
                   "type": "smart_contract_write",
+                  "actionType": "smart_contract_write",
                   "params": {
                     "abi": [
                       {
@@ -58,7 +61,10 @@ post:
                   }
                 },
                 {
+                  "stage": "funding",
+                  "status": "action-required",
                   "type": "smart_contract_write",
+                  "actionType": "smart_contract_write",
                   "params": {
                     "abi": [
                       {
@@ -83,23 +89,39 @@ post:
                   }
                 },
                 {
+                  "stage": "kyc",
+                  "status": "action-required",
                   "type": "kyc",
+                  "actionType": "follow_kyc_url",
                   "params": {
                     "status": "kyc_required",
                     "kycUrl": "https://verify.immersve.com"
                   }
                 },
                 {
+                  "stage": "kyc",
+                  "status": "action-required"
                   "type": "contact_email",
+                  "actionType": "submit_contact_email",
                   "params": {
                     "status": "missing"
                   }
                 },
                 {
+                  "stage": "kyc",
+                  "status": "action-required",
                   "type": "contact_phone",
+                  "actionType": "submit_contact_phone",
                   "params": {
                     "status": "missing"
                   }
+                },
+                {
+                  "stage": "aml",
+                  "status": "pending",
+                  "type": "aml-review",
+                  "actionType": "aml-review",
+                  "params": {}
                 }
               ]
             }
@@ -122,9 +144,6 @@ post:
         **KYC_PROFILE_REGION_MISMATCH**
         The KYC profile is already approved for a region different from the requested region.
         Use the [Get a KYC profile](/get-a-kyc-profile/) endpoint to determine the current region of the KYC profile.
-
-        **AML_CHECK_FAILED**
-        AML check failed. This cannot be resolved.
 
         **UNSUPPORTED_KYC_REGION**
         The KYC region is not yet supported.

@@ -82,7 +82,10 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 {
   "prerequisites": [
     {
+      "stage": "kyc",
+      "status": "action-required",
       "type": "kyc",
+      "actionType": "follow_kyc_url",
       "params": {
         "status": "kyc_required",
         "kycUrl": "https://verify.test.immersve.com/kyc/session/hg40904ddkr43?code=r938j9g"
