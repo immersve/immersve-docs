@@ -71,11 +71,17 @@ incorrectly supplied.
           "region": "NZ",
           "claims": [
               {
+                  "claimType": "DOB",
+                  "attributes": {
+                      "dateOfBirth": "'${date_of_birth}'",
+                  }
+              },
+              {
                   "claimType": "FULL_NAME",
                   "attributes": {
+                      "honorific": "Mr",
                       "givenName": "'${your_given_name}'",
                       "middleName": "PASSALL",
-                      "honorific": "Mr",
                       "familyName": "'${your_family_name}'"
                   }
               },
@@ -83,7 +89,6 @@ incorrectly supplied.
                   "claimType": "ADDRESS",
                   "attributes": {
                       "addressType": "RESIDENTIAL",
-                      "country": "NZ",
                       "streetNumber": "73",
                       "streetName": "Great Southern",
                       "streetType": "ROAD",
@@ -92,12 +97,7 @@ incorrectly supplied.
                       "region": "Auckland",
                       "state": "AKL",
                       "postalCode": "6140"
-                  }
-              },
-              {
-                  "claimType": "DOB",
-                  "attributes": {
-                      "dateOfBirth": "'${date_of_birth}'",
+                      "country": "NZ",
                   }
               }
           ],
