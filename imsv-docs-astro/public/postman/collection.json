@@ -366,7 +366,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"loginRequestId\":\"{{loginRequestId}}\",\n  \"signature\":\"paste signature here\"\n}"
+							"raw": "{\n  \"loginRequestId\":\"{{loginRequestId}}\",\n  \"signature\":\"0x4b17cc694f05951b6c913a8f277e47af20009273df6fb0912450457ae449c475628fb6197fe617a1f6a85d3265e9bdb7f26e3eb6a5a4db0c29204647582767ca1c\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/login-complete",
@@ -1301,7 +1301,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"immersve-conducted\",\n  \"kycRegion\": \"NZ\"\n}"
+							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"immersve-conducted\",\n  \"kycRegion\": \"AU\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/spending-prerequisites",
@@ -1328,7 +1328,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"partner-conducted\",\n  \"kycRegion\": \"NZ\"\n}"
+							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"partner-conducted\",\n  \"kycRegion\": \"AU\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/spending-prerequisites",
@@ -1410,6 +1410,9 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -1427,7 +1430,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"idempotencyKey\": \"{{$guid}}\", \n    \"region\": \"AU\",\n    \"claims\": [\n        {\n            \"claimType\": \"DOB\",\n            \"attributes\": {\n                \"dateOfBirth\": \"1984-01-01\"\n            }\n        },\n        {\n            \"claimType\": \"FULL_NAME\",\n            \"attributes\": {\n                \"honorific\": \"Mr\",\n                \"givenName\": \"{{$randomFirstName}}\",\n                \"middleName\": \"passall\",\n                \"familyName\": \"{{$randomLastName}}\"\n            }\n        },\n        {   \n            \"claimType\": \"ADDRESS\",\n            \"attributes\": {\n                \"addressType\": \"RESIDENTIAL\",\n                \"streetNumber\": \"{{$randomAlphaNumeric}}\",\n                \"streetName\": \"Oldham\",\n                \"streetType\": \"ROAD\",\n                \"town\": \"Manchester\",\n                \"postalCode\": \"M4 6BG\",\n                \"country\": \"AU\"\n            }\n        }\n    ],\n    \"evidence\": [\n        {\n            \"evidenceType\": \"PASSPORT\",\n            \"documentId\": \"E07148293\",\n            \"country\": \"AU\",\n            \"expiry\": \"2030-01-01\"\n        }\n    ]\n}",
+							"raw": "{\n    \"idempotencyKey\": \"{{$guid}}\", \n    \"region\": \"AU\",\n    \"claims\": [\n        {\n            \"claimType\": \"DOB\",\n            \"attributes\": {\n                \"dateOfBirth\": \"1984-01-01\"\n            }\n        },\n        {\n            \"claimType\": \"FULL_NAME\",\n            \"attributes\": {\n                \"honorific\": \"Mr\",\n                \"givenName\": \"{{$randomFirstName}}\",\n                \"middleName\": \"passall\",\n                \"familyName\": \"{{$randomLastName}}\"\n            }\n        },\n        {   \n            \"claimType\": \"ADDRESS\",\n            \"attributes\": {\n                \"addressType\": \"RESIDENTIAL\",\n                \"streetNumber\": \"{{$randomAlphaNumeric}}\",\n                \"streetName\": \"Oldham\",\n                \"streetType\": \"ROAD\",\n                \"town\": \"Manchester\",\n                \"postalCode\": \"M4 6BG\",\n                \"country\": \"AU\"\n            }\n        }\n    ],\n    \"evidence\": [\n        {\n            \"evidenceType\": \"PASSPORT\",\n            \"documentId\": \"{{$randomAlphaNumeric}}{{$guid}}\",\n            \"country\": \"AU\",\n            \"expiry\": \"2030-01-01\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
