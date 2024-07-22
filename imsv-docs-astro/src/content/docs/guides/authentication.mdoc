@@ -164,7 +164,7 @@ Below are example scripts for each login method which create an account and use 
 
         console.log('loginRequest', loginRequest);
 
-        const signature2 = await wallet.signMessage(registerRequest.signingChallenge.message);
+        const signature2 = await wallet.signMessage(loginRequest.signingChallenge.message);
 
         const { data: loginCompleteRequest } = await axios.post('/auth/login-complete', {
           loginRequestId: loginRequest.id,
