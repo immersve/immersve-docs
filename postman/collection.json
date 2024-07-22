@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d5d2cb02-3e25-467e-a068-8c76f6145050",
+		"_postman_id": "1128d7c6-2caa-44e6-be72-1ddba0dcf4a7",
 		"name": "Immersve API Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "31523610"
@@ -79,7 +79,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"loginMethod\":\"siwe\",\n  \"network\":\"polygon-amoy\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"address\": \"{{siweWalletAddress}}\",\n  \"url\": \"http://localhost\"\n}"
+							"raw": "{\n  \"loginMethod\":\"siwe\",\n  \"network\":\"polygon-amoy\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\",\"update-kyc-profile\"],\n  \"address\": \"{{siweWalletAddress}}\",\n  \"url\": \"http://localhost\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/signup",
@@ -127,7 +127,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"loginMethod\":\"siwe\",\n  \"network\":\"polygon-amoy\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"address\": \"{{siweWalletAddress}}\",\n  \"url\": \"http://localhost:3000\"\n}"
+							"raw": "{\n  \"loginMethod\":\"siwe\",\n  \"network\":\"polygon-amoy\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\",\"update-kyc-profile\"],\n  \"address\": \"{{siweWalletAddress}}\",\n  \"url\": \"http://localhost:3000\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/login-init",
@@ -175,7 +175,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"loginMethod\":\"algorand\",\n  \"network\":\"algorand-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"address\": \"{{algorandWalletAddress}}\"\n}"
+							"raw": "{\n  \"loginMethod\":\"algorand\",\n  \"network\":\"algorand-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\",\"update-kyc-profile\"],\n  \"address\": \"{{algorandWalletAddress}}\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/signup",
@@ -271,7 +271,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"loginMethod\":\"xrpl\",\n  \"network\":\"xahau-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"publicKey\": \"{{xrplWalletPublicKey}}\"\n}"
+							"raw": "{\n  \"loginMethod\":\"xrpl\",\n  \"network\":\"xahau-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\",\"update-kyc-profile\"],\n  \"publicKey\": \"{{xrplWalletPublicKey}}\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/signup",
@@ -319,7 +319,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"loginMethod\":\"xrpl\",\n  \"network\":\"xahau-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"publicKey\": \"{{xrplWalletPublicKey}}\"\n}"
+							"raw": "{\n  \"loginMethod\":\"xrpl\",\n  \"network\":\"xahau-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\",\"update-kyc-profile\"],\n  \"publicKey\": \"{{xrplWalletPublicKey}}\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/login-init",
@@ -1301,7 +1301,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"immersve-conducted\",\n  \"kycRegion\": \"NZ\"\n}"
+							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"immersve-conducted\",\n  \"kycRegion\": \"AU\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/spending-prerequisites",
@@ -1328,7 +1328,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"partner-conducted\",\n  \"kycRegion\": \"NZ\"\n}"
+							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"partner-conducted\",\n  \"kycRegion\": \"AU\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/spending-prerequisites",
@@ -1352,28 +1352,7 @@
 					"name": "Get KYC profile",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "x-api-key",
-								"value": "{{accountAdminApiKey}}",
-								"disabled": true
-							},
-							{
-								"key": "x-api-secret",
-								"value": "{{accountAdminApiSecret}}",
-								"disabled": true
-							},
-							{
-								"key": "x-api-key",
-								"value": "{{cardIssuerApiKey}}",
-								"disabled": true
-							},
-							{
-								"key": "x-api-secret",
-								"value": "{{cardIssuerApiSecret}}",
-								"disabled": true
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{baseUrl}}/api/accounts/:accountId/kyc-profile",
 							"host": [
@@ -1402,6 +1381,25 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
+									"function formatDate(dateToFormat){",
+									"    return `${dateToFormat.getFullYear()}-${dateToFormat.getMonth().toString().padStart(2,'0')}-${dateToFormat.getDate().toString().padStart(2,'0')}`",
+									"}",
+									"",
+									"function randomDate(minimumAge = 18){",
+									"    const now = Date.now();",
+									"    const upperLimit = 1000 * (60 * 60 * 24 * 365) * minimumAge;",
+									"    const random = (now - upperLimit) * Math.random();",
+									"    return new Date(random);",
+									"}",
+									"",
+									"pm.environment.set('randomFormattedDoB', formatDate(randomDate()));",
+									"",
+									"function randomNumber(){",
+									"    const random = 1 + (Math.random() * 9999);",
+									"    return Math.floor(random);",
+									"}",
+									"",
+									"pm.environment.set('randomStreetNumber', randomNumber());",
 									""
 								],
 								"type": "text/javascript",
@@ -1410,6 +1408,9 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -1427,7 +1428,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"idempotencyKey\": \"{{$guid}}\", \n    \"region\": \"AU\",\n    \"claims\": [\n        {\n            \"claimType\": \"DOB\",\n            \"attributes\": {\n                \"dateOfBirth\": \"1984-01-01\"\n            }\n        },\n        {\n            \"claimType\": \"FULL_NAME\",\n            \"attributes\": {\n                \"honorific\": \"Mr\",\n                \"givenName\": \"{{$randomFirstName}}\",\n                \"middleName\": \"passall\",\n                \"familyName\": \"{{$randomLastName}}\"\n            }\n        },\n        {   \n            \"claimType\": \"ADDRESS\",\n            \"attributes\": {\n                \"addressType\": \"RESIDENTIAL\",\n                \"streetNumber\": \"{{$randomAlphaNumeric}}\",\n                \"streetName\": \"Oldham\",\n                \"streetType\": \"ROAD\",\n                \"town\": \"Manchester\",\n                \"postalCode\": \"M4 6BG\",\n                \"country\": \"AU\"\n            }\n        }\n    ],\n    \"evidence\": [\n        {\n            \"evidenceType\": \"PASSPORT\",\n            \"documentId\": \"E07148293\",\n            \"country\": \"AU\",\n            \"expiry\": \"2030-01-01\"\n        }\n    ]\n}",
+							"raw": "{\n    \"idempotencyKey\": \"{{$guid}}\", \n    \"region\": \"AU\",\n    \"claims\": [\n        {\n            \"claimType\": \"DOB\",\n            \"attributes\": {\n                \"dateOfBirth\": \"{{randomFormattedDoB}}\"\n            }\n        },\n        {\n            \"claimType\": \"FULL_NAME\",\n            \"attributes\": {\n                \"honorific\": \"Mr\",\n                \"givenName\": \"{{$randomFirstName}}_{{$guid}}\",\n                \"middleName\": \"passall\",\n                \"familyName\": \"{{$randomLastName}}_{{$guid}}\"\n            }\n        },\n        {   \n            \"claimType\": \"ADDRESS\",\n            \"attributes\": {\n                \"addressType\": \"RESIDENTIAL\",\n                \"streetNumber\": \"{{randomStreetNumber}}\",\n                \"streetName\": \"{{$randomStreetName}}\",\n                \"streetType\": \"ROAD\",\n                \"state\": \"NSW\",\n                \"country\": \"AU\"\n            }\n        }\n    ],\n    \"evidence\": [\n        {\n            \"evidenceType\": \"PASSPORT\",\n            \"documentId\": \"{{$randomAlphaNumeric}}{{$guid}}\",\n            \"country\": \"AU\",\n            \"expiry\": \"2030-01-01\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
