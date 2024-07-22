@@ -366,7 +366,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"loginRequestId\":\"{{loginRequestId}}\",\n  \"signature\":\"0x4b17cc694f05951b6c913a8f277e47af20009273df6fb0912450457ae449c475628fb6197fe617a1f6a85d3265e9bdb7f26e3eb6a5a4db0c29204647582767ca1c\"\n}"
+							"raw": "{\n  \"loginRequestId\":\"{{loginRequestId}}\",\n  \"signature\":\"paste signature here\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/login-complete",
