@@ -1,6 +1,5 @@
 import path from 'node:path';
 import { component, defineMarkdocConfig, nodes } from '@astrojs/markdoc/config';
-import shiki from '@astrojs/markdoc/shiki';
 
 function registryViewComponent(componentPath) {
   return {
@@ -27,11 +26,6 @@ function registryViewComponents(paths) {
 }
 
 export default defineMarkdocConfig({
-  extends: [
-    shiki({
-      theme: 'rose-pine-dawn',
-    }),
-  ],
   nodes: {
     image:{
       ...nodes.image,
@@ -43,6 +37,13 @@ export default defineMarkdocConfig({
         // https://discord.com/channels/830184174198718474/1182681722215743578/1204466454922002452
         __optimizedSrc: { type: 'Object' },
       },
+    },
+    fence: {
+      attributes: {
+        ...nodes.fence.attributes,
+        title: { type: String, render: 'title' }
+      },
+      render: component('./src/components/CodeFence.astro'),
     },
   },
   tags: {

@@ -80,8 +80,8 @@ For example:
 
 {% tab key="auth-method" %}
   {% item title="SIWE" %}
-    {% code title="SIWE Challenge message" %}
       ```
+
       app.immersve.com wants you to sign in with your Ethereum account:
       0xA3058369d6A481B1ff08F62B352409c3D709De9b
 
@@ -93,22 +93,17 @@ For example:
       Nonce: 2hFm7TDbZmerUgnrJ
       Issued At: 2022-08-11T22:29:48.244Z
       ```
-    {% /code %}
   {% /item %}
   {% item title="Algorand" %}
-    {% code title="Algorand Challenge message" %}
       ```
       GlSDzZHcxrSDeJbKu: Login with your algorand address 0xA3058369d6A481B1ff08F62B352409c3D709De9b
       ```
-    {% /code %}
   {% /item %}
   {% item title="XRPL" %}
-    {% code title="XRPL Challenge message" %}
       ```
       //encoded transaction
       7321ED86C55E77C731F33313A3A47A7E...
       ```
-    {% /code %}
   {% /item %}
 {% /tab %}
 
@@ -120,8 +115,7 @@ Below are example scripts for each login method which create an account and use 
 
 {% tab key="auth-method" %}
   {% item title="SIWE" %}
-    {% code title="SIWE signing-script.js" %}
-      ```js
+      ```js {% title="sign-siwe-challenge.js" %}
       const ethers = require('ethers');
       const axios = require('axios');
 
@@ -174,11 +168,9 @@ Below are example scripts for each login method which create an account and use 
         console.log('loginCompleteRequest', loginCompleteRequest);
       })().catch((err) => console.log(err));
       ```
-    {% /code %}
   {% /item %}
   {% item title="Algorand" %}
-    {% code title="Algorand signing-script.js" %}
-      ```js
+      ```js {% title="sign-algorand-challenge.js" %}
       const algosdk = require('algosdk');
       const axios = require('axios');
 
@@ -244,11 +236,9 @@ Below are example scripts for each login method which create an account and use 
         console.log('loginCompleteRequest', loginCompleteRequest);
       })().catch((err) => console.log(err));
       ```
-    {% /code %}
   {% /item %}
   {% item title="XRPL" %}
-    {% code title="XRPL signing-script.js" %}
-      ```js
+      ```js {% title="sign-xrpl-challenge.js" %}
       const xrplSdk = require('xrpl');
       const rippleKeyPairs = require('ripple-keypairs');
       const axios = require('axios');
@@ -309,7 +299,6 @@ Below are example scripts for each login method which create an account and use 
         console.log('loginCompleteRequest', loginCompleteRequest);
       })().catch((err) => console.log(err));
       ```
-    {% /code %}
   {% /item %}
 {% /tab %}
 

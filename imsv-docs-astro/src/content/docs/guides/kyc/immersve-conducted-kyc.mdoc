@@ -22,13 +22,11 @@ convenient.
 This guide assumes that the partner has already obtained an access token or API
 keys, and has the card program and funding source IDs ready.
 
-{% code %}
-  ```bash
-    token="<your_access_token>"
-    card_program_id="<your_card_program_id>"
-    funding_source_id="<funding_source_id>"
-  ```
-{% /code %}
+```bash
+token="<your_access_token>"
+card_program_id="<your_card_program_id>"
+funding_source_id="<funding_source_id>"
+```
 
 ### Request spending prerequisites
 
@@ -59,25 +57,22 @@ reference](/api-reference/get-spending-prerequisites/)
 for more details on possible statuses.
 
 **Example Request:**
-{% code %}
 ```bash
 curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
--H 'Content-Type: application/json' \
--H "Authorization: Bearer $token" \
---data '{
-  "cardProgramId": "'${card_program_id}'",
-  "fundingSourceId": "'${funding_source_id}'",
-  "spendableAmount": 100,
-  "spendableCurrency": "USD",
-  "kycType": "immersve-conducted",
-  "kycRedirectUrl: "https://app.example.io",
-  "kycRegion": "NZL"
-}'
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $token" \
+  --data '{
+    "cardProgramId": "'${card_program_id}'",
+    "fundingSourceId": "'${funding_source_id}'",
+    "spendableAmount": 100,
+    "spendableCurrency": "USD",
+    "kycType": "immersve-conducted",
+    "kycRedirectUrl: "https://app.example.io",
+    "kycRegion": "NZL"
+  }'
 ```
-{% /code %}
 
 **Example Response:**
-{% code %}
 ```json
 {
   "prerequisites": [
@@ -94,7 +89,6 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
   ]
 }
 ```
-{% /code %}
 
 
 
@@ -124,32 +118,28 @@ allowed to create and use their Immersve card.
 
 **Example Request:**
 
-{% code %}
 ```bash
 curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
--H 'Content-Type: application/json' \
--H "Authorization: Bearer $token" \
---data '{
-  "cardProgramId": "'${card_program_id}'",
-  "fundingSourceId": "'${funding_source_id}'",
-  "spendableAmount": 100,
-  "spendableCurrency": "USD",
-  "kycType": "immersve-conducted",
-  "kycRedirectUrl: "https://app.example.io",
-  "kycRegion": "NZL"
-}'
+  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer $token" \
+  --data '{
+    "cardProgramId": "'${card_program_id}'",
+    "fundingSourceId": "'${funding_source_id}'",
+    "spendableAmount": 100,
+    "spendableCurrency": "USD",
+    "kycType": "immersve-conducted",
+    "kycRedirectUrl: "https://app.example.io",
+    "kycRegion": "NZL"
+  }'
 ```
-{% /code %}
 
 **Example Response:**
 
-{% code %}
 ```json
 {
   "prerequisites": []
 }
 ```
-{% /code %}
 ##
 
 ## Testing

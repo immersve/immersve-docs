@@ -26,8 +26,7 @@ The steps for retrieving secure card details are as follows:
 
 ## Example code snippet
 
-{% code title="JavaScript" %}
-```js
+```js {% title="fetch-card-sensitive-details.js" %}
 import axios from 'axios';
 
 // Using non-custodial authentication
@@ -58,4 +57,3 @@ const tokenResponse = await axios.post(
 
 const secureCardDetail = await axios.get(tokenResponse.callbackUrl);
 ```
-{% /code %}

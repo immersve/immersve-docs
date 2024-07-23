@@ -29,16 +29,14 @@ See the [KYC API endpoint references](/api-reference/kyc/).
 
 ## Set up environment variables
 
-{% code %}
-  ```bash
-    card_issuer_api_key="<your_card_issuer_api_key>"
-    card_issuer_api_secret="<your_card_issuer_api_secret>"
-    partner_account_id="<your_partner_account_id>"
-    card_program_id="<your_card_program_id>"
-    cardholder_account_id="<cardholder_account_id>"
-    funding_source_id="<funding_source_id>"
-  ```
-{% /code %}
+```bash
+card_issuer_api_key="<your_card_issuer_api_key>"
+card_issuer_api_secret="<your_card_issuer_api_secret>"
+partner_account_id="<your_partner_account_id>"
+card_program_id="<your_card_program_id>"
+cardholder_account_id="<cardholder_account_id>"
+funding_source_id="<funding_source_id>"
+```
 
 ## Submit cardholder KYC statement
 [Submit KYC statement](/api-reference/submit-partner-kyc-statement#submit-partner-kyc-statement) about the
@@ -55,64 +53,62 @@ Be careful when setting the region as this cannot be changed. You will need to c
 incorrectly supplied.
 {% /warning %}
 
-{% code %}
-  ```bash
-    your_given_name=""
-    your_family_name=""
-    date_of_birth="" # YYYY-MM-DD
+```bash
+your_given_name=""
+your_family_name=""
+date_of_birth="" # YYYY-MM-DD
 
-    curl -X PUT "https://test.immersve.com/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
-      -H "Content-Type: application/json" \
-      -H "Accept: application/json" \
-      -H "x-api-key: ${card_issuer_api_key}" \
-      -H "x-api-secret: ${card_issuer_api_secret}" \
-      --data '{
-          "idempotencyKey": "some_random_key_thats_unique_for_each_request",
-          "region": "NZ",
-          "claims": [
-              {
-                  "claimType": "DOB",
-                  "attributes": {
-                      "dateOfBirth": "'${date_of_birth}'",
-                  }
-              },
-              {
-                  "claimType": "FULL_NAME",
-                  "attributes": {
-                      "honorific": "Mr",
-                      "givenName": "'${your_given_name}'",
-                      "middleName": "PASSALL",
-                      "familyName": "'${your_family_name}'"
-                  }
-              },
-              {
-                  "claimType": "ADDRESS",
-                  "attributes": {
-                      "addressType": "RESIDENTIAL",
-                      "streetNumber": "73",
-                      "streetName": "Great Southern",
-                      "streetType": "ROAD",
-                      "suburb": "Auckland CBD",
-                      "town": "Auckland",
-                      "region": "Auckland",
-                      "state": "AKL",
-                      "postalCode": "6140"
-                      "country": "NZ",
-                  }
-              }
-          ],
-          "evidence": [
-              {
-                  "evidenceType": "DRIVERS_LICENSE",
-                  "documentId": "80513",
-                  "country": "AU",
-                  "region": "VIC",
-                  "version": "P0001975"
-              }
-          ]
-      }'
-  ```
-{% /code %}
+curl -X PUT "https://test.immersve.com/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -H "x-api-key: ${card_issuer_api_key}" \
+  -H "x-api-secret: ${card_issuer_api_secret}" \
+  --data '{
+    "idempotencyKey": "some_random_key_thats_unique_for_each_request",
+    "region": "NZ",
+    "claims": [
+      {
+        "claimType": "DOB",
+        "attributes": {
+          "dateOfBirth": "'${date_of_birth}'",
+        }
+      },
+      {
+        "claimType": "FULL_NAME",
+        "attributes": {
+          "honorific": "Mr",
+          "givenName": "'${your_given_name}'",
+          "middleName": "PASSALL",
+          "familyName": "'${your_family_name}'"
+        }
+      },
+      {
+        "claimType": "ADDRESS",
+        "attributes": {
+          "addressType": "RESIDENTIAL",
+          "streetNumber": "73",
+          "streetName": "Great Southern",
+          "streetType": "ROAD",
+          "suburb": "Auckland CBD",
+          "town": "Auckland",
+          "region": "Auckland",
+          "state": "AKL",
+          "postalCode": "6140"
+          "country": "NZ",
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceType": "DRIVERS_LICENSE",
+        "documentId": "80513",
+        "country": "AU",
+        "region": "VIC",
+        "version": "P0001975"
+      }
+    ]
+  }'
+```
 
 ## Poll spending prerequisites
 Poll [spending prerequisites](/api-reference/get-spending-prerequisites/) endpoint. The initial
@@ -125,40 +121,36 @@ Once the check is completed successfully, the response should contain 'ok' statu
 failed, the response will return "kyc_check_failed". Check the KYC statement and submit it again or contact Immersve support.
 
 ### Example request
-{% code %}
-  ```bash
-    curl -X "https://test.immersve.com/api/spending-prerequisites" \
-      -H "Content-Type: application/json" \
-      -H "X-Api-Key: ${card_issuer_api_key}" \
-      -H "X-Api-Secret: ${card_issuer_api_secret}" \
-      -H "X-Account-Id: ${cardholder_account_id}" \
-      --data '{
-        "cardProgramId": "'${card_program_id}'",
-        "fundingSourceId": "'${funding_source_id}'",
-        "spendableAmount": 100,
-        "spendableCurrency": "USD",
-        "kycType": "partner-conducted",
-        "kycRegion": "NZL"
-      }'
-  ```
-{% /code %}
+```bash
+curl -X "https://test.immersve.com/api/spending-prerequisites" \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}" \
+  --data '{
+    "cardProgramId": "'${card_program_id}'",
+    "fundingSourceId": "'${funding_source_id}'",
+    "spendableAmount": 100,
+    "spendableCurrency": "USD",
+    "kycType": "partner-conducted",
+    "kycRegion": "NZL"
+  }'
+```
 
 ### Example response
 
-{% code %}
-  ```json
+```json
+{
+  "prerequisites": [
     {
-      "prerequisites": [
-        {
-          "stage": "kyc",
-          "status": "action-required",
-          "type": "kyc",
-          "actionType": "submit_kyc_statement",
-          "params": {
-            "status": "check_in_progress"
-          }
-        }
-      ]
+      "stage": "kyc",
+      "status": "action-required",
+      "type": "kyc",
+      "actionType": "submit_kyc_statement",
+      "params": {
+        "status": "check_in_progress"
+      }
     }
-  ```
-{% /code %}
+  ]
+}
+```
