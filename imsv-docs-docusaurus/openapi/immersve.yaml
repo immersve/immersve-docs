@@ -57,8 +57,6 @@ paths:
   "/siwe/login":
     $ref: "./endpoints/login/siwe-login.yaml"
   "/api/accounts":
-    get:
-      $ref: "./endpoints/accounts/accounts-list.yaml"
     post:
       $ref: "./endpoints/accounts/accounts-create.yaml"
   "/api/cards":
