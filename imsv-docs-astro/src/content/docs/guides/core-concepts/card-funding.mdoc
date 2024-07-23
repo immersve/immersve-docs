@@ -92,16 +92,20 @@ The [create withdrawal intent endpoint](/api-reference/create-withdrawal-intent)
 intent for a given amount and returns the parameters needed to execute the withdrawal on the cardholder's
 web3 wallet.
 
-{% code title="Code example with ethers.js" %}
-```js
-const { abi, contractAddress, method, params } =
-  response.data.execution.params;
-
-const contract = new Contract(contractAddress, abi, signer); // third param Signer is required
-
+```js {% title="ethers-execute-withdrawal.js" %}
+const {
+  abi,
+  contractAddress,
+  method,
+  params
+} = response.data.execution.params;
+const contract = new Contract(
+  contractAddress,
+  abi,
+  signer, // third param Signer is required
+);
 const { hash } = await contract[method](...Object.values(params));
 ```
-{% /code %}
 
 
 ## Currency Conversion
@@ -124,16 +128,20 @@ prerequisite. The value of the `type` attribute will depend on the funding
 protocol in use. For example, an action type of `"smart_contract_write"`
 indicates that an EVM smart contract interaction is required.
 
-{% code title="Code example with ethers.js" %}
-```js
-const { abi, contractAddress, method, params } =
-  response.data.prerequisites.params;
-
-const contract = new Contract(contractAddress, abi, signer); // third param Signer is required
-
+```js {% title="ethers-execute-deposit.js" %}
+const {
+  abi,
+  contractAddress,
+  method,
+  params
+} = response.data.prerequisites.params;
+const contract = new Contract(
+  contractAddress,
+  abi,
+  signer, // third param Signer is required
+);
 const { hash } = await contract[method](...Object.values(params));
 ```
-{% /code %}
 
 
 ## Wallet Funding for Development and Testing
