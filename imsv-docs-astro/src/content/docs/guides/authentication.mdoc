@@ -28,8 +28,11 @@ Target account:
   omitted if the target is the root account (such as when creating an account
   for example)
 
-The caller must have the correct permissions over this account to perform the
-requested operation.
+The caller must have a role with the correct permissions over this account to perform the
+requested operation. We have two roles for API Key authentication:
+
+- **account-admin** - Used for manual resource provisioning steps, eg: creating funding channels, client applications
+- **card-issuer** - Used for card issuing integration, eg: creating cardholders, funding sources, cards etc
 
 ## User Session Authentication
 
