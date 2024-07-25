@@ -17,7 +17,7 @@
     "imsv-docs-astro",
     "imsv-docs-docusaurus"
   ],
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "yarn@4.3.1",
   "engines": {
     "node": ">=18"
   },
