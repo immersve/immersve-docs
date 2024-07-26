@@ -680,51 +680,6 @@
 			"name": "Accounts",
 			"item": [
 				{
-					"name": "List accounts",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "x-api-key",
-								"value": "{{cardIssuerApiKey}}",
-								"disabled": true
-							},
-							{
-								"key": "x-api-secret",
-								"value": "{{cardIssuerApiSecret}}",
-								"disabled": true
-							},
-							{
-								"key": "x-api-key",
-								"value": "{{accountAdminApiKey}}",
-								"disabled": true
-							},
-							{
-								"key": "x-api-secret",
-								"value": "{{accountAdminApiSecret}}",
-								"disabled": true
-							},
-							{
-								"key": "x-account-id",
-								"value": "e203ddaa82152349b64dd4a77df82a50",
-								"description": "cardholder id",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/api/accounts",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"accounts"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get an account",
 					"request": {
 						"method": "GET",
