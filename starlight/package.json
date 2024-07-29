@@ -22,10 +22,6 @@
   "exports": {
     ".": "./index.ts",
     "./components": "./components.ts",
-    "./components/LanguageSelect.astro": {
-      "types": "./components/LanguageSelect.astro.tsx",
-      "import": "./components/LanguageSelect.astro"
-    },
     "./components/Select.astro": {
       "types": "./components/Select.astro.tsx",
       "import": "./components/Select.astro"
@@ -62,10 +58,6 @@
       "types": "./components/MobileMenuFooter.astro.tsx",
       "import": "./components/MobileMenuFooter.astro"
     },
-    "./components/SiteTitle.astro": {
-      "types": "./components/SiteTitle.astro.tsx",
-      "import": "./components/SiteTitle.astro"
-    },
     "./components/EditLink.astro": {
       "types": "./components/EditLink.astro.tsx",
       "import": "./components/EditLink.astro"
@@ -81,10 +73,6 @@
     "./components/MobileTableOfContents.astro": {
       "types": "./components/MobileTableOfContents.astro.tsx",
       "import": "./components/MobileTableOfContents.astro"
-    },
-    "./components/SocialIcons.astro": {
-      "types": "./components/SocialIcons.astro.tsx",
-      "import": "./components/SocialIcons.astro"
     },
     "./components/FallbackContentNotice.astro": {
       "types": "./components/FallbackContentNotice.astro.tsx",
@@ -125,10 +113,6 @@
     "./components/ThemeProvider.astro": {
       "types": "./components/ThemeProvider.astro.tsx",
       "import": "./components/ThemeProvider.astro"
-    },
-    "./components/Header.astro": {
-      "types": "./components/Header.astro.tsx",
-      "import": "./components/Header.astro"
     },
     "./components/PageTitle.astro": {
       "types": "./components/PageTitle.astro.tsx",

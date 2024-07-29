@@ -1,9 +1,18 @@
 type: object
+required:
+  - idempotencyKey
+  - region
+  - claims
+  - evidence
 properties:
   idempotencyKey:
     type: string
     description: A client-supplied identifier that prevents duplicate creation.
     example: 21ede8ef0d230d0a6bf755e07d39la54
+  region:
+    type: string
+    description: An Alpha2 (ISO-3166-1) country code representing the country in which the user is being verified.
+    example: "NZ"
   claims:
     type: array
     description: A list of claims about the cardholder's identity.
@@ -14,8 +23,3 @@ properties:
     description: A list of evidence supporting the claimed identity. At least one piece of evidence is required.
     items:
       $ref: './evidence.yaml'
-  region:
-    type: string
-    description: An Alpha3 (ISO-3166-1) country code representing the country in which the user is being verified.
-    example: "NZL"
-

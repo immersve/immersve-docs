@@ -1,0 +1,433 @@
+---
+import '@pagefind/default-ui/css/ui.css';
+import MagnifyingGlassIcon from './icons/MagnifyingGlass.astro';
+import type { Props } from '../props';
+
+const { labels } = Astro.props;
+
+const pagefindTranslations = {
+	placeholder: labels['search.label'],
+	...Object.fromEntries(
+		Object.entries(labels)
+			.filter(([key]) => key.startsWith('pagefind.'))
+			.map(([key, value]) => [key.replace('pagefind.', ''), value])
+	),
+};
+---
+
+<site-search
+  class="contents"
+	data-translations={JSON.stringify(pagefindTranslations)}
+	data-strip-trailing-slash=false
+>
+	<button data-open-modal disabled class="h-10 md:px-3 text-xl md:text-sm
+    bg-transparent md:bg-white dark:md:bg-zinc-900
+    flex items-center gap-2
+    cursor-pointer md:text-zinc-400
+    md:border rounded-lg border-zinc-300 hover:border-zinc-400
+    dark:border-zinc-500 dark:hover:border-zinc-400">
+		{
+			/* The span is `aria-hidden` because it is not shown on small screens. Instead, the icon label is used for accessibility purposes. */
+		}
+		<MagnifyingGlassIcon aria-label="Search" class="stroke-current fill-none size-[28px] md:size-[16px]"/>
+		<span class="hidden md:block" aria-hidden="true">Search</span>
+    <span class="hidden md:block md:border rounded-md border-zinc-300
+      dark:border-zinc-500 px-2 py-1 ms-6 leading-none text-xs">/</span>
+	</button>
+
+	<dialog aria-label="Search"
+    class="p-0 m-0 md:mt-16 md:mx-auto md:mb-auto
+    bg-white dark:bg-zinc-800
+    dark:text-zinc-400
+    md:border border-zinc-400 rounded-lg shadow-xl
+    h-full max-h-full md:h-max md:min-h-60 md:max-h-[calc(100%-8rem)]
+    w-full max-w-full md:w-11/12 md:max-w-2xl" >
+		<div class="dialog-frame flex flex-col grow gap-4 p-4 md:p-6">
+			<button data-close-modal class="flex md:hidden">
+				Cancel
+			</button>
+      {
+        import.meta.env.DEV ? (
+          <div class="m-auto text-center white-space-pre-line">
+            <p>Search is only available in production builds. <br>Try building and previewing the site to test it out locally.</p>
+          </div>
+         ) : (
+          <div class="search-container">
+            <div id="starlight__search" />
+          </div>
+         )
+      }
+		</div>
+	</dialog>
+</site-search>
+
+<script>
+	class SiteSearch extends HTMLElement {
+		constructor() {
+			super();
+			const openBtn = this.querySelector<HTMLButtonElement>('button[data-open-modal]')!;
+			const closeBtn = this.querySelector<HTMLButtonElement>('button[data-close-modal]')!;
+			const dialog = this.querySelector('dialog')!;
+			const dialogFrame = this.querySelector('.dialog-frame')!;
+
+			/** Close the modal if a user clicks on a link or outside of the modal. */
+			const onClick = (event: MouseEvent) => {
+				const isLink = 'href' in (event.target || {});
+				if (
+					isLink ||
+					(document.body.contains(event.target as Node) &&
+						!dialogFrame.contains(event.target as Node))
+				) {
+					closeModal();
+				}
+			};
+
+			const openModal = (event?: MouseEvent) => {
+				dialog.showModal();
+				document.body.toggleAttribute('data-search-modal-open', true);
+				this.querySelector('input')?.focus();
+				event?.stopPropagation();
+				window.addEventListener('click', onClick);
+			};
+
+			const closeModal = () => dialog.close();
+
+			openBtn.addEventListener('click', openModal);
+			openBtn.disabled = false;
+			closeBtn.addEventListener('click', closeModal);
+
+			dialog.addEventListener('close', () => {
+				document.body.toggleAttribute('data-search-modal-open', false);
+				window.removeEventListener('click', onClick);
+			});
+
+			// Listen for `/`, `ctrl + k`, and `cmd + k` keyboard shortcuts.
+			window.addEventListener('keydown', (e) => {
+				const isInput =
+					document.activeElement instanceof HTMLElement &&
+					(['input', 'select', 'textarea'].includes(document.activeElement.tagName.toLowerCase()) ||
+						document.activeElement.isContentEditable);
+				if ((e.metaKey === true || e.ctrlKey === true) && e.key === 'k') {
+					dialog.open ? closeModal() : openModal();
+					e.preventDefault();
+				} else if (e.key === '/' && !dialog.open && !isInput) {
+					openModal();
+					e.preventDefault();
+				}
+			});
+
+			let translations = {};
+			try {
+				translations = JSON.parse(this.dataset.translations || '{}');
+			} catch {}
+
+			const shouldStrip = this.dataset.stripTrailingSlash !== undefined;
+			const stripTrailingSlash = (path: string) => path.replace(/(.)\/(#.*)?$/, '$1$2');
+			const formatURL = shouldStrip ? stripTrailingSlash : (path: string) => path;
+
+			window.addEventListener('DOMContentLoaded', () => {
+				if (import.meta.env.DEV) return;
+				const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
+				onIdle(async () => {
+					// @ts-expect-error — Missing types for @pagefind/default-ui package.
+					const { PagefindUI } = await import('@pagefind/default-ui');
+					new PagefindUI({
+						element: '#starlight__search',
+						baseUrl: import.meta.env.BASE_URL,
+						bundlePath: import.meta.env.BASE_URL.replace(/\/$/, '') + '/pagefind/',
+						showImages: false,
+						translations,
+						showSubResults: true,
+						processResult: (result: { url: string; sub_results: Array<{ url: string }> }) => {
+							result.url = formatURL(result.url);
+							result.sub_results = result.sub_results.map((sub_result) => {
+								sub_result.url = formatURL(sub_result.url);
+								return sub_result;
+							});
+						},
+					});
+				});
+			});
+		}
+	}
+	customElements.define('site-search', SiteSearch);
+</script>
+
+<style>
+
+	dialog[open] {
+		display: flex;
+	}
+
+	dialog::backdrop {
+		background-color: rgb(161 161 170 / 20%);
+		-webkit-backdrop-filter: blur(0.25rem);
+		backdrop-filter: blur(2px);
+	}
+
+	button[data-close-modal] {
+		position: absolute;
+		z-index: 1;
+		align-items: center;
+		align-self: flex-end;
+		height: calc(64px * var(--pagefind-ui-scale));
+		padding: 0.25rem;
+		border: 0;
+		background: transparent;
+		cursor: pointer;
+		color: var(--sl-color-text-accent);
+	}
+
+	#starlight__search {
+		--pagefind-ui-primary: var(--sl-color-accent-light);
+		--pagefind-ui-text: var(--sl-color-gray-2);
+		--pagefind-ui-font: var(--__sl-font);
+		--pagefind-ui-background: var(--sl-color-black);
+		--pagefind-ui-border: var(--sl-color-gray-3);
+		--pagefind-ui-border-width: 1px;
+		--sl-search-cancel-space: 5rem;
+	}
+
+	@media (min-width: 50rem) {
+		#starlight__search {
+			--sl-search-cancel-space: 0px;
+		}
+
+	}
+</style>
+
+<style is:global>
+	[data-search-modal-open] {
+		overflow: hidden;
+	}
+
+	#starlight__search {
+		--sl-search-result-spacing: calc(1.25rem * var(--pagefind-ui-scale));
+		--sl-search-result-pad-inline-start: calc(3.75rem * var(--pagefind-ui-scale));
+		--sl-search-result-pad-inline-end: calc(1.25rem * var(--pagefind-ui-scale));
+		--sl-search-result-pad-block: calc(0.9375rem * var(--pagefind-ui-scale));
+		--sl-search-result-nested-pad-block: calc(0.625rem * var(--pagefind-ui-scale));
+		--sl-search-corners: calc(0.5rem * var(--pagefind-ui-scale));
+		--sl-search-page-icon-size: calc(1.875rem * var(--pagefind-ui-scale));
+		--sl-search-page-icon-inline-start: calc(
+			(var(--sl-search-result-pad-inline-start) - var(--sl-search-page-icon-size)) / 2
+		);
+		--sl-search-tree-diagram-size: calc(2.5rem * var(--pagefind-ui-scale));
+		--sl-search-tree-diagram-inline-start: calc(
+			(var(--sl-search-result-pad-inline-start) - var(--sl-search-tree-diagram-size)) / 2
+		);
+	}
+
+	#starlight__search .pagefind-ui__form::before {
+		--pagefind-ui-text: var(--sl-color-gray-1);
+		opacity: 1;
+	}
+
+	#starlight__search .pagefind-ui__search-input {
+		color: var(--sl-color-gray-6);
+		background-color: var(--sl-color-gray-1);
+		font-weight: 400;
+		width: calc(100% - var(--sl-search-cancel-space));
+	}
+
+	#starlight__search input:focus {
+		--pagefind-ui-border: var(--sl-color-accent-high);
+	}
+
+	#starlight__search .pagefind-ui__search-clear {
+		inset-inline-end: var(--sl-search-cancel-space);
+		width: calc(60px * var(--pagefind-ui-scale));
+		padding: 0;
+		background-color: transparent;
+		overflow: hidden;
+	}
+	#starlight__search .pagefind-ui__search-clear:focus {
+		outline: 1px solid var(--sl-color-accent);
+	}
+	#starlight__search .pagefind-ui__search-clear::before {
+		content: '';
+		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m13.41 12 6.3-6.29a1 1 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1 1 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 .33 1.64 1 1 0 0 0 1.09-.22l6.29-6.3 6.29 6.3a1 1 0 0 0 1.64-.33 1 1 0 0 0-.22-1.09L13.41 12Z'/%3E%3C/svg%3E")
+			center / 50% no-repeat;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m13.41 12 6.3-6.29a1 1 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1 1 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 .33 1.64 1 1 0 0 0 1.09-.22l6.29-6.3 6.29 6.3a1 1 0 0 0 1.64-.33 1 1 0 0 0-.22-1.09L13.41 12Z'/%3E%3C/svg%3E")
+			center / 50% no-repeat;
+		background-color: var(--sl-color-accent-low);
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	#starlight__search .pagefind-ui__results-area {
+    padding-bottom: 1.5rem;
+  }
+	#starlight__search .pagefind-ui__results > * + * {
+		margin-top: var(--sl-search-result-spacing);
+	}
+	#starlight__search .pagefind-ui__result {
+		border: 0;
+		padding: 0;
+    border-radius: var(--sl-search-corners);
+    background-color: var(--sl-color-gray-1);
+	}
+
+	#starlight__search .pagefind-ui__result-nested {
+    margin-top: -1px;
+		position: relative;
+		padding: var(--sl-search-result-nested-pad-block) var(--sl-search-result-pad-inline-end);
+		padding-inline-start: var(--sl-search-result-pad-inline-start);
+	}
+
+	#starlight__search .pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)),
+	#starlight__search .pagefind-ui__result-nested {
+		position: relative;
+	}
+
+	#starlight__search .pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)):hover,
+	#starlight__search
+		.pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)):focus-within,
+	#starlight__search .pagefind-ui__result-nested:hover,
+	#starlight__search .pagefind-ui__result-nested:focus-within {
+		outline: 1px solid var(--sl-color-accent-low);
+	}
+
+	#starlight__search
+		.pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)):focus-within,
+	#starlight__search .pagefind-ui__result-nested:focus-within {
+		background-color: var(--sl-color-accent-low);
+	}
+
+	#starlight__search .pagefind-ui__result-thumb,
+	#starlight__search .pagefind-ui__result-inner {
+		margin-top: 0;
+	}
+
+	#starlight__search .pagefind-ui__result-inner > :first-child {
+		border-radius: var(--sl-search-corners) var(--sl-search-corners) 0 0;
+	}
+	#starlight__search .pagefind-ui__result-inner > :last-child {
+		border-radius: 0 0 var(--sl-search-corners) var(--sl-search-corners);
+	}
+
+	#starlight__search .pagefind-ui__result-inner > .pagefind-ui__result-title {
+		padding: var(--sl-search-result-pad-block) var(--sl-search-result-pad-inline-end);
+		padding-inline-start: var(--sl-search-result-pad-inline-start);
+	}
+	#starlight__search .pagefind-ui__result-inner > .pagefind-ui__result-title::before {
+		content: '';
+		position: absolute;
+		inset-block: 0;
+		inset-inline-start: var(--sl-search-page-icon-inline-start);
+		width: var(--sl-search-page-icon-size);
+		background: var(--sl-color-gray-3);
+		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1' stroke='currentColor' class='size-6'%3E  %3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z' /%3E%3C/svg%3E") center no-repeat;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1' stroke='currentColor' class='size-6'%3E  %3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z' /%3E%3C/svg%3E") center no-repeat;
+
+	}
+
+	#starlight__search .pagefind-ui__result-inner {
+		align-items: stretch;
+		gap: 1px;
+	}
+
+	#starlight__search .pagefind-ui__result-link {
+		position: unset;
+		--pagefind-ui-text: var(--sl-color-gray-4);
+		font-weight: 400;
+	}
+
+	#starlight__search .pagefind-ui__result-link:hover {
+		text-decoration: none;
+	}
+
+	#starlight__search .pagefind-ui__result-nested .pagefind-ui__result-link::before {
+		content: unset;
+	}
+
+	#starlight__search .pagefind-ui__result-nested::before {
+		content: '';
+		position: absolute;
+		inset-block: 0;
+		inset-inline-start: var(--sl-search-tree-diagram-inline-start);
+		width: var(--sl-search-tree-diagram-size);
+		background: var(--sl-color-gray-4);
+		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-width='.5' stroke-linecap='round' viewBox='0 0 16 1000' preserveAspectRatio='xMinYMin slice'%3E%3Cpath d='M8 0v1000m6-988H8'/%3E%3C/svg%3E")
+			0% 0% / 100% no-repeat;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-width='.5' stroke-linecap='round' viewBox='0 0 16 1000' preserveAspectRatio='xMinYMin slice'%3E%3Cpath d='M8 0v1000m6-988H8'/%3E%3C/svg%3E")
+			0% 0% / 100% no-repeat;
+	}
+	#starlight__search .pagefind-ui__result-nested:last-child::before {
+		-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-width='.5' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 16 16'%3E%3Cpath d='M8 0v12m6 0H8'/%3E%3C/svg%3E");
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-width='.5' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 16 16'%3E%3Cpath d='M8 0v12m6 0H8'/%3E%3C/svg%3E");
+	}
+
+	/* Flip page and tree icons around the vertical axis when in an RTL layout. */
+	[dir='rtl'] .pagefind-ui__result-title::before,
+	[dir='rtl'] .pagefind-ui__result-nested::before {
+		transform: matrix(-1, 0, 0, 1, 0, 0);
+	}
+
+	#starlight__search .pagefind-ui__result-link::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+	}
+
+	#starlight__search .pagefind-ui__result-excerpt {
+		font-size: calc(1rem * var(--pagefind-ui-scale));
+		color: var(--sl-color-gray-3);
+		overflow-wrap: anywhere;
+	}
+
+	#starlight__search mark {
+		color: var(--sl-color-gray-5);
+		background-color: transparent;
+		font-weight: 600;
+	}
+
+  #starlight__search .pagefind-ui__button {
+		color: var(--sl-color-gray-4);
+		background-color: var(--sl-color-gray-1);
+  }
+
+
+:root,
+::backdrop {
+
+  --pagefind-ui-scale: 0.7;
+
+	/* Colors (light mode) */
+	--sl-color-white: hsl(0, 0%, 100%); /* “white” */
+	--sl-color-gray-1: hsl(224, 20%, 94%);
+	--sl-color-gray-2: hsl(224, 6%, 77%);
+	--sl-color-gray-3: hsl(224, 6%, 56%);
+	--sl-color-gray-4: hsl(224, 7%, 36%);
+	--sl-color-gray-5: hsl(224, 10%, 23%);
+	--sl-color-gray-6: hsl(224, 14%, 16%);
+	--sl-color-black: hsl(224, 10%, 10%);
+	--sl-color-accent-low: hsl(224, 54%, 20%);
+	--sl-color-accent: hsl(224, 100%, 60%);
+	--sl-color-accent-high: hsl(224, 100%, 85%);
+	--sl-color-text: var(--sl-color-gray-2);
+	--sl-color-text-accent: var(--sl-color-accent-high);
+	--sl-color-text-invert: var(--sl-color-accent-low);
+}
+
+:root[data-theme='dark'],
+[data-theme='dark'] ::backdrop {
+	--sl-color-white: hsl(224, 10%, 10%);
+	/* --sl-color-gray-1: hsl(224, 14%, 16%); */
+	--sl-color-gray-1: rgb(24, 24, 27);
+	--sl-color-gray-2: hsl(224, 10%, 23%);
+	--sl-color-gray-3: hsl(224, 7%, 36%);
+	--sl-color-gray-4: hsl(224, 6%, 56%);
+	--sl-color-gray-5: hsl(224, 6%, 77%);
+	--sl-color-gray-6: hsl(224, 20%, 94%);
+	--sl-color-gray-7: hsl(224, 19%, 97%);
+	--sl-color-black: hsl(0, 0%, 100%);
+	--sl-color-accent-high: hsl(234, 80%, 30%);
+	--sl-color-accent: hsl(234, 90%, 60%);
+	--sl-color-accent-low: hsl(234, 88%, 90%);
+	--sl-color-text-accent: var(--sl-color-accent);
+	--sl-color-text-invert: var(--sl-color-black);
+}
+
+</style>

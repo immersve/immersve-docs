@@ -32,5 +32,49 @@ properties:
       $ref: './evidence.yaml'
   region:
     type: string
-    description: An Alpha3 (ISO-3166-1) country code representing the country in which the user is being verified.
-    example: "NZL"
+    description: An Alpha2 (ISO-3166-1) country code representing the country in which the user is being verified.
+    example: "NZ"
+example:
+  "idempotencyKey": "(random key that is unique for each request)"
+  "region": "NZ"
+  "claims": [
+    {
+      "claimType": "FULL_NAME",
+      "attributes": {
+        "givenName": "Jason",
+        "middleName": "James",
+        "honorific": "Mr",
+        "familyName": "Anderson"
+      }
+    },
+    {
+      "claimType": "ADDRESS",
+      "attributes": {
+        "addressType": "RESIDENTIAL",
+        "country": "NZ",
+        "streetNumber": "73",
+        "streetName": "Great Southern",
+        "streetType": "ROAD",
+        "suburb": "Auckland CBD",
+        "town": "Auckland",
+        "region": "Auckland",
+        "state": "AKL",
+        "postalCode": "6140"
+      }
+    },
+    {
+      "claimType": "DOB",
+      "attributes": {
+        "dateOfBirth": "1962-05-09",
+      }
+    }
+  ]
+  "evidence": [
+    {
+      "evidenceType": "DRIVERS_LICENSE",
+      "documentId": "80513",
+      "country": "AU",
+      "region": "VIC",
+      "version": "P0001975"
+    }
+  ]

@@ -1,51 +1,13 @@
-required:
-  - country
+type: object
 properties:
-  addressType:
-    type: string
-    description: The type of address.
+  claimType:
+    type: enum
+    description: The type of claim.
     enum:
-      - RESIDENTIAL
-    example: RESIDENTIAL
-  unitNumber:
-    type: string
-    description: The unit number.
-    example: "1"
-  streetNumber:
-    type: string
-    description: Street number. Generally a number but can also be alphanumeric.
-    example: 3A
-  streetName:
-    type: string
-    description: Street name.
-    example: Victoria
-  streetType:
-    type: string
-    description: Street type. e.g. Road, St, Avenue, Circuit.
-    example: Avenue
-  town:
-    type: string
-    description: The town/village/suburb/city.
-    example: Auckland
-  suburb:
-    type: string
-    description: The suburb in the town/city. Only use this if you require a suburb AND a town/city, otherwise, just use the "town" parameter.
-    example: Epsom
-  state:
-    type: string
-    description: The state. Use local abbreviations such as VIC (Victoria) or TX (Texas).
-    example: AKL
-  region:
-    type: string
-    description: The county, province, or cantonment.
-    example: AKL
-  postalCode:
-    type: string
-    description: Postal code.
-    example: "1050"
-  country:
-    type: string
-    description: Country code.
-    enum:
-      - NZL
-    example: NZL
+      - ADDRESS
+  attributes:
+    type: object
+    description: The attributes that support the address claim.
+    oneOf:
+      - $ref: './StructuredAddress.yaml'
+      - $ref: './UnstructuredAddress.yaml'

@@ -14,7 +14,7 @@ const { html, panels } = processPanels(panelHtml);
 <starlight-tabs data-sync-key={syncKey}>
 	{
 		panels && (
-			<div class="tablist-wrapper not-content">
+			<div class="tablist-wrapper not-content not-prose">
 				<ul role="tablist">
 					{panels.map(({ icon, label, panelId, tabId }, idx) => (
 						<li role="presentation" class="tab">
@@ -63,14 +63,14 @@ const { html, panels } = processPanels(panelHtml);
 		padding: 0 1.25rem;
 		text-decoration: none;
 		border-bottom: 2px solid var(--sl-color-gray-5);
-		color: var(--sl-color-gray-3);
+		color: var(--sl-color-gray-white);
 		outline-offset: var(--sl-outline-offset-inside);
 		overflow-wrap: initial;
 	}
 	.tab [role='tab'][aria-selected='true'] {
-		color: var(--sl-color-white);
+		color: var(--sl-color-text-white);
 		border-color: var(--sl-color-text-accent);
-		font-weight: 600;
+		font-weight: 700;
 	}
 
 	.tablist-wrapper ~ :global([role='tabpanel']) {

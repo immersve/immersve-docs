@@ -66,25 +66,9 @@ declare module 'virtual:starlight/components/EditLink' {
 	export default EditLink;
 }
 
-declare module 'virtual:starlight/components/Header' {
-	const Header: typeof import('./components/Header.astro').default;
-	export default Header;
-}
-declare module 'virtual:starlight/components/LanguageSelect' {
-	const LanguageSelect: typeof import('./components/LanguageSelect.astro').default;
-	export default LanguageSelect;
-}
 declare module 'virtual:starlight/components/Search' {
 	const Search: typeof import('./components/Search.astro').default;
 	export default Search;
-}
-declare module 'virtual:starlight/components/SiteTitle' {
-	const SiteTitle: typeof import('./components/SiteTitle.astro').default;
-	export default SiteTitle;
-}
-declare module 'virtual:starlight/components/SocialIcons' {
-	const SocialIcons: typeof import('./components/SocialIcons.astro').default;
-	export default SocialIcons;
 }
 declare module 'virtual:starlight/components/ThemeSelect' {
 	const ThemeSelect: typeof import('./components/ThemeSelect.astro').default;

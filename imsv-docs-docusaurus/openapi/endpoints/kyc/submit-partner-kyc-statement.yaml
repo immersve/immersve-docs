@@ -20,10 +20,7 @@ requestBody:
   required: true
 responses:
   '200':
-    content:
-      application/json:
-        schema:
-          type: object
+    description: KYC statement has been submitted successfully
   '403':
     description: |
         Subject is not allowed to perform the action with the reason stated in the `errorCode`
@@ -31,7 +28,7 @@ responses:
         **FORBIDDEN**
         Resource does not exist or there are no sufficient permissions to perform the action.
 
-        **KYC_STATEMENTS_NOT_ALLOWED** 
+        **KYC_STATEMENTS_NOT_ALLOWED**
         Partner is not configured to submit KYC statements
     content:
       application/json:

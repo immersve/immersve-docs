@@ -1,6 +1,8 @@
 ---
 import type { Props } from '../props';
-import Icon from '../user-components/Icon.astro';
+import SunIcon from './imsv/icons/Sun.astro';
+import MoonIcon from './imsv/icons/Moon.astro';
+import LaptopIcon from './imsv/icons/Laptop.astro';
 ---
 
 {/* This is intentionally inlined to avoid FOUC. */}
@@ -21,9 +23,9 @@ import Icon from '../user-components/Icon.astro';
 					const tmpl = document.querySelector(`#theme-icons`);
 					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
 					if (newIcon) {
-						const oldIcon = picker.querySelector('svg.label-icon');
+						const oldIcon = picker.querySelector('.theme-icon');
 						if (oldIcon) {
-							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+							oldIcon.replaceChildren(newIcon.cloneNode(true));
 						}
 					}
 				});
@@ -33,7 +35,7 @@ import Icon from '../user-components/Icon.astro';
 </script>
 
 <template id="theme-icons">
-	<Icon name="sun" class="light" />
-	<Icon name="moon" class="dark" />
-	<Icon name="laptop" class="auto" />
+	<SunIcon class="light" />
+	<MoonIcon class="dark" />
+	<LaptopIcon class="auto" />
 </template>

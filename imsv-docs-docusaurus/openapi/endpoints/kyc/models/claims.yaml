@@ -1,17 +1,8 @@
 type: object
-properties:
-  claimType:
-    type: string
-    description: The type of claim.
-    enum:
-      - FULL_NAME
-      - DOB
-      - ADDRESS
-    example: FULL_NAME
-  attributes:
-    type: object
-    description: The attributes that support the claim.
-    oneOf:
-      - $ref: './FULL_NAME.yaml'
-      - $ref: './DOB.yaml'
-      - $ref: './ADDRESS.yaml'
+discriminator:
+  propertyName: claimType
+anyOf:
+  - $ref: './DOB.yaml'
+  - $ref: './FULL_NAME.yaml'
+  - $ref: './ADDRESS.yaml'
+

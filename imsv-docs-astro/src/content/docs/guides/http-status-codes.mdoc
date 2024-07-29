@@ -46,8 +46,7 @@ due to a business rule violation, a 403 status code is returned with additional
 details in the `errorCode` field of the response body. Specific `errorCode`
 values and their meanings will be documented on each endpoint.
 
-{% code title="Example response" %}
-```json
+```json {% title="Example 403 Response" %}
 {
   "statusCode": 403,
   "statusName": "Forbidden",
@@ -55,7 +54,6 @@ values and their meanings will be documented on each endpoint.
   "reason": "Withdrawal amount exceeds Funding Source balance"
 }
 ```
-{% /code %}
 
 
 ## 404 Not Found

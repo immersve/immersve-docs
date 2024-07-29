@@ -17,13 +17,10 @@ export default defineConfig({
       logo: {
         src: './src/assets/logo-small.svg',
       },
-      social: {
-        github: 'https://github.com/immersve/'
-      },
       editLink: {
         baseUrl: 'https://github.com/immersve/immersve-docs/edit/main/imsv-docs-astro',
       },
-      favicon: '/favicon.ico',
+      favicon: '/favicon.svg',
       customCss: ['./src/styles/tailwind.css'],
       components: {
         Head: './src/components/Head.astro',
@@ -31,10 +28,14 @@ export default defineConfig({
         Pagination: './src/components/FooterNavigation.astro',
       },
       sidebar: [
+        { label: 'Home', link: '/' },
         { label: 'Use Cases', autogenerate: { directory: 'use-cases' } },
         {
           label: 'Guides',
           items: [
+            { label: 'Authentication', link: 'guides/authentication' } ,
+            { label: 'HTTP Status Codes', link: 'guides/http-status-codes' } ,
+            { label: 'Supported Regions', link: 'guides/regions' } ,
             { label: 'Core Concepts', autogenerate: { directory: 'guides/core-concepts' } },
             { label: 'Card Issuing Apps', autogenerate: { directory: 'guides/card-issuing-apps' } },
             { label: 'KYC' , items: [
@@ -43,14 +44,9 @@ export default defineConfig({
               { label: 'Immersve Conducted KYC', link: 'guides/immersve-conducted-kyc' },
             ]},
             { label: 'Funding Protocols', autogenerate: { directory: 'guides/funding-protocols' } },
-            { label: 'Reports', autogenerate: { directory: 'guides/reports' } } ,
             { label: 'Testing', autogenerate: { directory: 'guides/testing' } } ,
-            { label: 'Authentication', link: 'guides/authentication' } ,
-            { label: 'HTTP Status Codes', link: 'guides/http-status-codes' } ,
-            { label: 'Cardholder Support', link: 'guides/cardholder-support' } ,
             { label: 'Supported Tokens', autogenerate: { directory: 'guides/supported-tokens' } },
             { label: 'Supported Chains', autogenerate: { directory: 'guides/supported-chains' } },
-            { label: 'Supported Regions', link: 'guides/regions' } ,
           ]
         },
         { label: 'Resources', autogenerate: { directory: 'resources' } },

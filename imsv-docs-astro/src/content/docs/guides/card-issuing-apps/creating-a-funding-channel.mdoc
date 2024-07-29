@@ -25,34 +25,29 @@ contract are scoped to your application.
 
 **Set up environment variables:**
 
-{% code %}
 ```bash
-  account_admin_api_key="<your_account_admin_api_key>"
-  account_admin_api_secret="<your_account_admin_api_secret>"
-  partner_account_id="<your_partner_account_id>"
-  funds_storage_address="<your_storage_address>"
-  funding_type_name="polygon-amoy-usdc-universal-evm-test"
+account_admin_api_key="<your_account_admin_api_key>"
+account_admin_api_secret="<your_account_admin_api_secret>"
+partner_account_id="<your_partner_account_id>"
+funds_storage_address="<your_storage_address>"
+funding_type_name="polygon-amoy-usdc-universal-evm-test"
 ```
-{% /code %}
 
 **Create a funding channel:**
 
-{% code %}
-
 ```bash
-  funding_channel_id=$(curl -X POST "https://test.immersve.com/api/funding-channels" \
-    -H "Content-Type: application/json" \
-    -H "x-api-key: ${account_admin_api_key}" \
-    -H "x-api-secret: ${account_admin_api_secret}" \
-    --data '{
-      "accountId": "'${partner_account_id}'",
-      "fundingTypeName": "'${funding_type_name}'",
-      "params": {
-        "storageAddress": "'${funds_storage_address}'"
-      }
-  }' | jq -r .id)
+funding_channel_id=$(curl -X POST "https://test.immersve.com/api/funding-channels" \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: ${account_admin_api_key}" \
+  -H "x-api-secret: ${account_admin_api_secret}" \
+  --data '{
+    "accountId": "'${partner_account_id}'",
+    "fundingTypeName": "'${funding_type_name}'",
+    "params": {
+      "storageAddress": "'${funds_storage_address}'"
+    }
+}' | jq -r .id)
 ```
-{% /code %}
 
 
 

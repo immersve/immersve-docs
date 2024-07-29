@@ -52,8 +52,6 @@ API interactions.
 The following variables are referenced from the example bash scripts throughout
 this guide.
 
-{% code %}
-
 ```bash
 card_issuer_api_key="<your_card_issuer_api_key>"
 card_issuer_api_secret="<your_card_issuer_api_secret>"
@@ -61,7 +59,6 @@ partner_account_id="<your_partner_account_id>"
 card_program_id="<your_card_program_id>"
 funding_channel_id="<your_funding_channel_id>"
 ```
-{% /code %}
 
 
 ## Per cardholder setup
@@ -77,7 +74,6 @@ page="guides/authentication" title="Authentication Guide"/%}.
 
 {% endpointref name="create-account" /%}
 
-{% code %}
 ```bash
 cardholder_account_id=$(curl \
   -X POST "https://test.immersve.com/api/accounts" \
@@ -89,9 +85,7 @@ cardholder_account_id=$(curl \
     "type": "cardholder",
     "name": "<e.g. Cardholder Account of Joe>"
   }' | jq -r .id)
-
 ```
-{% /code %}
 
 ### Prove ownership of web3 address
 
@@ -106,7 +100,6 @@ title="Ethers.js" /%}.
 
 {% endpointref name="create-challenge" /%}
 
-{% code %}
 ```bash
 wallet_address="<wallet_address>"
 
@@ -126,7 +119,6 @@ message=$(echo $response | jq -r '.message')
 
 echo "Message:${message}"
 ```
-{% /code %}
 
 ### Register Cardholder Funding Source
 
@@ -137,8 +129,6 @@ For more context and information on card funding and executing deposits and
 withdrawals see the {% link page="guides/card-funding" /%} guide.
 
 {% endpointref name="create-a-funding-source-for-an-account" /%}
-
-{% code %}
 
 ```bash
 signature="<signature hash of cardholder signing the challenge message with their wallet>"
@@ -157,7 +147,6 @@ funding_source_id=$(curl -X POST "https://test.immersve.com/api/funding-sources"
   }' | jq -r '.id')
 
 ```
-{% /code %}
 
 ### Request a Card
 
@@ -170,7 +159,6 @@ endpoint and record the returned card ID.
 
 {% endpointref name="create-a-card" /%}
 
-{% code %}
 ```bash
 card_id=$(curl -X POST "https://test.immersve.com/api/cards" \
   -H "Content-Type: application/json" \
@@ -182,7 +170,6 @@ card_id=$(curl -X POST "https://test.immersve.com/api/cards" \
     "fundingSourceId": "'${funding_source_id}'"
   }' | jq -r .cardId)
 ```
-{% /code %}
 
 **Get card details**
 
@@ -190,14 +177,12 @@ Call Get Card Details to see card status and ensure it is active.
 
 {% endpointref name="get-card-details" /%}
 
-{% code %}
 ```bash
 curl -X GET "https://test.immersve.com/api/cards/${card_id}" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}"
 ```
-{% /code %}
 
 **Get sensitive card details**
 
@@ -208,14 +193,12 @@ page="guides/fetching-secure-card-information" /%} for more details.
 
 {% endpointref name="get-a-card-token" /%}
 
-{% code %}
 ```bash
 curl -X POST "https://test.immersve.com/api/cards/${card_id}/pan-token" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}"
 ```
-{% /code %}
 
 
 ### Get KYC and Contact Details Prerequisites
@@ -225,7 +208,6 @@ contact details requirements for a cardholder have been satisfied.
 
 {% endpointref name="get-spending-prerequisites" /%}
 
-{% code %}
 ```bash
 curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
   -H "Content-Type: application/json" \
@@ -238,10 +220,9 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
     "spendableAmount": 100,
     "spendableCurrency": "USD",
     "kycType": "partner-conducted",
-    "kycRegion":"NZL"
+    "kycRegion":"NZ"
   }'
 ```
-{% /code %}
 
 ### Supply Contact Details
 
@@ -263,7 +244,6 @@ a checkbox. This can be done at the same time as KYC information sharing.
 
 {% endpointref name="update-contact-details" /%}
 
-{% code %}
 ```bash
 curl -X PATCH "https://test.immersve.com/api/accounts/${cardholder_account_id}/contact-details" \
   -H "Content-Type: application/json" \
@@ -279,7 +259,6 @@ curl -X PATCH "https://test.immersve.com/api/accounts/${cardholder_account_id}/c
     }
   }'
 ```
-{% /code %}
 
 ### Partner Conducted KYC
 See: {% link page="guides/partner-conducted-kyc" /%}.
@@ -298,7 +277,6 @@ For more information on executing deposits and withdrawals see the {% link page=
 Note: "spendableAmount" uses minor units. For example, "100" USD minor units means $1.00.
 {% /note %}
 
-{% code %}
 ```bash
 curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
   -H "Content-Type: application/json" \
@@ -312,7 +290,6 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
     "spendableCurrency": "USD"
   }'
 ```
-{% /code %}
 
 ## Check Card Balance
 
@@ -320,14 +297,12 @@ Verify that the balance is reflected on the Funding Source.
 
 {% endpointref name="list-funding-sources" /%}
 
-{% code %}
 ```bash
 curl -X GET "https://test.immersve.com/api/accounts/${cardholder_account_id}/funding-sources" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}"
 ```
-{% /code %}
 
 ## Perform a Test Card Payment
 
@@ -340,7 +315,6 @@ Call the simulator endpoint with the sensitive card details.
 Note: "transactionAmount" uses USD minor units. For example, "10" means $0.10.
 {% /note %}
 
-{% code %}
 ```bash
 curl -X POST "https://test.immersve.com/api/simulator/authorize" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
@@ -354,4 +328,3 @@ curl -X POST "https://test.immersve.com/api/simulator/authorize" \
     "cardCvv": "123"
   }'
 ```
-{% /code %}
