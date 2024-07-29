@@ -22,7 +22,7 @@ const { class: className } = Astro.props;
 <header class:list={[
   className,
   "sticky top-0 z-50",
-  "flex flex-none flex-wrap items-end justify-between",
+  "flex flex-none flex-wrap items-center lg:items-end justify-between",
   "px-4 py-2 md:py-5 sm:px-6 lg:px-8",
   "transition duration-500" ]}>
 
@@ -31,7 +31,7 @@ const { class: className } = Astro.props;
     <MobileMenu {...Astro.props} />
   </div>
 
-  <div class="relative flex flex-grow basis-0 items-center overflow-hidden max-[1500px]:max-w-[19rem] max-xl:max-w-[17rem]">
+  <div class="relative flex flex-grow basis-0 items-center overflow-hidden max-lg:max-w-full max-[1500px]:max-w-[19rem] max-xl:max-w-[17rem]">
     <a href="/" class="flex items-end space-x-1 fill-black dark:fill-white">
 
       <ImsvLogo class="mr-2 w-[24px] h-[24px] md:w-[37px] md:h-[36px]"/>
