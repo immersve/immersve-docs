@@ -1,0 +1,336 @@
+---
+title: Web3 Wallet Card Issuing Integration Guide
+description: |
+  How to integrate a web3 wallet with Immersve APIs for issuing
+  self-custodial crypto-backed payment cards.
+slug: guides/web3-wallet-card-issuing-integration
+sidebar:
+  order: 1
+---
+
+This guide details the steps to add Immersve card issuing capabilities into a
+non-custodial web3 wallet. It lists the API calls required to set up a
+partner, onboard users, and create and test a card, with card spending
+pre-funded through deposits to an on-chain contract.
+
+If you have custody over your users' funds then the {% link
+page="guides/custodial-on-chain-card-issuing-integration" /%} will provide a
+better starting point for your integration.
+
+
+## Before You Get Started
+
+### Verify your asset is supported
+
+Before you begin integrating ensure your chain and token combination is
+supported. See {% link page="guides/supported-chains" /%} and {% link page="guides/supported-tokens" /%}.
+
+### Select Funding Protocol
+
+See the {% link page="guides/funding-protocols" /%}
+guide to find which protocol would best suit your use case.
+
+### Select KYC Mode
+
+{% link page="guides/immersve-conducted-kyc" /%} is the recommended KYC mode for
+non-custodial apps. If users have already been verified then {% link
+page="guides/partner-conducted-kyc" /%} may be an option.
+
+## Provision application resources
+
+### Set up your partner account
+
+Contact support to get your: Partner Account ID, Client Application, API Key(s)
+and Card Program ID. You will initially have credentials to integrate with the
+Immersve test environment. When you are ready to test a live integration you
+will also receive live credentials.
+
+
+### Register a Funding Channel
+
+You will need a funding channel per token and chain.
+See: {% link page="guides/creating-a-funding-channel" /%}.
+
+
+## Setup Environment
+
+### Install Dependencies
+
+This guide uses bash, curl and [jq](https://jqlang.github.io/jq/) for example
+API interactions.
+
+
+### Configure Variables
+
+The following variables are referenced from the example bash scripts throughout
+this guide.
+
+```bash
+partner_account_id=""<your_partner_account_id>"
+card_program_id="<your_card_program_id>"
+funding_channel_id="<your_funding_channel_id>"
+kyc_redirect_url="<your_app_kyc_redirect_url>"
+imsv_api_host=test.immersve.com
+imsv_client_origin=https://your.domain
+```
+
+### Immersve Environments
+
+The Immersve test environment allows you to interact with all
+Immersve APIs while utilizing testnet assets. Test payments are initiated using
+the Payment Simulator. Note that the XPay capability is not available in the
+test environment.
+
+| Environment | API Base URL |
+|-|-|
+| Test | https://test.immersve.com |
+| Live | https://api.immersve.com  |
+
+Resource identifiers are not shared between the live and test environments.
+Your Partner Account, Client Application, API Keys and Card Program will all be
+different in the live environment.
+
+
+
+## Per cardholder setup
+
+### Select Region
+
+Prompting the user to select their region helps them to avoid the card
+onboarding journey if their region is not yet available. Call the Supported Regions
+endpoint to get the current list of available regions for your application.
+
+
+### Deploy On-Chain Resources
+
+Depending on the intended funding protocol there may be cardholder-scoped
+resources that can be deployed on chain before the cardholder has authenticated
+with Immersve APIs. For example, when using a Flexi variant of the Immersve card
+{% link page="guides/funding-protocols" title="funding protocol" /%}, each cardholder
+will have their own deposit-holding contract deployed on-chain.
+
+
+### Login / Signup
+
+Non-custodial integrations should use Immersve User Session {% link
+page="guides/authentication" title="authentication"/%}.
+Users shall be prompted to sign a login challenge message to authenticate
+with Immersve APIs and obtain access and refresh tokens.
+
+{% endpointref name="login-init" /%}
+
+Save the access token, refresh token, and cardholder account for later.
+
+```bash
+imsv_access_token="<access token from login response>"
+imsv_refresh_token="<refresh token from login response>"
+cardholder_account_id="<account from login response>"
+```
+
+Once a user is authenticated you will need to use the access token in the
+`Authorization` header of every API request.
+
+### Refresh Access Token
+
+Access tokens expire after approximately 20 minutes. The refesh token can be
+sent to the Token Exchange endpoint to get a new access token without asking the
+user to re-authenticate.
+
+{% endpointref name="auth-token-exchange" /%}
+
+```bash
+tokens_json="$(
+  curl -X POST "https://${imsv_api_host}/auth/token" \
+  -H 'Content-Type: application/json' \
+  -H "Origin: ${imsv_client_origin}" \
+  --data '{
+    "refreshToken": "'${imsv_refresh_token}'",
+    "clientApplicationId": "'${imsv_client_id}'"
+    }')"
+imsv_access_token="$(echo $tokens_json | jq -r .accessToken)"
+imsv_refresh_token="$(echo $tokens_json | jq -r .refreshToken)"
+```
+
+### Register Cardholder Funding Source
+
+Creating a Funding Source for a cardholder enables Immersve to attribute
+transactions from a funding address to the individual cardholders.
+
+
+{% endpointref name="create-a-funding-source-for-an-account" /%}
+
+```bash
+funding_source_id=$(curl -X POST "https://${imsv_api_host}/api/funding-sources" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${imsv_access_token}" \
+  --data '{
+    "accountId": "'${cardholder_account_id}'",
+    "fundingAddress": "'${wallet_address}'",
+    "fundingChannelId": "'${funding_channel_id}'"
+  }' | jq -r '.id')
+```
+
+If the funding address is not related to the user's login wallet address then
+additional "challenge" and "signature" parameters are required to prove
+ownership of the address. In that case the {% link endpoint="create-challenge"
+/%} endpoint would need to be called first.
+
+For more context and information on card funding and executing deposits and
+withdrawals see the {% link page="guides/card-funding" /%} guide.
+
+
+
+### Complete Cardholder Onboarding
+
+The spending prerequisites endpoint can be used to check whether the KYC and
+requirements for a cardholder have been satisfied.
+
+{% endpointref name="get-spending-prerequisites" /%}
+
+```bash
+curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${imsv_access_token}" \
+  --data '{
+    "cardProgramId": "'${card_program_id}'",
+    "fundingSourceId": "'${funding_source_id}'",
+    "spendableAmount": 100,
+    "spendableCurrency": "USD",
+    "kycType": "immersve-conducted",
+    "kycRedirectUrl": "https://your.domain/immersve-redirect",
+    "kycRegion":"NZ"
+  }'
+```
+
+Note that "spendableAmount" is required. If the user has not yet been prompted
+for the amount to load into their Immersve card then any non-zero placeholder
+amount can be used.
+
+The response will contain a prerequisite instruction like the following.
+Guide the user to open the "kycUrl" in a web browser so they can complete the
+Immersve KYC onboarding process. After onboarding is complete, the user will be
+redirected back to your "kycRedirectUrl".
+
+```json
+{
+  "stage": "kyc",
+  "status": "action-required",
+  "type": "kyc",
+  "actionType": "follow_kyc_url",
+  "params": {
+    "status": "kyc_required",
+    "kycUrl": "https://verify.immersve.com/session/wg92ikmc34ki"
+  }
+}
+```
+
+
+### Request a Card
+
+The {% link endpoint="create-a-card" /%}, {% link endpoint="get-card-details"
+/%}, and {% link endpoint="get-a-card-token" /%} endpoints are all involved in
+requesting a card. See {% link page="guides/issue-a-virtual-card" /%} for
+further information.
+
+**Create a card**
+
+Post the funding source ID and your provided card program ID to the card orders
+endpoint and record the returned card ID.
+
+{% endpointref name="create-a-card" /%}
+
+```bash
+card_id=$(curl -X POST "https://test.immersve.com/api/cards" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${imsv_access_token}" \
+  --data '{
+    "cardProgramId": "'${card_program_id}'",
+    "fundingSourceId": "'${funding_source_id}'"
+  }' | jq -r .cardId)
+```
+
+**Get card details**
+
+Call Get Card Details to see card status and ensure it is active.
+
+{% endpointref name="get-card-details" /%}
+
+```bash
+curl -X GET "https://test.immersve.com/api/cards/${card_id}" \
+  -H "Authorization: Bearer ${imsv_access_token}"
+```
+
+**Get sensitive card details**
+
+Card sensitive details are obtained by generating a unique time-limited token.
+The response contains a callback URL which can be used to obtain the
+sensitive card details. See {% link
+page="guides/fetching-secure-card-information" /%} for more details.
+
+{% endpointref name="get-a-card-token" /%}
+
+```bash
+curl -X POST "https://test.immersve.com/api/cards/${card_id}/pan-token" \
+  -H "Authorization: Bearer ${imsv_access_token}"
+```
+
+## Deposit Cardholder Funds
+
+Before spending with a card, funds must be deposited to a funding source
+connected to the card. Use the {% link endpoint="get-spending-prerequisites" /%}
+endpoint to get the correct Smart Contract write transaction for the specified
+amount, chain, and token.
+
+For more information on executing deposits and withdrawals see the {% link page="guides/card-funding" /%} guide.
+
+{% note %}
+Note: "spendableAmount" uses minor units. For example, "100" USD minor units means $1.00.
+{% /note %}
+
+```bash
+curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${imsv_access_token}" \
+  --data '{
+    "cardProgramId": "'${card_program_id}'",
+    "fundingSourceId": "'${funding_source_id}'",
+    "spendableAmount": 100,
+    "spendableCurrency": "USD"
+  }'
+```
+
+
+## Check Card Balance
+
+Verify that the balance is reflected on the Funding Source.
+
+{% endpointref name="list-funding-sources" /%}
+
+```bash
+curl -X GET "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/funding-sources" \
+  -H "Authorization: Bearer ${imsv_access_token}"
+```
+
+
+## Perform a Test Card Payment
+
+Perform a card payment using the Immersve {% link page="guides/simulator" /%}.
+Call the simulator endpoint with the sensitive card details.
+
+{% endpointref name="authorize-a-transaction" /%}
+
+{% note %}
+Note: "transactionAmount" uses USD minor units. For example, "10" means $0.10.
+{% /note %}
+
+```bash
+curl -X POST "https://${imsv_api_host}/api/simulator/authorize" \
+  -H "Authorization: Bearer ${imsv_access_token}" \
+  --data '{
+    "transactionType": "purchase",
+    "transactionAmount": "10",
+    "cardPan": "1234567812345678",
+    "cardExpiry": "202510",
+    "cardCvv": "123"
+  }'
+```
