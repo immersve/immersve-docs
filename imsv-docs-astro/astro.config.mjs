@@ -44,7 +44,6 @@ export default defineConfig({
               { label: 'Immersve Conducted KYC', link: 'guides/immersve-conducted-kyc' },
             ]},
             { label: 'Funding Protocols', autogenerate: { directory: 'guides/funding-protocols' } },
-            { label: 'Reports', autogenerate: { directory: 'guides/reports' } } ,
             { label: 'Testing', autogenerate: { directory: 'guides/testing' } } ,
             { label: 'Supported Tokens', autogenerate: { directory: 'guides/supported-tokens' } },
             { label: 'Supported Chains', autogenerate: { directory: 'guides/supported-chains' } },
