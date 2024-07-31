@@ -174,70 +174,53 @@ Below are example scripts for each login method which create an account and use 
   {% /item %}
   {% item title="Algorand" %}
       ```js {% title="sign-algorand-challenge.js" %}
+      #!/usr/bin/env node
+
       const algosdk = require('algosdk');
       const axios = require('axios');
 
-      (async () => {
-        const { addr, sk } = algosdk.generateAccount();
+      const baseUrl = 'https://test.immersve.com';
+      const clientApplicationId = '15472f6212cdc45ffd7ef707fd4186c1';
+      const algorandNetwork = 'algorand-testnet';
+      const mnemonic = process.env['MNEMONIC'] || algosdk.secretKeyToMnemonic(algosdk.generateAccount().sk);
+      const signup = true;
 
-        const clientApplicationId = ''; // TODO: Set client application ID here
-
-        const { data: registerRequest } = await axios.post('/auth/signup', {
-          loginMethod: 'algorand',
-          network: 'algorand-mainnet',
-          clientApplicationId,
-          scopes: ['cardholder-partner'],
-          address: addr,
+      async function main() {
+        const { addr, sk } = algosdk.mnemonicToSecretKey(mnemonic);
+        const initResponse = await axios.request({
+          baseURL: baseUrl,
+          method: 'POST',
+          url: signup ? '/auth/signup' : '/auth/login-init',
+          data: {
+            loginMethod: 'algorand',
+            network: algorandNetwork,
+            clientApplicationId,
+            scopes: [ 'cardholder-partner' ],
+            address: addr,
+          }
         });
-
-        console.log('registerRequest', registerRequest);
-
+        console.log('loginRequest', initResponse.data);
+        const { data: registerRequest } = initResponse;
         const encodedData = new TextEncoder().encode(
           registerRequest.signingChallenge.message
         );
-
-        const signature = Buffer.from(algosdk.signBytes(encodedData, sk)).toString(
-          'base64'
-        );
-
-        const { data: registerCompleteRequest } = await axios.post(
-          '/auth/login-complete',
-          {
+        const signature = Buffer.from(algosdk.signBytes(encodedData, sk)).toString('base64');
+        const loginResponse = await axios.request({
+          baseURL: baseUrl,
+          method: 'POST',
+          url: '/auth/login-complete',
+          data: {
             loginRequestId: registerRequest.id,
             signature,
           }
-        );
-
-        console.log('registerCompleteRequest', registerCompleteRequest);
-
-        const { data: loginRequest } = await axios.post('/auth/login-init', {
-          loginMethod: 'algorand',
-          network: 'algorand-mainnet',
-          clientApplicationId,
-          scopes: ['cardholder-partner'],
-          address: addr,
         });
+        console.log('sessionInfo', loginResponse.data);
+      }
 
-        console.log('loginRequest', loginRequest);
-
-        const encodedData2 = new TextEncoder().encode(
-          loginRequest.signingChallenge.message
-        );
-
-        const signature2 = Buffer.from(algosdk.signBytes(encodedData2, sk)).toString(
-          'base64'
-        );
-
-        const { data: loginCompleteRequest } = await axios.post(
-          '/auth/login-complete',
-          {
-            loginRequestId: loginRequest.id,
-            signature: signature2,
-          }
-        );
-
-        console.log('loginCompleteRequest', loginCompleteRequest);
-      })().catch((err) => console.log(err));
+      main().catch(err => {
+        console.log(err);
+        process.exitCode = 1;
+      });
       ```
   {% /item %}
   {% item title="XRPL" %}
