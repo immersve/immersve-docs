@@ -27,3 +27,16 @@
     filter: invert(0.7);
   }
 }
+
+/*
+ * Offset links to #id anchors so section headings are not hidden
+ * behind fixed header.
+ * https://stackoverflow.com/a/24298427/118797
+ */
+[id]::before {
+  content: '';
+  display: block;
+  height:      100px;
+  margin-top: -100px;
+  visibility: hidden;
+}
