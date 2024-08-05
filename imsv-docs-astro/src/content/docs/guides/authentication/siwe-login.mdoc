@@ -1,0 +1,93 @@
+---
+title: SIWE Login
+slug: guides/siwe-login
+description: |
+  How to obtain an Immersve user session using Sign-In with Ethereum.
+---
+
+The Immersve SIWE User Session login method allows EVM wallet addresses
+to authenticate with Immersve APIs. See {% link page="guides/authentication" /%}
+for more details about how to authenticate with Immersve APIs.
+
+## SIWE Login Message Format
+
+The {% link endpoint="initiate-login" /%} endpoint produces a message that needs
+to be signed by the user's wallet. The message format for the `siwe` login
+method is a Sign-In With Ethereum {% link
+href="https://docs.login.xyz/general-information/siwe-overview/eip-4361"
+title="EIP-4361" /%} message.
+
+``` {% title="siwe login message" %}
+yourapp.com wants you to sign in with your Ethereum account:
+0xA3058369d6A481B1ff08F62B352409c3D709De9b
+
+Sign in with Ethereum to the app. This request will not trigger a blockchain transaction or cost any gas fees.
+
+URI: https://api.immersve.com
+Version: 1
+Chain ID: 1
+Nonce: 2hFm7TDbZmerUgnrJ
+Issued At: 2022-08-11T22:29:48.244Z
+```
+
+Access and refresh tokens are obtained by submitting the message
+signature to the {% link endpoint="complete-login" /%} endpoint.
+
+
+## Example Login Script
+
+The following script demonstrates how to authenticate with the Immersve
+`siwe` login method using the Node.js Ethers SDK and Axios HTTP client.
+
+
+```js {% title="sign-siwe-challenge.js" %}
+#!/usr/bin/env node
+
+const ethers = require('ethers');
+const axios = require('axios');
+
+const baseUrl = 'https://test.immersve.com';
+const clientId = 'd0b05d44204810fc61991a49e289dda3';
+const clientUrl = 'http://localhost:3000';
+const mnemonic = process.env['MNEMONIC'] || ethers.Wallet.createRandom().mnemonic.phrase;
+const signup = true;
+
+async function main() {
+  const wallet = ethers.Wallet.fromPhrase(mnemonic);
+  const addr = await wallet.getAddress();
+  const initResponse = await axios.request({
+    baseURL: baseUrl,
+    method: 'POST',
+    url: signup ? '/auth/signup' : '/auth/login-init',
+    data: {
+      loginMethod: 'siwe',
+      network: 'polygon-amoy',
+      clientApplicationId: clientId,
+      scopes: [ 'cardholder-partner' ],
+      address: addr,
+      url: clientUrl,
+    }
+  });
+  console.log('loginRequest', initResponse.data);
+  const { data: registerRequest } = initResponse;
+  const encodedData = new TextEncoder().encode(
+    registerRequest.signingChallenge.message
+  );
+  const signature = await wallet.signMessage(registerRequest.signingChallenge.message);
+  const loginResponse = await axios.request({
+    baseURL: baseUrl,
+    method: 'POST',
+    url: '/auth/login-complete',
+    data: {
+      loginRequestId: registerRequest.id,
+      signature,
+    }
+  });
+  console.log('sessionInfo', loginResponse.data);
+}
+
+main().catch(err => {
+  console.log(err);
+  process.exitCode = 1;
+});
+```

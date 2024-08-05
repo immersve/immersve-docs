@@ -1,0 +1,80 @@
+---
+title: XRPL Login
+slug: guides/xrpl-login
+description: |
+  How to obtain an Immersve user session with a Xahau/XRPL wallet.
+---
+
+The Immersve XRPL User Session login method allows XRPL/Xahau blockchain
+addresses to authenticate with Immersve APIs. See {% link
+page="guides/authentication" /%} for more details about how to authenticate with
+Immersve APIs.
+
+## XRPL Login Message Format
+
+The {% link endpoint="initiate-login" /%} endpoint
+produces a message that needs to be signed by the user's wallet.
+The message format for the `xrpl` login method
+is a hex-encoded XRPL transaction.
+
+``` {% title="xrpl login message" %}
+7321ED86C55E77C731F33313A3A47A7E...
+```
+
+Access and refresh tokens are obtained by submitting the message
+signature to the {% link endpoint="complete-login" /%} endpoint.
+
+
+## Example Login Script
+
+The following script demonstrates how to authenticate with the Immersve xrpl
+login method using the Node.js XRPL SDK and Axios HTTP client.
+
+```js {% title="sign-xrpl-challenge.js" %}
+#!/usr/bin/env node
+
+const xrplSdk = require('xrpl');
+const rippleKeyPairs = require('ripple-keypairs');
+const axios = require('axios');
+
+const baseUrl = 'https://test.immersve.com';
+const clientApplicationId = 'd0b05d44204810fc61991a49e289dda3';
+const signup = true;
+
+async function main() {
+  const { publicKey, privateKey } = xrplSdk.Wallet.generate();
+  const initResponse = await axios.request({
+    baseURL: baseUrl,
+    method: 'POST',
+    url: signup ? '/auth/signup' : '/auth/login-init',
+    data: {
+      loginMethod: 'xrpl',
+      network: 'xahau-testnet',
+      clientApplicationId,
+      scopes: [ 'cardholder-partner' ],
+      publicKey,
+    }
+  });
+  console.log('loginRequest', initResponse.data);
+  const { data: registerRequest } = initResponse;
+  const signature = rippleKeyPairs.sign(
+    registerRequest.signingChallenge.message,
+    privateKey
+  );
+  const loginResponse = await axios.request({
+    baseURL: baseUrl,
+    method: 'POST',
+    url: '/auth/login-complete',
+    data: {
+      loginRequestId: registerRequest.id,
+      signature,
+    }
+  });
+  console.log('sessionInfo', loginResponse.data);
+}
+
+main().catch(err => {
+  console.log(err);
+  process.exitCode = 1;
+});
+```
