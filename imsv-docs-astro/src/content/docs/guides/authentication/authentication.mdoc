@@ -21,11 +21,10 @@ ready to provision credentials for your application.
 The API Key authentication scheme provides enduring access to Immersve APIs. API
 Key authentication is most suitable when your client integration is running on
 your backend server. This will typically be the case for a {% link
-page="use-cases/custodial-wallets" /%} card issuing solution.
+page="use-cases/custodial-wallets" /%} card issuing solution. API requests
+using the API Key auth scheme must include the `x-api-key` and `x-api-secret` headers.
 
-Requests using API Key authentication include the following HTTP headers:
-
-{% table %}
+{% table title="API Key Auth Scheme HTTP Headers" %}
 * Header
 * Description
 ---
@@ -50,11 +49,11 @@ The User Session authentication scheme allows client applications to act on
 behalf of users within scopes explicitly granted by the user. User Session
 authentication is most suitable when your client integration is running directly
 on the user's device. This will typically be the case for a {% link
-page="use-cases/non-custodial-wallets" /%} card issuing solution.
+page="use-cases/non-custodial-wallets" /%} card issuing solution. API requests
+using the User Session auth scheme must provide an access token in the
+`authorization` header.
 
-Requests using User Session authentication include the following HTTP headers:
-
-{% table %}
+{% table title="User Session Auth Scheme HTTP Headers" %}
 * Header
 * Description
 ---
@@ -88,7 +87,7 @@ scopes are described in the sections below.
 Roles define the permissions available to a User or API Key. The
 following roles are available.
 
-{% table %}
+{% table title="Available User / API Key Roles" %}
 * Role
 * Description
 ---
@@ -112,9 +111,7 @@ authenticated user session. When a client application initiates login for a
 user, one or more valid scopes must be provided. Client scopes are not used by
 API Key authentication.
 
-The following client scopes are available:
-
-{% table %}
+{% table title="Available Client Scopes" %}
 * Scope
 * Description
 ---
@@ -145,10 +142,10 @@ access and refresh tokens.
 
 ![Login Sequence](./assets/message-signing-login-sequence.png "Message Signing Login Sequence Diagram")
 
-The following authentication methods are available. Refer to the relevant login
-guide for specific instructions for your preferred login method.
+Available login methods are listed in the following table. Refer to the login
+guide relating to your preferred login method for specific instructions.
 
-{% table %}
+{% table title="Available Login Methods" %}
 - Name
 - Description
 ---
