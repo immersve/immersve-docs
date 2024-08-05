@@ -33,9 +33,9 @@ export default defineConfig({
         {
           label: 'Guides',
           items: [
-            { label: 'Authentication', autogenerate: { directory: 'guides/authentication' } },
             { label: 'HTTP Status Codes', link: 'guides/http-status-codes' } ,
             { label: 'Supported Regions', link: 'guides/regions' } ,
+            { label: 'Authentication', autogenerate: { directory: 'guides/authentication' } } ,
             { label: 'Core Concepts', autogenerate: { directory: 'guides/core-concepts' } },
             { label: 'Card Issuing Apps', autogenerate: { directory: 'guides/card-issuing-apps' } },
             { label: 'KYC' , items: [
