@@ -171,7 +171,7 @@ funding_source_id=$(curl -X POST "https://${imsv_api_host}/api/funding-sources" 
 ```
 
 If the funding address is not related to the user's login wallet address then first call the
-{% link endpoint="create-challenge" /%} endpoint. The signed challenged can be used 
+{% link endpoint="create-challenge" /%} endpoint. The signed challenge can be used 
 to prove ownership of the funding address. Include the "challengeId" and "signature" as
 additional parameters in the funding source request.
 
