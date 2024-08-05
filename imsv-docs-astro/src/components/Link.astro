@@ -1,20 +1,35 @@
 ---
-import { getEntry } from 'astro:content';
+import EndpointLink from '../models/EndpointLink.mjs';
+import PageLink from '../models/PageLink.mjs';
 
 interface Props {
   href: string;
   title: string;
   page: string;
+  endpoint: string;
 }
 
-const { href, title, page } = Astro.props;
-const entry = page ? (await getEntry('docs', page)) : null;
-if (page && !entry) {
-  throw Error(`Linked page not found: ${page}`);
+class SimpleLink {
+  href: string;
+  title: string;
+  constructor(href: string) {
+    this.href = href;
+    this.title = href;
+  }
 }
-const linkHref = href ?? '/' + entry?.slug;
-const linkTitle = title ?? entry?.data?.title ?? href;
 
+async function makeLink({ href, title, page, endpoint }: Props) {
+  if (page) {
+    return await PageLink.forDocsContentId(page);
+  }
+  if (endpoint) {
+    return new EndpointLink(endpoint);
+  }
+  return new SimpleLink(href);
+}
+
+const link = await makeLink(Astro.props);
+const title = Astro.props.title ?? link.title;
 ---
 
-<a href={linkHref}>{linkTitle}</a>
+<a href={link.href}>{title}</a>

@@ -25,8 +25,8 @@ guide](/guides/authentication).
 
 ## Funding Source Provisioning
 
-A Funding Source is created by a request to the [create a Funding Source for an
-account endpoint](/api-reference/create-a-funding-source-for-an-account). The
+A Funding Source is created by a request to the {% link
+endpoint="create-a-funding-source-for-an-account" /%} endpoint. The
 funding wallet may be an EOA or a smart contract implementing the ERC-1271
 interface.
 
@@ -60,8 +60,7 @@ Withdrawals are conducted as a two-stage process:
 1. Obtaining an Immersve-generated signature permitting a given withdrawal
 2. Executing a withdrawal and observing the effect on the funding source
 
-To begin the withdrawal process your application will
-[create a withdrawal intent](/api-reference/create-withdrawal-intent),
+To begin the withdrawal process your application will call {% link endpoint="create-withdrawal-intent" /%},
 providing the amount of the intended withdrawal and a reference to the relevant funding source.
 
 Prior to returning a response, Immersve will identify the current blockchain nonce for the cardholder.
@@ -80,7 +79,7 @@ To execute a withdrawal the cardholder must submit the transaction contained in 
 of the withdrawal intent prior to the `expiresAt` timestamp of the intent. Your application should prompt
 the cardholder to sign and submit the transaction. Upon observation of the the execution of the withdrawal
 intent on the blockchain, Immersve will update the `status` of the funding source interaction.
-Your application should query the [List Funding Source Interactions endpoint](/api-reference/list-funding-source-interactions),
+Your application should query the {% link endpoint="list-funding-source-interactions" /%} endpoint,
 and inform the cardholder when the withdrawal `status` is no longer pending.
 
 ![Withdrawal Sequence](./assets/funds-withdraw-sequence.png "Withdraw Sequence Diagram")
@@ -88,7 +87,7 @@ and inform the cardholder when the withdrawal `status` is no longer pending.
 
 ### Withdrawal Intent Javascript Example
 
-The [create withdrawal intent endpoint](/api-reference/create-withdrawal-intent) creates a withdrawal
+The {% link endpoint="create-withdrawal-intent" /%} endpoint creates a withdrawal
 intent for a given amount and returns the parameters needed to execute the withdrawal on the cardholder's
 web3 wallet.
 
@@ -112,15 +111,15 @@ const { hash } = await contract[method](...Object.values(params));
 
 A user may be quoted a price for a purchase by a merchant in a local fiat
 currency. To determine the sufficient amount of local fiat currency to fund a
-card in its billing currency (USD), use the [currency
-conversion endpoint](/api-reference/currency-conversion).
+card in its billing currency (USD), use the {% link endpoint="currency-conversion" /%}
+endpoint.
 
-The returned value can be passed to the [get spending prerequisites endpoint](/api-reference/get-spending-prerequisites) as
-detailed below.
+The returned value can be passed to the {% link endpoint="get-spending-prerequisites" /%}
+endpoint as detailed below.
 
 ## Prerequisites Execution Javascript Example
 
-The [get spending prerequisites](/api-reference/get-spending-prerequisites) endpoint returns a list of
+The {% link endpoint="get-spending-prerequisites" /%} endpoint returns a list of
 checks that must be passed before the cardholder can spend with the provided
 funding source. Funding prerequisites, when not completed, will have
 action `type` and `params` attributes which indicate how to satisfy the
@@ -153,7 +152,6 @@ on the network selection. If the global quota of testnet USDC minting has been r
 [Circle Discord](https://discord.com/invite/buildoncircle) support can also help
 providing testnet USDC on demand.
 
-In non-production environments, any transaction returned by [get spending
-prerequisites](/api-reference/get-spending-prerequisites) with actions related
-to ERC-20 smart contract will refer to the Circle "USDC"
+In non-production environments, any transaction returned by {% link endpoint="get-spending-prerequisites" /%}
+with actions related to ERC-20 smart contract will refer to the Circle "USDC"
 [testnet token](https://developers.circle.com/stablecoins/docs/usdc-on-test-networks).
