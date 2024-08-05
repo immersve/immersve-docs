@@ -154,7 +154,7 @@ imsv_refresh_token="$(echo $tokens_json | jq -r .refreshToken)"
 ### Register Cardholder Funding Source
 
 Creating a Funding Source for a cardholder enables Immersve to attribute
-transactions from a funding address to the individual cardholders.
+transactions to and from a funding address to the individual cardholders account.
 
 
 {% endpointref name="create-a-funding-source-for-an-account" /%}
