@@ -1,0 +1,189 @@
+---
+title: Authentication
+slug: guides/authentication
+description: |
+  How to authenticate with Immersve APIs.
+sidebar:
+  order: 1
+---
+
+Immersve APIs are authenticated with either long-lived API Keys or short-lived
+User Session access tokens. Permissions are controlled by roles, scopes and
+accounts. Access tokens can be renewed with a session refresh token. Read on to
+learn more about the Immersve authentication schemes or try out the {% link
+page="resources/public-sandbox-account" title="sandbox credentials" /%} to
+quickly get started. [Contact us](https://immersve.com/contact/) if you are
+ready to provision credentials for your application.
+
+
+## API Key Authentication
+
+The API Key authentication scheme provides enduring access to Immersve APIs. API
+Key authentication is most suitable when your client integration is running on
+your backend server. This will typically be the case for a {% link
+page="use-cases/custodial-wallets" /%} card issuing solution. API requests
+using the API Key auth scheme must include the `x-api-key` and `x-api-secret` headers.
+
+{% table title="API Key Auth Scheme HTTP Headers" %}
+* Header
+* Description
+---
+* <nobr>x-api-key</nobr>
+* Identifier for the Immersve API key. May be logged.
+---
+* <nobr>x-api-secret</nobr>
+* Secret for the Immersve API key. Should not be logged.
+---
+* <nobr>x-account-id</nobr>
+* Optional target account hint for permission resolution. Defaults to the
+  account that owns the API key.
+{% /table %}
+
+The permissions granted to an API Key are determined by its role. See the Roles
+and Permissions section below for the available roles.
+
+
+## User Session Authentication
+
+The User Session authentication scheme allows client applications to act on
+behalf of users within scopes explicitly granted by the user. User Session
+authentication is most suitable when your client integration is running directly
+on the user's device. This will typically be the case for a {% link
+page="use-cases/non-custodial-wallets" /%} card issuing solution. API requests
+using the User Session auth scheme must provide an access token in the
+`authorization` header.
+
+{% table title="User Session Auth Scheme HTTP Headers" %}
+* Header
+* Description
+---
+* authorization
+* The access token obtained via user login or token refresh. The value must be
+  prefixed with "Bearer ".
+---
+* <nobr>x-account-id</nobr>
+* Optional target account hint for permission resolution. Defaults to the
+  primary account associated with the authenticated session.
+{% /table %}
+
+User Session tokens are created by using the {% link endpoint="initiate-login"
+/%} and {% link endpoint="complete-login" /%} endpoints. After completing
+login, you will have an access token and a refresh token.
+The access token will be used for subsequent interactions with Immersve API
+endpoints. The refresh token will be used to renew an expired access token.
+
+Immersve users are identified by the web3 address used to login. Login methods
+for each of the {% link page="guides/supported-chains" /%} are defined in the Login
+section below.
+
+The permissions granted to an access token are determined by the role of the
+authenticated user (with respect to the target account) along with the scope
+requested by the client application when initiating login. Available roles and
+scopes are described in the sections below.
+
+
+## Roles and Permissions
+
+Roles define the permissions available to a User or API Key. The
+following roles are available.
+
+{% table title="Available User / API Key Roles" %}
+* Role
+* Description
+---
+* <nobr>account-owner</nobr>
+* Full control over all resources within an account. This role is granted to
+  users that create cardholder accounts via the self-custodial login flow.
+---
+* <nobr>account-admin</nobr>
+* Management of partner account resources such as client applications,
+  API Keys and Funding Channels.
+---
+* <nobr>card-issuer</nobr>
+* Management of cardholder resources such as cards and funding sources. This
+  role should be used by custodial card issuing integrations.
+{% /table %}
+
+## Client Scopes
+
+Client Scopes apply additional restrictions to the permissions granted to an
+authenticated user session. When a client application initiates login for a
+user, one or more valid scopes must be provided. Client scopes are not used by
+API Key authentication.
+
+{% table title="Available Client Scopes" %}
+* Scope
+* Description
+---
+* <nobr>cardholder-partner</nobr>
+* Manage cardholder resources such as Cards and Funding Sources. This scope
+  should be used by non-custodial card issuing integrations.
+---
+{% /table %}
+
+
+## Account Selection
+
+The optional `x-account-id` HTTP header selects which account to use when
+evaluating permissions for a request. This is needed when an authenticated
+session or API key is scoped to multiple accounts. For example, this header must
+be supplied when interacting with child cardholder accounts in the context of a
+custodial card issuing integration.
+
+
+## Login Flow
+
+Login is initiated by supplying the user's web3 address to the {% link
+endpoint="initiate-login" /%} endpoint. Proof of ownership over the web3 address
+is provided by signing the login challenge message using the private key for the
+wallet. Submitting the challenge response to the {% link
+endpoint="complete-login" /%} endpoint creates the User Session and returns
+access and refresh tokens.
+
+![Login Sequence](./assets/message-signing-login-sequence.png "Message Signing Login Sequence Diagram")
+
+Available login methods are listed in the following table. Refer to the login
+guide relating to your preferred login method for specific instructions.
+
+{% table title="Available Login Methods" %}
+- Name
+- Description
+---
+- <nobr>{% link page="guides/siwe-login" /%}</nobr>
+- Authenticate an EVM wallet by using the Sign-In With Ethereum standard
+  message signing format.
+---
+- <nobr>{% link page="guides/algorand-login" /%}</nobr>
+- Authenticate an Algorand wallet by signing with an Algorand private key.
+---
+- <nobr>{% link page="guides/xrpl-login" /%}</nobr>
+- Authenticate a XRPL or Xahau wallet by signing with an XRPL private key.
+{% /table %}
+
+
+## Refresh Tokens
+
+The refresh token is a long-lived token that can be used to obtain a new
+access token without requiring the user to re-authenticate.
+Before using an access token, if the token is
+expired, use your refresh token to obtain a new access token.
+Use the {% link endpoint="auth-token-exchange"
+/%} endpoint to obtain a new access token.
+
+![Refresh Sequence](./assets/refresh-sequence.png "Refresh Token Exchange Sequence Diagram")
+
+Token expiry can be checked by decoding the token as a JWT and inspecting the
+`exp` claim. Access tokens expire after approximately 20 minutes and refresh
+tokens expire after approximately 30 days.
+
+Refresh tokens are single-use. After requesting a new access token the previous
+refresh token is invalidated. A new refresh token is returned along with the
+access token in each token exchange response.
+
+
+## Session Logout
+
+The {% link endpoint="logout" /%} endpoint can be used to invalidate a User
+Session. All access and refresh tokens connected with the session will become
+unusable. After logging out the client application can discard the stored
+session information and authentication tokens.

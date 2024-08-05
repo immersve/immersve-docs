@@ -1,0 +1,81 @@
+---
+title: Algorand Login
+slug: guides/algorand-login
+description: |
+  How to obtain an Immersve user session with an Algorand wallet.
+---
+
+The Immersve Algorand User Session login method allows Algorand wallet addresses
+to authenticate with Immersve APIs. See {% link page="guides/authentication" /%}
+for more details about how to authenticate with Immersve APIs.
+
+## Algorand Login Message Format
+
+The {% link endpoint="initiate-login" /%} endpoint produces a message that needs
+to be signed by the user's wallet. The message format for the `algorand` login
+method is like the following example.
+
+``` {% title="algorand login message" %}
+Login with your Algorand address 0xA3058369d6A481B1ff08F62B352409c3D709De9b
+
+Id: GlSDzZHcxrSDeJbKu
+```
+
+Access and refresh tokens are obtained by submitting the message
+signature to the {% link endpoint="complete-login" /%} endpoint.
+
+
+## Example Login Script
+
+The following script demonstrates how to authenticate with the Immersve
+`algorand` login method using the Node.js Algorand SDK and Axios HTTP client.
+
+```js {% title="sign-algorand-challenge.js" %}
+#!/usr/bin/env node
+
+const algosdk = require('algosdk');
+const axios = require('axios');
+
+const baseUrl = 'https://test.immersve.com';
+const clientApplicationId = 'd0b05d44204810fc61991a49e289dda3';
+const algorandNetwork = 'algorand-testnet';
+const mnemonic = process.env['MNEMONIC'] || algosdk.secretKeyToMnemonic(algosdk.generateAccount().sk);
+const signup = true;
+
+async function main() {
+  const { addr, sk } = algosdk.mnemonicToSecretKey(mnemonic);
+  const initResponse = await axios.request({
+    baseURL: baseUrl,
+    method: 'POST',
+    url: signup ? '/auth/signup' : '/auth/login-init',
+    data: {
+      loginMethod: 'algorand',
+      network: algorandNetwork,
+      clientApplicationId,
+      scopes: [ 'cardholder-partner' ],
+      address: addr,
+    }
+  });
+  console.log('loginRequest', initResponse.data);
+  const { data: registerRequest } = initResponse;
+  const encodedData = new TextEncoder().encode(
+    registerRequest.signingChallenge.message
+  );
+  const signature = Buffer.from(algosdk.signBytes(encodedData, sk)).toString('base64');
+  const loginResponse = await axios.request({
+    baseURL: baseUrl,
+    method: 'POST',
+    url: '/auth/login-complete',
+    data: {
+      loginRequestId: registerRequest.id,
+      signature,
+    }
+  });
+  console.log('sessionInfo', loginResponse.data);
+}
+
+main().catch(err => {
+  console.log(err);
+  process.exitCode = 1;
+});
+```
