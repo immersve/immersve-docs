@@ -1,4 +1,5 @@
 import path from 'node:path';
+import markdoc from '@markdoc/markdoc';
 import { component, defineMarkdocConfig, nodes } from '@astrojs/markdoc/config';
 
 function registryViewComponent(componentPath) {
@@ -38,6 +39,22 @@ export default defineMarkdocConfig({
         __optimizedSrc: { type: 'Object' },
       },
     },
+    /* Enable table captions via the "title" attribute. */
+    table: {
+      ...nodes.table,
+      attributes: {
+        title: { type: String },
+      },
+      transform(node, config) {
+        const children = node.children.map(n => n.transform(config))
+        if (node.attributes.title) {
+          children.unshift(
+            new markdoc.Tag('caption', { class: 'italic caption-bottom' }, [ node.attributes.title ]),
+          )
+        }
+        return new markdoc.Tag( 'table', {}, children);
+      },
+    },
     fence: {
       attributes: {
         ...nodes.fence.attributes,
@@ -47,6 +64,12 @@ export default defineMarkdocConfig({
     },
   },
   tags: {
+    table: {
+      ...markdoc.tags.table,
+      attributes: {
+        title: { type: String },
+      }
+    },
     button: {
       render: component('./src/components/Button.astro'),
       attributes: {

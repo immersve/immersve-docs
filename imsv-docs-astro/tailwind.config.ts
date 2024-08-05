@@ -13,6 +13,7 @@ export default {
   content: [
     './src/**/*.{astro,html,js,ts,md,mdoc}',
     '../starlight/components/**/*.astro',
+    './markdoc.config.mjs',
   ],
   theme: {
     fontSize: {

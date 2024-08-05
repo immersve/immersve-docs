@@ -210,7 +210,7 @@ export default function typographyStyles({ theme }: PluginUtils) {
           marginTop: '0',
           marginBottom: '0',
         },
-        figcaption: {
+        'caption, figcaption': {
           color: 'var(--tw-prose-captions)',
           fontSize: theme('fontSize.xs')[0],
           ...theme('fontSize.xs')[1],
