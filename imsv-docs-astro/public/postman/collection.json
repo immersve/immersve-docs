@@ -79,7 +79,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"loginMethod\":\"siwe\",\n  \"network\":\"polygon-amoy\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\",\"update-kyc-profile\"],\n  \"address\": \"{{siweWalletAddress}}\",\n  \"url\": \"http://localhost\"\n}"
+							"raw": "{\n  \"loginMethod\":\"siwe\",\n  \"network\":\"polygon-amoy\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"address\": \"{{siweWalletAddress}}\",\n  \"url\": \"http://localhost\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/signup",
@@ -127,7 +127,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"loginMethod\":\"siwe\",\n  \"network\":\"polygon-amoy\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\",\"update-kyc-profile\"],\n  \"address\": \"{{siweWalletAddress}}\",\n  \"url\": \"http://localhost:3000\"\n}"
+							"raw": "{\n  \"loginMethod\":\"siwe\",\n  \"network\":\"polygon-amoy\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"address\": \"{{siweWalletAddress}}\",\n  \"url\": \"http://localhost:3000\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/login-init",
@@ -175,7 +175,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"loginMethod\":\"algorand\",\n  \"network\":\"algorand-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\",\"update-kyc-profile\"],\n  \"address\": \"{{algorandWalletAddress}}\"\n}"
+							"raw": "{\n  \"loginMethod\":\"algorand\",\n  \"network\":\"algorand-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"address\": \"{{algorandWalletAddress}}\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/signup",
@@ -271,7 +271,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"loginMethod\":\"xrpl\",\n  \"network\":\"xahau-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\",\"update-kyc-profile\"],\n  \"publicKey\": \"{{xrplWalletPublicKey}}\"\n}"
+							"raw": "{\n  \"loginMethod\":\"xrpl\",\n  \"network\":\"xahau-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"publicKey\": \"{{xrplWalletPublicKey}}\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/signup",
@@ -319,7 +319,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"loginMethod\":\"xrpl\",\n  \"network\":\"xahau-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\",\"update-kyc-profile\"],\n  \"publicKey\": \"{{xrplWalletPublicKey}}\"\n}"
+							"raw": "{\n  \"loginMethod\":\"xrpl\",\n  \"network\":\"xahau-testnet\",\n  \"clientApplicationId\":\"{{clientApplicationId}}\",\n  \"scopes\":[\"cardholder-partner\"],\n  \"publicKey\": \"{{xrplWalletPublicKey}}\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/login-init",

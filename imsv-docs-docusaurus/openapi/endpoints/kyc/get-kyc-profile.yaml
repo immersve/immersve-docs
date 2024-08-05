@@ -1,15 +1,21 @@
 tags:
   - kyc
 summary: Get a KYC profile
-description: Get a KYC profile by account id if it exists. 
+description: Get a KYC profile by account id if it exists.
 parameters:
   - name: accountId
     in: path
-    description: Id of the account.
+    description: Id of the cardholder or identity account.
     example: 225d85e65495722bf6517ea0ba0d6f56
     required: true
     schema:
       type: string
+  - name: withPersonalDetails
+    in: query
+    description: Include personal details (name, date of birth, etc) in the response. Requires additional permissions.
+    schema:
+      type: boolean
+      default: false
 security:
   - immersve_auth: []
 responses:
@@ -25,8 +31,11 @@ responses:
         **FORBIDDEN**
         Account does not exist or there are no sufficient permissions to view KYC profile for this account.
 
-        **KYC_PROFILE_DOES_NOT_EXIST** 
+        **KYC_PROFILE_DOES_NOT_EXIST**
         KYC profile does not exist for this account. It gets created upon initiating the first KYC check.
+
+        **LIVENESS_MISMATCH**
+        Resource liveness does not match request liveness.
     content:
       application/json:
         schema:
