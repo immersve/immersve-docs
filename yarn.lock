@@ -11156,7 +11156,7 @@ __metadata:
     "@docusaurus/preset-classic": "npm:^3.3.2"
     "@mdx-js/react": "npm:^3.0.1"
     "@types/react": "npm:^18.3.3"
-    clsx: "npm:^1.2.1"
+    clsx: "npm:^2.1.1"
     docusaurus-lunr-search: "npm:^3.4.0"
     docusaurus-plugin-openapi-docs: "npm:^3.0.0-beta.10"
     docusaurus-theme-openapi-docs: "npm:^3.0.0-beta.10"
