@@ -33,7 +33,7 @@ tags:
   - name: client-application
     x-displayName: Client application
   - name: supported-regions
-    x-displayName: Supported regions
+    x-displayName: Supported Regions
   - name: support
     x-displayName: Support
 security:
