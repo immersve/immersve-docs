@@ -15,7 +15,7 @@ properties:
           type: string
           description: The region's title
           example: Australia
-        available:
+        isAvailable:
           type: boolean
           description: Whether the region is available to the given partner account
           example: true
@@ -29,13 +29,13 @@ example:
   regions:
     - name: AU
       title: Australia
-      available: true
+      isAvailable: true
       programs: ["plc904nf7h3j93fg91", "zlp284g9y3wp3a83dd"]
     - name: NZ
       title: New Zealand
-      available: true
+      isAvailable: true
       programs: ["9hfn7okd72r0e2i8d3"]
     - name: CA
       title: Canada
-      available: false
+      isAvailable: false
       programs: []
