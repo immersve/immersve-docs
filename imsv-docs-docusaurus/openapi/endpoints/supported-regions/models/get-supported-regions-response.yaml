@@ -7,7 +7,7 @@ properties:
       type: object
       description: Region item
       properties:
-        name:
+        code:
           type: string
           description: The region's name
           example: AU
@@ -19,23 +19,14 @@ properties:
           type: boolean
           description: Whether the region is available to the given partner account
           example: true
-        programs:
-          type: array
-          description: The programs available in the region
-          items:
-            type: string
-            example: 9hfn837okd72fgr0e2if8x9d3
 example:
   regions:
-    - name: AU
+    - code: AU
       title: Australia
       isAvailable: true
-      programs: ["plc904nf7h3j93fg91", "zlp284g9y3wp3a83dd"]
-    - name: NZ
+    - code: NZ
       title: New Zealand
       isAvailable: true
-      programs: ["9hfn7okd72r0e2i8d3"]
-    - name: CA
+    - code: CA
       title: Canada
       isAvailable: false
-      programs: []

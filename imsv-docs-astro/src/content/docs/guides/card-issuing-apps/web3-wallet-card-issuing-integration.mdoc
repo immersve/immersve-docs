@@ -97,8 +97,9 @@ different in the live environment.
 ### Select Region
 
 Prompting the user to select their region helps them to avoid the card
-onboarding journey if their region is not yet available. Call the Supported Regions
-endpoint to get the current list of available regions for your application.
+onboarding journey if their region is not yet available. Call the {% link
+endpoint="get-supported-regions" /%} endpoint to get the current list of
+available regions for your application.
 
 
 ### Deploy On-Chain Resources
@@ -171,7 +172,7 @@ funding_source_id=$(curl -X POST "https://${imsv_api_host}/api/funding-sources" 
 ```
 
 If the funding address is not related to the user's login wallet address then first call the
-{% link endpoint="create-challenge" /%} endpoint. The signed challenge can be used 
+{% link endpoint="create-challenge" /%} endpoint. The signed challenge can be used
 to prove ownership of the funding address. Include the "challengeId" and "signature" as
 additional parameters in the funding source request.
 
