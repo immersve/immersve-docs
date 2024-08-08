@@ -32,6 +32,8 @@ tags:
     x-displayName: Funding source
   - name: client-application
     x-displayName: Client application
+  - name: supported-regions
+    x-displayName: Supported regions
   - name: support
     x-displayName: Support
 security:
@@ -100,6 +102,9 @@ paths:
   "/api/accounts/{accountId}/kyc-profile":
     get:
       $ref: "./endpoints/kyc/get-kyc-profile.yaml"
+  "/api/accounts/{partnerAccountId}/supported-regions":
+    get:
+      $ref: "./endpoints/supported-regions/get-supported-regions.yaml"
   "/api/simulator/authorize":
     $ref: "./endpoints/simulator/authorize.yaml"
     servers:

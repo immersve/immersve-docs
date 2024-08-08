@@ -1,0 +1,41 @@
+type: object
+properties:
+  regions:
+    type: array
+    description: All regions supported by Immersve
+    items:
+      type: object
+      description: Region item
+      properties:
+        name:
+          type: string
+          description: The region's name
+          example: AU
+        title:
+          type: string
+          description: The region's title
+          example: Australia
+        available:
+          type: boolean
+          description: Whether the region is available to the given partner account
+          example: true
+        programs:
+          type: array
+          description: The programs available in the region
+          items:
+            type: string
+            example: 9hfn837okd72fgr0e2if8x9d3
+example:
+  regions:
+    - name: AU
+      title: Australia
+      available: true
+      programs: ["plc904nf7h3j93fg91", "zlp284g9y3wp3a83dd"]
+    - name: NZ
+      title: New Zealand
+      available: true
+      programs: ["9hfn7okd72r0e2i8d3"]
+    - name: CA
+      title: Canada
+      available: false
+      programs: []
