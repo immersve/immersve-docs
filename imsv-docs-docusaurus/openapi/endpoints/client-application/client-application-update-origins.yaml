@@ -21,8 +21,6 @@ post:
         schema:
           $ref: "./models/client-application-update-origins-request.yaml"
     required: true
-  security:
-    - $ref: '../../models/api-key-auth.yaml'
   responses:
     '204':
       description: No content

@@ -35,8 +35,10 @@ tags:
   - name: support
     x-displayName: Support
 security:
-  - immersve_auth: []
-  - $ref: "./models/api-key-auth.yaml"
+  - { "Access Token": [] }
+  - { "Access Token": [], "Target Account": [] }
+  - { "Api Key": [], "Api Secret": [] }
+  - { "Api Key": [], "Api Secret": [], "Target Account": [] }
 # The order of the paths defines the order of pages in the sidebar navigation.
 # The tags field in the yaml files defines the grouping in the sidebar navigation.
 paths:
@@ -142,25 +144,20 @@ paths:
     $ref: "./endpoints/imsv-support/support-session-create.yaml"
 components:
   securitySchemes:
-    immersve_auth:
+    "Access Token":
       type: http
       scheme: bearer
       bearerFormat: JWT
-    apiKeyHeader:
+    "Api Key":
       type: apiKey
       in: header
       name: x-api-key
       description: See Guides -> Authentication for instructions
-    apiKeyHeaderWebhook:
-      type: apiKey
-      in: header
-      name: APIKEY
-      description: The API key provided by you to Immersve
-    apiSecretHeader:
+    "Api Secret":
       type: apiKey
       in: header
       name: x-api-secret
-    accountIdHeader:
+    "Target Account":
       type: apiKey
       in: header
       name: x-account-id
