@@ -40,3 +40,12 @@
   margin-top: -100px;
   visibility: hidden;
 }
+
+/**
+ * Hack to workaround heading selection overlapping with previous paragraph due
+* to above `[id]::before` rule.
+ */
+h1, h2, h3, h4 {
+  position: relative;
+  z-index: -1;
+}
