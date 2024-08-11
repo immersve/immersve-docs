@@ -10,8 +10,6 @@ parameters:
     required: true
     schema:
       type: string
-security:
-  - $ref: '../../models/api-key-auth.yaml'
 requestBody:
   content:
     application/json:
