@@ -10,7 +10,7 @@ parameters:
     required: true
     schema:
       type: string
-  - name: withPersonalDetails
+  - name: includePersonalDetails
     in: query
     description: Include personal details (name, date of birth, etc) in the response. Requires additional permissions.
     schema:
