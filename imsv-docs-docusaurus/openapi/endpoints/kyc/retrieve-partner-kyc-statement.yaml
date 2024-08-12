@@ -10,8 +10,6 @@ parameters:
     required: true
     schema:
       type: string
-security:
-  - $ref: '../../models/api-key-auth.yaml'
 responses:
   '200':
     content:
@@ -25,7 +23,7 @@ responses:
         **FORBIDDEN**
         Resource does not exist or there are no sufficient permissions to perform the action.
 
-        **KYC_STATEMENT_DOES_NOT_EXIST** 
+        **KYC_STATEMENT_DOES_NOT_EXIST**
         Partner has not submitted any KYC statements
     content:
       application/json:
