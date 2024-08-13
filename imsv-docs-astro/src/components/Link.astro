@@ -7,6 +7,7 @@ interface Props {
   title: string;
   page: string;
   endpoint: string;
+  anchor: string;
 }
 
 class SimpleLink {
@@ -18,12 +19,12 @@ class SimpleLink {
   }
 }
 
-async function makeLink({ href, title, page, endpoint }: Props) {
+async function makeLink({ href, title, page, endpoint, anchor }: Props) {
   if (page) {
-    return await PageLink.forDocsContentId(page);
+    return await PageLink.forDocsContentId(page, anchor);
   }
   if (endpoint) {
-    return new EndpointLink(endpoint);
+    return new EndpointLink(endpoint, anchor);
   }
   return new SimpleLink(href);
 }

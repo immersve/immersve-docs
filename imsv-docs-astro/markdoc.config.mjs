@@ -86,6 +86,7 @@ export default defineMarkdocConfig({
         title: { type: String },
         page: { type: String },
         endpoint: { type: String },
+        anchor: {type: String }
       },
     },
     endpointref: {
