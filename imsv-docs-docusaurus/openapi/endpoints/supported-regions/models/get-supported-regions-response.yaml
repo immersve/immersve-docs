@@ -1,0 +1,32 @@
+type: object
+properties:
+  regions:
+    type: array
+    description: All regions supported by Immersve
+    items:
+      type: object
+      description: Region item
+      properties:
+        code:
+          type: string
+          description: The region's code
+          example: AU
+        title:
+          type: string
+          description: The region's title
+          example: Australia
+        isAvailable:
+          type: boolean
+          description: Whether the region is available to the given partner account
+          example: true
+example:
+  regions:
+    - code: AU
+      title: Australia
+      isAvailable: true
+    - code: NZ
+      title: New Zealand
+      isAvailable: true
+    - code: CA
+      title: Canada
+      isAvailable: false

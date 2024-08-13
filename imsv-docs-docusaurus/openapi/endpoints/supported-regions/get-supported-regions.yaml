@@ -1,0 +1,33 @@
+tags:
+  - supported-regions
+summary: Get supported regions
+description: Get the list of supported regions for a partner account.
+parameters:
+  - name: partnerAccountId
+    in: path
+    description: ID of the partner account.
+    example: 65a7e8ef0d230d0a6bf755e07d39eb02
+    required: true
+    schema:
+      type: string
+security:
+  - immersve_auth: []
+responses:
+  "200":
+    content:
+      application/json:
+        schema:
+          $ref: "./models/get-supported-regions-response.yaml"
+  "403":
+    description: |
+      Subject is not allowed to perform the action with the reason stated in the `errorCode`
+
+      **FORBIDDEN**
+      There are no sufficient permissions to view supported regions for this account.
+
+      **CARD_PROGRAMS_NOT_CONFIGURED**
+      Partner account has no card programs configured
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"
