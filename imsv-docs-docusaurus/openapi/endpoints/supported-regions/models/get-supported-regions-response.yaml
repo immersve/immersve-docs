@@ -9,7 +9,7 @@ properties:
       properties:
         code:
           type: string
-          description: The region's name
+          description: The region's code
           example: AU
         title:
           type: string

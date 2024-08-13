@@ -23,7 +23,10 @@ responses:
       Subject is not allowed to perform the action with the reason stated in the `errorCode`
 
       **FORBIDDEN**
-      Account does not exist or there are no sufficient permissions to view supported regions for this account.
+      There are no sufficient permissions to view supported regions for this account.
+
+      **CARD_PROGRAMS_NOT_CONFIGURED**
+      Partner account has no card programs configured
     content:
       application/json:
         schema:
