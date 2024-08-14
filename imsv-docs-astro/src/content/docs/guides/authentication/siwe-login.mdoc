@@ -50,7 +50,6 @@ const baseUrl = 'https://test.immersve.com';
 const clientId = 'd0b05d44204810fc61991a49e289dda3';
 const clientUrl = 'http://localhost:3000';
 const mnemonic = process.env['MNEMONIC'] || ethers.Wallet.createRandom().mnemonic.phrase;
-const signup = true;
 
 async function main() {
   const wallet = ethers.Wallet.fromPhrase(mnemonic);
@@ -58,7 +57,7 @@ async function main() {
   const initResponse = await axios.request({
     baseURL: baseUrl,
     method: 'POST',
-    url: signup ? '/auth/signup' : '/auth/login-init',
+    url: '/auth/login-init',
     data: {
       loginMethod: 'siwe',
       network: 'polygon-amoy',
@@ -66,6 +65,7 @@ async function main() {
       scopes: [ 'cardholder-partner' ],
       address: addr,
       url: clientUrl,
+      autoSignup: true
     }
   });
   console.log('loginRequest', initResponse.data);

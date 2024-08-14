@@ -40,20 +40,20 @@ const baseUrl = 'https://test.immersve.com';
 const clientApplicationId = 'd0b05d44204810fc61991a49e289dda3';
 const algorandNetwork = 'algorand-testnet';
 const mnemonic = process.env['MNEMONIC'] || algosdk.secretKeyToMnemonic(algosdk.generateAccount().sk);
-const signup = true;
 
 async function main() {
   const { addr, sk } = algosdk.mnemonicToSecretKey(mnemonic);
   const initResponse = await axios.request({
     baseURL: baseUrl,
     method: 'POST',
-    url: signup ? '/auth/signup' : '/auth/login-init',
+    url: '/auth/login-init',
     data: {
       loginMethod: 'algorand',
       network: algorandNetwork,
       clientApplicationId,
       scopes: [ 'cardholder-partner' ],
       address: addr,
+      autoSignup: true
     }
   });
   console.log('loginRequest', initResponse.data);
