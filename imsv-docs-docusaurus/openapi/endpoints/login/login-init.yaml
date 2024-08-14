@@ -5,7 +5,7 @@ post:
   description: |
     Initiate the login sequence for an existing user. Multiple authentication methods are supported.
     To initiate login for a new user, use [Sign Up](/api-reference/sign-up/). Alternatively, if you'd
-    like to use `login-init` for both new and existing users, use the `autoSignup=true` query parameter.
+    like to use `login-init` for both new and existing users, use the `autoSignup` request body option.
     To complete the login flow, use [Complete Login](/api-reference/complete-login).
     For more details, see [Authentication](https://docs.immersve.com/guides/authentication).
   security:

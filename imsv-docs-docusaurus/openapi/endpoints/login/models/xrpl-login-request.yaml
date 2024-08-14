@@ -37,9 +37,9 @@ properties:
     type: string
     example: "EDA2F521129EC961DABA759DA.."
   autoSignup:
-    description: If set to 'true', creates a user account if one does not already exist for the web3 address attempting to log in.
-    type: string
-    example: "true"
+    description: If set to true, creates a user account if one does not already exist for the web3 address attempting to log in.
+    type: boolean
+    example: true
     enum:
       - true
       - false
