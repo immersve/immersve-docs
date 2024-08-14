@@ -45,3 +45,10 @@ properties:
       Domain in the "\<domain\> wants you to sign in.." of the EIP-4361 is derived from the host fragment of this parameter. The client application identified by clientApplicationId must allow this URL.
     type: url
     example: "https://app.immersve.com"
+  autoSignup:
+    description: If set to true, creates a user account if one does not already exist for the web3 address attempting to log in.
+    type: boolean
+    example: true
+    enum:
+      - true
+      - false

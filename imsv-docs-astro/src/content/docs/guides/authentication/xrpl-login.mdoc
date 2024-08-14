@@ -39,20 +39,20 @@ const axios = require('axios');
 
 const baseUrl = 'https://test.immersve.com';
 const clientApplicationId = 'd0b05d44204810fc61991a49e289dda3';
-const signup = true;
 
 async function main() {
   const { publicKey, privateKey } = xrplSdk.Wallet.generate();
   const initResponse = await axios.request({
     baseURL: baseUrl,
     method: 'POST',
-    url: signup ? '/auth/signup' : '/auth/login-init',
+    url: '/auth/login-init',
     data: {
       loginMethod: 'xrpl',
       network: 'xahau-testnet',
       clientApplicationId,
       scopes: [ 'cardholder-partner' ],
       publicKey,
+      autoSignup: true
     }
   });
   console.log('loginRequest', initResponse.data);
