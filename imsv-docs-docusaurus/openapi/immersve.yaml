@@ -1,7 +1,9 @@
 openapi: 3.1.0
 servers:
   - url: https://api.immersve.com
-    description: Sandbox server
+    description: Live API Server
+  - url: https://test.immersve.com
+    description: Test API Server
 info:
   version: 1.0.0
   title: Immersve API
