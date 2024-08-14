@@ -138,7 +138,9 @@ endpoint="initiate-login" /%} endpoint. Proof of ownership over the web3 address
 is provided by signing the login challenge message using the private key for the
 wallet. Submitting the challenge response to the {% link
 endpoint="complete-login" /%} endpoint creates the User Session and returns
-access and refresh tokens.
+access and refresh tokens. The {% link endpoint="sign-up" /%} endpoint can be used
+to create a user account for first time users, this can also be achieved using
+the `autoSignup` request option on the {% link endpoint="initiate-login" /%}  endpoint.
 
 ![Login Sequence](./assets/message-signing-login-sequence.png "Message Signing Login Sequence Diagram")
 
