@@ -53,3 +53,20 @@ Below is an indicative list of regions supported by Immersve.
 - United Arab Emirates
 - United Kingdom
 - United States
+
+## Set up environment variables
+
+```bash
+card_issuer_api_key="<your_card_issuer_api_key>"
+card_issuer_api_secret="<your_card_issuer_api_secret>"
+partner_account_id="<your_partner_account_id>"
+```
+## Get supported regions
+
+```bash
+curl "https://test.immersve.com/api/accounts/${partner_account_id}/supported-regions" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -H "x-api-key: ${card_issuer_api_key}" \
+  -H "x-api-secret: ${card_issuer_api_secret}"
+```
