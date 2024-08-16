@@ -1,0 +1,76 @@
+type: object
+properties:
+  appId:
+    type: number
+    description: Application ID
+  method:
+    type: string
+    description: Smart contract method e.g. cardFundExecuteApprovedWithdrawal
+  returns:
+    type: string
+    description: "void"
+  args:
+    type: array
+    description: Smart contract call params. Contents are matching names and order defined in ABI args array
+  abi:
+    description: The JSON ABI of the smart contract (contains only required details. more details here https://docs.soliditylang.org/en/v0.8.19/abi-spec.html#json)
+    type: object
+    properties:
+        name:
+          type: string
+          description: "cardFundExecuteApprovedWithdrawal"
+        desc:
+          type: string
+          description: "Withdraws funds before the withdrawal timestamp has lapsed, by using the early withdrawal signature provided by Immersve."
+        args:
+          type: array
+          items:
+            type: object
+            properties:
+              name: cardFund
+              type: address
+              desc: "The address of the card."
+          # TODO: add the rest of the properties
+
+
+#        "appId": 702773164,
+#        "method": "cardFundExecuteApprovedWithdrawal",
+#        "abi": {
+#          "name": "cardFundExecuteApprovedWithdrawal",
+#          "desc": "Withdraws funds before the withdrawal timestamp has lapsed, by using the early withdrawal signature provided by Immersve.",
+#          "args": [
+#            {
+#              "name": "cardFund",
+#              "type": "address",
+#              "desc": "The address of the card."
+#            },
+#            {
+#              "name": "asset",
+#              "type": "uint64",
+#              "desc": "The ID of the asset to be withdrawn."
+#            },
+#            {
+#              "name": "amount",
+#              "type": "uint64",
+#              "desc": "The amount of the withdrawal."
+#            },
+#            {
+#              "name": "expiresAt",
+#              "type": "uint64",
+#              "desc": "The expiry of the withdrawal signature."
+#            },
+#            {
+#              "name": "nonce",
+#              "type": "uint64"
+#            },
+#            {
+#              "name": "signature",
+#              "type": "byte[64]",
+#              "desc": "The signature for early withdrawal."
+#            }
+#          ],
+#          "returns": {
+#            "type": "void"
+#          }
+#        },
+

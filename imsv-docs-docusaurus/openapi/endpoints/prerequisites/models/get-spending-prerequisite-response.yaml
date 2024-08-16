@@ -38,7 +38,7 @@ properties:
             - aml-review
         params:
           oneOf:
-            - $ref: "../../../models/smart-contract-write-params.yaml"
+            - $ref: "../../../models/evm-smart-contract-write-params.yaml"
               title: smart_contract_write
             - $ref: "../../../models/kyc-params.yaml"
               title: kyc
