@@ -25,7 +25,6 @@ export default defineConfig({
       components: {
         Head: './src/components/Head.astro',
         MarkdownContent: './src/components/MarkdownContent.astro',
-        Pagination: './src/components/FooterNavigation.astro',
       },
       sidebar: [
         { label: 'Home', link: '/' },

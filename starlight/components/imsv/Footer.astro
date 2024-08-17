@@ -1,0 +1,50 @@
+---
+import type { Props } from '../../props';
+
+import PencilIcon from './icons/PencilSquare.astro';
+import PageLink from './FooterPageLink.astro';
+import config from 'virtual:starlight/user-config';
+
+const { editUrl, pagination } = Astro.props;
+const { prev, next } = pagination;
+---
+<footer class="mt-8">
+
+  <a href={editUrl} class="inline-flex text-zinc-600 dark:text-zinc-400 text-sm hover:text-indigo-700 dark:hover:text-indigo-400">
+    <span class="flex items-center">
+      <PencilIcon class="size-4 mr-2"/>
+      Edit Page
+    </span>
+  </a>
+
+  <div class="flex mt-8">
+    {prev && (
+      <div class="flex flex-col items-start gap-3">
+        <PageLink label="Previous" page={prev} previous />
+      </div>
+    )}
+    {next && (
+      <div class="ml-auto flex flex-col items-end gap-3">
+        <PageLink label="Next" page={next} />
+      </div>
+    )}
+  </div>
+
+  <div class="border-t border-zinc-100 pb-16 pt-6 dark:border-zinc-700/40 mt-10">
+    <div class="relative px-0">
+      <div class="mx-auto max-w-2xl lg:max-w-5xl">
+        <div class="flex flex-col items-center justify-between gap-6 2xl:flex-row">
+          <div class="flex flex-wrap justify-center gap-x-10 gap-y-1 text-xs font-medium text-zinc-800 dark:text-zinc-200">
+            <a href="https://immersve.com/">Sales</a>
+            <a href="https://help.immersve.com/">Support</a>
+            <a href="https://docs.immersve.com/">Docs</a>
+            <a href="https://docs.immersve.com/api-reference/">APIs</a>
+          </div>
+          <p class="text-xs text-zinc-600 dark:text-zinc-500">
+            &copy; Copyright {new Date().getFullYear()} Immersve. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
