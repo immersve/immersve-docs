@@ -25,14 +25,14 @@ non-custodial cardholder API endpoints we provide authentication via web3 wallet
 1. Add the address for the wallet you wish to authenticate with to the Postman Environment:
 ![Wallet Addresses](@assets/walletAddress.png)
 
-2. Use the [signup](/api-reference/sign-up) (for first time users) or [initiate login](/api-reference/initiate-login)
-(returning users), as well as [complete login](/api-reference/complete-login) endpoints to sign a challenge with your
+2. Use the {% link endpoint="initiate-login" /%} and
+{% link endpoint="complete-login" /%} endpoints to sign a challenge with your
 web3 wallet and obtain an access token and refresh token. See our
-{% link page="guides/authentication" title="Authentication guide" /%} for more details.
+{% link page="guides/authentication" /%} guide for more details.
 
 ## Additional Requirements
 Some endpoints have additional requirements that must be met before they can be used. Once you have [created a
 funding source](/api-reference/create-a-funding-source-for-an-account) you can call
 [get spending prerequisites](/api-reference/get-spending-prerequisites) to see a list of unmet requirements.
     * Before creating cards cardholders must pass a {% link page="guides/kyc" title="KYC check" /%}.
-    * See our {% link page="guides/card-funding" title="Card Funding guide" /%} for details on depositing funds.
+    * See our {% link page="guides/card-funding" /%} guide for details on depositing funds.

@@ -9,10 +9,9 @@ enables online purchases, and other card-not-present transactions. Add the card
 to a {% link page="guides/add-card-to-xpay-wallet" title="digital wallet" /%}
 for in-store contactless payments.
 
-Before being permitted to [create a card](/api-reference/create-a-card) a user
-must first have successfully [authenticated](/guides/authentication) and
-fulfilled any regulatory prerequisites as instructed by the [get spending
-prerequisites](/api-reference/get-spending-prerequisites) operation.
+Before being permitted to create a card a user must first have successfully and
+fulfilled any regulatory prerequisites as instructed by the {% link
+endpoint="get-spending-prerequisites" /%} endpoint.
 
 
 ![Card Issuing Sequence](./assets/card-issuing-sequence.png "Card Creation Sequence Diagram")
@@ -20,42 +19,33 @@ prerequisites](/api-reference/get-spending-prerequisites) operation.
 
 ## Authentication
 
-The authentication processes are described in the [authentication
-guide](/guides/authentication). As the user account is anchored by control of
-the private key, there is no distinct prior explicit registration or signup
-process needed before authenticating.
+The authentication processes are described in the {% link
+page="guides/authentication" /%} guide. As the user account is anchored by
+control of the private key, there is no distinct prior explicit registration or
+signup process needed before authenticating.
 
 
 ## Provision Funding Source
 
 A Funding Source is required for card creation. Besides this requirement, cards
-and Funding Sources are managed independently. See [Create a Funding Source for
-an account](/api-reference/create-a-funding-source-for-an-account) and the
-[Card Funding](/guides/card-funding) guide.
+and Funding Sources are managed independently. See {% link
+endpoint="create-a-funding-source-for-an-account" /%} and the
+{% link page="guides/card-funding" /%} guide.
 
 
 ## Create a card
 
-Call the [create a card](/api-reference/create-a-card) operation to request
-Immersve to generate a card.
-
-If successful a [create a card](/api-reference/create-a-card) request will
-return a card ID. Immersve will provision and activate the card by default. It
-is provisioned and activated when the [get card
-details](/api-reference/get-card-details) response payload includes a `status`
-of `"active"`. All cards are currently long-lived. `expiresAt` field returns
-exact card expiry timestamp. `expiry` field returns expiry date usually printed
+Call the {% link endpoint="create-a-card" /%} endpoint to request
+a card. The card is provisioned and activated when the
+{% link endpoint="get-card-details" /%} response payload includes a `status`
+of `"active"`. All cards are currently long-lived. The `expiresAt` field returns
+exact card expiry timestamp. The `expiry` field returns expiry date usually printed
 on physical cards.
 
 
-## Issue a Card
+## Obtaining Card Details
 
-Having created a virtual card via the [create a
-card](/api-reference/create-a-card) operation and confirmed it is `"active"`,
-you are in a position to be able to obtain the sensitive card details to be
-presented to the cardholder.
-
-There are two steps in this process;
+There are two steps to obtain the sensitive card details to be presented to the cardholder.
 
 1. Obtaining a token for transmission to the client application to which the
 card details are to be provided (i.e. the application that will display the
@@ -73,15 +63,14 @@ sufficiently compliant with PCI-DSS requirements and is audited as such.
 
 ### Get a Card Token
 
-Generate a single-use card `token` using [the get a card
-token](/api-reference/get-a-card-token) operation. The token is typically then
-transmitted to the cardholder's environment (i.e. web application or mobile
-application running in their web browser) to complete the final step completing
-the card issuance.
+Generate a single-use card `token` using the {% link endpoint="get-a-card-token"
+/%} endpoint. The token is typically then transmitted to the cardholder's
+environment (i.e. web application or mobile application running in their web
+browser) to complete the final step completing the card issuance.
 
 
 ### Get Sensitive Card Details
 
 To obtain the full PAN and CVV2 for display to the cardholder your client-side
-application should exchange the token for the sensitive card data. See
-[fetching secure card information](/guides/fetching-secure-card-information).
+application should exchange the token for the sensitive card data. See {% link
+page="guides/fetching-secure-card-information" /%}.

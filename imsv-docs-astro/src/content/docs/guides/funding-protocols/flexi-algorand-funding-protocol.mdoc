@@ -90,8 +90,7 @@ Funding Source will be credited with the deposited amount. When a Funding Source
 is created, any deposits made before the creation of the Funding Source
 associated with the depositing address will be credited immediately.
 
-The [Spending Pre-requisites
-API](https://docs.immersve.com/api-reference/get-spending-prerequisites) can be
+The {% link endpoint="get-spending-prerequisites" /%} endpoint can be
 used to reliably obtain the Algorand transaction parameters for depositing into a
 Funding Source. See {% link page="guides/card-funding" /%} for more details.
 
@@ -128,9 +127,9 @@ instance can also be discovered from the Algorand transaction logs. In a block
 explorer, find the `PartnerChannelCreated` event within the logs for the
 transaction that created the Partner Channel instance.
 
-Use the created partner channel address as the `contractAddress` when calling the
-[Create Funding Channel](https://docs.immersve.com/api-reference/create-a-funding-channel)
-endpoint. A Funding Channel is required for each supported asset.
+Use the created partner channel address as the `contractAddress` when calling
+the {% link endpoint="create-a-funding-channel" /%} endpoint. A Funding Channel
+is required for each supported asset.
 
 
 ### Creating a Card Funds Instance
@@ -264,9 +263,8 @@ combination.<br>
 
 
 ### cardFundExecuteApprovedWithdrawal(cardFund, asset, amount, expiry, nonce, signature) <a id="cardFundExecuteApprovedWithdrawal"/>
-Execute a withdrawal initiated by calling the [Create Withdrawal
-Intent](https://docs.immersve.com/api-reference/create-withdrawal-intent/)
-endpoint.<br>
+Execute a withdrawal initiated by calling the {% link
+endpoint="create-withdrawal-intent" /%} endpoint.<br>
 ***Params***
 <br>
 `cardFund`: Address — The address of the card being withdrawn from.<br>
