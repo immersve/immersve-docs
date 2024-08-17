@@ -1,0 +1,38 @@
+---
+import config from 'virtual:starlight/user-config';
+import type { Props } from '../../props';
+import { getImage } from "astro:assets";
+import socialImg from '@assets/card-whoosh-600.png';
+
+const { entry, siteTitle } = Astro.props;
+const pageUrl = new URL(Astro.url.pathname, Astro.site);
+const description = entry.data.description || config.description;
+
+// Social image needs to be absolute URL.
+// Note, this URL is only valid on production build.
+const imgUrl = new URL(
+  (await getImage({src: socialImg, format: 'png'})).src,
+  Astro.site
+);
+---
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{entry.data.title} | {siteTitle}</title>
+<link rel="canonical" href={pageUrl.href}>
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="description" content={description}>
+
+<meta property="og:title" content={entry.data.title}>
+<meta property="og:type" content="article">
+<meta property="og:url" content={pageUrl.href}>
+<meta property="og:locale" content="en">
+<meta property="og:description" content={description}>
+<meta property="og:site_name" content={siteTitle}>
+<meta property="og:image" content={imgUrl.href} />
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={entry.data.title}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:image" content={imgUrl.href} />
