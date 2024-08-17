@@ -1,13 +1,14 @@
 ---
 // Components — can override built-in CSS, but not user CSS.
-import Footer from 'virtual:starlight/components/Footer';
-import Head from 'virtual:starlight/components/Head';
+import Footer from './Footer.astro';
+import Head from './Head.astro';
+
 import Header from './Header.astro';
 import Prose from './Prose.astro';
 import DocHeader from './DocHeader.astro';
 import TableOfContents from './TableOfContents.astro';
 import Navigation from './Navigation.astro';
-import ThemeProvider from 'virtual:starlight/components/ThemeProvider';
+import ThemeProvider from './ThemeProvider.astro';
 
 // Important that this is the last import so it can override built-in styles.
 import 'virtual:starlight/user-css';
