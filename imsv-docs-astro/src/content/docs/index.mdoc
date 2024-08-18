@@ -7,42 +7,41 @@ Immersve is a multi-chain payment protocol and web3 Mastercard<sup>®</sup>
 product. Powered by the tech and values of web3, Immersve enables its clients
 to deliver decentralized and centralized payment experiences to their users.
 
-This documentation is aimed at developers and technically-minded folks
-interested in integrating with or understanding the underlying mechanics of the
-Immersve solution.
-
-If end users will directly control the means by which cards will be funded
-(i.e. they hold the private key controlling the relevant blockchain address)
-then you should start at the [non-custodial wallet
-guides](/use-cases/non-custodial-wallets). If a custodian holds and controls the
-digital assets that will fund cards, such as a centralized exchange or other
-custodial wallet, then the [custodial wallet guides](/use-cases/custodial-wallets)
-are relevant to your use case.
-
-If you know exactly what you're looking for, you might like to go straight to
-these resources:
-1. [API reference](/api-reference) wherein you can view API
-   request/response payloads and try interacting with the API from the browser.
-2. [Immersve Payment Protocol smart contract
-   interface](/guides/universal-evm-funding-protocol) documentation.
-
-
-
-<!-- {/* TODO render use-cases and guides summary components */} -->
 
 ## Use Cases
 
 Learn how Immersve can be leveraged for your business.
 
-<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
   {% linkcard page="use-cases/non-custodial-wallets" icon="Wallet" /%}
   {% linkcard page="use-cases/custodial-wallets" icon="Sparkles" /%}
 </div>
 
 
+## How It Works
+
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+  {% contentcard page="guides/supported-chains" icon="Link" /%}
+  {% contentcard page="guides/funding-protocols" icon="Wallet2" /%}
+  {% contentcard page="guides/supported-tokens" icon="CircleStack" /%}
+  {% contentcard page="guides/kyc" icon="Identification" title="KYC Modes" /%}
+</div>
+
+
+## Getting Started
+
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+  {% contentcard page="guides/authentication" icon="Key" /%}
+  {% contentcard page="guides/issue-a-virtual-card" icon="CreditCard" title="Card Issuing" /%}
+  {% contentcard page="guides/web3-wallet-card-issuing-integration" icon="Wallet" /%}
+  {% contentcard page="guides/custodial-on-chain-card-issuing-integration" icon="Link" /%}
+
+</div>
+
+
 ## Resources
 
-<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
   {% linkcard href="/api-reference" title="API Reference" icon="CodeBracket" /%}
   {% linkcard page="resources/smart-contracts" icon="CodeBracketSquare" /%}
   {% linkcard page="resources/postman-collection" icon="Postman" /%}
