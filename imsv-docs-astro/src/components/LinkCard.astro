@@ -1,10 +1,10 @@
 ---
-import Link from './Link.astro';
+import { makeLink } from './Link.astro';
 import PageLink from '../models/PageLink.mjs';
 
-const { page, icon } = Astro.props;
+const { page, href, title, icon } = Astro.props;
 
-const link = await PageLink.forDocsContentId(page);
+const link = await makeLink({ page, href, title })
 
 const { default: Icon } = await import(`./icons/${icon}.astro`);
 
@@ -20,7 +20,7 @@ const { default: Icon } = await import(`./icons/${icon}.astro`);
     <a href={link.href} class="focus:outline-none">
       <span class="absolute inset-0" aria-hidden="true"></span>
       <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-        {link.title}
+        {title || link.title}
       </p>
     </a>
   </div>

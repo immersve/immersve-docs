@@ -116,6 +116,8 @@ export default defineMarkdocConfig({
       attributes: {
         page: { type: String },
         icon: { type: String },
+        href: { type: String },
+        title: { type: String },
       },
     },
     tab: {

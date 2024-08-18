@@ -9,7 +9,7 @@ interface Props {
   endpoint: string;
 }
 
-class SimpleLink {
+export class SimpleLink {
   href: string;
   title: string;
   constructor(href: string) {
@@ -18,7 +18,7 @@ class SimpleLink {
   }
 }
 
-async function makeLink({ href, title, page, endpoint }: Props) {
+export async function makeLink({ href, title, page, endpoint }: Props) {
   if (page) {
     return await PageLink.forDocsContentId(page);
   }
