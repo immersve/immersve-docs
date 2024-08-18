@@ -111,6 +111,13 @@ export default defineMarkdocConfig({
         class: { type: String },
       },
     },
+    linkcard: {
+      render: component('./src/components/LinkCard.astro'),
+      attributes: {
+        page: { type: String },
+        icon: { type: String },
+      },
+    },
     tab: {
       render: component('./src/components/Tab.astro'),
       attributes: {
