@@ -1,13 +1,16 @@
 ---
 import { makeLink } from './Link.astro';
-import PageLink from '../models/PageLink.mjs';
 
-const { page, href, title, icon } = Astro.props;
+interface Props {
+  page: string;
+  href: string;
+  icon: string;
+  title: string;
+}
 
+const { page, href, title, icon }: Props = Astro.props;
 const link = await makeLink({ page, href, title })
-
 const { default: Icon } = await import(`./icons/${icon}.astro`);
-
 ---
 <div class="not-prose relative flex items-center space-x-3 px-6 py-5 rounded
   border border-zinc-100 hover:border-zinc-300 dark:border-zinc-600 dark:hover:border-zinc-400">

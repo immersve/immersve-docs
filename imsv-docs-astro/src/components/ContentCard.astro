@@ -1,11 +1,14 @@
 ---
-import { makeLink } from './Link.astro';
 import PageLink from '../models/PageLink.mjs';
 
-const { page, icon, title } = Astro.props;
+interface Props {
+  page: string;
+  icon: string;
+  title: string;
+}
 
-const link = await makeLink({ page })
-
+const { page, icon, title }: Props = Astro.props;
+const link = await PageLink.forDocsContentId(page);
 const { default: Icon } = await import(`./icons/${icon}.astro`);
 
 ---
