@@ -52,7 +52,7 @@ const pagefindEnabled =
           data-pagefind-body={pagefindEnabled}
           class="min-w-0 max-w-3xl flex-auto px-4 py-12 xl:px-16">
           <Prose {...Astro.props}>
-            <DocHeader {...Astro.props}/>
+            <h1 id="_top">{Astro.props.entry.data.title}</h1>
             <slot />
           </Prose>
           <Footer {...Astro.props} />
