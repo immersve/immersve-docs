@@ -5,8 +5,8 @@ import TocList from './TocList.astro';
 
 const { toc, class: className } = Astro.props;
 ---
-<div class="right-sidebar-panel hidden md:block min-w-56 w-72">
 { toc && (
+  <div class="right-sidebar-panel hidden md:block min-w-56 w-72">
     <starlight-toc data-min-h={toc.minHeadingLevel} data-max-h={toc.maxHeadingLevel}>
       <div class:list={[
         className,
@@ -21,7 +21,7 @@ const { toc, class: className } = Astro.props;
         </nav>
       </div>
     </starlight-toc>
+  </div>
 )}
-</div>
 
 <script src="../TableOfContents/starlight-toc"></script>

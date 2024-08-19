@@ -1,0 +1,5 @@
+properties:
+  partnerChannelAddress:
+    type: string
+    description: The address of the partner channel.
+    example: 'HGXCLM6NLGQ3SSSESMQNLC53ADPHHPDVHIEMYV7F4MHQFPKZEZI5PAZUPE'

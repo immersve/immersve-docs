@@ -1,7 +1,7 @@
 ---
 // Components — can override built-in CSS, but not user CSS.
-import Footer from 'virtual:starlight/components/Footer';
 import Head from './Head.astro';
+import Footer from './Footer.astro';
 import Header from './Header.astro';
 import Prose from './Prose.astro';
 import DocHeader from './DocHeader.astro';
@@ -50,9 +50,13 @@ const pagefindEnabled =
 
         <main
           data-pagefind-body={pagefindEnabled}
-          class="min-w-0 max-w-3xl flex-auto px-4 py-12 xl:px-16">
+          class:list={{
+            'max-w-3xl': Astro.props.toc,
+            'max-w-5xl': !Astro.props.toc,
+          }}
+          class="min-w-0 flex-auto px-4 py-12 xl:px-16">
           <Prose {...Astro.props}>
-            <DocHeader {...Astro.props}/>
+            <h1 id="_top">{Astro.props.entry.data.title}</h1>
             <slot />
           </Prose>
           <Footer {...Astro.props} />

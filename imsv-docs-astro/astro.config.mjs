@@ -21,10 +21,7 @@ export default defineConfig({
       },
       favicon: '/favicon.svg',
       customCss: ['./src/styles/tailwind.css'],
-      components: {
-        MarkdownContent: './src/components/MarkdownContent.astro',
-        Pagination: './src/components/FooterNavigation.astro',
-      },
+      components: {},
       sidebar: [
         { label: 'Home', link: '/' },
         { label: 'Use Cases', autogenerate: { directory: 'use-cases' } },
