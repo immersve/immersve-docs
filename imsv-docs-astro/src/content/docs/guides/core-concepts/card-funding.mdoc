@@ -19,8 +19,8 @@ must reference a Funding Source when creating a card.
 
 ## Authentication
 
-The authentication processes are described in the [authentication
-guide](/guides/authentication).
+The authentication processes are described in the {% link
+page="guides/authentication" /%} guide.
 
 
 ## Funding Source Provisioning
@@ -141,17 +141,3 @@ const contract = new Contract(
 );
 const { hash } = await contract[method](...Object.values(params));
 ```
-
-
-## Wallet Funding for Development and Testing
-
-Immersve uses the official USDC ERC-20 token from Circle. Circle provides
-a testnet [faucet](https://faucet.circle.com/). Make sure you select an [Immersve
-supported testnet](https://docs.immersve.com/guides/funding-protocols/#testnets)
-on the network selection. If the global quota of testnet USDC minting has been reached,
-[Circle Discord](https://discord.com/invite/buildoncircle) support can also help
-providing testnet USDC on demand.
-
-In non-production environments, any transaction returned by {% link endpoint="get-spending-prerequisites" /%}
-with actions related to ERC-20 smart contract will refer to the Circle "USDC"
-[testnet token](https://developers.circle.com/stablecoins/docs/usdc-on-test-networks).

@@ -25,37 +25,30 @@ to be https://test.immersve.com.
 
 ### Deposits
 
-The [Simulator Execute
-Deposit](https://docs.immersve.com/api-reference/execute-simulator-deposit)
-endpoint can be used to increase the balance on a simulator funding source. The
-[Spending
-Pre-requisites](https://docs.immersve.com/api-reference/get-spending-prerequisites)
-endpoint can be used to reliably obtain the parameters for completing the
-Funding Source deposit.
-See {% link page="guides/card-funding" /%} for more details.
+The {% link endpoint="execute-simulator-deposit" /%} endpoint can be used to
+increase the balance on a simulator funding source. The {% link
+endpoint="get-spending-prerequisites" /%} endpoint can be used to reliably
+obtain the parameters for completing the Funding Source deposit. See {% link
+page="guides/card-funding" /%} for more details.
 
 
 ### Withdrawals
 
-The [Simulator Execute
-Withdrawal](https://docs.immersve.com/api-reference/execute-simulator-deposit)
+The {% link endpoint="execute-simulator-withdrawal" /%}
 endpoint can be used to decrease the balance on a simulator funding source. The
 parameters required for executing the withdrawal transaction are obtained by
-calling the [Create Withdrawal
-Intent](https://docs.immersve.com/api-reference/create-withdrawal-intent/) API
+calling the {% link endpoint="create-withdrawal-intent" /%}
 endpoint. See {% link page="guides/card-funding" /%} for more details.
 
 
 ## Partner Setup
 
 
-A Funding Channel must be created using the
-[Create Funding Channel](https://docs.immersve.com/api-reference/create-a-funding-channel)
-endpoint.
+A Funding Channel must be created using the {% link
+endpoint="create-a-funding-channel" /%} endpoint.
 
 
 ### Cardholder Setup
 
-A funding source must be created for each Cardholder using the [Create Funding
-Source](https://docs.immersve.com/api-reference/create-a-funding-source-for-an-account/)
-endpoint.
+A funding source must be created for each Cardholder using the
+{% link endpoint="create-a-funding-source-for-an-account" /%} endpoint.
