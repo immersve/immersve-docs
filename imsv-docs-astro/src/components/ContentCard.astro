@@ -1,0 +1,37 @@
+---
+import PageLink from '../models/PageLink.mjs';
+
+interface Props {
+  page: string;
+  icon: string;
+  title: string;
+}
+
+const { page, icon, title }: Props = Astro.props;
+const link = await PageLink.forDocsContentId(page);
+const { default: Icon } = await import(`./icons/${icon}.astro`);
+
+---
+<div class="not-prose group relative rounded px-6 py-5
+  border border-zinc-100 hover:border-zinc-300 dark:border-zinc-600 dark:hover:border-zinc-400">
+  <div>
+    <span class="inline-flex">
+      <Icon class="size-5 text-zinc-600 dark:text-zinc-200" />
+    </span>
+  </div>
+
+  <div class="min-w-0 flex-1">
+    <a href={link.href} class="focus:outline-none">
+      <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+        {title || link.title}
+      </p>
+    </a>
+  </div>
+
+  <p class="my-2 text-sm text-zinc-500">{link.entry.data.description}</p>
+
+  <a href={link.href} class="hover:text-indigo-700 dark:hover:text-indigo-400">
+    <span class="absolute inset-0" aria-hidden="true"></span>
+    Read on →
+  </a>
+</div>

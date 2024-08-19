@@ -1,0 +1,31 @@
+---
+import { makeLink } from './Link.astro';
+
+interface Props {
+  page: string;
+  href: string;
+  icon: string;
+  title: string;
+}
+
+const { page, href, title, icon }: Props = Astro.props;
+const link = await makeLink({ page, href, title })
+const { default: Icon } = await import(`./icons/${icon}.astro`);
+---
+<div class="not-prose relative flex items-center space-x-3 px-6 py-5 rounded
+  border border-zinc-100 hover:border-zinc-300 dark:border-zinc-600 dark:hover:border-zinc-400">
+
+  <div class="flex justify-center items-center bg-indigo-200 dark:bg-black rounded-full size-10">
+    <Icon class="size-5 text-indigo-800 dark:text-indigo-300" />
+  </div>
+
+  <div class="min-w-0 flex-1">
+    <a href={link.href} class="focus:outline-none">
+      <span class="absolute inset-0" aria-hidden="true"></span>
+      <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+        {title || link.title}
+      </p>
+    </a>
+  </div>
+
+</div>
