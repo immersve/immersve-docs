@@ -1,0 +1,7 @@
+type: object
+description: Parameters for the Funding Channel. The valid parameters depend on the Funding Type.
+properties:
+  storageAddress:
+    type: string
+    description: The address of the storage contract.
+    example: '0x1234567890123456789012345678901234567890'
