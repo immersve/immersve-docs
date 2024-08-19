@@ -52,7 +52,7 @@ export default defineMarkdocConfig({
             new markdoc.Tag('caption', { class: 'italic caption-bottom' }, [ node.attributes.title ]),
           )
         }
-        return new markdoc.Tag( 'table', {}, children);
+        return new markdoc.Tag('div', { class: 'overflow-x-auto' }, [ new markdoc.Tag( 'table', {}, children) ]);
       },
     },
     fence: {

@@ -49,8 +49,3 @@ h1, h2, h3, h4 {
   position: relative;
   z-index: -1;
 }
-
-table {
-  display: block;
-  overflow-x: auto;
-}
