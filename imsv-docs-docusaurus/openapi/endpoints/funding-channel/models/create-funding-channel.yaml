@@ -14,14 +14,14 @@ properties:
     enum:
       - polygon-amoy-usdc-universal-evm-test
       - polygon-usdc-universal-evm-live
+      - algorand-usdc
+      - algorand-testnet-usdc
       - simulator-usdc
 
     example: polygon-amoy-usdc-universal-evm-test
   params:
     type: object
     description: Parameters for the Funding Channel. The valid parameters depend on the Funding Type.
-    properties:
-      storageAddress:
-        type: string
-        description: The address of the storage contract. Required for universal evm Funding Types.
-        example: '0x1234567890123456789012345678901234567890'
+    oneOf:
+      - $ref: './create-funding-channel-params/universal-evm.yaml'
+      - $ref: './create-funding-channel-params/algorand.yaml'
