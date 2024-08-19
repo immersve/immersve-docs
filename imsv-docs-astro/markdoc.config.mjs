@@ -52,7 +52,7 @@ export default defineMarkdocConfig({
             new markdoc.Tag('caption', { class: 'italic caption-bottom' }, [ node.attributes.title ]),
           )
         }
-        return new markdoc.Tag( 'table', {}, children);
+        return new markdoc.Tag('div', { class: 'overflow-x-auto' }, [ new markdoc.Tag( 'table', {}, children) ]);
       },
     },
     fence: {
@@ -109,6 +109,23 @@ export default defineMarkdocConfig({
       render: component('./src/components/Warning.astro'),
       attributes: {
         class: { type: String },
+      },
+    },
+    contentcard: {
+      render: component('./src/components/ContentCard.astro'),
+      attributes: {
+        page: { type: String },
+        icon: { type: String },
+        title: { type: String },
+      },
+    },
+    linkcard: {
+      render: component('./src/components/LinkCard.astro'),
+      attributes: {
+        page: { type: String },
+        icon: { type: String },
+        href: { type: String },
+        title: { type: String },
       },
     },
     tab: {
