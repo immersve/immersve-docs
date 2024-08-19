@@ -3,11 +3,9 @@ properties:
   appId:
     type: number
     description: Application ID
-    example: 702773164
   method:
     type: string
     description: Smart contract method e.g. cardFundExecuteApprovedWithdrawal
-    example: cardFundExecuteApprovedWithdrawal
   abi:
     description: The JSON ABI of the smart contract (contains only required details. more details here https://docs.soliditylang.org/en/v0.8.19/abi-spec.html#json)
     type: object
@@ -15,11 +13,9 @@ properties:
       name:
         type: string
         description: The name of the method
-        example: cardFundExecuteApprovedWithdrawal
       desc:
         type: string
         description: The description of the method
-        example: Withdraws funds before the withdrawal timestamp has lapsed, by using the early withdrawal signature provided by Immersve.
       args:
         type: array
         description: An array of argument objects
@@ -29,19 +25,15 @@ properties:
             name:
               type: string
               description: Name of the argument
-              example: cardFund
             type:
               type: string
               description: Data type of the argument
-              example: address
             desc:
               type: string
               description: Description of the argument
-              example: The address of the card.
       returns:
         type: string
         description: void
-        example: void
   args:
     type: array
     description: Smart contract call params. Contents are matching names and order defined in ABI args array
@@ -51,8 +43,6 @@ properties:
         type:
           type: string
           description: Data type of the argument
-          example: address
         value:
           type: string
           description: Value of the argument
-          example: 34UGKHDH6L34X6FTZ4YFVVQS3FHRQBCAZW43BB5VHZYTVIPOQZAZORZZXI
