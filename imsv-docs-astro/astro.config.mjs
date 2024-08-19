@@ -7,10 +7,9 @@ import yaml from 'yaml';
 
 const redirects = yaml.parse(await fs.promises.readFile('./src/redirects.yml', 'utf-8'));
 
-export const siteBaseUrl = 'https://docs.immersve.com/';
-
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://docs.immersve.com/',
   integrations: [
     starlight({
       title: 'Immersve Docs',
@@ -22,9 +21,7 @@ export default defineConfig({
       },
       favicon: '/favicon.svg',
       customCss: ['./src/styles/tailwind.css'],
-      components: {
-        Head: './src/components/Head.astro',
-      },
+      components: {},
       sidebar: [
         { label: 'Home', link: '/' },
         { label: 'Use Cases', autogenerate: { directory: 'use-cases' } },
