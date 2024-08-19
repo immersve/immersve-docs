@@ -24,7 +24,6 @@ export default defineConfig({
       customCss: ['./src/styles/tailwind.css'],
       components: {
         Head: './src/components/Head.astro',
-        Pagination: './src/components/FooterNavigation.astro',
       },
       sidebar: [
         { label: 'Home', link: '/' },
