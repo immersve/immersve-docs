@@ -18,7 +18,7 @@ properties:
     example: "2023-08-14T12:32:54"
   walletAddress:
     type: string
-    description: The wallet address from which the funds will be withdrawn.
+    description: The wallet address to which the funds will be sent.
     example: "0xA3058369d6A481B1ff08F62B352409c3D709De9b"
   execution:
     oneOf:
