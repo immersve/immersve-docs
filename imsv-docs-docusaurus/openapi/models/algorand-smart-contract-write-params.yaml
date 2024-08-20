@@ -5,9 +5,9 @@ properties:
     description: Application ID
   method:
     type: string
-    description: Smart contract method e.g. cardFundExecuteApprovedWithdrawal
+    description: Smart contract method
   abi:
-    description: The JSON ABI of the smart contract (contains only required details. more details here https://docs.soliditylang.org/en/v0.8.19/abi-spec.html#json)
+    description: The JSON ABI of the smart contract (contains only required details)
     type: object
     properties:
       name:
@@ -32,8 +32,12 @@ properties:
               type: string
               description: Description of the argument
       returns:
-        type: string
-        description: void
+        type: object
+        description: The return value of the method
+        properties:
+          type:
+            type: string
+            description: Type of the return value
   args:
     type: array
     description: Smart contract call params. Contents are matching names and order defined in ABI args array

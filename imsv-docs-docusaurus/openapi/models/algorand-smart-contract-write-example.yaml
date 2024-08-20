@@ -7,7 +7,8 @@ abi:
     - name: cardFund
       type: address
       desc: The address of the card.
-  returns: void
+  returns:
+    type: void
 args:
   - type: address
-    value: 34UGKHDH6L34X6FTZ4YFVVQS3FHRQBCAZW43BB5VHZYTVIPOQZAZORZZXI
+    value: EY434UKQU4EX2M63RXFIKZUUKZG4GY5GWV
