@@ -25,8 +25,6 @@ In the event that an individual wished to go through KYC in another supported re
 Below, we've outlined the steps for completion of this verification process, assuming all necessary details, such as
 document scans and biometrics, have been collected and verified.
 
-See the [KYC API endpoint references](/api-reference/kyc/).
-
 ## Set up environment variables
 
 ```bash
@@ -39,8 +37,8 @@ funding_source_id="<funding_source_id>"
 ```
 
 ## Submit cardholder KYC statement
-[Submit KYC statement](/api-reference/submit-partner-kyc-statement#submit-partner-kyc-statement) about the
-cardholder account.
+
+{% endpointref name="submit-partner-kyc-statement" /%}
 
 {% note %}
 When testing, to improve chances of a successful response, please provide "passall" as the middleName, and generate a
@@ -111,14 +109,19 @@ curl -X PUT "https://test.immersve.com/api/accounts/${cardholder_account_id}/par
 ```
 
 ## Poll spending prerequisites
-Poll [spending prerequisites](/api-reference/get-spending-prerequisites/) endpoint. The initial
-call to the endpoint when there is a new KYC statement for the cardholder will create a new KYC check and the endpoint
-will return “check_in_progress” for the KYC prerequisite status.
 
-The endpoint will keep returning “check_in_progress” until the check is completed.
+{% endpointref name="get-spending-prerequisites" /%}
 
-Once the check is completed successfully, the response should contain 'ok' status for the KYC prerequisite. However, if the check
-failed, the response will return "kyc_check_failed". Check the KYC statement and submit it again or contact Immersve support.
+Poll the Get Spending Prerequisites endpoint to wait for KYC checks to complete.
+The initial call to the endpoint when there is a new KYC statement for the
+cardholder will create a new KYC check and the endpoint will return
+"check_in_progress" for the KYC prerequisite status.
+
+The endpoint will keep returning "check_in_progress" until the check is
+completed. Once the check is completed successfully, the response should contain
+"ok" status for the KYC prerequisite. However, if the check failed, the response
+will return "kyc_check_failed". Check the KYC statement and submit it again or
+contact Immersve support.
 
 ### Example request
 ```bash

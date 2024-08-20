@@ -20,7 +20,7 @@ better starting point for your integration.
 
 ## Before You Get Started
 
-### Verify your asset is supported
+### Verify Your Asset is Supported
 
 Before you begin integrating ensure your chain and token combination is
 supported. See {% link page="guides/supported-chains" /%} and {% link page="guides/supported-tokens" /%}.
@@ -36,9 +36,9 @@ guide to find which protocol would best suit your use case.
 non-custodial apps. If users have already been verified then {% link
 page="guides/partner-conducted-kyc" /%} may be an option.
 
-## Provision application resources
+## Provision Application Resources
 
-### Set up your partner account
+### Set Up Your Partner Account
 
 Contact support to get your: Partner Account ID, Client Application, API Key(s)
 and Card Program ID. You will initially have credentials to integrate with the
@@ -233,7 +233,7 @@ The {% link endpoint="create-a-card" /%}, {% link endpoint="get-card-details"
 requesting a card. See {% link page="guides/issue-a-virtual-card" /%} for
 further information.
 
-**Create a card**
+**Create a Card**
 
 Post the funding source ID and your provided card program ID to the card orders
 endpoint and record the returned card ID.
@@ -250,7 +250,7 @@ card_id=$(curl -X POST "https://test.immersve.com/api/cards" \
   }' | jq -r .cardId)
 ```
 
-**Get card details**
+**Get Card Details**
 
 Call Get Card Details to see card status and ensure it is active.
 
@@ -261,7 +261,7 @@ curl -X GET "https://test.immersve.com/api/cards/${card_id}" \
   -H "Authorization: Bearer ${imsv_access_token}"
 ```
 
-**Get sensitive card details**
+**Get Sensitive Card Details**
 
 Card sensitive details are obtained by generating a unique time-limited token.
 The response contains a callback URL which can be used to obtain the
