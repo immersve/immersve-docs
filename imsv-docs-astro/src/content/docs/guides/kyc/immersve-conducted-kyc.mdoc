@@ -52,9 +52,8 @@ In the event that an individual wished to go through KYC in another supported re
 
 If KYC is not required, is already in progress, or the maximum
 number of retries has been exceeded, the URL will not be returned and the status
-will indicate the problem. See [Spending Prerequisites endpoint
-reference](/api-reference/get-spending-prerequisites/)
-for more details on possible statuses.
+will indicate the problem. See the {% link endpoint="get-spending-prerequisites"
+/%} endpoint reference for more details on possible statuses.
 
 **Example Request:**
 ```bash
@@ -159,18 +158,12 @@ This highly increases the chances of receiving a successful KYC result when test
 You must always perform a facial scan of a real person.
 {% /warning %}
 
-### ID Verification (IDV) Without Real Documents
-If you’re not comfortable using your identity documents, we have provided a dummy drivers license that can be used
-instead of a real identity document.
+### Test ID Documents
 
-Facial scan **must** be done with the a real person’s face. No actual data will be sent to our test environment.
+If you're not comfortable using your identity documents, we have provided a
+dummy drivers license that can be used instead of a real identity document.
+The facial scan *must* be done with the a real person's face, however.
 
-Below are the front and back images of a driver license that can be scanned with a phone camera:
+![mock-licence-front (1).jpg](./assets/mock-driver-licence-front.webp "Front")
 
-**Front of a drivers license**
-
-![mock-licence-front (1).jpg](@assets/kyc/mock-driver-licence-front.jpg)
-
-**Back of a drivers license**
-
-![mock-licence-back (1).jpg](@assets/kyc/mock-driver-licence-back.jpg)
+![mock-licence-back (1).jpg](./assets/mock-driver-licence-back.webp "Back")

@@ -14,6 +14,8 @@ interface Props {
 const { src, alt, title, __optimizedSrc } = Astro.props;
 ---
 <figure>
-  <img class="rounded" src={__optimizedSrc.src} height={__optimizedSrc.height} width={__optimizedSrc.width} alt={alt} />
+  <div class="flex justify-center items-center">
+    <img class="rounded-lg not-prose" src={__optimizedSrc.src} height={__optimizedSrc.height} width={__optimizedSrc.width} alt={alt} />
+  </div>
   {title && <figcaption class="text-center italic">{title}</figcaption>}
 </figure>
