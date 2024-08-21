@@ -1,0 +1,14 @@
+appId: 702773164
+method: cardFundExecuteApprovedWithdrawal
+abi:
+  name: cardFundExecuteApprovedWithdrawal
+  desc: Withdraws funds before the withdrawal timestamp has lapsed, by using the early withdrawal signature provided by Immersve.
+  args:
+    - name: cardFund
+      type: address
+      desc: The address of the card.
+  returns:
+    type: void
+args:
+  - type: address
+    value: EY434UKQU4EX2M63RXFIKZUUKZG4GY5GWV

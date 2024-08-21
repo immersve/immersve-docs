@@ -22,8 +22,11 @@ properties:
     example: "0xA3058369d6A481B1ff08F62B352409c3D709De9b"
   execution:
     oneOf:
-    - $ref: '../../../models/smart-contract-write-params.yaml'
-      title: smart_contract_write
-    - $ref: '../../../models/simulator-deposit.yaml'
-      title: simulator_call
-
+      - $ref: "../../../models/evm-smart-contract-write-params.yaml"
+        title: EVM Smart Contract Write
+      - $ref: "../../../models/algorand-contract-call-params.yaml"
+        title: Algorand Contract Call
+        example:
+          $ref: "../../../models/algorand-contract-call-example.yaml"
+      - $ref: "../../../models/simulator-deposit.yaml"
+        title: Simulator Call

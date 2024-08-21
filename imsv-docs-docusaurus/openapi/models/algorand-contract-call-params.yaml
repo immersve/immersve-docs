@@ -1,0 +1,52 @@
+type: object
+properties:
+  appId:
+    type: number
+    description: Application ID
+  method:
+    type: string
+    description: Smart contract method
+  abi:
+    description: The JSON ABI of the smart contract (contains only required details)
+    type: object
+    properties:
+      name:
+        type: string
+        description: The name of the method
+      desc:
+        type: string
+        description: The description of the method
+      args:
+        type: array
+        description: An array of argument objects
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Name of the argument
+            type:
+              type: string
+              description: Data type of the argument
+            desc:
+              type: string
+              description: Description of the argument
+      returns:
+        type: object
+        description: The return value of the method
+        properties:
+          type:
+            type: string
+            description: Type of the return value
+  args:
+    type: array
+    description: Smart contract call params. Contents are matching names and order defined in ABI args array
+    items:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Data type of the argument
+        value:
+          type: string
+          description: Value of the argument
