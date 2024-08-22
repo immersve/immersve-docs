@@ -89,7 +89,14 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 }
 ```
 
-
+### Handling region mismatch
+In some cases, when making requests to the spending prerequisites endpoint,
+you might encounter a 403 error with the response code KYC_PROFILE_REGION_MISMATCH.
+This indicates that the KYC profile is already approved for a region different from
+the one being requested.
+To resolve this, you can use the {% link endpoint="get-a-kyc-profile"
+/%} endpoint to determine the current
+region of the KYC profile.
 
 ### User goes through the KYC flow
 
