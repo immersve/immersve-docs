@@ -149,7 +149,7 @@ post:
         The KYC region is not yet supported.
 
         **KYC_STATEMENT_REGION_MISMATCH**
-        The latest KYC statement is either not submitted or requires manual review, and the region is different from the requested region.
+        The latest unchecked KYC statement is for a region that is different from the requested region.
       content:
         application/json:
           schema:
