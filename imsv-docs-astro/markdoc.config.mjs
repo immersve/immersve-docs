@@ -99,6 +99,16 @@ export default defineMarkdocConfig({
         class: { type: String },
       },
     },
+    list: {
+      render: component('./src/components/List.astro'),
+    },
+    listitem: {
+      render: component('./src/components/ListItem.astro'),
+      attributes: {
+        primary: { type: String },
+        connector: { type: Boolean },
+      },
+    },
     note: {
       render: component('./src/components/Note.astro'),
       attributes: {
