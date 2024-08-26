@@ -1,0 +1,71 @@
+---
+title: Blockchains
+description: |
+  With Immersve, blockchain developers can enable users to spend their web3
+  assets anywhere Mastercard is accepted.
+---
+
+
+## Audience
+
+Layer 1 and / or layer 2 blockchain developers that want their preferred chain
+to be used for funding Immersve powered Mastercards.
+
+## How it works
+
+{% list %}
+  {% listitem "Wallet" connector=true %}
+    Immersve partner applications such as defi or web3 wallets offer your chain
+    as an Immersve powered card funding channel.
+  {% /listitem %}
+
+  {% listitem "CreditCard" connector=true %}
+    Users fund their Mastercard with stable coins using the Immersve protocol on
+    your chain.
+  {% /listitem %}
+
+  {% listitem "Library" %}
+    Immersve can use deposited stable coins to settle cleared card payments with
+    Mastercard.
+  {% /listitem %}
+
+{% /list %}
+
+## Requirements
+
+To enable your chain with Immersve, the following must be true:
+
+{% list %}
+  {% listitem "ArrowRightCircle" %}
+    Immersve smart contract protocol is implemented for your chain, audited and
+    deployed by Immersve.
+  {% /listitem %}
+
+  {% listitem "ArrowRightCircle" %}
+    Immersve infrastructure integrates with your blockchain network in order to
+    index all relevant deposit and withdrawal events and initiate settlement
+    transactions.
+  {% /listitem %}
+
+  {% listitem "ArrowRightCircle" %}
+    Immersve supports your chain's message signing format so users can register
+    their address as a card funding source.
+  {% /listitem %}
+
+  {% listitem "ArrowRightCircle" %}
+    Transactions on your chain can be screened for "Know Your Transaction" (KYT)
+    purposes.
+  {% /listitem %}
+
+  {% listitem "ArrowRightCircle" %}
+    A pathway for stable coin settlement is mutually agreed on.
+  {% /listitem %}
+
+{% /list %}
+
+## Next Steps
+
+Review our existing {% link page="guides/supported-chains" /%} and {% link
+page="guides/funding-protocols" /%} to see what is already available. {% link
+href="https://www.immersve.com/contact" title="Contact us" /%}
+to get more detailed smart contract development requirements.
