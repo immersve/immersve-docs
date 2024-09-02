@@ -6,49 +6,17 @@ order and use Immersve cards.
 
 Below is an indicative list of regions supported by Immersve.
 
-## Live
+### Live
 - New Zealand
 - Australia
 
-## Coming soon
-- Austria
-- Belgium
-- Bulgaria
-- Croatia
-- Cyprus
-- Czech Republic (Czechia)
-- Denmark
-- Estonia
-- Finland
-- France
-- Germany
-- Greece
-- Hungary
-- Iceland
-- Ireland
-- Italy
-- Latvia
-- Liechtenstein
-- Lithuania
-- Luxembourg
-- Malta
-- Netherlands
-- Norway
-- Poland
-- Portugal
-- Romania
-- Slovakia
-- Slovenia
-- Spain
-- Sweden
-- United Arab Emirates
-- United Kingdom
-- United States
+### Coming soon
+Austria, Belgium, Bulgaria, Croatia, Cyprus, Czech Republic (Czechia), Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, United Arab Emirates, United Kingdom, United States
 
-# Supported regions endpoint
+## Supported Regions Endpoint
 
 The availability of regions may vary between partners. A region may be
-supported by Immersve but not be accessible to a given partner if they for
+supported by Immersve but not be accessible to a given partner if they, for
 instance, have no card programs set up in that region.
 
 For the most up-to-date list of the supported regions for a partner, use the
@@ -67,16 +35,14 @@ partner can issue cards in a region, getting the region code for a region, or
  when populating regions in UI elements (such as dropdowns).
 {%/note %}
 
-
-
-
-## Custodial Wallets
+### Custodial Wallets
 
 If you are {% link page="guides/authentication" title="authenticating" /%} with
 Immersve using  API Key Authentication as part of a {% link
 page="use-cases/custodial-wallets"/%} integration.
 
-### Setup environment variables
+**Setup environment variables**
+
 The following variables are referenced from the example bash scripts
 throughout the next section of this guide.
 
@@ -85,7 +51,8 @@ card_issuer_api_key="<your_card_issuer_api_key>"
 card_issuer_api_secret="<your_card_issuer_api_secret>"
 partner_account_id="<your_partner_account_id>"
 ```
-### Getting supported regions
+**Getting supported regions**
+
 Calling the endpoint using an api key.
 ```bash
 curl "https://test.immersve.com/api/accounts/${partner_account_id}/supported-regions" \
@@ -95,12 +62,13 @@ curl "https://test.immersve.com/api/accounts/${partner_account_id}/supported-reg
   -H "x-api-secret: ${card_issuer_api_secret}"
 ```
 
-## Web3 Wallets
+### Web3 Wallets
 
 If you are {% link page="guides/authentication" title="authenticating" /%} with Immersve using User Session Authentication as
 part of a {% link page="use-cases/web3-wallets"/%} integration.
 
-### Setup environment variables
+**Setup environment variables**
+
 The following variables are referenced from the example bash scripts
 throughout the next section of this guide.
 
@@ -108,7 +76,8 @@ throughout the next section of this guide.
 partner_account_id="<your_partner_account_id>"
 imsv_access_token="<access token from login response>"
 ```
-### Getting supported regions
+**Getting supported regions**
+
 Calling the endpoint using a bearer token.
 ```bash
 curl "https://test.immersve.com/api/accounts/${partner_account_id}/supported-regions" \
