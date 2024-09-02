@@ -20,3 +20,7 @@ properties:
     type: string
     description: Name of the Funding Channel.
     example: immersve-polygon-usdc
+  purpose:
+    type: string
+    description: Purpose of the Funding Channel.
+    example: card-funding
