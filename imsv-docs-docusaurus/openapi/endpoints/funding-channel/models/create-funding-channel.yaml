@@ -23,7 +23,8 @@ properties:
     example: polygon-amoy-usdc-universal-evm-test
   purpose:
     type: string
-    description: The purpose of the Funding Channel.
+    required: false
+    description: The purpose of the Funding Channel. Defaults to "card-funding".
     enum:
       - card-funding
       - billing
