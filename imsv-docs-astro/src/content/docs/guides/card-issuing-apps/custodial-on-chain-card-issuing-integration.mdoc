@@ -92,6 +92,15 @@ different in the live environment.
 
 ## Per Cardholder Setup
 
+### Select Region
+
+Prompting the user to select their region helps them to avoid the card
+onboarding journey if their region is not yet available. Call the {% link
+endpoint="get-supported-regions" /%} endpoint to get the current list of
+available regions for your application.
+
+See: {% link page="guides/regions" /%}.
+
 ### Create a Cardholder Account
 
 Provision each cardholder with an account and save their ID. In the custodial
@@ -176,7 +185,6 @@ funding_source_id=$(curl -X POST "https://${imsv_api_host}/api/funding-sources" 
   }' | jq -r '.id')
 
 ```
-
 ### Request a Card
 
 The {% link endpoint="create-a-card" /%}, {% link endpoint="get-card-details"
