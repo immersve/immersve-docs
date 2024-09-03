@@ -1,0 +1,26 @@
+---
+title: Arbitrum
+description: What tokens and protocols are supported on Arbitrum
+slug: guides/arbitrum
+supportedChain: true
+---
+
+{% note %}
+Do not transfer assets directly to these addresses or funds will be lost.
+Always use the spending prerequisites endpoint to discover the correct address
+for user deposits.
+{% /note %}
+
+{%
+  deployedFundingProtocolsTable
+  chain="arbitrum"
+  columns=[
+    "network",
+    "protocol",
+    "address",
+  ]
+/%}
+
+
+## See Also
+{% link page="guides/funding-protocols" /%}
