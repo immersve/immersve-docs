@@ -1,0 +1,179 @@
+---
+title: Custodial Funding Protocol
+description: Overview of Immersve's Custodial Funding Protocol.
+slug: guides/custodial-funding-protocol
+fundingProtocol:
+  source: ""
+---
+
+The Immersve Custodial {% link page="guides/funding-protocols"
+title="funding protocol" /%} allows client applications to authorize
+Immersve card payments in real-time using their own ledger.
+
+
+## Protocol Mechanics
+
+### On-Chain Pooled Float
+
+The custodian deposits a "float" into an Immersve smart contract in order to
+cover the anticipated cardholder payments. The available balance of the float is
+adjusted in real-time according to cardholder payments. When the available
+balance drops to zero then all cardholder payments will be declined. Settlements
+are handled automatically by Immersve by drawing on the float.
+
+
+### Webhook Payment Messages
+
+Card payment authorization requests and other payment lifecycle events are
+actioned by delegating to the custodian's webhook endpoints.
+
+
+
+## Partner Setup
+
+
+A Funding Channel must be created using the {% link
+endpoint="create-a-funding-channel" /%} endpoint. The funding channel
+should have a funding type of `custodial-usdc`.
+
+
+### Cardholder Setup
+
+A funding source must be created for each Cardholder using the {% link
+endpoint="create-a-funding-source-for-an-account" /%} endpoint. An externalId
+field must be supplied which can be correlated to a user's custodial ledger
+account. The externalId field will be supplied with every webhook notification
+for payments relating to the funding source.
+
+
+## Webhooks
+
+### Authentication
+
+Webhooks are authenticated by an RSA signature. The signature is made against
+the contatenation of the request headers and body like
+`{requestId}:{keyId}:{body}`. The signature is provided in the
+<nobr>`X-Signature`</nobr> header.
+
+
+### Headers
+
+| Header | Description |
+|-|-|
+| X-Request-Id | Unique request identifier. |
+| X-Key-Id     | The id of the signing key used to generate the signature. |
+| X-Signature  | The RSA SHA256 signature of the request. |
+
+
+### Idempotency
+
+Notification messages are guaranteed to be delivered. When message delivery
+fails, delivery will be retried at an exponentially increasing interval.
+Authorization messages are not retried; if an authorization message fails a
+cancel message will be sent instead.
+
+
+### Authorize Payment Webhook
+
+{% table %}
+---
+* Description
+* A real-time instruction to authorize a payment.
+---
+* Method
+* POST
+---
+* URL
+* {base_url}/authorize
+---
+{% /table %}
+
+The authorization webhook is called when a merchant requests payment from the
+card.
+
+The authorization request is expected to respond within ~1.5 seconds.
+Unresponsive authoriation requests will be canceled.
+
+#### Response Format
+
+The authorize response must contain a JSON object with the following fields.
+
+
+| Field | Example | Description |
+|-|-|-|
+| authorized     | true    | The authorization request was granted. |
+
+
+
+### Cancel Payment Webhook
+
+{% table %}
+---
+* Description
+* An instruction to cancel a payment authorization.
+---
+* Method
+* POST
+---
+* URL
+* {base_url}/cancel
+---
+{% /table %}
+
+Immersve will send a cancel payment instruction incase an error has occured
+while handling an authorization request.
+
+
+### Adjust Balance Webhook
+
+{% table %}
+---
+* Description
+* An instruction to adjust the balance on a custodial funding source.
+---
+* Method
+* POST
+---
+* URL
+* {base_url}/balance-adjustment
+---
+{% /table %}
+
+A balance adjustment instruction will be sent in several scenarios:
+when a payment is cleared for an amount greater or less than the authorized
+amount; when a payment is reversed or expired; or when a refund has been issued.
+
+The integrated client must accept the balance adjustment and increment or
+decrement the funding source balance accordingly.
+
+
+
+### Request Body Format
+
+All custodial webhook endpoints share the same message body format. The request
+content type is application/json.
+
+
+| Field | Example | Description |
+|-|-|-|
+| cardholder<wbr>AccountId     | abc123    | Immersve cardholder account id. |
+| funding<wbr>Source<wbr>ExternalId | abc123    | The client user ref stored on the Immersve funding source. |
+| funding<wbr>Source<wbr>Id    | abc123    | Immersve funding source identifier. |
+| cardId                       | abc123    | Immersve card identifier. |
+| amount                       | 1312      | Required payment amount in minor units.  |
+| currency                     | USD       | Required payment currency. |
+| idempotency<wbr>Key          | abc123    | Identifier which is used to detect duplicate messages. |
+| message<wbr>Type             | authorize | The type of webhook message: `authorize`, `cancel`, `adjust-balance`. |
+| acquirer<wbr>Amount          | 1000      | The merchant's requested payment amount in minor units. This value is for information only. |
+| acquirer<wbr>Currency        | GBP       | The merchant's requested payment currency. |
+| merchant<wbr>City            | Auckland  | |
+| merchant<wbr>CountryCode     | NZL       | |
+| merchant<wbr>Id              | 92102062<wbr>388908 | |
+| merchant<wbr>Name            | Unsworth Height Super | |
+| merchant<wbr>TerminalId      | 50487001  | |
+| merchant<wbr>CategoryCode    | 5451      | |
+| cardPresent                  | true      | Was the card or XPay device physically present at the time of purchase. |
+| transaction<wbr>Id           | abc123    | Immersve transaction identifier. |
+| transaction<wbr>Reference    | 0100596096<wbr>0820000000<wbr>000000 | The payment network transaction identifier. |
+| transaction<wbr>Type         | purchase  | The type of payment: `purchase`, `refund`. |
+| transaction<wbr>Date         | 2022-04-01T<wbr/>10:00:00.000Z | The transaction date/time. |
