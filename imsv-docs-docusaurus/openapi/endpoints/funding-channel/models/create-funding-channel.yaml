@@ -14,11 +14,11 @@ properties:
     enum:
       - polygon-amoy-usdc-universal-evm-test
       - polygon-usdc-universal-evm-live
+      - arbitrum-mainnet-usdc-universal-evm
+      - arbitrum-sepolia-usdc-universal-evm
       - algorand-usdc
       - algorand-testnet-usdc
       - simulator-usdc
-      - arbitrum-mainnet-usdc-universal-evm
-      - arbitrum-sepolia-usdc-universal-evm
 
     example: polygon-amoy-usdc-universal-evm-test
   params:
