@@ -19,6 +19,8 @@ properties:
     enum:
       - polygon-mainnet
       - polygon-amoy
+      - arbitrum-sepolia
+      - arbitrum-mainnet
   description:
     description: The description of the challenge.
     type: string
