@@ -1,0 +1,30 @@
+---
+interface Props {
+  primary: string;
+}
+
+const { primary: arg }: Props = Astro.props;
+
+let content = (await Astro.slots.render("default")).trim();
+
+let mode = 'camelcase';
+if (typeof arg == 'number') {
+  mode = 'count';
+}
+else if (typeof arg == 'string') {
+  mode = 'regex';
+}
+
+switch (mode) {
+  case 'count':
+    content = content.replaceAll(new RegExp(`.{${arg}}`, 'g'), m => `${m}<wbr/>`)
+    break;
+  case 'regex':
+    content = content.replaceAll(new RegExp(arg, 'g'), m => `${m}<wbr/>`)
+    break;
+  case 'camelcase':
+    content = content.replaceAll(/[a-z][A-Z]/g, m => `${m[0]}<wbr/>${m[1]}`);
+    break;
+}
+---
+<Fragment set:html={ content }/>
