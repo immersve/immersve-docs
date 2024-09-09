@@ -156,24 +156,24 @@ content type is application/json.
 
 | Field | Example | Description |
 |-|-|-|
-| cardholder<wbr>AccountId     | abc123    | Immersve cardholder account id. |
-| funding<wbr>Source<wbr>ExternalId | abc123    | The client user ref stored on the Immersve funding source. |
-| funding<wbr>Source<wbr>Id    | abc123    | Immersve funding source identifier. |
-| cardId                       | abc123    | Immersve card identifier. |
-| amount                       | 1312      | Required payment amount in minor units.  |
-| currency                     | USD       | Required payment currency. |
-| idempotency<wbr>Key          | abc123    | Identifier which is used to detect duplicate messages. |
-| message<wbr>Type             | authorize | The type of webhook message: `authorize`, `cancel`, `adjust-balance`. |
-| acquirer<wbr>Amount          | 1000      | The merchant's requested payment amount in minor units. This value is for information only. |
-| acquirer<wbr>Currency        | GBP       | The merchant's requested payment currency. |
-| merchant<wbr>City            | Auckland  | |
-| merchant<wbr>CountryCode     | NZL       | |
-| merchant<wbr>Id              | 92102062<wbr>388908 | |
-| merchant<wbr>Name            | Unsworth Height Super | |
-| merchant<wbr>TerminalId      | 50487001  | |
-| merchant<wbr>CategoryCode    | 5451      | |
-| cardPresent                  | true      | Was the card or XPay device physically present at the time of purchase. |
-| transaction<wbr>Id           | abc123    | Immersve transaction identifier. |
-| transaction<wbr>Reference    | 0100596096<wbr>0820000000<wbr>000000 | The payment network transaction identifier. |
-| transaction<wbr>Type         | purchase  | The type of payment: `purchase`, `refund`. |
-| transaction<wbr>Date         | 2022-04-01T<wbr/>10:00:00.000Z | The transaction date/time. |
+| {% wrap %} cardholderAccountId     {% /wrap %} | abc123    | Immersve cardholder account id. |
+| {% wrap %} fundingSourceExternalId {% /wrap %} | abc123    | The client user ref stored on the Immersve funding source. |
+| {% wrap %} fundingSourceId         {% /wrap %} | abc123    | Immersve funding source identifier. |
+| {% wrap %} cardId                  {% /wrap %} | abc123    | Immersve card identifier. |
+| {% wrap %} amount                  {% /wrap %} | 1312      | Required payment amount in minor units.  |
+| {% wrap %} currency                {% /wrap %} | USD       | Required payment currency. |
+| {% wrap %} idempotencyKey          {% /wrap %} | abc123    | Identifier which is used to detect duplicate messages. |
+| {% wrap %} messageType             {% /wrap %} | authorize | The type of webhook message: `authorize`, `cancel`, `adjust-balance`. |
+| {% wrap %} acquirerAmount          {% /wrap %} | 1000      | The merchant's requested payment amount in minor units. This value is for information only. |
+| {% wrap %} acquirerCurrency        {% /wrap %} | GBP       | The merchant's requested payment currency. |
+| {% wrap %} merchantCity            {% /wrap %} | Auckland  | |
+| {% wrap %} merchantCountryCode     {% /wrap %} | NZL       | |
+| {% wrap %} merchantId              {% /wrap %} | {% wrap 9 %}92102062388908{% /wrap %} | |
+| {% wrap %} merchantName            {% /wrap %} | Unsworth Height Super | |
+| {% wrap %} merchantTerminalId      {% /wrap %} | 50487001  | |
+| {% wrap %} merchantCategoryCode    {% /wrap %} | 5451      | |
+| {% wrap %} cardPresent             {% /wrap %} | true      | Was the card or XPay device physically present at the time of purchase. |
+| {% wrap %} transactionId           {% /wrap %} | abc123    | Immersve transaction identifier. |
+| {% wrap %} transactionReference    {% /wrap %} | {% wrap 9 %}01005960960820000000000000{% /wrap %} | The payment network transaction identifier. |
+| {% wrap %} transactionType         {% /wrap %} | purchase  | The type of payment: `purchase`, `refund`. |
+| {% wrap %} transactionDate         {% /wrap %} | {% wrap "T" %}2022-04-01T10:00:00.000Z{% /wrap %} | The transaction date/time. |

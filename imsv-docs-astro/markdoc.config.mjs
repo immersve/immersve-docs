@@ -64,6 +64,12 @@ export default defineMarkdocConfig({
     },
   },
   tags: {
+    wrap: {
+      render: component('./src/components/Wrap.astro'),
+      attributes: {
+        primary: { type: [ String, Number ] },
+      },
+    },
     table: {
       ...markdoc.tags.table,
       attributes: {
