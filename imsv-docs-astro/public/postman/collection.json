@@ -1859,6 +1859,102 @@
 				}
 			]
 		},
+    {
+			"name": "Spending",
+			"item": [
+				{
+					"name": "Get Expected Spend Amount",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts/{{cardholderId}}/expected-spend-amount",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								"{{cardholderId}}",
+								"expected-spend-amount"
+							],
+							"variable": [
+								{
+									"key": "cardholderId",
+									"value": "{{cardholderAccountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Expected Spend Amount",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"expectedSpendAmount\": \"{{expectedSpendAmount}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts/{{cardholderId}}/expected-spend-amount",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								"{{cardholderId}}",
+								"expected-spend-amount"
+							],
+							"variable": [
+								{
+									"key": "cardholderId",
+									"value": "{{cardholderAccountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Transactions",
 			"item": [

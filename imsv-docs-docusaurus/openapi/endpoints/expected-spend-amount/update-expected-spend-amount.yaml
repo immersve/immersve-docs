@@ -1,0 +1,53 @@
+tags:
+  - expected-spend-amount
+summary: Update expected spend amount
+description: Update the expected spend amount for the given cardholder.
+parameters:
+  - name: cardholderId
+    in: path
+    description: The ID of the cardholder.
+    required: true
+    schema:
+      type: string
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          expectedSpendAmount:
+            type: string
+            description: The new expected spend amount for the cardholder.
+  required: true
+responses:
+  "200":
+    description: Expected spend amount updated successfully.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            cardholderId:
+              type: string
+              description: The ID of the cardholder.
+            expectedSpendAmount:
+              type: string
+              description: The updated expected spend amount.
+  "403":
+    description: API caller is unauthorized to perform this action.
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"
+  "400":
+    description: Invalid request fields.
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-400.yaml"
+  "404":
+    description: Cardholder not found.
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-404.yaml"

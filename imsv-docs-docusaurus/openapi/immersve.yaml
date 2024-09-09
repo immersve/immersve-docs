@@ -28,6 +28,8 @@ tags:
     x-displayName: KYC
   - name: prerequisites
     x-displayName: Prerequisites
+  - name: spending
+    x-displayName: Spending
   - name: simulator
     x-displayName: Simulator
   - name: funding-source
@@ -80,6 +82,11 @@ paths:
       $ref: "./endpoints/contact-details/get-contact-details.yaml"
     patch:
       $ref: "./endpoints/contact-details/update-contact-details.yaml"
+  "/api/accounts/{accountId}/expected-spend-amount":
+    get:
+      $ref: "./endpoints/expected-spend-amount/get-expected-spend-amount.yaml"
+    patch:
+      $ref: "./endpoints/expected-spend-amount/update-expected-spend-amount.yaml"
   "/api/spending-prerequisites":
     $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"
   "/api/currencies":
