@@ -10,7 +10,7 @@ parameters:
     schema:
       type: string
 responses:
-  "200":
+  '200':
     description: Successful operation
     content:
       application/json:
@@ -23,21 +23,11 @@ responses:
             expectedSpendAmount:
               type: string
               description: The expected spend amount for the cardholder.
-  "403":
-    description: Unauthorized to access resource.
-    content:
-      application/json:
-        schema:
-          $ref: "../../models/api-error-403.yaml"
-  "400":
-    description: Invalid request fields.
-    content:
-      application/json:
-        schema:
-          $ref: "../../models/api-error-400.yaml"
-  "404":
-    description: Cardholder not found.
-    content:
-      application/json:
-        schema:
-          $ref: "../../models/api-error-404.yaml"
+  '403':
+    description: |
+      User is not allowed to perform the action with the reason stated in the `errorCode`
+
+      **FORBIDDEN**
+      Insufficient permissions to perform the action.
+
+

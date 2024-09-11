@@ -20,7 +20,7 @@ requestBody:
             description: The new expected spend amount for the cardholder.
   required: true
 responses:
-  "200":
+  '200':
     description: Expected spend amount updated successfully.
     content:
       application/json:
@@ -33,21 +33,9 @@ responses:
             expectedSpendAmount:
               type: string
               description: The updated expected spend amount.
-  "403":
-    description: API caller is unauthorized to perform this action.
-    content:
-      application/json:
-        schema:
-          $ref: "../../models/api-error-403.yaml"
-  "400":
-    description: Invalid request fields.
-    content:
-      application/json:
-        schema:
-          $ref: "../../models/api-error-400.yaml"
-  "404":
-    description: Cardholder not found.
-    content:
-      application/json:
-        schema:
-          $ref: "../../models/api-error-404.yaml"
+  '403':
+    description: |
+      User is not allowed to perform the action with the reason stated in the `errorCode`
+
+      **FORBIDDEN**
+      Insufficient permissions to perform the action.
