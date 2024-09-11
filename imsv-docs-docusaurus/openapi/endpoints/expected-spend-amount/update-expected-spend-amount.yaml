@@ -30,9 +30,11 @@ responses:
             cardholderId:
               type: string
               description: The ID of the cardholder.
+              example: 057aa15913a57f50577234c8426534c0
             expectedSpendAmount:
               type: string
               description: The updated expected spend amount.
+              example: "200000"
   '403':
     description: |
       User is not allowed to perform the action with the reason stated in the `errorCode`
