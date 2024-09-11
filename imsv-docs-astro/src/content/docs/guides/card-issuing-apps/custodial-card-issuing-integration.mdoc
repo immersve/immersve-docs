@@ -3,6 +3,7 @@ title: Custodial Card Issuing Integration Guide
 description: End to end guide for custodial apps use pooled funds and custodial approval for user spending
 slug: guides/custodial-card-issuing-integration
 sidebar:
+  hidden: true
   order: 2
 ---
 
@@ -16,14 +17,12 @@ If you do not have custody over your users' funds then the {% link
 page="guides/web3-wallet-card-issuing-integration" /%} will provide a better
 starting point for your integration.
 
-
 ## Before You Get Started
 
 ### Verify Your Asset is Supported
 
 Before you begin integrating ensure your chain and token combination is
 supported. See {% link page="guides/supported-chains" /%} and {% link page="guides/supported-tokens" /%}.
-
 
 ### Select KYC Mode
 
@@ -186,6 +185,7 @@ If your application has already captured user KYC details then you may be
 able to use {% link page="guides/partner-conducted-kyc" /%}. Otherwise, {% link
 page="guides/immersve-conducted-kyc" /%} should be used.
 
+
 ### Supply Contact Details
 
 {% note %}
@@ -284,46 +284,6 @@ curl -X POST "https://${imsv_api_host}/api/cards/${card_id}/pan-token" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}"
 ```
-
-<!-- ## Deposit Funds
-
-Before spending with a card, funds must be deposited to a funding source
-connected to the card. Use the {% link endpoint="get-spending-prerequisites" /%}
-endpoint to get the correct Smart Contract write transaction for the specified
-amount, chain, and token.
-
-For more information on executing deposits and withdrawals see the {% link page="guides/card-funding" /%} guide.
-
-{% note %}
-Note: "spendableAmount" uses minor units. For example, "100" USD minor units means $1.00.
-{% /note %}
-
-```bash
-curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
-  -H "Content-Type: application/json" \
-  -H "X-Api-Key: ${card_issuer_api_key}" \
-  -H "X-Api-Secret: ${card_issuer_api_secret}" \
-  -H "X-Account-Id: ${cardholder_account_id}" \
-  --data '{
-    "cardProgramId": "'${card_program_id}'",
-    "fundingSourceId": "'${funding_source_id}'",
-    "spendableAmount": 100,
-    "spendableCurrency": "USD"
-  }'
-```
-
-## Check Card Balance
-
-Verify that the balance is reflected on the Funding Source.
-
-{% endpointref name="list-funding-sources" /%}
-
-```bash
-curl -X GET "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/funding-sources" \
-  -H "X-Api-Key: ${card_issuer_api_key}" \
-  -H "X-Api-Secret: ${card_issuer_api_secret}" \
-  -H "X-Account-Id: ${cardholder_account_id}"
-``` -->
 
 ## Perform a Test Card Payment
 
