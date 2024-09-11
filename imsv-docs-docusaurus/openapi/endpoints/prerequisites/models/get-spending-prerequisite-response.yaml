@@ -27,6 +27,7 @@ properties:
             - contact_email
             - contact_phone
             - simulator_call
+            - expected_spend_amount
         actionType:
           type: string
           enum:
@@ -36,6 +37,7 @@ properties:
             - follow_kyc_url
             - submit_kyc_statement
             - aml-review
+            - set_expected_spend_amount
         params:
           oneOf:
             - $ref: "../../../models/evm-smart-contract-write-params.yaml"

@@ -122,6 +122,12 @@ post:
                   "type": "aml-review",
                   "actionType": "aml-review",
                   "params": {}
+                },
+                {
+                  "stage": "kyc",
+                  "status": "action-required",
+                  "type": "expected_spend_amount",
+                  "actionType": "set_expected_spend_amount",
                 }
               ]
             }

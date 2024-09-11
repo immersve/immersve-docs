@@ -1,0 +1,35 @@
+tags:
+  - kyc
+summary: Get expected spend amount
+description: Get the expected spend amount for the given cardholder.
+parameters:
+  - name: cardholderId
+    in: path
+    description: The ID of the cardholder.
+    required: true
+    schema:
+      type: string
+responses:
+  '200':
+    description: Successful operation
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            cardholderId:
+              type: string
+              description: The ID of the cardholder.
+              example: 057aa15913a57f50577234c8426534c0
+            expectedSpendAmount:
+              type: string
+              description: The expected spend amount for the cardholder in USD cents.
+              example: '200000'
+  '403':
+    description: |
+      User is not allowed to perform the action with the reason stated in the `errorCode`
+
+      **FORBIDDEN**
+      Insufficient permissions to perform the action.
+
+
