@@ -104,6 +104,11 @@ paths:
   "/api/accounts/{accountId}/kyc-profile":
     get:
       $ref: "./endpoints/kyc/get-kyc-profile.yaml"
+  "/api/accounts/{cardholderAccountId}/expected-spend-amount":
+    get:
+      $ref: "./endpoints/expected-spend-amount/get-expected-spend-amount.yaml"
+    post:
+      $ref: "./endpoints/expected-spend-amount/update-expected-spend-amount.yaml"
   "/api/accounts/{partnerAccountId}/supported-regions":
     get:
       $ref: "./endpoints/supported-regions/get-supported-regions.yaml"
