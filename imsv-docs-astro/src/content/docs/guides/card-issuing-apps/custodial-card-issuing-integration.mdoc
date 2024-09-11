@@ -1,0 +1,311 @@
+---
+title: Custodial Card Issuing Integration Guide
+description: End to end guide for custodial apps use pooled funds and custodial approval for user spending
+slug: guides/custodial-card-issuing-integration
+sidebar:
+  hidden: true
+  order: 2
+---
+
+
+This guide details the steps to add Immersve card issuing capabilities into
+applications that have custody of user funds. It lists the API calls required to
+set up a partner, onboard users, and create and test a card, with card spending
+pre-funded through deposits to an on-chain contract.
+
+If you do not have custody over your users' funds then the {% link
+page="guides/web3-wallet-card-issuing-integration" /%} will provide a better
+starting point for your integration.
+
+## Before You Get Started
+
+### Verify Your Asset is Supported
+
+Before you begin integrating ensure your chain and token combination is
+supported. See {% link page="guides/supported-chains" /%} and {% link page="guides/supported-tokens" /%}.
+
+### Select KYC Mode
+
+{% link page="guides/partner-conducted-kyc" /%} is the recommended KYC mode for custodial apps
+that have already verified their users. If users have not already been verified
+then {% link page="guides/immersve-conducted-kyc" /%} can be used.
+
+## Provision Application Resources
+
+### Set Up Your Partner Account
+
+Contact support to get your: Partner Account ID, Client Application, API Key(s)
+and Card Program ID. You will initially have credentials to integrate with the
+Immersve test environment. When you are ready to test a live integration you
+will also receive live credentials.
+
+### Implement Custodial Webhooks
+
+You will need to implement all custodial webhooks described in the
+{% link page="guides/custodial-funding-protocol" /%} guide.
+
+### Register a Funding Channel
+
+You will need a funding channel per token and chain.
+See the partner setup instructions in the {% link page="guides/custodial-funding-protocol" /%} guide.
+
+### Fund Your Custodial Funds Pool
+
+You need to deposit funds that will be used to settle cardholder transactions.
+
+## Setup Environment
+
+### Install Dependencies
+
+This guide uses bash, curl and [jq](https://jqlang.github.io/jq/) for example
+API interactions.
+
+
+### Configure Variables
+
+The following variables are referenced from the example bash scripts throughout
+this guide.
+
+```bash
+card_issuer_api_key="<your_card_issuer_api_key>"
+card_issuer_api_secret="<your_card_issuer_api_secret>"
+partner_account_id="<your_partner_account_id>"
+card_program_id="<your_card_program_id>"
+funding_channel_id="<your_funding_channel_id>"
+imsv_api_host=test.immersve.com
+```
+
+### Immersve Environments
+
+The Immersve test environment allows you to interact with all
+Immersve APIs while utilizing testnet assets. Test payments are initiated using
+the Payment Simulator. Note that the XPay capability is not available in the
+test environment.
+
+| Environment | API Base URL |
+|-|-|
+| Test | https://test.immersve.com |
+| Live | https://api.immersve.com  |
+
+Resource identifiers are not shared between the live and test environments.
+Your Partner Account, Client Application, API Keys and Card Program will all be
+different in the live environment.
+
+
+## Per Cardholder Setup
+
+### Check Region Availability
+
+You can avoid presenting the card onboarding journey if the user's region
+is not yet available. Call the {% link endpoint="get-supported-regions" /%}
+endpoint to get the current list of available regions for your application.
+See {% link page="guides/regions" /%} for more details.
+
+### Create a Cardholder Account
+
+Provision each cardholder with an account and save their ID. In the custodial
+case it is assumed that you have gained permission to act on the cardholders
+behalf. All cardholder resources on our platform will be fully owned by your
+app. Each request on a cardholder resource must specify the cardholder by
+referencing the cardholder ID in the `x-account-id` header as specified in the {% link
+page="guides/authentication" title="Authentication Guide"/%}.
+
+{% endpointref name="create-account" /%}
+
+```bash
+cardholder_account_id=$(curl \
+  -X POST "https://${imsv_api_host}/api/accounts" \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  --data '{
+    "parentAccountId": "'${partner_account_id}'",
+    "type": "cardholder",
+    "name": "<e.g. Cardholder Account of Joe>"
+  }' | jq -r .id)
+```
+
+
+### Register Cardholder Funding Source
+
+You must create a Funding Source for a cardholder. The funding source can
+be connected to multiple cards if desired. The custodial Funding Source
+will be parameterized with an externalId which will be used to identify
+the funding ledger address for all card authorizations.
+
+
+{% endpointref name="create-a-funding-source-for-an-account" /%}
+
+```bash
+funding_source_external_id=''
+
+funding_source_id=$(curl -X POST "https://${imsv_api_host}/api/funding-sources" \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}" \
+  --data '{
+    "accountId": "'${cardholder_account_id}'",
+    "externalId": "'${funding_source_external_id}'",
+    "fundingChannelId": "'${funding_channel_id}'",
+  }' | jq -r '.id')
+
+```
+
+### Complete Cardholder Onboarding
+
+The spending prerequisites endpoint can be used to check whether the KYC and
+contact details requirements for a cardholder have been satisfied.
+
+{% endpointref name="get-spending-prerequisites" /%}
+
+```bash
+curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}" \
+  --data '{
+    "cardProgramId": "'${card_program_id}'",
+    "fundingSourceId": "'${funding_source_id}'",
+    "spendableAmount": 100,
+    "spendableCurrency": "USD",
+    "kycType": "partner-conducted",
+    "kycRegion":"NZ"
+  }'
+```
+
+Note that "spendableAmount" is required but is ignored for the custodial funding
+protocol. Any non-zero placeholder amount can be used.
+
+### Complete KYC Prerequisite
+
+KYC requirements need to be completed before a cardholder obtains a card.
+If your application has already captured user KYC details then you may be
+able to use {% link page="guides/partner-conducted-kyc" /%}. Otherwise, {% link
+page="guides/immersve-conducted-kyc" /%} should be used.
+
+
+### Supply Contact Details
+
+{% note %}
+Immersve will not perform validation of a user's contact details.
+{% /note %}
+
+Immersve requires users contact details (phone number and email) for the
+following reasons, this should be explained to customers:
+
+{% list %}
+  {% listitem "ArrowRightCircle" %}
+    Adding cards to Apple/Google Pay wallets (X-Pay)
+  {% /listitem %}
+
+  {% listitem "ArrowRightCircle" %}
+    Performing 3DS validation for online transactions
+  {% /listitem %}
+{% /list %}
+
+If a user doesn't provide contact details, they risk online transactions being
+rejected and might not be able to add cards to X-Pay wallets.
+
+Before you share contact details with Immersve you must collect user consent via
+a checkbox. This can be done at the same time as KYC information sharing.
+
+{% endpointref name="update-contact-details" /%}
+
+```bash
+curl -X PATCH "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/contact-details" \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}" \
+  --data '{
+    "email": {
+      "emailAddress": "joe@cardholder.email"
+    },
+    "phone": {
+      "phoneNumber": "+64123456789"
+    }
+  }'
+```
+
+
+### Request a Card
+
+The {% link endpoint="create-a-card" /%}, {% link endpoint="get-card-details"
+/%}, and {% link endpoint="get-a-card-token" /%} endpoints are all involved in
+requesting a card. See {% link page="guides/issue-a-virtual-card" /%} for
+further information.
+
+**Create a Card**
+
+Post the funding source ID and your provided card program ID to the card orders
+endpoint and record the returned card ID.
+
+{% endpointref name="create-a-card" /%}
+
+```bash
+card_id=$(curl -X POST "https://${imsv_api_host}/api/cards" \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}" \
+  --data '{
+    "cardProgramId": "'${card_program_id}'",
+    "fundingSourceId": "'${funding_source_id}'"
+  }' | jq -r .cardId)
+```
+
+**Get Card Details**
+
+Call Get Card Details to see card status and ensure it is active.
+
+{% endpointref name="get-card-details" /%}
+
+```bash
+curl -X GET "https://${imsv_api_host}/api/cards/${card_id}" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}"
+```
+
+**Get Sensitive Card Details**
+
+Card sensitive details are obtained by generating a unique time-limited token.
+The response contains a callback URL which can be used to obtain the
+sensitive card details. See {% link
+page="guides/fetching-secure-card-information" /%} for more details.
+
+{% endpointref name="get-a-card-token" /%}
+
+```bash
+curl -X POST "https://${imsv_api_host}/api/cards/${card_id}/pan-token" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}"
+```
+
+## Perform a Test Card Payment
+
+Perform a card payment using the Immersve {% link page="guides/simulator" /%}.
+Call the simulator endpoint with the sensitive card details.
+
+{% endpointref name="authorize-a-transaction" /%}
+
+{% note %}
+Note: "transactionAmount" uses USD minor units. For example, "10" means $0.10.
+{% /note %}
+
+```bash
+curl -X POST "https://${imsv_api_host}/api/simulator/authorize" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}"
+  --data '{
+    "transactionType": "purchase",
+    "transactionAmount": "10",
+    "cardPan": "1234567812345678",
+    "cardExpiry": "202510",
+    "cardCvv": "123"
+  }'
+```
