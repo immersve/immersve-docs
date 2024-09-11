@@ -104,7 +104,7 @@ paths:
   "/api/accounts/{accountId}/kyc-profile":
     get:
       $ref: "./endpoints/kyc/get-kyc-profile.yaml"
-  "/api/accounts/{cardholderAccountId}/expected-spend-amount":
+  "/api/accounts/{cardholderId}/expected-spend-amount":
     get:
       $ref: "./endpoints/expected-spend-amount/get-expected-spend-amount.yaml"
     post:

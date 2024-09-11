@@ -1,5 +1,5 @@
 tags:
-  - expected-spend-amount
+  - kyc
 summary: Get expected spend amount
 description: Get the expected spend amount for the given cardholder.
 parameters:

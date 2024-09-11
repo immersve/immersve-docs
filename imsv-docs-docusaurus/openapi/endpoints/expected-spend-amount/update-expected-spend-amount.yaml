@@ -1,5 +1,5 @@
 tags:
-  - expected-spend-amount
+  - kyc
 summary: Update expected spend amount
 description: Update the expected spend amount for the given cardholder.
 parameters:
