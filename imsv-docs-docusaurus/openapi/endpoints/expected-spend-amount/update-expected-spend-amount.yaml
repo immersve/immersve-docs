@@ -17,7 +17,7 @@ requestBody:
         properties:
           expectedSpendAmount:
             type: string
-            description: The new expected spend amount for the cardholder.
+            description: The expected spend amount for the cardholder in USD cents.
   required: true
 responses:
   '200':

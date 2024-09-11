@@ -22,7 +22,7 @@ responses:
               description: The ID of the cardholder.
             expectedSpendAmount:
               type: string
-              description: The expected spend amount for the cardholder.
+              description: The expected spend amount for the cardholder in USD cents.
   '403':
     description: |
       User is not allowed to perform the action with the reason stated in the `errorCode`
