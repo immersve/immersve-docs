@@ -24,7 +24,7 @@ responses:
             expectedSpendAmount:
               type: string
               description: The expected spend amount for the cardholder in USD cents.
-              example: "200000"
+              example: '200000'
   '403':
     description: |
       User is not allowed to perform the action with the reason stated in the `errorCode`
