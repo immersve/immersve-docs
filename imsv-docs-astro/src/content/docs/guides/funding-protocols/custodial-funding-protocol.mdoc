@@ -52,17 +52,18 @@ for payments relating to the funding source.
 
 Webhooks are authenticated by an RSA signature. The signature is made against
 the contatenation of the request headers and body like
-`{requestId}:{keyId}:{body}`. The signature is provided in the
-<nobr>`X-Signature`</nobr> header.
-
+`{deliveryId}:{keyId}:{body}`. The signature is provided in the
+<nobr>`X-Signature`</nobr> header. The public key for validating the signature
+can be obtained from the JWKS endpoint at
+https://api.immersve.com/.well-known/jwks.json.
 
 ### Headers
 
 | Header | Description |
 |-|-|
-| X-Request-Id | Unique request identifier. |
-| X-Key-Id     | The id of the signing key used to generate the signature. |
-| X-Signature  | The RSA SHA256 signature of the request. |
+| <nobr>X-Delivery-Id</nobr> | Unique identifier for the message delivery attempt. |
+| <nobr>X-Key-Id</nobr>      | The id of the signing key used to generate the signature. The key can be obtained from https://api.immersve.com/.well-known/jwks.json and matched by the "kid" attribute. |
+| <nobr>X-Signature</nobr>   | The RSA SHA256 signature of the request. |
 
 
 ### Idempotency
@@ -91,7 +92,7 @@ cancel message will be sent instead.
 The authorization webhook is called when a merchant requests payment from the
 card.
 
-The authorization request is expected to respond within ~1.5 seconds.
+The authorization request is expected to respond within 1000 milliseconds.
 Unresponsive authoriation requests will be canceled.
 
 #### Response Format
@@ -101,41 +102,22 @@ The authorize response must contain a JSON object with the following fields.
 
 | Field | Example | Description |
 |-|-|-|
-| authorized     | true    | The authorization request was granted. |
+| result     | authorized    | The authorization request was `authorized` or `declined`. |
 
 
 
-### Cancel Payment Webhook
+### Payment Notification Webhook
 
 {% table %}
 ---
 * Description
-* An instruction to cancel a payment authorization.
+* A notification that a payment status has been updated.
 ---
 * Method
 * POST
 ---
 * URL
-* {base_url}/cancel
----
-{% /table %}
-
-Immersve will send a cancel payment instruction incase an error has occured
-while handling an authorization request.
-
-
-### Adjust Balance Webhook
-
-{% table %}
----
-* Description
-* An instruction to adjust the balance on a custodial funding source.
----
-* Method
-* POST
----
-* URL
-* {base_url}/balance-adjustment
+* {base_url}/notify
 ---
 {% /table %}
 
@@ -146,6 +128,8 @@ amount; when a payment is reversed or expired; or when a refund has been issued.
 The integrated client must accept the balance adjustment and increment or
 decrement the funding source balance accordingly.
 
+Immersve will send a cancel payment instruction incase an error has occured
+while handling an authorization request.
 
 
 ### Request Body Format
@@ -153,27 +137,184 @@ decrement the funding source balance accordingly.
 All custodial webhook endpoints share the same message body format. The request
 content type is application/json.
 
+{% table %}
+* Field
+* Example
+* Description
 
-| Field | Example | Description |
-|-|-|-|
-| {% wrap %} cardholderAccountId     {% /wrap %} | abc123    | Immersve cardholder account id. |
-| {% wrap %} fundingSourceExternalId {% /wrap %} | abc123    | The client user ref stored on the Immersve funding source. |
-| {% wrap %} fundingSourceId         {% /wrap %} | abc123    | Immersve funding source identifier. |
-| {% wrap %} cardId                  {% /wrap %} | abc123    | Immersve card identifier. |
-| {% wrap %} amount                  {% /wrap %} | 1312      | Required payment amount in minor units.  |
-| {% wrap %} currency                {% /wrap %} | USD       | Required payment currency. |
-| {% wrap %} idempotencyKey          {% /wrap %} | abc123    | Identifier which is used to detect duplicate messages. |
-| {% wrap %} messageType             {% /wrap %} | authorize | The type of webhook message: `authorize`, `cancel`, `adjust-balance`. |
-| {% wrap %} acquirerAmount          {% /wrap %} | 1000      | The merchant's requested payment amount in minor units. This value is for information only. |
-| {% wrap %} acquirerCurrency        {% /wrap %} | GBP       | The merchant's requested payment currency. |
-| {% wrap %} merchantCity            {% /wrap %} | Auckland  | |
-| {% wrap %} merchantCountryCode     {% /wrap %} | NZL       | |
-| {% wrap %} merchantId              {% /wrap %} | {% wrap 9 %}92102062388908{% /wrap %} | |
-| {% wrap %} merchantName            {% /wrap %} | Unsworth Height Super | |
-| {% wrap %} merchantTerminalId      {% /wrap %} | 50487001  | |
-| {% wrap %} merchantCategoryCode    {% /wrap %} | 5451      | |
-| {% wrap %} cardPresent             {% /wrap %} | true      | Was the card or XPay device physically present at the time of purchase. |
-| {% wrap %} transactionId           {% /wrap %} | abc123    | Immersve transaction identifier. |
-| {% wrap %} transactionReference    {% /wrap %} | {% wrap 9 %}01005960960820000000000000{% /wrap %} | The payment network transaction identifier. |
-| {% wrap %} transactionType         {% /wrap %} | purchase  | The type of payment: `purchase`, `refund`. |
-| {% wrap %} transactionDate         {% /wrap %} | {% wrap "T" %}2022-04-01T10:00:00.000Z{% /wrap %} | The transaction date/time. |
+---
+* {% wrap %} messageId {% /wrap %}
+* {% wrap 9 %}bb32f1106c8d4c45{% /wrap %}
+* Identifier which uniquely identifies the message. Payment messages are
+  guaranteed to be delivered and must be handled idempotently. This identifier
+  can be used to detect duplicate message delivery attempts.
+
+---
+* {% wrap %} messageType {% /wrap %}
+* payment-advice
+* The type of message: `auth-request`, `auth-confirm`, `auth-cancel`, or
+  `payment-advice`. See Message Types below for more details about message semantics.
+
+
+---
+* {% wrap %} eventType {% /wrap %}
+* payment-cleared
+* The payment lifecycle event which triggered the message. This may be useful to
+  discriminate the reason for an auth cancellation message. Clients must
+  tolerate unknown event types.
+
+---
+* {% wrap %} eventTimestamp {% /wrap %}
+* {% wrap "T" %}2022-04-01T10:00:00.000Z{% /wrap %}
+* The timestamp for the event that triggered the message.
+
+---
+* {% wrap %} eventDescription {% /wrap %}
+* Payment Canceled
+* A description of the payment event which may include additional details that
+  can be useful for debugging.
+
+---
+* {% wrap %} cardId {% /wrap %}
+* {% wrap 9 %}9ae177ea85ed4128{% /wrap %}
+* Immersve card identifier.
+
+---
+* {% wrap %} cardholderId {% /wrap %}
+* {% wrap 9 %}d44d045826d4484c{% /wrap %}
+* Immersve cardholder account id.
+
+---
+* {% wrap %} fundingSourceId {% /wrap %}
+* {% wrap 9 %}c65fe4d184a24619{% /wrap %}
+* Immersve funding source identifier.
+
+---
+* {% wrap %} fundingSourceExternalId {% /wrap %}
+* abc123
+* The client user reference stored on the Immersve funding source. This
+  attribute should be used to resolve the custodial ledger account to be debited.
+
+---
+* {% wrap %} paymentId {% /wrap %}
+* {% wrap 9 %}38fb58acc55b4907{% /wrap %}
+* Immersve payment transaction identifier.
+
+---
+* {% wrap %} paymentAmount {% /wrap %}
+* 1312
+* Required payment amount in minor units.
+
+---
+* {% wrap %} paymentCurrency {% /wrap %}
+* USD
+* Required payment currency.
+
+---
+* {% wrap %} paymentAdjustment {% /wrap %}
+
+---
+* {% wrap %} paymentFinalized {% /wrap %}
+
+---
+* {% wrap %} paymentFeeAmount {% /wrap %}
+
+---
+* {% wrap %} paymentFeeCurrency {% /wrap %}
+
+---
+* {% wrap %} merchantCity {% /wrap %}
+* Auckland
+
+---
+* {% wrap %} merchantCountryCode {% /wrap %}
+* NZL
+
+---
+* {% wrap %} merchantId {% /wrap %}
+* {% wrap 9 %}92102062388908{% /wrap %}
+
+---
+* {% wrap %} merchantName {% /wrap %}
+* Unsworth Height Super
+
+---
+* {% wrap %} merchantTerminalId {% /wrap %}
+* 50487001
+
+---
+* {% wrap %} merchantCategoryCode {% /wrap %}
+* 5451
+
+---
+* {% wrap %} networkMessageRef {% /wrap %}
+* {% wrap 9 %}01005960960820000000000000{% /wrap %}
+* The payment network identifier for the message which triggered the payment
+  lifecycle event.
+
+---
+* {% wrap %} networkMessageType {% /wrap %}
+* clearing
+* The payment network message type.
+---
+* {% wrap %} networkMessageDate {% /wrap %}
+* {% wrap "T" %}2022-04-01T10:00:00.000Z{% /wrap %}
+
+---
+* {% wrap %} networkMessageCardPresent {% /wrap %}
+* true
+* Was the card or XPay device physically present at the time of purchase.
+
+---
+* {% wrap %} networkMessageAcquirerAmount {% /wrap %}
+* 1000
+* The merchant's requested payment amount in minor units. This value is for information only.
+
+---
+* {% wrap %} networkMessageAcquirerCurrency {% /wrap %}
+* GBP
+* The merchant's requested payment currency.
+
+---
+* {% wrap %} networkMessageBillingAmount {% /wrap %}
+* 1000
+*
+
+---
+* {% wrap %} networkMessageBillingCurrency {% /wrap %}
+* USD
+* Required payment currency.
+
+---
+{% /table %}
+
+
+### Message Types
+
+{% table %}
+* Name
+* Description
+
+---
+* <nobr>auth-request</nobr>
+* The paymentAmount field indicates the type of payment that is being
+  authorized. Note that the amount positive indicates a purchase; negative indicates a refund; zero
+  amount indicates an account status enquiry.
+
+---
+* <nobr>auth-confirm</nobr>
+* Confirmation that a payment has been authorized successfully.
+
+---
+* <nobr>auth-cancel</nobr>
+* The payment has been canceled. There are
+  several scenarios where a payment may be canceled such as: payment declined due
+  to card block; payment expired; or payment error such as timeout. Specific
+  cancelation details can be discovered in the `eventType` and `eventDescription`
+  fields. The paymentAmount
+
+---
+* <nobr>payment-advice</nobr>
+*
+
+{% /table %}
