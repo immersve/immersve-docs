@@ -38,6 +38,42 @@ cardholder_account_id="<cardholder_account_id>"
 funding_source_id="<funding_source_id>"
 ```
 
+## Supply Contact Details
+
+{% note %}
+Immersve will not perform validation of a user's contact details.
+{% /note %}
+
+Immersve requires users contact details (phone number and email) for the
+following reasons, this should be explained to customers:
+
+- Adding cards to Apple/Google Pay wallets (X-Pay)
+- Performing 3DS validation for online transactions
+
+If a user doesn't provide contact details, they risk online transactions being
+rejected and might not be able to add cards to X-Pay wallets.
+
+Before you share contact details with Immersve you must collect user consent via
+a checkbox. This can be done at the same time as KYC information sharing.
+
+{% endpointref name="update-contact-details" /%}
+
+```bash
+curl -X PATCH "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/contact-details" \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}" \
+  --data '{
+    "email": {
+      "emailAddress": "joe@cardholder.email",
+    },
+    "phone": {
+      "phoneNumber": "+64123456789",
+    }
+  }'
+```
+
 ## Submit cardholder KYC statement
 
 {% endpointref name="submit-partner-kyc-statement" /%}
