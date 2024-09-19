@@ -74,6 +74,28 @@ curl -X PATCH "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/co
   }'
 ```
 
+## Supply Expected Spend Amount
+
+Regulations require that Immersve obtain information on the “nature and purpose”
+of the proposed business relationship between ourselves and the cardholder.
+
+Collection of the anticipated monthly spending level when onboarding a new cardholder is
+one measure that assists in our understanding of the nature and purpose of the cardholder account.
+
+{% endpointref name="update-expected-spend-amount" /%}
+
+```bash
+curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/expected-spend-amount \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}" \
+  --data '{
+    "expectedSpendAmount": "200000",
+  }'
+```
+
+
 ## Submit cardholder KYC statement
 
 {% endpointref name="submit-partner-kyc-statement" /%}
