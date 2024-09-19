@@ -185,6 +185,41 @@ funding_source_id=$(curl -X POST "https://${imsv_api_host}/api/funding-sources" 
   }' | jq -r '.id')
 
 ```
+
+### Get KYC and Contact Details Prerequisites
+
+The spending prerequisites endpoint can be used to check whether the KYC and
+contact details requirements for a cardholder have been satisfied.
+
+{% endpointref name="get-spending-prerequisites" /%}
+
+```bash
+curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}" \
+  --data '{
+    "cardProgramId": "'${card_program_id}'",
+    "fundingSourceId": "'${funding_source_id}'",
+    "spendableAmount": 100,
+    "spendableCurrency": "USD",
+    "kycType": "partner-conducted",
+    "kycRegion":"NZ"
+  }'
+```
+
+Note that "spendableAmount" is required. If the user has not yet been prompted
+for the amount to load into their Immersve card then any non-zero placeholder
+amount can be used.
+
+### Supply KYC Details
+
+KYC requirements need to be completed before a cardholder obtains a card.
+If your application has already captured user KYC details then you may be
+able to use {% link page="guides/partner-conducted-kyc" /%}. Otherwise, {% link
+page="guides/immersve-conducted-kyc" /%} should be used.
+
 ### Request a Card
 
 The {% link endpoint="create-a-card" /%}, {% link endpoint="get-card-details"
@@ -239,42 +274,6 @@ curl -X POST "https://${imsv_api_host}/api/cards/${card_id}/pan-token" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}"
 ```
-
-
-### Get KYC and Contact Details Prerequisites
-
-The spending prerequisites endpoint can be used to check whether the KYC and
-contact details requirements for a cardholder have been satisfied.
-
-{% endpointref name="get-spending-prerequisites" /%}
-
-```bash
-curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
-  -H "Content-Type: application/json" \
-  -H "X-Api-Key: ${card_issuer_api_key}" \
-  -H "X-Api-Secret: ${card_issuer_api_secret}" \
-  -H "X-Account-Id: ${cardholder_account_id}" \
-  --data '{
-    "cardProgramId": "'${card_program_id}'",
-    "fundingSourceId": "'${funding_source_id}'",
-    "spendableAmount": 100,
-    "spendableCurrency": "USD",
-    "kycType": "partner-conducted",
-    "kycRegion":"NZ"
-  }'
-```
-
-Note that "spendableAmount" is required. If the user has not yet been prompted
-for the amount to load into their Immersve card then any non-zero placeholder
-amount can be used.
-
-### Supply KYC Details
-
-KYC requirements need to be completed before a cardholder obtains a card.
-If your application has already captured user KYC details then you may be
-able to use {% link page="guides/partner-conducted-kyc" /%}. Otherwise, {% link
-page="guides/immersve-conducted-kyc" /%} should be used.
-
 
 ## Deposit Funds
 
