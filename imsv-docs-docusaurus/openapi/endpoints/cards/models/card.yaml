@@ -9,6 +9,8 @@ required:
   - status
   - fundingSourceIds
   - expiresAt
+  - cardProgramId
+  - regionCode
 properties:
   id:
     type: string
@@ -49,6 +51,14 @@ properties:
   fundingSourceIds:
     type: array
     description: List of Funding Source IDs linked to the card
+  cardProgramId:
+    type: string
+    description: ID of card program linked to the card
+    example: 91ad6fea3b52ca58d60d7fd310f789ec
+  regionCode:
+    type: string
+    description: An Alpha2 (ISO-3166-1) country code representing the country where the card is issued.
+    example: NZ
   expiry:
     type: string
     description: Expiry date of the card
@@ -65,3 +75,4 @@ properties:
     type: string
     description: Deprecated field, use expiresAt
     example: "2022-11-16T03:18:23.431Z"
+
