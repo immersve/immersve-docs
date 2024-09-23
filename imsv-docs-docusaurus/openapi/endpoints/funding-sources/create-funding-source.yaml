@@ -3,16 +3,51 @@ post:
     - funding-source
   summary: Create a funding source for an account
   description: |
-    This endpoint can be used to claim a web3 address as a source of funds. The funding address may be an EOA or a smart contract implementing the ERC-1271 interface. If the address is a smart contract, the `ownerAddress`, `message`, and `signature` fields are required.<br/>
-    The [Create challenge endpoint](/api-reference/create-challenge) can be used to prove ownership of a web3 address by signing the returned message.
+    Funding Sources define the mechanism for how card payments will be funded. A
+    Funding Source's Funding Channel defines its purpose, protocol, and asset
+    type as well as any other common parameters. Other parameters vary depending
+    on the type of Funding Channel and also vary by the funding address
+    validation mode if applicable.
+
+    Funding Sources with on-chain Funding will have a fundingAddress attribute.
+    The address will vary depending on the protocol variant in use. For a
+    universal protocol variant it will be the deposit sender address. For flexi
+    protocol variants it will be the deposit recipient address. See [Funding
+    Protocols](https://docs.immersve.com/guides/funding-protocols/) for more
+    details about funding protocols.
+
+    The purpose of a Funding Source is inherited from its Funding Channel. If
+    the Funding Source has a "billing" purpose, then it cannot be used to fund
+    cards directly. Rather, it will be used to create a custodial Funding
+    Channel.
+
+    #### Request Variants
+
+    **Login Wallet** Create a Funding Source using a funding address which is
+    already connected with a verified login wallet for the owner account.
+
+    **Wallet Signature** Create a Funding Source using funding address which
+    can be verified with a separate signing challenge. The [Create challenge
+    endpoint](/api-reference/create-challenge) can be used to generate the
+    signing challenge required to prove ownership of a web3 address.
+
+    **Custodial Cardholder** Create a Funding Source that usese the [Custodial Funding
+    Protocol](https://docs.immersve.com/guides/custodial-funding-protocol/).
+    The external id parameter is required.
+
+    **Simulator** Create a Funding Source that usese the [Simulator Funding
+    Protocol](https://docs.immersve.com/guides/simulator-funding-protocol/). No
+    additional parameters are required.
 
   requestBody:
     content:
       application/json:
         schema:
           oneOf:
-            - $ref: "./models/create-funding-source-eoa.yaml"
-            - $ref: "./models/create-funding-source-challenge.yaml"
+            - $ref: "./models/create-funding-source-for-login-wallet.yaml"
+            - $ref: "./models/create-funding-source-for-wallet-signature.yaml"
+            - $ref: "./models/create-funding-source-for-custodial-cardholder.yaml"
+            - $ref: "./models/create-funding-source-for-simulator.yaml"
     required: true
   responses:
     "200":

@@ -1,0 +1,14 @@
+type: object
+title: Simulator
+required:
+  - accountId
+  - fundingChannelId
+properties:
+  accountId:
+    type: string
+    description: The ID of the account to add this Funding Source to.
+    example: 65a7e8ef0d230d0a6bf755e07d39eb02
+  fundingChannelId:
+    type: string
+    description: The id of the Funding Channel that this Funding Source relates to.
+    example: 315bad4e81ce0f26966a41b9d451638b
