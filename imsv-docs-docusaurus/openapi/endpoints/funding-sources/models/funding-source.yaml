@@ -24,3 +24,7 @@ properties:
     type: string
     description: The id of the Funding Channel that this Funding Source relates to.
     example: 315bad4e81ce0f26966a41b9d451638b
+  purpose:
+    type: string
+    description: The purpose of the Funding Channel.
+    example: card-funding

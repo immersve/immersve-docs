@@ -19,8 +19,19 @@ properties:
       - algorand-usdc
       - algorand-testnet-usdc
       - simulator-usdc
+      - custodial-usdc-live
+      - custodial-usdc-test
 
     example: polygon-amoy-usdc-universal-evm-test
+  purpose:
+    type: string
+    required: false
+    description: The purpose of the Funding Channel. Defaults to "card-funding".
+    enum:
+      - card-funding
+      - billing
+
+    example: card-funding
   params:
     type: object
     description: Parameters for the Funding Channel. The valid parameters depend on the Funding Type.
