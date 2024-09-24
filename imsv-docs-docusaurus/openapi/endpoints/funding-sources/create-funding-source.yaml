@@ -31,11 +31,11 @@ post:
     endpoint](/api-reference/create-challenge) can be used to generate the
     signing challenge required to prove ownership of a web3 address.
 
-    **Custodial Cardholder** Create a Funding Source that usese the [Custodial Funding
+    **Custodial Cardholder** Create a Funding Source that uses the [Custodial Funding
     Protocol](https://docs.immersve.com/guides/custodial-funding-protocol/).
     The external id parameter is required.
 
-    **Simulator** Create a Funding Source that usese the [Simulator Funding
+    **Simulator** Create a Funding Source that uses the [Simulator Funding
     Protocol](https://docs.immersve.com/guides/simulator-funding-protocol/). No
     additional parameters are required.
 
