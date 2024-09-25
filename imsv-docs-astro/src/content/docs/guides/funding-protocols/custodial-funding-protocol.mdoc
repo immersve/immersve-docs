@@ -247,45 +247,6 @@ content type is application/json.
 * 5451
 
 ---
-* {% wrap %} networkMessageRef {% /wrap %}
-* {% wrap 9 %}01005960960820000000000000{% /wrap %}
-* The payment network identifier for the message which triggered the payment
-  lifecycle event.
-
----
-* {% wrap %} networkMessageType {% /wrap %}
-* clearing
-* The payment network message type.
----
-* {% wrap %} networkMessageDate {% /wrap %}
-* {% wrap "T" %}2022-04-01T10:00:00.000Z{% /wrap %}
-
----
-* {% wrap %} networkMessageCardPresent {% /wrap %}
-* true
-* Was the card or XPay device physically present at the time of purchase.
-
----
-* {% wrap %} networkMessageAcquirerAmount {% /wrap %}
-* 1000
-* The merchant's requested payment amount in minor units. This value is for information only.
-
----
-* {% wrap %} networkMessageAcquirerCurrency {% /wrap %}
-* GBP
-* The merchant's requested payment currency.
-
----
-* {% wrap %} networkMessageBillingAmount {% /wrap %}
-* 1000
-*
-
----
-* {% wrap %} networkMessageBillingCurrency {% /wrap %}
-* USD
-* Required payment currency.
-
----
 {% /table %}
 
 
