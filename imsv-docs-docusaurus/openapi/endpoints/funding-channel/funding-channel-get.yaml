@@ -1,8 +1,9 @@
 get:
   tags:
     - funding-channel
-  summary: Get a Funding Channel
-  description: Retrieves a specific Funding Channel for the given account
+  summary: Get Funding Channel
+  operationId: get-funding-channel
+  description: Retrieves a specific Funding Channel for the given id.
   parameters:
   - name: fundingChannelId
     in: path

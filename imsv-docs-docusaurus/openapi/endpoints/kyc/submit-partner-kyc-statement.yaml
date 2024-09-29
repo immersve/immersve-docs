@@ -1,6 +1,7 @@
 tags:
   - kyc
-summary: Submit Partner KYC Statement
+summary: Submit KYC Statement
+operationId: submit-kyc-statement
 description: Submit a KYC statement about the cardholder.
 parameters:
   - name: cardholderAccountId

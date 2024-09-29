@@ -1,8 +1,9 @@
 get:
   tags:
     - accounts
-  summary: Get an account
-  description: Get an Account by account id 
+  summary: Get Account
+  operationId: get-account
+  description: Get an Account by account id
   parameters:
   - name: accountId
     in: path

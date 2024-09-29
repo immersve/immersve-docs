@@ -1,7 +1,8 @@
 post:
   tags:
     - funding-channel
-  summary: Create a Funding Channel
+  summary: Create Funding Channel
+  operationId: create-funding-channel
   description: |
     This endpoint can be used to create a Funding Channel.
     See [Funding Protocols](https://docs.immersve.com/guides/funding-protocols/) for available funding types.

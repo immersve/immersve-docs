@@ -1,7 +1,8 @@
 get:
   tags:
     - card
-  summary: List cards
+  summary: List Cards
+  operationId: list-cards
   description: |
     Lists cards by account.
 

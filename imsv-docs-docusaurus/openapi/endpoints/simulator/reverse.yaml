@@ -1,7 +1,8 @@
 post:
   tags:
     - simulator
-  summary: Reverse a transaction
+  summary: Submit Simulator Reversal
+  operationId: submit-simulator-reversal
   description: This endpoint can be used to test reversing a transaction on a simulated card network
   requestBody:
     content:

@@ -1,6 +1,7 @@
 tags:
   - kyc
-summary: Retrieve Partner KYC Statement
+summary: Get KYC Statement
+operationId: get-kyc-statement
 description: Retrieve the KYC statement for the cardholder if it exists.
 parameters:
   - name: cardholderAccountId

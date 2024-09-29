@@ -11,10 +11,10 @@ oneOf:
         properties:
           authorizationRequestMsg:
             type: string
-            description: requestMsg returned by the [Authorize a transaction](/api-reference/authorize-a-transaction) endpoint
+            description: requestMsg returned by the [Simulator Authorization](/api-reference/submit-simulator-authorization) endpoint
           authorizationResponseMsg:
             type: string
-            description: responseMsg returned by the [Authorize a transaction](/api-reference/authorize-a-transaction) endpoint
+            description: responseMsg returned by the [Simulator Authorization](/api-reference/submit-simulator-authorization) endpoint
         allOf:
           - $ref: './authorize-request.yaml'
     title: ClearWithAuthorization

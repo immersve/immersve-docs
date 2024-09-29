@@ -2,6 +2,7 @@ post:
   tags:
     - authentication
   summary: Complete SIWE Login
+  operationId: complete-siwe-login
   description: |
     :::warning Deprecated
     This endpoint is deprecated, please use [Complete Login](/api-reference/complete-login) instead.

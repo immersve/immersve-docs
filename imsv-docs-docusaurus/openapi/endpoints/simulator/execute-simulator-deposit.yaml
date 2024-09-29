@@ -1,7 +1,8 @@
 post:
   tags:
     - simulator
-  summary: Execute simulator deposit
+  summary: Execute Simulator Deposit
+  operationId: execute-simulator-deposit
   description: |
     This endpoint can be used to simulate a deposit and use it as a source of funds.
 

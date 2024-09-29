@@ -1,6 +1,7 @@
 tags:
   - kyc
-summary: Get a KYC profile
+summary: Get KYC Profile
+operationId: get-kyc-profile
 description: Get a KYC profile by account id if it exists.
 parameters:
   - name: accountId

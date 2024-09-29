@@ -1,7 +1,8 @@
 post:
   tags:
     - support
-  summary: Create a support session
+  summary: Create Support Session
+  operationId: create-support-session
   description: |
     This endpoint can be used to create a support session for a cardholder account
   requestBody:

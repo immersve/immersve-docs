@@ -29,15 +29,15 @@ signup process needed before authenticating.
 
 A Funding Source is required for card creation. Besides this requirement, cards
 and Funding Sources are managed independently. See {% link
-endpoint="create-a-funding-source-for-an-account" /%} and the
+endpoint="create-funding-source" /%} and the
 {% link page="guides/card-funding" /%} guide.
 
 
 ## Create a card
 
-Call the {% link endpoint="create-a-card" /%} endpoint to request
+Call the {% link endpoint="create-card" /%} endpoint to request
 a card. The card is provisioned and activated when the
-{% link endpoint="get-card-details" /%} response payload includes a `status`
+{% link endpoint="get-card" /%} response payload includes a `status`
 of `"active"`. All cards are currently long-lived. The `expiresAt` field returns
 exact card expiry timestamp. The `expiry` field returns expiry date usually printed
 on physical cards.
@@ -63,7 +63,7 @@ sufficiently compliant with PCI-DSS requirements and is audited as such.
 
 ### Get a Card Token
 
-Generate a single-use card `token` using the {% link endpoint="get-a-card-token"
+Generate a single-use card `token` using the {% link endpoint="get-card-token"
 /%} endpoint. The token is typically then transmitted to the cardholder's
 environment (i.e. web application or mobile application running in their web
 browser) to complete the final step of card issuance.

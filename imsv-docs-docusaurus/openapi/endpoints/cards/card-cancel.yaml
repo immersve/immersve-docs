@@ -1,7 +1,8 @@
 post:
   tags:
     - card
-  summary: Cancel a card
+  summary: Cancel Card
+  operationId: cancel-card
   description: Cancel a card
   parameters:
     $ref: "../../models/card-id-path.yaml"

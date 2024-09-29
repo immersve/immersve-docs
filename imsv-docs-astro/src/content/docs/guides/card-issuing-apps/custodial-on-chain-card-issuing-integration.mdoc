@@ -167,7 +167,7 @@ The "signature" parameter is the signature of the signed message from the previo
 For more context and information on card funding and executing deposits and
 withdrawals see the {% link page="guides/card-funding" /%} guide.
 
-{% endpointref name="create-a-funding-source-for-an-account" /%}
+{% endpointref name="create-funding-source" /%}
 
 ```bash
 signature="<signature hash of cardholder signing the challenge message with their wallet>"
@@ -223,8 +223,8 @@ page="guides/immersve-conducted-kyc" /%} should be used.
 
 ### Request a Card
 
-The {% link endpoint="create-a-card" /%}, {% link endpoint="get-card-details"
-/%}, and {% link endpoint="get-a-card-token" /%} endpoints are all involved in
+The {% link endpoint="create-card" /%}, {% link endpoint="get-card"
+/%}, and {% link endpoint="get-card-token" /%} endpoints are all involved in
 requesting a card. See {% link page="guides/issue-a-virtual-card" /%} for
 further information.
 
@@ -233,7 +233,7 @@ further information.
 Post the funding source ID and your provided card program ID to the card orders
 endpoint and record the returned card ID.
 
-{% endpointref name="create-a-card" /%}
+{% endpointref name="create-card" /%}
 
 ```bash
 card_id=$(curl -X POST "https://${imsv_api_host}/api/cards" \
@@ -251,7 +251,7 @@ card_id=$(curl -X POST "https://${imsv_api_host}/api/cards" \
 
 Call Get Card Details to see card status and ensure it is active.
 
-{% endpointref name="get-card-details" /%}
+{% endpointref name="get-card" /%}
 
 ```bash
 curl -X GET "https://${imsv_api_host}/api/cards/${card_id}" \
@@ -267,7 +267,7 @@ The response contains a callback URL which can be used to obtain the
 sensitive card details. See {% link
 page="guides/fetching-secure-card-information" /%} for more details.
 
-{% endpointref name="get-a-card-token" /%}
+{% endpointref name="get-card-token" /%}
 
 ```bash
 curl -X POST "https://${imsv_api_host}/api/cards/${card_id}/pan-token" \
@@ -321,7 +321,7 @@ curl -X GET "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/fund
 Perform a card payment using the Immersve {% link page="guides/simulator" /%}.
 Call the simulator endpoint with the sensitive card details.
 
-{% endpointref name="authorize-a-transaction" /%}
+{% endpointref name="submit-simulator-authorization" /%}
 
 {% note %}
 Note: "transactionAmount" uses USD minor units. For example, "10" means $0.10.

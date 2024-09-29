@@ -1,7 +1,8 @@
 post:
   tags:
     - card
-  summary: Set a card PIN
+  summary: Set Card PIN
+  operationId: set-card-pin
   parameters:
     $ref: "../../models/card-id-path.yaml"
   description: |

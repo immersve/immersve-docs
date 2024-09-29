@@ -1,7 +1,8 @@
 get:
   tags:
     - funding-source
-  summary: List funding sources
+  summary: List Funding Sources
+  operationId: list-funding-sources
   description: List Funding Sources associated with the cardholder account
   parameters:
     - name: accountId

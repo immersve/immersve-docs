@@ -1,7 +1,8 @@
 post:
   tags:
     - card
-  summary: Create a card
+  summary: Create Card
+  operationId: create-card
   description: |
     Create a card under a specified card program and affiliated with a Funding Source.
     Returns an ID with which to retrieve card details.
@@ -25,7 +26,7 @@ post:
         **FORBIDDEN**
         Insufficient permissions to perform the action.
 
-        **LIVENESS_MISMATCH** 
+        **LIVENESS_MISMATCH**
         Card program or cardholder have the wrong liveness for the request.
 
         **CARD_PROGRAM_INVALID**

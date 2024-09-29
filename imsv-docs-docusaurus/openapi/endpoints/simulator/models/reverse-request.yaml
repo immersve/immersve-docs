@@ -17,14 +17,14 @@ oneOf:
   - properties:
       authorizationRequestMsg:
         type: string
-        description: requestMsg returned by the [Authorize a transaction](/api-reference/authorize-a-transaction) endpoint
+        description: requestMsg returned by the [Simulator Authorization](/api-reference/submit-simulator-authorization) endpoint
     required:
       - authorizationRequestMsg
     title: ReverseAuthorization
   - properties:
       clearingRequestMsg:
         type: string
-        description: requestMsg returned by the [Clear a transaction](/api-reference/clear-a-transaction) endpoint
+        description: requestMsg returned by the [Simulator Clearing](/api-reference/submit-simulator-clearing) endpoint
     required:
       - clearingRequestMsg
     title: ReverseClearing

@@ -1,12 +1,13 @@
 post:
   tags:
     - client-application
-  summary: Update the allowed origins
+  summary: Update Allowed Origins
+  operationId: update-allowed-origins
   description: |
     Add url origins to the client application whitelist.
-    The [Generate a challenge endpoint](/api-reference/initiate-login) will reject non-whitelisted origins.
+    The [Initiate Login](/api-reference/initiate-login) endpoint will reject non-whitelisted origins.
     **Warning!** This is a destructive operation. The allowed origins will be overwritten with the provided list.
-    Use the [Get a client application endpoint](/api-reference/get-a-client-application) to retrieve the current list of allowed origins.
+    Use the [Get Client Application](/api-reference/get-client-application) endpoint to retrieve the current list of allowed origins.
   parameters:
     - name: clientApplicationId
       in: path

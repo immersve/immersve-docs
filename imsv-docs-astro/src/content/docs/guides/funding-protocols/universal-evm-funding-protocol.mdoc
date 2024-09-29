@@ -76,7 +76,7 @@ contract.
 Depositors can send ERC-20 transfers directly to the Funds Storage address. Each
 depositor address needs to have a Funding Source created that is linked with the
 Funding Channel by calling  the {% link
-endpoint="create-a-funding-source-for-an-account" /%} endpoint. After an ERC-20
+endpoint="create-funding-source" /%} endpoint. After an ERC-20
 transfer transaction is confirmed, the connected Funding Source will be credited
 to the customer funding source to use with a card.
 
@@ -124,4 +124,4 @@ The address of the deployed Funds Storage instance can be discovered from the
 EVM transaction logs. In a block explorer, find the `FundsStorageCreated` event
 within the logs for the transaction that created the Funds Storage instance.
 Use the created funds storage address as the `storageAddress` when calling the
-{% link endpoint="create-a-funding-channel" /%} endpoint.
+{% link endpoint="create-funding-channel" /%} endpoint.

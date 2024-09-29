@@ -1,7 +1,8 @@
 
 tags:
   - contact-details
-summary: Update contact details
+summary: Update Contact Details
+operationId: update-contact-details
 description: |
   This endpoint sets or updates the contact details (email and phone) for the account. The contact details are used to send notifications to the cardholder, such as for 3DSecure and one time passwords.
 parameters:

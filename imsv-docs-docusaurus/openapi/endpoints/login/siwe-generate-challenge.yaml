@@ -2,6 +2,7 @@ post:
   tags:
     - authentication
   summary: Initiate SIWE Login
+  operationId: initiate-siwe-login
   description: |
     :::warning Deprecated
     This endpoint is deprecated, please use [Sign Up](/api-reference/sign-up/) or [Initiate Login](/api-reference/initiate-login) instead.

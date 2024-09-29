@@ -1,7 +1,8 @@
 get:
   tags:
     - currency
-  summary: List currencies
+  summary: List Currencies
+  operationId: list-currencies
   description: Get the list of currencies supported by Immersve.
   responses:
     "200":

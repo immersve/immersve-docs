@@ -1,6 +1,7 @@
 tags:
   - contact-details
-summary: Get contact details
+summary: Get Contact Details
+operationId: get-contact-details
 description: Get contact details for the account.
 parameters:
   - name: accountId

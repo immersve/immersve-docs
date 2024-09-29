@@ -15,13 +15,13 @@ state.
 
 ### Create a card
 
-Call the {% link endpoint="create-a-card" /%} operation to request
+Call the {% link endpoint="create-card" /%} operation to request
 Immersve generate a card, returning an ID. It is ready to use when a call to
-{% link endpoint="get-card-details" /%} with the card ID returns a
+{% link endpoint="get-card" /%} with the card ID returns a
 payload with `status` `"active"`.
 
 ### Cancel a card
 
 Should a cardholder change their mind prior to presenting the card to a
-merchant, cancel the card by calling the {% link endpoint="cancel-a-card" /%}
+merchant, cancel the card by calling the {% link endpoint="cancel-card" /%}
 endpoint.

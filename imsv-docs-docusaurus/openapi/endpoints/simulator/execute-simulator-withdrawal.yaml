@@ -1,7 +1,8 @@
 post:
   tags:
     - simulator
-  summary: Execute simulator withdrawal
+  summary: Execute Simulator Withdrawal
+  operationId: execute-simulator-withdrawal
   description: |
     This endpoint can be used to simulate a withdrawal on a simulated funding source
 

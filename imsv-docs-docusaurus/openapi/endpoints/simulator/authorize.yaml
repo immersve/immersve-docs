@@ -1,7 +1,8 @@
 post:
   tags:
     - simulator
-  summary: Authorize a transaction
+  summary: Submit Simulator Authorization
+  operationId: submit-simulator-authorization
   description: This endpoint can be used to test authorizing a transaction on a simulated card network
   requestBody:
     content:
