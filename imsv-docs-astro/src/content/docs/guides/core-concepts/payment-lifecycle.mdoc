@@ -1,0 +1,24 @@
+---
+title: Payment Lifecycle
+slug: guides/payment-lifecycle
+sidebar:
+  order: 2
+---
+
+Immersve card payments follow a lifecycle based on the card payment network
+requirements. The lifecycle transitions are mostly driven from the {% link
+page="guides/card-payments-101" title="payment network messages" /%}:
+authorization, clearing and reversal. Immersve is also responsible for expiring
+uncleared payments and driving the delivery of settlements and refunds.
+
+
+Payments begin in an "Initializing" state then move to "Holding" if authorized
+or "Reversed" if declined. An authorized payment will eventually be "Cleared" or
+"Reversed".
+
+![Payment Lifecycle Diagram](./assets/payment-lifecycle.png "Simplified Immersve Payment Lifecycle Diagram")
+
+Most payments are simply authorized then cleared but the payment network can
+send multiple incremental authorization, clearing and reversal messages. In
+those cases the payment will remain in the a "Holding" state and the held amount
+will be adjusted. An expired partially cleared payment is considered "Cleared".
