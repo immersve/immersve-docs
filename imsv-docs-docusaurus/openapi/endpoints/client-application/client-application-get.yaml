@@ -1,7 +1,8 @@
 get:
   tags:
     - client-application
-  summary: Get a client application
+  summary: Get Client Application
+  operationId: get-client-application
   parameters:
     - name: clientApplicationId
       in: path

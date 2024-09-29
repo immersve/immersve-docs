@@ -2,6 +2,7 @@ post:
   tags:
     - authentication
   summary: Initiate Login
+  operationId: initiate-login
   description: |
     Initiate the login sequence for an existing user. Multiple authentication methods are supported.
     To initiate login for a new user, use [Sign Up](/api-reference/sign-up/). Alternatively, if you'd

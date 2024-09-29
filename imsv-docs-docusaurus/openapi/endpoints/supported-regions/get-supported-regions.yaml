@@ -1,6 +1,7 @@
 tags:
   - supported-regions
-summary: Get supported regions
+summary: Get Supported Regions
+operationId: get-supported-regions
 description: Get the list of supported regions for a partner account.
 parameters:
   - name: partnerAccountId

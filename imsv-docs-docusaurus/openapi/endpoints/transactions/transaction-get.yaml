@@ -1,7 +1,8 @@
 get:
   tags:
     - transactions
-  summary: Get a transaction
+  summary: Get Transaction
+  operationId: get-transaction
   description: This endpoint returns the details of a card purchase transaction by a given ID.
   parameters:
     - name: transactionId

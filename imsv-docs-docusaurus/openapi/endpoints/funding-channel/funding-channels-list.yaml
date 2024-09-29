@@ -2,6 +2,7 @@ get:
   tags:
     - funding-channel
   summary: List Funding Channels
+  operationId: list-funding-channels
   description: |
     Retrieves a list of Funding Channels for the given account
 

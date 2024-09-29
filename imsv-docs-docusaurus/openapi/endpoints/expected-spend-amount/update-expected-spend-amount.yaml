@@ -1,6 +1,7 @@
 tags:
   - kyc
-summary: Update expected spend amount
+summary: Update Expected Spend Amount
+operationId: update-expected-spend-amount
 description: Update the expected spend amount for the given cardholder.
 parameters:
   - name: cardholderId

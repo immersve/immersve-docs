@@ -2,6 +2,7 @@ get:
   tags:
     - funding-source
   summary: List Funding Source Interactions
+  operationId: list-funding-source-interactions
   description: |
     Retrieves a list of Funding Source Interactions for a given Funding Source.
 

@@ -2,6 +2,7 @@ post:
   tags:
     - authentication
   summary: Create Challenge
+  operationId: create-challenge
   description: |
     This endpoint creates a challenge for the user to sign to verify ownership of their web3 address. By signing the message actions such as creating a funding source can be performed.
   requestBody:

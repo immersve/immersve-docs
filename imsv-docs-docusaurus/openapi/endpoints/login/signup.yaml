@@ -2,6 +2,7 @@ post:
   tags:
     - authentication
   summary: Sign Up
+  operationId: sign-up
   description: |
     Sign up a new user and create a new cardholder account. Multiple authentication methods are supported.
     To initiate login for an existing user, use [Initiate Login](/api-reference/initiate-login/). To complete the login flow,

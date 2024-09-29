@@ -1,8 +1,9 @@
 get:
   tags:
     - funding-source
-  summary: Get a Funding Source
-  description: Retrieves a specific Funding Source for the given account
+  summary: Get Funding Source
+  operationId: get-funding-source
+  description: Retrieves a specific Funding Source for the given id
   parameters:
   - name: fundingSourceId
     in: path

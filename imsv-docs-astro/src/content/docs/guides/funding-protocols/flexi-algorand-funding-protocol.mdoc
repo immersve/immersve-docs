@@ -129,19 +129,18 @@ explorer, find the `PartnerChannelCreated` event within the logs for the
 transaction that created the Partner Channel instance.
 
 Use the created partner channel address as the `contractAddress` when calling
-the {% link endpoint="create-a-funding-channel" /%} endpoint. A Funding Channel
+the {% link endpoint="create-funding-channel" /%} endpoint. A Funding Channel
 is required for each supported asset.
 
 
 ### Creating a Card Funds Instance
 
 A Card Fund instance needs to be created for each partner Cardholder account.
-Use the created Card Fund address as the `fundingAddress` when calling the [Create Funding
-Source](https://docs.immersve.com/api-reference/create-a-funding-source-for-an-account/)
-endpoint. The Algorand address that creates the Card Fund address is the owner.
-There can only be a single Card Fund contract instance per owner address per Partner
-Channel. Only the owner address can receive withdrawals from a Card Fund
-address.
+Use the created Card Fund address as the `fundingAddress` when calling the {%
+link endpoint="create-funding-source" /%} endpoint. The
+Algorand address that creates the Card Fund address is the owner. There can only
+be a single Card Fund contract instance per owner address per Partner Channel.
+Only the owner address can receive withdrawals from a Card Fund address.
 
 Creating a Card Fund instance requires two steps: deployment init and complete.
 To initialize the creation of the Card Fund instance, invoke the

@@ -1,7 +1,8 @@
 get:
   tags:
     - card
-  summary: Get card details
+  summary: Get Card Details
+  operationId: get-card
   description: Returns the non-sensitive details of a card by a given ID.
   parameters:
     - name: cardId

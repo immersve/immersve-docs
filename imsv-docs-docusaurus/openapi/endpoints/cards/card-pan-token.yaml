@@ -1,7 +1,8 @@
 post:
   tags:
     - card
-  summary: Get a card token
+  summary: Get Card Token
+  operationId: get-card-token
   description: |
     Generate a card token to enable the subsequent retrieval of the card's sensitive details including full PAN, expiry, CVV2 and embossedName.
 

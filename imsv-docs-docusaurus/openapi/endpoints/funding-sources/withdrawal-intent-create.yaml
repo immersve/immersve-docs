@@ -2,6 +2,7 @@ post:
   tags:
     - funding-source
   summary: Create Withdrawal Intent
+  operationId: create-withdrawal-intent
   description: |
     Create a Withdrawal Intent for a given Funding Source.
 

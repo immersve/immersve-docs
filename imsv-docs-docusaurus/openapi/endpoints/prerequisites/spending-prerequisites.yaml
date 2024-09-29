@@ -1,7 +1,8 @@
 post:
   tags:
     - prerequisites
-  summary: Get spending prerequisites
+  summary: Get Spending Prerequisites
+  operationId: get-spending-prerequisites
   description: |
     This endpoint specifies the necessary prerequisites that must be met for a cardholder to successfully create a card and transact with it against a specified Funding Source.
     The caller can specify the desired spend and receive the necessary transactions required, accounting for existing deposits, to deposit funds on-chain to meet that spend.
@@ -149,7 +150,7 @@ post:
 
         **KYC_PROFILE_REGION_MISMATCH**
         The KYC profile is already approved for a region different from the requested region.
-        Use the [Get a KYC profile](/get-a-kyc-profile/) endpoint to determine the current region of the KYC profile.
+        Use the [Get KYC Profile](/get-kyc-profile/) endpoint to determine the current region of the KYC profile.
 
         **UNSUPPORTED_KYC_REGION**
         The KYC region is not yet supported.

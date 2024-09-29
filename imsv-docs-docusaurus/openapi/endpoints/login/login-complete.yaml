@@ -2,6 +2,7 @@ post:
   tags:
     - authentication
   summary: Complete Login
+  operationId: complete-login
   description: |
     Complete a login sequence to obtain access and refresh tokens, and cardholder account id.
     The login sequence is initialized by [Initiate Login](/api-reference/initiate-login)

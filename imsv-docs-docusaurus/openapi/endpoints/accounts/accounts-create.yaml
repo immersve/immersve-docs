@@ -1,7 +1,8 @@
 tags:
   - accounts
 summary: Create Account
-description: Create account
+operationId: create-account
+description: Create an account.
 
 requestBody:
   content:

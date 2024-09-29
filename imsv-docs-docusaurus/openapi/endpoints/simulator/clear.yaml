@@ -1,7 +1,8 @@
 post:
   tags:
     - simulator
-  summary: Clear a transaction
+  summary: Submit Simulator Clearing
+  operationId: submit-simulator-clearing
   description: This endpoint can be used to test clearing a transaction on a simulated card network
   requestBody:
     content:

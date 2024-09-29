@@ -1,7 +1,8 @@
 post:
   tags:
     - funding-source
-  summary: Create a funding source for an account
+  summary: Create Funding Source
+  operationId: create-funding-source
   description: |
     Funding Sources define the mechanism for how card payments will be funded. A
     Funding Source's Funding Channel defines its purpose, protocol, and asset

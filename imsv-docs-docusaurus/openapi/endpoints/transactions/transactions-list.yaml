@@ -1,7 +1,8 @@
 get:
   tags:
     - transactions
-  summary: List transactions
+  summary: List Transactions
+  operationId: list-transactions
   description: |
     List card purchase transactions by account
 

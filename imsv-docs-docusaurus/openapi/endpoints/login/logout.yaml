@@ -2,6 +2,7 @@ post:
   tags:
     - authentication
   summary: Logout
+  operationid: logout
   description: |
     The logout endpoint invalidates  the current session to ensure it
     can no longer be used for accessing protected resources within the Immersve API.

@@ -1,6 +1,7 @@
 tags:
   - kyc
-summary: Get expected spend amount
+summary: Get Expected Spend Amount
+operationId: get-expected-spend-amount
 description: Get the expected spend amount for the given cardholder.
 parameters:
   - name: cardholderId
