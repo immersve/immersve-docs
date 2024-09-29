@@ -1,9 +1,9 @@
 get:
   tags:
     - currency
-  summary: Currency Conversion
-  operationId: currency-conversion
-  description: Convert a source currency to a target currency.
+  summary: Get Currency Conversion
+  operationId: get-currency-conversion
+  description: Get a currency conversion estimate based on present conversion rates.
   parameters:
     - name: currency
       in: query

@@ -1,8 +1,8 @@
 post:
   tags:
     - authentication
-  summary: Auth Token Exchange
-  operationId: auth-token-exchange
+  summary: Exchange Auth Token
+  operationId: exchange-auth-token
   description: |
     This endpoint can be used to request a new access token using a refresh token.
   parameters:
