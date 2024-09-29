@@ -28,6 +28,155 @@ Card payment authorization requests and other payment lifecycle events are
 actioned by delegating to the custodian's webhook endpoints.
 
 
+## Webhook Message Types
+
+There are four message types: `auth-request`, `auth-confirm`, `payment-advice`,
+and `auth-cancel`. Messages are generated from {% link
+page="guides/payment-lifecycle" /%} events. Messages relating to a payment are
+guaranteed to be delivered in the same sequence as the lifecycle events. The
+semanticis and integrator obligations are described below for each of these
+message types.
+
+There are two delivery modes: "transactional" and "notification". Transactional
+delivery means the message is delivered in real-time while the payment network
+waits for the transaction result. Notification delivery means the message is
+sent asynchronously and will be retried until a successfull response has been
+observed. The `auth-request` message type uses the transactional delivery mode
+and all other message types use the notification delivery mode. The two delivery
+modes correspond to the two webhook endpoint paths: `/authorize` and `/notify`.
+
+
+### Auth Request Message
+
+{% table %}
+---
+* <nobr>Name</nobr>
+* <nobr>auth-request</nobr>
+---
+* <nobr>Delivery Mode</nobr>
+* <nobr>Transactional</nobr>
+---
+* Description
+* A card payment is being requested. The custodian must decide if the payment
+  should be allowed or declined.
+
+  The `paymentAmount` field is indicative of the expected final payment amount.
+  The sign of the payment amount also indicates the type of payment. A positive,
+  negative, or zero payment amount indicates the payment type is a purchase,
+  refund or status enquiry respectively.
+
+  At least one more payment notification messages can be expected to be
+  delivered to indicate changes to the status and/or payment amount.
+---
+* Handler Obligations
+* Create the payment resource. The status should indicate the payment is
+  pending. The amount should be set based on the `paymentAmount` field. If the
+  payment is approved and it is a purchase (indicated by a positive payment
+  amount) then an account balance adjustment should be performed. If the payment
+  is a refund then the balance adjustmen should not be performed until a
+  finalized payment advice message is received. The outcome of the authorization
+  request is returned in the `result` field of the response payload.
+---
+{% /table %}
+
+
+### Auth Confirm Message
+
+{% table %}
+---
+* <nobr>Name</nobr>
+* <nobr>auth-confirm</nobr>
+---
+* <nobr>Delivery Mode</nobr>
+* <nobr>Notification</nobr>
+---
+* Description
+* The auth confirm message acknowledges that a payment has been successfully
+  authorized end-to-end. The auth confirm message always follows after an auth
+  request message.
+---
+* Handler Obligations
+* There are no specific requirements for handling an auth confirmation message. Handlers
+  may choose to use this message for scheduling a top-up of the shared float.
+---
+{% /table %}
+
+
+### Payment Advice Message
+
+{% table %}
+---
+* <nobr>Name</nobr>
+* <nobr>payment-advice</nobr>
+---
+* <nobr>Delivery Mode</nobr>
+* <nobr>Notification</nobr>
+---
+* Description
+* A payment advice message indicates a payment status has been updated or a
+  payment has been accepted without prior authorization (forced payment).
+  Payment advice messages cannot be declined.
+
+  The `paymentAmount` field indicates the total amount to be debited against the
+  cardholders account for the payment. The advised payment amount supercedes any
+  previously notified payment amount.
+
+  Multiple payment advice messages may be delivered for a single payment. This
+  may happen when a payment is incrementally authorized, partially cleared or
+  partially reversed. If the payment status is non-finalized then an additional
+  payment advice can be expected.
+
+  In case a payment has been forced by the payment network then the payment
+  advice message may be the sole message delivered in relation to the
+  payment.
+---
+* Handler Obligations
+* Create or update the payment resource relating to the `paymentId` field. If
+  the payment already exists, the status and amount should be adjusted based
+  on the `paymentFinalized` and `paymentAmount` fields. Perform an account
+  balance adjustment if necessary: a balance adjustment should be performed if
+  the amount differs from what has already been debited; if the payment is a
+  refund (indicated by a negative payment amount) then the balance adjustment
+  should be made only if the payment is finalized.
+---
+{% /table %}
+
+
+### Cancellation Message
+
+{% table %}
+---
+* <nobr>Name</nobr>
+* <nobr>auth-cancel</nobr>
+---
+* <nobr>Delivery Mode</nobr>
+* <nobr>Notification</nobr>
+---
+* Description
+* A payment has been cancelled. Any debits or credits must be rolled back.
+  No further lifecycle notifications are expected for the payment.
+
+  The `paymentAmount` for a cancelled payment indicates the previously
+  expected payment amount at the time of cancellation.
+
+  A payment can be canceled at any point in the payment lifecycle.
+  Some of the scenarios where a payment may be canceled are: payment was
+  declined due to card block; authorization expired; or payment failed due to
+  network error. Specific cancelation details can be discovered in the
+  `eventType` and `eventDescription` fields.
+
+  In case an error is encountered while authorizing payment then the
+  cancellation message may be the sole message delivered in relation to the
+  payment.
+---
+* Handler Obligations
+* Create or update the payment resource relating to the `paymentId` field. The
+  payment status should indicate it was cancelled. The recorded payment amount
+  should reflect the `paymentAmount` field. Any ledger debits or credits
+  relating to the payment must be reverted.
+---
+{% /table %}
+
 
 ## Partner Setup
 
@@ -37,7 +186,7 @@ endpoint="create-a-funding-channel" /%} endpoint. The funding channel
 should have a funding type of `custodial-usdc`.
 
 
-### Cardholder Setup
+## Cardholder Setup
 
 A funding source must be created for each Cardholder using the {% link
 endpoint="create-funding-source" /%} endpoint. An externalId
@@ -46,7 +195,7 @@ account. The externalId field will be supplied with every webhook notification
 for payments relating to the funding source.
 
 
-## Webhooks
+## Webhook Specs
 
 ### Authentication
 
@@ -63,15 +212,17 @@ https://api.immersve.com/.well-known/jwks.json.
 |-|-|
 | <nobr>X-Delivery-Id</nobr> | Unique identifier for the message delivery attempt. |
 | <nobr>X-Key-Id</nobr>      | The id of the signing key used to generate the signature. The key can be obtained from https://api.immersve.com/.well-known/jwks.json and matched by the "kid" attribute. |
-| <nobr>X-Signature</nobr>   | The RSA SHA256 signature of the request. |
+| <nobr>X-Signature</nobr>   | The hex encoded RSA SHA-256 signature of the request. |
 
 
 ### Idempotency
 
 Notification messages are guaranteed to be delivered. When message delivery
-fails, delivery will be retried at an exponentially increasing interval.
-Authorization messages are not retried; if an authorization message fails a
-cancel message will be sent instead.
+fails, delivery will be retried at an exponentially increasing interval. When
+the same message has been delivered twice then the handler must ignore it an
+return a successful response. The `messageId` field can be used to detect
+duplicate messages. Authorization messages are not retried; if an authorization
+message fails a cancel message will be sent instead.
 
 
 ### Authorize Payment Webhook
@@ -154,7 +305,7 @@ must tolerate the addition of unknown message attributes.
 * {% wrap %} messageType {% /wrap %}
 * payment-advice
 * The type of message: `auth-request`, `auth-confirm`, `auth-cancel`, or
-  `payment-advice`. See Message Types below for more details about message semantics.
+  `payment-advice`. See Message Types above for more details about message semantics.
 
 
 ---
@@ -189,13 +340,13 @@ must tolerate the addition of unknown message attributes.
   eventually finalized after being cleared, expired or cancelled. Payments may
   be updated after being finalized if, for example, the payment is reversed.
 
-
 ---
 * {% wrap %} paymentAmount {% /wrap %}
 * 1312
 * Total payment amount that the cardholder will be debited in minor units. The
-  payment amount may increase or decrease when cleared or reversed. A refund
-  payment will have a negative amount.
+  payment amount may increase or decrease when cleared or reversed.
+  A positive, negative, or zero payment amount indicates the payment type is a
+  purchase, refund or status enquiry respectively.
 
 ---
 * {% wrap %} paymentCurrency {% /wrap %}
@@ -277,35 +428,4 @@ must tolerate the addition of unknown message attributes.
   lifecycle event.
 
 ---
-{% /table %}
-
-
-### Message Types
-
-{% table %}
-* Name
-* Description
-
----
-* <nobr>auth-request</nobr>
-* The paymentAmount field indicates the type of payment that is being
-  authorized. Note that the amount positive indicates a purchase; negative indicates a refund; zero
-  amount indicates an account status enquiry.
-
----
-* <nobr>auth-confirm</nobr>
-* Confirmation that a payment has been authorized successfully.
-
----
-* <nobr>auth-cancel</nobr>
-* The payment has been canceled. There are
-  several scenarios where a payment may be canceled such as: payment declined due
-  to card block; payment expired; or payment error such as timeout. Specific
-  cancellation details can be discovered in the `eventType` and `eventDescription`
-  fields. The paymentAmount
-
----
-* <nobr>payment-advice</nobr>
-*
-
 {% /table %}
