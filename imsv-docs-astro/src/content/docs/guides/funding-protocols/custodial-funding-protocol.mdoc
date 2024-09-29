@@ -135,7 +135,8 @@ while handling an authorization request.
 ### Request Body Format
 
 All custodial webhook endpoints share the same message body format. The request
-content type is application/json.
+content type is application/json. Client consumers of the message format
+must tolerate the addition of unknown message attributes.
 
 {% table %}
 * Field
@@ -158,7 +159,7 @@ content type is application/json.
 
 ---
 * {% wrap %} eventType {% /wrap %}
-* payment-cleared
+* clearing-accepted
 * The payment lifecycle event which triggered the message. This may be useful to
   discriminate the reason for an auth cancellation message. Clients must
   tolerate unknown event types.
@@ -175,35 +176,26 @@ content type is application/json.
   can be useful for debugging.
 
 ---
-* {% wrap %} cardId {% /wrap %}
-* {% wrap 9 %}9ae177ea85ed4128{% /wrap %}
-* Immersve card identifier.
-
----
-* {% wrap %} cardholderId {% /wrap %}
-* {% wrap 9 %}d44d045826d4484c{% /wrap %}
-* Immersve cardholder account id.
-
----
-* {% wrap %} fundingSourceId {% /wrap %}
-* {% wrap 9 %}c65fe4d184a24619{% /wrap %}
-* Immersve funding source identifier.
-
----
-* {% wrap %} fundingSourceExternalId {% /wrap %}
-* abc123
-* The client user reference stored on the Immersve funding source. This
-  attribute should be used to resolve the custodial ledger account to be debited.
-
----
 * {% wrap %} paymentId {% /wrap %}
 * {% wrap 9 %}38fb58acc55b4907{% /wrap %}
-* Immersve payment transaction identifier.
+* Immersve payment transaction identifier. This attribute should be used to find
+  the existing payment resource to update accordingly based on the message type.
+
+---
+* {% wrap %} paymentFinalized {% /wrap %}
+* true
+* Flag indicating if the payment is expected to have further updates.
+  Messages of type "auth-request" will always be non-finalized. Payments are
+  eventually finalized after being cleared, expired or cancelled. Payments may
+  be updated after being finalized if, for example, the payment is reversed.
+
 
 ---
 * {% wrap %} paymentAmount {% /wrap %}
 * 1312
-* Required payment amount in minor units.
+* Total payment amount that the cardholder will be debited in minor units. The
+  payment amount may increase or decrease when cleared or reversed. A refund
+  payment will have a negative amount.
 
 ---
 * {% wrap %} paymentCurrency {% /wrap %}
@@ -211,40 +203,78 @@ content type is application/json.
 * Required payment currency.
 
 ---
-* {% wrap %} paymentAdjustment {% /wrap %}
+* {% wrap %} paymentAcquirerAmount {% /wrap %}
+* 978
+* Payment amount represented in the merchant's local currency.
 
 ---
-* {% wrap %} paymentFinalized {% /wrap %}
+* {% wrap %} paymentAcquirerCurrency {% /wrap %}
+* GBP
+* The merchant's local currency.
 
 ---
 * {% wrap %} paymentFeeAmount {% /wrap %}
+* 32
+* Immersve's payment fee amount in minor units. The fee currency is
+  the same as the payment currency.
 
 ---
-* {% wrap %} paymentFeeCurrency {% /wrap %}
+* {% wrap %} fundingSourceExternalId {% /wrap %}
+* abc123
+* The custodial account external reference stored on the Immersve funding
+  source. This attribute is used to resolve the custodial ledger account
+  to be debited.
 
 ---
-* {% wrap %} merchantCity {% /wrap %}
-* Auckland
+* fundingSourceId
+* {% wrap 9 %}c65fe4d184a24619{% /wrap %}
+* Immersve funding source identifier.
 
 ---
-* {% wrap %} merchantCountryCode {% /wrap %}
-* NZL
+* {% wrap %} cardholderId {% /wrap %}
+* {% wrap 9 %}d44d045826d4484c{% /wrap %}
+* Immersve cardholder account id.
+
+---
+* {% wrap %} cardId {% /wrap %}
+* {% wrap 9 %}9ae177ea85ed4128{% /wrap %}
+* Immersve card identifier.
 
 ---
 * {% wrap %} merchantId {% /wrap %}
 * {% wrap 9 %}92102062388908{% /wrap %}
+* The merchant identifier from the payment network.
 
 ---
 * {% wrap %} merchantName {% /wrap %}
 * Unsworth Height Super
+* The merchant's name.
+
+---
+* {% wrap %} merchantCountryCode {% /wrap %}
+* NZL
+* The merchant's ISO-3166 Alpha-3 country code.
+
+---
+* {% wrap %} merchantCity {% /wrap %}
+* Auckland
+* The merchant's city name.
 
 ---
 * {% wrap %} merchantTerminalId {% /wrap %}
 * 50487001
+* The merchant's payment terminal identifier.
 
 ---
 * {% wrap %} merchantCategoryCode {% /wrap %}
 * 5451
+* The merchant's ISO-18245 category code.
+
+---
+* {% wrap %} networkMessageRef {% /wrap %}
+* {% wrap 9 %}01005960960820000000000000{% /wrap %}
+* The payment network identifier for the message which triggered the payment
+  lifecycle event.
 
 ---
 {% /table %}
