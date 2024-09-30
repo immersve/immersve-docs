@@ -34,7 +34,7 @@ There are four message types: `auth-request`, `auth-confirm`, `payment-advice`,
 and `auth-cancel`. Messages are generated from {% link
 page="guides/payment-lifecycle" /%} events. Messages relating to a payment are
 guaranteed to be delivered in the same sequence as the lifecycle events. The
-semanticis and integrator obligations are described below for each of these
+semantics and integrator obligations are described below for each of these
 message types.
 
 There are two delivery modes: "transactional" and "notification". Transactional
@@ -221,7 +221,7 @@ https://api.immersve.com/.well-known/jwks.json.
 
 Notification messages are guaranteed to be delivered. When message delivery
 fails, delivery will be retried at an exponentially increasing interval. When
-the same message has been delivered twice then the handler must ignore it an
+the same message has been delivered twice then the handler must ignore it and
 return a successful response. The `messageId` field can be used to detect
 duplicate messages. Authorization messages are not retried; if an authorization
 message fails a cancel message will be sent instead.
