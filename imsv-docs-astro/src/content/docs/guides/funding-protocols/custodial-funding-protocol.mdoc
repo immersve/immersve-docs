@@ -63,7 +63,8 @@ modes correspond to the two webhook endpoint paths: `/authorize` and `/notify`.
   The `paymentAmount` field is indicative of the expected final payment amount.
   The sign of the payment amount also indicates the type of payment. A positive,
   negative, or zero payment amount indicates the payment type is a purchase,
-  refund or status enquiry respectively.
+  refund or status enquiry respectively. The currency of the payment will align
+  with the currency of the shared float.
 
   The auth request message is delived at most once for a payment. The auth
   request will be followed up with at least one more payment notification
