@@ -30,4 +30,4 @@ properties:
     description: A URL to which the user can be redirected after they have completed or exited the kyc process.
   kycRegion:
     type: string
-    description: An Alpha2 (ISO-3166-1) country code representing the country in which the user is being KYC'd.
+    description: An Alpha2 (ISO-3166-1) country code representing the country in which the user is being KYC'd. Required if `kycType` is `partner-conducted`.
