@@ -51,7 +51,7 @@ for payments relating to the funding source.
 ### Authentication
 
 Webhooks are authenticated by an RSA signature. The signature is made against
-the contatenation of the request headers and body like
+the concatenation of the request headers and body like
 `{deliveryId}:{keyId}:{body}`. The signature is provided in the
 <nobr>`X-Signature`</nobr> header. The public key for validating the signature
 can be obtained from the JWKS endpoint at
@@ -93,7 +93,7 @@ The authorization webhook is called when a merchant requests payment from the
 card.
 
 The authorization request is expected to respond within 1000 milliseconds.
-Unresponsive authoriation requests will be canceled.
+Unresponsive authorization requests will be canceled.
 
 #### Response Format
 
@@ -128,7 +128,7 @@ amount; when a payment is reversed or expired; or when a refund has been issued.
 The integrated client must accept the balance adjustment and increment or
 decrement the funding source balance accordingly.
 
-Immersve will send a cancel payment instruction incase an error has occured
+Immersve will send a cancel payment instruction in case an error has occurred
 while handling an authorization request.
 
 
@@ -301,7 +301,7 @@ must tolerate the addition of unknown message attributes.
 * The payment has been canceled. There are
   several scenarios where a payment may be canceled such as: payment declined due
   to card block; payment expired; or payment error such as timeout. Specific
-  cancelation details can be discovered in the `eventType` and `eventDescription`
+  cancellation details can be discovered in the `eventType` and `eventDescription`
   fields. The paymentAmount
 
 ---
