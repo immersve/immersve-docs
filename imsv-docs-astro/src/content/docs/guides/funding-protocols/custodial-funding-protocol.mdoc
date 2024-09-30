@@ -65,15 +65,17 @@ modes correspond to the two webhook endpoint paths: `/authorize` and `/notify`.
   negative, or zero payment amount indicates the payment type is a purchase,
   refund or status enquiry respectively.
 
-  At least one more payment notification message can be expected to be
-  delivered to indicate changes to the status and/or payment amount.
+  The auth request message is delived at most once for a payment. The auth
+  request will be followed up with at least one more payment notification
+  message. The subsequent notification messages will indicate changes to the
+  status and/or payment amount.
 ---
 * Handler Obligations
 * Create the payment resource. The status should indicate the payment is
   pending. The amount should be set based on the `paymentAmount` field. If the
   payment is approved and it is a purchase (indicated by a positive payment
   amount) then an account balance adjustment should be performed. If the payment
-  is a refund then the balance adjustmen should not be performed until a
+  is a refund then the balance adjustment should not be performed until a
   finalized payment advice message is received. The outcome of the authorization
   request is returned in the `result` field of the response payload.
 ---
