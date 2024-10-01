@@ -345,21 +345,24 @@ must tolerate the addition of unknown message attributes.
 
 ---
 * {% wrap %} paymentAmount {% /wrap %}
-* 1312
+* 13120000
 * Total payment amount that the cardholder will be debited in minor units. The
-  payment amount may increase or decrease when cleared or reversed.
-  A positive, negative, or zero payment amount indicates the payment type is a
-  purchase, refund or status enquiry respectively.
+  payment amount may increase or decrease when cleared or reversed. A positive,
+  negative, or zero payment amount indicates the payment type is a purchase,
+  refund or status enquiry respectively. The amount will use the stable coin
+  minor units. For example, 13120000 USDC is $13.12.
 
 ---
 * {% wrap %} paymentCurrency {% /wrap %}
-* USD
-* Required payment currency.
+* USDC
+* Expected payment currency which will be the same as the billing funding
+  source.
 
 ---
 * {% wrap %} paymentAcquirerAmount {% /wrap %}
 * 978
-* Payment amount represented in the merchant's local currency.
+* Payment amount represented in the merchant's local currency. The amount will
+  use fiat minor units. For example 978 GBP is £9.78.
 
 ---
 * {% wrap %} paymentAcquirerCurrency {% /wrap %}
