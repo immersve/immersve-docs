@@ -66,19 +66,26 @@ modes correspond to the two webhook endpoint paths: `/authorize` and `/notify`.
   refund or status enquiry respectively. The currency of the payment will align
   with the currency of the shared float.
 
-  The auth request message is delivered at most once for a payment. The auth
-  request will be followed up with at least one more payment notification
-  message. The subsequent notification messages will indicate changes to the
-  status and/or payment amount.
+  For most payments there will be one auth request message. If the merchant
+  requests an adjustment to the authorized amount (incremental auth) then
+  additional auth requests will be sent with the adjusted amount. If a forced
+  payment has been issued then there will be zero auth requests.
+
+  An auth request will always be followed up with at least one more payment
+  notification message. The subsequent notification messages will indicate
+  changes to the status and/or payment amount.
 ---
 * Handler Obligations
-* Create the payment resource. The status should indicate the payment is
-  pending. The amount should be set based on the `paymentAmount` field. If the
-  payment is approved and it is a purchase (indicated by a positive payment
-  amount) then an account balance adjustment should be performed. If the payment
-  is a refund then the balance adjustment should not be performed until a
-  finalized payment advice message is received. The outcome of the authorization
-  request is returned in the `result` field of the response payload.
+* Create or update the payment resource relating to the `paymentId` field. The
+  status should indicate the payment is pending. The amount should be set based
+  on the `paymentAmount` field. If the payment is a purchase (indicated by a
+  positive payment amount) and it is permitted then an account balance
+  adjustment should be performed. If the payment already exists then the balance
+  adjustment should use the difference from what has already been debited. If
+  the payment is a refund (indicated by a negative payment amount) then the
+  balance adjustment should not be performed until later when a finalized
+  payment advice message is received. The outcome of the authorization request
+  is returned in the `result` field of the response payload.
 ---
 {% /table %}
 
