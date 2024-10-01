@@ -21,11 +21,15 @@ adjusted in real-time according to cardholder payments. When the available
 balance drops to zero then all cardholder payments will be declined. Settlements
 are handled automatically by Immersve by drawing on the float.
 
+![Funding Component Diagram](./assets/custodial-component-diagram.png "Custodial Funding Components")
 
-### Webhook Payment Messages
+
+### Webhook Payment Delegation
 
 Card payment authorization requests and other payment lifecycle events are
 actioned by delegating to the custodian's webhook endpoints.
+
+![Payment Sequence Diagram](./assets/custodial-payment-sequence-diagram.png "Successful Custodial Payment Sequence")
 
 
 ## Webhook Message Types
