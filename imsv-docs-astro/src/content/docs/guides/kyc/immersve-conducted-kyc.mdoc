@@ -38,7 +38,7 @@ contain a URL, where the user must be redirected to complete the KYC
 verification.
 
 {% note %}
-If Immersve already has complete KYC information in the requested region for the individual owning the wallet, the
+If Immersve already has complete KYC information for the individual owning the wallet, in any of the regions supported by the requested card program, the
 user will not be required to go through KYC.
 {% /note %}
 
@@ -67,7 +67,6 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
     "spendableCurrency": "USD",
     "kycType": "immersve-conducted",
     "kycRedirectUrl: "https://app.example.io",
-    "kycRegion": "NZ"
   }'
 ```
 
@@ -128,7 +127,6 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
     "spendableCurrency": "USD",
     "kycType": "immersve-conducted",
     "kycRedirectUrl: "https://app.example.io",
-    "kycRegion": "NZ"
   }'
 ```
 
