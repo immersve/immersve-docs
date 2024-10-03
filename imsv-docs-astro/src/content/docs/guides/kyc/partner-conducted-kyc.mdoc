@@ -15,6 +15,11 @@ for more details.
 Although Immersive still performs KYC checks on these details, we rely on the partner for verification of document
 scans and the cardholder's identity.
 
+{% note %}
+If Immersve already has complete KYC information for the individual owning the wallet, in any of the regions supported by the requested card program, the
+user will not be required to go through KYC.
+{% /note %}
+
 {% warning %}
 Once Immersve has received and checked the KYC information for an Individual, the supported region associated with
 the wallet of the individual cannot be changed.
@@ -196,7 +201,6 @@ curl -X "https://test.immersve.com/api/spending-prerequisites" \
     "spendableAmount": 100,
     "spendableCurrency": "USD",
     "kycType": "partner-conducted",
-    "kycRegion": "NZ"
   }'
 ```
 
