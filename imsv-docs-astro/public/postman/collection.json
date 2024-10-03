@@ -1283,7 +1283,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"partner-conducted\",\n}"
+							"raw": "{\n  \"cardProgramId\":\"{{cardProgramId}}\",\n  \"fundingSourceId\": \"{{fundingSourceId}}\",\n  \"spendableAmount\": \"100\",\n  \"spendableCurrency\": \"USD\",\n  \"kycType\": \"partner-conducted\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/spending-prerequisites",
