@@ -11,6 +11,7 @@ properties:
     description: Transaction type
     enum:
       - purchase
+      - refund
   transactionAmount:
     type: string
     description: Transaction amount as an integer in the smallest denomination of USD.
