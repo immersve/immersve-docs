@@ -321,13 +321,28 @@ must tolerate the addition of unknown message attributes.
 * The type of message: `auth-request`, `auth-confirm`, `auth-cancel`, or
   `payment-advice`. See Message Types above for more details about message semantics.
 
-
 ---
 * {% wrap %} eventType {% /wrap %}
 * clearing-accepted
 * The payment lifecycle event which triggered the message. This may be useful to
   discriminate the reason for an auth cancellation message. Clients must
-  tolerate unknown event types.
+  tolerate unknown event types. Event types may include the following:
+  `auth-requested`,
+  <!-- Note: commented out events will never result in notification delivery. -->
+  <!-- `auth-accepted`, -->
+  `auth-confirmed`,
+  `auth-declined`,
+  `auth-forced`,
+  <!-- `clearing-requested`, -->
+  `clearing-accepted`,
+  `clearing-declined`,
+  `payment-expired`,
+  <!-- `auth-reversal-requested`, -->
+  `auth-reversal-accepted`,
+  `auth-reversal-declined`,
+  <!-- `clearing-reversal-requested`, -->
+  `clearing-reversal-accepted`,
+  `clearing-reversal-declined`.
 
 ---
 * {% wrap %} eventTimestamp {% /wrap %}
