@@ -3,11 +3,6 @@ required:
   - transactionType
   - reversalAmount
 properties:
-  transactionType:
-    type: string
-    description: Transaction type
-    enum:
-      - purchase
   reversalAmount:
     type: string
     description: Amount to reverse on the prior authorize or clear requests. An integer in the smallest denomination of USD.
