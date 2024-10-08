@@ -1,30 +1,47 @@
 type: object
+required:
+  - id
+  - accountId
+  - createdAt
+  - balance
+  - balanceCurrency
+  - fundingChannelId
+  - externalId
+  - purpose
 properties:
   id:
     type: string
-    description: Funding Source primary identifier
+    description: Funding Source primary identifier.
     example: 91ad6fea3b52ca58d60d7fd310f789ec
   accountId:
     type: string
-    description: Cardholder account this Funding Source belongs to
+    description: Cardholder account this Funding Source belongs to.
     example: 057aa15913a57f50577234c8426534c0
   createdAt:
     type: string
-    description: Timestamp of Funding Source creation
+    description: Timestamp of Funding Source creation.
     example: "2022-11-16T03:13:18.142Z"
   balance:
     type: string
-    description: Current balance of Funding Source in minor units
+    description: Current balance of Funding Source in minor units.
     example: "1000000"
   balanceCurrency:
     type: string
-    description: Currency of the balance
+    description: Currency of the balance.
     example: "USDC"
   fundingChannelId:
     type: string
-    description: The id of the Funding Channel that this Funding Source relates to.
+    description: The ID of the Funding Channel that this Funding Source relates to.
     example: 315bad4e81ce0f26966a41b9d451638b
+  externalId:
+    type: string
+    description: Funding address for on-chain Funding, or customer specified ID for off-chain Funding.
+    example: "0x1aD2B053b8c6b1592cB645DEfadf105F34d8C6e1"
   purpose:
     type: string
     description: The purpose of the Funding Channel.
     example: card-funding
+  network:
+    type: string
+    description: Network of Funding Source with on-chain Funding.
+    example: polygon-mainnet
