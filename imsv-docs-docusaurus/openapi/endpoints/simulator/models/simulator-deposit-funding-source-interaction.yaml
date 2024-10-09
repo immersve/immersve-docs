@@ -21,7 +21,7 @@ properties:
     description: The current status of the interaction.
     example: confirmed
   amount:
-    type: number
+    type: string
     description: The minor units amount of the transaction.
     example: 20000
   token:
