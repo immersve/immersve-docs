@@ -8,7 +8,7 @@ required:
 properties:
   transactionType:
     type: string
-    description: Transaction type
+    description: Transaction type.
     enum:
       - purchase
       - refund
@@ -18,14 +18,17 @@ properties:
   cardPan:
     type: string
     pattern: ^[0-9]{16}$
-    description: Card number
+    description: Card number.
   cardExpiry:
     type: string
     pattern: ^[0-9]{6}$
-    description: Card expiry in YYYYMM format
+    description: Card expiry in YYYYMM format.
   cardCvv:
     type: string
     pattern: ^[0-9]{3}$
-    description: Card CVV
+    description: Card CVV.
   fxAmount:
     $ref: "./fxAmount.yaml"
+  authorizationRequestMsg:
+    type: string
+    description: requestMsg of previous authorization returned by this endpoint.
