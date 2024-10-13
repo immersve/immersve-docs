@@ -49,6 +49,18 @@ observed. The `auth-request` message type uses the transactional delivery mode
 and all other message types use the notification delivery mode. The two delivery
 modes correspond to the two webhook endpoint paths: `/authorize` and `/notify`.
 
+Handling the different custodial payment message types will generally follow the
+same sequence:
+
+ 1. Find the payment resource based on the `paymentId` field.
+ 2. If the payment exists and the `messageId` has already been handled (due to
+    duplicate message delivery) then do nothing and return the same response as
+    the first time the message was handled.
+ 3. Create or update the payment resource. Set the status based on the
+    `paymentFinalized` field. Set the amount based on the `paymentAmount` field.
+    Record the `messageId` field. In the same database transaction, apply an
+    atomic balance adjustment if needed.
+
 
 ### Auth Request Message
 
