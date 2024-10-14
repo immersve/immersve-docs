@@ -1,5 +1,3 @@
-type: object
-description: Parameters for the Funding Channel. The valid parameters depend on the Funding Type.
 properties:
   storageAddress:
     type: string

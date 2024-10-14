@@ -1,17 +1,25 @@
 type: object
+required:
+  - id
+  - accountId
+  - createdAt
+  - fundingTypeName
+  - name
+  - purpose
+  - params
 properties:
   id:
     type: string
     description: Funding Channel primary identifier.
     example: 315bad4e81ce0f26966a41b9d451638b
+  accountId:
+    type: string
+    description: Partner Account ID.
+    example: 65a7e8ef0d230d0a6bf755e07d39eb02
   createdAt:
     type: string
     description: Timestamp of Funding Channel creation.
     example: "2023-08-14T12:32:54"
-  storageAddress:
-    type: string
-    description: Fund storage smart contract address.
-    example: "0x2e429C4324227F70f0101a17214d249cb04035Ec0"
   fundingTypeName:
     type: string
     description: The type of Funding Channel registered.
@@ -24,3 +32,15 @@ properties:
     type: string
     description: Purpose of the Funding Channel.
     example: card-funding
+  params:
+    description: Parameters for the Funding Channel.
+    oneOf:
+      - $ref: './create-funding-channel-params/universal-evm.yaml'
+      - $ref: './create-funding-channel-params/algorand.yaml'
+      - $ref: './create-funding-channel-params/custodial.yaml'
+      - $ref: './create-funding-channel-params/simulator.yaml'
+  storageAddress:
+    type: string
+    description: Deprecated. See `params` for storage address.
+    example: "0x2e429C4324227F70f0101a17214d249cb04035Ec0"
+    deprecated: true
