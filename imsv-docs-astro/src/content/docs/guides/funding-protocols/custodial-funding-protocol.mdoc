@@ -282,7 +282,7 @@ The authorize response must contain a JSON object with the following fields.
 | result     | `authorized`, `insufficient-funds`, `account-not-found`, `declined` |
 
 Merchants rely on the result value to determine the next steps in the payment
-process.`authorized` is the only successful result value. All other values will
+process. A value of `authorized` indicates payment success. All other values will
 result in the decline of the payment. Use `declined` when a more specific value
 does not apply.
 
