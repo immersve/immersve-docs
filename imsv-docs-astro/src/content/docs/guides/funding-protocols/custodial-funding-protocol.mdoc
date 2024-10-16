@@ -281,7 +281,11 @@ The authorize response must contain a JSON object with the following fields.
 |-|-|
 | result     | `authorized`, `insufficient-funds`, `account-not-found`, `declined` |
 
-
+It is important to respond with the appropriate result value. Merchants and
+banks rely on the result value to determine the next steps in the payment
+process.`authorized` is the only successful result value. All other values will
+result in the decline of the payment. Use `declined` when a more specific value
+does not apply.
 
 ### Payment Notification Webhook
 
