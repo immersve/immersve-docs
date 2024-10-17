@@ -113,9 +113,7 @@ a checkbox. This can be done at the same time as KYC information sharing.
 ```bash
 curl -X PATCH "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/contact-details" \
   -H "Content-Type: application/json" \
-  -H "X-Api-Key: ${card_issuer_api_key}" \
-  -H "X-Api-Secret: ${card_issuer_api_secret}" \
-  -H "X-Account-Id: ${cardholder_account_id}" \
+  -H "Authorization: Bearer $token" \
   --data '{
     "email": {
       "emailAddress": "joe@cardholder.email",
