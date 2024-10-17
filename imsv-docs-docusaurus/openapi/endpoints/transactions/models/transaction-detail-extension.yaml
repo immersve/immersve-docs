@@ -1,35 +1,8 @@
 type: object
 required:
-  - web3Transactions
   - panFirst6
   - panLast4
 properties:
-  web3Transactions:
-    items:
-      type: object
-      required:
-        - type
-        - hash
-      properties:
-        type:
-          type: string
-          enum: [debit, credit]
-          description: >
-            The type of the web3 transaction:
-              * `debit` - The transaction is from the cardholders’ balance to Immersve balance
-              * `credit` - The transaction is from Immersve balance to cardholders’ balance
-        hash:
-          type: string
-          description: The hash of the web3 transaction
-          example: "0x6f87ad90847828cb8575bd8f3c9a9cdde12a2e53e047604b6012f156495cce1e"
-        transactionId:
-          type: string
-          description: The associated credit card transaction ID
-          example: "1000000178145"
-        transactionType:
-          type: string
-          description: The associated credit card transaction type
-          enum: [authorization, clearing, reversal]
   panFirst6:
     type: string
     description: The first 6 digits of the card's PAN
