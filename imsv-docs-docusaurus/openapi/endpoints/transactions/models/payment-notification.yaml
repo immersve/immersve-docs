@@ -43,32 +43,29 @@ properties:
       requestBody:
         type: object
         description: Payment notification payload sent to the partner webhook.
-        example: |
-          {
-            "messageType": "auth-request",
-            "messageId": "8f4db9a9558779a775232a77627a2dd1",
-            "eventType": "auth-requested",
-            "eventTimestamp": "2024-10-29T03:02:17.757Z",
-            "eventDescription": "",
-            "paymentId": "369284a071396e64d8d204e11eafb461",
-            "cardId": "ef384b85abe49a0d5611851a6ac864f4",
-            "cardholderId": "e2c1ca3d684a1adb1c4e251b6a1c0815",
-            "fundingSourceExternalId": "grantTest2",
-            "fundingSourceId": "c6a2168ea539cfcd5cf58451b940cf67",
-            "paymentAmount": "6660000",
-            "paymentFeeAmount": "0",
-            "paymentCurrency": "USDC",
-            "paymentAcquirerAmount": "666",
-            "paymentAcquirerCurrency": "USD",
-            "paymentFinalized": false,
-            "merchantCity": "Auckland",
-            "merchantCountryCode": "NZ",
-            "merchantId": "123456789012345",
-            "merchantName": "1 Queen Street",
-            "merchantTerminalId": "12345678",
-            "merchantCategoryCode": "1234",
-            "networkMessageRef": "010093436710290302140000012345600000000000"
-          }
+        example:
+          messageType: auth-request
+          messageId: 8f4db9a9558779a775232a77627a2dd1
+          eventType: auth-requested
+          eventTimestamp: "2024-10-29T03:02:17.757Z"
+          paymentId: 369284a071396e64d8d204e11eafb461
+          cardId: ef384b85abe49a0d5611851a6ac864f4
+          cardholderId: 057aa15913a57f50577234c8426534c0
+          fundingSourceExternalId: partner-cardholder-id-1
+          fundingSourceId: 6c474aa7a5dc45bff721b5a207cf0f47
+          paymentAmount: "6660000"
+          paymentFeeAmount: "0"
+          paymentCurrency: USDC
+          paymentAcquirerAmount: "666"
+          paymentAcquirerCurrency: USD
+          paymentFinalized: "false"
+          merchantCity: Auckland
+          merchantCountryCode: NZ
+          merchantId: "123456789012345"
+          merchantName: "1 Queen Street"
+          merchantTerminalId: "12345678"
+          merchantCategoryCode: "1234"
+          networkMessageRef: "010093436710290302140000012345600000000000"
       requestUrl:
         type: string
         description: The url of the partner webhook this payment notification was attempted to be delivered to.
@@ -80,10 +77,8 @@ properties:
       responseBody:
         type: object
         description: The partner webhook response to this payment notification last delivery.
-        example: |
-          {
-            "result": "authorized"
-          }
+        example:
+          result: "authorized"
       responseStatus:
         type: number
         description: HTTP Response status code of this payment notification last delivery
