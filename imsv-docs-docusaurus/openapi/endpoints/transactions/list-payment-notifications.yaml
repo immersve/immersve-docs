@@ -1,8 +1,6 @@
 get:
   tags:
     - transactions
-    - payments
-    - notifications
   summary: List Payment Notifications by Account
   operationId: list-account-payment-notifications
   description: This endpoint returns the payment notifications by the given accountId order by descending `createdAt` date
