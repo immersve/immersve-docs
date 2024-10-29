@@ -94,6 +94,8 @@ paths:
     $ref: "./endpoints/transactions/transaction-get.yaml"
   "/api/accounts/{accountId}/transactions":
     $ref: "./endpoints/transactions/transactions-list.yaml"
+  "/api/accounts/{partnerAccountId}/payment-notifications":
+    $ref: "./endpoints/transactions/list-payment-notifications.yaml"
   "/api/accounts/{accountId}/funding-sources":
     $ref: "./endpoints/funding-sources/list-funding-sources.yaml"
   "/api/accounts/{cardholderAccountId}/partner-kyc-statement":

@@ -1,0 +1,98 @@
+type: object
+required:
+  - id
+  - fundingSourceId
+  - accountId
+  - createdAt
+  - paymentId
+  - attempts
+  - delivered
+properties:
+  id:
+    type: string
+    description: Payment notification primary identifier.
+    example: 91ad6fea3b52ca58d60d7fd310f789ec
+  accountId:
+    type: string
+    description: Cardholder account this payment notification belongs to.
+    example: 057aa15913a57f50577234c8426534c0
+  fundingSourceId:
+    type: string
+    description: Funding Source this payment notification belongs to.
+    example: 6c474aa7a5dc45bff721b5a207cf0f47
+  createdAt:
+    type: string
+    description: Timestamp of payment notification creation.
+    example: "2022-11-16T03:13:18.142Z"
+  paymentId:
+    type: string
+    description: Payment id this notification belongs to.
+    example: 225d85e65495722bf6517ea0ba0d6f56
+  attempts:
+    type: number
+    description: Number of times this payment notification was attempted to be delivered.
+    example: 1
+  delivered:
+    type: boolean
+    description: Payment notification has been delivered successfully to the partner webhook.
+  lastDelivery:
+    type: object
+    description: Last delivery attempt details. This can be empty if the payment notification is still scheduled
+      for delivery. Response fields can be empty if there is no response from the partner webhook yet.
+    properties:
+      requestBody:
+        type: object
+        description: Payment notification payload sent to the partner webhook.
+        example: |
+          {
+            "messageType": "auth-request",
+            "messageId": "8f4db9a9558779a775232a77627a2dd1",
+            "eventType": "auth-requested",
+            "eventTimestamp": "2024-10-29T03:02:17.757Z",
+            "eventDescription": "",
+            "paymentId": "369284a071396e64d8d204e11eafb461",
+            "cardId": "ef384b85abe49a0d5611851a6ac864f4",
+            "cardholderId": "e2c1ca3d684a1adb1c4e251b6a1c0815",
+            "fundingSourceExternalId": "grantTest2",
+            "fundingSourceId": "c6a2168ea539cfcd5cf58451b940cf67",
+            "paymentAmount": "6660000",
+            "paymentFeeAmount": "0",
+            "paymentCurrency": "USDC",
+            "paymentAcquirerAmount": "666",
+            "paymentAcquirerCurrency": "USD",
+            "paymentFinalized": false,
+            "merchantCity": "Auckland",
+            "merchantCountryCode": "NZ",
+            "merchantId": "123456789012345",
+            "merchantName": "1 Queen Street",
+            "merchantTerminalId": "12345678",
+            "merchantCategoryCode": "1234",
+            "networkMessageRef": "010093436710290302140000012345600000000000"
+          }
+      requestUrl:
+        type: string
+        description: The url of the partner webhook this payment notification was attempted to be delivered to.
+        example: https://api.partner.com/webhooks/notify
+      requestTimestamp:
+        type: string
+        description: Timestamp of payment notification last delivery request.
+        example: "2022-11-16T03:13:18.142Z"
+      responseBody:
+        type: object
+        description: The partner webhook response to this payment notification last delivery.
+        example: |
+          {
+            "result": "authorized"
+          }
+      responseStatus:
+        type: number
+        description: HTTP Response status code of this payment notification last delivery
+        example: 200
+      responseTimestamp:
+        type: string
+        description: Timestamp of Payment Notification last delivery response.
+        example: "2024-11-16T03:13:20.751Z"
+      duration:
+        type: number
+        example: 271
+        description: Number of milliseconds between the request and response

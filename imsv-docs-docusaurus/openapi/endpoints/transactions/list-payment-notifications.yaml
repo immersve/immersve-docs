@@ -1,0 +1,58 @@
+get:
+  tags:
+    - transactions
+    - payments
+    - notifications
+  summary: List Payment Notifications by Account
+  operationId: list-account-payment-notifications
+  description: This endpoint returns the payment notifications by the given accountId order by descending `createdAt` date
+  parameters:
+    - name: partnerAccountId
+      in: path
+      description: Partner account id
+      required: true
+      schema:
+        type: string
+    - name: limit
+      in: query
+      description: amount of records to return (max 100)
+      required: false
+      schema:
+        type: number
+    - name: cursor
+      in: query
+      description: cursor to retrieve the next page
+      required: false
+      schema:
+        type: string
+    - name: fromUTC
+      in: query
+      description: Filter for transactions from this date (inclusive). Value should be a ISO 8601 string or RFC 2822 string
+      required: false
+      schema:
+        type: string
+    - name: toUTC
+      in: query
+      description: Filter for transactions up to this date (inclusive). Value should be a ISO 8601 string or RFC 2822 string
+      required: false
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/list-payment-notifications-result.yaml"
+    "403":
+      description: No Authorization to access resource.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
+    "400":
+      description: Request fields are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'
