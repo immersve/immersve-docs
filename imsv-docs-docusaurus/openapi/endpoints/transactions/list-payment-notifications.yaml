@@ -1,7 +1,7 @@
 get:
   tags:
     - transactions
-  summary: List Payment Notifications by Account
+  summary: List Payment Notifications
   operationId: list-account-payment-notifications
   description: This endpoint returns the payment notifications by the given accountId ordered by descending `createdAt` date
   parameters:
@@ -23,15 +23,15 @@ get:
       required: false
       schema:
         type: string
-    - name: fromUTC
+    - name: createdFrom
       in: query
-      description: Filter for transactions from this date (inclusive). Value should be a ISO 8601 string or RFC 2822 string
+      description: Filter for transactions from this date (inclusive). Value should be a ISO 8601 string
       required: false
       schema:
         type: string
-    - name: toUTC
+    - name: createdTo
       in: query
-      description: Filter for transactions up to this date (inclusive). Value should be a ISO 8601 string or RFC 2822 string
+      description: Filter for transactions up to this date (inclusive). Value should be a ISO 8601 string
       required: false
       schema:
         type: string
