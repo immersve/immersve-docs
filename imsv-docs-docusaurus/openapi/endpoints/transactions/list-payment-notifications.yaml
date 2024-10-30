@@ -13,31 +13,31 @@ get:
   parameters:
     - name: partnerAccountId
       in: path
-      description: Partner account id
+      description: Partner account id.
       required: true
       schema:
         type: string
     - name: limit
       in: query
-      description: amount of records to return (max 100)
+      description: Amount of records to return (max 100).
       required: false
       schema:
         type: number
     - name: cursor
       in: query
-      description: cursor to retrieve the next page
+      description: Cursor to retrieve the next page.
       required: false
       schema:
         type: string
     - name: createdFrom
       in: query
-      description: Filter for transactions from this date (inclusive). Value should be a ISO 8601 string
+      description: Filter for transactions from this date (inclusive). Value should be a ISO 8601 string.
       required: false
       schema:
         type: string
     - name: createdTo
       in: query
-      description: Filter for transactions up to this date (inclusive). Value should be a ISO 8601 string
+      description: Filter for transactions up to this date (inclusive). Value should be a ISO 8601 string.
       required: false
       schema:
         type: string
