@@ -3,7 +3,13 @@ get:
     - transactions
   summary: List Payment Notifications
   operationId: list-account-payment-notifications
-  description: This endpoint returns the payment notifications by the given accountId ordered by descending `createdAt` date
+  description: |
+    List payment event notifications for the given accountId.
+    The notification account id will be the same as the partner account
+    that owns the Card Program for the payments.
+    See [Custodial Funding Protocol](/guides/custodial-funding-protocol)
+    for details about payment event notifications.
+    Results are paginated and ordered by descending `createdAt` date.
   parameters:
     - name: partnerAccountId
       in: path
