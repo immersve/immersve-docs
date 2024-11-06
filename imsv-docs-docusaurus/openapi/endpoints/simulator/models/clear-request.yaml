@@ -1,7 +1,6 @@
 oneOf:
   - allOf:
-      - type: object
-        $ref: './authorize-request.yaml'
+      - $ref: './clear-request-base.yaml'
     title: ClearWithoutAuthorization
   - allOf:
       - type: object
@@ -16,5 +15,5 @@ oneOf:
             type: string
             description: responseMsg returned by the [Simulator Authorization](/api-reference/submit-simulator-authorization) endpoint
         allOf:
-          - $ref: './authorize-request.yaml'
+          - $ref: './clear-request-base.yaml'
     title: ClearWithAuthorization
