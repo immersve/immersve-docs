@@ -93,8 +93,11 @@ See {% link page="guides/regions" /%} for more details.
 
 ### Register a Billing Funding Channel
 
-You will need a billing funding channel per token and chain.
+You will need a billing funding channel per token and chain, with a corresponding funding source. (see below).
 See the partner setup instructions in the {% link page="guides/custodial-funding-protocol" /%} guide.
+
+### Register Cardholder Funding Source
+You must create a billing Funding Source for per token and chain. This funding source is associated with the "On-Chain Pooled Float", for that token and chain, as per the {% link page="guides/custodial-funding-protocol" /%} guide.
 
 ### Fund Your Billing Funds Pool
 
@@ -102,7 +105,7 @@ You need to deposit funds that will be used to settle cardholder transactions.
 
 ### Register a Card-Funding Funding Channel
 
-You will need a card-funding funding channel per token and chain. This funding channel will be used with every cardholder funding source created, as corresponds to token and chain, as per the Per Cardholder section, below.
+This funding channel will be used with every cardholder funding source created, as corresponds to token and chain, as per the Per Cardholder section, below.
 See the partner setup instructions in the {% link page="guides/custodial-funding-protocol" /%} guide.
 
 ## Per Cardholder Setup
