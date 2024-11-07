@@ -45,15 +45,6 @@ will also receive live credentials.
 You will need to implement all custodial webhooks described in the
 {% link page="guides/custodial-funding-protocol" /%} guide.
 
-### Register a Funding Channel
-
-You will need a funding channel per token and chain.
-See the partner setup instructions in the {% link page="guides/custodial-funding-protocol" /%} guide.
-
-### Fund Your Custodial Funds Pool
-
-You need to deposit funds that will be used to settle cardholder transactions.
-
 ## Setup Environment
 
 ### Install Dependencies
@@ -92,15 +83,29 @@ Resource identifiers are not shared between the live and test environments.
 Your Partner Account, Client Application, API Keys and Card Program will all be
 different in the live environment.
 
-
-## Per Cardholder Setup
+## Custodial Partner Setup
 
 ### Check Region Availability
 
-You can avoid presenting the card onboarding journey if the user's region
-is not yet available. Call the {% link endpoint="get-supported-regions" /%}
-endpoint to get the current list of available regions for your application.
+You can confirm that all target regions for your application are supported with the {% link endpoint="get-supported-regions" /%}
+endpoint.
 See {% link page="guides/regions" /%} for more details.
+
+### Register a Billing Funding Channel
+
+You will need a billing funding channel per token and chain.
+See the partner setup instructions in the {% link page="guides/custodial-funding-protocol" /%} guide.
+
+### Fund Your Billing Funds Pool
+
+You need to deposit funds that will be used to settle cardholder transactions.
+
+### Register a Card-funding Funding Channel
+
+You will need a card-funding funding channel per token and chain. This funding channel will be used with every cardholder funding source created, as corresponds to token and chain, as per the Per Cardholder section, below.
+See the partner setup instructions in the {% link page="guides/custodial-funding-protocol" /%} guide.
+
+## Per Cardholder Setup
 
 ### Create a Cardholder Account
 
