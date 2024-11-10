@@ -31,6 +31,3 @@ properties:
     type: string
     pattern: ^[0-9]{3}$
     description: Card CVV.
-  authorizationRequestMsg:
-    type: string
-    description: requestMsg of previous authorization returned by this endpoint.

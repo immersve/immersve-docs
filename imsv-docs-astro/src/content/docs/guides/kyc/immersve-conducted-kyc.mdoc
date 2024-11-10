@@ -38,7 +38,7 @@ contain a URL, where the user must be redirected to complete the KYC
 verification.
 
 {% note %}
-If Immersve already has complete KYC information in the requested region for the individual owning the wallet, the
+If Immersve already has complete KYC information for the individual owning the wallet, in any of the regions supported by the requested card program, the
 user will not be required to go through KYC.
 {% /note %}
 
@@ -67,7 +67,6 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
     "spendableCurrency": "USD",
     "kycType": "immersve-conducted",
     "kycRedirectUrl: "https://app.example.io",
-    "kycRegion": "NZ"
   }'
 ```
 
@@ -88,7 +87,42 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
   ]
 }
 ```
+### Supply Contact Details (Optional)
 
+If you would like to supply the user's contact details ahead of time, you can do so by calling the contact details endpoint, before starting the KYC process.
+This will then allow the user to check and update them as part of the Immersve Conducted KYC process.
+
+{% note %}
+Immersve will not perform validation of a user's contact details.
+{% /note %}
+
+Immersve requires users contact details (phone number and email) for the
+following reasons, this should be explained to customers:
+
+- Adding cards to Apple/Google Pay wallets (X-Pay)
+- Performing 3DS validation for online transactions
+
+If a user doesn't provide contact details, they risk online transactions being
+rejected and might not be able to add cards to X-Pay wallets.
+
+Before you share contact details with Immersve you must collect user consent via
+a checkbox. This can be done at the same time as KYC information sharing.
+
+{% endpointref name="update-contact-details" /%}
+
+```bash
+curl -X PATCH "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/contact-details" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $token" \
+  --data '{
+    "email": {
+      "emailAddress": "joe@cardholder.email",
+    },
+    "phone": {
+      "phoneNumber": "+64123456789",
+    }
+  }'
+```
 
 
 ### User goes through the KYC flow
@@ -128,7 +162,6 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
     "spendableCurrency": "USD",
     "kycType": "immersve-conducted",
     "kycRedirectUrl: "https://app.example.io",
-    "kycRegion": "NZ"
   }'
 ```
 

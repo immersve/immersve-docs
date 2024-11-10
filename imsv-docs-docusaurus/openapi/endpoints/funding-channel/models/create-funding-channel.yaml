@@ -38,3 +38,5 @@ properties:
     oneOf:
       - $ref: './create-funding-channel-params/universal-evm.yaml'
       - $ref: './create-funding-channel-params/algorand.yaml'
+      - $ref: './create-funding-channel-params/custodial.yaml'
+      - $ref: './create-funding-channel-params/simulator.yaml'

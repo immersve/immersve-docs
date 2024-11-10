@@ -21,11 +21,15 @@ adjusted in real-time according to cardholder payments. When the available
 balance drops to zero then all cardholder payments will be declined. Settlements
 are handled automatically by Immersve by drawing on the float.
 
+![Funding Component Diagram](./assets/custodial-component-diagram.png "Custodial Funding Components")
 
-### Webhook Payment Messages
+
+### Webhook Payment Delegation
 
 Card payment authorization requests and other payment lifecycle events are
 actioned by delegating to the custodian's webhook endpoints.
+
+![Payment Sequence Diagram](./assets/custodial-payment-sequence-diagram.png "Successful Custodial Payment Sequence")
 
 
 ## Webhook Message Types
@@ -44,6 +48,18 @@ sent asynchronously and will be retried until a successfull response has been
 observed. The `auth-request` message type uses the transactional delivery mode
 and all other message types use the notification delivery mode. The two delivery
 modes correspond to the two webhook endpoint paths: `/authorize` and `/notify`.
+
+Handling the different custodial payment message types will generally follow the
+same sequence:
+
+ 1. Find the payment resource based on the `paymentId` field.
+ 2. If the payment exists and the `messageId` has already been handled (due to
+    duplicate message delivery) then do nothing and return the same response as
+    the first time the message was handled.
+ 3. Create or update the payment resource. Set the status based on the
+    `paymentFinalized` field. Set the amount based on the `paymentAmount` field.
+    Record the `messageId` field. In the same database transaction, apply an
+    atomic balance adjustment if needed.
 
 
 ### Auth Request Message
@@ -66,19 +82,26 @@ modes correspond to the two webhook endpoint paths: `/authorize` and `/notify`.
   refund or status enquiry respectively. The currency of the payment will align
   with the currency of the shared float.
 
-  The auth request message is delivered at most once for a payment. The auth
-  request will be followed up with at least one more payment notification
-  message. The subsequent notification messages will indicate changes to the
-  status and/or payment amount.
+  For most payments there will be one auth request message. If the merchant
+  requests an adjustment to the authorized amount (incremental auth) then
+  additional auth requests will be sent with the adjusted amount. If a forced
+  payment has been issued then there will be zero auth requests.
+
+  An auth request will always be followed up with at least one more payment
+  notification message. The subsequent notification messages will indicate
+  changes to the status and/or payment amount.
 ---
 * Handler Obligations
-* Create the payment resource. The status should indicate the payment is
-  pending. The amount should be set based on the `paymentAmount` field. If the
-  payment is approved and it is a purchase (indicated by a positive payment
-  amount) then an account balance adjustment should be performed. If the payment
-  is a refund then the balance adjustment should not be performed until a
-  finalized payment advice message is received. The outcome of the authorization
-  request is returned in the `result` field of the response payload.
+* Create or update the payment resource relating to the `paymentId` field. The
+  status should indicate the payment is pending. The amount should be set based
+  on the `paymentAmount` field. If the payment is a purchase (indicated by a
+  positive payment amount) and it is permitted then an account balance
+  adjustment should be performed. If the payment already exists then the balance
+  adjustment should use the difference from what has already been debited. If
+  the payment is a refund (indicated by a negative payment amount) then the
+  balance adjustment should not be performed until later when a finalized
+  payment advice message is received. The outcome of the authorization request
+  is returned in the `result` field of the response payload.
 ---
 {% /table %}
 
@@ -254,11 +277,14 @@ Unresponsive authorization requests will be canceled.
 The authorize response must contain a JSON object with the following fields.
 
 
-| Field | Example | Description |
-|-|-|-|
-| result     | authorized    | The authorization request was `authorized` or `declined`. |
+| Field | Accepted Values |
+|-|-|
+| result     | `authorized`, `insufficient-funds`, `account-not-found`, `declined` |
 
-
+Merchants rely on the result value to determine the next steps in the payment
+process. A value of `authorized` indicates payment success. All other values will
+result in the decline of the payment. Use `declined` when a more specific value
+does not apply.
 
 ### Payment Notification Webhook
 
@@ -310,13 +336,28 @@ must tolerate the addition of unknown message attributes.
 * The type of message: `auth-request`, `auth-confirm`, `auth-cancel`, or
   `payment-advice`. See Message Types above for more details about message semantics.
 
-
 ---
 * {% wrap %} eventType {% /wrap %}
 * clearing-accepted
 * The payment lifecycle event which triggered the message. This may be useful to
   discriminate the reason for an auth cancellation message. Clients must
-  tolerate unknown event types.
+  tolerate unknown event types. Event types may include the following:
+  `auth-requested`,
+  <!-- Note: commented out events will never result in notification delivery. -->
+  <!-- `auth-accepted`, -->
+  `auth-confirmed`,
+  `auth-declined`,
+  `auth-forced`,
+  <!-- `clearing-requested`, -->
+  `clearing-accepted`,
+  `clearing-declined`,
+  `payment-expired`,
+  <!-- `auth-reversal-requested`, -->
+  `auth-reversal-accepted`,
+  <!-- `auth-reversal-declined`, -->
+  <!-- `clearing-reversal-requested`, -->
+  `clearing-reversal-accepted`.
+  <!-- `clearing-reversal-declined` -->
 
 ---
 * {% wrap %} eventTimestamp {% /wrap %}
@@ -345,21 +386,24 @@ must tolerate the addition of unknown message attributes.
 
 ---
 * {% wrap %} paymentAmount {% /wrap %}
-* 1312
+* 13120000
 * Total payment amount that the cardholder will be debited in minor units. The
-  payment amount may increase or decrease when cleared or reversed.
-  A positive, negative, or zero payment amount indicates the payment type is a
-  purchase, refund or status enquiry respectively.
+  payment amount may increase or decrease when cleared or reversed. A positive,
+  negative, or zero payment amount indicates the payment type is a purchase,
+  refund or status enquiry respectively. The amount will use the stable coin
+  minor units. For example, 13120000 USDC is $13.12.
 
 ---
 * {% wrap %} paymentCurrency {% /wrap %}
-* USD
-* Required payment currency.
+* USDC
+* Expected payment currency which will be the same as the billing funding
+  source.
 
 ---
 * {% wrap %} paymentAcquirerAmount {% /wrap %}
 * 978
-* Payment amount represented in the merchant's local currency.
+* Payment amount represented in the merchant's local currency. The amount will
+  use fiat minor units. For example 978 GBP is £9.78.
 
 ---
 * {% wrap %} paymentAcquirerCurrency {% /wrap %}
@@ -406,8 +450,8 @@ must tolerate the addition of unknown message attributes.
 
 ---
 * {% wrap %} merchantCountryCode {% /wrap %}
-* NZL
-* The merchant's ISO-3166 Alpha-3 country code.
+* NZ
+* The merchant's ISO-3166-1 Alpha-2 country code.
 
 ---
 * {% wrap %} merchantCity {% /wrap %}

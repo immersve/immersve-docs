@@ -120,8 +120,6 @@ post:
                 {
                   "stage": "aml",
                   "status": "pending",
-                  "type": "aml-review",
-                  "actionType": "aml-review",
                   "params": {}
                 },
                 {

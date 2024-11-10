@@ -3,7 +3,10 @@ post:
     - simulator
   summary: Submit Simulator Authorization
   operationId: submit-simulator-authorization
-  description: This endpoint can be used to test authorizing a transaction on a simulated card network
+  description: |
+    This endpoint can be used to test authorizing a transaction on a simulated card network.
+    An incremental authorization can be tested by creating an initial authorization
+    then including the `requestMsg` from this response in the request body of a subsequent authorization.
   requestBody:
     content:
       application/json:

@@ -25,6 +25,11 @@ starting point for your integration.
 Before you begin integrating ensure your chain and token combination is
 supported. See {% link page="guides/supported-chains" /%} and {% link page="guides/supported-tokens" /%}.
 
+### Verify Your Target Regions are Supported
+
+Before you begin integrating ensure your target regions are supported. 
+See https://docs.immersve.com/guides/regions/.
+
 ### Select KYC Mode
 
 {% link page="guides/partner-conducted-kyc" /%} is the recommended KYC mode for custodial apps
@@ -92,15 +97,29 @@ Resource identifiers are not shared between the live and test environments.
 Your Partner Account, Client Application, API Keys and Card Program will all be
 different in the live environment.
 
+## Custodial Partner Setup
+
+### Register Billing Funding Channel
+
+You will need a billing Funding Channel per token and chain, with a corresponding Funding Source (see Register a Billing Funding Source, below). See the partner setup instructions in the [**Custodial Funding Protocol**](https://516-merge--jovial-scone-ec740d.netlify.app/guides/custodial-funding-protocol) guide.
+
+### Register Billing Funding Source
+
+You must create a billing Funding Source for per token and chain. This Funding Source is associated with the "On-Chain Pooled Float", for that token and chain, as per the [**Custodial Funding Protocol**](https://516-merge--jovial-scone-ec740d.netlify.app/guides/custodial-funding-protocol) guide.
+
+### Fund Your Billing Funds Pool
+
+You need to deposit funds into your billing Funding Source that will be used to settle cardholder transactions.
+
+### Register a Card-Funding Funding Channel
+
+This Funding Channel will be used with every cardholder Funding Source created, as corresponds to token and chain, as per the Per Cardholder section, below. See the partner setup instructions in the [**Custodial Funding Protocol**](https://516-merge--jovial-scone-ec740d.netlify.app/guides/custodial-funding-protocol) guide.
 
 ## Per Cardholder Setup
 
 ### Check Region Availability
 
-You can avoid presenting the card onboarding journey if the user's region
-is not yet available. Call the {% link endpoint="get-supported-regions" /%}
-endpoint to get the current list of available regions for your application.
-See {% link page="guides/regions" /%} for more details.
+You can avoid presenting the card onboarding journey if the user's region is not yet available. In this situation you would indicate that the user’s region is currently unavailable. Call the [**Get Supported Regions**](https://docs.immersve.com/api-reference/get-supported-regions/) endpoint to get the current list of available regions for your application. See [**Supported Regions**](https://docs.immersve.com/guides/regions) for more details.
 
 ### Create a Cardholder Account
 
@@ -172,7 +191,6 @@ curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
     "spendableAmount": 100,
     "spendableCurrency": "USD",
     "kycType": "partner-conducted",
-    "kycRegion":"NZ"
   }'
 ```
 

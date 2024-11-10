@@ -40,18 +40,10 @@ properties:
     type: string
     description: The acquirer currency of the transaction
     example: NZD
-  lockedFundCurrency:
-    type: string
-    description: The locked funds' currency of the transaction
-    example: USDC
   feeAmount:
     type: string
     description: The fee amount of the transaction
     example: "12"
-  chain:
-    type: string
-    description: The chain of the locked funds on
-    example: "Polygon"
   transactionDate:
     type: string
     format: date-time
@@ -102,9 +94,7 @@ required:
     currency,
     acquirerAmount,
     acquirerCurrency,
-    lockedFundCurrency,
     feeAmount,
-    chain,
     transactionDate,
     reference,
     cardAcceptor,

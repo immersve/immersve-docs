@@ -1,0 +1,8 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      $ref: './payment-notification.yaml'
+  pageInfo:
+    $ref: "../../../models/page-info.yaml"

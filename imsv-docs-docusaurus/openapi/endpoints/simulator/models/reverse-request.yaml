@@ -1,18 +1,22 @@
 type: object
 required:
   - transactionType
-  - reversalAmount
 properties:
   transactionType:
     type: string
-    description: Transaction type
+    description: Transaction type.
     enum:
       - purchase
-  reversalAmount:
+      - refund
+  transactionAmount:
     type: string
-    description: Amount to reverse on the prior authorize or clear requests. An integer in the smallest denomination of USD.
-  fxReversalAmount:
-    $ref: "./fxReversalAmount.yaml"
+    description: |
+      Amount that replaces the amount on the prior authorize or clear requests. An integer in the smallest denomination of the currency.
+      If not provided the transaction will be reversed for the full amount of the authorization or clearing request.
+  currencyCode:
+    type: string
+    default: USD
+    description: ISO 4217 currency code.
 oneOf:
   - properties:
       authorizationRequestMsg:

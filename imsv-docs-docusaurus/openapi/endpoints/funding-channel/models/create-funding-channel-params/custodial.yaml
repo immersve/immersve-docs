@@ -1,0 +1,9 @@
+properties:
+  billingFundingSourceId:
+    type: string
+    description: The ID of the billing funding source.
+    example: 'dbc410b86ba0c6000662c7qff7d8fc75'
+  webhookBaseUrl:
+    type: string
+    description: The base URL for the webhook.
+    example: 'https://example.com'
