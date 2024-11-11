@@ -31,3 +31,10 @@ properties:
     type: string
     pattern: ^[0-9]{3}$
     description: Card CVV.
+  multipleClearingType:
+    type: string
+    default: final
+    description: Clearing finality type. Used to submit non final clearings amounts for a payment
+    enum:
+    - final
+    - non-final
