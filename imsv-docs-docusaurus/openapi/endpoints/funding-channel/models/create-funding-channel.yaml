@@ -19,8 +19,8 @@ properties:
       - algorand-usdc
       - algorand-testnet-usdc
       - simulator-usdc
-      - custodial-usdc-live
-      - custodial-usdc-test
+      - custodial-usdc
+      - custodial-test-usdc
 
     example: polygon-amoy-usdc-universal-evm-test
   purpose:
