@@ -16,7 +16,7 @@
     "api-re-gen": "yarn api-clean-all && yarn api-gen-all"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.3.2",
+    "@docusaurus/core": "^3.6.1",
     "@docusaurus/preset-classic": "^3.3.2",
     "@mdx-js/react": "^3.0.1",
     "clsx": "^2.1.1",
