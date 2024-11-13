@@ -1,5 +1,5 @@
 {
-	"id": "e6d40b55-d997-4891-a27d-1d9f83fc6eb1",
+	"id": "36f389a0-9f52-4c3b-a39f-b1585830b784",
 	"name": "Prod Test Public Sandbox",
 	"values": [
 		{
@@ -15,152 +15,236 @@
 			"enabled": true
 		},
 		{
-			"key": "siweWalletAddress",
-			"value": "",
-			"type": "default",
-			"enabled": true
-		},
-		{
-			"key": "algorandWalletAddress",
-			"value": "",
-			"type": "default",
-			"enabled": true
-		},
-		{
-			"key": "xrplWalletPublicKey",
-			"value": "",
-			"type": "default",
-			"enabled": true
-		},
-		{
-			"key": "walletPrivateKey",
-			"value": "",
-			"type": "default",
-			"enabled": false
-		},
-		{
-			"key": "chainId",
-			"value": "80002",
-			"type": "default",
-			"enabled": true
-		},
-		{
-			"key": "clientApplicationId",
-			"value": "d0b05d44204810fc61991a49e289dda3",
-			"type": "default",
-			"enabled": true
-		},
-		{
-			"key": "cardProgramId",
+			"key": "partner_cardProgramId",
 			"value": "7dfa2e3ed390493ab307fac622f05ae9",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "partnerAccountId",
+			"key": "partner_accountId",
 			"value": "d1bc97edfa4f7dc9b56726c7d82a9956",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "fundsStorageAddress",
-			"value": "0xF9e148F4D48350042fB8F18e98b089c9aDA07BfB",
+			"key": "billing_fundingTypeName",
+			"value": "simulator-usdc",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "fundingTypeName",
-			"value": "polygon-amoy-usdc-universal-evm-test",
-			"type": "default",
-			"enabled": true
-		},
-		{
-			"key": "cardIssuerApiKey",
-			"value": "imm-key-test-c6779bf1255f5ff6e8d9f6439c0099afa5f81c4bb22c9b7ecab124e1d920fd35",
-			"type": "secret",
-			"enabled": true
-		},
-		{
-			"key": "cardIssuerApiSecret",
-			"value": "imm-secret-test-3c55c0d889b1a6e5ec1962b17eb94281be08bc3aeee30af2b10a3cedc5f11a21",
-			"type": "secret",
-			"enabled": true
-		},
-		{
-			"key": "accountAdminApiKey",
-			"value": "imm-key-test-88432e8f7c559430c405c93bf61c9318636f1fa477f38173bba45682b12b82ff",
-			"type": "secret",
-			"enabled": true
-		},
-		{
-			"key": "accountAdminApiSecret",
-			"value": "imm-secret-test-75cf3ee0a31818e118c2d17f91067d4bdefa1094ba424d16b466f2e752bea1b1",
-			"type": "secret",
-			"enabled": true
-		},
-		{
-			"key": "origin",
-			"value": "http://localhost:3000",
-			"type": "default",
-			"enabled": true
-		},
-		{
-			"key": "accessToken",
+			"key": "auth_issuerApiKeyId",
 			"value": "",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "refreshToken",
+			"key": "auth_adminApiKeySecret",
+			"value": "",
+			"type": "secret",
+			"enabled": true
+		},
+		{
+			"key": "auth_adminApiKeyId",
 			"value": "",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "siweMessage",
+			"key": "auth_issuerApiKeySecret",
 			"value": "",
-			"type": "default",
+			"type": "secret",
 			"enabled": true
 		},
 		{
-			"key": "cardholderAccountId",
-			"value": "",
+			"key": "cardholder_accountId",
+			"value": "e2c1ca3d684a1adb1c4e251b6a1c0815",
 			"type": "any",
 			"enabled": true
 		},
 		{
-			"key": "fundingSourceId",
-			"value": "",
+			"key": "billing_fundingSourceId",
+			"value": "c6a2168ea539cfcd5cf58451b940cf67",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "fundingChannelId",
-			"value": "",
+			"key": "billing_fundingChannelId",
+			"value": "9662f0cd774ca1be68e754f65da0b772c",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "identityAccountId",
-			"value": "",
-			"type": "default",
-			"enabled": true
-		},
-		{
-			"key": "createdCardId",
-			"value": "",
+			"key": "cardId",
+			"value": "ad455fd0da43f521202d5dee0c5d22b8",
 			"type": "default",
 			"enabled": true
 		},
 		{
 			"key": "authorizationRequestMsg",
-			"value": "",
+			"value": "\"<isomsg>\\n  <field id=\\\"0\\\" value=\\\"0120\\\"/>\\n  <field id=\\\"2\\\" value=\\\"5288545706643588\\\"/>\\n  <field id=\\\"3\\\" value=\\\"000000\\\"/>\\n  <field id=\\\"4\\\" value=\\\"000000000801\\\"/>\\n  <field id=\\\"6\\\" value=\\\"000000000801\\\"/>\\n  <field id=\\\"7\\\" value=\\\"1011164006\\\"/>\\n  <field id=\\\"10\\\" value=\\\"30001000\\\"/>\\n  <field id=\\\"11\\\" value=\\\"005567\\\"/>\\n  <field id=\\\"14\\\" value=\\\"2909\\\"/>\\n  <field id=\\\"15\\\" value=\\\"1011\\\"/>\\n  <field id=\\\"18\\\" value=\\\"1234\\\"/>\\n  <field id=\\\"19\\\" value=\\\"840\\\"/>\\n  <field id=\\\"20\\\" value=\\\"840\\\"/>\\n  <field id=\\\"22\\\" value=\\\"02\\\"/>\\n  <field id=\\\"23\\\" value=\\\"001\\\"/>\\n  <field id=\\\"25\\\" value=\\\"02\\\"/>\\n  <field id=\\\"32\\\" value=\\\"123456\\\"/>\\n  <field id=\\\"33\\\" value=\\\"000000\\\"/>\\n  <field id=\\\"35\\\" value=\\\"123456\\\"/>\\n  <field id=\\\"37\\\" value=\\\"123456\\\"/>\\n  <field id=\\\"41\\\" value=\\\"12345678\\\"/>\\n  <field id=\\\"42\\\" value=\\\"123456789012345\\\"/>\\n  <field id=\\\"43\\\" value=\\\"1 Queen Street         Auckland      NZ \\\"/>\\n  <field id=\\\"48\\\" value=\\\"D7F9F2F0F3F2F7F5F6F1F0F1F0F6F3F1F5D4C3C3F9F5F9F4F6F4F1F0F1F14040\\\" type=\\\"binary\\\"/>\\n  <field id=\\\"49\\\" value=\\\"840\\\"/>\\n  <field id=\\\"51\\\" value=\\\"840\\\"/>\\n  <field id=\\\"61\\\" value=\\\"00001\\\"/>\\n  <field id=\\\"63\\\" value=\\\"MCC005567\\\"/>\\n</isomsg>\\n\"",
 			"type": "default",
 			"enabled": true
 		},
 		{
 			"key": "authorizationResponseMsg",
+			"value": "\"<isomsg>\\n  <field id=\\\"0\\\" value=\\\"0130\\\"/>\\n  <field id=\\\"2\\\" value=\\\"5288545706643588\\\"/>\\n  <field id=\\\"3\\\" value=\\\"000000\\\"/>\\n  <field id=\\\"4\\\" value=\\\"000000000801\\\"/>\\n  <field id=\\\"6\\\" value=\\\"000000000801\\\"/>\\n  <field id=\\\"7\\\" value=\\\"1011164006\\\"/>\\n  <field id=\\\"10\\\" value=\\\"30001000\\\"/>\\n  <field id=\\\"11\\\" value=\\\"005567\\\"/>\\n  <field id=\\\"15\\\" value=\\\"1011\\\"/>\\n  <field id=\\\"20\\\" value=\\\"840\\\"/>\\n  <field id=\\\"23\\\" value=\\\"001\\\"/>\\n  <field id=\\\"32\\\" value=\\\"123456\\\"/>\\n  <field id=\\\"33\\\" value=\\\"000000\\\"/>\\n  <field id=\\\"37\\\" value=\\\"123456\\\"/>\\n  <field id=\\\"38\\\" value=\\\"692076\\\"/>\\n  <field id=\\\"39\\\" value=\\\"00\\\"/>\\n  <field id=\\\"41\\\" value=\\\"12345678\\\"/>\\n  <field id=\\\"48\\\" value=\\\"D7F9F2F0F3F2F7F5F6F1F0F1F0F6F3F1F5D4C3C3F9F5F9F4F6F4F1F0F1F14040\\\" type=\\\"binary\\\"/>\\n  <field id=\\\"49\\\" value=\\\"840\\\"/>\\n  <field id=\\\"51\\\" value=\\\"840\\\"/>\\n  <field id=\\\"63\\\" value=\\\"MCC005567\\\"/>\\n</isomsg>\\n\"",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cardSecureTokenId",
+			"value": "7F325D3FACAA6958211EBEDA76FCADF8-1005755411",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "cardSecureCallbackUrl",
+			"value": "https://test-sec.immersve.com/api/cards/secure?tokenId=7F325D3FACAA6958211EBEDA76FCADF8-1005755411",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "cardPan",
+			"value": "5288545706643588",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "cardExpiry",
+			"value": "202909",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "cardCVV2",
+			"value": "275",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "cardEmbossedName",
 			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "cardholder_fundingSourceId",
+			"value": "c6a2168ea539cfcd5cf58451b940cf67",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "cardfunding_fundingChannelId",
+			"value": "84eca1a72b79f382052d000ae75dbdbc",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cardholder_emailAddress",
+			"value": "grant.shannon@immersve.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cardholder_phoneNumber",
+			"value": "+121231234",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cardholder_externalId",
+			"value": "pm-external-id",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "webhookBaseUrl",
+			"value": "http://amethyst:8080//webhooks/custodial-test/d1bc97edfa4f7dc9b56726c7d82a9956/authorize",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cardfunding_fundingTypeName",
+			"value": "custodial-test-usdc",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cardholder_randomFormattedDoB",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "cardholder_randomStreetNumber",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "cardholder_expectedSpendAmount",
+			"value": "10000",
+			"type": "text",
+			"enabled": true
+		},
+		{
+			"key": "cardholder_siweWalletAddress",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cardholder_algorandWalletAddress",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "partner_clientApplicationId",
+			"value": "d0b05d44204810fc61991a49e289dda3",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "partner_loginRequestId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "partner_signingChallenge",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "partner_clientApplicationOrigin",
+			"value": "http://localhost:3000",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cardholder_xrplWalletPublicKey",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "auth_accessToken",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "auth_refreshToken",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cardholder_fundsStorageAddress",
+			"value": "0xF9e148F4D48350042fB8F18e98b089c9aDA07BfB",
 			"type": "default",
 			"enabled": true
 		},
@@ -171,61 +255,19 @@
 			"enabled": true
 		},
 		{
-			"key": "transactionId",
+			"key": "clearingResponseMessage",
 			"value": "",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "sub",
+			"key": "",
 			"value": "",
 			"type": "default",
-			"enabled": true
-		},
-		{
-			"key": "secureCardDetailsTokenId",
-			"value": "",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "secureCardDetailsCallbackUrl",
-			"value": "",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "cardPan",
-			"value": "",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "cardExpiry",
-			"value": "",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "cardCVV2",
-			"value": "",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "loginRequestId",
-			"value": "",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "signingChallenge",
-			"value": "",
-			"type": "any",
-			"enabled": true
+			"enabled": false
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2024-06-07T05:17:22.355Z",
-	"_postman_exported_using": "Postman/11.1.25"
+	"_postman_exported_at": "2024-11-13T02:15:46.727Z",
+	"_postman_exported_using": "Postman/11.18.2"
 }
