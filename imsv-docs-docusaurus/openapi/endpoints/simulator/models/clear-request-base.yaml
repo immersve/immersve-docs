@@ -31,3 +31,9 @@ properties:
     type: string
     pattern: ^[0-9]{3}$
     description: Card CVV.
+  clearingMode:
+    type: string
+    enum:
+      - final
+      - multi-final
+      - multi-non-final
