@@ -3,7 +3,23 @@ post:
     - simulator
   summary: Submit Simulator Clearing
   operationId: submit-simulator-clearing
-  description: This endpoint can be used to test clearing a transaction on a simulated card network
+  description: |
+    Test clearing a transaction on a simulated card network. A single clearing
+    that references a prior authorization is the most common use case. The
+    amount can be for the full or partial amount of the authorization.
+
+    #### Multiple Clearing
+    Multiple clearings can be submitted for a single authorization. Multiple
+    clearings has e-commerce use cases where clearing happens as items are
+    shipped. Clearing amounts are cumulative.
+    Use the `clearingMode` field to simulate multiple clearings.
+
+    #### Clearing Mode:
+      Signals whether additional clearing messages are expected.
+    - **final**: No further clearing message is expected.
+    - **multi-non-final**: Additional clearing messages are expected.
+    - **multi-final**: This is the final of multiple clearing messages.
+    
   requestBody:
     content:
       application/json:

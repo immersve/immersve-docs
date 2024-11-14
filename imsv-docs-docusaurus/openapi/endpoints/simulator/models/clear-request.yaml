@@ -1,8 +1,5 @@
 oneOf:
   - allOf:
-      - $ref: './clear-request-base.yaml'
-    title: ClearWithoutAuthorization
-  - allOf:
       - type: object
         required:
           - authorizationRequestMsg
@@ -17,3 +14,6 @@ oneOf:
         allOf:
           - $ref: './clear-request-base.yaml'
     title: ClearWithAuthorization
+  - allOf:
+      - $ref: './clear-request-base.yaml'
+    title: ClearWithoutAuthorization
