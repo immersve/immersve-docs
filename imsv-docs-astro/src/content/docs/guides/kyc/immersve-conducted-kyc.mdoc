@@ -141,6 +141,12 @@ initially. If no URL was provided, exiting leads to closing the browser tab.
 
 ![KYC UI screenshot](@assets/kyc/kyc-ui.png)
 
+### Unsuccessful KYC check
+
+If the KYC check was unsuccessful, the spending prerequisites response will
+return "kyc_check_failed" for the KYC prerequisite status, along with an array
+listing the reasons for the failure. If possible, a new KYC URL will be provided
+for the user to try again.
 
 ### Confirmation of KYC Completion
 

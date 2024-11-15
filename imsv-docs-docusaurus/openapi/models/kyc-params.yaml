@@ -11,6 +11,28 @@ properties:
       - check_in_progress
       - kyc_required
       - kyc_check_failed
+  reasons:
+    type: array
+    description: List of the reasons for the failed KYC check
+    items:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Code of the failed check
+          enum:
+            - ID_NOT_VERIFIED
+            - NAME_NOT_VERIFIED
+            - ADDRESS_NOT_VERIFIED
+            - DOB_NOT_VERIFIED
+            - DOB_OR_ADDRESS_NOT_VERIFIED
+            - VISA_NOT_FOUND
+            - BIOMETRICS_FAILED
+            - PROFILE_LIMIT_REACHED
+            - UNKNOWN
+        description:
+          type: string
+          description: Human readable description of the failed check
   kycUrl:
     type: string
     description: A URL for the KYC process (if conducted by Immersve)
