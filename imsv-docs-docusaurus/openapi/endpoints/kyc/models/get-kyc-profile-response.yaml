@@ -11,7 +11,13 @@ properties:
   status:
     type: string
     description: The status of the KYC profile.
-    example: 'passed'
+    enum:
+      - created
+      - pending
+      - passed
+      - failed
+      - passing
+      - failing
   region:
     type: string
     description: Region code.
