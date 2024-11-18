@@ -18,7 +18,10 @@ properties:
     example: "irn:314d85e65495722bf6517ea0ba0d4lp3:api-key:SLOs3U38hdhfEqwF1JKpTw"
   idempotencyKey:
     type: string
-    description: A client-supplied identifier that helps support idempotency for safely retrying requests without submitting the same statement twice (e.g. after a transient failure). This should change for each different version of the KYC statement you submit.
+    description: |
+      A client-supplied identifier that helps support idempotency for
+      safely retrying requests without submitting the same statement twice (e.g. after a transient failure).
+      This should change for each different version of the KYC statement you submit.
     example: 21ede8ef0d230d0a6bf755e07d39la54
   claims:
     type: array
