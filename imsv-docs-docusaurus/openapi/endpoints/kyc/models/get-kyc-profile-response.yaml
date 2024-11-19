@@ -14,10 +14,10 @@ properties:
     enum:
       - created
       - pending
-      - passed
-      - failed
       - passing
+      - passed
       - failing
+      - failed
   region:
     type: string
     description: Region code.
