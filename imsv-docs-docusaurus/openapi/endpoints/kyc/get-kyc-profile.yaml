@@ -17,8 +17,6 @@ parameters:
     schema:
       type: boolean
       default: false
-security:
-  - immersve_auth: []
 responses:
   '200':
     content:
