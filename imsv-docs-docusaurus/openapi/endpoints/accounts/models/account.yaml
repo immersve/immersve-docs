@@ -33,7 +33,7 @@ properties:
       - partner
   liveness:
     type: string
-    description: The resourc liveness mode: "test" or "live".
+    description: The resource liveness mode: "test" or "live".
     enum:
       - live
       - test
