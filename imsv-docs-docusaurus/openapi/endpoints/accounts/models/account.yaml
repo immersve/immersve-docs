@@ -6,7 +6,7 @@ properties:
     example: e4b66d1ddecbf518f5f337n5e5a4f682
   version:
     type: string
-    description: response schema version
+    description: The resource version number.
     example: "1"
   createdAt:
     type: string
