@@ -391,7 +391,7 @@ must tolerate the addition of unknown message attributes.
   payment amount may increase or decrease when cleared or reversed. A positive,
   negative, or zero payment amount indicates the payment type is a purchase,
   refund or status enquiry respectively. The amount will use the stable coin
-  minor units. For example, 13120000 USDC is $13.12.
+  minor units. For example, 13120000 USDC is $13.12. The payment amount includes fees.
 
 ---
 * {% wrap %} paymentCurrency {% /wrap %}
@@ -413,7 +413,7 @@ must tolerate the addition of unknown message attributes.
 ---
 * {% wrap %} paymentFeeAmount {% /wrap %}
 * 32
-* Immersve's payment fee amount in minor units. The fee currency is
+* Immersve's fee portion of the payment amount in minor units. The fee currency is
   the same as the payment currency.
 
 ---
