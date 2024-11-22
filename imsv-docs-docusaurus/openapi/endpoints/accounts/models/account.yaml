@@ -4,6 +4,10 @@ properties:
     type: string
     description: The unique account ID
     example: e4b66d1ddecbf518f5f337n5e5a4f682
+  version:
+    type: string
+    description: The resource version number.
+    example: "1"
   createdAt:
     type: string
     description: Timestamp of account creation
@@ -27,3 +31,9 @@ properties:
       - cardholder
       - identity
       - partner
+  liveness:
+    type: string
+    description: The resource liveness mode: "test" or "live".
+    enum:
+      - live
+      - test
