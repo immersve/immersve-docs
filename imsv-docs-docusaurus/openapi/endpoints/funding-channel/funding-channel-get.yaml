@@ -6,7 +6,7 @@ get:
   description: |
     Retrieves a specific Funding Channel for the given id.
 
-    **Remember that Account Admin permission is required to access this endpoint.**
+    **Note: Account Admin permission is required to access this endpoint.**
   parameters:
   - name: fundingChannelId
     in: path
