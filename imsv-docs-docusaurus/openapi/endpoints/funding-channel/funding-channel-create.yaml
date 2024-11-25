@@ -6,6 +6,8 @@ post:
   description: |
     This endpoint can be used to create a Funding Channel.
     See [Funding Protocols](https://docs.immersve.com/guides/funding-protocols/) for available funding types.
+
+    **Remember that Account Admin permission is required to access this endpoint.**
   requestBody:
     content:
       application/json:

@@ -3,7 +3,10 @@ get:
     - funding-channel
   summary: Get Funding Channel
   operationId: get-funding-channel
-  description: Retrieves a specific Funding Channel for the given id.
+  description: |
+    Retrieves a specific Funding Channel for the given id.
+
+    **Remember that Account Admin permission is required to access this endpoint.**
   parameters:
   - name: fundingChannelId
     in: path

@@ -7,6 +7,8 @@ get:
     Retrieves a list of Funding Channels for the given account
 
     This API uses cursor-based pagination. Start by making a request without a cursor to get the first page. Use the nextCursor from the pageInfo in the response as the cursor for subsequent requests to retrieve further pages. Continue until nextCursor is undefined, indicating no more data.
+
+    **Remember that Account Admin permission is required to access this endpoint.**
   parameters:
   - name: accountId
     in: path
