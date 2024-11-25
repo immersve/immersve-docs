@@ -1,0 +1,17 @@
+type: object
+description: Merchant details.
+required:
+  - address
+  - city
+  - countryCode
+properties:
+  address:
+    type: string
+    description: Merchant address (use name of the merchant if address is not available).
+  city:
+    type: string
+    description: Merchant city.
+  countryCode:
+    type: string
+    example: NZ
+    description: Merchant ISO-8583 Alpha-2 country code.
