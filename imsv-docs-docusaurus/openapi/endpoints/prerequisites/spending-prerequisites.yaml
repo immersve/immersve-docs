@@ -25,7 +25,6 @@ post:
                 {
                   "stage": "funding",
                   "status": "action-required",
-                  "type": "smart_contract_write",
                   "actionType": "smart_contract_write",
                   "params": {
                     "abi": [
@@ -62,37 +61,8 @@ post:
                   }
                 },
                 {
-                  "stage": "funding",
-                  "status": "action-required",
-                  "type": "smart_contract_write",
-                  "actionType": "smart_contract_write",
-                  "params": {
-                    "abi": [
-                      {
-                        "inputs": [
-                          {
-                            "internalType": "uint256",
-                            "name": "_amount",
-                            "type": "uint256"
-                          }
-                        ],
-                        "name": "depositAndLock",
-                        "outputs": [],
-                        "stateMutability": "nonpayable",
-                        "type": "function"
-                      }
-                    ],
-                    "contractAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
-                    "method": "depositAndLock",
-                    "params": {
-                      "_amount": "1000000"
-                    }
-                  }
-                },
-                {
                   "stage": "kyc",
                   "status": "action-required",
-                  "type": "kyc",
                   "actionType": "follow_kyc_url",
                   "params": {
                     "status": "kyc_required",
@@ -102,7 +72,6 @@ post:
                 {
                   "stage": "kyc",
                   "status": "action-required"
-                  "type": "contact_email",
                   "actionType": "submit_contact_email",
                   "params": {
                     "status": "missing"
@@ -111,22 +80,20 @@ post:
                 {
                   "stage": "kyc",
                   "status": "action-required",
-                  "type": "contact_phone",
                   "actionType": "submit_contact_phone",
                   "params": {
                     "status": "missing"
                   }
                 },
                 {
+                  "stage": "kyc",
+                  "status": "action-required",
+                  "actionType": "set_expected_spend_amount",
+                },
+                {
                   "stage": "aml",
                   "status": "pending",
                   "params": {}
-                },
-                {
-                  "stage": "kyc",
-                  "status": "action-required",
-                  "type": "expected_spend_amount",
-                  "actionType": "set_expected_spend_amount",
                 }
               ]
             }
