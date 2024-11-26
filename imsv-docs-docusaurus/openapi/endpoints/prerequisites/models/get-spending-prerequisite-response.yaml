@@ -19,6 +19,7 @@ properties:
             - blocked
             - ok
         type:
+          deprecated: true
           type: string
           enum:
             - smart_contract_write
