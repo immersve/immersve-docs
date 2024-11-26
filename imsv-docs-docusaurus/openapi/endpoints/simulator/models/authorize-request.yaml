@@ -37,7 +37,7 @@ properties:
   forcePost:
     type: boolean
     example: false
-    description: Force post transaction.
+    description: Indicates whether to force post the transaction.
   merchant:
     type: object
     description: Merchant details.
