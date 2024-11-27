@@ -4,9 +4,14 @@ post:
   summary: Submit Simulator Authorization
   operationId: submit-simulator-authorization
   description: |
-    This endpoint can be used to test authorizing a transaction on a simulated card network.
-    An incremental authorization can be tested by creating an initial authorization
-    then including the `requestMsg` from this response in the request body of a subsequent authorization.
+    This endpoint can be used to test authorizing a transaction on a simulated
+    card network. An incremental authorization can be tested by creating an
+    initial authorization then including the `requestMsg` from this response in
+    the request body of a subsequent authorization.
+
+    In some scenarios, transactions need to be approved regardless of standard
+    authorization checks (card details, balance, etc). This is known as force posting. To
+    use this scenario, set the `forcePost` field to true in your request payload
   requestBody:
     content:
       application/json:
