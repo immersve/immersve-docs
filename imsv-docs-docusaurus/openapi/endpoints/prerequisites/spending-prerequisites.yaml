@@ -19,117 +19,189 @@ post:
         application/json:
           schema:
             $ref: "./models/get-spending-prerequisite-response.yaml"
-          example: |
-            {
-              "prerequisites": [
+          examples:
+            default:
+              value: |
                 {
-                  "stage": "funding",
-                  "status": "action-required",
-                  "type": "smart_contract_write",
-                  "actionType": "smart_contract_write",
-                  "params": {
-                    "abi": [
-                      {
-                        "constant": false,
-                        "inputs": [
+                  "prerequisites": [
+                    {
+                      "stage": "funding",
+                      "status": "action-required",
+                      "type": "smart_contract_write",
+                      "actionType": "smart_contract_write",
+                      "params": {
+                        "abi": [
                           {
-                            "name": "_spender",
-                            "type": "address"
-                          },
-                          {
-                            "name": "_value",
-                            "type": "uint256"
+                            "constant": false,
+                            "inputs": [
+                              {
+                                "name": "_spender",
+                                "type": "address"
+                              },
+                              {
+                                "name": "_value",
+                                "type": "uint256"
+                              }
+                            ],
+                            "name": "approve",
+                            "outputs": [
+                              {
+                                "name": "",
+                                "type": "bool"
+                              }
+                            ],
+                            "payable": false,
+                            "stateMutability": "nonpayable",
+                            "type": "function"
                           }
                         ],
-                        "name": "approve",
-                        "outputs": [
-                          {
-                            "name": "",
-                            "type": "bool"
-                          }
-                        ],
-                        "payable": false,
-                        "stateMutability": "nonpayable",
-                        "type": "function"
+                        "contractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+                        "method": "approve",
+                        "params": {
+                          "_spender": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+                          "_value": "1000000"
+                        }
                       }
-                    ],
-                    "contractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
-                    "method": "approve",
-                    "params": {
-                      "_spender": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
-                      "_value": "1000000"
-                    }
-                  }
-                },
-                {
-                  "stage": "funding",
-                  "status": "action-required",
-                  "type": "smart_contract_write",
-                  "actionType": "smart_contract_write",
-                  "params": {
-                    "abi": [
-                      {
-                        "inputs": [
+                    },
+                    {
+                      "stage": "funding",
+                      "status": "action-required",
+                      "type": "smart_contract_write",
+                      "actionType": "smart_contract_write",
+                      "params": {
+                        "abi": [
                           {
-                            "internalType": "uint256",
-                            "name": "_amount",
-                            "type": "uint256"
+                            "inputs": [
+                              {
+                                "internalType": "uint256",
+                                "name": "_amount",
+                                "type": "uint256"
+                              }
+                            ],
+                            "name": "depositAndLock",
+                            "outputs": [],
+                            "stateMutability": "nonpayable",
+                            "type": "function"
                           }
                         ],
-                        "name": "depositAndLock",
-                        "outputs": [],
-                        "stateMutability": "nonpayable",
-                        "type": "function"
+                        "contractAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+                        "method": "depositAndLock",
+                        "params": {
+                          "_amount": "1000000"
+                        }
                       }
-                    ],
-                    "contractAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
-                    "method": "depositAndLock",
-                    "params": {
-                      "_amount": "1000000"
+                    },
+                    {
+                      "stage": "kyc",
+                      "status": "action-required",
+                      "type": "kyc",
+                      "actionType": "follow_kyc_url",
+                      "params": {
+                        "status": "kyc_required",
+                        "kycUrl": "https://verify.immersve.com"
+                      }
+                    },
+                    {
+                      "stage": "kyc",
+                      "status": "action-required"
+                      "type": "contact_email",
+                      "actionType": "submit_contact_email",
+                      "params": {
+                        "status": "missing"
+                      }
+                    },
+                    {
+                      "stage": "kyc",
+                      "status": "action-required",
+                      "type": "contact_phone",
+                      "actionType": "submit_contact_phone",
+                      "params": {
+                        "status": "missing"
+                      }
+                    },
+                    {
+                      "stage": "aml",
+                      "status": "pending",
+                      "params": {}
+                    },
+                    {
+                      "stage": "kyc",
+                      "status": "action-required",
+                      "type": "expected_spend_amount",
+                      "actionType": "set_expected_spend_amount",
                     }
-                  }
-                },
-                {
-                  "stage": "kyc",
-                  "status": "action-required",
-                  "type": "kyc",
-                  "actionType": "follow_kyc_url",
-                  "params": {
-                    "status": "kyc_required",
-                    "kycUrl": "https://verify.immersve.com"
-                  }
-                },
-                {
-                  "stage": "kyc",
-                  "status": "action-required"
-                  "type": "contact_email",
-                  "actionType": "submit_contact_email",
-                  "params": {
-                    "status": "missing"
-                  }
-                },
-                {
-                  "stage": "kyc",
-                  "status": "action-required",
-                  "type": "contact_phone",
-                  "actionType": "submit_contact_phone",
-                  "params": {
-                    "status": "missing"
-                  }
-                },
-                {
-                  "stage": "aml",
-                  "status": "pending",
-                  "params": {}
-                },
-                {
-                  "stage": "kyc",
-                  "status": "action-required",
-                  "type": "expected_spend_amount",
-                  "actionType": "set_expected_spend_amount",
+                  ]
                 }
-              ]
-            }
+            'partner conducted kyc':
+              value: |
+                //initial state - submit statements
+                [
+                  {
+                    "stage": "kyc",
+                    "status": "action-required",
+                    "actionType": "submit_kyc_statement",
+                    "params": {
+                      "status": "kyc_required"
+                    }
+                  },
+                  // other kyc prereqs missing
+                  {
+                    "stage": "kyc",
+                    "status": "action-required",
+                    "actionType": "submit_contact_email",
+                    "params": {
+                      "status": "missing"
+                    }
+                  },
+                  {
+                    "stage": "kyc",
+                    "status": "action-required",
+                    "actionType": "submit_contact_phone",
+                    "params": {
+                      "status": "missing"
+                    }
+                  },
+                  {
+                    "stage": "kyc",
+                    "status": "action-required",
+                    "actionType": "set_expected_spend_amount",
+                  }
+                ]
+                // statements submitted and waiting result
+                [
+                  {
+                    "stage": "kyc",
+                    "status": "pending",
+                    "params": {
+                      "status": "check_in_progress"
+                    }
+                  }
+                  // other prereqs will disappear as they have been submitted
+                ]
+                // kyc passed
+                [
+                  {
+                    "stage": "kyc",
+                    "status": "ok"
+                  }
+                ]
+                // kyc failed with reasons.
+                [
+                  {
+                    "stage": "kyc",
+                    "status": "failed",
+                    "params": {
+                      "status": "kyc_failed",
+                      "reasons": [
+                        {
+                          "code": "UNKNOWN",
+                          "description" : 'Please contact support for more details'
+                        },
+                      ]
+                    }
+                  }
+                ]
+
     "403":
       description: |
         User is not allowed to perform the action with the reason stated in the `errorCode`
