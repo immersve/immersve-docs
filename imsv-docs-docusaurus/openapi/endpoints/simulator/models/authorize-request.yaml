@@ -34,12 +34,3 @@ properties:
   authorizationRequestMsg:
     type: string
     description: requestMsg of previous authorization returned by this endpoint.
-  forcePost:
-    type: boolean
-    example: false
-    description: Indicates whether to force post the transaction.
-  merchant:
-    type: object
-    description: Merchant details.
-    allOf:
-      - $ref: './merchant.yaml'
