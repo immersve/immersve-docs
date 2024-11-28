@@ -19,7 +19,7 @@ properties:
       - "init"
       - "holding"
       - "cleared"
-      - "failed"
+      - "reversed"
   cardId:
     type: string
     description: Which card this transaction belongs to
