@@ -37,8 +37,3 @@ properties:
       - final
       - multi-final
       - multi-non-final
-  merchant:
-    type: object
-    description: Merchant details.
-    allOf:
-      - $ref: './merchant.yaml'
