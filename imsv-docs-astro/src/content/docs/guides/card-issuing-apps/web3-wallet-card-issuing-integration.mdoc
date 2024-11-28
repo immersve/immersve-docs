@@ -94,15 +94,6 @@ different in the live environment.
 
 ## Per cardholder setup
 
-### Select Region
-
-Prompting the user to select their region helps them to avoid the card
-onboarding journey if their region is not yet available. Call the {% link
-endpoint="get-supported-regions" /%} endpoint to get the current list of
-available regions for your application.
-
-See: {% link page="guides/regions" /%}.
-
 ### Deploy On-Chain Resources
 
 Depending on the intended funding protocol there may be cardholder-scoped
@@ -152,6 +143,15 @@ tokens_json="$(
 imsv_access_token="$(echo $tokens_json | jq -r .accessToken)"
 imsv_refresh_token="$(echo $tokens_json | jq -r .refreshToken)"
 ```
+
+### Select Region
+
+Prompting the user to select their region helps them to avoid the card
+onboarding journey if their region is not yet available. Call the {% link
+endpoint="get-supported-regions" /%} endpoint to get the current list of
+available regions for your application.
+
+See: {% link page="guides/regions" /%}.
 
 ### Register Cardholder Funding Source
 
