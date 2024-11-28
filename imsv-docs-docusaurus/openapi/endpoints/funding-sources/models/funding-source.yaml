@@ -15,7 +15,7 @@ properties:
     example: 91ad6fea3b52ca58d60d7fd310f789ec
   accountId:
     type: string
-    description: Cardholder account this Funding Source belongs to.
+    description: Account this Funding Source belongs to.
     example: 057aa15913a57f50577234c8426534c0
   createdAt:
     type: string
