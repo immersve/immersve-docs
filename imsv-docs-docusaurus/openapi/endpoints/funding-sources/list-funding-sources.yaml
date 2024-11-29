@@ -3,11 +3,11 @@ get:
     - funding-source
   summary: List Funding Sources
   operationId: list-funding-sources
-  description: List Funding Sources associated with the cardholder account
+  description: List Funding Sources associated with the account
   parameters:
     - name: accountId
       in: path
-      description: Cardholder account ID to retrieve Funding Sources for.
+      description: Account ID to retrieve Funding Sources for.
       required: true
       schema:
         type: string
