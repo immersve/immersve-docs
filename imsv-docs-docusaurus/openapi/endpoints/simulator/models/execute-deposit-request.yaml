@@ -2,7 +2,7 @@ type: object
 properties:
   amount:
     type: string
-    description: Withdrawal amount in minor units.
+    description: Deposit amount in minor units.
     example: "300000000"
   fundingSourceId:
     type: string
