@@ -1,0 +1,30 @@
+get:
+  tags:
+    - transactions
+  summary: Get Payment Notification
+  operationId: get-payment-notification
+  description: |
+    Get a payment event notification by message id.
+
+    See [Custodial Funding Protocol](https://docs.immersve.com/guides/custodial-funding-protocol)
+    for details about payment event notifications.
+  parameters:
+    - name: messageId
+      in: path
+      description: Payment notification message id.
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/payment-notification.yaml"
+    "403":
+      description: No Authorization to access resource.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
