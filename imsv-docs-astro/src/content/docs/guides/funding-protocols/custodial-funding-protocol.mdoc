@@ -99,7 +99,7 @@ same sequence:
   adjustment should be performed. If the payment already exists then the balance
   adjustment should use the difference from what has already been debited. If
   the payment is a refund (indicated by a negative payment amount) then the
-  balance adjustment should not be performed until later when a finalized
+  balance adjustment should not be performed until later when a
   payment advice message is received. The outcome of the authorization request
   is returned in the `result` field of the response payload.
 ---
@@ -161,9 +161,7 @@ same sequence:
   the payment already exists, the status and amount should be adjusted based
   on the `paymentFinalized` and `paymentAmount` fields. Perform an account
   balance adjustment if necessary: a balance adjustment should be performed if
-  the amount differs from what has already been debited; if the payment is a
-  refund (indicated by a negative payment amount) then the balance adjustment
-  should be made only if the payment is finalized.
+  the amount differs from what has already been debited or credited.
 ---
 {% /table %}
 
