@@ -173,6 +173,54 @@ curl -X PUT "https://test.immersve.com/api/accounts/${cardholder_account_id}/par
   }'
 ```
 
+### **Structured Address and Unstructured Address in Partner-Conducted KYC**
+
+For partner-conducted KYC, Immersve allows two formats for address input: Structured Address and Unstructured Address, used in the {% link endpoint="submit-kyc-statement" /%} endpoint. Address details are included within the claims field in the request body.
+
+### **Structured Address**
+A **Structured Address** organizes address details into clearly defined components.
+
+#### Example
+
+```json
+{
+  "claimType": "ADDRESS",
+  "attributes": {
+    "addressType": "RESIDENTIAL",
+    "streetNumber": "73",
+    "streetName": "Great Southern",
+    "streetType": "ROAD",
+    "suburb": "Auckland CBD",
+    "town": "Auckland",
+    "region": "Auckland",
+    "state": "AKL",
+    "postalCode": "6140",
+    "country": "NZ"
+  }
+}
+```
+
+### **Unstructured Address**
+The **Unstructured Address** is an alternative format for submitting address information. It provides the address as a single string without dividing it into components.
+
+
+#### Example
+```json
+{
+  "claimType": "ADDRESS",
+  "attributes": {
+    "addressType": "RESIDENTIAL",
+    "fullAddress": "2/45 Laddier Road, Centurion, The Reeds, Auckland, Auckland 0100, New Zealand",
+    "country": "NZ"
+  }
+}
+```
+
+## **Key Considerations**
+- Both Structured Address and Unstructured Address formats are supported.
+- Immersve attempts to parse unstructured addresses into structured components after submission. Ensure the fullAddress field is as detailed as possible.
+
+
 ## Poll spending prerequisites
 
 {% endpointref name="get-spending-prerequisites" /%}
