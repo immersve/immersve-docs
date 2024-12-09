@@ -136,11 +136,7 @@ state_name=""
 postal_code=""
 country_code="" #i.e. ISO3166-2 Country Code
 
-#passport details
-
-#drivers license details
-
-
+//TODO: fixup the doc parameters
 
 curl -X PUT "https://test.immersve.com/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
   -H "Content-Type: application/json" \
@@ -185,13 +181,6 @@ curl -X PUT "https://test.immersve.com/api/accounts/${cardholder_account_id}/par
     "evidence": [
       {
         "evidenceType": "PASSPORT",
-        "documentId": "80513",
-        "country": "AU",
-        "region": "VIC",
-        "version": "P0001975"
-      },
-      {
-        "evidenceType": "DRIVERS_LICENSE",
         "documentId": "80513",
         "country": "AU",
         "region": "VIC",
