@@ -9,7 +9,6 @@ for getting onto the platform and testing your integrations.
 
 ## Partner Conducted KYC
 
- {% endpointref name="submit-kyc-statement" /%}
 
 When submitting a partner statement, the goal is to generate a unique identity and unique address.
 To achieve this we will be replacing some parts of the partner statement with random values
@@ -22,7 +21,9 @@ and key words within different claims.
  The values do not need to be real, just random and valid for their respective types.
 {% /note %}
 
-Follow the process outlined in {% link page="guides/partner-conducted-kyc" /%} with the following adjustments.
+Follow the process outlined in {% link page="guides/partner-conducted-kyc" /%} update the claims in the kyc statement as follows.
+
+ {% endpointref name="submit-kyc-statement" /%}
 
 ### Adjust Claims
 The following claim types will need to be adjusted.
@@ -55,11 +56,6 @@ For a complete guide on passing KYC in test mode, please read {% link page="guid
 
 ### Uploading documents and performing a facial scan
 
-{% note %}
- In test, you can use our test document, or any valid supported identity document (regardless of region), it needs to be able to pass
- the scrutiny of browser checks. This will be replaced with dummy data at the end of the process.
-{% /note %}
-
 When you get to the document and facial scanning steps:
 
  - You can use either:
@@ -68,6 +64,11 @@ When you get to the document and facial scanning steps:
     - a test document provided further down in this guide
 
  - The facial scan __must__ be done with a real person's face.
+
+{% note %}
+ In test, you can use our test document, or any valid supported identity document (regardless of region), it needs to be able to pass
+ the scrutiny of browser checks. This will be replaced with dummy data at the end of the process.
+{% /note %}
 
 ## Test Documents
 
