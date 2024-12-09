@@ -9,7 +9,6 @@ for getting onto the platform and testing your integrations.
 
 ## Partner Conducted KYC
 
-
 When submitting a partner statement, the goal is to generate a unique identity and unique address.
 To achieve this we will be replacing some parts of the partner statement with random values
 and key words within different claims.
@@ -21,24 +20,26 @@ and key words within different claims.
  The values do not need to be real, just random and valid for their respective types.
 {% /note %}
 
-Follow the process outlined in {% link page="guides/partner-conducted-kyc" /%} update the claims in the kyc statement as follows.
+
+### Claims
+When following the process outlined in {% link page="guides/partner-conducted-kyc" /%}
+the following claim types will need to be adjusted when submitting a KYC statement in test mode.
 
  {% endpointref name="submit-kyc-statement" /%}
 
-### Adjust Claims
-The following claim types will need to be adjusted.
-#### FULL_NAME
+#### Adjust FULL_NAME claim
 Ensure the `middleName` is `passall`
 Generate random values for the following fields:
  - `givenName`
  - `familyName`
-#### DOB
+#### Adjust DOB claim
 Generate a random date in the past for the `dateOfBirth` field
-#### ADDRESS
+#### Adjust ADDRESS claim
 We recommend the following fields have random values:
   - `streetNumber`
   - `streetName`
   - `town`
+
 Make sure that the other geographic details (`region`, `state`, `country`) of the
 address align with the kyc region you are submitting the statement for.
 
