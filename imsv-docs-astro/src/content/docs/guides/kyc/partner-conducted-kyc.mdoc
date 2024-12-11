@@ -37,10 +37,12 @@ document scans and biometrics, have been collected and verified.
 ```bash
 card_issuer_api_key="<your_card_issuer_api_key>"
 card_issuer_api_secret="<your_card_issuer_api_secret>"
-partner_account_id="<your_partner_account_id>"
 card_program_id="<your_card_program_id>"
 cardholder_account_id="<cardholder_account_id>"
 funding_source_id="<funding_source_id>"
+
+imsv_api_host="test.immersve.com"
+
 ```
 
 ## Supply Contact Details
@@ -64,19 +66,22 @@ a checkbox. This can be done at the same time as KYC information sharing.
 {% endpointref name="update-contact-details" /%}
 
 ```bash
+your_email_address="" # the email address of the cardholder
+your_mobile_number="" # the mobile number of the cardholder in E.164 format
+
 curl -X PATCH "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/contact-details" \
   -H "Content-Type: application/json" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}" \
   --data '{
-    "email": {
-      "emailAddress": "joe@cardholder.email",
-    },
-    "phone": {
-      "phoneNumber": "+64123456789",
-    }
-  }'
+      "email": {
+        "emailAddress": "'${your_email_address}'"
+      },
+      "phone": {
+        "phoneNumber": "'${your_mobile_number}'"
+      }
+    }'
 ```
 
 ## Supply Expected Spend Amount
@@ -90,13 +95,14 @@ one measure that assists in our understanding of the nature and purpose of the c
 {% endpointref name="update-expected-spend-amount" /%}
 
 ```bash
-curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/expected-spend-amount \
+expected_spend_amount="" # in minor units
+curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/expected-spend-amount" \
   -H "Content-Type: application/json" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}" \
   --data '{
-    "expectedSpendAmount": "200000",
+    "expectedSpendAmount": "'${expected_spend_amount}'"
   }'
 ```
 
@@ -116,19 +122,19 @@ incorrectly supplied.
 
 ```bash
 idempotencyKey="" # a unique key for each request. See api docs for more info
+kyc_region="" # An ISO 3166-2 (Alpha-2) for the region you are submitting the statement for, i.e. EU, NZ, AU, etc.
 
-kyc_region = "" # the region you are submitting the statement for, i.e. EU, NZ, AU, etc
-
-your_honorific= "" #i.e. Mr, Mrs, Ms
+# personal details
+your_honorific="" #e.g. Mr, Mrs, Ms
 your_given_name=""
-your_family_name=""
 your_middle_name=""
-
+your_family_name=""
 date_of_birth="" # YYYY-MM-DD
 
+# address details
 street_number=""
 street_name=""
-street_type="" #i.e Road, Street, Avenue etc
+street_type="" #e.g. Road, Street, Avenue etc
 suburb_name=""
 town_name=""
 region_name=""
@@ -136,29 +142,32 @@ state_name=""
 postal_code=""
 country_code="" #i.e. ISO3166-2 Country Code
 
-//TODO: fixup the doc parameters
+# passport details
+passport_number=""
+passport_country_code="" #i.e. ISO3166-2 Country Code
+passport_expiry_date="" # YYYY-MM-DD
 
-curl -X PUT "https://test.immersve.com/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
+curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
   -H "x-api-key: ${card_issuer_api_key}" \
   -H "x-api-secret: ${card_issuer_api_secret}" \
   --data '{
-    "idempotencyKey": "${idempotencyKey}",
-    "region": "${kyc_region}",
+    "idempotencyKey": "'${idempotencyKey}'",
+    "region": "'${kyc_region}'",
     "claims": [
       {
         "claimType": "DOB",
         "attributes": {
-          "dateOfBirth": "'${date_of_birth}'",
+          "dateOfBirth": "'${date_of_birth}'"
         }
       },
       {
         "claimType": "FULL_NAME",
         "attributes": {
-          "": "Mr",
+          "honorific": "'${your_honorific}'",
           "givenName": "'${your_given_name}'",
-          "middleName": "${your_middle_name}",
+          "middleName": "'${your_middle_name}'",
           "familyName": "'${your_family_name}'"
         }
       },
@@ -166,25 +175,24 @@ curl -X PUT "https://test.immersve.com/api/accounts/${cardholder_account_id}/par
         "claimType": "ADDRESS",
         "attributes": {
           "addressType": "RESIDENTIAL",
-          "streetNumber": "${street_number}",
-          "streetName": "${street_name}",
-          "streetType": "${street_type}",
-          "suburb": "${suburb_name}",
-          "town": "${town_name}",
-          "region": "${region_name}",
-          "state": "${state_name}",
-          "postalCode": "${postal_code}"
-          "country": "${country_code}",
+          "streetNumber": "'${street_number}'",
+          "streetName": "'${street_name}'",
+          "streetType": "'${street_type}'",
+          "suburb": "'${suburb_name}'",
+          "town": "'${town_name}'",
+          "region": "'${region_name}'",
+          "state": "'${state_name}'",
+          "postalCode": "'${postal_code}'",
+          "country": "'${country_code}'"
         }
       }
     ],
     "evidence": [
       {
         "evidenceType": "PASSPORT",
-        "documentId": "80513",
-        "country": "AU",
-        "region": "VIC",
-        "version": "P0001975"
+        "documentId": "'${passport_number}'",
+        "country": "'${passport_country_code}'",
+        "expiry": "'${passport_expiry_date}'"
       }
     ]
   }'
@@ -259,7 +267,7 @@ failure. Check the KYC statement and submit it again or contact Immersve support
 
 ### Example request
 ```bash
-curl -X "https://test.immersve.com/api/spending-prerequisites" \
+curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
   -H "Content-Type: application/json" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
@@ -269,7 +277,7 @@ curl -X "https://test.immersve.com/api/spending-prerequisites" \
     "fundingSourceId": "'${funding_source_id}'",
     "spendableAmount": 100,
     "spendableCurrency": "USD",
-    "kycType": "partner-conducted",
+    "kycType": "partner-conducted"
   }'
 ```
 
