@@ -288,56 +288,73 @@ curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/part
   }'
 ```
 
-### **Structured Address and Unstructured Address in Partner conducted KYC**
+### KYC Statement Addresses in Partner conducted KYC
 
-The {% link endpoint="submit-kyc-statement" /%} endpoint accepts two alternative address formats as part of the claims field in the request body:
-- Structured Address
-- Unstructured Address
+The {% link endpoint="submit-kyc-statement" /%} endpoint accepts both structured,
+and unstructured address formats in an Address claim.
 
-### **Structured Address**
-A **Structured Address** organizes address details into predefined fields, making it easier to validate and process the data. Partners are strongly encouraged to use this format whenever possible.
 
-#### Example
+{% list %}
+  {% listitem "ArrowRightCircle" %}
+    **Structured Address**
 
-```json
-{
-  "claimType": "ADDRESS",
-  "attributes": {
-    "addressType": "RESIDENTIAL",
-    "streetNumber": "73",
-    "streetName": "Great Southern",
-    "streetType": "ROAD",
-    "suburb": "Auckland CBD",
-    "town": "Auckland",
-    "region": "Auckland",
-    "state": "AKL",
-    "postalCode": "6140",
-    "country": "NZ"
+    Organizes address details into predefined fields, making it easier to validate and process the data.
+
+    ```json
+    {
+      "claimType": "ADDRESS",
+      "attributes": {
+        "addressType": "RESIDENTIAL",
+        "streetNumber": "73",
+        "streetName": "Great Southern",
+        "streetType": "ROAD",
+        "suburb": "Auckland CBD",
+        "town": "Auckland",
+        "region": "Auckland",
+        "state": "AKL",
+        "postalCode": "6140",
+        "country": "NZ"
+      }
+    }
+    ```
+    Partners are strongly encouraged to use this format whenever possible.
+
+  {% /listitem %}
+  {% listitem "ArrowRightCircle" %}
+  **Unstructured Address**
+
+  When it is not possible to provide a Structured Addresses, partners can provide an Unstructured Address.
+
+
+
+  ```json
+  {
+    "claimType": "ADDRESS",
+    "attributes": {
+      "addressType": "RESIDENTIAL",
+      "fullAddress": "2/45 Laddier Road,
+      Centurion, The Reeds, Auckland, Auckland 0100,
+      New Zealand",
+      "country": "NZ"
+    }
   }
-}
-```
+  ```
 
-### **Unstructured Address**
-When it is not possible to provide a Structured Addresses, partners can provide an **Unstructured Address**. This format consolidates the address into a single text string in the `fullAddress` field, which Immersve later attempts to parse into structured address components.
+  This format consolidates the address into a single text string in the `fullAddress` field,
+    which Immersve later attempts to parse into structured address components.
 
+  {% /listitem %}
+  {% listitem "ArrowRightCircle" %}
+    **Key Considerations**
 
-#### Example
-```json
-{
-  "claimType": "ADDRESS",
-  "attributes": {
-    "addressType": "RESIDENTIAL",
-    "fullAddress": "2/45 Laddier Road, Centurion, The Reeds, Auckland, Auckland 0100, New Zealand",
-    "country": "NZ"
-  }
-}
-```
+    Use Structured Address where possible: Structured addresses are preferred for accuracy and consistency.
 
-## **Key Considerations**
-- Both Structured Address and Unstructured Address formats are supported.
-- Use Structured Address where possible: Structured addresses are preferred for accuracy and consistency.
-- Use Unstructured Addresses only if structured address data is not available from your IDV provider.
-- Immersve attempts to parse Unstructured Addresses into structured address components after submission. Ensure the fullAddress field is as detailed as possible.
+    Use Unstructured Addresses only if structured address data is not available from your IDV provider.
+
+    Immersve attempts to parse Unstructured Addresses into structured address components after submission. Ensure the fullAddress field is as detailed as possible.
+  {% /listitem %}
+{% /list %}
+
 
 
 ## Poll spending prerequisites
