@@ -1,0 +1,76 @@
+---
+title: Passing KYC in Test
+description: Instructions for how to navigate KYC in test to obtain a pass on the Immersve platform for each KYC mode.
+slug: guides/pass-kyc-in-testmode
+---
+
+This guide explains how to provide KYC data to our test environment to consistently pass KYC. This is useful
+for getting onto the platform and testing your integrations.
+
+## Testing Partner Conducted KYC
+
+To consistently pass {% link page="guides/partner-conducted-kyc" /%} in test,
+you will need to supply a unique identity and unique address.
+
+
+{% endpointref name="submit-kyc-statement" /%}
+
+### Update the Claims
+To create a unique identity and unique address, you will need to replace some parts of
+ the partner statement with random values and key words within different claims.
+{% list %}
+  {% listitem "ArrowRightCircle" %}
+    __Adjust Full Name claim__ <br/>
+    Generate random values for `givenName` and `familyName` fields
+    __and__ ensure the `middleName` is `passall`.
+  {% /listitem %}
+  {% listitem "ArrowRightCircle" %}
+    __Adjust Date of Birth claim__ <br/>
+    Generate a random date in the past for the `dateOfBirth` field.
+  {% /listitem %}
+  {% listitem "ArrowRightCircle" %}
+    __Adjust Address claim__ <br/>
+    Populate the `streetNumber`, `streetName`, and `town` with random values. <br/>
+
+    Make sure that the other geographic details (`region`, `state`, `country`) of the
+    address align with the kyc region you are submitting the statement for.
+  {% /listitem %}
+{% /list %}
+
+
+## Testing Immersve Conducted KYC
+
+To consistently pass {% link page="guides/immersve-conducted-kyc" /%} in test, you should not need to do anything different from the normal process.
+
+A test document is available for use instead of your own identity documents, however
+you will still need to use a real person's face for the facial scan.
+
+### Upload document and perform a facial scan
+
+When you get to the document and facial scanning steps, you will need to:
+
+{% list %}
+  {% listitem "ArrowRightCircle" %}
+    __Upload a scan of a document__ <br/>
+    You can use your own valid identity document e.g. drivers license or passport
+    __OR__
+    a test document provided further down in this guide.
+  {% /listitem %}
+  {% listitem "ArrowRightCircle" %}
+    __Scan your face__  <br/>
+    The facial scan __must__ be done with a real person's face. It does not
+    need to match the supplied document.
+  {% /listitem %}
+
+{% /list %}
+A randomly generated profile will be created in the background to replace the
+data that has been uploaded.
+
+## Example Test Documents
+
+If you're not comfortable using your identity documents, we have provided a
+dummy drivers license that can be used instead of a real identity document.
+
+![mock-licence-front (1).jpg](./assets/mock-driver-licence-front.webp "Front")
+
+![mock-licence-back (1).jpg](./assets/mock-driver-licence-back.webp "Back")
