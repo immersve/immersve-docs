@@ -120,8 +120,10 @@ Be careful when setting the region as this cannot be changed. You will need to c
 incorrectly supplied.
 {% /warning %}
 
+### Submitting a Statement with a Passport
+
 ```bash
-idempotencyKey="" # a unique key for each request. See api docs for more info
+idempotencyKey="" # a unique key for each request. See submit KYC statement docs for more info
 kyc_region="" # An ISO 3166-2 (Alpha-2) for the region you are submitting the statement for, i.e. EU, NZ, AU, etc.
 
 # personal details
@@ -193,6 +195,88 @@ curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/part
         "documentId": "'${passport_number}'",
         "country": "'${passport_country_code}'",
         "expiry": "'${passport_expiry_date}'"
+      }
+    ]
+  }'
+```
+
+### Submitting a Statement with a Drivers License
+
+```bash
+idempotencyKey="" # a unique key for each request. See api docs for more info
+kyc_region="" # An ISO 3166-2 (Alpha-2) for the region you are submitting the statement for, i.e. EU, NZ, AU, etc.
+
+# personal details
+your_honorific="" #e.g. Mr, Mrs, Ms
+your_given_name=""
+your_middle_name=""
+your_family_name=""
+date_of_birth="" # YYYY-MM-DD
+
+# address details
+street_number=""
+street_name=""
+street_type="" #e.g. Road, Street, Avenue etc
+suburb_name=""
+town_name=""
+region_name=""
+state_name=""
+postal_code=""
+country_code="" #i.e. ISO3166-2 Country Code
+
+# drivers license details
+license_number=""
+license_country_code="" #i.e. ISO3166-2 Country Code
+license_region="" #See submit KYC statement docs for more info
+license_version=""
+
+curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -H "x-api-key: ${card_issuer_api_key}" \
+  -H "x-api-secret: ${card_issuer_api_secret}" \
+  --data '{
+    "idempotencyKey": "'${idempotencyKey}'",
+    "region": "'${kyc_region}'",
+    "claims": [
+      {
+        "claimType": "DOB",
+        "attributes": {
+          "dateOfBirth": "'${date_of_birth}'"
+        }
+      },
+      {
+        "claimType": "FULL_NAME",
+        "attributes": {
+          "honorific": "'${your_honorific}'",
+          "givenName": "'${your_given_name}'",
+          "middleName": "'${your_middle_name}'",
+          "familyName": "'${your_family_name}'"
+        }
+      },
+      {
+        "claimType": "ADDRESS",
+        "attributes": {
+          "addressType": "RESIDENTIAL",
+          "streetNumber": "'${street_number}'",
+          "streetName": "'${street_name}'",
+          "streetType": "'${street_type}'",
+          "suburb": "'${suburb_name}'",
+          "town": "'${town_name}'",
+          "region": "'${region_name}'",
+          "state": "'${state_name}'",
+          "postalCode": "'${postal_code}'",
+          "country": "'${country_code}'"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceType": "DRIVERS_LICENSE",
+        "documentId": "'${license_number}'",
+        "country": "'${license_country_code}'",
+        "region": "'${license_region}'",
+        "version": "'${license_version}'"
       }
     ]
   }'
