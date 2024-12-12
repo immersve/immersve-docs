@@ -107,7 +107,7 @@ curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/exp
 ```
 
 
-## Submit cardholder KYC statement
+## Submit Cardholder KYC statement
 
 {% endpointref name="submit-kyc-statement" /%}
 
@@ -120,7 +120,12 @@ Be careful when setting the region as this cannot be changed. You will need to c
 incorrectly supplied.
 {% /warning %}
 
-### Submitting a Statement with a Passport
+The following sections show examples of how to submit individual types of identity evidence.
+
+__Note__: You can combine multiple types of evidence into a single request when submitting.
+
+### Submitting a Statement with a Passport as evidence
+The following script demonstrates how you could submit a KYC statement with a passport as evidence.
 
 ```bash
 idempotencyKey="" # a unique key for each request. See submit KYC statement docs for more info
@@ -142,11 +147,11 @@ town_name=""
 region_name=""
 state_name=""
 postal_code=""
-country_code="" #i.e. ISO3166-2 Country Code
+country_code="" #i.e. ISO 3166-2 Country Code
 
 # passport details
 passport_number=""
-passport_country_code="" #i.e. ISO3166-2 Country Code
+passport_country_code="" #i.e. ISO 3166-2 Country Code
 passport_expiry_date="" # YYYY-MM-DD
 
 curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
@@ -200,7 +205,8 @@ curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/part
   }'
 ```
 
-### Submitting a Statement with a Drivers License
+### Submitting a Statement with a Drivers License as evidence
+The following script demonstrates how you could submit a KYC statement with a drivers license as evidence.
 
 ```bash
 idempotencyKey="" # a unique key for each request. See api docs for more info
@@ -222,11 +228,11 @@ town_name=""
 region_name=""
 state_name=""
 postal_code=""
-country_code="" #i.e. ISO3166-2 Country Code
+country_code="" #i.e. ISO 3166-2 Country Code
 
 # drivers license details
 license_number=""
-license_country_code="" #i.e. ISO3166-2 Country Code
+license_country_code="" #i.e. ISO 3166-2 Country Code
 license_region="" #See submit KYC statement docs for more info
 license_version=""
 
