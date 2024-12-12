@@ -182,27 +182,4 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 
 ## Testing
 
-### Overview
-We have configured our test environment to ensure random identity information is received by our systems regardless
-of what identity document and facial scan has been captured during the course of Immersve Conducted KYC.
-
-This highly increases the chances of receiving a successful KYC result when testing.
-
-{% note %}
- In test, you should be be able to use any valid supported identity document (regardless of region) when going through
- Immersve KYC.
-{% /note %}
-
-{% warning %}
-You must always perform a facial scan of a real person.
-{% /warning %}
-
-### Test ID Documents
-
-If you're not comfortable using your identity documents, we have provided a
-dummy drivers license that can be used instead of a real identity document.
-The facial scan *must* be done with the a real person's face.
-
-![mock-licence-front (1).jpg](./assets/mock-driver-licence-front.webp "Front")
-
-![mock-licence-back (1).jpg](./assets/mock-driver-licence-back.webp "Back")
+For a complete guide on passing KYC in test mode, please read {% link page="guides/pass-kyc-in-testmode" /%}

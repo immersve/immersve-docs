@@ -37,10 +37,12 @@ document scans and biometrics, have been collected and verified.
 ```bash
 card_issuer_api_key="<your_card_issuer_api_key>"
 card_issuer_api_secret="<your_card_issuer_api_secret>"
-partner_account_id="<your_partner_account_id>"
 card_program_id="<your_card_program_id>"
 cardholder_account_id="<cardholder_account_id>"
 funding_source_id="<funding_source_id>"
+
+imsv_api_host="test.immersve.com"
+
 ```
 
 ## Supply Contact Details
@@ -64,19 +66,22 @@ a checkbox. This can be done at the same time as KYC information sharing.
 {% endpointref name="update-contact-details" /%}
 
 ```bash
+your_email_address="" # the email address of the cardholder
+your_mobile_number="" # the mobile number of the cardholder in E.164 format
+
 curl -X PATCH "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/contact-details" \
   -H "Content-Type: application/json" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}" \
   --data '{
-    "email": {
-      "emailAddress": "joe@cardholder.email",
-    },
-    "phone": {
-      "phoneNumber": "+64123456789",
-    }
-  }'
+      "email": {
+        "emailAddress": "'${your_email_address}'"
+      },
+      "phone": {
+        "phoneNumber": "'${your_mobile_number}'"
+      }
+    }'
 ```
 
 ## Supply Expected Spend Amount
@@ -90,25 +95,24 @@ one measure that assists in our understanding of the nature and purpose of the c
 {% endpointref name="update-expected-spend-amount" /%}
 
 ```bash
-curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/expected-spend-amount \
+expected_spend_amount="" # in minor units
+curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/expected-spend-amount" \
   -H "Content-Type: application/json" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
   -H "X-Account-Id: ${cardholder_account_id}" \
   --data '{
-    "expectedSpendAmount": "200000",
+    "expectedSpendAmount": "'${expected_spend_amount}'"
   }'
 ```
 
 
-## Submit cardholder KYC statement
+## Submit Cardholder KYC statement
 
 {% endpointref name="submit-kyc-statement" /%}
 
 {% note %}
-When testing, to improve chances of a successful response, please provide "passall" as the middleName, and generate a
-random givenName, familyName, and dateOfBirth.
-See example below.
+For a complete guide on passing KYC in test mode, please read {% link page="guides/pass-kyc-in-testmode" /%}.
 {% /note %}
 
 {% warning %}
@@ -116,32 +120,61 @@ Be careful when setting the region as this cannot be changed. You will need to c
 incorrectly supplied.
 {% /warning %}
 
+The following sections show examples of how to submit individual types of identity evidence.
+
+__Note__: You can combine multiple types of evidence into a single request when submitting.
+
+### Submitting a Statement with a Passport as evidence
+The following script demonstrates how you could submit a KYC statement with a passport as evidence.
+
 ```bash
+idempotencyKey="" # a unique key for each request. See submit KYC statement docs for more info
+kyc_region="" # An ISO 3166-2 (Alpha-2) for the region you are submitting the statement for, i.e. EU, NZ, AU, etc.
+
+# personal details
+your_honorific="" #e.g. Mr, Mrs, Ms
 your_given_name=""
+your_middle_name=""
 your_family_name=""
 date_of_birth="" # YYYY-MM-DD
 
-curl -X PUT "https://test.immersve.com/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
+# address details
+street_number=""
+street_name=""
+street_type="" #e.g. Road, Street, Avenue etc
+suburb_name=""
+town_name=""
+region_name=""
+state_name=""
+postal_code=""
+country_code="" #i.e. ISO 3166-2 Country Code
+
+# passport details
+passport_number=""
+passport_country_code="" #i.e. ISO 3166-2 Country Code
+passport_expiry_date="" # YYYY-MM-DD
+
+curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
   -H "x-api-key: ${card_issuer_api_key}" \
   -H "x-api-secret: ${card_issuer_api_secret}" \
   --data '{
-    "idempotencyKey": "some_random_key_thats_unique_for_each_request",
-    "region": "NZ",
+    "idempotencyKey": "'${idempotencyKey}'",
+    "region": "'${kyc_region}'",
     "claims": [
       {
         "claimType": "DOB",
         "attributes": {
-          "dateOfBirth": "'${date_of_birth}'",
+          "dateOfBirth": "'${date_of_birth}'"
         }
       },
       {
         "claimType": "FULL_NAME",
         "attributes": {
-          "honorific": "Mr",
+          "honorific": "'${your_honorific}'",
           "givenName": "'${your_given_name}'",
-          "middleName": "PASSALL",
+          "middleName": "'${your_middle_name}'",
           "familyName": "'${your_family_name}'"
         }
       },
@@ -149,80 +182,179 @@ curl -X PUT "https://test.immersve.com/api/accounts/${cardholder_account_id}/par
         "claimType": "ADDRESS",
         "attributes": {
           "addressType": "RESIDENTIAL",
-          "streetNumber": "73",
-          "streetName": "Great Southern",
-          "streetType": "ROAD",
-          "suburb": "Auckland CBD",
-          "town": "Auckland",
-          "region": "Auckland",
-          "state": "AKL",
-          "postalCode": "6140"
-          "country": "NZ",
+          "streetNumber": "'${street_number}'",
+          "streetName": "'${street_name}'",
+          "streetType": "'${street_type}'",
+          "suburb": "'${suburb_name}'",
+          "town": "'${town_name}'",
+          "region": "'${region_name}'",
+          "state": "'${state_name}'",
+          "postalCode": "'${postal_code}'",
+          "country": "'${country_code}'"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceType": "PASSPORT",
+        "documentId": "'${passport_number}'",
+        "country": "'${passport_country_code}'",
+        "expiry": "'${passport_expiry_date}'"
+      }
+    ]
+  }'
+```
+
+### Submitting a Statement with a Drivers License as evidence
+The following script demonstrates how you could submit a KYC statement with a drivers license as evidence.
+
+```bash
+idempotencyKey="" # a unique key for each request. See api docs for more info
+kyc_region="" # An ISO 3166-2 (Alpha-2) for the region you are submitting the statement for, i.e. EU, NZ, AU, etc.
+
+# personal details
+your_honorific="" #e.g. Mr, Mrs, Ms
+your_given_name=""
+your_middle_name=""
+your_family_name=""
+date_of_birth="" # YYYY-MM-DD
+
+# address details
+street_number=""
+street_name=""
+street_type="" #e.g. Road, Street, Avenue etc
+suburb_name=""
+town_name=""
+region_name=""
+state_name=""
+postal_code=""
+country_code="" #i.e. ISO 3166-2 Country Code
+
+# drivers license details
+license_number=""
+license_country_code="" #i.e. ISO 3166-2 Country Code
+license_region="" #See submit KYC statement docs for more info
+license_version=""
+
+curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -H "x-api-key: ${card_issuer_api_key}" \
+  -H "x-api-secret: ${card_issuer_api_secret}" \
+  --data '{
+    "idempotencyKey": "'${idempotencyKey}'",
+    "region": "'${kyc_region}'",
+    "claims": [
+      {
+        "claimType": "DOB",
+        "attributes": {
+          "dateOfBirth": "'${date_of_birth}'"
+        }
+      },
+      {
+        "claimType": "FULL_NAME",
+        "attributes": {
+          "honorific": "'${your_honorific}'",
+          "givenName": "'${your_given_name}'",
+          "middleName": "'${your_middle_name}'",
+          "familyName": "'${your_family_name}'"
+        }
+      },
+      {
+        "claimType": "ADDRESS",
+        "attributes": {
+          "addressType": "RESIDENTIAL",
+          "streetNumber": "'${street_number}'",
+          "streetName": "'${street_name}'",
+          "streetType": "'${street_type}'",
+          "suburb": "'${suburb_name}'",
+          "town": "'${town_name}'",
+          "region": "'${region_name}'",
+          "state": "'${state_name}'",
+          "postalCode": "'${postal_code}'",
+          "country": "'${country_code}'"
         }
       }
     ],
     "evidence": [
       {
         "evidenceType": "DRIVERS_LICENSE",
-        "documentId": "80513",
-        "country": "AU",
-        "region": "VIC",
-        "version": "P0001975"
+        "documentId": "'${license_number}'",
+        "country": "'${license_country_code}'",
+        "region": "'${license_region}'",
+        "version": "'${license_version}'"
       }
     ]
   }'
 ```
 
-### **Structured Address and Unstructured Address in Partner conducted KYC**
+### KYC Statement Addresses in Partner conducted KYC
 
-The {% link endpoint="submit-kyc-statement" /%} endpoint accepts two alternative address formats as part of the claims field in the request body:
-- Structured Address
-- Unstructured Address
+The {% link endpoint="submit-kyc-statement" /%} endpoint accepts both structured,
+and unstructured address formats in an Address claim.
 
-### **Structured Address**
-A **Structured Address** organizes address details into predefined fields, making it easier to validate and process the data. Partners are strongly encouraged to use this format whenever possible.
 
-#### Example
+{% list %}
+  {% listitem "ArrowRightCircle" %}
+    **Structured Address**
 
-```json
-{
-  "claimType": "ADDRESS",
-  "attributes": {
-    "addressType": "RESIDENTIAL",
-    "streetNumber": "73",
-    "streetName": "Great Southern",
-    "streetType": "ROAD",
-    "suburb": "Auckland CBD",
-    "town": "Auckland",
-    "region": "Auckland",
-    "state": "AKL",
-    "postalCode": "6140",
-    "country": "NZ"
+    Organizes address details into predefined fields, making it easier to validate and process the data.
+
+    ```json
+    {
+      "claimType": "ADDRESS",
+      "attributes": {
+        "addressType": "RESIDENTIAL",
+        "streetNumber": "73",
+        "streetName": "Great Southern",
+        "streetType": "ROAD",
+        "suburb": "Auckland CBD",
+        "town": "Auckland",
+        "region": "Auckland",
+        "state": "AKL",
+        "postalCode": "6140",
+        "country": "NZ"
+      }
+    }
+    ```
+    Partners are strongly encouraged to use this format whenever possible.
+
+  {% /listitem %}
+  {% listitem "ArrowRightCircle" %}
+  **Unstructured Address**
+
+  When it is not possible to provide a Structured Addresses, partners can provide an Unstructured Address.
+
+
+
+  ```json
+  {
+    "claimType": "ADDRESS",
+    "attributes": {
+      "addressType": "RESIDENTIAL",
+      "fullAddress": "2/45 Laddier Road,
+      Centurion, The Reeds, Auckland, Auckland 0100,
+      New Zealand",
+      "country": "NZ"
+    }
   }
-}
-```
+  ```
 
-### **Unstructured Address**
-When it is not possible to provide a Structured Addresses, partners can provide an **Unstructured Address**. This format consolidates the address into a single text string in the `fullAddress` field, which Immersve later attempts to parse into structured address components.
+  This format consolidates the address into a single text string in the `fullAddress` field,
+    which Immersve later attempts to parse into structured address components.
 
+  {% /listitem %}
+  {% listitem "ArrowRightCircle" %}
+    **Key Considerations**
 
-#### Example
-```json
-{
-  "claimType": "ADDRESS",
-  "attributes": {
-    "addressType": "RESIDENTIAL",
-    "fullAddress": "2/45 Laddier Road, Centurion, The Reeds, Auckland, Auckland 0100, New Zealand",
-    "country": "NZ"
-  }
-}
-```
+    Use Structured Address where possible: Structured addresses are preferred for accuracy and consistency.
 
-## **Key Considerations**
-- Both Structured Address and Unstructured Address formats are supported.
-- Use Structured Address where possible: Structured addresses are preferred for accuracy and consistency.
-- Use Unstructured Addresses only if structured address data is not available from your IDV provider.
-- Immersve attempts to parse Unstructured Addresses into structured address components after submission. Ensure the fullAddress field is as detailed as possible.
+    Use Unstructured Addresses only if structured address data is not available from your IDV provider.
+
+    Immersve attempts to parse Unstructured Addresses into structured address components after submission. Ensure the fullAddress field is as detailed as possible.
+  {% /listitem %}
+{% /list %}
+
 
 
 ## Poll spending prerequisites
@@ -242,7 +374,7 @@ failure. Check the KYC statement and submit it again or contact Immersve support
 
 ### Example request
 ```bash
-curl -X "https://test.immersve.com/api/spending-prerequisites" \
+curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
   -H "Content-Type: application/json" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
@@ -252,7 +384,7 @@ curl -X "https://test.immersve.com/api/spending-prerequisites" \
     "fundingSourceId": "'${funding_source_id}'",
     "spendableAmount": 100,
     "spendableCurrency": "USD",
-    "kycType": "partner-conducted",
+    "kycType": "partner-conducted"
   }'
 ```
 
