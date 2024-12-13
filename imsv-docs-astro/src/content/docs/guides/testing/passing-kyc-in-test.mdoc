@@ -10,27 +10,28 @@ for getting onto the platform and testing your integrations.
 ## Testing Partner Conducted KYC
 
 To consistently pass {% link page="guides/partner-conducted-kyc" /%} in test,
-you will need to supply a unique identity and unique address.
+you will need to supply a unique identity and unique address. This avoids your
+KYC application failing as a duplicate.
 
 
 {% endpointref name="submit-kyc-statement" /%}
 
 ### Update the Claims
 To create a unique identity and unique address, you will need to replace some parts of
- the partner statement with random values and key words within different claims.
+ the partner statement with unique values and key words within different claims.
 {% list %}
   {% listitem "ArrowRightCircle" %}
     __Adjust Full Name claim__ <br/>
-    Generate random values for `givenName` and `familyName` fields
+    Generate unique values for `givenName` and `familyName` fields
     __and__ ensure the `middleName` is `passall`.
   {% /listitem %}
   {% listitem "ArrowRightCircle" %}
     __Adjust Date of Birth claim__ <br/>
-    Generate a random date in the past for the `dateOfBirth` field.
+    Generate a unique date in the past for the `dateOfBirth` field.
   {% /listitem %}
   {% listitem "ArrowRightCircle" %}
     __Adjust Address claim__ <br/>
-    Populate the `streetNumber`, `streetName`, and `town` with random values. <br/>
+    Populate the `streetNumber`, `streetName`, and `town` with unique values. <br/>
 
     Make sure that the other geographic details (`region`, `state`, `country`) of the
     address align with the kyc region you are submitting the statement for.
