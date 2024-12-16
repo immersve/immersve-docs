@@ -42,7 +42,7 @@ properties:
     example: NZD
   feeAmount:
     type: string
-    description: The fee amount of the transaction
+    description: The fee amount of the transaction, an integer in the smallest denomination for the given currency
     example: "12"
   transactionDate:
     type: string
