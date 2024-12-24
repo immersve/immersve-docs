@@ -83,6 +83,18 @@ properties:
     enum:
       - "credit"
       - "debit"
+  paymentType:
+    type: string
+    description: The type of payment
+    enum:
+      - "purchase"
+      - "refund"
+      - "adjustment"
+    example: "purchase"
+  relatedPaymentId:
+    type: string
+    description: The ID of the related transaction, if applicable
+    example: "1000000178145"
 required:
   [
     id,
@@ -98,4 +110,5 @@ required:
     transactionDate,
     reference,
     cardAcceptor,
+    paymentType,
   ]
