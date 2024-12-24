@@ -370,6 +370,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/supported-chains/base.mdoc": {
+	id: "guides/supported-chains/base.mdoc";
+  slug: "guides/base";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/supported-chains/ethereum.mdoc": {
 	id: "guides/supported-chains/ethereum.mdoc";
   slug: "guides/ethereum";
@@ -526,6 +533,20 @@ declare module 'astro:content' {
   collection: "funding-types";
   data: InferEntrySchema<"funding-types">
 } & { render(): Render[".md"] };
+"base-mainnet-usdc-universal-evm.md": {
+	id: "base-mainnet-usdc-universal-evm.md";
+  slug: "base-mainnet-usdc-universal-evm";
+  body: string;
+  collection: "funding-types";
+  data: InferEntrySchema<"funding-types">
+} & { render(): Render[".md"] };
+"base-sepolia-usdc-universal-evm.md": {
+	id: "base-sepolia-usdc-universal-evm.md";
+  slug: "base-sepolia-usdc-universal-evm";
+  body: string;
+  collection: "funding-types";
+  data: InferEntrySchema<"funding-types">
+} & { render(): Render[".md"] };
 "custodial-usdc.md": {
 	id: "custodial-usdc.md";
   slug: "custodial-usdc";
@@ -591,6 +612,20 @@ declare module 'astro:content' {
   collection: "network-tokens";
   data: InferEntrySchema<"network-tokens">
 } & { render(): Render[".md"] };
+"usdc-base-mainnet.md": {
+	id: "usdc-base-mainnet.md";
+  slug: "usdc-base-mainnet";
+  body: string;
+  collection: "network-tokens";
+  data: InferEntrySchema<"network-tokens">
+} & { render(): Render[".md"] };
+"usdc-base-sepolia.md": {
+	id: "usdc-base-sepolia.md";
+  slug: "usdc-base-sepolia";
+  body: string;
+  collection: "network-tokens";
+  data: InferEntrySchema<"network-tokens">
+} & { render(): Render[".md"] };
 "usdc-ethereum-sepolia.md": {
 	id: "usdc-ethereum-sepolia.md";
   slug: "usdc-ethereum-sepolia";
@@ -638,6 +673,20 @@ declare module 'astro:content' {
 "arbitrum-sepolia.md": {
 	id: "arbitrum-sepolia.md";
   slug: "arbitrum-sepolia";
+  body: string;
+  collection: "networks";
+  data: InferEntrySchema<"networks">
+} & { render(): Render[".md"] };
+"base-mainnet.md": {
+	id: "base-mainnet.md";
+  slug: "base-mainnet";
+  body: string;
+  collection: "networks";
+  data: InferEntrySchema<"networks">
+} & { render(): Render[".md"] };
+"base-sepolia.md": {
+	id: "base-sepolia.md";
+  slug: "base-sepolia";
   body: string;
   collection: "networks";
   data: InferEntrySchema<"networks">
