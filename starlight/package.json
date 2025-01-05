@@ -175,7 +175,7 @@
     "bcp-47": "^2.1.0",
     "hast-util-from-html": "^2.0.1",
     "hast-util-select": "^6.0.2",
-    "hast-util-to-string": "^3.0.0",
+    "hast-util-to-string": "^3.0.1",
     "hastscript": "^9.0.0",
     "mdast-util-directive": "^3.0.0",
     "mdast-util-to-markdown": "^2.1.0",
