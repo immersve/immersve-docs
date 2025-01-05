@@ -1,0 +1,26 @@
+---
+title: Base
+description: What tokens and protocols are supported on Base
+slug: guides/base
+supportedChain: true
+---
+
+{% note %}
+Do not transfer assets directly to these addresses or funds will be lost.
+Always use the spending prerequisites endpoint to discover the correct address
+for user deposits.
+{% /note %}
+
+{%
+  deployedFundingProtocolsTable
+  chain="base"
+  columns=[
+    "network",
+    "protocol",
+    "address",
+  ]
+/%}
+
+
+## See Also
+{% link page="guides/funding-protocols" /%}

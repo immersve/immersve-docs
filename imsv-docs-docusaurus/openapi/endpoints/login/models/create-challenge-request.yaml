@@ -15,8 +15,10 @@ properties:
     enum:
       - polygon-mainnet
       - polygon-amoy
-      - arbitrum-sepolia
       - arbitrum-mainnet
+      - arbitrum-sepolia
+      - base-mainnet
+      - base-sepolia
   address:
     description: The web3 address to which the challenge is directed.
     type: string

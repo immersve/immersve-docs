@@ -16,6 +16,8 @@ properties:
       - polygon-usdc-universal-evm-live
       - arbitrum-mainnet-usdc-universal-evm
       - arbitrum-sepolia-usdc-universal-evm
+      - base-mainnet-usdc-universal-evm
+      - base-sepolia-usdc-universal-evm
       - algorand-usdc
       - algorand-testnet-usdc
       - simulator-usdc

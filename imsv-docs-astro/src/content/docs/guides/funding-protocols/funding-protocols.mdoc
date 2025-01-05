@@ -8,58 +8,53 @@ sidebar:
   order: 1
 ---
 
-A funding protocol determines the method by which a card is provided with
-available balance. How a cardholder can deposit or withdraw, and how the
-Immersve platform can settle or refund.
-
-Cards can be funded by a variety of protocols. These variants and their use
-cases are described in the following sections.
-
-## On-Chain Funding
-
-Whether your app is custodial or non-custodial you can pre-fund cardholder
-spend with deposits on-chain.
-
-### Non-custodial On-Chain Funding
-
-Users pre-fund card spend by making deposits to your instance of the Protocol.
-
-### Custodial On-Chain Funding
-
-Your app funds card spend by making deposits to your instance of the Protocol.
-
-### Flexi Variant
-
-An on-chain funding protocol variant that is designed to be optimized for decentralization.
-Each individual cardholder has their own funding address. Cardholder balance can
-be inspected on-chain and permission-less withdrawal is supported. See {% link
-page="guides/algorand-funding-protocol" /%} for more information.
-
-### Universal Variant
-
-An on-chain funding protocol variant that is designed to be optimized for gas fees. It
-can be used by both custodial and non-custodial users. Individual cardholder
-balances are pooled together and recorded off-chain. See {% link
-page="guides/universal-evm-funding-protocol" /%} for more information.
-
-## Funding Simulator
-
-A test funding protocol which can be used for experimenting with
-Immersve APIs without configuring on-chain components. See {% link
-page="guides/simulator-funding-protocol" /%}.
+A funding protocol determines how a card is provided with
+available balance and how the Immersve platform can settle or refund.
+A Funding Protocol is selected by defining the {%link
+page="guides/funding-types" title="Funding Type" /%} when creating a {% link
+page="guides/creating-a-funding-channel" title="Funding Channel" /%}.
 
 
-## Funding Types
+## Protocol Characteristics
 
-A Funding Type is the combination of a protocol, network and token. It
-determines the behavior of any Funding Source related to a particular partner
-Funding Channel.
+The following are the main characterizing aspects of the Immersve funding
+protocols.
 
-The table below shows the supported Funding Types on the Immersve Platform.
+{% list %}
+  {% listitem "ArrowRightCircle" %}
+  **Chains**<br>
+  Which blockchains are supported by the protocol. See {%link
+  page="guides/supported-chains" /%} for a full list.
+  {% /listitem %}
 
-{% fundingTypeTable columns=[
-  "fundingType",
-  "network",
-  "protocol",
-  "token",
-] /%}
+  {% listitem "ArrowRightCircle" %}
+  **Contract Mechanics**<br>
+  The smart contract mechanics influence user onboarding UX and where
+  tokens are deposited. The ___flexi___ variant requires a contract to be
+  deployed as part of cardholder onboarding while the ___universal___ variant
+  pools tokens into a single partner-scoped contract.
+  {% /listitem %}
+
+  {% listitem "ArrowRightCircle" %}
+  **Direct Spend**<br>
+  The protocol is capable of spending tokens directly from a cardholder's
+  existing wallet.
+  {% /listitem %}
+
+  {% listitem "ArrowRightCircle" %}
+  **Custodial Spend**<br>
+  The protocol enables the integrating partner to perform real-time payment
+  authorizations off-chain.
+  {% /listitem %}
+
+{% /list %}
+
+
+## Available Protocols
+
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-1 mt-6">
+  {% contentcard page="guides/algorand-funding-protocol" icon="AlgorandIcon" /%}
+  {% contentcard page="guides/custodial-funding-protocol" icon="Library" /%}
+  {% contentcard page="guides/universal-evm-funding-protocol" icon="EthereumIcon" /%}
+  {% contentcard page="guides/simulator-funding-protocol" icon="CpuChip" /%}
+</div>
