@@ -453,7 +453,7 @@ __metadata:
     bcp-47: "npm:^2.1.0"
     hast-util-from-html: "npm:^2.0.1"
     hast-util-select: "npm:^6.0.2"
-    hast-util-to-string: "npm:^3.0.0"
+    hast-util-to-string: "npm:^3.0.1"
     hastscript: "npm:^9.0.0"
     mdast-util-directive: "npm:^3.0.0"
     mdast-util-to-markdown: "npm:^2.1.0"
@@ -9517,6 +9517,15 @@ __metadata:
   dependencies:
     "@types/hast": "npm:^3.0.0"
   checksum: 10c0/649edd993cf244563ad86d861aa0863759a4fbec49c43b3d92240e42aa4b69f0c3332ddff9e80954bbd8756c86b0fddc20e97d281c6da59d00427f45da8dab68
+  languageName: node
+  linkType: hard
+
+"hast-util-to-string@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "hast-util-to-string@npm:3.0.1"
+  dependencies:
+    "@types/hast": "npm:^3.0.0"
+  checksum: 10c0/b5fa1912a6ba6131affae52a0f4394406c4c0d23c2b0307f1d69988f1030c7bb830289303e67c5ad8f674f5f23a454c1dcd492c39e45a22c1f46d3c9bce5bd0c
   languageName: node
   linkType: hard
 
