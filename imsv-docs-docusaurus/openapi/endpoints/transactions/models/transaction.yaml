@@ -93,8 +93,8 @@ properties:
     example: "purchase"
   relatedPaymentId:
     type: string
-    description: The ID of the related transaction, if applicable
-    example: "1000000178145"
+    description: The ID of the related payment transaction, if applicable
+    example: "b297658d0cbac11"
 required:
   [
     id,
