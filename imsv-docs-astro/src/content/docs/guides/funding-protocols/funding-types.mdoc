@@ -1,0 +1,22 @@
+---
+title: Funding Types
+slug: guides/funding-types
+description: |
+  Immersve Funding Types represent a known configuration of a Funding Protocol
+  for a particular network and stable coin.
+tableOfContents: false
+sidebar:
+  order: 2
+---
+
+A Funding Type is the combination of a {% link page="guides/funding-protocols"
+title="Funding Protocol" /%}, network and token. It
+determines the behavior of any Funding Source related to a particular partner
+Funding Channel.
+
+{% fundingTypeTable columns=[
+  "fundingType",
+  "network",
+  "token",
+  "protocol",
+] /%}

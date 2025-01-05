@@ -3,8 +3,9 @@ title: Postman Collection
 slug: resources/postman-collection
 ---
 
-We've built a {% link href="https://www.postman.com/collection/" title="Postman Collection" /%} including example requests for all of our API
-endpoints to enable our partners to get hands on with our API as quickly as possible.
+We've built a {% link href="https://www.postman.com/collection/" title="Postman Collection" /%} with content that maps to two general use-cases:
+1. **API Endpoints Section** — A sub-collection that includes example requests, from a non-custodial context, for all of our https://docs.immersve.com/api-reference/category/api-reference/. This allows interested parties to immediately get hands on with the full range of our API.
+2. **Custodial-Integration Guide Section** — This sub-collection has reduced API scope, but focuses on getting a custodial partner up and running with their integration as quickly as possible. The request structure in this collection maps directly to the sequence described in https://docs.immersve.com/guides/custodial-card-issuing-integration/.
 
 {% link href="https://www.postman.com/downloads/" title="Postman" /%} is a free to use API platform for building and using APIs. Follow these
 easy steps to get up and running with our API in minutes:
@@ -18,17 +19,14 @@ easy steps to get up and running with our API in minutes:
 loaded into our Postman Environment file, or replace these with your own `partnerAccountId`, `clientApplicationId`,
 `fundsStorageAddress`, `cardProgramId` and card issuer/account admin API keys and API secrets.
 
-## Authenticating for User Sessions
+## Authentication within the Postman Collection
 
-Most of our API can be used with your `card issuer` or `account admin` API keys. To test
-non-custodial cardholder API endpoints we provide authentication via web3 wallet:
-1. Add the address for the wallet you wish to authenticate with to the Postman Environment:
-![Wallet Addresses](@assets/walletAddress.png)
+Immersve APIs support authentication through both API keys and Bearer Token. Examples of both are provided within the two content sections outline above:
 
-2. Use the {% link endpoint="initiate-login" /%} and
-{% link endpoint="complete-login" /%} endpoints to sign a challenge with your
-web3 wallet and obtain an access token and refresh token. See our
-{% link page="guides/authentication" /%} guide for more details.
+1. **API Endpoints Section** — Demonstrates authentication via Bearer Token. Use the [**Initiate Login**](https://docs.immersve.com/api-reference/initiate-login/) and [**Complete Login**](https://docs.immersve.com/api-reference/complete-login/) endpoints to sign a challenge with your web3 wallet and obtain an access token and refresh token. 
+2. **Custodial-Integration Guide Section** — Demonstrates authentication via API Key. You can use your `card issuer` or `account admin` API keys.
+
+See our [**Authentication**](https://docs.immersve.com/guides/authentication) guide for more details.
 
 ## Additional Requirements
 Some endpoints have additional requirements that must be met before they can be

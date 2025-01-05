@@ -48,7 +48,7 @@ export default function typographyStyles({ theme }: PluginUtils) {
         // Text
         p: {
           marginTop: theme('spacing.6'),
-          marginBottom: theme('spacing.6'),
+          marginBottom: theme('spacing.4'),
         },
         '[class~="lead"]': {
           fontSize: theme('fontSize.base')[0],
@@ -181,7 +181,7 @@ export default function typographyStyles({ theme }: PluginUtils) {
           fontWeight: '600',
           fontSize: theme('fontSize.lg')[0],
           ...theme('fontSize.lg')[1],
-          marginTop: theme('spacing.16'),
+          marginTop: theme('spacing.10'),
           marginBottom: theme('spacing.2'),
         },
         h3: {
@@ -189,7 +189,7 @@ export default function typographyStyles({ theme }: PluginUtils) {
           fontSize: theme('fontSize.base')[0],
           ...theme('fontSize.base')[1],
           fontWeight: '600',
-          marginTop: theme('spacing.10'),
+          marginTop: theme('spacing.6'),
           marginBottom: theme('spacing.2'),
         },
         h4: {
