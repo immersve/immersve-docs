@@ -1,15 +1,15 @@
 ---
-title: Algorand Funding Protocol
+title: Flexi Funding Protocol
 description: |
-  Immersve's funding protocol that operates on the Algorand blockchain. It uses
-  "flexi" contract mechanics. Cardholder available balance can be inspected
-  on-chain and permission-less withdrawal is supported.
-slug: guides/algorand-funding-protocol
+  Immersve's funding protocol that uses "flexi" contract mechanics.
+  Cardholder available balance can be inspected on-chain and ]\
+  permission-less withdrawal is supported.
+slug: guides/flexi-funding-protocol
 fundingProtocol:
   source: https://github.com/immersve/funding-contract-algorand
 ---
 
-The Immersve Flexi Algorand {% link page="guides/funding-protocols"
+The Immersve Flexi Protocol {% link page="guides/funding-protocols"
 title="funding protocol" /%} allows client applications to fund Immersve cards
 via simple native Algorand {% link
 href="https://developer.algorand.org/docs/get-details/asa" title="Asset" /%}
@@ -20,7 +20,7 @@ can only be settled to Immersve's approved settlement address.
 
 ## Smart Contract
 
-The Flexi Algorand protocol has a Master contract and many partner Partner
+The Flexi protocol has a Master contract and many partner Partner
 Channel and Card Fund contracts. Card Fund contracts hold deposits for a
 cardholder. Partner Channel contracts scope the Card Fund contracts to an
 Immersve partner application. Partner Channel and Card Fund contracts are managed
@@ -32,8 +32,8 @@ by the Master Contract.
 
 ### Deployed Contract Addresses
 
-The Flexi Algorand protocol is designed to work on the Algorand networks. The deployed
-contract application ids are listed below.
+The Flexi protocol is designed to work on the multiple networks. The Algorand
+deployed contract application ids are listed below.
 
 {%
   deployedFundingProtocolsTable
@@ -59,18 +59,17 @@ issuing partner.
 The Card Fund contract holds assets for funding a cardholders card. Deposits are
 made via native token transfers. The Card Fund is provisioned by the cardholder.
 A Card Fund contract is uniquely identified by the address of the owner (the
-cardholder's primary algorand address) and the address of the related partner
-contract.
+cardholder's primary address) and the address of the related partner contract.
 
-![flexi-algorand-overview](./assets/algorand-component-diagram.png "Algorand
-smart contract component diagram.")
+![flexi-algorand-overview](./assets/algorand-component-diagram.png "Example:
+Algorand smart contract component diagram.")
 
 Upon receiving a card payment request, a Card Fund contract will be debited by
 Immersve. The debited funds move to the Master Contract where they wait to be
 cleared for settlement.
 
-![flexi-algorand-overview](./assets/algorand-funds-flow-diagram.png "Algorand
-funds flow diagram.")
+![flexi-algorand-overview](./assets/algorand-funds-flow-diagram.png "Example:
+Algorand funds flow diagram.")
 
 
 ## Protocol Mechanics
