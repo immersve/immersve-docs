@@ -61,7 +61,7 @@ properties:
     example: NZ
   expiry:
     type: string
-    description: Expiry date of the card
+    description: Expiry date of the card in the format YYYYMM
     example: "202409"
   panFirst6:
     type: string
@@ -75,4 +75,3 @@ properties:
     type: string
     description: Deprecated field, use expiresAt
     example: "2022-11-16T03:18:23.431Z"
-
