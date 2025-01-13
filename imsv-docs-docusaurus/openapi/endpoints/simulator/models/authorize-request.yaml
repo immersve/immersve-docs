@@ -34,3 +34,7 @@ properties:
   authorizationRequestMsg:
     type: string
     description: requestMsg of previous authorization returned by this endpoint.
+  forcePost:
+    type: boolean
+    default: false
+    description: Indicates whether to force post the transaction.
