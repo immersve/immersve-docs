@@ -378,6 +378,11 @@ must tolerate the addition of unknown message attributes.
   the existing payment resource to update accordingly based on the message type.
 
 ---
+* {% wrap %} paymentType {% /wrap %}
+* {% wrap 9 %}purchase{% /wrap %}
+* The type of payment: `purchase`, `refund`, or `adjustment`.
+
+---
 * {% wrap %} paymentFinalized {% /wrap %}
 * true
 * Flag indicating if the payment is expected to have further updates.
@@ -416,6 +421,11 @@ must tolerate the addition of unknown message attributes.
 * 32
 * Immersve's fee portion of the payment amount in minor units. The fee currency is
   the same as the payment currency.
+
+---
+* {% wrap %} relatedPaymentId {% /wrap %}
+* {% wrap 9 %}88080af5b8a14fe6{% /wrap %}
+* The id of the related payment, if applicable.
 
 ---
 * {% wrap %} fundingSourceExternalId {% /wrap %}
