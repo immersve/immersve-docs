@@ -190,7 +190,7 @@ requirements for a cardholder have been satisfied.
 {% endpointref name="get-spending-prerequisites" /%}
 
 ```bash
-curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
+curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${imsv_access_token}" \
   --data '{
@@ -243,7 +243,7 @@ endpoint and record the returned card ID.
 {% endpointref name="create-card" /%}
 
 ```bash
-card_id=$(curl -X POST "https://test.immersve.com/api/cards" \
+card_id=$(curl -X POST "https://${imsv_api_host}/api/cards" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${imsv_access_token}" \
   --data '{
@@ -259,7 +259,7 @@ Call Get Card Details to see card status and ensure it is active.
 {% endpointref name="get-card" /%}
 
 ```bash
-curl -X GET "https://test.immersve.com/api/cards/${card_id}" \
+curl -X GET "https://${imsv_api_host}/api/cards/${card_id}" \
   -H "Authorization: Bearer ${imsv_access_token}"
 ```
 
@@ -273,7 +273,7 @@ page="guides/fetching-secure-card-information" /%} for more details.
 {% endpointref name="get-card-token" /%}
 
 ```bash
-curl -X POST "https://test.immersve.com/api/cards/${card_id}/pan-token" \
+curl -X POST "https://${imsv_api_host}/api/cards/${card_id}/pan-token" \
   -H "Authorization: Bearer ${imsv_access_token}"
 ```
 
