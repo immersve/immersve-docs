@@ -39,3 +39,10 @@ properties:
   kycRedirectUrl:
     type: string
     description: A URL to which the user can be redirected after they have completed or exited the kyc process.
+  kycHiddenSteps:
+    type: array
+    description: A list of KYC steps to skip in the Immersve Conducted UI. Cardholder information for these steps must be provided separately via API.
+    enum:
+      - region
+      - expected-spend
+      - contact-channels
