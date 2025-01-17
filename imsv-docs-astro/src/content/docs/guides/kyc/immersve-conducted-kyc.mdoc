@@ -87,9 +87,36 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
   ]
 }
 ```
+
+### Bypass KYC Steps (Optional)
+Some KYC steps can be optionally bypassed by providing this information about the user in advance via
+API and using the `kycHiddenSteps` option when requesting spending prerequisites.
+
+If spending prerequisites is called with the `kycHiddenSteps` option but information about
+ the user has not yet been supplied, the response from spending prerequisites will indicate
+ that additional information is required instead of providing a KYC URL. KYC steps that can be
+ bypassed are explained in the table below.
+
+ {% table title="KYC steps that can be bypassed with `kycHiddenSteps`" %}
+ * KYC Step
+ * Description
+ ---
+ * <nobr>region</nobr>
+ * The region the user resides in. This must be supplied using the `kycRegion` option on the
+ {% link endpoint="get-spending-prerequisites" /%} request.
+ ---
+ * <nobr>contact-channels</nobr>
+ * The user's contact details. See "Supply Contact Details" section below.
+---
+ * <nobr>expected-spend</nobr>
+ * The user's anticipated monthly spend. See "Supply Expected Spend Amount" section below.
+
+ {% /table %}
+
 ### Supply Contact Details (Optional)
 
-If you would like to supply the user's contact details ahead of time, you can do so by calling the contact details endpoint, before starting the KYC process.
+If you would like to supply the user's contact details ahead of time, you can do so by calling the
+{% link endpoint="update-contact-details" /%} endpoint, before starting the KYC process.
 This will then allow the user to check and update them as part of the Immersve Conducted KYC process.
 
 {% note %}
@@ -124,6 +151,31 @@ curl -X PATCH "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/co
   }'
 ```
 
+## Supply Expected Spend Amount (Optional)
+
+Regulations require that Immersve obtain information on the “nature and purpose”
+of the proposed business relationship between ourselves and the cardholder.
+
+Collection of the anticipated monthly spending level when onboarding a new cardholder is
+one measure that assists in our understanding of the nature and purpose of the cardholder account.
+
+If you are using the `kycHiddenSteps` option to bypass the expected spend KYC step, you will need to supply the user's expected spend ahead of time.
+You can do this by calling the {% link endpoint="update-expected-spend-amount" /%} endpoint, before starting the KYC process.
+
+{% endpointref name="update-expected-spend-amount" /%}
+
+```bash
+expected_spend_amount="" # in minor units
+curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/expected-spend-amount" \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}" \
+  --data '{
+    "expectedSpendAmount": "'${expected_spend_amount}'"
+  }'
+```
+
 
 ### User goes through the KYC flow
 
@@ -131,15 +183,14 @@ Upon being redirected to the Immersve KYC page, the user will go through the
 process that involves the collection of the user's address and the verification
 of their identity through document and biometry (facial scan) collection.
 
-At the end of the process they are presented with a screen indicating that their
+At the end of the process the user is presented with a screen indicating that their
 profile is under review. The user does not have to stay on the page to know
 the outcome, as it will be communicated via email. If they stay on the page, it
-will eventually inform about success or failure.
+will update to display their KYC result once their KYC check has passed or failed.
 
 Upon exiting the page, users are sent back to the **`redirectUrl`** provided
-initially. If no URL was provided, exiting leads to closing the browser tab.
-
-![KYC UI screenshot](@assets/kyc/kyc-ui.png)
+in the spending prerequisites request. If no **`redirectUrl`** was provided, the
+exit button will close the browser tab.
 
 ### Unsuccessful KYC check
 

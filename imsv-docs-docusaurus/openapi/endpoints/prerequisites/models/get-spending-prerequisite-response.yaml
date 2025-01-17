@@ -49,5 +49,7 @@ properties:
               title: contact_email
             - $ref: "../../../models/contact-channel-phone-params.yaml"
               title: contact_phone
+            - $ref: "../../../models/expected-spend-amount-params.yaml"
+              title: expected_spend_amount
             - $ref: "../../../models/simulator-deposit.yaml"
               title: simulator_call
