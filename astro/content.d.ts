@@ -691,6 +691,13 @@ declare module 'astro:content' {
   collection: "networks";
   data: InferEntrySchema<"networks">
 } & { render(): Render[".md"] };
+"ethereum-mainnet.md": {
+	id: "ethereum-mainnet.md";
+  slug: "ethereum-mainnet";
+  body: string;
+  collection: "networks";
+  data: InferEntrySchema<"networks">
+} & { render(): Render[".md"] };
 "ethereum-sepolia.md": {
 	id: "ethereum-sepolia.md";
   slug: "ethereum-sepolia";
