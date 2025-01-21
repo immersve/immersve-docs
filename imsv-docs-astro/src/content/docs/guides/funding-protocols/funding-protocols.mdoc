@@ -8,53 +8,64 @@ sidebar:
   order: 1
 ---
 
-A funding protocol determines how a card is provided with
-available balance and how the Immersve platform can settle or refund.
-A Funding Protocol is selected by defining the {%link
-page="guides/funding-types" title="Funding Type" /%} when creating a {% link
-page="guides/creating-a-funding-channel" title="Funding Channel" /%}.
+Funding protocols determine how a card is provided with available balance and
+how the Immersve platform can settle or refund. A Funding Protocol is selected
+by specifying the {%link page="guides/funding-types" title="Funding Type" /%}
+when creating a {% link page="guides/creating-a-funding-channel" title="Funding Channel" /%}.
 
 
-## Protocol Characteristics
 
-The following are the main characterizing aspects of the Immersve funding
-protocols.
+## Protocol Variants
 
-{% list %}
-  {% listitem "ArrowRightCircle" %}
-  **Chains**<br>
-  Which blockchains are supported by the protocol. See {%link
-  page="guides/supported-chains" /%} for a full list.
-  {% /listitem %}
-
-  {% listitem "ArrowRightCircle" %}
-  **Contract Mechanics**<br>
-  The smart contract mechanics influence user onboarding UX and where
-  tokens are deposited. The ___flexi___ variant requires a contract to be
-  deployed as part of cardholder onboarding while the ___universal___ variant
-  pools tokens into a single partner-scoped contract.
-  {% /listitem %}
-
-  {% listitem "ArrowRightCircle" %}
-  **Direct Spend**<br>
-  The protocol is capable of spending tokens directly from a cardholder's
-  existing wallet.
-  {% /listitem %}
-
-  {% listitem "ArrowRightCircle" %}
-  **Custodial Spend**<br>
-  The protocol enables the integrating partner to perform real-time payment
-  authorizations off-chain.
-  {% /listitem %}
-
-{% /list %}
+Four different variants classify immersve card funding protocols: deposit-based,
+approval-based, custodial, and mock.
 
 
-## Available Protocols
+### Deposit Based Funding
 
-<div class="grid grid-cols-1 gap-6 sm:grid-cols-1 mt-6">
-  {% contentcard page="guides/algorand-funding-protocol" icon="AlgorandIcon" /%}
-  {% contentcard page="guides/custodial-funding-protocol" icon="Library" /%}
-  {% contentcard page="guides/universal-evm-funding-protocol" icon="EthereumIcon" /%}
-  {% contentcard page="guides/simulator-funding-protocol" icon="CpuChip" /%}
-</div>
+Deposit-based funding requires cardholders to transfer assets into an Immersve
+smart contract. Deposits can be withdrawn at any time. Deposit-based funding is
+further classified into two sub-variants based on where tokens are deposited:
+universal and flexi.
+
+
+___Universal___ — The universal variant pools tokens into a single
+partner-scoped contract and is optimized for gas usage so it can operate on any
+blockchain. The {% link page="guides/universal-evm-funding-protocol" /%}
+implements universal deposit-based funding.
+
+
+___Flexi___ — The flexi variant holds deposits in a smart contract per
+cardholder. The cardholder balance can be inspected on-chain, and permissionless
+withdrawals are supported. A cardholder contract will need to be deployed as
+part of cardholder onboarding. The {% link
+page="guides/algorand-funding-protocol" /%} implements flexi deposit based
+funding.
+
+
+### Approval Based Funding
+
+Approval-based protocols can spend tokens directly from a cardholder's existing
+wallet. The {% link page="guides/universal-evm-funding-protocol" /%} supports
+approval-based funding on some EVM chains.
+
+
+### Custodial Funding
+
+Custodial protocols enable the integrating partner to perform off-chain payment
+authorizations in real-time. Custodial funding leverages one of the on-chain
+deposit-based funding protocols for settlement. See {% link
+page="guides/custodial-funding-protocol" /%}.
+
+
+### Mock Funding
+
+Mock funding enables the creation of test cards without building any funding
+integration. This is useful for testing card-issuing user experiences when your
+funding solution is not fully implemented. See {% link
+page="guides/simulator-funding-protocol" /%}.
+
+
+## Available Chains
+
+{% supportedChainsTable /%}
