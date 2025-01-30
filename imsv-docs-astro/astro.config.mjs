@@ -38,10 +38,16 @@ export default defineConfig({
               { label: 'Partner Conducted KYC', link: 'guides/partner-conducted-kyc' },
               { label: 'Immersve Conducted KYC', link: 'guides/immersve-conducted-kyc' },
             ]},
-            { label: 'Funding Protocols', autogenerate: { directory: 'guides/funding-protocols' } },
+            { label: 'Supported Chains', autogenerate: { directory: 'guides/supported-chains' } },
+            { label: 'Funding Protocols', items: [
+              // Hiding the concrete protocols
+              // This is to draw attention instead to the supported chains and
+              // protocol abstractions (direct spend, custodial, etc).
+              { label: 'Funding Protocols', link: 'guides/funding-protocols' },
+              { label: 'Funding Types', link: 'guides/funding-types' },
+            ]},
             { label: 'Testing', autogenerate: { directory: 'guides/testing' } } ,
             { label: 'Supported Tokens', autogenerate: { directory: 'guides/supported-tokens' } },
-            { label: 'Supported Chains', autogenerate: { directory: 'guides/supported-chains' } },
           ]
         },
         { label: 'Resources', autogenerate: { directory: 'resources' } },
