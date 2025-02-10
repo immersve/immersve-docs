@@ -15,7 +15,7 @@ post:
             message:
               type: string
               description: Additional context to the cause surrounding the card unfreeze.
-              example: "Found the card in my wallet."
+              example: "Found the card."
   responses:
     "202":
       description: Successful operation
