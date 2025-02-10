@@ -1,6 +1,0 @@
-type: object
-properties:
-  context:
-    type: string
-    description: Any context describing why the card was unblocked
-    example: Card found
