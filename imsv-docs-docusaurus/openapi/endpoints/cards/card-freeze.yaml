@@ -1,9 +1,9 @@
 post:
   tags:
     - card
-  summary: Block card
-  operationId: block-card
-  description: Block a card
+  summary: Freeze card
+  operationId: freeze-card
+  description: Freeze a card
   parameters:
     $ref: "../../models/card-id-path.yaml"
   responses:
@@ -17,8 +17,8 @@ post:
             $ref: '../../models/api-error-400.yaml'
     "403":
       description: |
-        **CARD_ALREADY_BLOCKED**
-        Card is already blocked.
+        **CARD_ALREADY_FROZEN**
+        Card is already frozen.
       content:
         application/json:
           schema:

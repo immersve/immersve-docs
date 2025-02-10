@@ -1,9 +1,9 @@
 post:
   tags:
     - card
-  summary: Unblock card
-  operationId: unblock-card
-  description: Unblock a card
+  summary: Unfreeze card
+  operationId: unfreeze-card
+  description: Unfreeze a card
   parameters:
     $ref: "../../models/card-id-path.yaml"
   requestBody:
@@ -14,7 +14,7 @@ post:
           properties:
             message:
               type: string
-              description: Additional context to the cause surrounding the card unblock.
+              description: Additional context to the cause surrounding the card unfreeze.
               example: "Found the card in my wallet."
   responses:
     "202":
@@ -27,11 +27,11 @@ post:
             $ref: '../../models/api-error-400.yaml'
     "403":
       description: |
-        **CARD_NOT_BLOCKED**
-        Card is not blocked.
+        **CARD_NOT_FROZEN**
+        Card is not frozen.
 
-        **CARD_BLOCK_RELEASE_DISALLOWED**
-        Card block release is disallowed.
+        **CARD_FREEZE_RELEASE_DISALLOWED**
+        Card freeze release is disallowed.
       content:
         application/json:
           schema:
