@@ -1,0 +1,38 @@
+post:
+  tags:
+    - card
+  summary: Unblock card
+  operationId: unblock-card
+  description: Unblock a card
+  parameters:
+    $ref: "../../models/card-id-path.yaml"
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Additional context to the cause surrounding the card unblock.
+              example: "Found the card in my wallet."
+  responses:
+    "202":
+      description: Successful operation
+    "400":
+      description: Request fields are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'
+    "403":
+      description: |
+        **CARD_NOT_BLOCKED**
+        Card is not blocked.
+
+        **CARD_BLOCK_RELEASE_DISALLOWED**
+        Card block release is disallowed.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
