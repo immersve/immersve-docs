@@ -3,7 +3,7 @@ post:
     - card
   summary: Unfreeze card
   operationId: unfreeze-card
-  description: Unfreeze a card
+  description: Unfreeze a previously frozen card, restoring its ability to be used.
   parameters:
     $ref: "../../models/card-id-path.yaml"
   requestBody:
@@ -31,7 +31,7 @@ post:
         Card is not frozen.
 
         **CARD_UNFREEZE_DISALLOWED**
-        Card freeze release is disallowed.
+        Card unfreeze is disallowed.
       content:
         application/json:
           schema:
