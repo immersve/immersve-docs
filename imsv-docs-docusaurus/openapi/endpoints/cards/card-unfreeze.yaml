@@ -30,7 +30,7 @@ post:
         **CARD_NOT_FROZEN**
         Card is not frozen.
 
-        **CARD_FREEZE_RELEASE_DISALLOWED**
+        **CARD_UNFREEZE_DISALLOWED**
         Card freeze release is disallowed.
       content:
         application/json:
