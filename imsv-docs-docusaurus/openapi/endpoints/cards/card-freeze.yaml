@@ -1,7 +1,7 @@
 post:
   tags:
     - card
-  summary: Freeze card
+  summary: Freeze Card
   operationId: freeze-card
   description: Temporarily disable a card to decline all new payment requests.
   parameters:

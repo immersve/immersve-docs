@@ -1,7 +1,7 @@
 post:
   tags:
     - card
-  summary: Unfreeze card
+  summary: Unfreeze Card
   operationId: unfreeze-card
   description: Restore processing new payment requests on a previously frozen card.
   parameters:
