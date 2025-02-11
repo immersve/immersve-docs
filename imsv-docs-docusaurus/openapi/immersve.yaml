@@ -73,6 +73,10 @@ paths:
       - url: https://api-sec.immersve.com
   "/api/cards/{cardId}/cancel-async":
     $ref: "./endpoints/cards/card-cancel.yaml"
+  "/api/cards/{cardId}/freeze":
+    $ref: "./endpoints/cards/card-freeze.yaml"
+  "/api/cards/{cardId}/unfreeze":
+    $ref: "./endpoints/cards/card-unfreeze.yaml"
   "/api/cards/{cardId}/pan-token":
     $ref: "./endpoints/cards/card-pan-token.yaml"
   "/api/accounts/{accountId}/contact-details":

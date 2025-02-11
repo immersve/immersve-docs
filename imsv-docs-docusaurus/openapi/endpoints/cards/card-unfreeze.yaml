@@ -1,0 +1,38 @@
+post:
+  tags:
+    - card
+  summary: Unfreeze Card
+  operationId: unfreeze-card
+  description: Restore processing new payment requests on a previously frozen card.
+  parameters:
+    $ref: "../../models/card-id-path.yaml"
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Additional context to the cause surrounding the card unfreeze.
+              example: "Found the card."
+  responses:
+    "202":
+      description: Successful operation
+    "400":
+      description: Request fields are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'
+    "403":
+      description: |
+        **CARD_NOT_FROZEN**
+        Card is not frozen.
+
+        **CARD_UNFREEZE_DISALLOWED**
+        Card unfreeze is disallowed.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"

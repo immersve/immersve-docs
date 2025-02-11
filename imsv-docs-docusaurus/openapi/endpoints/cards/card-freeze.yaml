@@ -1,0 +1,25 @@
+post:
+  tags:
+    - card
+  summary: Freeze Card
+  operationId: freeze-card
+  description: Temporarily disable a card to decline all new payment requests.
+  parameters:
+    $ref: "../../models/card-id-path.yaml"
+  responses:
+    "202":
+      description: Successful operation
+    "400":
+      description: Request fields are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'
+    "403":
+      description: |
+        **CARD_ALREADY_FROZEN**
+        Card is already frozen.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
