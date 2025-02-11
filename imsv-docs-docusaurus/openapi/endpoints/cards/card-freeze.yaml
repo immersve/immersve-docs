@@ -3,7 +3,7 @@ post:
     - card
   summary: Freeze card
   operationId: freeze-card
-  description: Freeze a card, preventing it from being used.
+  description: Temporarily disable a card to decline all new payment requests.
   parameters:
     $ref: "../../models/card-id-path.yaml"
   responses:

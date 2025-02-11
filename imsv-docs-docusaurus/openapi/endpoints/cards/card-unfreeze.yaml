@@ -3,7 +3,7 @@ post:
     - card
   summary: Unfreeze card
   operationId: unfreeze-card
-  description: Unfreeze a previously frozen card, restoring its ability to be used.
+  description: Restore processing new payment requests on a previously frozen card.
   parameters:
     $ref: "../../models/card-id-path.yaml"
   requestBody:
