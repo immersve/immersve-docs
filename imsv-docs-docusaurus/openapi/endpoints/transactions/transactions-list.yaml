@@ -40,11 +40,13 @@ get:
         type: string
     - name: statuses
       in: query
-      description: Comma separated list of transaction statuses to filter by. By default, the endpoint only returns 'holding' and 'cleared' transactions.
-      example: "holding,cleared,reversed"
+      description: Filter for transaction status groups. By default the endpoint will return 'holding' and 'cleared' transactions. Passing 'all' returns 'init' and 'reversed' additionally.
       required: false
       schema:
         type: string
+        enum:
+          - all
+          - default
 
   responses:
     "200":
