@@ -40,7 +40,10 @@ get:
         type: string
     - name: statuses
       in: query
-      description: Filter for transaction status groups. By default the endpoint will return 'holding' and 'cleared' transactions. Passing 'all' returns 'init' and 'reversed' additionally.
+      description: |
+        Filter for transaction status groups. By default the endpoint
+        will return "holding" and "cleared" transactions. Passing "all"
+        includes all statuses.
       required: false
       schema:
         type: string
