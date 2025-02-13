@@ -46,7 +46,6 @@ get:
         type: string
         enum:
           - all
-          - default
 
   responses:
     "200":
