@@ -10,3 +10,5 @@ yarn workspace imsv-docs-astro build --outDir "$(pwd)/dist"
 # paths that overlap with the Docusaurus build output. A simple move is not
 # able to resolve the conflicts.
 rsync -r imsv-docs-docusaurus/build/ dist/api-reference/
+
+cp .netlify/_redirects dist/
