@@ -19,14 +19,34 @@ properties:
           type: boolean
           description: Whether the region is available to the given partner account
           example: true
+        documents:
+          type: array
+          description: Regulatory disclosure documents for available regions, required to be presented during onboarding
+          items:
+            type: object
+            description: Regulatory disclosure document
+            properties:
+              title:
+                type: string
+                description: Official regulatory document title
+                example: Product Disclosure Statement
+              source:
+                type: string
+                description: URL to the document
+                example: https://example.com/disclosures/immersve/pds-au_v001.0_en.pdf
+
 example:
   regions:
     - code: AU
       title: Australia
       isAvailable: true
+      documents:
+        - title: Product Disclosure Statement
+          source: https://example.com/disclosures/immersve/pds-au_v001.0_en.pdf
     - code: NZ
       title: New Zealand
       isAvailable: true
+      documents: []
     - code: CA
       title: Canada
       isAvailable: false
