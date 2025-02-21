@@ -2,37 +2,37 @@ type: object
 properties:
   regions:
     type: array
-    description: All regions supported by Immersve
+    description: All regions supported by Immersve.
     items:
       type: object
-      description: Region item
+      description: Region item.
       properties:
         code:
           type: string
-          description: The region's code
+          description: The region's code.
           example: AU
         title:
           type: string
-          description: The region's title
+          description: The region's title.
           example: Australia
         isAvailable:
           type: boolean
-          description: Whether the region is available to the given partner account
+          description: Whether the region is available to the given partner account.
           example: true
         documents:
           type: array
-          description: Regulatory disclosure documents for available regions, required to be presented during onboarding
+          description: Regulatory disclosure documents for available regions, required to be presented during onboarding.
           items:
             type: object
-            description: Regulatory disclosure document
+            description: Regulatory disclosure document.
             properties:
               title:
                 type: string
-                description: Official regulatory document title
+                description: Official regulatory document title.
                 example: Product Disclosure Statement
               source:
                 type: string
-                description: URL to the document
+                description: URL to the document.
                 example: https://example.com/disclosures/immersve/pds-au_v001.0_en.pdf
 
 example:
