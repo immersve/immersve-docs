@@ -25,7 +25,7 @@ responses:
       There are no sufficient permissions to view supported regions for this account.
 
       **CARD_PROGRAMS_NOT_CONFIGURED**
-      Partner account has no card programs configured
+      Partner account has no card programs configured.
     content:
       application/json:
         schema:
