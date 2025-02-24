@@ -34,6 +34,10 @@ properties:
                 type: string
                 description: URL to the document.
                 example: https://example.com/disclosures/immersve/pds-au_v001.0_en.pdf
+              type:
+                type: string
+                description: The type of document.
+                example: PDS
 
 example:
   regions:
@@ -43,6 +47,7 @@ example:
       documents:
         - title: Product Disclosure Statement
           source: https://example.com/disclosures/immersve/pds-au_v001.0_en.pdf
+          type: PDS
     - code: NZ
       title: New Zealand
       isAvailable: true
