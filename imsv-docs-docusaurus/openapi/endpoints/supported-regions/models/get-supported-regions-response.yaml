@@ -36,7 +36,13 @@ properties:
                 example: https://example.com/disclosures/immersve/pds-au_v001.0_en.pdf
               type:
                 type: string
-                description: The type of document.
+                description: >
+                  The type of document:
+                    * `disclosure` - Legal and financial disclosures mandated by regulators.
+                    * `user-agreement` -  Terms governing the use of services.
+                    * `market-compliance` - Documentation ensuring compliance with market-specific regulations.
+                   <br>
+                     **Note**: This enum is **extensible**, and additional document types may be introduced in the future. Clients should handle unknown values gracefully to maintain forward compatibility.
                 enum:
                   - disclosure
                   - user-agreement
