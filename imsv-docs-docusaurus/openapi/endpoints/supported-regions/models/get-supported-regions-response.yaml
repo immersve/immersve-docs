@@ -37,7 +37,10 @@ properties:
               type:
                 type: string
                 description: The type of document.
-                example: PDS
+                enum:
+                  - disclosure
+                  - user agreement
+                  - market compliance
 
 example:
   regions:
@@ -47,7 +50,7 @@ example:
       documents:
         - title: Product Disclosure Statement
           source: https://example.com/disclosures/immersve/pds-au_v001.0_en.pdf
-          type: PDS
+          type: disclosure
     - code: NZ
       title: New Zealand
       isAvailable: true
