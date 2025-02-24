@@ -39,8 +39,8 @@ properties:
                 description: The type of document.
                 enum:
                   - disclosure
-                  - user agreement
-                  - market compliance
+                  - user-agreement
+                  - market-compliance
 
 example:
   regions:
