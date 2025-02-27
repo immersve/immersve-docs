@@ -19,25 +19,29 @@ States.
 
 ## Supported Regions Endpoint
 
-The availability of regions may vary between partners. A region may be
-supported by Immersve but not be accessible to a given partner if they, for
-instance, have no card programs set up in that region.
-
-For the most up-to-date list of the supported regions for a partner, use the
-supported regions endpoint. This will provide a complete list of regions
-including:
-
- 1. the region name
- 1. the region's code for use with our apis
- 1. the region's availability for the partner to issue cards
-
 {% endpointref name="get-supported-regions" /%}
 
-{% note %}
-This endpoint can be useful for a range of use cases, such as, checking if a
-partner can issue cards in a region, getting the region code for a region, or
- when populating regions in UI elements (such as dropdowns).
-{%/note %}
+The availability of regions may vary between partners. A region may be
+supported by Immersve but not be accessible to a given partner. The supported
+regions endpoint allow you to:
+
+{% list %}
+  {% listitem "ArrowRightCircle" %}
+    __Get Supported Regions and Codes__ <br/>
+    Checking if a partner can issue cards in a region, getting the region code
+    for a region when populating regions in UI elements (such as dropdowns).
+  {% /listitem %}
+  {% listitem "ArrowRightCircle" %}
+    __Get Legal Documents__  <br/>
+    Getting partner specific legal documents for a region. See
+    {% link page="guides/presenting-legal-documents" /%}.
+  {% /listitem %}
+
+{% /list %}
+
+For the most up-to-date list of the supported regions for a partner, use the
+supported regions endpoint.
+
 
 ### Custodial Wallets
 
