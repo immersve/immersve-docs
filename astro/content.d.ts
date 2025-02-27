@@ -237,6 +237,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/card-issuing-apps/legal-document-requirements.mdoc": {
+	id: "guides/card-issuing-apps/legal-document-requirements.mdoc";
+  slug: "guides/presenting-legal-documents";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/card-issuing-apps/web3-wallet-card-issuing-integration.mdoc": {
 	id: "guides/card-issuing-apps/web3-wallet-card-issuing-integration.mdoc";
   slug: "guides/web3-wallet-card-issuing-integration";
