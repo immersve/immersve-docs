@@ -6,31 +6,52 @@ slug: guides/partner-conducted-kyc
 In the Partner conducted KYC mode, the partner collects and verifies the KYC information from cardholders, which is
 then supplied to Immersve via API (name, date of birth, ID details, etc).
 
-{% note %}
-Partner account must be configured to allow partner conducted KYC checks. This is
-subject to an agreement between Immersve and the partner. Ask Immersve support
-for more details.
-{% /note %}
+__How it works__
 
-Although Immersve still performs KYC checks on these details, we rely on the partner for verification of document
-scans and the cardholder's identity.
+{% list %}
+  {% listitem "Key" connector=true %}
+    __Enable Partner Conducted KYC__ <br/>
+    This is subject to an agreement between Immersve and the partner.
+    Ask Immersve support for more details.
+    Partner Conducted KYC is not currently supported in all regions.
+  {% /listitem %}
 
-{% note %}
-If Immersve already has complete KYC information for the individual owning the wallet, in any of the regions supported by the requested card program, the
-user will not be required to go through KYC.
-{% /note %}
+  {% listitem "Library" connector=true %}
+    __Partner app presents any legal documents during consent__ <br/>
+    See {% link page="guides/legal-document-requirements" /%}.
+  {% /listitem %}
 
-{% warning %}
-Once Immersve has received and checked the KYC information for an Individual, the supported region associated with
-the wallet of the individual cannot be changed.
+  {% listitem "Identification" connector=true %}
+    __Partner app collects the data__ <br/>
+    Partner app collects and verifies the KYC information from cardholders
+  {% /listitem %}
 
-In the event that an individual wished to go through KYC in another supported region, a new wallet would be required.
+  {% listitem "ArrowsRightLeft" connector=true %}
+    __Partner sends KYC data to Immersve__<br/>
+     Once Immersve has received and checked the KYC information for an Individual,
+     the supported region associated with the wallet of the individual cannot be changed.
 
-Partner Conducted KYC is not currently supported in EU regions.
-{% /warning %}
+     In the event that an individual wished to go through KYC in another
+     supported region, a new wallet would be required.
+
+  {% /listitem %}
+
+  {% listitem "Clock"%}
+    __Ongoing monitoring__ <br/>
+    Ongoing AML/CFT checks are performed by Immersve. If Immersve already has complete
+    KYC information for the individual owning the wallet, for the requested region
+     the user will not be required to go through KYC.
+  {% /listitem %}
+
+{% /list %}
+
 
 Below, we've outlined the steps for completion of this verification process, assuming all necessary details, such as
 document scans and biometrics, have been collected and verified.
+
+## Testing KYC in Test Mode
+
+For a complete guide on passing KYC in test mode, please read {% link page="guides/pass-kyc-in-testmode" /%}.
 
 ## Set up environment variables
 
@@ -47,15 +68,13 @@ imsv_api_host="test.immersve.com"
 
 ## Supply Contact Details
 
-{% note %}
-Immersve will not perform validation of a user's contact details.
-{% /note %}
-
 Immersve requires users contact details (phone number and email) for the
 following reasons, this should be explained to customers:
 
 - Adding cards to Apple/Google Pay wallets (X-Pay)
 - Performing 3DS validation for online transactions
+
+Immersve will not perform validation of a user's contact details.
 
 If a user doesn't provide contact details, they risk online transactions being
 rejected and might not be able to add cards to X-Pay wallets.
@@ -110,10 +129,6 @@ curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/exp
 ## Submit Cardholder KYC statement
 
 {% endpointref name="submit-kyc-statement" /%}
-
-{% note %}
-For a complete guide on passing KYC in test mode, please read {% link page="guides/pass-kyc-in-testmode" /%}.
-{% /note %}
 
 {% warning %}
 Be careful when setting the region as this cannot be changed. You will need to create a new wallet if this is
