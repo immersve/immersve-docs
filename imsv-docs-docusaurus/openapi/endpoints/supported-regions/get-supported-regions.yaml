@@ -2,7 +2,12 @@ tags:
   - supported-regions
 summary: Get Supported Regions
 operationId: get-supported-regions
-description: Get the list of supported regions for a partner account.
+description: |
+  This will provide a complete list of regions that are supported by the partner to issue cards. The response will include the following information about a region:
+  1. the region name
+  1. the region's code for use with our apis
+  1. the region's availability for the partner to issue cards
+  1. any legal documents for the region
 parameters:
   - name: partnerAccountId
     in: path
