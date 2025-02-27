@@ -1,0 +1,10 @@
+type: object
+properties:
+  title:
+    type: string
+    description: Document title.
+    example: Product Disclosure Statement
+  source:
+    type: string
+    description: URL to the document.
+    example: https://example.com/disclosures/immersve/pds-au_v001.0_en.pdf

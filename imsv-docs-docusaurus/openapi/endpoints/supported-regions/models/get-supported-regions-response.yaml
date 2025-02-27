@@ -20,33 +20,55 @@ properties:
           description: Whether the region is available to the given partner account.
           example: true
         documents:
-          type: array
-          description: Regulatory disclosure documents for available regions, required to be presented during onboarding.
-          items:
-            type: object
-            description: Regulatory disclosure document.
-            properties:
-              title:
-                type: string
-                description: Official regulatory document title.
-                example: Product Disclosure Statement
-              source:
-                type: string
-                description: URL to the document.
-                example: https://example.com/disclosures/immersve/pds-au_v001.0_en.pdf
-
+          type: object
+          description: Regulatory documents for available regions, required to be presented during onboarding.
+          properties:
+            generalTermsOfUse:
+              allOf:
+                - description: Terms governing the use of the platform.
+                - $ref: './document.yaml'
+            privacyPolicy:
+              allOf:
+                - description: Privacy policy.
+                - $ref: './document.yaml'
+            disclosures:
+              type: array
+              description: Legal and financial disclosures mandated by regulators.
+              items:
+                 $ref: './document.yaml'
+            marketCompliance:
+              type: array
+              description: Documentation ensuring compliance with market-specific regulations.
+              items:
+                $ref: './document.yaml'
 example:
   regions:
     - code: AU
       title: Australia
       isAvailable: true
       documents:
-        - title: Product Disclosure Statement
-          source: https://example.com/disclosures/immersve/pds-au_v001.0_en.pdf
+        generalTermsOfUse:
+          title: General Terms of Use
+          source: https://immersve.com/terms-and-conditions/au/general-terms-of-use
+        privacyPolicy:
+          title: Privacy Policy
+          source: https://immersve.com/terms-and-conditions/au/privacy-policy
+        disclosures:
+          - title: Product Disclosure Statement
+            source: https://example.com/disclosures/immersve/pds-au_v001.0_en.pdf
+        marketCompliance: []
     - code: NZ
       title: New Zealand
       isAvailable: true
-      documents: []
+      documents:
+        generalTermsOfUse:
+          title: General Terms of Use
+          source: https://immersve.com/terms-and-conditions/nz/general-terms-of-use
+        privacyPolicy:
+          title: Privacy Policy
+          source: https://immersve.com/terms-and-conditions/nz/privacy-policy
+        disclosures: []
+        marketCompliance: []
     - code: CA
       title: Canada
       isAvailable: false
