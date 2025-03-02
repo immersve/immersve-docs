@@ -17,7 +17,14 @@ get:
       content:
         application/json:
           schema:
-            $ref: "./models/card.yaml"
+            allOf:
+              - $ref: "./models/card.yaml"
+              - type: object
+                properties:
+                  isUnfreezeAllowed:
+                    type: boolean
+                    description: Indicates whether the card can be unfrozen with the unfreeze endpoint
+                    example: true
     "403":
       description: No Authorization to access resource.
       content:
