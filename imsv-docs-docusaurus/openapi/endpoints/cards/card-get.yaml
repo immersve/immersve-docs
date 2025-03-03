@@ -21,7 +21,7 @@ get:
               - $ref: "./models/card.yaml"
               - type: object
                 properties:
-                  isUnfreezeAllowed:
+                  unfreezeAllowed:
                     type: boolean
                     description: Indicates whether the card can be unfrozen with the unfreeze endpoint
                     example: true
