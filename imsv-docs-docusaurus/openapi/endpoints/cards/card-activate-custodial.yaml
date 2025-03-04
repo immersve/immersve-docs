@@ -3,7 +3,7 @@ post:
     - cards-custodial
   summary: Activate a card (for physical cards only)
   parameters:
-    $ref: '../../models/card-id-path.yaml'
+    - $ref: '../../models/card-id-path.yaml'
   responses:
     '200':
       description: 'Card activated'

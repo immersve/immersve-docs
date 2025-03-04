@@ -161,6 +161,11 @@ paths:
   "/api/support-sessions":
     $ref: "./endpoints/imsv-support/support-session-create.yaml"
 components:
+  parameters:
+    cardIdPath:
+      $ref: "./models/card-id-path.yaml"
+    accountIdPath:
+      $ref: "./models/account-id-path.yaml"
   securitySchemes:
     "Access Token":
       type: http

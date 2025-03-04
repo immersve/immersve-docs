@@ -3,7 +3,7 @@ get:
     - cards-custodial
   summary: Get secure card information
   parameters:
-    $ref: '../../models/card-id-path.yaml'
+    - $ref: '../../models/card-id-path.yaml'
   responses:
     '200':
       content:
