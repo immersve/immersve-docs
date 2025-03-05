@@ -30,8 +30,8 @@ post:
         **CARD_NOT_FROZEN**
         Card is not frozen.
 
-        **CARD_UNFREEZE_DISALLOWED**
-        Card unfreeze is disallowed.
+        **CARD_UNFREEZE_NOT_ALLOWED**
+        Card unfreeze is not allowed.
       content:
         application/json:
           schema:

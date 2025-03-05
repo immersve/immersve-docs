@@ -20,6 +20,17 @@ Immersve generate a card, returning an ID. It is ready to use when a call to
 {% link endpoint="get-card" /%} with the card ID returns a
 payload with `status` `"active"`.
 
+### Block a card
+
+Calling the {% link endpoint="freeze-card" /%} endpoint will temporarily block a card.
+While a card is blocked it cannot be used to perform transactions.
+
+### Unblock a card
+
+To remove a block the {% link endpoint="unfreeze-card" /%} endpoint is called.
+This returns the card's status to active allowing the card
+to once again be used to perform transactions.
+
 ### Cancel a card
 
 Should a cardholder change their mind prior to presenting the card to a
