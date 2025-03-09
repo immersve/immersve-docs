@@ -12,6 +12,149 @@ We recommend this mode of KYC for partners not obligated to perform KYC as part
 of their main product, like crypto wallets. That's because implementing one's
 own KYC process can require a significant effort.
 
+## How it works
+
+{% list %}
+  {% listitem "CodeBracket" connector=true %}
+    __Partner app integrates with Immersve Conducted flow__ <br/>
+    The partner app is setup to initiate Immersve Conducted KYC and respond to
+    any actions requested of it when calling the {% link endpoint="get-spending-prerequisites" /%} endpoint.
+  {% /listitem %}
+
+
+  {% listitem "ArrowsRightLeft" connector=true %}
+    __(Optional) Partner sends any already collected data__ <br/>
+    Partner sends any KYC data they have collected to Immersve to pre-populate into
+    the Immersve Conducted KYC flow e.g. contact details, monthly expected spend etc
+  {% /listitem %}
+
+
+  {% listitem "Identification" connector=true %}
+    __Partner app initiates Immersve Conducted KYC__ <br/>
+  Partner app can show the Immersve conducted UI in a browser,
+    or redirect to it from their UI, whichever works or is more convenient.
+    The partner app can also pre-selected the region the User is enrolling into, and hide any unnecessary steps
+    (i.e. as the partner has already provided this information).
+  {% /listitem %}
+
+  {% listitem "UserCircle" connector=true %}
+    __Immersve collects the data and performs IDV checks__ <br/>
+    User is navigated to the Immersve hosted UI. Immersve collects required information,
+     requests Biometric scans to be performed and Identity Verifying documents to be uploaded, and then
+     verifies the KYC information from cardholders.
+    Any information already provided by the partner is pre-filled in the form or hidden as
+    per the partner's request.
+  {% /listitem %}
+
+  {% listitem "Clock"%}
+    __Ongoing monitoring__ <br/>
+    Ongoing AML/CFT checks are performed by Immersve. If Immersve already has complete
+    KYC information for the individual owning the wallet, for the requested region
+     the user will not be required to go through KYC.
+  {% /listitem %}
+
+{% /list %}
+
+
+## High Level Flow
+
+{% list %}
+  {% listitem "Identification" connector=true %}
+    __Initiate Immersve Conducted KYC__ <br/>
+   To begin the KYC process, call the {% link endpoint="get-spending-prerequisites" /%} endpoint specifying KYC type as **`immersve-conducted`**.
+   There are a number of optional parameters you can set to change the behavior of the KYC process.
+
+   See the {% link endpoint="get-spending-prerequisites" /%} endpoint reference for more details on the parameters,
+   these are explained in more detail in the following sections.
+
+   If Immersve already has complete KYC information for the individual owning the wallet, in any of the regions supported by the requested card program, the
+   user will not be required to go through KYC.
+
+  {% /listitem %}
+
+  {% listitem "WarningIcon" connector=true %}
+    __Handle any actions__ <br/>
+    Depending on what options have been selected when calling spending
+    prerequisites, the response may contain several actions
+
+    An action can be identified by looking at the list of
+    prerequisites where `"stage": "kyc"` and `"status": "action-required"`.
+
+    ```json
+     [
+      {
+        "stage":"kyc",
+        "status":"action-required",
+        "actionType":"xxx"
+      },
+      //...other actions
+    ]
+    ```
+
+    Each `actionType` represents a specific set of actions that the partner must take. e.g. `follow_kyc_url`,
+        `submit_contact_email`, `submit_contact_phone`, `set_expected_spend_amount`
+
+    Once the requisites of each `actionType` is met, the required action is removed from the list.
+
+  {% /listitem %}
+
+  {% listitem "UserCircle" connector=true %}
+    __Present the user with Immersve Conducted KYC UI__ <br/>
+    The `follow_kyc_url` action is the gateway to starting Immersve Conducted KYC.
+      ```json
+         [
+          {
+            "stage":"kyc",
+            "status":"action-required",
+            "actionType":"follow_kyc_url",
+            "params": {
+              "kycUrl": "[url for user to follow]"
+            },
+          },
+          //...other actions
+        ]
+        ```
+
+    The partner should navigate
+    the user to the URL provided in the response.
+
+  {% /listitem %}
+
+  {% listitem "Clock" connector=true %}
+    __Wait for Identity Verification to complete__ <br/>
+    Once the `follow_kyc_url` action has been completed. The partner must wait for the results of the KYC check to be returned.
+
+    ```json
+     [{"stage":"kyc","status":"pending"}]
+    ```
+
+    While waiting for the KYC check result, you will see the above in the
+    response from the {% link endpoint="get-spending-prerequisites" /%} endpoint.
+
+  {% /listitem %}
+
+  {% listitem "RocketLaunch" %}
+    __Immersve Conducted KYC is complete__ <br/>
+   Once all of the necessary actions have been completed (and KYC checks have passed)
+    all KYC requisites have been completed. You'll see a response like the following:
+
+    ```json
+    [{"stage":"kyc","status":"ok"}]
+    ```
+  Congratulations you've finished the Immersve Conducted KYC process.
+
+  {% /listitem %}
+
+{% /list %}
+
+{% warning %}
+Once Immersve conducted KYC has been completed for an individual, the supported region associated with the wallet of
+the individual cannot be changed.
+
+In the event that an individual wished to go through KYC in another supported region, a new wallet would be required.
+
+{% /warning %}
+
 ## Integration steps
 
 The following steps are for manual integration via a terminal. An integrating
@@ -27,33 +170,6 @@ token="<your_access_token>"
 card_program_id="<your_card_program_id>"
 funding_source_id="<funding_source_id>"
 ```
-
-### Request spending prerequisites
-
-To begin the KYC process, call spending prerequisites specifying KYC type as **`immersve-conducted`**. Optionally, a
- **`redirectUrl`** can be provided to indicate where the user should be redirected upon completion of the KYC process.
-
-If KYC is required, the response to the spending prerequisites request will
-contain a URL, where the user must be redirected to complete the KYC
-verification.
-
-{% note %}
-If Immersve already has complete KYC information for the individual owning the wallet, in any of the regions supported by the requested card program, the
-user will not be required to go through KYC.
-{% /note %}
-
-{% warning %}
-Once Immersve conducted KYC has been completed for an individual, the supported region associated with the wallet of
-the individual cannot be changed.
-
-In the event that an individual wished to go through KYC in another supported region, a new wallet would be required.
-
-{% /warning %}
-
-If KYC is not required, is already in progress, or the maximum
-number of retries has been exceeded, the URL will not be returned and the status
-will indicate the problem. See the {% link endpoint="get-spending-prerequisites"
-/%} endpoint reference for more details on possible statuses.
 
 **Example Request:**
 ```bash
