@@ -4,7 +4,7 @@ get:
   summary: Get card information
   description: Returns the non-sensitive details of a card by a given ID.
   parameters:
-    $ref: "../../models/card-id-path.yaml"
+    - $ref: "../../models/card-id-path.yaml"
   responses:
     "200":
       content:

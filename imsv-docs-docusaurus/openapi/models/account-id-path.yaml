@@ -1,6 +1,6 @@
-- name: accountId
-  in: path
-  description: ID of the account
-  required: true
-  schema:
-    type: string
+name: accountId
+in: path
+description: ID of the account
+required: true
+schema:
+  type: string

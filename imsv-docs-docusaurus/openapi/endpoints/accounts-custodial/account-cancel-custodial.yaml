@@ -3,7 +3,7 @@ post:
     - accounts-custodial
   summary: Cancel an account
   parameters:
-    $ref: '../../models/account-id-path.yaml'
+    - $ref: '../../models/account-id-path.yaml'
   requestBody:
     content:
       application/json:
