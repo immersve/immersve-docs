@@ -12,6 +12,39 @@ We recommend this mode of KYC for partners not obligated to perform KYC as part
 of their main product, like crypto wallets. That's because implementing one's
 own KYC process can require a significant effort.
 
+## How it works
+
+{% list %}
+  {% listitem "Key" connector=true %}
+    __Enable Immersve Conducted KYC__ <br/>
+    This is subject to an agreement between Immersve and the partner.
+    Ask Immersve support for more details.
+  {% /listitem %}
+
+  {% listitem "ArrowsRightLeft" connector=true %}
+    __Partner fulfills prerequisites for KYC__ <br/>
+    Partners have an option to bypass certain KYC steps by providing information
+    about the user in advance. After this information has been provided, or there are no KYC steps to bypass,
+    the spending prerequisites response will return a URL where the user must be redirected
+    to complete the KYC.
+  {% /listitem %}
+
+  {% listitem "Identification" connector=true %}
+    __User completes KYC__<br/>
+    User must complete the KYC process by following the URL provided in the
+    spending prerequisites response. The user will be redirected back to the
+    partner application upon completion if the **`redirectUrl`** has been previously provided.
+  {% /listitem %}
+
+  {% listitem "Clock"%}
+    __Ongoing monitoring__ <br/>
+    Ongoing AML/CFT checks are performed by Immersve. If Immersve already has complete
+    KYC information for the individual owning the wallet, for the requested region
+     the user will not be required to go through KYC.
+  {% /listitem %}
+
+{% /list %}
+
 ## Integration steps
 
 The following steps are for manual integration via a terminal. An integrating
@@ -151,7 +184,7 @@ curl -X PATCH "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/co
   }'
 ```
 
-## Supply Expected Spend Amount (Optional)
+### Supply Expected Spend Amount (Optional)
 
 Regulations require that Immersve obtain information on the “nature and purpose”
 of the proposed business relationship between ourselves and the cardholder.
