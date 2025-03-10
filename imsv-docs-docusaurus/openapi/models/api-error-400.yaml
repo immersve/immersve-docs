@@ -8,12 +8,22 @@ properties:
     example: Bad Request
   errorCode:
     type: string
-    example: BAD_REQUEST
+    example: INVALID_REQUEST_INPUT
   errors:
     type: array
     items:
-      type: string
-      example: 'Expected string, received number'
+      type: object
+      properties:
+        message:
+          type: string
+          example: 'Invalid type'
+        path:
+          type: string
+          description: The location of the field in the request body that caused the error
+          example: 'items[1].attributes.invalidField'
+    required:
+      - message
+      - path
 required:
   - statusCode
   - statusName
