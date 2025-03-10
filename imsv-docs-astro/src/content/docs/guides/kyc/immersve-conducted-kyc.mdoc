@@ -67,7 +67,7 @@ own KYC process can require a significant effort.
    See the {% link endpoint="get-spending-prerequisites" /%} endpoint reference for more details on the parameters,
    these are explained in more detail in the following sections.
 
-   If Immersve already has complete KYC information for the individual owning the wallet, in any of the regions supported by the requested card program, the
+   If Immersve already has complete KYC information for the individual owning the wallet, in the requested region the
    user will not be required to go through KYC.
 
   {% /listitem %}
@@ -75,7 +75,7 @@ own KYC process can require a significant effort.
   {% listitem "WarningIcon" connector=true %}
     __Handle any actions__ <br/>
     Depending on what options have been selected when calling spending
-    prerequisites, the response may contain several actions
+    prerequisites, the response may contain several actions.
 
     An action can be identified by looking at the list of
     prerequisites where `"stage": "kyc"` and `"status": "action-required"`.
@@ -91,10 +91,11 @@ own KYC process can require a significant effort.
     ]
     ```
 
-    Each `actionType` represents a specific set of actions that the partner must take. e.g. `follow_kyc_url`,
+    Each `actionType` identifies a specific action that must be made. e.g. `follow_kyc_url`,
         `submit_contact_email`, `submit_contact_phone`, `set_expected_spend_amount`
 
-    Once the requisites of each `actionType` is met, the required action is removed from the list.
+    Once the necessary action has been taken for each `actionType` the action is
+    removed from the list.
 
   {% /listitem %}
 
@@ -122,38 +123,39 @@ own KYC process can require a significant effort.
 
   {% listitem "Clock" connector=true %}
     __Wait for Identity Verification to complete__ <br/>
-    Once the `follow_kyc_url` action has been completed. The partner must wait for the results of the KYC check to be returned.
-
+    Once the `follow_kyc_url` action has been completed. You will see a similar response
+     to below from the {% link endpoint="get-spending-prerequisites" /%} endpoint.
     ```json
      [{"stage":"kyc","status":"pending"}]
     ```
 
-    While waiting for the KYC check result, you will see the above in the
-    response from the {% link endpoint="get-spending-prerequisites" /%} endpoint.
+    You must wait for the results of the KYC check to be returned.
 
   {% /listitem %}
 
   {% listitem "RocketLaunch" %}
     __Immersve Conducted KYC is complete__ <br/>
-   Once all of the necessary actions have been completed (and KYC checks have passed)
-    all KYC requisites have been completed. You'll see a response like the following:
+   Once all of the necessary actions have been completed and KYC checks have passed,
+    all KYC prequisites have been completed. You'll see a similar response to the following:
 
     ```json
     [{"stage":"kyc","status":"ok"}]
     ```
   Congratulations you've finished the Immersve Conducted KYC process.
 
+  {% warning %}
+  Once Immersve conducted KYC has been completed for an individual, the supported region associated with the wallet of
+  the individual cannot be changed.
+
+  In the event that an individual wished to go through KYC in another supported region, a new wallet would be required.
+
+  {% /warning %}
+
   {% /listitem %}
 
 {% /list %}
 
-{% warning %}
-Once Immersve conducted KYC has been completed for an individual, the supported region associated with the wallet of
-the individual cannot be changed.
 
-In the event that an individual wished to go through KYC in another supported region, a new wallet would be required.
-
-{% /warning %}
 
 ## Integration steps
 
