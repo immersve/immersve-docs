@@ -1,0 +1,15 @@
+type: object
+required:
+  - fullAddress
+  - country
+properties:
+  fullAddress:
+    type: string
+    description: An address written as a single string.
+    example: 2/45 Laddier Road, Centurion, The Reeds, Auckland 0100, New Zealand
+  country:
+    type: string
+    description: The ISO 3166-2 Country code of the country the address is in.
+    examples:
+      - NZ
+      - AU

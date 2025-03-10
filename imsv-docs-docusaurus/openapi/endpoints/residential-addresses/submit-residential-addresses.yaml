@@ -1,0 +1,42 @@
+tags:
+  - kyc
+summary: Submit Residential Addresses
+operationId: submit-residential-addresses
+description: Submit residential addresses for the cardholder. The request body should contain an array with the cardholder's current residential address either structured or unstructured. We recommend using a structured address whenever possible as correct parsing of an unstructured address is not guaranteed. Immersve will try to structure a submitted unstructured address only for addresses in New Zealand and Australia. If this is successful, the response body will contain the structured variant along with the submitted unstructured address.
+parameters:
+  - name: cardholderAccountId
+    in: path
+    description: ID of the cardholder account.
+    example: 65a7e8ef0d230d0a6bf755e07d39eb02
+    required: true
+    schema:
+      type: string
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          oneOf:
+            - $ref: "./models/structured-address-request.yaml"
+              title: Structured address
+            - $ref: "./models/unstructured-address-request.yaml"
+              title: Unstructured address
+  required: true
+responses:
+  "200":
+    content:
+      application/json:
+        schema:
+          $ref: "./models/residential-addresses-response.yaml"
+  "403":
+    description: |
+      Subject is not allowed to perform the action with the reason stated in the `errorCode`
+
+      **FORBIDDEN**
+      Resource does not exist or there are no sufficient permissions to perform the action.
+
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"
