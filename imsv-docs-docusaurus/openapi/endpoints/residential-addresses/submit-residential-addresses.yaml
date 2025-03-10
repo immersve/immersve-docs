@@ -36,6 +36,9 @@ responses:
       **FORBIDDEN**
       Resource does not exist or there are no sufficient permissions to perform the action.
 
+      **KYC_ALREADY_PASSED**
+      Residential Addresses submission is not allowed after successful KYC checks (KYC profile is passed).
+
     content:
       application/json:
         schema:
