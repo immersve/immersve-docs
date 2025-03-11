@@ -12,51 +12,15 @@ We recommend this mode of KYC for partners not obligated to perform KYC as part
 of their main product, like crypto wallets. That's because implementing one's
 own KYC process can require a significant effort.
 
+{% warning %}
+  Once Immersve conducted KYC has been completed for an individual, the supported region associated with the wallet of
+  the individual cannot be changed.
+
+  In the event that an individual wished to go through KYC in another supported region, a new wallet would be required.
+
+{% /warning %}
+
 ## How it works
-
-{% list %}
-  {% listitem "CodeBracket" connector=true %}
-    __Partner app integrates with Immersve Conducted flow__ <br/>
-    The partner app is setup to initiate Immersve Conducted KYC and respond to
-    any actions requested of it when calling the {% link endpoint="get-spending-prerequisites" /%} endpoint.
-  {% /listitem %}
-
-
-  {% listitem "ArrowsRightLeft" connector=true %}
-    __(Optional) Partner sends any already collected data__ <br/>
-    Partner sends any KYC data they have collected to Immersve to pre-populate into
-    the Immersve Conducted KYC flow e.g. contact details, monthly expected spend etc
-  {% /listitem %}
-
-
-  {% listitem "Identification" connector=true %}
-    __Partner app initiates Immersve Conducted KYC__ <br/>
-  Partner app can show the Immersve conducted UI in a browser,
-    or redirect to it from their UI, whichever works or is more convenient.
-    The partner app can also pre-selected the region the User is enrolling into, and hide any unnecessary steps
-    (i.e. as the partner has already provided this information).
-  {% /listitem %}
-
-  {% listitem "UserCircle" connector=true %}
-    __Immersve collects the data and performs IDV checks__ <br/>
-    User is navigated to the Immersve hosted UI. Immersve collects required information,
-     requests Biometric scans to be performed and Identity Verifying documents to be uploaded, and then
-     verifies the KYC information from cardholders.
-    Any information already provided by the partner is pre-filled in the form or hidden as
-    per the partner's request.
-  {% /listitem %}
-
-  {% listitem "Clock"%}
-    __Ongoing monitoring__ <br/>
-    Ongoing AML/CFT checks are performed by Immersve. If Immersve already has complete
-    KYC information for the individual owning the wallet, for the requested region
-     the user will not be required to go through KYC.
-  {% /listitem %}
-
-{% /list %}
-
-
-## High Level Flow
 
 {% list %}
   {% listitem "Identification" connector=true %}
@@ -99,7 +63,7 @@ own KYC process can require a significant effort.
 
   {% /listitem %}
 
-  {% listitem "UserCircle" connector=true %}
+  {% listitem "Browser" connector=true %}
     __Present the user with Immersve Conducted KYC UI__ <br/>
     The `follow_kyc_url` action is the gateway to starting Immersve Conducted KYC.
       ```json
@@ -142,14 +106,6 @@ own KYC process can require a significant effort.
     [{"stage":"kyc","status":"ok"}]
     ```
   Congratulations you've finished the Immersve Conducted KYC process.
-
-  {% warning %}
-  Once Immersve conducted KYC has been completed for an individual, the supported region associated with the wallet of
-  the individual cannot be changed.
-
-  In the event that an individual wished to go through KYC in another supported region, a new wallet would be required.
-
-  {% /warning %}
 
   {% /listitem %}
 
