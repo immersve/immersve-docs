@@ -17,7 +17,7 @@ requestBody:
       schema:
         type: array
         items:
-          oneOf:
+          anyOf:
             - $ref: "./models/structured-address-request.yaml"
               title: Structured address
             - $ref: "./models/unstructured-address-request.yaml"
