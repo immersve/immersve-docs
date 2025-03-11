@@ -2,7 +2,11 @@ tags:
   - kyc
 summary: Get Residential Addresses
 operationId: get-residential-addresses
-description: Retrieve previously submitted residential addresses of the cardholder.
+description: |
+  :::note
+  This endpoint is for Immersve-conducted KYC only.
+  :::
+  Retrieve previously submitted residential addresses of the cardholder.
 parameters:
   - name: cardholderAccountId
     in: path

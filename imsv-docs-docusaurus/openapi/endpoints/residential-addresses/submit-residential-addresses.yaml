@@ -2,7 +2,14 @@ tags:
   - kyc
 summary: Submit Residential Addresses
 operationId: submit-residential-addresses
-description: Submit residential addresses for the cardholder. The request body should contain an array with the cardholder's current residential address either structured or unstructured. We recommend using a structured address whenever possible as correct parsing of an unstructured address is not guaranteed. Immersve will try to structure a submitted unstructured address only for addresses in New Zealand and Australia. If this is successful, the response body will contain the structured variant along with the submitted unstructured address.
+description: |
+  :::note
+  This endpoint is for Immersve-conducted KYC only.
+  :::
+  Submit residential addresses for the cardholder. The request body should contain an array with the cardholder's current residential address either structured or unstructured.
+  We recommend using a structured address whenever possible as correct parsing of an unstructured address is not guaranteed.
+  Immersve will try to structure a submitted unstructured address only for addresses in New Zealand and Australia.
+  If this is successful, the response body will contain the structured variant along with the submitted unstructured address.
 parameters:
   - name: cardholderAccountId
     in: path
