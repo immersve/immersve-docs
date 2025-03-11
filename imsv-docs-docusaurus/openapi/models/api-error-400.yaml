@@ -19,7 +19,7 @@ properties:
           example: 'Invalid type'
         path:
           type: string
-          description: The location of the field in the request body that caused the error
+          description: The location of the invalid path param, query param or payload attribute.
           example: 'items[1].attributes.invalidField'
     required:
       - message
