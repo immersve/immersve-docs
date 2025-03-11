@@ -26,7 +26,7 @@ own KYC process can require a significant effort.
   {% listitem "Identification" connector=true %}
     __Initiate Immersve Conducted KYC__ <br/>
    To begin the KYC process, call the {% link endpoint="get-spending-prerequisites" /%} endpoint specifying KYC type as **`immersve-conducted`**.
-   There are a number of optional parameters you can set to change the behavior of the KYC process.
+   There are several optional parameters you can set to change the behavior of the KYC process.
 
    See the {% link endpoint="get-spending-prerequisites" /%} endpoint reference for more details on the parameters,
    these are explained in more detail in the following sections.
@@ -36,7 +36,7 @@ own KYC process can require a significant effort.
 
   {% /listitem %}
 
-  {% listitem "WarningIcon" connector=true %}
+  {% listitem "CheckCircle" connector=true %}
     __Handle any actions__ <br/>
     Depending on what options have been selected when calling spending
     prerequisites, the response may contain several actions.
@@ -73,15 +73,14 @@ own KYC process can require a significant effort.
             "status":"action-required",
             "actionType":"follow_kyc_url",
             "params": {
-              "kycUrl": "[url for user to follow]"
+              "kycUrl": "[url]"
             },
           },
           //...other actions
         ]
         ```
 
-    The partner should navigate
-    the user to the URL provided in the response.
+    The partner should navigate the user to the URL provided in the response.
 
   {% /listitem %}
 
@@ -90,7 +89,9 @@ own KYC process can require a significant effort.
     Once the `follow_kyc_url` action has been completed. You will see a similar response
      to below from the {% link endpoint="get-spending-prerequisites" /%} endpoint.
     ```json
-     [{"stage":"kyc","status":"pending"}]
+    [{
+      "stage":"kyc","status":"pending"
+    }]
     ```
 
     You must wait for the results of the KYC check to be returned.
@@ -103,7 +104,9 @@ own KYC process can require a significant effort.
     all KYC prequisites have been completed. You'll see a similar response to the following:
 
     ```json
-    [{"stage":"kyc","status":"ok"}]
+    [{
+      "stage":"kyc","status":"ok"
+    }]
     ```
   Congratulations you've finished the Immersve Conducted KYC process.
 
