@@ -3,10 +3,10 @@ tags:
 summary: Submit Residential Addresses
 operationId: submit-residential-addresses
 description: |
+  Submit the current residential address of the cardholder in either structured or unstructured format.
   :::note
   This endpoint is for Immersve-conducted KYC only.
   :::
-  Submit the current residential address of the cardholder in either structured or unstructured format.
 
 parameters:
   - name: cardholderAccountId
