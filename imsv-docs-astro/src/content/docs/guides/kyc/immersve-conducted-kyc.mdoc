@@ -110,6 +110,9 @@ If spending prerequisites is called with the `kycHiddenSteps` option but informa
 ---
  * <nobr>expected-spend</nobr>
  * The user's anticipated monthly spend. See "Supply Expected Spend Amount" section below.
+ ---
+ * <nobr>residential-address</nobr>
+ * The user's residential address. See "Supply Residential Address" section below.
 
  {% /table %}
 
@@ -151,7 +154,7 @@ curl -X PATCH "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/co
   }'
 ```
 
-## Supply Expected Spend Amount (Optional)
+### Supply Expected Spend Amount (Optional)
 
 Regulations require that Immersve obtain information on the “nature and purpose”
 of the proposed business relationship between ourselves and the cardholder.
@@ -176,12 +179,80 @@ curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/exp
   }'
 ```
 
+### Supply Residential Address (Optional)
+
+If you would like to supply the user's residential address ahead of time, you can do so by calling the
+{% link endpoint="submit-residential-addresses" /%} endpoint, before starting the KYC process.
+This will then allow the user to check and update the address as part of the Immersve Conducted KYC process
+(if `residential-address` step is not hidden).
+
+You can submit either a structured or an unstructured address. We recommend using a structured address
+whenever possible as correct parsing of an unstructured address is not guaranteed.
+
+{% list %}
+  {% listitem "ArrowRightCircle" %}
+    **Structured Address**
+
+    Organizes address details into predefined fields, making it easier to validate and process the data.
+
+    ```json
+    {
+      "streetNumber": "140",
+      "streetName": "Commonwealth Avenue",
+      "town": "Yarralumla",
+      "state": "ACT",
+      "postalCode": "2600",
+      "country": "AU"
+    }
+    ```
+    Partners are strongly encouraged to use this format whenever possible.
+
+  {% /listitem %}
+  {% listitem "ArrowRightCircle" %}
+    **Unstructured Address**
+
+    This format consolidates the address into a single text string in the `fullAddress` field
+
+    ```json
+    {
+      "fullAddress": "140 Commonwealth Ave, Yarralumla ACT 2600,
+      Australia",
+      "country": "AU"
+    }
+    ```
+
+    Immersve will attempt to structure a submitted unstructured address for addresses
+    in New Zealand and Australia.
+
+  {% /listitem %}
+{% /list %}
+
+{% endpointref name="submit-residential-addresses" /%}
+
+```bash
+curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/residential-addresses" \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: ${card_issuer_api_key}" \
+  -H "X-Api-Secret: ${card_issuer_api_secret}" \
+  -H "X-Account-Id: ${cardholder_account_id}" \
+  --data '[
+  {
+    "streetNumber": "140",
+    "streetName": "Commonwealth Avenue",
+    "town": "Yarralumla",
+    "state": "ACT",
+    "postalCode": "2600",
+    "country": "AU"
+  }
+]'
+```
 
 ### User goes through the KYC flow
 
 Upon being redirected to the Immersve KYC page, the user will go through the
-process that involves the collection of the user's address and the verification
-of their identity through document and biometry (facial scan) collection.
+process that involves the collection of the user's contact details, expected spend
+amount, residential address (if not hidden) and the verification of their identity
+through document and biometry (facial scan) collection.
 
 At the end of the process the user is presented with a screen indicating that their
 profile is under review. The user does not have to stay on the page to know

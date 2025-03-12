@@ -115,6 +115,11 @@ paths:
       $ref: "./endpoints/expected-spend-amount/get-expected-spend-amount.yaml"
     post:
       $ref: "./endpoints/expected-spend-amount/update-expected-spend-amount.yaml"
+  "/api/accounts/{cardholderId}/residential-addresses":
+    get:
+      $ref: "./endpoints/residential-addresses/get-residential-addresses.yaml"
+    post:
+      $ref: "./endpoints/residential-addresses/submit-residential-addresses.yaml"
   "/api/accounts/{partnerAccountId}/supported-regions":
     get:
       $ref: "./endpoints/supported-regions/get-supported-regions.yaml"
