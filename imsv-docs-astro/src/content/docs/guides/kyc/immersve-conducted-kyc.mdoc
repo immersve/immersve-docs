@@ -20,7 +20,7 @@ own KYC process can require a significant effort.
 
 {% /warning %}
 
-## How it works
+## How It Works
 
 {% list %}
   {% listitem "Identification" connector=true %}
@@ -37,7 +37,7 @@ own KYC process can require a significant effort.
   {% /listitem %}
 
   {% listitem "CheckCircle" connector=true %}
-    __Handle any actions__ <br/>
+    __Handle Any Actions__ <br/>
     Depending on what options have been selected when calling spending
     prerequisites, the response may contain several actions.
 
@@ -64,7 +64,7 @@ own KYC process can require a significant effort.
   {% /listitem %}
 
   {% listitem "Browser" connector=true %}
-    __Present the user with Immersve Conducted KYC UI__ <br/>
+    __Present Immersve Conducted KYC UI__ <br/>
     The `follow_kyc_url` action is the gateway to starting Immersve Conducted KYC.
       ```json
          [
@@ -85,7 +85,7 @@ own KYC process can require a significant effort.
   {% /listitem %}
 
   {% listitem "Clock" connector=true %}
-    __Wait for Identity Verification to complete__ <br/>
+    __Wait for Background Checks__ <br/>
     Once the `follow_kyc_url` action has been completed. You will see a similar response
      to below from the {% link endpoint="get-spending-prerequisites" /%} endpoint.
     ```json
@@ -99,7 +99,7 @@ own KYC process can require a significant effort.
   {% /listitem %}
 
   {% listitem "RocketLaunch" %}
-    __Immersve Conducted KYC is complete__ <br/>
+    __Immersve Conducted KYC is Complete__ <br/>
    Once all of the necessary actions have been completed and KYC checks have passed,
     all KYC prequisites have been completed. You'll see a similar response to the following:
 
@@ -114,15 +114,10 @@ own KYC process can require a significant effort.
 
 {% /list %}
 
-
-
-## Integration steps
-
+## Before You Get Started
 The following steps are for manual integration via a terminal. An integrating
 application should implement this flow with whatever technology stack is
 convenient.
-
-### Prerequisites
 This guide assumes that the partner has already obtained an access token or API
 keys, and has the card program and funding source IDs ready.
 
@@ -131,6 +126,21 @@ token="<your_access_token>"
 card_program_id="<your_card_program_id>"
 funding_source_id="<funding_source_id>"
 ```
+
+## Calling Spending Prerequisites
+
+Call the Spending prerequisites with `kycType` set to `immersve-conducted` to
+initiate Immersve Conducted KYC.
+
+Any actions required to complete Immersve KYC will be returned in the response. The response
+will recalculate as actions are completed and any new prerequisite actions are identified.
+
+When all prerequisites are completed and the user has completed Immersve Conducted KYC,
+background checks will be performed. This can take several minutes to several days
+depending on the effort required to verify an individual. Poll the endpoint until
+either a successful result is returned, or a new follow_kyc_url action is returned.
+
+{% endpointref name="get-spending-prerequisites" /%}
 
 **Example Request:**
 ```bash
@@ -165,7 +175,7 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 }
 ```
 
-### Bypass KYC Steps (Optional)
+## Bypass KYC Steps (Optional)
 Some KYC steps can be optionally bypassed by providing this information about the user in advance via
 API and using the `kycHiddenSteps` option when requesting spending prerequisites.
 
@@ -174,7 +184,7 @@ If spending prerequisites is called with the `kycHiddenSteps` option but informa
  that additional information is required instead of providing a KYC URL. KYC steps that can be
  bypassed are explained in the table below.
 
- {% table title="KYC steps that can be bypassed with `kycHiddenSteps`" %}
+ {% table title="KYC steps that can be bypassed." %}
  * KYC Step
  * Description
  ---
@@ -193,7 +203,7 @@ If spending prerequisites is called with the `kycHiddenSteps` option but informa
 
  {% /table %}
 
-### Supply Contact Details (Optional)
+## Supply Contact Details (Optional)
 
 If you would like to supply the user's contact details ahead of time, you can do so by calling the
 {% link endpoint="update-contact-details" /%} endpoint, before starting the KYC process.
@@ -206,8 +216,8 @@ Immersve will not perform validation of a user's contact details.
 Immersve requires users contact details (phone number and email) for the
 following reasons, this should be explained to customers:
 
-- Adding cards to Apple/Google Pay wallets (X-Pay)
-- Performing 3DS validation for online transactions
+- Adding cards to Apple/Google Pay wallets (X-Pay).
+- Performing 3DS validation for online transactions.
 
 If a user doesn't provide contact details, they risk online transactions being
 rejected and might not be able to add cards to X-Pay wallets.
@@ -231,7 +241,7 @@ curl -X PATCH "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/co
   }'
 ```
 
-### Supply Expected Spend Amount (Optional)
+## Supply Expected Spend Amount (Optional)
 
 Regulations require that Immersve obtain information on the “nature and purpose”
 of the proposed business relationship between ourselves and the cardholder.
@@ -256,7 +266,7 @@ curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/exp
   }'
 ```
 
-### Supply Residential Address (Optional)
+## Supply Residential Address (Optional)
 
 If you would like to supply the user's residential address ahead of time, you can do so by calling the
 {% link endpoint="submit-residential-addresses" /%} endpoint, before starting the KYC process.
@@ -324,7 +334,7 @@ curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/res
 ]'
 ```
 
-### User goes through the KYC flow
+## User Goes Through KYC Flow
 
 Upon being redirected to the Immersve KYC page, the user will go through the
 process that involves the collection of the user's contact details, expected spend
@@ -340,14 +350,14 @@ Upon exiting the page, users are sent back to the **`redirectUrl`** provided
 in the spending prerequisites request. If no **`redirectUrl`** was provided, the
 exit button will close the browser tab.
 
-### Unsuccessful KYC check
+## Unsuccessful KYC check
 
 If the KYC check was unsuccessful, the spending prerequisites response will
 return "kyc_check_failed" for the KYC prerequisite status, along with an array
 listing the reasons for the failure. If possible, a new KYC URL will be provided
 for the user to try again.
 
-### Confirmation of KYC Completion
+## Confirmation of KYC Completion
 
 Once redirected, check the spending prerequisites again to
 ensure no further KYC actions are required. Once there is no KYC prerequisite
