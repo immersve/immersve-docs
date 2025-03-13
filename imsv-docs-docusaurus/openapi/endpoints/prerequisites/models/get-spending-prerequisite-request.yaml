@@ -21,7 +21,8 @@ properties:
       - USD
   fundingMode:
     type: string
-    description: Hint for the prerequisite funding transaction type. Presently only
+    description:
+      Hint for the prerequisite funding transaction type. Presently only
       universal-evm funding supports the funding mode hint.
       <br>
       `deposit` (default) — Funding instruction should be a token transfer.
@@ -41,7 +42,8 @@ properties:
     description: A URL to which the user can be redirected after they have completed or exited the kyc process.
   kycRegion:
     type: string
-    description: The country in which the user resides, in two letter country code format (e.g. `AU`). This must be
+    description:
+      The country in which the user resides, in two letter country code format (e.g. `AU`). This must be
       one of the countries enabled in the card program for your partner account.
       <br>
       Note - this is only required when using the `kycHiddenSteps` option to hide the region KYC step.
@@ -52,3 +54,4 @@ properties:
       - region
       - expected-spend
       - contact-channels
+      - residential-address
