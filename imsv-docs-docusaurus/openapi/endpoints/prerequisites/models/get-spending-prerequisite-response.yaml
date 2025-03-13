@@ -39,6 +39,7 @@ properties:
             - submit_kyc_statement
             - aml-review
             - set_expected_spend_amount
+            - submit_residential_addresses
         params:
           oneOf:
             - $ref: "../../../models/evm-smart-contract-write-params.yaml"
@@ -49,7 +50,5 @@ properties:
               title: contact_email
             - $ref: "../../../models/contact-channel-phone-params.yaml"
               title: contact_phone
-            - $ref: "../../../models/expected-spend-amount-params.yaml"
-              title: expected_spend_amount
             - $ref: "../../../models/simulator-deposit.yaml"
               title: simulator_call
