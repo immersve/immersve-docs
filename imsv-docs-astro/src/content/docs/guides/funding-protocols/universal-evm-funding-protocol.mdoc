@@ -8,7 +8,7 @@ slug: guides/universal-evm-funding-protocol
 fundingProtocol:
   source: https://github.com/immersve/funding-contract-universal-evm
 sidebar:
-  order: 3
+  order: 1
 ---
 
 The Immersve Universal EVM {% link page="guides/funding-protocols" title="funding protocol" /%} allows
@@ -120,9 +120,9 @@ Addresses" above. The params have the following semantics:
 cardholders' cards. See {% link page="guides/supported-tokens" /%} for possible values.
 
 `name` *(string)*: The name of the deployed contract. This is used only for
-debugging purposes and must be globally unique. Using your app name, token name
-, and "liveness" in the name are recommended, for example: "Acme Wallet USDC
-Live".
+debugging purposes. The name needs to be unique for the wallet submitting the
+transaction. Using your app name, token name, and "liveness" in the name are
+recommended, for example: "Acme Wallet USDC Live".
 
 The address of the deployed Funds Storage instance can be discovered from the
 EVM transaction logs. In a block explorer, find the `FundsStorageCreated` event
