@@ -7,6 +7,7 @@ required:
   - name
   - purpose
   - params
+  - mode
 properties:
   id:
     type: string
@@ -32,6 +33,10 @@ properties:
     type: string
     description: Purpose of the Funding Channel.
     example: card-funding
+  mode:
+    type: string
+    description: Funding Mode of the Funding Channel.
+    example: deposit
   params:
     description: Parameters for the Funding Channel.
     oneOf:
