@@ -9,10 +9,17 @@ sidebar:
   order: 2
 ---
 
-A Funding Type is the combination of a {% link page="guides/funding-protocols"
-title="Funding Protocol" /%}, network and token. It
-determines the behavior of any Funding Source related to a particular partner
-Funding Channel.
+A Funding Type represents the configuration of a {% link page="guides/funding-protocols" title="Funding Protocol" /%}
+for a particular network and token. It is the primary discriminator used when creating a Card
+Issuer {% link page="guides/creating-a-funding-channel" title="Funding Channel" /%}.
+A Funding Channel's Funding Type determines the required parameters and
+behavior of a Cardholder {% link page="guides/card-funding" title="Funding Source" /%}.
+
+Funding Types are configured by Immersve. The following table lists the
+currently available Funding Types. If none of the Funding Types listed here are
+suitable for your needs then see {% link page="use-cases/blockchains" title="Blockchain Requirements"/%}
+or {% link href="https://www.immersve.com/contact" title="contact us" /%}
+to discuss adding support for your blockchain or stable coin.
 
 {% fundingTypeTable columns=[
   "fundingType",
