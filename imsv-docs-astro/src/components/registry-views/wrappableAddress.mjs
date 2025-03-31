@@ -1,3 +1,3 @@
 export function wrappableAddress(addr) {
-  return addr.match(/.{1,30}/g).join('<wbr>');
+  return addr.match(/.{1,24}/g).join('<wbr>');
 }

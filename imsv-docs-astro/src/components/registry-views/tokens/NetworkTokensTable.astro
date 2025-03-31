@@ -48,7 +48,7 @@ const columnTitles: Record<string,string> = {
               case 'address':
                 return <td><a href={networkToken.url} set:html={wrappableAddress(networkToken.address)}></a></td>
               case 'faucet':
-                return <td><a href={networkToken.faucetUrl}>{networkToken.faucetTitle}</a></td>
+                return <td><a href={networkToken.faucetUrl}><nobr>{networkToken.faucetTitle}</nobr></a></td>
               default:
                 return <td></td>
             }
