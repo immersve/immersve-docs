@@ -63,7 +63,13 @@ page="guides/simulator-funding-protocol" /%}.
 
 ## Available Chains
 
-{% supportedChainsTable /%}
+{% supportedChainsTable columns=[
+  "chain",
+  "depositVariant",
+  "depositBasedFunding",
+  "approvalBasedFunding",
+  "custodialBilling",
+] /%}
 
 ## Available Protocols
 

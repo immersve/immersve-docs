@@ -1,23 +1,62 @@
 ---
 import { registry } from 'src/content/registry.mjs';
 
+interface Props {
+  columns: Array<string>;
+}
+
 const supportedChains = registry.allChains().filter(chain => chain.name != 'none');
 const fetchNetworksForChains = (chain: any) => registry.allNetworksByChainName(chain.name);
-const columns = [ 'chain', 'protocols','networkNames' ];
 
-const columnTitles: Record<string,string> = {
-  chain: 'Chain',
-  protocols: 'Protocols',
-  networkNames:'Network Names'
+const { columns=[ 'chain', 'protocols','networkNames' ] } = Astro.props;
+
+type ColSpec = {
+  title: string;
+  thStyle?: string;
+  colStyle?: string;
+}
+
+const colspecs: Record<string,ColSpec> = {
+  chain: {
+    title: 'Chain'
+  },
+  protocols: {
+    title: 'Protocols',
+  },
+  networkNames:{
+    title: 'Network Names',
+  },
+  depositVariant: {
+    title: 'Deposit Variant',
+    thStyle: 'text-align: center',
+  },
+  custodialBilling: {
+    title: 'Custodial Billing',
+    thStyle: 'text-align: center',
+    colStyle: '',
+  },
+  depositBasedFunding: {
+    title: 'Deposit Based Funding',
+    thStyle: 'text-align: center',
+  },
+  approvalBasedFunding: {
+    title: 'Approval Based Funding',
+    thStyle: 'text-align: center',
+  },
 };
 
 ---
 <div class="overflow-x-auto">
   <table>
+    <colgroup>
+      {columns.map(column => (
+        <col style={colspecs[column].colStyle}>
+      ))}
+    </colgroup>
     <thead>
       <tr>
         {columns.map(column => (
-          <th>{columnTitles[column]}</th>
+          <th style={colspecs[column].thStyle}>{colspecs[column].title}</th>
         ))}
       </tr>
     </thead>
@@ -34,9 +73,17 @@ const columnTitles: Record<string,string> = {
                       return <a href={protocol.docsPath}>{protocol.title}</a>
                     })}
                     </td>
-                  case 'networkNames':
-                    const networks = fetchNetworksForChains(chain);
-                    return <td>{networks.map(network => network.networkName).join(', ')}</td>;
+                case 'networkNames':
+                  const networks = fetchNetworksForChains(chain);
+                  return <td>{networks.map(network => network.networkName).join(', ')}</td>;
+                case 'depositVariant':
+                  return <td style="text-align: center">{chain.depositVariant}</td>
+                case 'custodialBilling':
+                  return <td style="text-align: center">{chain.custodialBillingAllowed ? '✅' : '🆇' }</td>
+                case 'depositBasedFunding':
+                  return <td style="text-align: center">{chain.depositBasedFundingAllowed ? '✅' : '🆇' }</td>
+                case 'approvalBasedFunding':
+                  return <td style="text-align: center">{chain.approvalBasedFundingAllowed ? '✅' : '🆇' }</td>
                 default:
                   return <td></td>
               }

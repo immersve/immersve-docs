@@ -11,6 +11,10 @@ export const collections = {
           })
           .optional(),
         supportedChain: z.boolean().optional(),
+        depositVariant: z.string().optional(),
+        depositBasedFunding: z.boolean().optional(),
+        custodialBilling: z.boolean().optional(),
+        approvalBasedFunding: z.boolean().optional(),
         supportedToken: z.boolean().optional(),
       }),
     }),
