@@ -1,19 +1,70 @@
 ---
 import { registry } from 'src/content/registry.mjs';
+
+interface Props {
+  columns: Array<string>;
+}
+
+const { columns=[ 'name', 'source' ] } = Astro.props;
+
+type ColSpec = {
+  title: string;
+  thStyle?: string;
+  colStyle?: string;
+}
+
+const colspecs: Record<string,ColSpec> = {
+  name: {
+    title: 'Protocol',
+    colStyle: 'min-width: 120px',
+  },
+  description: {
+    title: 'Description',
+  },
+  source: {
+    title: 'Source',
+  },
+};
+
+const columnTitles: Record<string,string> = {
+  name: 'Protocol',
+  description: 'Description',
+  source: 'Source',
+};
+
+const columnStyles: Record<string,string> = {
+  name: 'min-width: 120px',
+};
 ---
 <div class="overflow-x-auto">
   <table>
+    <colgroup>
+        {columns.map(column => (
+          <col style={colspecs[column].colStyle}>
+        ))}
+    </colgroup>
     <thead>
       <tr>
-        <th>Protocol</th>
-        <th>Source</th>
+        {columns.map(column => (
+          <th style={colspecs[column].thStyle}>{colspecs[column].title}</th>
+        ))}
       </tr>
     </thead>
       <tbody>
       {registry.allFundingProtocols().map(fundingProtocol => (
         <tr>
-          <td><a href={fundingProtocol.docsPath}>{fundingProtocol.title}</a></td>
-          <td><a href={fundingProtocol.sourceUrl}>{fundingProtocol.sourceUrl}</a></td>
+          {columns.map(column=> {
+            switch(column) {
+              case 'name':
+                return <td><a href={fundingProtocol.docsPath}>{fundingProtocol.title}</a></td>
+              case 'description':
+                return <td>{fundingProtocol.description}</td>
+              case 'source':
+                return <td><a href={fundingProtocol.sourceUrl}>{fundingProtocol.sourceUrl}</a></td>
+              default:
+                return <td></td>
+            }
+          })}
         </tr>
       ))}
     </tbody>
