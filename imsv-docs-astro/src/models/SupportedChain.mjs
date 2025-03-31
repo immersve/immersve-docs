@@ -29,6 +29,22 @@ export class SupportedChain {
     return this.content.data.title;
   }
 
+  get depositVariant() {
+    return this.content.data.depositVariant;
+  }
+
+  get custodialBillingAllowed() {
+    return this.content.data.custodialBilling;
+  }
+
+  get depositBasedFundingAllowed() {
+    return this.content.data.depositBasedFunding;
+  }
+
+  get approvalBasedFundingAllowed() {
+    return this.content.data.approvalBasedFunding;
+  }
+
   get docsPath() {
     return '/' + this.content.slug;
   }
