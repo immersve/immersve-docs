@@ -17,33 +17,42 @@ when creating a {% link page="guides/creating-a-funding-channel" title="Funding 
 
 ## Protocol Variants
 
-Four different variants classify immersve card funding protocols: deposit-based,
-approval-based, custodial, and mock.
+Three different variants classify immersve card funding protocols:
+deposit-based, approval-based, and custodial.
 
 
 ### Approval Based Funding
 
-Approval-based protocols can spend tokens directly from a cardholder's existing
-wallet. The {% link page="guides/universal-evm-funding-protocol" /%} supports
-approval-based funding on some EVM chains.
+Approval-based protocol variants utilize standard token approvals to enable spending
+stable coins on an Immersve card. Cardholders can spend assets directly from an
+existing wallet without an additional deposit transaction. The {% link
+page="guides/universal-evm-funding-protocol" /%} supports approval-based funding
+on some EVM chains.
 
 
 ### Deposit Based Funding
 
-Deposit-based funding requires cardholders to transfer assets into an Immersve
-smart contract. Deposits can be withdrawn at any time. Deposit-based funding is
-further classified into two sub-variants based on where tokens are deposited:
-universal and flexi.
+Deposit-based protocol variants require cardholders to transfer tokens into an
+Immersve smart contract. Deposits can be withdrawn at any time. Deposit-based
+funding is further classified into three sub-variants based on where tokens are
+deposited: universal, flexi and mock.
 
 
-___Universal___ — The universal variant pools tokens into a single
-partner-scoped contract and is optimized for gas usage so it can operate on any
-blockchain.
+___Universal Deposit___ — Cardholders deposit tokens into a shared partner-scoped
+smart contract. The universal deposit variant is optimized for gas usage so it can
+operate efficiently on any blockchain.
 
-___Flexi___ — The flexi variant holds deposits in a smart contract per
-cardholder. The cardholder balance can be inspected on-chain, and permissionless
-withdrawals are supported. A cardholder contract will need to be deployed as
-part of cardholder onboarding.
+___Flexi Deposit___ — Cardholders deposit tokens into a dedicated cardholder-scoped
+smart contract. The cardholder balance can be inspected on-chain, and
+permissionless withdrawals are supported. The cardholder contract must be
+deployed during cardholder onboarding.
+
+___Mock Deposit___ — Cardholder balance is set directly via API. It enables the creation
+of test cards without the need for asset deposits. Since no blockchain is
+involved, it enables testing of card-issuing user experiences when your
+preferred funding solution is not yet implemented. See {% link
+page="guides/simulator-funding-protocol" /%}.
+
 
 ### Custodial Funding
 
@@ -51,14 +60,6 @@ Custodial protocols enable the integrating partner to perform off-chain payment
 authorizations in real-time. Custodial funding leverages one of the on-chain
 deposit-based funding protocols for settlement. See {% link
 page="guides/custodial-funding-protocol" /%}.
-
-
-### Mock Funding
-
-Mock funding enables the creation of test cards without building any funding
-integration. This is useful for testing card-issuing user experiences when your
-funding solution is not fully implemented. See {% link
-page="guides/simulator-funding-protocol" /%}.
 
 
 ## Available Chains
