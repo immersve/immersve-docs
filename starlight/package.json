@@ -185,7 +185,7 @@
     "remark-directive": "^3.0.0",
     "unified": "^11.0.4",
     "unist-util-visit": "^5.0.0",
-    "vfile": "^6.0.1"
+    "vfile": "^6.0.3"
   },
   "scripts": {
     "test": "vitest",
