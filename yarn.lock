@@ -455,7 +455,7 @@ __metadata:
     hast-util-select: "npm:^6.0.2"
     hast-util-to-string: "npm:^3.0.1"
     hastscript: "npm:^9.0.0"
-    mdast-util-directive: "npm:^3.0.0"
+    mdast-util-directive: "npm:^3.1.0"
     mdast-util-to-markdown: "npm:^2.1.0"
     pagefind: "npm:^1.1.1"
     rehype: "npm:^13.0.1"
@@ -11377,6 +11377,23 @@ __metadata:
     stringify-entities: "npm:^4.0.0"
     unist-util-visit-parents: "npm:^6.0.0"
   checksum: 10/a205af936302467648b6007704b40e31a822016789402cbcb0239d23ce7a48e676db1cd6792c9318c1047a47c5b3956b2bd0053f14c8d257528404d6bf9b9ab4
+  languageName: node
+  linkType: hard
+
+"mdast-util-directive@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "mdast-util-directive@npm:3.1.0"
+  dependencies:
+    "@types/mdast": "npm:^4.0.0"
+    "@types/unist": "npm:^3.0.0"
+    ccount: "npm:^2.0.0"
+    devlop: "npm:^1.0.0"
+    mdast-util-from-markdown: "npm:^2.0.0"
+    mdast-util-to-markdown: "npm:^2.0.0"
+    parse-entities: "npm:^4.0.0"
+    stringify-entities: "npm:^4.0.0"
+    unist-util-visit-parents: "npm:^6.0.0"
+  checksum: 10/5aabd777ae8752cb9d09c7827a6690887536da8a9f85e833d5399ab8f47e5aadaa3eea78985efd041f50c658bf91b4579800dae79b20549240f52bbc2bc26335
   languageName: node
   linkType: hard
 
