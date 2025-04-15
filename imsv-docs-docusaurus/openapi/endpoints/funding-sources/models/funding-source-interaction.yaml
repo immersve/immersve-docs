@@ -55,8 +55,8 @@ properties:
     properties:
       ref:
         type: string
-        description: A context reference based on the type of the interaction. It could be a `transactionId` in the case of a payment, or an `eventId` in the case of an smart contract event.
-        example: "1000000488078"
+        description: A context reference based on the type of the interaction. It could be a `paymentId` in the case of a payment, or an `eventId` in the case of an smart contract event.
+        example: "3bd3b9e95c2b6828071b630182ac57aa"
       type:
         type: string
         description: A context type for the context reference, which will depend on the interaction type.
@@ -70,6 +70,10 @@ properties:
         type: string
         description: The blockchain transaction hash on which the interaction happened, when applicable.
         example: "0x3c561ba7fb04b8176f5478d26172d7cef02cf4ac6806e047ffaf5af70ccf1e69"
+      paymentId:
+        type: string
+        description: The payment ID for which the interaction belongs to.
+        example: "3bd3b9e95c2b6828071b630182ac57aa"
   channel:
     type: object
     properties:
