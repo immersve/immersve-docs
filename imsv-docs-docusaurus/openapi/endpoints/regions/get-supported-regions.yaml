@@ -1,5 +1,5 @@
 tags:
-  - supported-regions
+  - regions
 summary: Get Supported Regions
 operationId: get-supported-regions
 description: |
