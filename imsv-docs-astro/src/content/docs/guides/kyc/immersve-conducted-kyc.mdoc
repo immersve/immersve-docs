@@ -388,8 +388,8 @@ for the user to try again.
 ## Confirmation of KYC Completion
 
 Once redirected, check the spending prerequisites again to
-ensure no further KYC actions are required. Once there is no KYC prerequisite
-returned, and given all other checks are completed, the cardholder will be
+ensure no further KYC actions are required. When all prerequisites
+indicate status is "ok" then the cardholder will be
 allowed to create and use their Immersve card.
 
 **Example Request:**
@@ -412,10 +412,22 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 
 ```json
 {
-  "prerequisites": []
+  "prerequisites": [
+    {
+      "stage": "aml",
+      "status": "ok"
+    },
+    {
+      "stage": "kyc",
+      "status": "ok"
+    },
+    {
+      "stage": "funding",
+      "status": "ok"
+    }
+  ]
 }
 ```
-##
 
 ## Testing
 
