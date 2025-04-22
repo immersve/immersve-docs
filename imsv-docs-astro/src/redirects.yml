@@ -47,6 +47,7 @@
 /api-reference/reverse-a-transaction: "/api-reference/submit-simulator-reversal"
 /api-reference/set-a-card-pin: "/api-reference/set-card-pin"
 /api-reference/submit-partner-kyc-statement: "/api-reference/submit-kyc-statement"
+/api-reference/supported-regions: "/api-reference/regions"
 /api-reference/update-the-allowed-origins: "/api-reference/update-allowed-origins"
 /category/api-reference: "/api-reference/category/api-reference"
 /category/custodial-wallets: "/use-cases/custodial-wallets"
