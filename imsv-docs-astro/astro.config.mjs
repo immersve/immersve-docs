@@ -34,9 +34,12 @@ export default defineConfig({
             { label: 'Core Concepts', autogenerate: { directory: 'guides/core-concepts' } },
             { label: 'Card Issuing Apps', autogenerate: { directory: 'guides/card-issuing-apps' } },
             { label: 'KYC' , items: [
+              // Customizing the label of the KYC intro guide means we cannot
+              // autogenerate the items.
               { label: 'Introduction', link: 'guides/kyc' },
               { label: 'Partner Conducted KYC', link: 'guides/partner-conducted-kyc' },
               { label: 'Immersve Conducted KYC', link: 'guides/immersve-conducted-kyc' },
+              { label: 'KYC Spending Prerequisites', link: 'guides/kyc-spending-prerequisites' },
             ]},
             { label: 'Supported Chains', autogenerate: { directory: 'guides/supported-chains' } },
             { label: 'Supported Tokens', autogenerate: { directory: 'guides/supported-tokens' } },
