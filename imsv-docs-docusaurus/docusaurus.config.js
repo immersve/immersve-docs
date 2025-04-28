@@ -61,7 +61,7 @@ async function createConfig() {
           },
           items: [
             {
-              label: 'API',
+              label: 'APIs',
               href: '/',
               position: 'right',
             },
