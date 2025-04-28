@@ -12,6 +12,8 @@ tags:
     x-displayName: Authentication
   - name: accounts
     x-displayName: Accounts
+  - name: client-application
+    x-displayName: Client Applications
   - name: card
     x-displayName: Cards
   - name: contact-details
@@ -30,8 +32,6 @@ tags:
     x-displayName: Prerequisites
   - name: simulator
     x-displayName: Simulator
-  - name: client-application
-    x-displayName: Client Applications
   - name: regions
     x-displayName: Regions
   - name: support
