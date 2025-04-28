@@ -6,7 +6,9 @@ import socialImg from '@assets/card-whoosh-600.png';
 
 const { entry, siteTitle } = Astro.props;
 const pageUrl = new URL(Astro.url.pathname, Astro.site);
-const description = entry.data.description || config.description;
+const description = (entry.data.description ?? config.description ?? '')
+  .replace(/\s+/g, ' ')
+  .trim();
 
 // Social image needs to be absolute URL.
 // Note, this URL is only valid on production build.
