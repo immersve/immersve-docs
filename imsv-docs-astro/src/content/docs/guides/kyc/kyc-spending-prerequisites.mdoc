@@ -1,0 +1,216 @@
+---
+title: KYC Spending Prerequisites
+slug: guides/kyc-spending-prerequisites
+description: |
+  How to handle instructions from the Get Spending Prerequisites endpoint for
+  Immersve cardholder onboarding.
+---
+
+
+The "kyc" stage of the {% link endpoint="get-spending-prerequisites" /%}
+endpoint response provides integrators with dynamic instructions that guide
+users through identity verification. These instructions adapt based on the
+user's current progress, regional regulations, and the integration style (either
+{% link page="guides/partner-conducted-kyc" /%} or {% link
+page="guides/immersve-conducted-kyc" /%}).
+
+This guide explains the ***possible KYC prerequisite actions*** your application
+may need to handle and the ***expected KYC user onboarding scenarios*** where these
+actions appear. By understanding both the individual actions and the context in
+which they appear, integrators can create a seamless and compliant KYC
+experience for users.
+
+
+## KYC Prerequisite Scenarios
+
+The following sections show indicative KYC prerequisite instructions that will
+be returned from the {% link endpoint="get-spending-prerequisites" /%} endpoint under various
+cardholder onboarding scenarios. The "funding" and "aml" prerequisite
+instructions are excluded for brevity.
+
+
+### New Cardholder
+
+A first-time user who has not yet started the Immersve KYC session. Additional
+KYC instructions such as "submit_contact_phone" will also be included if those
+details have not been supplied and the relevant Immersve KYC steps have been
+requested to be skipped.
+
+```json
+[{
+  "stage": "kyc",
+  "status": "action-required",
+  "actionType": "follow_kyc_url",
+  "params": {
+    "kycUrl": "https://verify.immersve.com/..."
+  }
+}]
+```
+
+### New Cardholder (Partner Conducted)
+
+A first-time user for whom a partner-conducted KYC statement has not been
+received. Additional KYC instructions such as "submit_contact_phone" will also
+be included if those have not been supplied.
+
+```json
+[{
+  "stage": "kyc",
+  "status": "action-required",
+  "actionType": "submit_kyc_statement"
+}]
+```
+
+
+### Background Checks In-Progress
+
+When all information has been submitted by actioning the KYC instructions the
+KYC instruction will have status "pending" while background checks are being
+completed.
+
+```json
+[{
+  "stage": "kyc",
+  "status": "pending"
+}]
+```
+
+### Background Checks Failed (Partner Conducted)
+When cardholder KYC checks have been completed, but some checks have failed or more information is required. A reason code may be included to explain why the application was not successful. Reason codes are detailed at the bottom of this guide.
+```json
+[{
+  "stage": "kyc",
+  "status": "action-required",
+  "actionType": "submit_kyc_statement",
+  "params": {
+    "reasons": [
+      { "code": "ADDRESS_NOT_VERIFIED" }
+    ]
+  }
+}]
+```
+
+
+### KYC Requirements Completed
+
+When all cardholder KYC checks have been completed successfully then a
+prerequisite instruction will indicate the KYC stage is "ok".
+
+```json
+[{
+  "stage": "kyc",
+  "status": "ok",
+}]
+```
+
+
+### Background Checks Permanently Failed
+
+If a cardholder account has failed KYC checks and retry is not allowed then the
+status will be "blocked".
+
+```json
+[{
+  "stage": "kyc",
+  "status": "blocked"
+}]
+```
+
+
+## KYC Prerequisite Actions
+
+This section lists all possible KYC prerequisite actions that may be returned by
+the {% link endpoint="get-spending-prerequisites" /%} endpoint. Each action describes a specific user
+task or information request that must be completed before proceeding. For each
+action, we explain: what the instruction means, what is the unique identifier
+(the "actionType" field), and what additional parameters are included. Understanding
+these actions is key to building flexible and user-friendly KYC flows.
+
+
+### Follow KYC URL
+
+**Action Type:** `follow_kyc_url`
+
+**Description:** The user needs to complete the Immersve KYC experience in a web
+browser. Presented when KYC mode is `immersve-conducted` and the cardholder’s
+KYC profile needs more information.
+
+**Params:**
+| Name | Example | Description |
+| --- | --- | --- |
+| kycUrl | https://verify.immersve.com/... | The Immersve cardholder KYC URL to open in a web browser. |
+
+
+### Submit KYC Statement
+
+**Action Type:** `submit_kyc_statement`
+
+**Description:** Cardholder details need to be submitted via **Submit KYC
+Statement** endpoint. Presented when KYC mode is `partner-conducted` and a KYC
+statement is missing, incomplete, or incorrect.
+
+**Params:**
+
+| Name | Example | Description |
+| --- | --- | --- |
+| reasons | [ { "code": "ADDRESS_NOT_VERIFIED" } ] | Array of detailed KYC statement rejection reasons indicating why resubmission is required. See KYC Reason Codes below. |
+
+
+### Submit Contact Email
+
+**Action Type:** `submit_contact_email`
+
+**Description:** Cardholder email address needs to be set via **Submit Contact
+Channels** endpoint. Presented when KYC mode is "partner-conducted" or the
+"contact-channels" step is skipped.
+
+**Params:** _none_
+
+
+### Submit Contact Phone
+
+**Action Type:** `submit_contact_phone`
+
+**Description:** Cardholder phone number needs to be set via **Submit Contact
+Channels** endpoint. Presented when KYC mode is "partner-conducted" or the
+"contact-channels" step is skipped.
+
+**Params:** _none_
+
+
+### Submit Residential Address
+
+**Action Type:** `submit_residential_addresses`
+
+**Description:** Cardholder residential address needs to be set via the **Submit
+Residential Address** endpoint. Presented when KYC mode is "immersve-conducted"
+and the "residential-address" step is skipped.
+
+**Params:** _none_
+
+
+### Submit Expected Spend
+
+**Action Type:** `set_expected_spend_amount`
+
+**Description:** Cardholder expected spend needs to be set via the **Set
+Expected Spend** endpoint. Presented when KYC mode is `partner-conducted` or the
+`expected-spend` step is skipped.
+
+**Params:** _none_
+
+
+## KYC Reason Codes
+
+| Code | Description |
+|-|-|
+| ID_NOT_VERIFIED             | Identity document could not be matched to an issuer database record. |
+| NAME_NOT_VERIFIED           | Name could not be matched in the required number of databases. |
+| ADDRESS_NOT_VERIFIED        | Residential Address could not be matched in the required number of databases. |
+| DOB_NOT_VERIFIED            | Date of Birth could not be matched in the required number of databases. |
+| DOB_OR_ADDRESS_NOT_VERIFIED | Date of Birth or Address could not be verified in the required number of databases. |
+| VISA_NOT_FOUND              | Eligible visa could not be found or verified. |
+| BIOMETRICS_FAILED           | Unsuccessful biometrics check. |
+| PROFILE_LIMIT_REACHED       | Maximum number of profiles reached. |
+| SUSPENDED                   | Cardholder is suspended. |
+| UNKNOWN                     | Failure reason could not be determined. |
