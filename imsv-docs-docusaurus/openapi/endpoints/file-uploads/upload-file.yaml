@@ -2,7 +2,11 @@ tags:
   - kyc
 summary: Upload A File
 operationId: upload-file
-description: Upload a file.
+description: |
+      Upload a file.
+      :::note
+      This endpoint is for Immersve-conducted KYC only.
+      :::
 requestBody:
   content:
     application/json:
@@ -12,6 +16,8 @@ requestBody:
           purpose:
             type: string
             description: The purpose this document is being uploaded for.
+            enum:
+              - kyc-doc-upload
             required: true
           accountId:
             type: string

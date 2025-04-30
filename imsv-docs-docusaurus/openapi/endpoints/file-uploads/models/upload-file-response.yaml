@@ -1,6 +1,6 @@
 type: object
 properties:
-  Id:
+  id:
     type: string
     description: Id of the file.
     example: "1234567890"
