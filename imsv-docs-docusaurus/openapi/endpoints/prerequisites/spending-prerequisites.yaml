@@ -4,9 +4,18 @@ post:
   summary: Get Spending Prerequisites
   operationId: get-spending-prerequisites
   description: |
-    This endpoint specifies the necessary prerequisites that must be met for a cardholder to successfully create a card and transact with it against a specified Funding Source.
-    The caller can specify the desired spend and receive the necessary transactions required, accounting for existing deposits, to deposit funds on-chain to meet that spend.
-    It includes any KYC and AML requirements.
+    Check for outstanding cardholder "Spending Prerequisites". Clients should
+    use the returned prerequisite instructions to guide the user through the
+    card onboarding user journey.
+
+    Spending prerequisites are divided into three stages: Funding, KYC, and AML.
+    When each of these three stages indicate the status is "ok" then the
+    cardholder can proceed to transact with their card.
+
+    See the [KYC Spending Prerequisites](https://docs.immersve.com/guides/kyc-spending-prerequisites/)
+    guide for more details about how to consume the prerequisite instructions
+    for your cardholder onboarding experience.
+
   requestBody:
     content:
       application/json:

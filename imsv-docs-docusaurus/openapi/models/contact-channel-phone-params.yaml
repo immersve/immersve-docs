@@ -1,8 +1,0 @@
-type: object
-properties:
-  status:
-    type: string
-    description: |
-      The cardholder's contact phone is missing and needs to be added.
-    enum:
-      - missing
