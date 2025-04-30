@@ -1,0 +1,44 @@
+tags:
+  - kyc
+summary: Upload A File
+operationId: upload-file
+description: Upload a file.
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          purpose:
+            type: string
+            description: The purpose this document is being uploaded for.
+            required: true
+          accountId:
+            type: string
+            description: Account Id of the given cardholder.
+            required: true
+          file:
+            type: string
+            description: Path of the file being uploaded.
+            required: true
+responses:
+  '200':
+    description: File successfully uploaded.
+    content:
+      application/json:
+        schema:
+          $ref: "./models/upload-file-response.yaml"
+  "403":
+    description: |
+      Subject is not allowed to perform the action with the reason stated in the `errorCode`
+
+      **FILE_TOO_LARGE**
+      The uploaded file exceeds the maximum size of 10mb.
+
+      **FILE_TYPE_INVALID**
+      The uploaded file does not match the acceptable MIME types.
+
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"

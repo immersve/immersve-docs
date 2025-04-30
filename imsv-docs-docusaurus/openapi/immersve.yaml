@@ -102,6 +102,9 @@ paths:
     $ref: "./endpoints/transactions/get-payment-notification.yaml"
   "/api/accounts/{accountId}/funding-sources":
     $ref: "./endpoints/funding-sources/list-funding-sources.yaml"
+  "/api/file-uploads":
+    post:
+      $ref: "./endpoints/file-uploads/upload-file.yaml"
   "/api/accounts/{cardholderAccountId}/partner-kyc-statement":
     put:
       $ref: "./endpoints/kyc/submit-partner-kyc-statement.yaml"

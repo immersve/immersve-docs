@@ -1,0 +1,37 @@
+type: object
+properties:
+  Id:
+    type: string
+    description: Id of the file.
+    example: "1234567890"
+  purpose:
+    type: string
+    description: The purpose the file is related to.
+    example: "kyc-doc-upload"
+  expiresAt:
+    type: string
+    description: Date when the file will be considered expired and subsequently deleted.
+    example: "kyc-doc-upload"
+  liveness:
+    type: string
+    description: The resource liveness mode.
+    enum:
+      - live
+      - test
+  accountId:
+    type: string
+    description: User account ID linked to file.
+    example: 057aa15913a57f50577234c8426534c0
+  fileName:
+    type: string
+    description: Name of file.
+    example: passport_scan.jpg
+  fileSize:
+    type: number
+    description: Size of the file in bytes.
+    example: 284573
+  mimeType:
+    type: string
+    description: The type of file.
+    example: application/pdf
+
