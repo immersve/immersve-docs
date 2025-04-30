@@ -43,11 +43,11 @@ export default function typographyStyles({ theme }: PluginUtils) {
         // Base
         color: 'var(--tw-prose-body)',
         fontSize: theme('fontSize.sm')[0],
-        lineHeight: theme('lineHeight.7'),
+        lineHeight: '1.65rem',
 
         // Text
         p: {
-          marginTop: theme('spacing.6'),
+          marginTop: theme('spacing.4'),
           marginBottom: theme('spacing.4'),
         },
         '[class~="lead"]': {
@@ -58,8 +58,8 @@ export default function typographyStyles({ theme }: PluginUtils) {
         // Lists
         ol: {
           listStyleType: 'decimal',
-          marginTop: theme('spacing.5'),
-          marginBottom: theme('spacing.5'),
+          marginTop: theme('spacing.4'),
+          marginBottom: theme('spacing.4'),
           paddingLeft: '1.625rem',
         },
         'ol[type="A"]': {
@@ -91,13 +91,13 @@ export default function typographyStyles({ theme }: PluginUtils) {
         },
         ul: {
           listStyleType: 'disc',
-          marginTop: theme('spacing.5'),
-          marginBottom: theme('spacing.5'),
+          marginTop: theme('spacing.4'),
+          marginBottom: theme('spacing.4'),
           paddingLeft: '1.625rem',
         },
         li: {
-          marginTop: theme('spacing.2'),
-          marginBottom: theme('spacing.2'),
+          marginTop: theme('spacing.1'),
+          marginBottom: theme('spacing.1'),
         },
         ':is(ol, ul) > li': {
           paddingLeft: theme('spacing[1.5]'),
@@ -172,32 +172,32 @@ export default function typographyStyles({ theme }: PluginUtils) {
         h1: {
           color: 'var(--tw-prose-headings)',
           fontWeight: '700',
-          fontSize: theme('fontSize.2xl')[0],
-          ...theme('fontSize.2xl')[1],
+          fontSize: theme('fontSize.3xl')[0],
+          ...theme('fontSize.3xl')[1],
           marginBottom: theme('spacing.2'),
         },
         h2: {
           color: 'var(--tw-prose-headings)',
           fontWeight: '600',
-          fontSize: theme('fontSize.lg')[0],
-          ...theme('fontSize.lg')[1],
+          fontSize: theme('fontSize.2xl')[0],
+          ...theme('fontSize.2xl')[1],
           marginTop: theme('spacing.10'),
-          marginBottom: theme('spacing.2'),
+          marginBottom: theme('spacing.4'),
         },
         h3: {
+          color: 'var(--tw-prose-headings)',
+          fontSize: theme('fontSize.lg')[0],
+          ...theme('fontSize.lg')[1],
+          fontWeight: '600',
+          marginTop: theme('spacing.8'),
+          marginBottom: theme('spacing.2'),
+        },
+        h4: {
           color: 'var(--tw-prose-headings)',
           fontSize: theme('fontSize.base')[0],
           ...theme('fontSize.base')[1],
           fontWeight: '600',
           marginTop: theme('spacing.6'),
-          marginBottom: theme('spacing.2'),
-        },
-        h4: {
-          color: 'var(--tw-prose-headings)',
-          fontSize: theme('fontSize.sm')[0],
-          ...theme('fontSize.sm')[1],
-          fontWeight: '600',
-          marginTop: theme('spacing.8'),
           marginBottom: theme('spacing.2'),
         },
 
