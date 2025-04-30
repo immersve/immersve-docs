@@ -5,6 +5,12 @@ properties:
     description: |
       A one-time, secure URL for redirecting the cardholder to the
       Immersve-conducted KYC user experience.
+  ctaHint:
+    type: string
+    description: |
+      Hint for supplying a meaningful call-to-action to the cardholder
+      explaining why action is needed.
+    enum: [ KYC_NOT_STARTED, KYC_NOT_COMPLETED, KYC_INFORMATION_NEEDED, KYC_EXPIRING ]
   reasons:
     type: array
     description: |
@@ -36,6 +42,7 @@ properties:
     type: string
     description: |
       The cardholder's KYC status. This attribute is deprecated. Clients should
-      use the prerequisite `status` field to detect when checks are in progress
-      and the params `reasons` field to detect when KYC checks have failed.
+      use the prerequisite `status` field to detect when checks are in progress,
+      the `ctaHint` field to determine why action is required, and the params
+      `reasons` field to detect when or why KYC checks have failed.
     enum: [ check_in_progress, kyc_required, kyc_check_failed ]

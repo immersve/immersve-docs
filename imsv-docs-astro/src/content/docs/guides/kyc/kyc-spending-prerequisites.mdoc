@@ -136,9 +136,22 @@ browser. Presented when KYC mode is `immersve-conducted` and the cardholder’s
 KYC profile needs more information.
 
 **Params:**
-| Name | Example | Description |
-| --- | --- | --- |
-| kycUrl | {%wrap "[/.]"%}https://verify.immersve.com/08c37{%/wrap%} | The Immersve cardholder KYC URL to open in a web browser. |
+{% table %}
+* Name
+* Example
+* Description
+---
+* kycUrl
+* {%wrap "[/.]"%}https://verify.immersve.com/08c37{%/wrap%}
+* The Immersve cardholder KYC URL to open in a web browser.
+---
+* ctaHint
+* kyc-not-started
+* A qualifier to help determine appropriate call-to-acton messaging. See the
+  "KYC Call-To-Action Hints" below.
+---
+{% /table %}
+
 
 
 ### Submit KYC Statement
@@ -198,6 +211,29 @@ endpoint="update-expected-spend-amount" /%} endpoint. Presented when KYC mode is
 `partner-conducted` or the `expected-spend` step is skipped.
 
 **Params:** _none_
+
+
+## KYC Call-To-Action Hints
+
+{% table %}
+* Name
+* Description
+---
+* {% wrap "_" %}KYC_NOT_STARTED{%/wrap%}
+* New cardholder has not started the KYC onboarding journey.
+---
+* {% wrap "_" %}KYC_NOT_COMPLETED{%/wrap%}
+* Returning cardholder with partially completed KYC.
+---
+* {% wrap "_" %}KYC_INFORMATION_NEEDED{%/wrap%}
+* Returning cardholder needs to supply more information due to failed checks.
+---
+* {% wrap "_" %}KYC_EXPIRING{%/wrap%}
+* Returning cardholder needs to supply more information due to verification
+  expiry or updated risk scoring. A "dueAt" date will indicate when the action
+  needs to be completed.
+---
+{% /table %}
 
 
 ## KYC Reason Codes
