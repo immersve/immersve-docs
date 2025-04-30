@@ -482,6 +482,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"resources/typography.mdoc": {
+	id: "resources/typography.mdoc";
+  slug: "typography";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "use-cases/blockchains.mdoc": {
 	id: "use-cases/blockchains.mdoc";
   slug: "use-cases/blockchains";
