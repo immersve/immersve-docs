@@ -42,7 +42,7 @@ requested to be skipped.
   "status": "action-required",
   "actionType": "follow_kyc_url",
   "params": {
-    "kycUrl": "https://verify.immersve.com/..."
+    "kycUrl": "https://verify.immersve.com/08c37"
   }
 }]
 ```
@@ -138,7 +138,7 @@ KYC profile needs more information.
 **Params:**
 | Name | Example | Description |
 | --- | --- | --- |
-| kycUrl | https://verify.immersve.com/... | The Immersve cardholder KYC URL to open in a web browser. |
+| kycUrl | {%wrap "[/.]"%}https://verify.immersve.com/08c37{%/wrap%} | The Immersve cardholder KYC URL to open in a web browser. |
 
 
 ### Submit KYC Statement
@@ -153,7 +153,7 @@ statement is missing, incomplete, or incorrect.
 
 | Name | Example | Description |
 | --- | --- | --- |
-| reasons | [ { "code": "ADDRESS_NOT_VERIFIED" } ] | Array of detailed KYC statement rejection reasons indicating why resubmission is required. See KYC Reason Codes below. |
+| reasons | [ { "code": "{%wrap "_"%}ADDRESS_NOT_VERIFIED{%/wrap%}" } ] | Array of detailed KYC statement rejection reasons indicating why resubmission is required. See KYC Reason Codes below. |
 
 
 ### Submit Contact Email
@@ -204,13 +204,13 @@ Expected Spend** endpoint. Presented when KYC mode is `partner-conducted` or the
 
 | Code | Description |
 |-|-|
-| ID_NOT_VERIFIED             | Identity document could not be matched to an issuer database record. |
-| NAME_NOT_VERIFIED           | Name could not be matched in the required number of databases. |
-| ADDRESS_NOT_VERIFIED        | Residential Address could not be matched in the required number of databases. |
-| DOB_NOT_VERIFIED            | Date of Birth could not be matched in the required number of databases. |
-| DOB_OR_ADDRESS_NOT_VERIFIED | Date of Birth or Address could not be verified in the required number of databases. |
-| VISA_NOT_FOUND              | Eligible visa could not be found or verified. |
-| BIOMETRICS_FAILED           | Unsuccessful biometrics check. |
-| PROFILE_LIMIT_REACHED       | Maximum number of profiles reached. |
-| SUSPENDED                   | Cardholder is suspended. |
-| UNKNOWN                     | Failure reason could not be determined. |
+| {% wrap "_" %}ID_NOT_VERIFIED{%/wrap%}             | Identity document could not be matched to an issuer database record. |
+| {% wrap "_" %}NAME_NOT_VERIFIED{%/wrap%}           | Name could not be matched in the required number of databases. |
+| {% wrap "_" %}ADDRESS_NOT_VERIFIED{%/wrap%}        | Residential Address could not be matched in the required number of databases. |
+| {% wrap "_" %}DOB_NOT_VERIFIED{%/wrap%}            | Date of Birth could not be matched in the required number of databases. |
+| {% wrap "_" %}DOB_OR_ADDRESS_NOT_VERIFIED{%/wrap%} | Date of Birth or Address could not be verified in the required number of databases. |
+| {% wrap "_" %}VISA_NOT_FOUND{%/wrap%}              | Eligible visa could not be found or verified. |
+| {% wrap "_" %}BIOMETRICS_FAILED{%/wrap%}           | Unsuccessful biometrics check. |
+| {% wrap "_" %}PROFILE_LIMIT_REACHED{%/wrap%}       | Maximum number of profiles reached. |
+| {% wrap "_" %}SUSPENDED{%/wrap%}                   | Cardholder is suspended. |
+| {% wrap "_" %}UNKNOWN{%/wrap%}                     | Failure reason could not be determined. |
