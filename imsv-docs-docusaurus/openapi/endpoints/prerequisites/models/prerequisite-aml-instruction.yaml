@@ -1,0 +1,12 @@
+type: object
+properties:
+  stage:
+    enum: [ aml ]
+  status:
+    enum: [ pending, blocked, ok ]
+  type:
+    deprecated: true
+    type: string
+    description: |
+      The prerequisite instruction type. This attribute is
+      deprecated. Clients should use `stage` instead.

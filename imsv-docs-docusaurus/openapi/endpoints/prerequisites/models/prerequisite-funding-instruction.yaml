@@ -1,0 +1,26 @@
+type: object
+required: [ stage, status ]
+properties:
+  stage:
+    enum: [ funding ]
+  status:
+    enum: [ action-required, pending, blocked, ok ]
+  actionType:
+    enum:
+      - smart_contract_write
+      - simulator_call
+  type:
+    deprecated: true
+    type: string
+    description: |
+      The prerequisite instruction type. This attribute is
+      deprecated. Clients should use `stage` and `actionType` instead.
+  params:
+    description: |
+      The parameters for the prerequisite instruction, if applicable. Specific
+      parameters vary based on the prerequisite instruction's action type.
+    oneOf:
+      - title: Smart Contract Write Params
+        $ref: ./prerequisite-blockchain-funding-params.yaml
+      - title: Simulator Call Params
+        $ref: ./prerequisite-simulator-funding-params.yaml
