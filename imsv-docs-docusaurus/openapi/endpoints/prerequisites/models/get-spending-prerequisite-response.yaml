@@ -18,17 +18,6 @@ properties:
             - pending
             - blocked
             - ok
-        type:
-          deprecated: true
-          type: string
-          enum:
-            - smart_contract_write
-            - kyc
-            - aml-review
-            - contact_email
-            - contact_phone
-            - simulator_call
-            - expected_spend_amount
         actionType:
           type: string
           enum:
@@ -40,15 +29,33 @@ properties:
             - aml-review
             - set_expected_spend_amount
             - submit_residential_addresses
+            - simulator_call
+        type:
+          deprecated: true
+          type: string
+          enum:
+            - smart_contract_write
+            - kyc
+          description: |
+            The prerequisite instruction type. This attribute is
+            deprecated. Clients should use `stage` and `actionType` instead.
         params:
+          description: |
+            The parameters for the prerequisite instruction. Specific parameters
+            vary based on the prerequisite instruction's action type. The action params are:
+
+            **Blockchain Funding Params** — Parameters required to complete a
+              `smart_contract_write` action.
+
+            **Simulator Funding Params** — Parameters required to complete a
+              `simulator_call` action.
+
+            **KYC Params** — Parameters required to complete a
+              `submit_kyc_statement` or `follow_kyc_url` action.
           oneOf:
-            - $ref: "../../../models/evm-smart-contract-write-params.yaml"
-              title: smart_contract_write
-            - $ref: "../../../models/kyc-params.yaml"
-              title: kyc
-            - $ref: "../../../models/contact-channel-email-params.yaml"
-              title: contact_email
-            - $ref: "../../../models/contact-channel-phone-params.yaml"
-              title: contact_phone
-            - $ref: "../../../models/simulator-deposit.yaml"
-              title: simulator_call
+            - title: Blockchain Funding Params
+              $ref: "../../../models/evm-smart-contract-write-params.yaml"
+            - title: Simulator Funding Params
+              $ref: "../../../models/simulator-deposit.yaml"
+            - title: KYC Params
+              $ref: "../../../models/kyc-params.yaml"

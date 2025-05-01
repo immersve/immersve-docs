@@ -1,25 +1,22 @@
 type: object
 properties:
-  status:
+  kycUrl:
     type: string
     description: |
-      The cardholder's KYC status.
-      - check_in_progress: KYC check is in progress, request spending prerequisites again later
-      - kyc_required: KYC is required, initiate the process by submitting a KYC statement and requesting spending prerequisites
-      - kyc_check_failed: KYC check failed, check the submitted KYC statement and retry the process or contact support
-    enum:
-      - check_in_progress
-      - kyc_required
-      - kyc_check_failed
+      A one-time, secure URL for redirecting the cardholder to the
+      Immersve-conducted KYC user experience.
   reasons:
     type: array
-    description: List of the reasons for the failed KYC check
+    description: |
+      List of specific reasons why a KYC action is required. These coded reasons
+      can be used to help prompt users for more information when KYC background
+      checks have failed.
     items:
       type: object
       properties:
         code:
           type: string
-          description: Code of the failed check
+          description: KYC action reason code.
           enum:
             - ID_NOT_VERIFIED
             - NAME_NOT_VERIFIED
@@ -29,10 +26,16 @@ properties:
             - VISA_NOT_FOUND
             - BIOMETRICS_FAILED
             - PROFILE_LIMIT_REACHED
+            - SUSPENDED
             - UNKNOWN
         description:
           type: string
-          description: Human readable description of the failed check
-  kycUrl:
+          description: Human readable reason description.
+  status:
+    deprecated: true
     type: string
-    description: A URL for the KYC process (if conducted by Immersve)
+    description: |
+      The cardholder's KYC status. This attribute is deprecated. Clients should
+      use the prerequisite `status` field to detect when checks are in progress
+      and the params `reasons` field to detect when KYC checks have failed.
+    enum: [ check_in_progress, kyc_required, kyc_check_failed ]
