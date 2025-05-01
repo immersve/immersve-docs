@@ -42,7 +42,7 @@ properties:
         params:
           description: |
             The parameters for the prerequisite instruction. Specific parameters
-            vary based on the type of prerequisite instruction's action type. The action params are:
+            vary based on the prerequisite instruction's action type. The action params are:
 
             **Blockchain Funding Params** — Parameters required to complete a
               `smart_contract_write` action.
