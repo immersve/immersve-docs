@@ -26,7 +26,6 @@ properties:
             - submit_contact_phone
             - follow_kyc_url
             - submit_kyc_statement
-            - aml-review
             - set_expected_spend_amount
             - submit_residential_addresses
             - simulator_call
