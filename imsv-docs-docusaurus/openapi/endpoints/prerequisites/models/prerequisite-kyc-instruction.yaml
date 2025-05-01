@@ -1,0 +1,26 @@
+type: object
+required: [ stage, status ]
+properties:
+  stage:
+    enum: [ kyc ]
+  status:
+    enum: [ action-required, pending, blocked, ok ]
+  actionType:
+    enum:
+      - submit_contact_email
+      - submit_contact_phone
+      - follow_kyc_url
+      - submit_kyc_statement
+      - set_expected_spend_amount
+      - submit_residential_addresses
+  type:
+    deprecated: true
+    type: string
+    description: |
+      The prerequisite instruction type. This attribute is
+      deprecated. Clients should use `stage` and `actionType` instead.
+  params:
+    allOf:
+      - description: |
+          The parameters for the prerequisite instruction, if applicable.
+        $ref: ./prerequisite-kyc-params.yaml

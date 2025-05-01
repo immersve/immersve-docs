@@ -1,0 +1,9 @@
+discriminator:
+  propertyName: stage
+anyOf:
+  - title: Funding Instruction
+    $ref: ./prerequisite-funding-instruction.yaml
+  - title: KYC Instruction
+    $ref: ./prerequisite-kyc-instruction.yaml
+  - title: AML Instruction
+    $ref: ./prerequisite-aml-instruction.yaml
