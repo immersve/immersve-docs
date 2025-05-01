@@ -74,25 +74,22 @@ post:
                   "status": "action-required",
                   "actionType": "follow_kyc_url",
                   "params": {
-                    "status": "kyc_required",
                     "kycUrl": "https://verify.immersve.com"
+                    "reasons": [{
+                      "code": "ADDRESS_NOT_VERIFIED"}],
+                      "message": "Residential Address could not be matched in the required number of databases"
+                    }]
                   }
                 },
                 {
                   "stage": "kyc",
                   "status": "action-required"
                   "actionType": "submit_contact_email",
-                  "params": {
-                    "status": "missing"
-                  }
                 },
                 {
                   "stage": "kyc",
                   "status": "action-required",
                   "actionType": "submit_contact_phone",
-                  "params": {
-                    "status": "missing"
-                  }
                 },
                 {
                   "stage": "kyc",
@@ -102,7 +99,6 @@ post:
                 {
                   "stage": "aml",
                   "status": "pending",
-                  "params": {}
                 }
               ]
             }
