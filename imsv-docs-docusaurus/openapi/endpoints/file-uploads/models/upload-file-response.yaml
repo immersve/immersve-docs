@@ -1,4 +1,12 @@
 type: object
+required:
+  - id
+  - purpose
+  - liveness
+  - accountId
+  - fileName
+  - fileSize
+  - mimeType
 properties:
   id:
     type: string
@@ -8,10 +16,6 @@ properties:
     type: string
     description: The purpose the file is related to.
     example: "kyc-doc-upload"
-  expiresAt:
-    type: string
-    description: Date when the file will be considered expired and subsequently deleted.
-    example: "kyc-doc-upload"
   liveness:
     type: string
     description: The resource liveness mode.
@@ -20,7 +24,7 @@ properties:
       - test
   accountId:
     type: string
-    description: User account ID linked to file.
+    description: Id of the account owning the file upload.
     example: 057aa15913a57f50577234c8426534c0
   fileName:
     type: string
@@ -34,4 +38,8 @@ properties:
     type: string
     description: The type of file.
     example: application/pdf
+  expiresAt:
+    type: string
+    description: Date when the file will be considered expired and subsequently deleted.
+    example: "2025-04-30"
 

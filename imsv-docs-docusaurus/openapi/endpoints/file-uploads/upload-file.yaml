@@ -1,32 +1,38 @@
 tags:
-  - kyc
+  - file-uploads
 summary: Upload A File
 operationId: upload-file
-description: |
-      Upload a file.
-      :::note
-      This endpoint is for Immersve-conducted KYC only.
-      :::
+description: Upload a file.
 requestBody:
   content:
-    application/json:
+    multipart/form-data:
       schema:
         type: object
+        required:
+          - purpose
+          - accountId
+          - file
+          - fileName
+          - mimeType
         properties:
           purpose:
             type: string
             description: The purpose this document is being uploaded for.
             enum:
               - kyc-doc-upload
-            required: true
           accountId:
             type: string
-            description: Account Id of the given cardholder.
-            required: true
+            description: Id of the account owning the file upload.
           file:
             type: string
-            description: Path of the file being uploaded.
-            required: true
+            format: binary
+            description: The file being uploaded.
+          fileName:
+            type: string
+            description: Name of the file.
+          mimeType:
+            type: string
+            description: The type of file.
 responses:
   '200':
     description: File successfully uploaded.

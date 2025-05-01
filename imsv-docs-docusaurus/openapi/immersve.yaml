@@ -28,6 +28,8 @@ tags:
     x-displayName: Transactions
   - name: kyc
     x-displayName: KYC
+  - name: file-uploads
+    x-displayName: File Uploads
   - name: prerequisites
     x-displayName: Prerequisites
   - name: simulator
