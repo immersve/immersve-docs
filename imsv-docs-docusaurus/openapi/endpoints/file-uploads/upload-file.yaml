@@ -9,30 +9,20 @@ requestBody:
       schema:
         type: object
         required:
+          - file
           - purpose
           - accountId
-          - file
-          - fileName
-          - mimeType
         properties:
-          purpose:
-            type: string
-            description: The purpose this document is being uploaded for.
-            enum:
-              - kyc-doc-upload
-          accountId:
-            type: string
-            description: Id of the account owning the file upload.
           file:
             type: string
             format: binary
             description: The file being uploaded.
-          fileName:
+          purpose:
             type: string
-            description: Name of the file.
-          mimeType:
+            description: The purpose this document is being uploaded for.
+          accountId:
             type: string
-            description: The type of file.
+            description: Id of the account owning the file upload.
 responses:
   '200':
     description: File successfully uploaded.
