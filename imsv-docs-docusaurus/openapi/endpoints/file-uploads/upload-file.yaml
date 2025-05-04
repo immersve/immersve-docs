@@ -1,6 +1,6 @@
 tags:
   - file-uploads
-summary: Upload A File
+summary: Upload File
 operationId: upload-file
 description: Upload a file.
 requestBody:
@@ -13,16 +13,16 @@ requestBody:
           - purpose
           - accountId
         properties:
-          file:
-            type: string
-            format: binary
-            description: The file being uploaded.
           purpose:
             type: string
             description: The purpose this document is being uploaded for.
           accountId:
             type: string
             description: Id of the account owning the file upload.
+          file:
+            type: string
+            format: binary
+            description: The file being uploaded.
 responses:
   '200':
     description: File successfully uploaded.
