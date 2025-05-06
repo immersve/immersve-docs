@@ -4,14 +4,15 @@ summary: Upload File
 operationId: upload-file
 description: |
   Upload a file. Note that the file must always be the last parameter in the request body.
+
+  Example request using curl:
   ```bash
-  curl -L 'https://test.immersve.com/api/file-uploads' \
-  -H 'Content-Type: multipart/form-data' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer <TOKEN>' \
-  -F 'purpose="kyc-doc-upload"' \
-  -F 'accountId="accountId"' \
-  -F 'file=@"/path/to/file"'
+  curl 'https://test.immersve.com/api/file-uploads' \
+    -H 'Content-Type: multipart/form-data' \
+    -H 'Authorization: Bearer <TOKEN>' \
+    -F 'purpose="kyc-doc-upload"' \
+    -F 'accountId="accountId"' \
+    -F 'file=@"/path/to/file"'
   ```
 requestBody:
   content:
@@ -24,8 +25,9 @@ requestBody:
           - accountId
         properties:
           purpose:
-            type: string
             description: The purpose this document is being uploaded for.
+            enum:
+              - kyc-doc-upload
           accountId:
             type: string
             description: Id of the account owning the file upload.

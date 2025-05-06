@@ -14,15 +14,14 @@ properties:
     description: Id of the file.
     example: "1234567890"
   purpose:
-    type: string
     description: The purpose the file is related to.
     example: "kyc-doc-upload"
+    enum:
+      - kyc-doc-upload
   liveness:
     type: string
     description: The resource liveness mode.
-    enum:
-      - live
-      - test
+    enum: [live, test]
   accountId:
     type: string
     description: Id of the account owning the file upload.
