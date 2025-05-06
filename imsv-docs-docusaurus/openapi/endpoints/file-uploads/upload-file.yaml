@@ -3,10 +3,16 @@ tags:
 summary: Upload File
 operationId: upload-file
 description: |
-  Upload a file.
-  :::note
-  The file must always be sent as the last parameter in the request body.
-  :::
+  Upload a file. Note that the file must always be the last parameter in the request body.
+  ```bash
+  curl -L 'https://test.immersve.com/api/file-uploads' \
+  -H 'Content-Type: multipart/form-data' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer <TOKEN>' \
+  -F 'purpose="kyc-doc-upload"' \
+  -F 'accountId="accountId"' \
+  -F 'file=@"/path/to/file"'
+  ```
 requestBody:
   content:
     multipart/form-data:
