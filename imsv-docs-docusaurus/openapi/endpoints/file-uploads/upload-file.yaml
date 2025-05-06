@@ -2,7 +2,11 @@ tags:
   - file-uploads
 summary: Upload File
 operationId: upload-file
-description: Upload a file.
+description: |
+  Upload a file.
+  :::note
+  The file must always be sent as the last parameter in the request body.
+  :::
 requestBody:
   content:
     multipart/form-data:
