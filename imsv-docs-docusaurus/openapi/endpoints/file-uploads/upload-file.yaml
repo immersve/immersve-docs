@@ -1,0 +1,58 @@
+tags:
+  - file-uploads
+summary: Upload File
+operationId: upload-file
+description: |
+  Upload a file. Note that the file must always be the last parameter in the request body.
+
+  Example request using curl:
+  ```bash
+  curl 'https://test.immersve.com/api/file-uploads' \
+    -H 'Content-Type: multipart/form-data' \
+    -H 'Authorization: Bearer <TOKEN>' \
+    -F 'purpose="kyc-doc-upload"' \
+    -F 'accountId="accountId"' \
+    -F 'file=@"/path/to/file"'
+  ```
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - file
+          - purpose
+          - accountId
+        properties:
+          purpose:
+            description: The purpose this document is being uploaded for.
+            enum:
+              - kyc-doc-upload
+          accountId:
+            type: string
+            description: Id of the account owning the file upload.
+          file:
+            type: string
+            format: binary
+            description: The file being uploaded.
+responses:
+  '200':
+    description: File successfully uploaded.
+    content:
+      application/json:
+        schema:
+          $ref: "./models/upload-file-response.yaml"
+  "403":
+    description: |
+      Subject is not allowed to perform the action with the reason stated in the `errorCode`
+
+      **FILE_TOO_LARGE**
+      The uploaded file exceeds the maximum size of 10mb.
+
+      **FILE_TYPE_INVALID**
+      The uploaded file does not match the acceptable MIME types.
+
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"
