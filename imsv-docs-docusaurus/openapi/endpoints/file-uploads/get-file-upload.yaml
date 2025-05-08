@@ -7,7 +7,7 @@ description: |
 parameters:
   - name: fileUploadId
     in: path
-    description: Primary identifier of the file upload to fetch
+    description: Primary identifier of the file upload to fetch.
     required: true
     schema:
       type: string
@@ -17,11 +17,11 @@ responses:
     content:
       application/json:
         schema:
-          $ref: "./models/get-file-upload-response.yaml"
+          $ref: "./models/upload-file-response.yaml"
 
   "403":
     description: |
-      User is not allowed to perform the action with the reason stated in the `errorCode`
+      User is not allowed to perform the action with the reason stated in the `errorCode`.
 
       **FORBIDDEN**
       Insufficient permissions to perform the action.

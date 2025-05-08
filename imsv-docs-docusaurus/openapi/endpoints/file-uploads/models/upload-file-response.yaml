@@ -40,7 +40,7 @@ properties:
     example: application/pdf
   status:
     type: string
-    description: The current status of the file upload
+    description: The current status of the file upload.
     enum:
       - created
       - deleting
