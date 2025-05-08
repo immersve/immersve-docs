@@ -3,7 +3,7 @@ tags:
 summary: Get File Upload
 operationId: get-file-upload
 description: |
-  Retrieve the meta data of a file upload.
+  Retrieve the meta data of a file upload by a given id.
 parameters:
   - name: fileUploadId
     in: path
