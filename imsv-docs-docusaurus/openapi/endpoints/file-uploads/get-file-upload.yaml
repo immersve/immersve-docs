@@ -14,7 +14,6 @@ parameters:
 
 responses:
   '200':
-    description: File successfully uploaded.
     content:
       application/json:
         schema:
