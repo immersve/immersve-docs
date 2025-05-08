@@ -1,0 +1,51 @@
+type: object
+required:
+  - id
+  - purpose
+  - liveness
+  - accountId
+  - fileName
+  - fileSize
+  - mimeType
+  - status
+properties:
+  id:
+    type: string
+    description: Id of the file.
+    example: "1234567890"
+  purpose:
+    description: The purpose the file is related to.
+    example: "kyc-doc-upload"
+    enum:
+      - kyc-doc-upload
+  liveness:
+    type: string
+    description: The resource liveness mode.
+    enum: [live, test]
+  accountId:
+    type: string
+    description: Id of the account owning the file upload.
+    example: 057aa15913a57f50577234c8426534c0
+  fileName:
+    type: string
+    description: Name of file.
+    example: passport_scan.jpg
+  fileSize:
+    type: number
+    description: Size of the file in bytes.
+    example: 284573
+  mimeType:
+    type: string
+    description: The type of file.
+    example: application/pdf
+  status:
+    type: string
+    description: The current status of the file upload
+    enum:
+      - created
+      - deleting
+      - deleted
+  expiresAt:
+    type: string
+    description: Date when the file will be considered expired and subsequently deleted.
+    example: "2025-04-30"
