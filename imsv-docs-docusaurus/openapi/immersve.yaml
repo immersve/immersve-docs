@@ -107,6 +107,9 @@ paths:
   "/api/file-uploads":
     post:
       $ref: "./endpoints/file-uploads/upload-file.yaml"
+  "/api/file-uploads/{fileUploadId}":
+    get:
+      $ref: "./endpoints/file-uploads/get-file-upload.yaml"
   "/api/accounts/{cardholderAccountId}/partner-kyc-statement":
     put:
       $ref: "./endpoints/kyc/submit-partner-kyc-statement.yaml"

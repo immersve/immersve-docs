@@ -1,0 +1,31 @@
+tags:
+  - file-uploads
+summary: Get File Upload
+operationId: get-file-upload
+description: |
+  Retrieve the meta data of a file upload by a given id.
+parameters:
+  - name: fileUploadId
+    in: path
+    description: Primary identifier of the file upload to fetch.
+    required: true
+    schema:
+      type: string
+
+responses:
+  '200':
+    content:
+      application/json:
+        schema:
+          $ref: "./models/upload-file-response.yaml"
+
+  "403":
+    description: |
+      User is not allowed to perform the action with the reason stated in the `errorCode`.
+
+      **FORBIDDEN**
+      Insufficient permissions to perform the action.
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"
