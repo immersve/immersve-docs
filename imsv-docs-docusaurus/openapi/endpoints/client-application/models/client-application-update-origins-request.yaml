@@ -3,8 +3,6 @@ properties:
   allowedOrigins:
     type: array
     description: The allowed origins for the client application. Minimum one origin is required.
-    items:
-      type: string
-      example: 
-        - "https://develop-app.com"
-        - "http://localhost:3000"
+    example:
+      - "https://develop-app.com"
+      - "http://localhost:3000"
