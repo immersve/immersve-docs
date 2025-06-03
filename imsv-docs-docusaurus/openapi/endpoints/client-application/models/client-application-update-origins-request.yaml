@@ -6,3 +6,4 @@ properties:
     example:
       - "https://develop-app.com"
       - "http://localhost:3000"
+
