@@ -2,20 +2,20 @@ type: object
 title: Login Wallet
 required:
   - accountId
-  - fundingAddress
   - fundingChannelId
+  - fundingAddress
 properties:
   accountId:
     type: string
     description: The ID of the account to add this Funding Source to.
     example: 65a7e8ef0d230d0a6bf755e07d39eb02
+  fundingChannelId:
+    type: string
+    description: The id of the Funding Channel that this Funding Source relates to.
+    example: 315bad4e81ce0f26966a41b9d451638b
   fundingAddress:
     type: string
     description: |
       The address to claim as a Funding Source. For universal protocol variants this would be the sender address for deposits.
       For flexi protocol variants this would be recipient address for deposits.
     example: "0x1234567890123456789012345678901234567890"
-  fundingChannelId:
-    type: string
-    description: The id of the Funding Channel that this Funding Source relates to.
-    example: 315bad4e81ce0f26966a41b9d451638b
