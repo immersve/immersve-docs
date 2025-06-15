@@ -4,9 +4,7 @@ summary: Submit Residential Addresses
 operationId: submit-residential-addresses
 description: |
   Submit the current residential address of the cardholder in either structured or unstructured format.
-  In some regions (e.g.  Latin America and the Caribbean (LAC) region) submission of unstructured addresses is not
-  allowed. Refer to the [Get Supported Regions](https://docs.immersve.com/api-reference/get-supported-regions/)
-  for more information.
+  In some regions, unstructured addresses are not allowed. Refer to the [Get Supported Regions](https://docs.immersve.com/api-reference/get-supported-regions/) to get the list of supported regions and check whether unstructured addresses are allowed.
   :::note
   This endpoint is for Immersve-conducted KYC only.
   :::
