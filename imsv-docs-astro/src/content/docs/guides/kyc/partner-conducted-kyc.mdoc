@@ -358,6 +358,10 @@ and unstructured address formats in an Address claim.
   This format consolidates the address into a single text string in the `fullAddress` field,
     which Immersve later attempts to parse into structured address components.
 
+  Unstructured addresses are only allowed for the following regions: `AR` `AT` `AU` `BE` `BG` `BR` `CA` `CH` `CL` `CO` `CZ` `DE` `DK` `EE` `ES` `FI` `FR` `GB` `HR` `HU` `IE` `IT` `LT` `LU` `LV` `MX` `MY` `NL` `NO` `NZ` `PL` `PR` `PT` `SE` `SG` `SI` `SK` `US`
+
+  The list of supported regions, including whether each region allows this format, can be retrieved using the {% link endpoint="get-supported-regions" /%} endpoint
+
   {% /listitem %}
   {% listitem "ArrowRightCircle" %}
     **Key Considerations**
