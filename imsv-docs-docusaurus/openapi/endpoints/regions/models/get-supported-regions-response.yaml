@@ -19,6 +19,10 @@ properties:
           type: boolean
           description: Whether the region is available to the given partner account.
           example: true
+        unstructuredAddressAllowed:
+          type: boolean
+          description: Whether unstructured addresses are accepted for partner conducted statements.
+          default: false
         documents:
           type: object
           description: Regulatory documents for available regions, required to be presented during onboarding.
@@ -46,6 +50,7 @@ example:
     - code: AU
       title: Australia
       isAvailable: true
+      unstructuredAddressAllowed: true
       documents:
         generalTermsOfUse:
           title: General Terms of Use
@@ -60,6 +65,7 @@ example:
     - code: NZ
       title: New Zealand
       isAvailable: true
+      unstructuredAddressAllowed: true
       documents:
         generalTermsOfUse:
           title: General Terms of Use
