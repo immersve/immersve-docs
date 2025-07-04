@@ -17,22 +17,28 @@ properties:
     enum: [Deposit, Withdrawal, Refund, Payment]
     description: >
       The type of Funding Source Interaction:
-        * `Deposit` - Funds added to the Funding Source.  
-        * `Withdrawal` - Funds removed from the Funding Source.
-        * `Refund` - Return of paid funds to the Funding Source. 
-        * `Payment` - Transfer of funds from the Funding Source.
-    example: Payment
+        * `Deposit` – Funds credited in the context of a deposit transaction.
+        * `Withdrawal` – Funds debited in the context of a withdrawal request.
+        * `Refund` – Funds credited in the context of a card payment refund.
+        * `Payment` – Funds debited in the context of a card payment purchase.
   status:
     type: string
-    description: The current status of the interaction. It will vary depending on the interaction type.
-    example: processing-successful
+    description: |
+      The current status of the interaction. Interaction lifecycle typically
+      flows from `Pending` to either `Confirmed` or `Discarded`. Other
+      intermediate statuses will vary depending on the interaction and funding
+      types. Unknown statuses should be treated as "pending".
+    example: Confirmed
   amount:
-    type: number
+    type: string
     description: The minor units amount of the transaction.
     example: 20000
   token:
     type: string
-    description: The token used in the transaction.
+    description: |
+      A user-friendly description of the underlying asset. More specific details
+      about the asset can be discovered via the related Funding Channel (see the
+      "channel" attribute).
     example: USDC
   createdAt:
     type: string
@@ -44,34 +50,21 @@ properties:
     example: "2023-11-15T00:49:59.261Z"
   description:
     type: string
-    description: A description of the interaction.
-    example: "1 Queen Street Auckland NZ"
-  creditOrDebitIndicator:
+    description: |
+      A user-friendly description of the interaction. For payments, this will
+      include the merchant display name.
+    example: "Daily Grind Coffee Co"
+  creditDebitIndicator:
     type: string
-    description: The credit or debit indicator of the interaction.
-    example: credit
-  context:
-    type: object
-    properties:
-      ref:
-        type: string
-        description: A context reference based on the type of the interaction. It could be a `transactionId` in the case of a payment, or an `eventId` in the case of an smart contract event.
-        example: "1000000488078"
-      type:
-        type: string
-        description: A context type for the context reference, which will depend on the interaction type.
-        enum: [card-transaction, smart-contract-event]
-        example: smart-contract-event
-      blockNumber:
-        type: string
-        description: The chain block number in which the transactions was mined, when applicable.
-        example: "42409064"
-      transactionHash:
-        type: string
-        description: The blockchain transaction hash on which the interaction happened, when applicable.
-        example: "0x3c561ba7fb04b8176f5478d26172d7cef02cf4ac6806e047ffaf5af70ccf1e69"
+    enum: [credit, debit]
+    description: |
+      The direction of the balance adjustment for the interaction:
+      * `credit` – Balance increased.
+      * `debit` – Balance decreased.
   channel:
     type: object
+    description: |
+      Related Funding Channel identifying attributes.
     properties:
       id:
         type: string
@@ -85,3 +78,5 @@ properties:
         type: string
         description: The funding type strategy.
         example: "universal-evm"
+  context:
+    $ref: ./fsi/fsi-context.yaml
