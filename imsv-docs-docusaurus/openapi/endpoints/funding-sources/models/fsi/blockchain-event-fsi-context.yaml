@@ -1,0 +1,22 @@
+type: object
+properties:
+  type:
+    type: string
+    enum: [smart-contract-event]
+  ref:
+    type: string
+    description: |
+      An Immersve smart contract event identifier. The format depends on the
+      type of smart contract event.
+    example: "0x3c561ba7fb04b8176f547:log:0"
+  blockNumber:
+    type: string
+    description: |
+      The block number where the transactions was validated.
+    example: "42409064"
+  transactionHash:
+    type: string
+    description: |
+      The blockchain transaction where the interaction
+      happened.
+    example: "0x3c561ba7fb04b8176f547"

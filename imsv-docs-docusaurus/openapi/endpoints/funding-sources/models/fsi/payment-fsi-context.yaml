@@ -1,0 +1,10 @@
+type: object
+properties:
+  type:
+    type: string
+    enum: [card-transaction]
+  ref:
+    type: string
+    description: |
+      The card payment transaction identifier.
+    example: "1000000488078"

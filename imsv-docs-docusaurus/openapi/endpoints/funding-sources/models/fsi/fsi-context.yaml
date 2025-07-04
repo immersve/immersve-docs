@@ -1,0 +1,6 @@
+description: Surrounding context identifying attributes.
+oneOf:
+  - title: Payment Transaction
+    $ref: ./payment-fsi-context.yaml
+  - title: Blockchain Event
+    $ref: ./blockchain-event-fsi-context.yaml
