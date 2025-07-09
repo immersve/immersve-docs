@@ -1,0 +1,31 @@
+type: object
+properties:
+  evidenceType:
+    type: string
+    description: The type of evidence.
+    enum:
+      - NATIONAL_ID
+  documentId:
+    type: string
+    description: The national id number.
+    example: S1234567A
+  country:
+    type: string
+    description: The country that issued the document.
+    enum:
+      - BR
+      - AR
+      - MX
+    example: BR
+  paternalFamilyName:
+    type: string
+    description: The paternal family name of the cardholder. This is required when country is MX.
+    example: Silva
+  maternalFamilyName:
+    type: string
+    description: The maternal family name of the cardholder. This is required when country is MX.
+    example: Souza
+required:
+  - evidenceType
+  - documentId
+  - country
