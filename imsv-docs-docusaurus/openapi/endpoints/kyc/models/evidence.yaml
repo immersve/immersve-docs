@@ -1,6 +1,7 @@
 type: object
 anyOf:
-  - $ref: './passport.yaml'
-  - $ref: './drivers-license.yaml'
+  - $ref: './PASSPORT.yaml'
+  - $ref: './DRIVERS_LICENSE.yaml'
+  - $ref: './NATIONAL_ID.yaml'
 discriminator:
   propertyName: evidenceType

@@ -1,3 +1,4 @@
+type: object
 properties:
   evidenceType:
     type: string
@@ -14,6 +15,9 @@ properties:
     enum:
       - NZ
       - AU
+      - AR
+      - MX
+      - BR
     example: NZ
   expiry:
     type: string
