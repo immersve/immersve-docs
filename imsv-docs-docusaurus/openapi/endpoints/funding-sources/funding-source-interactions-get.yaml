@@ -27,6 +27,21 @@ get:
       required: false
       schema:
         type: string
+    - name: type
+      in: query
+      description: filter for interaction types
+      required: false
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - "Deposit"
+            - "Withdrawal"
+            - "Payment"
+            - "Refund"
+
   responses:
     "200":
       description: Successful operation
