@@ -1238,6 +1238,54 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "6. List funding source interactions filtered by type",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/funding-sources/:fundingSourceId/interactions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"funding-sources",
+								":fundingSourceId",
+								"interactions"
+							],
+							"variable": [
+								{
+									"key": "fundingSourceId",
+									"value": "{{fundingSourceId}}"
+								}
+							],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "Deposit"
+                },
+                {
+                  "key": "type",
+                  "value": "Withdrawal"
+                }
+              ]
+						}
+					},
+					"response": []
 				}
 			]
 		},
