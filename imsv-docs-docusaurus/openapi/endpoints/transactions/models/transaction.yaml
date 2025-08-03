@@ -3,7 +3,7 @@ properties:
   id:
     type: string
     description: The transaction ID
-    example: "1000000178145"
+    example: "4e4607f1b3daf0808499bd3b333e22fd"
   description:
     type: string
     description: A description of the transaction

@@ -7,4 +7,4 @@ properties:
     type: string
     description: |
       The card payment transaction identifier.
-    example: "1000000488078"
+    example: "4e4607f1b3daf0808499bd3b333e22fd"
