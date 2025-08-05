@@ -1,3 +1,4 @@
+type: object
 properties:
   partnerChannelAddress:
     type: string
