@@ -120,7 +120,7 @@ post:
 
         **KYC_PROFILE_REGION_MISMATCH**
         The KYC profile is already approved for a region different from the requested region.
-        Use the [Get KYC Profile](/get-kyc-profile/) endpoint to determine the current region of the KYC profile.
+        Use the [Get KYC Profile](../get-kyc-profile/) endpoint to determine the current region of the KYC profile.
 
         **UNSUPPORTED_KYC_REGION**
         The KYC region is not yet supported.
