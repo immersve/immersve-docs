@@ -50,6 +50,10 @@ async function createConfig() {
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
+        colorMode: {
+          disableSwitch: true,
+          respectPrefersColorScheme: true,
+        },
         navbar: {
           logo: {
             alt: 'Immersve Logo',
