@@ -1286,7 +1286,34 @@
 						}
 					},
 					"response": []
-				}
+				},
+        {
+          "name": "7. List funding source interactions filtered by date",
+          "protocolProfileBehavior": { "disableBodyPruning": true },
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "" },
+            "url": {
+              "raw": "{{baseUrl}}/api/funding-sources/:fundingSourceId/interactions",
+              "host": ["{{baseUrl}}"],
+              "path": [
+                "api",
+                "funding-sources",
+                ":fundingSourceId",
+                "interactions"
+              ],
+              "variable": [
+                { "key": "fundingSourceId", "value": "{{fundingSourceId}}" }
+              ],
+              "query": [
+                { "key": "createdFrom", "value": "2025-07-24T23:37:18.669Z" },
+                { "key": "createdTo", "value": "2025-07-25T03:02:22.139Z" }
+              ]
+            }
+          },
+          "response": []
+        }
 			]
 		},
 		{

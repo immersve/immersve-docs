@@ -17,19 +17,19 @@ get:
         type: string
     - name: limit
       in: query
-      description: amount of records to return (max 100)
+      description: Amount of records to return (max 100)
       required: false
       schema:
         type: number
     - name: cursor
       in: query
-      description: cursor to retrieve the next page
+      description: Cursor to retrieve the next page
       required: false
       schema:
         type: string
     - name: type
       in: query
-      description: filter for interaction types
+      description: Filter for interaction types
       required: false
       explode: true
       schema:
@@ -41,6 +41,18 @@ get:
             - "Withdrawal"
             - "Payment"
             - "Refund"
+    - name: createdFrom
+      in: query
+      description: Filter for interactions from this date (inclusive). Value should be a ISO 8601 string.
+      required: false
+      schema:
+        type: string
+    - name: createdTo
+      in: query
+      description: Filter for interactions up to this date (inclusive). Value should be a ISO 8601 string.
+      required: false
+      schema:
+        type: string
 
   responses:
     "200":
