@@ -1,34 +1,23 @@
-type: object
-required:
-  - transactionType
-properties:
-  transactionType:
-    type: string
-    description: Transaction type.
-    enum:
-      - purchase
-      - refund
-  transactionAmount:
-    type: string
-    description: |
-      Amount that replaces the amount on the prior authorize or clear requests. An integer in the smallest denomination of the currency.
-      If not provided the transaction will be reversed for the full amount of the authorization or clearing request.
-  currencyCode:
-    type: string
-    default: USD
-    description: ISO 4217 currency code.
 oneOf:
-  - properties:
-      authorizationRequestMsg:
-        type: string
-        description: requestMsg returned by the [Simulator Authorization](/api-reference/submit-simulator-authorization) endpoint
-    required:
-      - authorizationRequestMsg
+  - allOf:
+      - type: object
+        required:
+          - authorizationRequestMsg
+        properties:
+          authorizationRequestMsg:
+            type: string
+            description: requestMsg returned by the [Simulator Authorization](/api-reference/submit-simulator-authorization) endpoint
+        allOf:
+          - $ref: "./reverse-request-base.yaml"
     title: ReverseAuthorization
-  - properties:
-      clearingRequestMsg:
-        type: string
-        description: requestMsg returned by the [Simulator Clearing](/api-reference/submit-simulator-clearing) endpoint
-    required:
-      - clearingRequestMsg
+  - allOf:
+      - type: object
+        required:
+          - clearingRequestMsg
+        properties:
+          clearingRequestMsg:
+            type: string
+            description: requestMsg returned by the [Simulator Clearing](/api-reference/submit-simulator-clearing) endpoint
+        allOf:
+          - $ref: "./reverse-request-base.yaml"
     title: ReverseClearing
