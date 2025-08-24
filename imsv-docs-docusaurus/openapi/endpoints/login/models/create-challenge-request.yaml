@@ -13,12 +13,17 @@ properties:
     description: The blockchain network associated with the web3 address.
     type: string
     enum:
-      - polygon-mainnet
-      - polygon-amoy
+      - algorand-mainnet
+      - algorand-testnet
       - arbitrum-mainnet
       - arbitrum-sepolia
       - base-mainnet
       - base-sepolia
+      - ethereum-sepolia
+      - polygon-amoy
+      - polygon-mainnet
+      - xahau-mainnet
+      - xahau-testnet
   address:
     description: The web3 address to which the challenge is directed.
     type: string
