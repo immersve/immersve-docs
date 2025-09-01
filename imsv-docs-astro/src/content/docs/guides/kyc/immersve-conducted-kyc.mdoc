@@ -432,3 +432,18 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 ## Testing
 
 For a complete guide on passing KYC in test mode, please read {% link page="guides/pass-kyc-in-testmode" /%}
+
+## Known Issues
+
+#### Android embedded browser camera access issue
+
+There is a known issue with embedded browsers on Android devices where the
+camera cannot be accessed at the document and biometry collection stage. To
+resolve this issue please apply the following setting to your Android WebView
+component:
+
+  ``` mediaPlaybackRequiresUserGesture = false ```
+
+For more information on this issue, please read {% link
+href="https://documentation.onfido.com/sdk/sdk-webview-guide/#webview-setting-for-android"
+title="Onfido docs" /%}
