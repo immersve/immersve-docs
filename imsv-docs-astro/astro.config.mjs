@@ -24,6 +24,7 @@ export default defineConfig({
       components: {},
       sidebar: [
         { label: 'Home', link: '/' },
+        { label: 'API Reference', link: 'https://docs.immersve.com/api-reference' },
         { label: 'Use Cases', autogenerate: { directory: 'use-cases' } },
         {
           label: 'Guides',
@@ -54,10 +55,7 @@ export default defineConfig({
           ]
         },
         { label: 'Resources', autogenerate: { directory: 'resources' } },
-        {
-          label: 'API Reference',
-          link: '/api-reference/',
-        },
+        { label: 'Contact Us', link: 'https://immersve.com/contact' },
       ],
     }),
     tailwind({
