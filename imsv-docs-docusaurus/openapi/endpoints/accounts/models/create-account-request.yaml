@@ -1,7 +1,9 @@
 oneOf:
   - $ref: './create-cardholder-account-request.yaml'
-    title: Create non-custodial cardholder account
+    title: Non-Custodial Cardholder
+
   - $ref: './create-custodial-cardholder-account-request.yaml'
-    title: Create custodial cardholder account
+    title: Custodial Cardholder
+
   - $ref: './create-partner-account-request.yaml'
-    title: Create partner account
+    title: Partner
