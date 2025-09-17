@@ -405,6 +405,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/supported-chains/sei.mdoc": {
+	id: "guides/supported-chains/sei.mdoc";
+  slug: "guides/sei";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/supported-chains/supported-chains.mdoc": {
 	id: "guides/supported-chains/supported-chains.mdoc";
   slug: "guides/supported-chains";
@@ -596,6 +603,20 @@ declare module 'astro:content' {
   collection: "funding-types";
   data: InferEntrySchema<"funding-types">
 } & { render(): Render[".md"] };
+"sei-mainnet-usdc-universal-evm.md": {
+	id: "sei-mainnet-usdc-universal-evm.md";
+  slug: "sei-mainnet-usdc-universal-evm";
+  body: string;
+  collection: "funding-types";
+  data: InferEntrySchema<"funding-types">
+} & { render(): Render[".md"] };
+"sei-testnet-usdc-universal-evm.md": {
+	id: "sei-testnet-usdc-universal-evm.md";
+  slug: "sei-testnet-usdc-universal-evm";
+  body: string;
+  collection: "funding-types";
+  data: InferEntrySchema<"funding-types">
+} & { render(): Render[".md"] };
 "simulator-usdc.md": {
 	id: "simulator-usdc.md";
   slug: "simulator-usdc";
@@ -668,6 +689,20 @@ declare module 'astro:content' {
   collection: "network-tokens";
   data: InferEntrySchema<"network-tokens">
 } & { render(): Render[".md"] };
+"usdc-sei-mainnet.md": {
+	id: "usdc-sei-mainnet.md";
+  slug: "usdc-sei-mainnet";
+  body: string;
+  collection: "network-tokens";
+  data: InferEntrySchema<"network-tokens">
+} & { render(): Render[".md"] };
+"usdc-sei-testnet.md": {
+	id: "usdc-sei-testnet.md";
+  slug: "usdc-sei-testnet";
+  body: string;
+  collection: "network-tokens";
+  data: InferEntrySchema<"network-tokens">
+} & { render(): Render[".md"] };
 };
 "networks": {
 "algorand-mainnet.md": {
@@ -736,6 +771,20 @@ declare module 'astro:content' {
 "polygon-mainnet.md": {
 	id: "polygon-mainnet.md";
   slug: "polygon-mainnet";
+  body: string;
+  collection: "networks";
+  data: InferEntrySchema<"networks">
+} & { render(): Render[".md"] };
+"sei-mainnet.md": {
+	id: "sei-mainnet.md";
+  slug: "sei-mainnet";
+  body: string;
+  collection: "networks";
+  data: InferEntrySchema<"networks">
+} & { render(): Render[".md"] };
+"sei-testnet.md": {
+	id: "sei-testnet.md";
+  slug: "sei-testnet";
   body: string;
   collection: "networks";
   data: InferEntrySchema<"networks">
