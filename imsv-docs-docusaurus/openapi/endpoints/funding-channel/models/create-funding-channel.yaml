@@ -18,6 +18,8 @@ properties:
       - arbitrum-sepolia-usdc-universal-evm
       - base-mainnet-usdc-universal-evm
       - base-sepolia-usdc-universal-evm
+      - sei-mainnet-usdc-universal-evm
+      - sei-testnet-usdc-universal-evm
       - algorand-usdc
       - algorand-testnet-usdc
       - simulator-usdc

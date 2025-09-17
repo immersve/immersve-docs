@@ -23,6 +23,8 @@ properties:
       - arbitrum-sepolia
       - base-mainnet
       - base-sepolia
+      - sei-mainnet
+      - sei-testnet
   description:
     description: The description of the challenge.
     type: string

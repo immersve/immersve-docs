@@ -27,6 +27,8 @@ properties:
       - arbitrum-sepolia
       - base-mainnet
       - base-sepolia
+      - sei-mainnet
+      - sei-testnet
     example: "polygon-mainnet"
   clientApplicationId:
     description: ID of the client application created in an Immersve partner profile.

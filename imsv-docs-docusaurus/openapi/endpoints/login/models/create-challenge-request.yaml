@@ -22,6 +22,8 @@ properties:
       - ethereum-sepolia
       - polygon-amoy
       - polygon-mainnet
+      - sei-mainnet
+      - sei-testnet
       - xahau-mainnet
       - xahau-testnet
   address:
