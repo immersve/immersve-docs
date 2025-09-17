@@ -1,0 +1,30 @@
+---
+title: Sei
+description: What tokens and protocols are supported on Sei
+slug: guides/sei
+supportedChain: true
+depositVariant: universal
+depositBasedFunding: true
+custodialBilling: true
+approvalBasedFunding: true
+---
+
+{% note %}
+Do not transfer assets directly to these addresses or funds will be lost.
+Always use the spending prerequisites endpoint to discover the correct address
+for user deposits.
+{% /note %}
+
+{%
+  deployedFundingProtocolsTable
+  chain="sei"
+  columns=[
+    "network",
+    "protocol",
+    "address",
+  ]
+/%}
+
+
+## See Also
+{% link page="guides/funding-protocols" /%}
