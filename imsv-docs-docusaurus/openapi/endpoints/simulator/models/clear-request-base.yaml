@@ -14,7 +14,9 @@ properties:
       - refund
   transactionAmount:
     type: string
-    description: Transaction amount as an integer in the smallest denomination of the currency.
+    description: |
+      Transaction amount as an integer in the smallest denomination of the
+      currency. Maximum value of 100000 in card currency.
   currencyCode:
     type: string
     default: USD
