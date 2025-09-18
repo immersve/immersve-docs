@@ -59,6 +59,10 @@ properties:
     type: string
     description: An Alpha2 (ISO-3166-1) country code representing the country where the card is issued.
     example: NZ
+  currency:
+    type: string
+    description: An ISO 4217 currency code representing the issuing currency of the card.
+    example: USD
   expiry:
     type: string
     description: Expiry date of the card in the format YYYYMM
