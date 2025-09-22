@@ -239,7 +239,7 @@ https://api.immersve.com/.well-known/jwks.json.
 |-|-|
 | <nobr>X-Delivery-Id</nobr> | Unique identifier for the message delivery attempt. |
 | <nobr>X-Key-Id</nobr>      | The id of the signing key used to generate the signature. The key can be obtained from https://api.immersve.com/.well-known/jwks.json and matched by the "kid" attribute. |
-| <nobr>X-Signature</nobr>   | The hex encoded RSA SHA-256 signature of the request. |
+| <nobr>X-Signature</nobr>   | The Base 64 encoded RSA SHA-256 signature of the request. |
 
 
 ### Idempotency
