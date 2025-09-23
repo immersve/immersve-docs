@@ -2305,7 +2305,7 @@
           "response": []
         },
         {
-          "name": "Set Fault Configs",
+          "name": "Set Fault Config",
           "request": {
             "method": "PUT",
             "header": [
@@ -2342,7 +2342,7 @@
           }
         },
         {
-          "name": "Delete Fault Configs",
+          "name": "Delete Fault Config",
           "request": {
             "method": "DELETE",
             "header": [],
