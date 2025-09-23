@@ -38,6 +38,8 @@ tags:
     x-displayName: Regions
   - name: support
     x-displayName: Support
+  - name: fault-configs
+    x-displayName: Fault Configs
 security:
   - { "Access Token": [] }
   - { "Access Token": [], "Target Account": [] }
@@ -173,6 +175,14 @@ paths:
     $ref: "./endpoints/client-application/client-application-update-origins.yaml"
   "/api/support-sessions":
     $ref: "./endpoints/imsv-support/support-session-create.yaml"
+  "/api/accounts/{accountId}/fault-configs":
+    get:
+      $ref: "./endpoints/fault-configs/list-fault-configs.yaml"
+  "/api/accounts/{accountId}/fault-configs/{faultTypeName}":
+    put:
+      $ref: "./endpoints/fault-configs/set-fault-config.yaml"
+    delete:
+      $ref: "./endpoints/fault-configs/delete-fault-config.yaml"
 components:
   parameters:
     cardIdPath:
