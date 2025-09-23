@@ -23,7 +23,7 @@ parameters:
 responses:
   "403":
     description: |
-      **FAULT_CONFIGS_NOT_FOUND**
+      **FAULT_CONFIG_NOT_FOUND**
       The fault config for the specified account and fault type was not found.
     content:
       application/json:

@@ -50,7 +50,7 @@ responses:
       **FAULT_TYPE_INVALID**
       The fault type is invalid.
 
-      **FAULT_CONFIGS_NOT_ALLOWED**
+      **FAULT_CONFIG_NOT_ALLOWED**
       The account is not allowed to set fault configurations.
     content:
       application/json:
