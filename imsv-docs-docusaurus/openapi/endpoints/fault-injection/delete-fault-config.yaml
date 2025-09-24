@@ -20,12 +20,3 @@ parameters:
       type: string
       enum:
         - approval-funding-submit-transfer-error
-responses:
-  "403":
-    description: |
-      **FAULT_CONFIG_NOT_FOUND**
-      The fault configuration for the specified account and fault type was not found.
-    content:
-      application/json:
-        schema:
-          $ref: "../../models/api-error-403.yaml"

@@ -37,22 +37,3 @@ responses:
       application/json:
         schema:
           $ref: "./models/fault-configs-response.yaml"
-  "400":
-    description: |
-      **FAULT_VALUE_TYPE_INCORRECT**
-      The value type is incorrect.
-    content:
-      application/json:
-        schema:
-          $ref: "../../models/api-error-400.yaml"
-  "403":
-    description: |
-      **FAULT_TYPE_INVALID**
-      The fault type is invalid.
-
-      **FAULT_CONFIG_NOT_ALLOWED**
-      The account is not allowed to set fault configurations.
-    content:
-      application/json:
-        schema:
-          $ref: "../../models/api-error-403.yaml"
