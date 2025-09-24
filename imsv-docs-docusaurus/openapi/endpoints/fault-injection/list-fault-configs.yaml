@@ -23,3 +23,9 @@ responses:
               type: array
               items:
                 $ref: "./models/fault-configs-response.yaml"
+  "403":
+      description: No Authorization to access resource.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"

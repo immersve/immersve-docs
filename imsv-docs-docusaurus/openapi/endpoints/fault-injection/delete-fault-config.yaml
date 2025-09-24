@@ -20,3 +20,12 @@ parameters:
       type: string
       enum:
         - approval-funding-submit-transfer-error
+responses:
+  "200":
+    description: Successful operation
+  "403":
+    description: No Authorization to access resource.
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"
