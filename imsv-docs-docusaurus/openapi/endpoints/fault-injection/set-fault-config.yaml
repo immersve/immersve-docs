@@ -14,12 +14,12 @@ parameters:
   - name: faultTypeName
     in: path
     description: The name of the fault type to set the configuration for.
-    example: approval-funding-submit-transfer-error
+    example: approval-funding-submit-transaction-error
     required: true
     schema:
       type: string
       enum:
-        - approval-funding-submit-transfer-error
+        - approval-funding-submit-transaction-error
 requestBody:
   content:
     application/json:
@@ -38,11 +38,11 @@ responses:
         schema:
           $ref: "./models/fault-configs-response.yaml"
   "400":
-  description: Request fields are invalid
-  content:
-    application/json:
-      schema:
-        $ref: "../../models/api-error-400.yaml"
+    description: Request fields are invalid
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-400.yaml"
   "403":
     description: No Authorization to access resource.
     content:

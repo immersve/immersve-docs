@@ -2335,7 +2335,7 @@
                 },
                 {
                   "key": "faultTypeName",
-                  "value": "approval-funding-submit-transfer-error"
+                  "value": "approval-funding-submit-transaction-error"
                 }
               ]
             }
@@ -2363,7 +2363,7 @@
                 },
                 {
                   "key": "faultTypeName",
-                  "value": "approval-funding-submit-transfer-error"
+                  "value": "approval-funding-submit-transaction-error"
                 }
               ]
             }

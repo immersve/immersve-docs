@@ -7,7 +7,7 @@ properties:
   faultTypeName:
     type: string
     description: The name of the fault type the configuration is for.
-    example: approval-funding-submit-transfer-error
+    example: approval-funding-submit-transaction-error
   value:
     type: string
     description: The value set for the fault configuration. This is returned as a string, but can represent a string, number, or boolean, depending on the fault type.
