@@ -1,0 +1,31 @@
+tags:
+  - fault-injection
+summary: List Fault Configurations
+operationId: list-fault-configs
+description: Lists all fault configurations for the identified account.
+parameters:
+  - name: accountId
+    in: path
+    description: ID of the account to list the fault configurations for.
+    example: e4b66d1ddecbf518f5f337n5e5a4f682
+    required: true
+    schema:
+      type: string
+responses:
+  "200":
+    description: Successful operation
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: "./models/fault-configs-response.yaml"
+  "403":
+    description: No Authorization to access resource.
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"

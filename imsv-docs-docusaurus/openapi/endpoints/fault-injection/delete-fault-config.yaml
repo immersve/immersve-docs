@@ -1,0 +1,31 @@
+tags:
+  - fault-injection
+summary: Delete Fault Configuration
+operationId: delete-fault-config
+description: Deletes the configuration of the fault type for the identified account.
+parameters:
+  - name: accountId
+    in: path
+    description: ID of the account to delete the configuration for.
+    example: e4b66d1ddecbf518f5f337n5e5a4f682
+    required: true
+    schema:
+      type: string
+  - name: faultTypeName
+    in: path
+    description: The name of the fault type to delete the configuration for.
+    example: approval-funding-submit-transaction-error
+    required: true
+    schema:
+      type: string
+      enum:
+        - approval-funding-submit-transaction-error
+responses:
+  "200":
+    description: Successful operation
+  "403":
+    description: No Authorization to access resource.
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"
