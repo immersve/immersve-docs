@@ -1,6 +1,6 @@
 tags:
   - fault-injection
-summary: Delete Fault Config
+summary: Delete Fault Configuration
 operationId: delete-fault-config
 description: Deletes the configuration of the fault type for the identified account.
 parameters:
@@ -24,7 +24,7 @@ responses:
   "403":
     description: |
       **FAULT_CONFIG_NOT_FOUND**
-      The fault config for the specified account and fault type was not found.
+      The fault configuration for the specified account and fault type was not found.
     content:
       application/json:
         schema:

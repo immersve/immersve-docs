@@ -2283,10 +2283,10 @@
 			]
 		},
     {
-      "name": "Fault Configs",
+      "name": "Fault Injection",
       "item": [
         {
-          "name": "List Fault Configs",
+          "name": "List Fault Configurations",
           "request": {
             "method": "GET",
             "header": [],
@@ -2305,7 +2305,7 @@
           "response": []
         },
         {
-          "name": "Set Fault Config",
+          "name": "Set Fault Configuration",
           "request": {
             "method": "PUT",
             "header": [
@@ -2342,7 +2342,7 @@
           }
         },
         {
-          "name": "Delete Fault Config",
+          "name": "Delete Fault Configuration",
           "request": {
             "method": "DELETE",
             "header": [],

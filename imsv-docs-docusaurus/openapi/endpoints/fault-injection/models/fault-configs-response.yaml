@@ -2,7 +2,7 @@ type: object
 properties:
   accountId:
     type: string
-    description: The ID of the account the fault config is for.
+    description: The ID of the account the fault configuration is for.
     example: e4b66d1ddecbf518f5f337n5e5a4f682
   faultTypeName:
     type: string
@@ -10,9 +10,9 @@ properties:
     example: approval-funding-submit-transfer-error
   value:
     type: string
-    description: The value set for the fault config. This is returned as a string, but can represent a string, number, or boolean, depending on the fault type.
+    description: The value set for the fault configuration. This is returned as a string, but can represent a string, number, or boolean, depending on the fault type.
     example: "true"
   createdAt:
     type: string
-    description: The timestamp when the fault config was created.
+    description: The timestamp when the fault configuration was created.
     example: "2023-10-01T12:34:56Z"
