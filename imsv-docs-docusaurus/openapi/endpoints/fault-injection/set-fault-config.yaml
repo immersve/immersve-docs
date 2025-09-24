@@ -1,5 +1,5 @@
 tags:
-  - fault-configs
+  - fault-injection
 summary: Set Fault Config
 operationId: set-fault-config
 description: Creates or replaces the configuration of the fault type for the identified account.

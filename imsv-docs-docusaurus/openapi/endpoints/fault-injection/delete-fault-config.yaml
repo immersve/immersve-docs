@@ -1,5 +1,5 @@
 tags:
-  - fault-configs
+  - fault-injection
 summary: Delete Fault Config
 operationId: delete-fault-config
 description: Deletes the configuration of the fault type for the identified account.

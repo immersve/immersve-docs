@@ -1,5 +1,5 @@
 tags:
-  - fault-configs
+  - fault-injection
 summary: List Fault Configs
 operationId: list-fault-configs
 description: Lists all fault configurations for the identified account.
