@@ -19,18 +19,6 @@ properties:
     description: Currency to be used when creating the card. Currently only supports USD
     enum:
       - USD
-  fundingMode:
-    type: string
-    description:
-      Hint for the prerequisite funding transaction type. Presently only
-      universal-evm funding supports the funding mode hint.
-      <br>
-      `deposit` (default) — Funding instruction should be a token transfer.
-      <br>
-      `approval` — Funding instruction should be a token approval.
-    enum:
-      - deposit
-      - approval
   kycType:
     type: string
     description: Type of KYC depending on which party is conducting it
