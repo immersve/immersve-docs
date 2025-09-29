@@ -40,14 +40,18 @@ tags:
     x-displayName: Support
   - name: fault-injection
     x-displayName: Fault Injection
+
 security:
   - { "Access Token": [] }
   - { "Access Token": [], "Target Account": [] }
   - { "Api Key": [], "Api Secret": [] }
   - { "Api Key": [], "Api Secret": [], "Target Account": [] }
+
 # The order of the paths defines the order of pages in the sidebar navigation.
 # The tags field in the yaml files defines the grouping in the sidebar navigation.
 paths:
+
+  # Auth
   "/auth/signup":
     $ref: "./endpoints/login/signup.yaml"
   "/auth/login-init":
@@ -64,15 +68,23 @@ paths:
     $ref: "./endpoints/login/siwe-generate-challenge.yaml"
   "/siwe/login":
     $ref: "./endpoints/login/siwe-login.yaml"
+
+  # Accounts
   "/api/accounts":
-    post:
-      $ref: "./endpoints/accounts/accounts-create.yaml"
+    post: { $ref: "./endpoints/accounts/accounts-create.yaml" }
+  "/api/accounts/{accountId}":
+    $ref: "./endpoints/accounts/accounts-get.yaml"
+
+  # Cards
   "/api/cards":
     $ref: "./endpoints/cards/create-card-async.yaml"
+  "/api/accounts/{accountId}/cards":
+    $ref: "./endpoints/cards/cards-list.yaml"
+  "/api/cards/{cardId}":
+    $ref: "./endpoints/cards/card-get.yaml"
   "/api/cards/{cardId}/set-pin":
     $ref: "./endpoints/cards/card-set-pin.yaml"
-    servers:
-      - url: https://api-sec.immersve.com
+    servers: [ { url: https://api-sec.immersve.com } ]
   "/api/cards/{cardId}/cancel-async":
     $ref: "./endpoints/cards/card-cancel.yaml"
   "/api/cards/{cardId}/freeze":
@@ -81,21 +93,14 @@ paths:
     $ref: "./endpoints/cards/card-unfreeze.yaml"
   "/api/cards/{cardId}/pan-token":
     $ref: "./endpoints/cards/card-pan-token.yaml"
-  "/api/accounts/{accountId}/contact-details":
-    get:
-      $ref: "./endpoints/contact-details/get-contact-details.yaml"
-    patch:
-      $ref: "./endpoints/contact-details/update-contact-details.yaml"
-  "/api/spending-prerequisites":
-    $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"
+
+  # Currency
   "/api/currencies":
     $ref: "./endpoints/currency/currency-list.yaml"
   "/api/currency/convert":
     $ref: "./endpoints/currency/currency-convert.yaml"
-  "/api/cards/{cardId}":
-    $ref: "./endpoints/cards/card-get.yaml"
-  "/api/accounts/{accountId}/cards":
-    $ref: "./endpoints/cards/cards-list.yaml"
+
+  # Payments
   "/api/transactions/{transactionId}":
     $ref: "./endpoints/transactions/transaction-get.yaml"
   "/api/accounts/{accountId}/transactions":
@@ -104,55 +109,57 @@ paths:
     $ref: "./endpoints/transactions/list-payment-notifications.yaml"
   "/api/payment-notifications/{messageId}":
     $ref: "./endpoints/transactions/get-payment-notification.yaml"
-  "/api/accounts/{accountId}/funding-sources":
-    $ref: "./endpoints/funding-sources/list-funding-sources.yaml"
+
+  # Files
   "/api/file-uploads":
-    post:
-      $ref: "./endpoints/file-uploads/upload-file.yaml"
+    post: { $ref: "./endpoints/file-uploads/upload-file.yaml" }
   "/api/file-uploads/{fileUploadId}":
-    get:
-      $ref: "./endpoints/file-uploads/get-file-upload.yaml"
+    get: { $ref: "./endpoints/file-uploads/get-file-upload.yaml" }
+
+  # Contact Details
+  "/api/accounts/{accountId}/contact-details":
+    get: { $ref: "./endpoints/contact-details/get-contact-details.yaml" }
+    patch: { $ref: "./endpoints/contact-details/update-contact-details.yaml" }
+
+  # Prerequisites
+  "/api/spending-prerequisites":
+    $ref: "./endpoints/prerequisites/spending-prerequisites.yaml"
+
+  # KYC
   "/api/accounts/{cardholderAccountId}/partner-kyc-statement":
-    put:
-      $ref: "./endpoints/kyc/submit-partner-kyc-statement.yaml"
-    get:
-      $ref: "./endpoints/kyc/retrieve-partner-kyc-statement.yaml"
+    put: { $ref: "./endpoints/kyc/submit-partner-kyc-statement.yaml" }
+    get: { $ref: "./endpoints/kyc/retrieve-partner-kyc-statement.yaml" }
   "/api/accounts/{accountId}/kyc-profile":
-    get:
-      $ref: "./endpoints/kyc/get-kyc-profile.yaml"
+    get: { $ref: "./endpoints/kyc/get-kyc-profile.yaml" }
   "/api/accounts/{cardholderId}/expected-spend-amount":
-    get:
-      $ref: "./endpoints/expected-spend-amount/get-expected-spend-amount.yaml"
-    post:
-      $ref: "./endpoints/expected-spend-amount/update-expected-spend-amount.yaml"
+    get: { $ref: "./endpoints/expected-spend-amount/get-expected-spend-amount.yaml" }
+    post: { $ref: "./endpoints/expected-spend-amount/update-expected-spend-amount.yaml" }
   "/api/accounts/{cardholderId}/residential-addresses":
-    get:
-      $ref: "./endpoints/residential-addresses/get-residential-addresses.yaml"
-    post:
-      $ref: "./endpoints/residential-addresses/submit-residential-addresses.yaml"
+    get: { $ref: "./endpoints/residential-addresses/get-residential-addresses.yaml" }
+    post: { $ref: "./endpoints/residential-addresses/submit-residential-addresses.yaml" }
   "/api/accounts/{partnerAccountId}/supported-regions":
-    get:
-      $ref: "./endpoints/regions/get-supported-regions.yaml"
+    get: { $ref: "./endpoints/regions/get-supported-regions.yaml" }
+
+  # Simulator
   "/api/simulator/authorize":
     $ref: "./endpoints/simulator/authorize.yaml"
-    servers:
-      - url: https://test.immersve.com
+    servers: [ { url: https://test.immersve.com } ]
   "/api/simulator/clear":
     $ref: "./endpoints/simulator/clear.yaml"
-    servers:
-      - url: https://test.immersve.com
+    servers: [ { url: https://test.immersve.com } ]
   "/api/simulator/reverse":
     $ref: "./endpoints/simulator/reverse.yaml"
-    servers:
-      - url: https://test.immersve.com
+    servers: [ { url: https://test.immersve.com } ]
   "/api/simulator/execute-deposit":
     $ref: "./endpoints/simulator/execute-simulator-deposit.yaml"
-    servers:
-      - url: https://test.immersve.com
+    servers: [ { url: https://test.immersve.com } ]
   "/api/simulator/execute-withdrawal":
     $ref: "./endpoints/simulator/execute-simulator-withdrawal.yaml"
-    servers:
-      - url: https://test.immersve.com
+    servers: [ { url: https://test.immersve.com } ]
+
+  # Funding
+  "/api/accounts/{accountId}/funding-sources":
+    $ref: "./endpoints/funding-sources/list-funding-sources.yaml"
   "/api/funding-source/{fundingSourceId}":
     $ref: "./endpoints/funding-sources/get-funding-source.yaml"
   "/api/funding-sources":
@@ -165,24 +172,26 @@ paths:
     $ref: "./endpoints/funding-channel/funding-channel-get.yaml"
   "/api/funding-channels":
     $ref: "./endpoints/funding-channel/funding-channel-create.yaml"
-  "/api/accounts/{accountId}":
-    $ref: "./endpoints/accounts/accounts-get.yaml"
   "/api/accounts/{accountId}/funding-channels":
     $ref: "./endpoints/funding-channel/funding-channels-list.yaml"
+
+  # Clients
   "/api/client-applications/{clientApplicationId}":
     $ref: "./endpoints/client-application/client-application-get.yaml"
   "/api/client-applications/{clientApplicationId}/update-origins":
     $ref: "./endpoints/client-application/client-application-update-origins.yaml"
+
+  # Support
   "/api/support-sessions":
     $ref: "./endpoints/imsv-support/support-session-create.yaml"
+
+  # Faults
   "/api/accounts/{accountId}/fault-configs":
-    get:
-      $ref: "./endpoints/fault-injection/list-fault-configs.yaml"
+    get: { $ref: "./endpoints/fault-injection/list-fault-configs.yaml" }
   "/api/accounts/{accountId}/fault-configs/{faultTypeName}":
-    put:
-      $ref: "./endpoints/fault-injection/set-fault-config.yaml"
-    delete:
-      $ref: "./endpoints/fault-injection/delete-fault-config.yaml"
+    put: { $ref: "./endpoints/fault-injection/set-fault-config.yaml" }
+    delete: { $ref: "./endpoints/fault-injection/delete-fault-config.yaml" }
+
 components:
   parameters:
     cardIdPath:
