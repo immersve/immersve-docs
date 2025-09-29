@@ -84,7 +84,7 @@ paths:
     $ref: "./endpoints/cards/card-get.yaml"
   "/api/cards/{cardId}/set-pin":
     $ref: "./endpoints/cards/card-set-pin.yaml"
-    servers: [ { url: https://api-sec.immersve.com } ]
+    servers: [ { url: https://test-sec.immersve.com }, { url: https://api-sec.immersve.com } ]
   "/api/cards/{cardId}/cancel-async":
     $ref: "./endpoints/cards/card-cancel.yaml"
   "/api/cards/{cardId}/freeze":
