@@ -119,10 +119,18 @@ async function createConfig() {
           docsPluginId: 'classic', // e.g. "classic" or the plugin-content-docs id
           config: {
             immersve: {
-              specPath: 'openapi/immersve.yaml', // path or URL to the OpenAPI spec
-              outputDir: 'docs', // output directory for generated *.mdx and sidebar.js files
+              specPath: 'openapi/immersve.yaml',
+              outputDir: 'docs',
               sidebarOptions: {
-                groupPathsBy: 'tag', // generate a sidebar.js slice that groups operations by tag
+                groupPathsBy: 'tag',
+                categoryLinkSource: 'tag',
+              },
+            },
+            webhooks: {
+              specPath: 'openapi/webhooks.yaml',
+              outputDir: 'docs/webhook-topics',
+              sidebarOptions: {
+                groupPathsBy: 'tag',
                 categoryLinkSource: 'tag',
               },
             },

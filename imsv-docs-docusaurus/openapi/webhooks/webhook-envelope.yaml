@@ -1,0 +1,40 @@
+type: object
+properties:
+  messageId:
+    type: string
+    example: "msg-1234"
+    description:
+  topic:
+    type: string
+    example: payment-3ds-otp
+  listenerId:
+    type: string
+    example: "listener-1234"
+  listenerAccountId:
+    type: string
+    example: "partner-account-1"
+  deliveryId:
+    type: string
+    example: "msg-1234:1"
+  deliveryAttempt:
+    type: number
+    example: 1
+  createdAt:
+    type: string
+    example: "2025-09-29T10:11:12Z"
+    description: The notification message creation timestamp.
+  sentAt:
+    type: string
+    example: "2025-09-29T10:11:13Z"
+    description: |
+      The delivery attempt timestamp.
+  keyId:
+    type: string
+    example: "9ce69d31277108d46d2cb19fa772705e"
+    description: |
+      The public key id for validating the signature. Public keys can be
+      found at https://api.immersve.com/.well-known/jwks.json and matched
+      using the "kid" attribute.
+  issuer:
+    type: string
+    example: api.immersve.com
