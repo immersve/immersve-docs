@@ -1,0 +1,44 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Immersve Webhooks
+tags:
+  - name: xpay
+    x-displayName: XPay
+
+# Custom attribute used as YAML anchor to simplify webhook header inclusion
+x-webhook-headers: &WebhookHeaders
+  - $ref: "#/components/parameters/XDeliveryId"
+  - $ref: "#/components/parameters/XKeyId"
+  - $ref: "#/components/parameters/XSignature"
+
+paths: []
+
+components:
+
+  parameters:
+    XDeliveryId:
+      name: X-Delivery-ID
+      in: header
+      description: Unique message id plus delivery attempt.
+      schema:
+        type: string
+    XKeyId:
+      name: X-Key-ID
+      in: header
+      description: ID of the public key used to validate the signature.
+      schema:
+        type: string
+    XSignature:
+      name: X-Signature
+      in: header
+      description: >
+        Base64-encoded RSA SHA-256 signature of `{deliveryId}:{keyId}:{requestBody}`.
+      schema:
+        type: string
+
+webhooks:
+
+  xpay-otp:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/xpay-card-load-otp-webhook.yaml }
