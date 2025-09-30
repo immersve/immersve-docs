@@ -6,7 +6,7 @@ properties:
     description:
   topic:
     type: string
-    example: payment-3ds-otp
+    example: "example-topic"
   listenerId:
     type: string
     example: "listener-1234"
