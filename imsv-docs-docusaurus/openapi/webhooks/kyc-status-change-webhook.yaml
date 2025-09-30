@@ -1,0 +1,32 @@
+tags: [ kyc ]
+summary: KYC Status Change
+operationId: kyc-status-change
+description: |
+  Triggered when a cardholder's KYC verification status changes.
+
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              payload:
+                type: object
+                properties:
+                  kycStatus:
+                    type: string
+                    enum: [succeeded, pending, failed]
+                    description: |
+                      The KYC verification status:
+                      - `succeeded`: Verification completed successfully
+                      - `pending`: Awaiting review or additional information
+                      - `failed`: Verification rejected
+
+                  cardholderId:
+                    type: string
+                    example: "e8e48f309cfc11f08711"
+                    description: |
+                      The Immersve cardholder's account id.
+
+          - $ref: './webhook-envelope.yaml'

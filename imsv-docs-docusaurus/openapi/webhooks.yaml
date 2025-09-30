@@ -5,6 +5,8 @@ info:
 tags:
   - name: xpay
     x-displayName: XPay
+  - name: kyc
+    x-displayName: KYC
 
 # Custom attribute used as YAML anchor to simplify webhook header inclusion
 x-webhook-headers: &WebhookHeaders
@@ -42,3 +44,6 @@ webhooks:
   xpay-otp:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/xpay-card-load-otp-webhook.yaml }
+  kyc-status-change:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/kyc-status-change-webhook.yaml }
