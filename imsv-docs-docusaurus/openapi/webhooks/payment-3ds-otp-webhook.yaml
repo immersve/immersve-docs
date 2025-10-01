@@ -1,0 +1,56 @@
+tags: [ 3ds ]
+summary: Payment 3DS OTP
+operationId: payment-3ds-otp
+description: |
+  Triggered when a one-time password (OTP) is generated to authenticate cardholders
+  during a 3D Secure (3DS) transaction. Subscribers should use this event to deliver
+  the OTP to the cardholder in their preferred channel.
+
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              payload:
+                type: object
+                properties:
+
+                  verificationCode:
+                    type: string
+                    example: "123456"
+                    description: |
+                      The 3DS one-time code to deliver to the cardholder.
+
+                  ttl:
+                    type: string
+                    example: "3600"
+                    description: |
+                      Time to live for the OTP in seconds.
+
+                  cardholderId:
+                    type: string
+                    example: "65a7e8ef0d230d0a6bf755e07d39eb02"
+                    description: |
+                      The Immersve id for the cardholder associated with the card.
+
+                  cardId:
+                    type: string
+                    example: "e2b6ae409cfc11f098ac"
+                    description: |
+                      The Immersve card id for the card being loaded.
+
+                  cardPanLast4:
+                    type: string
+                    example: "4567"
+                    description: |
+                      The last four digits of the card PAN.
+
+                  cardProgramId:
+                    type: string
+                    example: "83dee5409cfc11f0a1e6"
+                    description: |
+                      The Immersve card program id for the card.
+
+          - $ref: './webhook-envelope.yaml'
