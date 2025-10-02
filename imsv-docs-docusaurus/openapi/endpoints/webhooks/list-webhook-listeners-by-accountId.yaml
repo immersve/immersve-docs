@@ -1,0 +1,30 @@
+get:
+  tags:
+    - webhooks
+  summary: List Webhook Listeners
+  operationId: list-webhook-listener
+  description: Retrieves all active Webhook Listeners for the given account id.
+  parameters:
+  - name: accountId
+    in: path
+    description: Id for the Account
+    example: 225d85e65495722bf6517ea0ba0d6f56
+    required: true
+    schema:
+      type: string
+
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "./models/get-webhook-listener-topic-schema.yaml"
+    "403":
+      description: No Authorization to access resource
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-403.yaml'
