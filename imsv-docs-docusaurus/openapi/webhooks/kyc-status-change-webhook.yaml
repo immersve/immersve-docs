@@ -21,7 +21,7 @@ requestBody:
                       The KYC verification status:
                       - `succeeded`: Verification completed successfully
                       - `pending`: Awaiting review or additional information
-                      - `failed`: Verification rejected |
+                      - `failed`: Verification rejected
                   cardholderId:
                     type: string
                     example: "e8e48f309cfc11f08711"
