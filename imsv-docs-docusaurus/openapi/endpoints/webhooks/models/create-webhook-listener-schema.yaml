@@ -1,0 +1,13 @@
+type: object
+required:
+  - accountId
+  - url
+properties:
+  accountId:
+    type: string
+    description: The id of the partner account to add this Webhook Listener to.
+    example: 65a7e8ef0d230d0a6bf755e07d39eb02
+  url:
+    type: string
+    description: The URL to send webhook notifications to.
+    example: https://example.com/webhooks
