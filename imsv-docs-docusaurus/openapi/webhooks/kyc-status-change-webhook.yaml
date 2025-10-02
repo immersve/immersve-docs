@@ -18,7 +18,7 @@ requestBody:
                     type: string
                     enum: [succeeded, pending, failed]
                     description: |
-                      The KYC verification status. Immersve may introduce further, backwards-compatible, KYC statuses. To ensure continued compatibility, please design API validation logic to tolerate and gracefully handle new statuses that may be introduced.
+                      The KYC verification status:
                       - `succeeded`: Verification completed successfully
                       - `pending`: Awaiting review or additional information
                       - `failed`: Verification rejected |
