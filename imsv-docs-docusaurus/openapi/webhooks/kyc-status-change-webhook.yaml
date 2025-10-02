@@ -22,7 +22,7 @@ requestBody:
                       - `succeeded`: Verification completed successfully
                       - `pending`: Awaiting review or additional information
                       - `failed`: Verification rejected
-
+                      Immersve may introduce further, backwards-compatible, KYC statuses. To ensure continued compatibility, please design API validation logic to tolerate and gracefully handle new statuses that may be introduced.
                   cardholderId:
                     type: string
                     example: "e8e48f309cfc11f08711"
