@@ -19,7 +19,9 @@ get:
       content:
         application/json:
           schema:
-            $ref: "./models/get-webhook-listener-topic-schema.yaml"
+            type: array
+            items:
+              $ref: "./models/get-webhook-listener-topic-schema.yaml"
     "403":
       description: No Authorization to access resource
       content:
