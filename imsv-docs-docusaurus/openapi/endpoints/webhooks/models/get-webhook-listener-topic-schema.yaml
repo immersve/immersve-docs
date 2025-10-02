@@ -33,6 +33,4 @@ properties:
   topicSubscriptions:
     type: array
     description: List of topics the webhook listener is subscribed to.
-    items:
-      type: string
-      example: [kyc-topic]
+    example: [kyc-topic, 'transaction-topic']
