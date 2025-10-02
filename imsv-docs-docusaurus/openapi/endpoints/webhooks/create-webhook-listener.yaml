@@ -1,0 +1,34 @@
+post:
+  tags:
+    - webhooks
+  summary: Create Webhook Listener
+  operationId: create-webhook-listener
+  description: |
+    Create a webhook listener to receive notifications for specified topics.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./models/create-webhook-listener-schema.yaml"
+    required: true
+
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/get-webhook-listener-schema.yaml"
+    "403":
+      description: |
+        User is not allowed to perform the action with the reason stated in the `errorCode`
+
+        **FORBIDDEN**
+        Insufficient permissions to perform the action.
+
+        **ACCOUNT_TYPE_INVALID**
+        `accountType` of the `accountId` is not of type `PARTNER`.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
