@@ -7,7 +7,7 @@ get:
   parameters:
   - name: listenerId
     in: path
-    description: id for the Webhook Listener
+    description: Id for the Webhook Listener
     example: 315bad4e81ce0f26966a41b9d451638b
     required: true
     schema:

@@ -13,7 +13,7 @@ properties:
     example: 315bad4e81ce0f26966a41b9d451638b
   accountId:
     type: string
-    description: Partner Account ID.
+    description: Partner Account id.
     example: 65a7e8ef0d230d0a6bf755e07d39eb02
   url:
     type: string
