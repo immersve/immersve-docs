@@ -1,8 +1,9 @@
 tags: [ kyc ]
-summary: KYC Status Change
-operationId: kyc-status-change
+summary: KYC Pending
+operationId: kyc-pending
 description: |
-  Triggered when a cardholder's KYC verification status changes.
+  Triggered when a cardholder's KYC verification status changes to `pending`,
+  indicating that the verification is awaiting review or additional information.
 
 requestBody:
   content:
@@ -16,12 +17,9 @@ requestBody:
                 properties:
                   kycStatus:
                     type: string
-                    enum: [succeeded, pending, failed]
+                    example: "pending"
                     description: |
-                      The KYC verification status:
-                      - `succeeded`: Verification completed successfully
-                      - `pending`: Awaiting review or additional information
-                      - `failed`: Verification rejected
+                      Awaiting review or additional information
 
                   cardholderId:
                     type: string
