@@ -5,6 +5,10 @@ info:
 tags:
   - name: xpay
     x-displayName: XPay
+  - name: kyc
+    x-displayName: KYC
+  - name: payments
+    x-displayName: Payments
 
 # Custom attribute used as YAML anchor to simplify webhook header inclusion
 x-webhook-headers: &WebhookHeaders
@@ -42,3 +46,18 @@ webhooks:
   xpay-otp:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/xpay-card-load-otp-webhook.yaml }
+  xpay-confirmed:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/xpay-card-load-confirmed-webhook.yaml }
+  kyc-succeeded:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/kyc-succeeded-webhook.yaml }
+  kyc-failed:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/kyc-failed-webhook.yaml }
+  kyc-pending:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/kyc-pending-webhook.yaml }
+  3ds-otp:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/payment-3ds-otp-webhook.yaml }
