@@ -201,6 +201,8 @@ paths:
     $ref: "./endpoints/webhooks/get-webhook-listener.yaml"
   "/api/accounts/{accountId}/webhook-listeners":
     $ref: "./endpoints/webhooks/list-webhook-listeners-by-accountId.yaml"
+  "/api/webhook-listeners/{listenerId}/subscribe":
+    $ref: "./endpoints/webhooks/add-webhook-topic-subscription.yaml"
 
 components:
   parameters:
