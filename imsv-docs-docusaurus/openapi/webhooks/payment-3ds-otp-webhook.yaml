@@ -39,7 +39,7 @@ requestBody:
                     type: string
                     example: "e2b6ae409cfc11f098ac"
                     description: |
-                      The Immersve card id for the card being loaded.
+                      The Immersve card ID for the card being loaded.
 
                   cardPanLast4:
                     type: string
