@@ -1,0 +1,30 @@
+tags: [ kyc ]
+summary: KYC Failed
+operationId: kyc-failed
+description: |
+  Triggered when a cardholder's KYC verification status changes to `failed`,
+  indicating that the verification has been rejected.
+
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              payload:
+                type: object
+                properties:
+                  kycStatus:
+                    type: string
+                    example: "failed"
+                    description: |
+                      Verification rejected
+
+                  cardholderId:
+                    type: string
+                    example: "e8e48f309cfc11f08711"
+                    description: |
+                      The Immersve cardholder's account id.
+
+          - $ref: './webhook-envelope.yaml'
