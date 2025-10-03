@@ -1,0 +1,40 @@
+post:
+  tags:
+    - webhooks
+  summary: Add Webhook Topic Subscription
+  operationId: add-webhook-topic-subscription
+  description: |
+    Add a topic subscription to an existing webhook listener.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - topic
+          properties:
+              topic:
+                type: string
+                description: The topic the Webhook Listener will subscribe to.
+                example: kyc-topic
+
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/topic-subscription-schema.yaml"
+    "403":
+      description: |
+        User is not allowed to perform the action with the reason stated in the `errorCode`
+
+        **FORBIDDEN**
+        Insufficient permissions to perform the action.
+
+        **ACCOUNT_TYPE_INVALID**
+        `accountType` of the `accountId` is not of type `PARTNER`.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
