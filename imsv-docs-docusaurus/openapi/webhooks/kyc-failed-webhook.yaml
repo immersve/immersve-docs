@@ -12,6 +12,9 @@ requestBody:
         allOf:
           - type: object
             properties:
+                 topic:
+                    type: string
+                    example: "kyc-failed"
               topic:
                 type: string
                 example: "kyc-failed"
