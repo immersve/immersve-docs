@@ -12,6 +12,7 @@ requestBody:
         allOf:
           - type: object
             properties:
+              topic: kyc-pending
               payload:
                 type: object
                 properties:

@@ -12,6 +12,7 @@ requestBody:
         allOf:
           - type: object
             properties:
+              topic: kyc-failed
               payload:
                 type: object
                 properties:

@@ -13,6 +13,7 @@ requestBody:
         allOf:
           - type: object
             properties:
+              topic: xpay-card-load-confirmed
               payload:
                 type: object
                 properties:
