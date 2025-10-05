@@ -13,7 +13,9 @@ requestBody:
         allOf:
           - type: object
             properties:
-              topic: payment-3ds-otp
+              topic:
+                type: string
+                example: "payment-3ds-otp"
               payload:
                 type: object
                 properties:

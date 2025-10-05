@@ -14,7 +14,9 @@ requestBody:
         allOf:
           - type: object
             properties:
-              topic: xpay-card-load-otp
+              topic:
+                type: string
+                example: "xpay-card-load-otp"
               payload:
                 type: object
                 properties:
