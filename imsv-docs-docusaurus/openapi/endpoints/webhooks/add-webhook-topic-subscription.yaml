@@ -16,7 +16,7 @@ post:
               topic:
                 type: string
                 description: The topic the Webhook Listener will subscribe to.
-                example: kyc-topic
+                example: kyc-pending
 
   responses:
     "200":

@@ -6,7 +6,7 @@ properties:
     description:
   topic:
     type: string
-    example: "example-topic"
+    example: "kyc-pending"
   listenerId:
     type: string
     example: "listener-1234"

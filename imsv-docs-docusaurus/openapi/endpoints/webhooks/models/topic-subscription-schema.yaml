@@ -13,7 +13,7 @@ properties:
   topic:
     type: string
     description: The topic to which the webhook listener is subscribed.
-    example: kyc-topic
+    example: kyc-pending
   listenerId:
     type: string
     description: The id of the webhook listener associated with this subscription.
