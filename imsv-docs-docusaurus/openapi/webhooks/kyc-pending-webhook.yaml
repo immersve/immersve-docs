@@ -24,7 +24,7 @@ requestBody:
                     description: |
                       Awaiting review or additional information
 
-                  cardholderId:
+                  accountId:
                     type: string
                     example: "e8e48f309cfc11f08711"
                     description: |

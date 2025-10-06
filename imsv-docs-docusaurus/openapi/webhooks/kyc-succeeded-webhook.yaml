@@ -24,7 +24,7 @@ requestBody:
                     description: |
                       Verification completed successfully
 
-                  cardholderId:
+                  accountId:
                     type: string
                     example: "e8e48f309cfc11f08711"
                     description: |
