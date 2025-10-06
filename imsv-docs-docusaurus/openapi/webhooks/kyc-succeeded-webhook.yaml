@@ -1,0 +1,34 @@
+tags: [ kyc ]
+summary: KYC Succeeded
+operationId: kyc-succeeded
+description: |
+  Triggered when a cardholder's KYC verification status changes to `succeeded`,
+  indicating that the verification has completed successfully.
+
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              topic:
+                type: string
+                enum: 
+                  - "kyc-succeeded"
+              payload:
+                type: object
+                properties:
+                  kycStatus:
+                    type: string
+                    example: "succeeded"
+                    description: |
+                      Verification completed successfully
+
+                  accountId:
+                    type: string
+                    example: "e8e48f309cfc11f08711"
+                    description: |
+                      The Immersve cardholder's account id.
+
+          - $ref: './webhook-envelope.yaml'

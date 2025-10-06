@@ -1,0 +1,36 @@
+type: object
+required:
+- id
+- accountId
+- url
+- createdAt
+- status
+- topicSubscriptions
+properties:
+  id:
+    type: string
+    description: Webhook Listener primary identifier.
+    example: 315bad4e81ce0f26966a41b9d451638b
+  accountId:
+    type: string
+    description: Partner Account id.
+    example: 65a7e8ef0d230d0a6bf755e07d39eb02
+  url:
+    type: string
+    description: The URL to send webhook notifications to.
+    example: https://example.com/webhooks
+  createdAt:
+    type: string
+    description: Timestamp of Webhook Listener creation.
+    example: "2023-08-14T12:32:54"
+  status:
+    type: string
+    description: Status of the Webhook Listener.
+    enum:
+      - active
+      - inactive
+    example: active
+  topicSubscriptions:
+    type: array
+    description: List of topics the webhook listener is subscribed to.
+    example: ['kyc-pending', 'payment-3ds-otp']

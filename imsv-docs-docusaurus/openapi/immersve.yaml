@@ -40,6 +40,8 @@ tags:
     x-displayName: Support
   - name: fault-injection
     x-displayName: Fault Injection
+  - name: webhooks
+    x-displayName: Webhooks
 
 security:
   - { "Access Token": [] }
@@ -191,6 +193,16 @@ paths:
   "/api/accounts/{accountId}/fault-configs/{faultTypeName}":
     put: { $ref: "./endpoints/fault-injection/set-fault-config.yaml" }
     delete: { $ref: "./endpoints/fault-injection/delete-fault-config.yaml" }
+
+  # Webhooks
+  "/api/webhook-listeners":
+    $ref: "./endpoints/webhooks/create-webhook-listener.yaml"
+  "/api/webhook-listeners/{listenerId}":
+    $ref: "./endpoints/webhooks/get-webhook-listener.yaml"
+  "/api/accounts/{accountId}/webhook-listeners":
+    $ref: "./endpoints/webhooks/list-webhook-listeners-by-accountId.yaml"
+  "/api/webhook-listeners/{listenerId}/subscribe":
+    $ref: "./endpoints/webhooks/add-webhook-topic-subscription.yaml"
 
 components:
   parameters:

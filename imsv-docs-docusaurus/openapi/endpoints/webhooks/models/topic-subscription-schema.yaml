@@ -1,0 +1,28 @@
+type: object
+required:
+  - id
+  - topic
+  - listenerId
+  - accountId
+  - createdAt
+properties:
+  id:
+    type: string
+    description: The unique identifier for the topic subscription.
+    example: 2f251c48a12797c24a36af52fb642895
+  topic:
+    type: string
+    description: The topic to which the webhook listener is subscribed.
+    example: kyc-pending
+  listenerId:
+    type: string
+    description: The id of the webhook listener associated with this subscription.
+    example: 51663b110bc97ebc9f9235910c4392c0
+  accountId:
+    type: string
+    description: The id of the partner account associated with this subscription.
+    example: 65a7e8ef0d230d0a6bf755e07d39eb02
+  createdAt:
+    type: string
+    description: The timestamp when the topic subscription was created.
+    example: "2023-10-01T12:34:56Z"

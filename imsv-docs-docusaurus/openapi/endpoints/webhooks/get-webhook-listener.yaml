@@ -1,0 +1,28 @@
+get:
+  tags:
+    - webhooks
+  summary: Get Webhook Listener
+  operationId: get-webhook-listener
+  description: Retrieves a specific Webhook Listener for the given id.
+  parameters:
+  - name: listenerId
+    in: path
+    description: Id for the Webhook Listener
+    example: 315bad4e81ce0f26966a41b9d451638b
+    required: true
+    schema:
+      type: string
+
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/get-webhook-listener-topic-schema.yaml"
+    "403":
+      description: No Authorization to access resource
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-403.yaml'

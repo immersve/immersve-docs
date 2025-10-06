@@ -1,11 +1,11 @@
 tags: [xpay]
-summary: XPay Card Load OTP
-operationId: xpay-card-load-otp
+summary: XPay Card Load Confirmed
+operationId: xpay-card-load-confirmed
 description: |
-  Triggered when a one-time password (OTP) is generated as part of the security
-  flow for loading funds onto an XPay card (Googlepay, Applepay or similar).
-  Subscribers should use this event to deliver the OTP to the cardholder in their
-  preferred channel.
+  Triggered when a card has been successfully enabled for use with XPay
+  (Googlepay, Applepay or similar). Subscribers should use this event to inform
+  the cardholder, via their preferred channel, that their card is ready to use
+  with XPay.
 
 requestBody:
   content:
@@ -16,7 +16,7 @@ requestBody:
             properties:
               topic:
                 type: string
-                enum: ["xpay-card-load-otp"]
+                enum: ["xpay-card-load-confirmed"]
               payload:
                 type: object
                 properties:
@@ -26,12 +26,6 @@ requestBody:
                     enum: [apple, generic, google]
                     description: |
                       Type of XPay being used.
-
-                  verificationCode:
-                    type: string
-                    example: "123456"
-                    description: |
-                      The XPay one-time code to deliver to the cardholder.
 
                   cardholderId:
                     type: string
