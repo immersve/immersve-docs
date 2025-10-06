@@ -14,7 +14,8 @@ requestBody:
             properties:
               topic:
                 type: string
-                example: "kyc-failed"
+                enum: 
+                  - "kyc-failed"
               payload:
                 type: object
                 properties:

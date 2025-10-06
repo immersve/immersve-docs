@@ -4,7 +4,9 @@ post:
   summary: Create Webhook Listener
   operationId: create-webhook-listener
   description: |
-    Create a webhook listener to receive notifications for specified topics.
+    Create a webhook listener to receive notifications for subscribed topics.
+    Add Webhook Topic Subscription endpoint must be used to subscribe to one or
+    more topics.
   requestBody:
     content:
       application/json:

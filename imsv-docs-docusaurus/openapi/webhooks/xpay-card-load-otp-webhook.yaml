@@ -1,4 +1,4 @@
-tags: [ xpay ]
+tags: [xpay]
 summary: XPay Card Load OTP
 operationId: xpay-card-load-otp
 description: |
@@ -16,11 +16,10 @@ requestBody:
             properties:
               topic:
                 type: string
-                example: "xpay-card-load-otp"
+                enum: ["xpay-card-load-otp"]
               payload:
                 type: object
                 properties:
-
                   xpayType:
                     type: string
                     example: "google"
@@ -58,4 +57,4 @@ requestBody:
                     description: |
                       The Immersve card program id for the card.
 
-          - $ref: './webhook-envelope.yaml'
+          - $ref: "./webhook-envelope.yaml"

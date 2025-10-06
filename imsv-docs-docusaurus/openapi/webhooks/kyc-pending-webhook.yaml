@@ -14,7 +14,8 @@ requestBody:
             properties:
               topic:
                 type: string
-                example: "kyc-pending"
+                enum: 
+                  - "kyc-pending"
               payload:
                 type: object
                 properties:
