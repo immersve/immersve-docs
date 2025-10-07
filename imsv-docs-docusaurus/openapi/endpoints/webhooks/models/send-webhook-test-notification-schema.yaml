@@ -1,0 +1,16 @@
+type: object
+required:
+  - topic
+  - accountId
+properties:
+  topic:
+    type: string
+    description: Topic to issue notification for.
+  accountId:
+    type: string
+    description: The id of the partner account.
+    example: 65a7e8ef0d230d0a6bf755e07d39eb02
+  listenerId:
+    type: string
+    description: The id of the listener for sending targeted test notification to this listener.
+    example: 65a7e8ef0d230d0a6bf755e07d39eb02

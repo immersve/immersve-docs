@@ -1,0 +1,50 @@
+post:
+  tags:
+    - webhooks
+  summary: Send Webhook Test Notification
+  operationId: send-webhook-test-notification
+  description: |
+    Send a test webhook notification with example payload. Sends notification to
+    every suscribed listener if `listenerId` not provided.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./models/send-webhook-test-notification-schema.yaml"
+    required: true
+
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - notifications:
+            properties:
+              notifications:
+                type: array
+                items:
+                  type: object
+                  required: 
+                    - id
+                  properties:
+                    id: 
+                      type: string
+                      example: "r7i48f309cfc11f0873s"
+                      description: Id of the notification sent.
+                
+    "403":
+      description: |
+        User is not allowed to perform the action with the reason stated in the `errorCode`
+
+        **FORBIDDEN**
+        Insufficient permissions to perform the action.
+
+        **ACCOUNT_TYPE_INVALID**
+        `accountType` of the `accountId` is not of type `PARTNER`.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
