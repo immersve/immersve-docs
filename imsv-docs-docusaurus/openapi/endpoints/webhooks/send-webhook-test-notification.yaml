@@ -1,0 +1,51 @@
+post:
+  tags:
+    - webhooks
+  summary: Send Webhook Test Notification
+  operationId: send-webhook-test-notification
+  description: |
+    Fire a sample notification to check that one or multiple webhook listeners
+    are correctly set up for a particular topic and account. Test notification can be targeted to a specific listener by providing `listenerId` body parameter.
+
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./models/send-webhook-test-notification-schema.yaml"
+    required: true
+
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - notifications:
+            properties:
+              notifications:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - id
+                  properties:
+                    id:
+                      type: string
+                      example: "r7i48f309cfc11f0873s"
+                      description: The id of the notification sent.
+
+    "403":
+      description: |
+        User is not allowed to perform the action with the reason stated in the `errorCode`
+
+        **FORBIDDEN**
+        Insufficient permissions to perform the action.
+
+        **ACCOUNT_TYPE_INVALID**
+        `accountType` of the `accountId` is not of type `PARTNER`.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
