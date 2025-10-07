@@ -1,0 +1,25 @@
+tags: [test-webhooks]
+summary: Asyncronous Test
+operationId: async-test
+description: |
+  Triggered in a response to "Test endpoint". Helps to confirm successful integration.
+
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              topic:
+                type: string
+                enum:
+                  - "async-test"
+              payload:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    enum: ["Test async topic"]
+
+          - $ref: "./webhook-envelope.yaml"

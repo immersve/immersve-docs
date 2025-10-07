@@ -9,6 +9,8 @@ tags:
     x-displayName: KYC
   - name: payments
     x-displayName: Payments
+  - name: test-webhooks
+    x-displayName: Test Webhooks
 
 # Custom attribute used as YAML anchor to simplify webhook header inclusion
 x-webhook-headers: &WebhookHeaders
@@ -61,3 +63,9 @@ webhooks:
   3ds-otp:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/payment-3ds-otp-webhook.yaml }
+  async-test:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/async-test-webhook.yaml }
+  transactional-test:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/transactional-test-webhook.yaml }
