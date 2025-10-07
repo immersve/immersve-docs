@@ -1,5 +1,5 @@
 tags: [test-webhooks]
-summary: Asyncronous Test
+summary: Asynchronous Test
 operationId: async-test
 description: |
   This webhook notification is triggered in response to a successful call to the
