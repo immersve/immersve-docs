@@ -2,7 +2,12 @@ tags: [test-webhooks]
 summary: Asyncronous Test
 operationId: async-test
 description: |
-  Triggered in a response to "Test endpoint". Helps to confirm successful integration.
+  This webhook notification is triggered in response to a successful call to the
+  [Send Webhook Test Notification
+  endpoint](/api-reference/send-webhook-test-notification) when the topic
+  parameter in the request body is set to `async-test`.  
+  It is designed to test the asynchronous flow for the integration and serves as
+  confirmation of its successful setup.
 
 requestBody:
   content:

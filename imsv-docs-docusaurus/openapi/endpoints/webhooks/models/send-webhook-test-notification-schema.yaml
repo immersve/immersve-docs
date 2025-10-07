@@ -5,12 +5,18 @@ required:
 properties:
   topic:
     type: string
-    description: Topic to issue notification for.
+    description: |
+      The subject area the listener is subscribed to, see [Webhook
+      Topics](/api-reference/category/webhook-topics)
+    example: async-test
   accountId:
     type: string
-    description: The id of the partner account.
+    description: The identifier for the partner account associated with the listener.
     example: 65a7e8ef0d230d0a6bf755e07d39eb02
   listenerId:
     type: string
-    description: The id of the listener for sending targeted test notification to this listener.
+    description: |
+      Optional. If provided the test notification will be sent only to that
+      specific, subscribed listener. If omitted the notification will be sent to
+      every active subscribed listener for the given topic.
     example: 65a7e8ef0d230d0a6bf755e07d39eb02

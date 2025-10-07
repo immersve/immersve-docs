@@ -4,8 +4,9 @@ post:
   summary: Send Webhook Test Notification
   operationId: send-webhook-test-notification
   description: |
-    Send a test webhook notification with example payload. Sends notification to
-    every suscribed listener if `listenerId` not provided.
+    Fire a sample notification to check that one or multiple webhook listeners
+    are correctly set up for a particular topic and account. Test notification can be targeted to a specific listener by providing `listenerId` body parameter.
+
   requestBody:
     content:
       application/json:
@@ -27,14 +28,14 @@ post:
                 type: array
                 items:
                   type: object
-                  required: 
+                  required:
                     - id
                   properties:
-                    id: 
+                    id:
                       type: string
                       example: "r7i48f309cfc11f0873s"
-                      description: Id of the notification sent.
-                
+                      description: The id of the notification sent.
+
     "403":
       description: |
         User is not allowed to perform the action with the reason stated in the `errorCode`
