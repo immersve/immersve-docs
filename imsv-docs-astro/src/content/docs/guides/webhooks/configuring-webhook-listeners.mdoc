@@ -1,0 +1,106 @@
+---
+title: Configuring Webhook Listeners
+description: |
+  How to configure Webhook Listeners to receive real-time notifications from the Immersve
+  platform.
+slug: guides/configuring-webhook-listeners
+---
+
+This guide details the steps to set up webhook integration with your service. It
+lists the API calls required to set up a Webhook Listener and its Subscriptions.  
+
+## Vocabulary
+
+- **Webhook Topic** - a specific, named category used to organize and send
+notifications to subscribers.
+- **Webhook Listener** - receives notifications for subscribed topics.
+- **Webhook Topic Subscription** - subscribes listener to a particular topic.
+  Webhook listener can have multiple subscriptions. Webhook Listener without
+  subscriptions does not receive notifications.
+
+## How it Works
+
+You will need to implement a webhook listener and register its url with
+Immersve. Only `HTTPS` protocol is supported.  
+
+Immersve will send notifications to the listener for any topics it is subscribed to.
+Notifications are sent to the Webhook Listener url as HTTP POST requests with
+the notification topic as a path parameter.
+
+### Example Scenario
+When a Webhook Listener is registered with url `https://example.com/webhooks`
+and it is subscribed to the `kyc-succeeded` topic and
+a notification for this topic is fired, then notification is sent
+to `https://example.com/webhooks/kyc-succeeded`
+
+{% note %} Notifications are not guaranteed to arrive in sequential order.
+Listener must expect potentially out of order notifications. {% /note %}
+
+## Registering Webhook Listeners
+
+You must first register your Webhook Listener before it can subscribe to a
+topic. To register a Webhook Listener, call **Create Webhook Listener** with
+your partner account id and your base url.
+
+{% note %}
+You can have up to three active Webhook Listeners. Call {% link title="List Webhook Listeners"
+href="https://docs.immersve.com/api-reference/list-webhook-listeners" /%}
+endpoint for current Listeners.
+{% /note %}
+
+
+{% endpointref name="create-webhook-listener" /%}
+
+```bash
+curl -L "https://${imsv_api_host}/api/webhook-listeners" \
+  -H 'Content-Type: application/json' \
+  -H "X-Api-Key: ${account_admin_api_key}" \
+  -H "X-Api-Secret: ${account_admin_api_secret}" \
+  -d '{
+    "accountId": "'${partner_account_id}'",
+    "url": "https://example.com/webhooks"
+  }'
+```
+
+## Subscribing to Topics
+
+In order to receive notifications, your Webhook Listener must have a subscription for the desired topics. 
+Use the Webhook Topic Subscription endpoint to subscribe your Webhook Listener to topics.
+
+{% endpointref name="add-webhook-topic-subscription" /%}
+
+```bash
+curl -L 'https://${imsv_api_host}/api/webhook-listeners/${listenerId}/subscribe' \
+  -H 'Content-Type: application/json' \
+  -H "X-Api-Key: ${account_admin_api_key}" \
+  -H "X-Api-Secret: ${account_admin_api_secret}" \
+  -d '{
+    "topic": "kyc-succeeded"
+  }'
+```
+
+Once topic subscriptions have been created, your Webhook Listener will be ready to receive notifications for the subscribed topics. 
+
+## Testing Webhooks
+
+Webhook setup can be tested by calling the **Send Webhook Test Notification**
+endpoint. You can use any of the available Topics documented on our {% link
+title="Webhook Topics" 
+href="https://docs.immersve.com/api-reference/category/webhook-topics" /%} reference. This
+will fire a delivery of the notification with the example payload for the
+requested Topic to all subscribed Webhook Listeners. Test notification delivery
+can be targeted to a specific listener id using the `listenerId` body
+parameter.  
+
+{% endpointref name="send-webhook-test-notification" /%}
+
+```bash
+curl -L 'https://api.immersve.com/api/webhook-test-notifications' \
+  -H 'Content-Type: application/json' \
+  -H "X-Api-Key: ${account_admin_api_key}" \
+  -H "X-Api-Secret: ${account_admin_api_secret}" \
+  -d '{
+    "topic": "kyc-succeeded",
+    "accountId": "'${partner_account_id}'",
+  }'
+```

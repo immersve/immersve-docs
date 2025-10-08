@@ -51,7 +51,8 @@ export default defineConfig({
               { label: 'Funding Protocols', link: 'guides/funding-protocols' },
               { label: 'Funding Types', link: 'guides/funding-types' },
             ]},
-            { label: 'Testing', autogenerate: { directory: 'guides/testing' } } ,
+            { label: 'Webhooks', autogenerate: { directory: 'guides/webhooks' }},
+            { label: 'Testing', autogenerate: { directory: 'guides/testing' } },
           ]
         },
         { label: 'Resources', autogenerate: { directory: 'resources' } },
