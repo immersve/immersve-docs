@@ -2,9 +2,7 @@ tags: [ kyc ]
 summary: KYC Failed
 operationId: kyc-failed
 description: |
-  Triggered when a cardholder's KYC verification status changes to `failed`,
-  indicating that the verification has been rejected.
-
+  Triggered when a cardholder's KYC status is verified and a `failed` result occurs.
 requestBody:
   content:
     application/json:
@@ -14,8 +12,7 @@ requestBody:
             properties:
               topic:
                 type: string
-                enum: 
-                  - "kyc-failed"
+                enum: ["kyc-failed"]
               payload:
                 type: object
                 properties:
