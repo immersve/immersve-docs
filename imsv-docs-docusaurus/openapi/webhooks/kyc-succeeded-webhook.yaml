@@ -12,8 +12,7 @@ requestBody:
             properties:
               topic:
                 type: string
-                enum:
-                  - "kyc-succeeded"
+                enum: ["kyc-succeeded"]
               payload:
                 type: object
                 properties:

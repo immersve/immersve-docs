@@ -12,8 +12,7 @@ requestBody:
             properties:
               topic:
                 type: string
-                enum:
-                  - "kyc-pending"
+                enum: ["kyc-pending"]
               payload:
                 type: object
                 properties:
