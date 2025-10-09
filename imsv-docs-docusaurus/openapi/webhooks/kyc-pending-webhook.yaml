@@ -2,9 +2,7 @@ tags: [ kyc ]
 summary: KYC Pending
 operationId: kyc-pending
 description: |
-  Triggered when a cardholder's KYC verification status changes to `pending`,
-  indicating that the verification is awaiting review or additional information.
-
+  Triggered when a cardholder's KYC status is awaiting review or requires additional information.
 requestBody:
   content:
     application/json:
@@ -14,7 +12,7 @@ requestBody:
             properties:
               topic:
                 type: string
-                enum: 
+                enum:
                   - "kyc-pending"
               payload:
                 type: object
