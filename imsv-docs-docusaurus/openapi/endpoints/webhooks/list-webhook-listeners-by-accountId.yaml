@@ -2,7 +2,7 @@ get:
   tags:
     - webhooks
   summary: List Webhook Listeners
-  operationId: list-webhook-listener
+  operationId: list-webhook-listeners
   description: Retrieves all active Webhook Listeners for the given account id.
   parameters:
   - name: accountId
