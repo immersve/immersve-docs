@@ -4,10 +4,10 @@ properties:
     type: string
     description: The type of evidence.
     enum:
-      - PASSPORT
+      - RESIDENCE_PERMIT
   documentId:
     type: string
-    description: The passport number.
+    description: The residence permit number.
     example: DS230475
   country:
     type: string
@@ -29,10 +29,9 @@ properties:
     example: "2028-10-12"
   # additionalNumber:
   #   type: string
-  #   description: An additional number found on the some passports like Personal Number in Colombia or CPF in Brazil.
+  #   description: An additional number found on the some residence permits like CPF in Brazil.
   #   example: 123456789
 required:
   - evidenceType
   - documentId
   - country
-  - expiry
