@@ -16,8 +16,12 @@ properties:
       - NZ
       - AU
       - AR
-      - MX
       - BR
+      - CL
+      - CO
+      - GT
+      - MX
+      - PE
     example: NZ
   region:
     type: string
@@ -30,6 +34,10 @@ properties:
     type: string
     description: The driver's license card number or version
     example: "978"
+  additionalNumber:
+    type: string
+    description: An additional number found on the drivers license card like NUIP in Colombia or CUIL in Argentina.
+    example: 123456789
 required:
   - evidenceType
   - documentId
