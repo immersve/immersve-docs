@@ -4,7 +4,7 @@ operationId: xpay-card-load-otp
 description: |
   Triggered when a one-time password (OTP) is generated as part of the security
   flow for manually provisioning an XPay card to a digital wallet (Google Pay, Apple Pay or similar). 
-Subscribers should use this event to deliver the OTP to
+  Subscribers should use this event to deliver the OTP to
   the cardholder in their preferred channel.
 
 requestBody:
