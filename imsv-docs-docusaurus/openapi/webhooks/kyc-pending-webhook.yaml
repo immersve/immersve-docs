@@ -2,7 +2,7 @@ tags: [ kyc ]
 summary: KYC Pending
 operationId: kyc-pending
 description: |
-  Triggered when a cardholder's KYC status is awaiting review or requires additional information.
+  Triggered when a cardholder submits KYC information for review.
 requestBody:
   content:
     application/json:
@@ -20,7 +20,7 @@ requestBody:
                     type: string
                     example: "pending"
                     description: |
-                      Awaiting review or additional information
+                      Verification pending review
 
                   accountId:
                     type: string
