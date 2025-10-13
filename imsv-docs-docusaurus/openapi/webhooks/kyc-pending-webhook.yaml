@@ -20,7 +20,7 @@ requestBody:
                     type: string
                     example: "pending"
                     description: |
-                      Awaiting review or additional information
+                      Pending review
 
                   accountId:
                     type: string
