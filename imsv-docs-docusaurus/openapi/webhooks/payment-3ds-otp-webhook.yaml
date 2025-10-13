@@ -1,4 +1,4 @@
-tags: [ payments ]
+tags: [payments]
 summary: Payment 3DS OTP
 operationId: payment-3ds-otp
 description: |
@@ -19,7 +19,6 @@ requestBody:
               payload:
                 type: object
                 properties:
-
                   verificationCode:
                     type: string
                     example: "123456"
@@ -56,4 +55,28 @@ requestBody:
                     description: |
                       The Immersve card program id for the card.
 
-          - $ref: './webhook-envelope.yaml'
+                  merchantName:
+                    type: string
+                    example: "Unsworth Height Super"
+                    description: |
+                      The merchant's name.
+
+                  merchantCountryCode:
+                    type: string
+                    example: "NZ"
+                    description: |
+                      The merchant's ISO-3166-1 Alpha-2 country code.
+
+                  paymentAcquirerAmount:
+                    type: string
+                    example: "978"
+                    description: |
+                      Payment amount represented in the merchant's local currency. The amount will use fiat minor units. For example 978 GBP is £9.78.
+
+                  paymentAcquirerCurrency:
+                    type: string
+                    example: GBP
+                    description: |
+                      The merchant's local currency.
+
+          - $ref: "./webhook-envelope.yaml"
