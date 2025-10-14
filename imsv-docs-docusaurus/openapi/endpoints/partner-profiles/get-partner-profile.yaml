@@ -1,0 +1,32 @@
+get:
+  tags:
+    - partner-profiles
+  summary: Get Partner Profile
+  operationId: get-partner-profile
+  description: Retrieve the partner profile information for a specific account.
+  parameters:
+    - name: accountId
+      in: path
+      description: Account ID for the partner profile
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/get-partner-profile-response.yaml"
+    "400":
+      description: Request fields are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'
+    "403":
+      description: No Authorization to access resource.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"

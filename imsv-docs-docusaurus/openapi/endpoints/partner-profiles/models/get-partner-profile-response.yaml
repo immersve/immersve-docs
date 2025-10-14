@@ -1,0 +1,46 @@
+type: object
+required:
+  - accountId
+  - createdAt
+  - modifiedAt
+  - isKycStatementsSubmissionAllowed
+properties:
+  accountId:
+    type: string
+    format: uuid
+    description: The unique identifier of the partner account
+    example: "225d85e65495722bf6517ea0ba0d6f56"
+  createdAt:
+    type: string
+    format: date-time
+    description: ISO 8601 timestamp when the partner profile was created
+    example: "2023-10-14T10:30:00.000Z"
+  modifiedAt:
+    type: string
+    format: date-time
+    description: ISO 8601 timestamp when the partner profile was last modified
+    example: "2023-10-14T15:45:30.000Z"
+  isKycStatementsSubmissionAllowed:
+    type: boolean
+    description: Whether KYC statements submission is allowed for this partner
+    example: true
+  logoUrl:
+    type: string
+    format: uri
+    nullable: true
+    description: URL to the partner's logo image
+    example: "https://example.com/logo.png"
+  supportEmail:
+    type: string
+    format: email
+    nullable: true
+    description: Support email address for the partner
+    example: "support@partner.com"
+  configurationAttributes:
+    type: object
+    description: Additional configuration attributes specific to the partner
+    additionalProperties: true
+    example:
+      theme: "dark"
+      maxTransactionAmount: 10000
+      allowedRegions: ["US", "EU"]
