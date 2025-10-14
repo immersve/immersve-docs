@@ -15,7 +15,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'API Endpoints',
+          label: 'Endpoints',
           link: {
             type: 'generated-index',
           },
