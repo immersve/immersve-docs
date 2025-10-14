@@ -7,37 +7,27 @@ const sidebars = {
   primarySidebar: [
     {
       type: 'category',
-      label: 'API Reference',
+      label: 'Endpoints',
       link: {
         type: 'generated-index',
       },
-      collapsed: true,
-      items: [
-        {
-          type: 'category',
-          label: 'Endpoints',
-          link: {
-            type: 'generated-index',
-          },
-          collapsed: false,
-          items: openApiSidebar.filter(
-            // exclude auto-generated "introduction"
-            (item) => item.id != 'immersve-api'
-          ),
-        },
-        {
-          type: 'category',
-          label: 'Webhook Topics',
-          link: {
-            type: 'generated-index',
-          },
-          collapsed: false,
-          items: webhookSidebar.filter(
-            // exclude auto-generated "introduction"
-            (item) => item.id != 'webhook-topics/immersve-webhooks'
-          ),
-        },
-      ],
+      collapsed: false,
+      items: openApiSidebar.filter(
+        // exclude auto-generated "introduction"
+        (item) => item.id != 'immersve-api'
+      ),
+    },
+    {
+      type: 'category',
+      label: 'Webhook Topics',
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: false,
+      items: webhookSidebar.filter(
+        // exclude auto-generated "introduction"
+        (item) => item.id != 'webhook-topics/immersve-webhooks'
+      ),
     },
   ],
 };
