@@ -18,6 +18,8 @@ properties:
   attributeValue:
     oneOf:
       - type: string
+        example: "https://example.com/logo.png"
       - type: boolean
+        example: true
     nullable: true
     description: Configuration attribute value (string or boolean)
