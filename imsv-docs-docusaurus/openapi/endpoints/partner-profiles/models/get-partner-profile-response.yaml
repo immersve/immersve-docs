@@ -7,7 +7,6 @@ required:
 properties:
   accountId:
     type: string
-    format: uuid
     description: The unique identifier of the partner account
     example: "225d85e65495722bf6517ea0ba0d6f56"
   createdAt:
@@ -26,24 +25,16 @@ properties:
     example: true
   logoUrl:
     type: string
-    format: uri
     nullable: true
     description: URL to the partner's logo image
     example: "https://example.com/logo.png"
   supportEmail:
     type: string
-    format: email
     nullable: true
     description: Support email address for the partner
     example: "support@partner.com"
-  configurationAttributes:
-    type: object
-    description: Additional configuration attributes specific to the partner
-    additionalProperties:
-      oneOf:
-        - type: string
-        - type: boolean
-        - type: undefined
-    example:
-      supportUrl: "https://partner.com/support"
-      email.kycConfirmation.successBanner.url: "https://partner.com/banners/success.png"
+  email.kyc.enabled:
+    type: boolean
+    nullable: true
+    description: Whether KYC email notifications are enabled for this partner
+    example: true
