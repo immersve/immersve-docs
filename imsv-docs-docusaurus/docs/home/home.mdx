@@ -1,0 +1,49 @@
+---
+slug: /
+id: home
+title: "API Reference"
+---
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import sidebars from '../../sidebars.js';
+
+export const getCategories = (categoryName) => {
+  const category = sidebars.primarySidebar.find(
+    (item) => item.type === 'category' && item.label === categoryName
+  );
+
+  if (!category) return [];
+
+  const items = Array.isArray(category.items)
+    ? category.items
+    : category.items?.default || [];
+
+  const firstLevelCategories = items.filter(
+    (item) => item.type === 'category'
+  );
+
+  return firstLevelCategories.map((cat) => ({
+    type: 'link',
+    label: cat.label,
+    href:
+      cat.link?.type === 'doc'
+        ? `/api-reference/${cat.link.id}`
+        : '#',
+    description: `${cat.items?.length ?? 0} items`,
+  }));
+};
+```
+
+<h2>Endpoints</h2>
+
+```mdx-code-block
+<DocCardList items={getCategories('Endpoints')} />
+```
+
+<h2>Webhook Topics</h2>
+
+
+```mdx-code-block
+<DocCardList items={getCategories('Webhook Topics')} />
+```

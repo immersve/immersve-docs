@@ -19,7 +19,7 @@ netlify-deploy.json
 .docusaurus
 .cache-loader
 /imsv-docs-docusaurus/docs/*
-!/imsv-docs-docusaurus/docs/redirects
+!/imsv-docs-docusaurus/docs/home
 linkchecker-out.csv
 
 # Misc
