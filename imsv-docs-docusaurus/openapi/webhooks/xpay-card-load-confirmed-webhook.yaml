@@ -51,4 +51,7 @@ requestBody:
                     description: |
                       The Immersve card program id for the card.
 
+                  deliveryOptions:
+                    $ref: "../models/delivery-options.yaml"
+
           - $ref: "./webhook-envelope.yaml"

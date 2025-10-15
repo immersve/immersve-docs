@@ -79,4 +79,7 @@ requestBody:
                     description: |
                       The merchant's local currency.
 
+                  deliveryOptions:
+                    $ref: "../models/delivery-options.yaml"
+
           - $ref: "./webhook-envelope.yaml"

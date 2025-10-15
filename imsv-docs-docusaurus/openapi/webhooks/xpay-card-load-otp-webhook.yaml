@@ -3,7 +3,7 @@ summary: XPay Card Load OTP
 operationId: xpay-card-load-otp
 description: |
   Triggered when a one-time password (OTP) is generated as part of the security
-  flow for manually provisioning an XPay card to a digital wallet (Google Pay, Apple Pay or similar). 
+  flow for manually provisioning an XPay card to a digital wallet (Google Pay, Apple Pay or similar).
   Subscribers should use this event to deliver the OTP to
   the cardholder in their preferred channel.
 
@@ -56,5 +56,8 @@ requestBody:
                     example: "83dee5409cfc11f0a1e6"
                     description: |
                       The Immersve card program id for the card.
+
+                  deliveryOptions:
+                    $ref: "../models/delivery-options.yaml"
 
           - $ref: "./webhook-envelope.yaml"
