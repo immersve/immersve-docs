@@ -7,7 +7,7 @@ const sidebars = {
   primarySidebar: [
       {
       type: 'doc',
-      id: 'redirects/home',
+      id: 'home/home',
       },
         {
           type: 'category',
