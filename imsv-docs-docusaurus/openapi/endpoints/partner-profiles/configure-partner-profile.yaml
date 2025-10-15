@@ -55,9 +55,6 @@ post:
 
         **FORBIDDEN**
         Insufficient permissions to perform the action.
-
-        **PartnerProfileNotFound**
-        The partner profile for the specified account was not found.
       content:
         application/json:
           schema:

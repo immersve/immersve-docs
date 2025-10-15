@@ -21,8 +21,3 @@ properties:
       - type: boolean
     nullable: true
     description: Configuration attribute value (string or boolean)
-    examples:
-      - "https://example.com/logo.png"
-      - "support@partner.com"
-      - "https://partner.com/support"
-      - true
