@@ -16,7 +16,9 @@ const sidebars = {
             type: 'generated-index',
           },
           collapsed: false,
-          items: openApiSidebar
+                    items: Array.isArray(openApiSidebar)
+            ? openApiSidebar.filter(item => item.id !== 'immersve-api')
+            : openApiSidebar.default.filter(item => item.id !== 'immersve-api')
         },
         {
           type: 'category',
@@ -25,7 +27,9 @@ const sidebars = {
             type: 'generated-index',
           },
           collapsed: false,
-          items: webhookSidebar
+          items: Array.isArray(webhookSidebar)
+            ? webhookSidebar.filter(item => item.id !== 'webhook-topics/immersve-webhooks')
+            : webhookSidebar.default.filter(item => item.id !== 'webhook-topics/immersve-webhooks')
         },
   ],
 };

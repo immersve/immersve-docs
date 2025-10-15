@@ -11,26 +11,21 @@ import DocCardList from '@theme/DocCardList';
 import sidebars from '../../sidebars.js';
 
 export const endpointSubcategories = (() => {
-  // Find the "Endpoint" category
+  // Find the "Endpoints" category
   const endpointCategory = sidebars.primarySidebar.find(
     item => item.type === 'category' && item.label === 'Endpoints'
   );
-
   if (!endpointCategory) return [];
 
-  // Get first-level children that are categories
   const firstLevelCategories = (Array.isArray(endpointCategory.items)
     ? endpointCategory.items
     : endpointCategory.items.default
   ).filter(item => item.type === 'category');
 
-  // Map them into DocCardList items
   return firstLevelCategories.map(cat => ({
     type: 'link',
     label: cat.label,
-    href: cat.link && cat.link.type === 'doc'
-      ? `/api-reference/${cat.link.id}`
-      : '#', // fallback if no link
+    href: cat.link?.type === 'doc' ? `/api-reference/${cat.link.id}` : '#',
   }));
 })();
 
