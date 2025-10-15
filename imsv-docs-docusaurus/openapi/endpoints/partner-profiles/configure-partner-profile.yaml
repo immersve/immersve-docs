@@ -21,7 +21,7 @@ post:
         examples:
           emailKycEnabled:
             summary: Enable Email KYC
-            description: Enable email-based KYC verification for partner users
+            description: When enabled, sends KYC-related email notifications to partner cardholders
             value:
               attributeName: "email.kyc.enabled"
               attributeValue: true
