@@ -4,63 +4,46 @@ id: home
 title: "API Reference"
 ---
 
-<h2>Endpoints</h2>
-
 ```mdx-code-block
 import DocCardList from '@theme/DocCardList';
 import sidebars from '../../sidebars.js';
 
-export const endpointSubcategories = (() => {
-  // Find the "Endpoints" category
-  const endpointCategory = sidebars.primarySidebar.find(
-    item => item.type === 'category' && item.label === 'Endpoints'
+export const getCategories = (categoryName) => {
+  const category = sidebars.primarySidebar.find(
+    (item) => item.type === 'category' && item.label === categoryName
   );
-  if (!endpointCategory) return [];
 
-  const firstLevelCategories = (Array.isArray(endpointCategory.items)
-    ? endpointCategory.items
-    : endpointCategory.items.default
-  ).filter(item => item.type === 'category');
+  if (!category) return [];
 
-  return firstLevelCategories.map(cat => ({
+  const items = Array.isArray(category.items)
+    ? category.items
+    : category.items?.default || [];
+
+  const firstLevelCategories = items.filter(
+    (item) => item.type === 'category'
+  );
+
+  return firstLevelCategories.map((cat) => ({
     type: 'link',
     label: cat.label,
-    href: cat.link?.type === 'doc' ? `/api-reference/${cat.link.id}` : '#',
-    description: `${cat.items.length} items`,
+    href:
+      cat.link?.type === 'doc'
+        ? `/api-reference/${cat.link.id}`
+        : '#',
+    description: `${cat.items?.length ?? 0} items`,
   }));
-})();
-
-<DocCardList items={endpointSubcategories} />
+};
 ```
 
-<h1>Webhook Topics</h1>
+<h2>Endpoints</h2>
+
+```mdx-code-block
+<DocCardList items={getCategories('Endpoints')} />
+```
+
+<h2>Webhook Topics</h2>
 
 
 ```mdx-code-block
-export const webhookSubcategories = (() => {
-  // Find the "Webhook Topics" category
-  const webhookCategory = sidebars.primarySidebar.find(
-    item => item.type === 'category' && item.label === 'Webhook Topics'
-  );
-
-  if (!webhookCategory) return [];
-
-  // Get first-level children that are categories
-  const firstLevelCategories = (Array.isArray(webhookCategory.items)
-    ? webhookCategory.items
-    : webhookCategory.items.default
-  ).filter(item => item.type === 'category');
-
-  // Map them into DocCardList items
-  return firstLevelCategories.map(cat => ({
-    type: 'link',
-    label: cat.label,
-    href: cat.link && cat.link.type === 'doc'
-      ? `/api-reference/${cat.link.id}`
-      : '#', // fallback if no link
-    description: `${cat.items.length} items`,
-  }));
-})();
-
-<DocCardList items={webhookSubcategories} />
+<DocCardList items={getCategories('Webhook Topics')} />
 ```
