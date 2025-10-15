@@ -26,6 +26,7 @@ export const endpointSubcategories = (() => {
     type: 'link',
     label: cat.label,
     href: cat.link?.type === 'doc' ? `/api-reference/${cat.link.id}` : '#',
+    description: `${cat.items.length} items`,
   }));
 })();
 
@@ -36,7 +37,6 @@ export const endpointSubcategories = (() => {
 
 
 ```mdx-code-block
-
 export const webhookSubcategories = (() => {
   // Find the "Webhook Topics" category
   const webhookCategory = sidebars.primarySidebar.find(
@@ -58,6 +58,7 @@ export const webhookSubcategories = (() => {
     href: cat.link && cat.link.type === 'doc'
       ? `/api-reference/${cat.link.id}`
       : '#', // fallback if no link
+    description: `${cat.items.length} items`,
   }));
 })();
 
