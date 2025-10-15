@@ -35,11 +35,6 @@ post:
             value:
               attributeName: "supportEmail"
               attributeValue: "newteam@partner.com"
-          supportUrl:
-            summary: Update Support URL
-            value:
-              attributeName: "supportUrl"
-              attributeValue: "https://partner.com/help"
   responses:
     '200':
       description: Partner profile configuration updated successfully
