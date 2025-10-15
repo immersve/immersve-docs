@@ -1,67 +1,28 @@
-oneOf:
-  - type: object
-    title: Logo URL Configuration
-    required:
-      - attributeName
-      - attributeValue
-    properties:
-      attributeName:
-        type: string
-        enum: [logoUrl]
-      attributeValue:
-        type: string
-        format: uri
-        nullable: true
-        pattern: "^https://"
-        description: HTTPS URL for the partner logo
-        example: "https://example.com/logo.png"
-  - type: object
-    title: KYC Statements Submission Configuration
-    required:
-      - attributeName
-      - attributeValue
-    properties:
-      attributeName:
-        type: string
-        enum: [isKycStatementsSubmissionAllowed]
-      attributeValue:
-        type: boolean
-        description: Whether KYC statements submission is allowed
-        example: true
-  - type: object
-    title: Support Email Configuration
-    required:
-      - attributeName
-      - attributeValue
-    properties:
-      attributeName:
-        type: string
-        enum: [supportEmail]
-      attributeValue:
-        type: string
-        nullable: true
-        description: Support email address for the partner
-        example: "support@partner.com"
-  - type: object
-    title: General Configuration Attributes
-    required:
-      - attributeName
-      - attributeValue
-    properties:
-      attributeName:
-        type: string
-        enum:
-          - supportUrl
-          - email.kycConfirmation.successBanner.url
-          - email.xpayConfirmation.applePayBanner.url
-          - email.xpayConfirmation.googlePayBanner.url
-          - email.kycConfirmation.cardActivation.url
-          - email.kyc.enabled
-        description: Configuration attribute name
-      attributeValue:
-        oneOf:
-          - type: string
-          - type: boolean
-        nullable: true
-        description: Configuration attribute value (string or boolean)
-        example: "https://partner.com/support"
+type: object
+required:
+  - attributeName
+  - attributeValue
+properties:
+  attributeName:
+    type: string
+    enum:
+      - logoUrl
+      - supportEmail
+      - supportUrl
+      - email.kycConfirmation.successBanner.url
+      - email.xpayConfirmation.applePayBanner.url
+      - email.xpayConfirmation.googlePayBanner.url
+      - email.kycConfirmation.cardActivation.url
+      - email.kyc.enabled
+    description: Configuration attribute name
+  attributeValue:
+    oneOf:
+      - type: string
+      - type: boolean
+    nullable: true
+    description: Configuration attribute value (string or boolean)
+    examples:
+      - "https://example.com/logo.png"
+      - "support@partner.com"
+      - "https://partner.com/support"
+      - true

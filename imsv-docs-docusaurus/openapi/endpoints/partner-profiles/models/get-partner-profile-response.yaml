@@ -39,8 +39,11 @@ properties:
   configurationAttributes:
     type: object
     description: Additional configuration attributes specific to the partner
-    additionalProperties: true
+    additionalProperties:
+      oneOf:
+        - type: string
+        - type: boolean
+        - type: "null"
     example:
-      theme: "dark"
-      maxTransactionAmount: 10000
-      allowedRegions: ["US", "EU"]
+      supportUrl: "https://partner.com/support"
+      email.kycConfirmation.successBanner.url: "https://partner.com/banners/success.png"

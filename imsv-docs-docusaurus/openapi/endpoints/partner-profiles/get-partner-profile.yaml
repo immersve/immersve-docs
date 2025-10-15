@@ -7,7 +7,7 @@ get:
   parameters:
     - name: accountId
       in: path
-      description: Account ID for the partner profile
+      description: Account id for the partner profile
       required: true
       schema:
         type: string

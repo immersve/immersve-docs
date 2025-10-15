@@ -19,23 +19,24 @@ post:
         schema:
           $ref: "./models/configure-partner-profile-request-body.yaml"
         examples:
+          emailKycEnabled:
+            summary: Enable Email KYC
+            description: Enable email-based KYC verification for partner users
+            value:
+              attributeName: "email.kyc.enabled"
+              attributeValue: true
           logoUrl:
             summary: Update Logo URL
             value:
               attributeName: "logoUrl"
               attributeValue: "https://example.com/new-logo.png"
-          kycEnabled:
-            summary: Enable KYC Statements
-            value:
-              attributeName: "isKycStatementsSubmissionAllowed"
-              attributeValue: true
           supportEmail:
             summary: Update Support Email
             value:
               attributeName: "supportEmail"
               attributeValue: "newteam@partner.com"
-          configurationAttribute:
-            summary: Update Configuration Attribute
+          supportUrl:
+            summary: Update Support URL
             value:
               attributeName: "supportUrl"
               attributeValue: "https://partner.com/help"
