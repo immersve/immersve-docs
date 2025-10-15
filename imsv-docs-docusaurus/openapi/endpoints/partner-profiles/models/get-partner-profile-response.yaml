@@ -38,3 +38,28 @@ properties:
     nullable: true
     description: Whether KYC email notifications are enabled for this partner
     example: true
+  email.kycConfirmation.cardActivation.url:
+    type: string
+    nullable: true
+    description: URL for the card activation banner in KYC confirmation emails
+    example: "https://example.com/kyc-card-activation.png"
+  email.kycConfirmation.successBanner.url:
+    type: string
+    nullable: true
+    description: URL for the success banner in KYC confirmation emails
+    example: "https://example.com/kyc-success.png"
+  email.xpayConfirmation.applePayBanner.url:
+    type: string
+    nullable: true
+    description: URL for the Apple Pay banner in xPay confirmation emails
+    example: "https://example.com/apple-pay.png"
+  email.xpayConfirmation.googlePayBanner.url:
+    type: string
+    nullable: true
+    description: URL for the Google Pay banner in xPay confirmation emails
+    example: "https://example.com/google-pay.png"
+  supportUrl:
+    type: string
+    nullable: true
+    description: URL to the partner's support page
+    example: "https://partner.com/support"
