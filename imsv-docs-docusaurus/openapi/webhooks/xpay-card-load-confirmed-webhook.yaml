@@ -52,20 +52,6 @@ requestBody:
                       The Immersve card program id for the card.
 
                   deliveryOptions:
-                    type: array
-                    minItems: 1
-                    items:
-                      type: object
-                      required:
-                        - type
-                      properties:
-                        type:
-                          type: string
-                          description: The delivery channel method.
-                          enum: [sms, email]
-                      example:
-                        type: "sms"
-                    description: |
-                      Specifies the method by which the notification should be delivered to the cardholder. Subscriber must send the notification using one of the specified delivery channel.
+                    $ref: "../models/delivery-options.yaml"
 
           - $ref: "./webhook-envelope.yaml"
