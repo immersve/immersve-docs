@@ -43,7 +43,7 @@ properties:
       oneOf:
         - type: string
         - type: boolean
-        - type: "null"
+        - type: undefined
     example:
       supportUrl: "https://partner.com/support"
       email.kycConfirmation.successBanner.url: "https://partner.com/banners/success.png"
