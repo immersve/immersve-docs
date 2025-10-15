@@ -6,7 +6,7 @@ function getSidebarItems(sidebar, excludeId) {
     ? sidebar
     : sidebar.default
 
-  // exclude the specified ID
+  // exclude auto-generated "introduction"
   return items.filter((item) => item.id !== excludeId);
 }
 
