@@ -3,12 +3,12 @@ info:
   version: 1.0.0
   title: Immersve Webhooks
 tags:
-  - name: xpay
-    x-displayName: XPay
   - name: kyc
     x-displayName: KYC
   - name: payments
     x-displayName: Payments
+  - name: xpay
+    x-displayName: XPay
   - name: test-webhooks
     x-displayName: Test Webhooks
 
