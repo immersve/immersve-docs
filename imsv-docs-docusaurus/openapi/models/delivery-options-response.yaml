@@ -1,0 +1,14 @@
+description: Subscription response
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        deliveryType:
+          type: string
+          description: Selected delivery option by the subscriber
+          example: sms
+        deliveryDestination:
+          type: string
+          description: Destination where the notification was sent to by the subscriber
+          example: "+111111111111"
