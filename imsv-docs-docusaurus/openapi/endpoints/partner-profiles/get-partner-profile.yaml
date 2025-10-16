@@ -18,12 +18,6 @@ get:
         application/json:
           schema:
             $ref: "./models/get-partner-profile-response.yaml"
-    "400":
-      description: Request fields are invalid
-      content:
-        application/json:
-          schema:
-            $ref: '../../models/api-error-400.yaml'
     "403":
       description: No Authorization to access resource.
       content:
