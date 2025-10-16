@@ -9,7 +9,10 @@ items:
       type: string
       description: The delivery channel method.
       enum: [sms, email]
-  example:
-    type: "sms"
+      example: "sms"
+    destination:
+      type: string
+      description: The delivery destination. A phone number in the case of sms, or email address in the case of email
+      example: "+111111111111"
 description: |
   Specifies the method by which the notification should be delivered to the cardholder. Subscriber must send the notification using one of the specified delivery channel.

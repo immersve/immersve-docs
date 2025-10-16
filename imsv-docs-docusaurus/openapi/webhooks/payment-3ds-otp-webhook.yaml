@@ -83,3 +83,7 @@ requestBody:
                     $ref: "../models/delivery-options.yaml"
 
           - $ref: "./webhook-envelope.yaml"
+
+responses:
+  '200':
+    $ref: "../models/delivery-options-response.yaml"
