@@ -23,7 +23,7 @@ properties:
     example: CO
   expiry:
     type: string
-    description: The passport expiry formatted as YYYY-MM-DD.
+    description: The residence permit expiry formatted as YYYY-MM-DD.
     example: "2028-10-12"
   # additionalNumber:
   #   type: string
