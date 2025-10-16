@@ -1,0 +1,25 @@
+type: object
+required:
+  - attributeName
+  - attributeValue
+properties:
+  attributeName:
+    type: string
+    enum:
+      - logoUrl
+      - supportEmail
+      - supportUrl
+      - email.kycConfirmation.successBanner.url
+      - email.xpayConfirmation.applePayBanner.url
+      - email.xpayConfirmation.googlePayBanner.url
+      - email.kycConfirmation.cardActivation.url
+      - email.kyc.enabled
+    description: Configuration attribute name
+  attributeValue:
+    oneOf:
+      - type: string
+        example: "https://example.com/logo.png"
+      - type: boolean
+        example: true
+    nullable: true
+    description: Configuration attribute value (string or boolean)

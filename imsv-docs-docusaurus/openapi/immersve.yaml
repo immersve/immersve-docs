@@ -30,6 +30,8 @@ tags:
     x-displayName: KYC
   - name: file-uploads
     x-displayName: File Uploads
+  - name: partner-profiles
+    x-displayName: Partner Profiles
   - name: prerequisites
     x-displayName: Prerequisites
   - name: simulator
@@ -122,6 +124,12 @@ paths:
   "/api/accounts/{accountId}/contact-details":
     get: { $ref: "./endpoints/contact-details/get-contact-details.yaml" }
     patch: { $ref: "./endpoints/contact-details/update-contact-details.yaml" }
+
+  # Partner Profiles
+  "/api/partner-profiles/{accountId}":
+    $ref: "./endpoints/partner-profiles/get-partner-profile.yaml"
+  "/api/partner-profiles/{accountId}/configure":
+    $ref: "./endpoints/partner-profiles/configure-partner-profile.yaml"
 
   # Prerequisites
   "/api/spending-prerequisites":

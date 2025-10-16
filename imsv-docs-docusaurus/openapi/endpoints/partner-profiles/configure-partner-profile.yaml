@@ -1,0 +1,56 @@
+post:
+  tags:
+    - partner-profiles
+  summary: Configure Partner Profile
+  operationId: configure-partner-profile
+  description: Update the partner profile configuration for a specific account. Different attributes may require different authorization levels.
+  parameters:
+    - name: accountId
+      in: path
+      required: true
+      description: The unique identifier of the partner account
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "./models/configure-partner-profile-request-body.yaml"
+        examples:
+          emailKycEnabled:
+            summary: Enable Email KYC
+            description: When enabled, sends KYC-related email notifications to partner cardholders
+            value:
+              attributeName: "email.kyc.enabled"
+              attributeValue: true
+          logoUrl:
+            summary: Update Logo URL
+            value:
+              attributeName: "logoUrl"
+              attributeValue: "https://example.com/new-logo.png"
+          supportEmail:
+            summary: Update Support Email
+            value:
+              attributeName: "supportEmail"
+              attributeValue: "newteam@partner.com"
+  responses:
+    '200':
+      description: Partner profile configuration updated successfully
+    '400':
+      description: Request parameters are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'
+    '403':
+      description: |
+        User is not allowed to perform the action
+
+        **FORBIDDEN**
+        Insufficient permissions to perform the action.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
