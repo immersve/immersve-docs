@@ -5,16 +5,7 @@ required:
 properties:
   attributeName:
     type: string
-    enum:
-      - logoUrl
-      - supportEmail
-      - supportUrl
-      - email.kycConfirmation.successBanner.url
-      - email.xpayConfirmation.applePayBanner.url
-      - email.xpayConfirmation.googlePayBanner.url
-      - email.kycConfirmation.cardActivation.url
-      - email.kyc.enabled
-    description: Configuration attribute name
+    $ref: "./partner-profile-configurations.yaml#/components/schemas/ConfigurableAttributeName"
   attributeValue:
     oneOf:
       - type: string
