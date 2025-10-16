@@ -16,22 +16,31 @@ properties:
       - NZ
       - AU
       - AR
-      - MX
       - BR
+      - CL
+      - CO
+      - GT
+      - MX
+      - PE
     example: NZ
   region:
     type: string
     description: |
       Where appropriate, the state or region that issued the document, in the format provided by the issuer.
       e.g. for Australia a Victorian Drivers license, this would be 'VIC'.
-      For New Zealand no value is required.
+      For other countries no value is required.
     example: VIC
   version:
     type: string
-    description: The driver's license card number or version
+    description:  |
+      The driver's license card number or version. This field is required for New Zealand and Australia.
+      For other countries this field is optional.
     example: "978"
+  # additionalNumber:
+  #   type: string
+  #   description: An additional number found on the drivers license card like NUIP in Colombia or CUIL in Argentina.
+  #   example: 123456789
 required:
   - evidenceType
   - documentId
   - country
-  - version

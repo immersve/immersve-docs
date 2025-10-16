@@ -13,9 +13,13 @@ properties:
     type: string
     description: The country that issued the document.
     enum:
-      - BR
       - AR
+      - BR
+      - CL
+      - CO
+      - GT
       - MX
+      - PE
     example: BR
   paternalFamilyName:
     type: string
@@ -25,6 +29,10 @@ properties:
     type: string
     description: The maternal family name of the cardholder. This is required when country is MX.
     example: Souza
+  # additionalNumber:
+  #   type: string
+  #   description: An additional number found on the ID card like NUIP in Colombia or CUIL in Argentina.
+  #   example: 123456789
 required:
   - evidenceType
   - documentId
