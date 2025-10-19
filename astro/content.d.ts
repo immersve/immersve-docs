@@ -391,6 +391,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/supported-chains/bsc.mdoc": {
+	id: "guides/supported-chains/bsc.mdoc";
+  slug: "guides/bsc";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/supported-chains/ethereum.mdoc": {
 	id: "guides/supported-chains/ethereum.mdoc";
   slug: "guides/ethereum";
@@ -429,6 +436,13 @@ declare module 'astro:content' {
 "guides/supported-tokens/usdc.mdoc": {
 	id: "guides/supported-tokens/usdc.mdoc";
   slug: "guides/usdc";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
+"guides/supported-tokens/usdt.mdoc": {
+	id: "guides/supported-tokens/usdt.mdoc";
+  slug: "guides/usdt";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
@@ -582,6 +596,20 @@ declare module 'astro:content' {
   collection: "funding-types";
   data: InferEntrySchema<"funding-types">
 } & { render(): Render[".md"] };
+"bsc-mainnet-usdt-universal-evm.md": {
+	id: "bsc-mainnet-usdt-universal-evm.md";
+  slug: "bsc-mainnet-usdt-universal-evm";
+  body: string;
+  collection: "funding-types";
+  data: InferEntrySchema<"funding-types">
+} & { render(): Render[".md"] };
+"bsc-testnet-usdt-universal-evm.md": {
+	id: "bsc-testnet-usdt-universal-evm.md";
+  slug: "bsc-testnet-usdt-universal-evm";
+  body: string;
+  collection: "funding-types";
+  data: InferEntrySchema<"funding-types">
+} & { render(): Render[".md"] };
 "custodial-usdc.md": {
 	id: "custodial-usdc.md";
   slug: "custodial-usdc";
@@ -710,6 +738,20 @@ declare module 'astro:content' {
   collection: "network-tokens";
   data: InferEntrySchema<"network-tokens">
 } & { render(): Render[".md"] };
+"usdt-bsc-mainnet.md": {
+	id: "usdt-bsc-mainnet.md";
+  slug: "usdt-bsc-mainnet";
+  body: string;
+  collection: "network-tokens";
+  data: InferEntrySchema<"network-tokens">
+} & { render(): Render[".md"] };
+"usdt-bsc-testnet.md": {
+	id: "usdt-bsc-testnet.md";
+  slug: "usdt-bsc-testnet";
+  body: string;
+  collection: "network-tokens";
+  data: InferEntrySchema<"network-tokens">
+} & { render(): Render[".md"] };
 };
 "networks": {
 "algorand-mainnet.md": {
@@ -750,6 +792,20 @@ declare module 'astro:content' {
 "base-sepolia.md": {
 	id: "base-sepolia.md";
   slug: "base-sepolia";
+  body: string;
+  collection: "networks";
+  data: InferEntrySchema<"networks">
+} & { render(): Render[".md"] };
+"bsc-mainnet.md": {
+	id: "bsc-mainnet.md";
+  slug: "bsc-mainnet";
+  body: string;
+  collection: "networks";
+  data: InferEntrySchema<"networks">
+} & { render(): Render[".md"] };
+"bsc-testnet.md": {
+	id: "bsc-testnet.md";
+  slug: "bsc-testnet";
   body: string;
   collection: "networks";
   data: InferEntrySchema<"networks">
