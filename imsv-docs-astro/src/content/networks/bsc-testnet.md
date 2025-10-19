@@ -1,5 +1,5 @@
 ---
-title: BNB Smart Chain
+title: BNB Smart Chain Testnet
 chain: bsc
 netType: testnet
 addressUrlTemplate: https://testnet.bscscan.com/address/{address}
