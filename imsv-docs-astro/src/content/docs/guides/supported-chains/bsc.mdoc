@@ -1,0 +1,30 @@
+---
+title: BNB Smart Chain
+description: What tokens and protocols are supported on BSC
+slug: guides/bsc
+supportedChain: true
+depositVariant: universal
+depositBasedFunding: true
+custodialBilling: false
+approvalBasedFunding: true
+---
+
+{% note %}
+Do not transfer assets directly to these addresses or funds will be lost.
+Always use the spending prerequisites endpoint to discover the correct address
+for user deposits.
+{% /note %}
+
+{%
+  deployedFundingProtocolsTable
+  chain="bsc"
+  columns=[
+    "network",
+    "protocol",
+    "address",
+  ]
+/%}
+
+
+## See Also
+{% link page="guides/funding-protocols" /%}
