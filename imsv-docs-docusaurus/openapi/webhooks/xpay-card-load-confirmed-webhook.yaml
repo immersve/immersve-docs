@@ -4,7 +4,7 @@ operationId: xpay-card-load-confirmed
 description: |
   Triggered when a card has been successfully enabled for use with XPay
   (Googlepay, Applepay or similar). Subscribers should use this event to inform
-  the cardholder, via their preferred channel, that their card is ready to use
+  the cardholder, via email, that their card is ready to use
   with XPay.
 
 requestBody:
@@ -50,9 +50,6 @@ requestBody:
                     example: "83dee5409cfc11f0a1e6"
                     description: |
                       The Immersve card program id for the card.
-
-                  deliveryOptions:
-                    $ref: "../models/delivery-options.yaml"
 
           - $ref: "./webhook-envelope.yaml"
 
