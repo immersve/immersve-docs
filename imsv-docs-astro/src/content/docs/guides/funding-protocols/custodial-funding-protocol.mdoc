@@ -379,9 +379,23 @@ must tolerate the addition of unknown message attributes.
   `insufficient-funds`,
   `cvv-invalid`,
   `expiry-invalid`,
-  `security-challenge-timeout`,
   `security-challenge-failed`,
   `pin-invalid`.
+
+---
+* {% wrap %} securityChallengeRef {% /wrap %}
+* 1870967890518231
+* 3DS challenge identifier, if applicable. Expected to be DE 48, 
+  subelement 66 (Authentication Data), subfield 2 (Directory Server Transaction ID).
+
+---
+* {% wrap %} securityChallengeOutcome {% /wrap %}
+* authenticated
+* The discriminator indicating the outcome of the 3DS challenge, if applicable. Clients must
+  tolerate unknown reasons. Reasons may include the following:
+  `authenticated`,
+  `failed`,
+  `timeout`.
 
 ---
 * {% wrap %} paymentId {% /wrap %}
