@@ -2286,6 +2286,19 @@
       "name": "Fault Injection",
       "item": [
         {
+          "name": "List Fault Types",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/fault-types",
+              "host": ["{{baseUrl}}"],
+              "path": ["api"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "List Fault Configurations",
           "request": {
             "method": "GET",
@@ -2335,7 +2348,7 @@
                 },
                 {
                   "key": "faultTypeName",
-                  "value": "approval-funding-submit-transaction-error"
+                  "value": "payment-handle-http-error"
                 }
               ]
             }
@@ -2363,7 +2376,7 @@
                 },
                 {
                   "key": "faultTypeName",
-                  "value": "approval-funding-submit-transaction-error"
+                  "value": "payment-handle-http-error"
                 }
               ]
             }

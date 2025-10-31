@@ -13,13 +13,11 @@ parameters:
       type: string
   - name: faultTypeName
     in: path
-    description: The name of the fault type to set the configuration for.
-    example: approval-funding-submit-transaction-error
+    description: The name of the fault type to set the configuration for. See [List Fault Types](/api-reference/list-fault-types) endpoint.
+    example: payment-handle-http-error
     required: true
     schema:
       type: string
-      enum:
-        - approval-funding-submit-transaction-error
 requestBody:
   content:
     application/json:
