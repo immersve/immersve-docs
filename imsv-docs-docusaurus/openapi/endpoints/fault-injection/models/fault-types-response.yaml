@@ -3,7 +3,7 @@ properties:
   name:
     type: string
     description: The name of the fault type.
-    example: approval-funding-submit-transaction-error
+    example: payment-handle-http-error
   valueType:
     type: string
     description: The type of configuration value the fault type accepts.
@@ -19,7 +19,7 @@ properties:
       - error
   allowedAccountTypes:
     type: string
-    description: The account types that are permitted to invoke this fault type.
+    description: The account types that are permitted to configure this fault type.
     enum:
       - cardholder
       - partner

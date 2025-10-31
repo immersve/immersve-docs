@@ -14,11 +14,10 @@ parameters:
   - name: faultTypeName
     in: path
     description: The name of the fault type to delete the configuration for.
-    example: approval-funding-submit-transaction-error
+    example: payment-handle-http-error
     required: true
     schema:
       type: string
-      example: approval-funding-submit-transaction-error
 responses:
   "200":
     description: Successful operation

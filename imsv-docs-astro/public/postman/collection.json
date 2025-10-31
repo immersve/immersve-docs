@@ -2348,7 +2348,7 @@
                 },
                 {
                   "key": "faultTypeName",
-                  "value": "approval-funding-submit-transaction-error"
+                  "value": "payment-handle-http-error"
                 }
               ]
             }
@@ -2376,7 +2376,7 @@
                 },
                 {
                   "key": "faultTypeName",
-                  "value": "approval-funding-submit-transaction-error"
+                  "value": "payment-handle-http-error"
                 }
               ]
             }
