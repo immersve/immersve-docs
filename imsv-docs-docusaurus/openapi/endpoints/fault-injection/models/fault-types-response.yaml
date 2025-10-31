@@ -1,0 +1,28 @@
+type: object
+properties:
+  name:
+    type: string
+    description: The name of the fault type.
+    example: approval-funding-submit-transaction-error
+  valueType:
+    type: string
+    description: The type of configuration value the fault type accepts.
+    enum:
+      - string
+      - number
+      - boolean
+  effect:
+    type: string
+    description: The effect the fault type produces.
+    enum:
+      - delay
+      - error
+  allowedAccountTypes:
+    type: string
+    description: The account types that are permitted to invoke this fault type.
+    enum:
+      - cardholder
+      - partner
+  description:
+    type: string
+    example: Causes an error when submitting on-chain transaction for approval based funding.

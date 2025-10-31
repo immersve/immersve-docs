@@ -2286,6 +2286,19 @@
       "name": "Fault Injection",
       "item": [
         {
+          "name": "List Fault Types",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/fault-types",
+              "host": ["{{baseUrl}}"],
+              "path": ["api"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "List Fault Configurations",
           "request": {
             "method": "GET",
