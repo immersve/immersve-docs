@@ -1,28 +1,23 @@
 type: object
 properties:
   name:
-    type: string
     description: The name of the fault type.
+    type: string
     example: payment-handle-http-error
   valueType:
-    type: string
     description: The type of configuration value the fault type accepts.
-    enum:
-      - string
-      - number
-      - boolean
+    type: string
+    example: boolean
   effect:
-    type: string
     description: The effect the fault type produces.
-    enum:
-      - delay
-      - error
-  allowedAccountTypes:
     type: string
+    example: error
+  allowedAccountTypes:
     description: The account types that are permitted to configure this fault type.
-    enum:
-      - cardholder
-      - partner
+    type: array
+    items:
+      type: string
+    example: ["partner", "cardholder"]
   description:
     type: string
     example: Causes an error when submitting on-chain transaction for approval based funding.
