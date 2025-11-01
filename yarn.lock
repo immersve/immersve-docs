@@ -415,14 +415,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/starlight-tailwind@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "@astrojs/starlight-tailwind@npm:2.0.3"
+"@astrojs/starlight-tailwind@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@astrojs/starlight-tailwind@npm:4.0.1"
   peerDependencies:
-    "@astrojs/starlight": ">=0.9.0"
-    "@astrojs/tailwind": ^5.0.0
-    tailwindcss: ^3.3.3
-  checksum: 10/532a7d053220763b3c347e5f0b2ef260c3430184a563d82d94952ebd0555421e4fd6b47cda0545b2e5b80ca1f1bd3c8b7ff9eb8aa94a12bf2ae74f46e5ff4022
+    "@astrojs/starlight": ">=0.34.0"
+    tailwindcss: ^4.0.0
+  checksum: 10/d434c91c9744414cc2672cbb804314e4ed890adf19d73fc3a3d3f4ef70ebfc586722628cf3b5a70149b8235ede0548a8d763e399e9880629f6432e296220cb44
   languageName: node
   linkType: hard
 
@@ -11921,7 +11920,7 @@ __metadata:
   dependencies:
     "@astrojs/check": "npm:^0.7.0"
     "@astrojs/markdoc": "npm:^0.11.0"
-    "@astrojs/starlight-tailwind": "npm:^2.0.3"
+    "@astrojs/starlight-tailwind": "npm:^4.0.1"
     "@astrojs/tailwind": "npm:^5.1.0"
     "@astrojs/ts-plugin": "npm:^1.10.4"
     "@tailwindcss/typography": "npm:^0.5.15"
