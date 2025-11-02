@@ -1,0 +1,23 @@
+type: object
+properties:
+  name:
+    description: The name of the fault type.
+    type: string
+    example: payment-handle-http-error
+  valueType:
+    description: The type of configuration value the fault type accepts.
+    type: string
+    example: boolean
+  effect:
+    description: The effect the fault type produces.
+    type: string
+    example: error
+  allowedAccountTypes:
+    description: The account types that are permitted to configure this fault type.
+    type: array
+    items:
+      type: string
+    example: ["partner", "cardholder"]
+  description:
+    type: string
+    example: Causes an error when submitting on-chain transaction for approval based funding.

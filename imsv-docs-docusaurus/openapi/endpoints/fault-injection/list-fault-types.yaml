@@ -1,0 +1,23 @@
+tags:
+  - fault-injection
+summary: List Fault Types
+operationId: list-fault-types
+description: Lists all fault types.
+responses:
+  "200":
+    description: Successful operation
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: "./models/fault-types-response.yaml"
+  "403":
+    description: No Authorization to access resource.
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"
