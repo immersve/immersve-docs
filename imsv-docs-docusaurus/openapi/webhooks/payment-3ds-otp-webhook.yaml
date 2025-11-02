@@ -19,6 +19,14 @@ requestBody:
               payload:
                 type: object
                 properties:
+                  ref:
+                    type: string
+                    example: "51661658-65f8-49d3-a3c0-9f0566671132"
+                    description: |
+                      A unique reference for the 3DS security challenge. This reference can
+                      be used to correlate the challenge to the subsequent Immersve payment
+                      resource.
+
                   verificationCode:
                     type: string
                     example: "123456"
