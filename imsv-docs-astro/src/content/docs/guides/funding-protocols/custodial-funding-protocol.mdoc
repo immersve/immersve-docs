@@ -384,18 +384,19 @@ must tolerate the addition of unknown message attributes.
 
 ---
 * {% wrap %} securityChallengeRef {% /wrap %}
-* 1870967890518231
-* 3DS challenge identifier, if applicable. Expected to be DE 48, 
-  subelement 66 (Authentication Data), subfield 2 (Directory Server Transaction ID).
+* 51661658-65f8-49d3-a3c0-9f0566671132
+* The 3DS challenge identifier, if applicable. This reference can be used to correlate the payment to the [Payment 3DS OTP](/api-reference/webhook-topics/payment-3-ds-otp/) webhook.
 
 ---
 * {% wrap %} securityChallengeOutcome {% /wrap %}
-* authenticated
+* challenge-confirmed
 * The discriminator indicating the outcome of the 3DS challenge, if applicable. Clients must
-  tolerate unknown reasons. Reasons may include the following:
-  `authenticated`,
-  `failed`,
-  `timeout`.
+  tolerate unknown outcomes. Outcomes may include the following:
+  `challenge-confirmed`,
+  `challenge-exempt`,
+  `challenge-failed`,
+  `challenge-timeout`,
+  `challenge-denied`.
 
 ---
 * {% wrap %} paymentId {% /wrap %}
