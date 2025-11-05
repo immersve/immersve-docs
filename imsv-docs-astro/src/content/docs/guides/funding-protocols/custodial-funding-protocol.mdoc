@@ -372,6 +372,33 @@ must tolerate the addition of unknown message attributes.
   can be useful for debugging.
 
 ---
+* {% wrap %} cancelReason {% /wrap %}
+* insufficient-funds
+* The discriminator indicating the reason for an auth cancellation message. Clients must
+  tolerate unknown reasons. Reasons may include the following:
+  `funds-insufficient`,
+  `cvv-invalid`,
+  `expiry-invalid`,
+  `security-challenge-failed`,
+  `pin-invalid`.
+
+---
+* {% wrap %} securityChallengeRef {% /wrap %}
+* 51661658-65f8-49d3-a3c0-9f0566671132
+* The 3DS challenge identifier, if applicable. This reference can be used to correlate the payment to the [Payment 3DS OTP](/api-reference/webhook-topics/payment-3-ds-otp/) webhook.
+
+---
+* {% wrap %} securityChallengeOutcome {% /wrap %}
+* challenge-confirmed
+* The discriminator indicating the outcome of the 3DS challenge, if applicable. Clients must
+  tolerate unknown outcomes. Outcomes may include the following:
+  `challenge-confirmed`,
+  `challenge-exempt`,
+  `challenge-failed`,
+  `challenge-timeout`,
+  `challenge-denied`.
+
+---
 * {% wrap %} paymentId {% /wrap %}
 * {% wrap 9 %}38fb58acc55b4907{% /wrap %}
 * Immersve payment transaction identifier. This attribute should be used to find
