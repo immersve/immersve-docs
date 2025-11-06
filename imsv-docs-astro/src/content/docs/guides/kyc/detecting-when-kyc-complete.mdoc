@@ -15,27 +15,27 @@ After a cardholder initiates the KYC process, you need to detect when the KYC ev
   **Unacceptable Usage:** Continuously polling the spending prerequisites endpoint at high frequencies or for extended periods is not supported and may result in rate limiting. The guidance below explains acceptable integration patterns.
 {% /warning %}
 
-## Backend Integration
+## Backend Integration (Recommended)
 
 This approach is recommended for partners with backend infrastructure that can receive and process webhooks. It minimizes API calls and provides real-time updates.
 
 ### Before Cardholder Activation
 
-1. **Upload Prerequisite Data**
+1. **Subscribe to KYC Webhooks**
+
+   Configure your webhook endpoint to receive KYC status updates. Wait for the `kyc-succeeded` webhook event to be notified when the KYC evaluation is complete.
+
+   See {% link page="guides/configuring-webhook-listeners" /%} for webhook configuration guidance and the API reference for event types.
+2. **Upload Prerequisite Data**
 
    If using {% link page="guides/partner-conducted-kyc" /%}, submit the KYC statement via the {% link endpoint="submit-kyc-statement" /%} endpoint.
 
    If using {% link page="guides/immersve-conducted-kyc" /%}, direct the user to complete the KYC URL.
 
-2. **Call Spending Prerequisites Once**
+3. **Call Spending Prerequisites Once**
 
    Make a single call to {% link endpoint="get-spending-prerequisites" /%} to get the current actions and execute them. Do not poll this endpoint.
 
-3. **Subscribe to KYC Webhooks**
-
-   Configure your webhook endpoint to receive KYC status updates. Wait for the `kyc-succeeded` webhook event to be notified when the KYC evaluation is complete.
-
-   See {% link page="guides/configuring-webhook-listeners" /%} for webhook configuration guidance and the API reference for event types.
 
 4. **Cardholder Activation**
 
