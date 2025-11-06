@@ -1,10 +1,6 @@
 ---
 title: Detecting when KYC is complete
 slug: guides/detecting-when-kyc-complete
-description: |
-  Guide on how to detect when cardholder onboarding is complete using either
-  backend integration with webhooks or direct integration with polling.
----
 
 After a cardholder initiates the KYC process, you need to detect when the KYC evaluation is complete. Immersve provides two integration approaches:
 
@@ -57,7 +53,7 @@ This approach is suitable for partners without backend infrastructure or those w
 
    - Poll {% link endpoint="get-spending-prerequisites" /%} at reasonable intervals (e.g., every 5-10 seconds)
    - Continue only while the user remains on the waiting screen
-   - Stop polling if the user navigates away or after a reasonable timeout (e.g., 2-3 minutes)
+   - Stop polling if the user navigates away or after a short timeout (e.g., 2-3 minutes)
 
 3. **Detect Completion**
 
