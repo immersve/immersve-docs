@@ -1,0 +1,92 @@
+---
+title: Detecting when KYC is complete
+slug: guides/detecting-when-kyc-complete
+description: |
+  Guide on how to detect when cardholder onboarding is complete using either
+  backend integration with webhooks or direct integration with polling.
+---
+
+After a cardholder initiates the KYC process, you need to detect when the KYC evaluation is complete. Immersve provides two integration approaches depending on your architecture:
+
+- **Backend Integration**: Use webhooks with minimal calls to spending prerequisites
+- **Direct Integration**: Poll spending prerequisites while the user is actively waiting
+
+{% warning %}
+  **Unacceptable Usage:** Continuously polling the spending prerequisites endpoint at high frequencies or for extended periods is not supported and may result in rate limiting. The guidance below explains acceptable integration patterns.
+{% /warning %}
+
+## Backend Integration
+
+This approach is recommended for partners with backend infrastructure that can receive and process webhooks. It minimizes API calls and provides real-time updates.
+
+### Before Cardholder Activation
+
+1. **Upload Prerequisite Data**
+
+   If using {% link page="guides/partner-conducted-kyc" /%}, submit the KYC statement via the {% link endpoint="submit-kyc-statement" /%} endpoint.
+
+   If using {% link page="guides/immersve-conducted-kyc" /%}, direct the user to complete the KYC URL.
+
+2. **Call Spending Prerequisites Once**
+
+   Make a single call to {% link endpoint="get-spending-prerequisites" /%} to get the current actions and execute them. Do not poll this endpoint.
+
+3. **Subscribe to KYC Webhooks**
+
+   Configure your webhook endpoint to receive KYC status updates. Wait for the `kyc-succeeded` webhook event to be notified when the KYC evaluation is complete.
+
+   See {% link page="guides/configuring-webhook-listeners" /%} for webhook configuration guidance and the API reference for event types.
+
+4. **Cardholder Activation**
+
+   Once you receive the `kyc-succeeded` webhook, the cardholder can proceed to activate their card.
+
+### After Cardholder Activation
+
+Even after successful KYC, certain events may require re-verification:
+
+- **KYC Failure**: If KYC verification fails, you'll receive a webhook notification. In response:
+  - Call {% link endpoint="get-spending-prerequisites" /%} once to get the required actions
+  - If `follow_kyc_url` is present, direct the user to complete the KYC flow again
+  - If `submit_kyc_statement` is present, collect and submit updated information
+
+
+### Webhook Failure Recovery
+
+If your system misses a webhook (due to downtime, network issues, etc.), you can recover by:
+
+1. Calling {% link endpoint="get-spending-prerequisites" /%} once when your system comes back online
+2. Checking the current KYC status and any required actions
+3. Processing any missed state changes
+
+## Direct Integration
+
+This approach is suitable for partners without backend infrastructure or those who want a simpler implementation. It relies on polling spending prerequisites while the user is actively engaged.
+
+### Before Cardholder Activation
+
+1. **Short-Duration Polling**
+
+   While the user is actively waiting on a screen in your application (e.g., "Verifying your identity..."):
+
+   - Poll {% link endpoint="get-spending-prerequisites" /%} at reasonable intervals (e.g., every 5-10 seconds)
+   - Continue only while the user remains on the waiting screen
+   - Stop polling if the user navigates away or after a reasonable timeout (e.g., 2-3 minutes)
+
+
+2. **Detect Completion**
+
+   When the KYC stage shows `"status": "ok"` in the spending prerequisites response, the KYC evaluation is complete and the cardholder can proceed to activate their card.
+
+### After Cardholder Activation
+
+1. **Check Prerequisites on Entry**
+
+   When the user opens your card issuing experience, make a single call to {% link endpoint="get-spending-prerequisites" /%} to check the current status.
+
+2. **Handle Required Actions**
+
+   If the response indicates actions are required (additional information needed, etc.), display appropriate messaging and guide the user to complete those actions.
+
+
+

@@ -96,7 +96,7 @@ own KYC process can require a significant effort.
 
     You must wait for the results of the KYC check to be returned.
 
-  {% /listitem %}
+        {% /listitem %}
 
   {% listitem "RocketLaunch" %}
     __Immersve Conducted KYC is Complete__ <br/>
@@ -137,10 +137,9 @@ will recalculate as actions are completed and any new prerequisite actions are i
 
 When all prerequisites are completed and the user has completed Immersve Conducted KYC,
 background checks will be performed. This can take several minutes to several days
-depending on the effort required to verify an individual. Poll the endpoint until
-either a successful result is returned, or a new follow_kyc_url action is returned.
+depending on the effort required to verify an individual.
 
-{% endpointref name="get-spending-prerequisites" /%}
+For guidance on detecting when KYC is complete, see {% link page="guides/detecting-when-kyc-complete" /%}.
 
 **Example Request:**
 ```bash
@@ -387,9 +386,12 @@ for the user to try again.
 
 ## Confirmation of KYC Completion
 
-Once redirected, check the spending prerequisites again to
-ensure no further KYC actions are required. When all prerequisites
-indicate status is "ok" then the cardholder will be
+After the user completes KYC and is redirected back to your application,
+check the spending prerequisites to see if any further actions are required.
+
+For detailed guidance on detecting when KYC is complete, see {% link page="guides/detecting-when-kyc-complete" /%}.
+
+When all prerequisites indicate status is "ok", the cardholder will be
 allowed to create and use their Immersve card.
 
 **Example Request:**
