@@ -137,9 +137,9 @@ will recalculate as actions are completed and any new prerequisite actions are i
 
 When all prerequisites are completed and the user has completed Immersve Conducted KYC,
 background checks will be performed. This can take several minutes to several days
-depending on the effort required to verify an individual.
+depending on the effort required to verify an individual. See {% link page="guides/detecting-when-kyc-complete" /%} for guidance on how to detect when background checks are complete.
 
-For guidance on detecting when KYC is complete, see {% link page="guides/detecting-when-kyc-complete" /%}.
+{% endpointref name="get-spending-prerequisites" /%}
 
 **Example Request:**
 ```bash
@@ -386,13 +386,10 @@ for the user to try again.
 
 ## Confirmation of KYC Completion
 
-After the user completes KYC and is redirected back to your application,
-check the spending prerequisites to see if any further actions are required.
 
-For detailed guidance on detecting when KYC is complete, see {% link page="guides/detecting-when-kyc-complete" /%}.
-
-When all prerequisites indicate status is "ok", the cardholder will be
-allowed to create and use their Immersve card.
+Once redirected, check the spending prerequisites again to
+ensure no further KYC actions are required. When all prerequisites
+indicate status is "ok" then the cardholder will be
 
 **Example Request:**
 
