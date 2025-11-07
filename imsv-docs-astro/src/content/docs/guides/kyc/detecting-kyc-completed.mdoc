@@ -1,66 +1,82 @@
----
-title: Detecting when KYC is complete
-slug: guides/detecting-kyc-completed
+--- title: Detecting when KYC is complete slug: guides/detecting-kyc-completed
 ---
 
-After a cardholder initiates the KYC process, you need to detect when the KYC evaluation is complete. Immersve provides two integration approaches:
+After a cardholder initiates the KYC process, you need to detect when the KYC
+evaluation is complete. Immersve provides two integration approaches:
 
-- **Backend Integration (Recommended)**: Use webhooks with minimal calls to spending prerequisites
-- **Direct Integration**: Poll spending prerequisites while the user is actively waiting
+- **Backend Integration (Recommended)**: Use webhooks with minimal calls to
+spending prerequisites - **Direct Integration**: Poll spending prerequisites
+while the user is actively waiting
 
-{% warning %}
-  **Unacceptable Usage:** Continuously polling the spending prerequisites endpoint at high frequencies or for extended periods is not supported and may result in rate limiting. The guidance below explains acceptable integration patterns.
-{% /warning %}
+{% warning %} **Unacceptable Usage:** Continuously polling the spending
+prerequisites endpoint at high frequencies or for extended periods is not
+supported and may result in rate limiting. The guidance below explains
+acceptable integration patterns. {% /warning %}
 
 ## Backend Integration
 
-This approach is recommended for partners with backend infrastructure that can receive and process webhooks. It minimizes API calls and provides real-time updates.
+This approach is recommended for partners with backend infrastructure that can
+receive and process webhooks. It minimizes API calls and provides real-time
+updates.
 
 
 1. **Configure Webhook Endpoint**
 
    Set up your webhook endpoint to receive KYC status updates.
 
-   See {% link page="guides/configuring-webhook-listeners" /%} for webhook configuration and the API reference for event types.
+   See {% link page="guides/configuring-webhook-listeners" /%} for webhook
+   configuration and the API reference for event types.
 
 2. **Initiate KYC Process**
 
-   Follow the appropriate guide to initiate KYC:
-   - {% link page="guides/partner-conducted-kyc" /%}
-   - {% link page="guides/immersve-conducted-kyc" /%}
+   Follow the appropriate guide to initiate KYC: - {% link
+   page="guides/partner-conducted-kyc" /%} - {% link
+   page="guides/immersve-conducted-kyc" /%}
 
 3. **Wait for Webhook**
 
-   Once you receive the `kyc-succeeded` webhook, the cardholder can proceed to activate their card.
+   Once you receive the `kyc-succeeded` webhook, the cardholder can proceed to
+   activate their card.
 
 ### Webhook Failure Recovery
 
-Immersve retries webhooks for approximately 24 hours. If your system is down for an extended period and misses all retry attempts, you can check affected cardholders' KYC status by calling {% link endpoint="get-spending-prerequisites" /%}.
+Immersve retries webhooks for approximately 24 hours. If your system is down for
+an extended period and misses all retry attempts, you can check affected
+cardholders' KYC status by calling {% link endpoint="get-spending-prerequisites"
+/%}.
 
 ## Direct Integration
 
-This approach is suitable for partners without backend infrastructure or those who want a simpler implementation. It relies on polling spending prerequisites while the user is actively engaged.
+This approach is suitable for partners without backend infrastructure or those
+who want a simpler implementation. It relies on polling spending prerequisites
+while the user is actively engaged.
 
 
 1. **Initiate KYC Process**
 
-   Follow the appropriate guide to initiate KYC:
-   - {% link page="guides/partner-conducted-kyc" /%}
-   - {% link page="guides/immersve-conducted-kyc" /%}
+   Follow the appropriate guide to initiate KYC: - {% link
+   page="guides/partner-conducted-kyc" /%} - {% link
+   page="guides/immersve-conducted-kyc" /%}
 
 2. **Short-Duration Polling**
 
-   While the user is actively waiting on a screen in your application (e.g., "Verifying your identity..."):
+   While the user is actively waiting on a screen in your application (e.g.,
+   "Verifying your identity..."):
 
-   - Poll {% link endpoint="get-spending-prerequisites" /%} at reasonable intervals (e.g., every 5-10 seconds)
-   - Continue only while the user remains on the waiting screen
-   - Stop polling if the user navigates away or after a short timeout (e.g., 2-3 minutes)
+   - Poll {% link endpoint="get-spending-prerequisites" /%} at reasonable
+   intervals (e.g., every 5-10 seconds) - Continue only while the user remains
+   on the waiting screen - Stop polling if the user navigates away or after a
+   short timeout (e.g., 2-3 minutes)
 
 3. **Detect Completion**
 
-   When the KYC stage shows `"status": "ok"` in the spending prerequisites response, the KYC evaluation is complete and the cardholder can proceed to activate their card.
+   When the KYC stage shows `"status": "ok"` in the spending prerequisites
+   response, the KYC evaluation is complete and the cardholder can proceed to
+   activate their card.
 
 ### Ongoing Monitoring
 
-After initial KYC completion, make a single call to {% link endpoint="get-spending-prerequisites" /%} when the user opens your application to check if any actions are required (e.g. additional information needed).
+After initial KYC completion, make a single call to {% link
+endpoint="get-spending-prerequisites" /%} when the user opens your application
+to check if any actions are required (e.g. additional information needed).
 
