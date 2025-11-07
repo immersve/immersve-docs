@@ -35,7 +35,7 @@ This approach is recommended for partners with backend infrastructure that can r
 
 ### Webhook Failure Recovery
 
-If your system misses a webhook (due to downtime, network issues, etc.), you can recover by calling {% link endpoint="get-spending-prerequisites" /%} once when your system comes back online to check the current KYC status.
+Immersve retries webhooks for approximately 24 hours. If your system is down for an extended period and misses all retry attempts, you can check affected cardholders' KYC status by calling {% link endpoint="get-spending-prerequisites" /%}.
 
 ## Direct Integration
 
