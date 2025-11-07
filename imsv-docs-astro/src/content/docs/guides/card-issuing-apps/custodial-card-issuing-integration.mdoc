@@ -156,9 +156,12 @@ cardholder_account_id=$(curl \
 ### Register Cardholder Funding Source
 
 You must create a Funding Source for a cardholder. The funding source can
-be connected to multiple cards if desired. The custodial Funding Source
-will be parameterized with an externalId which will be used to identify
-the funding ledger address for all card authorizations.
+be connected to multiple cards if desired. The custodial Funding Source will 
+be parameterized with an externalId that will be used to identify the funding
+ledger address for all card authorizations.
+
+The externalId will also be used to identify whitelisted cardholders for your
+live card beta testing phase.
 
 
 {% endpointref name="create-funding-source" /%}
