@@ -1,6 +1,6 @@
 ---
 title: Detecting when KYC is complete
-slug: guides/detecting-when-kyc-complete
+slug: guides/detecting-kyc-completed
 ---
 
 After a cardholder initiates the KYC process, you need to detect when the KYC evaluation is complete. Immersve provides two integration approaches:
@@ -62,5 +62,5 @@ This approach is suitable for partners without backend infrastructure or those w
 
 ### Ongoing Monitoring
 
-After initial KYC completion, make a single call to {% link endpoint="get-spending-prerequisites" /%} when the user opens your card issuing experience to check if any actions are required (e.g. additional information needed).
+After initial KYC completion, make a single call to {% link endpoint="get-spending-prerequisites" /%} when the user opens your application to check if any actions are required (e.g. additional information needed).
 
