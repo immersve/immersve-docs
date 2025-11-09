@@ -2401,12 +2401,7 @@
           "name": "Get Webhook Listener",
           "request": {
             "method": "GET",
-            "header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/api/webhook-listeners/:listenerId",
               "host": ["{{baseUrl}}"],
@@ -2425,12 +2420,7 @@
           "name": "List Webhook Listeners",
           "request": {
             "method": "GET",
-            "header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/api/accounts/:accountId/webhook-listeners",
               "host": ["{{baseUrl}}"],
