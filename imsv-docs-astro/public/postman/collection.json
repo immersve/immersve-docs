@@ -2387,7 +2387,7 @@
 						],
             "body": {
 							"mode": "raw",
-							"raw": "{\n    \"accountId\": {{partnerAccountId}},\n    \"url\": \"{{webhookUrl}}\"\n}"
+							"raw": "{\n    \"accountId\": \"{{partnerAccountId}}\",\n    \"url\": \"{{webhookUrl}}\"\n}"
 						},
             "url": {
               "raw": "{{baseUrl}}/api/webhook-listeners",
@@ -2405,14 +2405,14 @@
             "url": {
               "raw": "{{baseUrl}}/api/webhook-listeners/:listenerId",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "webhook-listeners", ":listenerId"]
-            },
-            "variable": [
+              "path": ["api", "webhook-listeners", ":listenerId"],
+              "variable": [
 								{
 									"key": "listenerId",
 									"value": "{{listenerId}}"
 								}
 							]
+            }
           },
           "response": []
         },
@@ -2424,14 +2424,14 @@
             "url": {
               "raw": "{{baseUrl}}/api/accounts/:accountId/webhook-listeners",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "accounts", ":accountId", "webhook-listeners"]
-            },
-            "variable": [
+              "path": ["api", "accounts", ":accountId", "webhook-listeners"],
+              "variable": [
 								{
 									"key": "accountId",
 									"value": "{{partnerAccountId}}"
 								}
 							]
+            }
           },
           "response": []
         },
@@ -2447,7 +2447,7 @@
 						],
             "body": {
 							"mode": "raw",
-							"raw": "{\n    \"topic\": {{topic}}"
+							"raw": "{\n    \"topic\": \"{{topic}}\""
 						},
             "url": {
               "raw": "{{baseUrl}}/api/webhook-listeners/:listenerId/subscribe",
