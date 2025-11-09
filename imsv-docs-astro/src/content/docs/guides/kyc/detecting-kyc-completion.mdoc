@@ -7,8 +7,10 @@ After a cardholder initiates the KYC process, you need to detect when the KYC
 evaluation is complete. Immersve provides two integration approaches:
 
 - **Backend Integration (Recommended)**: Use webhooks with minimal calls to
-spending prerequisites - **Direct Integration**: Poll spending prerequisites
-while the user is actively waiting
+spending prerequisites.
+
+- **Direct Integration**: Poll spending prerequisites
+while the user is actively waiting.
 
 {% warning %} **Unacceptable Usage:** Continuously polling the spending
 prerequisites endpoint at high frequencies or for extended periods is not
@@ -51,34 +53,28 @@ cardholders' KYC status by calling {% link endpoint="get-spending-prerequisites"
 
 This approach is suitable for partners without backend infrastructure or those
 who want a simpler implementation. It relies on polling spending prerequisites
-while the user is actively engaged.
+while the user is actively engaged in the card onboarding flow.
 
 
-1. **Initiate KYC Process**
+1. **Initiate KYC Process –**
+   Follow the appropriate guide to initiate KYC:  {% link
+   page="guides/partner-conducted-kyc" /%} or {% link
+   page="guides/immersve-conducted-kyc" /%}.
 
-   Follow the appropriate guide to initiate KYC: - {% link
-   page="guides/partner-conducted-kyc" /%} - {% link
-   page="guides/immersve-conducted-kyc" /%}
+2. **Short-Duration Polling –**
+   While the user is actively waiting on a card activation pending screen in your application,
+   poll {% link endpoint="get-spending-prerequisites" /%} at a reasonable
+   interval (e.g., every 5-10 seconds). Continue polling only while the user remains
+   on the pending screen. Stop polling if the user navigates away or after a
+   short timeout (e.g., 2-3 minutes).
 
-2. **Short-Duration Polling**
-
-   While the user is actively waiting on a screen in your application (e.g.,
-   "Verifying your identity..."):
-
-   - Poll {% link endpoint="get-spending-prerequisites" /%} at reasonable
-   intervals (e.g., every 5-10 seconds) - Continue only while the user remains
-   on the waiting screen - Stop polling if the user navigates away or after a
-   short timeout (e.g., 2-3 minutes)
-
-3. **Detect Completion**
-
+3. **Detect Completion –**
    When the KYC stage shows `"status": "ok"` in the spending prerequisites
    response, the KYC evaluation is complete and the cardholder can proceed to
    activate their card.
 
-### Ongoing Monitoring
-
-After initial KYC completion, make a single call to {% link
-endpoint="get-spending-prerequisites" /%} when the user opens your application
-to check if any actions are required (e.g. additional information needed).
+4. **Ongoing Monitoring –**
+    After initial KYC completion, make a single call to {% link
+    endpoint="get-spending-prerequisites" /%} when the user opens your application
+    to check if any actions are required.
 
