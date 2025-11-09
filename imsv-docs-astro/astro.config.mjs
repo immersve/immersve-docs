@@ -40,6 +40,7 @@ export default defineConfig({
               { label: 'Introduction', link: 'guides/kyc' },
               { label: 'Partner Conducted KYC', link: 'guides/partner-conducted-kyc' },
               { label: 'Immersve Conducted KYC', link: 'guides/immersve-conducted-kyc' },
+              { label: 'Detecting KYC Completion', link: 'guides/detecting-kyc-completion' },
               { label: 'KYC Spending Prerequisites', link: 'guides/kyc-spending-prerequisites' },
             ]},
             { label: 'Supported Chains', autogenerate: { directory: 'guides/supported-chains' } },
