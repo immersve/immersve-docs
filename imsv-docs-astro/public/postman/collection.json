@@ -2447,7 +2447,7 @@
 						],
             "body": {
 							"mode": "raw",
-							"raw": "{\n    \"topic\": \"{{topic}}\""
+							"raw": "{\n    \"topic\": \"{{topic}}\"\n}"
 						},
             "url": {
               "raw": "{{baseUrl}}/api/webhook-listeners/:listenerId/subscribe",
