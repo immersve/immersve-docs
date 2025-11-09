@@ -2371,6 +2371,131 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "Create Webhook Listener",
+          "request": {
+            "method": "POST",
+            "header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+            "body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountId\": {{partnerAccountId}},\n    \"url\": \"{{webhookUrl}}\"\n}"
+						},
+            "url": {
+              "raw": "{{baseUrl}}/api/webhook-listeners",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "webhook-listeners"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Webhook Listener",
+          "request": {
+            "method": "GET",
+            "header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+            "url": {
+              "raw": "{{baseUrl}}/api/webhook-listeners/:listenerId",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "webhook-listeners", ":listenerId"]
+            },
+            "variable": [
+								{
+									"key": "listenerId",
+									"value": "{{listenerId}}"
+								}
+							]
+          },
+          "response": []
+        },
+        {
+          "name": "List Webhook Listeners",
+          "request": {
+            "method": "GET",
+            "header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+            "url": {
+              "raw": "{{baseUrl}}/api/accounts/:accountId/webhook-listeners",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "accounts", ":accountId", "webhook-listeners"]
+            },
+            "variable": [
+								{
+									"key": "accountId",
+									"value": "{{partnerAccountId}}"
+								}
+							]
+          },
+          "response": []
+        },
+        {
+          "name": "Add Webhook Topic Subscription",
+          "request": {
+            "method": "POST",
+            "header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+            "body": {
+							"mode": "raw",
+							"raw": "{\n    \"topic\": {{topic}}"
+						},
+            "url": {
+              "raw": "{{baseUrl}}/api/webhook-listeners/:listenerId/subscribe",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "webhook-listeners", ":listenerId", "subscribe"]
+            },
+            "variable": [
+                {
+                  "key": "listenerId",
+                  "value": "{{listenerId}}"
+                }
+              ]
+          },
+          "response": []
+        },
+        {
+          "name": "Send Webhook Test Notification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"topic\": \"{{topic}}\",\n    \"accountId\": \"{{partnerAccountId}}\",\n    \"listenerId\": \"{{listenerId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/webhook-test-notifications",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "webhook-test-notifications"]
+            }
+          },
+          "response": []
+        }
+      ]
     }
 	],
 	"auth": {
