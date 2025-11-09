@@ -2452,14 +2452,14 @@
             "url": {
               "raw": "{{baseUrl}}/api/webhook-listeners/:listenerId/subscribe",
               "host": ["{{baseUrl}}"],
-              "path": ["api", "webhook-listeners", ":listenerId", "subscribe"]
-            },
-            "variable": [
+              "path": ["api", "webhook-listeners", ":listenerId", "subscribe"],
+               "variable": [
                 {
                   "key": "listenerId",
                   "value": "{{listenerId}}"
                 }
               ]
+            }
           },
           "response": []
         },
