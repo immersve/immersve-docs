@@ -335,6 +335,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/kyc/detecting-kyc-completion.mdoc": {
+	id: "guides/kyc/detecting-kyc-completion.mdoc";
+  slug: "guides/detecting-kyc-completion";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/kyc/immersve-conducted-kyc.mdoc": {
 	id: "guides/kyc/immersve-conducted-kyc.mdoc";
   slug: "guides/immersve-conducted-kyc";
