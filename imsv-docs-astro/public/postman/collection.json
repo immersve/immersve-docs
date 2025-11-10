@@ -2493,7 +2493,7 @@
 						],
             "body": {
 							"mode": "raw",
-							"raw": "{\n    \"topic\": \"{{topic}}\"\n}"
+							"raw": "{\n    \"topic\": \"transactional-test\"\n}"
 						},
             "url": {
               "raw": "{{baseUrl}}/api/webhook-listeners/:listenerId/subscribe",
@@ -2532,7 +2532,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"topic\": \"{{topic}}\",\n    \"accountId\": \"{{partnerAccountId}}\",\n    \"listenerId\": \"{{listenerId}}\"\n}"
+              "raw": "{\n    \"topic\": \"transactional-test\",\n    \"accountId\": \"{{partnerAccountId}}\",\n    \"listenerId\": \"{{listenerId}}\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/webhook-test-notifications",
