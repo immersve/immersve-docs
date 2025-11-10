@@ -2384,6 +2384,178 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "Create Webhook Listener",
+          "request": {
+            "auth": {
+							"type": "noauth"
+						},
+            "method": "POST",
+            "header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+              {
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							}
+						],
+            "body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountId\": \"{{partnerAccountId}}\",\n    \"url\": \"{{webhookUrl}}\"\n}"
+						},
+            "url": {
+              "raw": "{{baseUrl}}/api/webhook-listeners",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "webhook-listeners"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Webhook Listener",
+          "request": {
+            "auth": {
+							"type": "noauth"
+						},
+            "method": "GET",
+            "header": [
+              {
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							}
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/webhook-listeners/:listenerId",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "webhook-listeners", ":listenerId"],
+              "variable": [
+								{
+									"key": "listenerId",
+									"value": "{{listenerId}}"
+								}
+							]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Webhook Listeners",
+          "request": {
+            "auth": {
+							"type": "noauth"
+						},
+            "method": "GET",
+            "header": [
+              {
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							}
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/accounts/:accountId/webhook-listeners",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "accounts", ":accountId", "webhook-listeners"],
+              "variable": [
+								{
+									"key": "accountId",
+									"value": "{{partnerAccountId}}"
+								}
+							]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Webhook Topic Subscription",
+          "request": {
+            "auth": {
+							"type": "noauth"
+						},
+            "method": "POST",
+            "header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+              {
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							}
+						],
+            "body": {
+							"mode": "raw",
+							"raw": "{\n    \"topic\": \"transactional-test\"\n}"
+						},
+            "url": {
+              "raw": "{{baseUrl}}/api/webhook-listeners/:listenerId/subscribe",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "webhook-listeners", ":listenerId", "subscribe"],
+               "variable": [
+                {
+                  "key": "listenerId",
+                  "value": "{{listenerId}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send Webhook Test Notification",
+          "request": {
+            "auth": {
+							"type": "noauth"
+						},
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"topic\": \"transactional-test\",\n    \"accountId\": \"{{partnerAccountId}}\",\n    \"listenerId\": \"{{listenerId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/webhook-test-notifications",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "webhook-test-notifications"]
+            }
+          },
+          "response": []
+        }
+      ]
     }
 	],
 	"auth": {
