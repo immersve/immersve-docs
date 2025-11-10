@@ -2378,11 +2378,22 @@
         {
           "name": "Create Webhook Listener",
           "request": {
+            "auth": {
+							"type": "noauth"
+						},
             "method": "POST",
             "header": [
 							{
 								"key": "Content-Type",
 								"value": "application/json"
+							},
+              {
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
 							}
 						],
             "body": {
@@ -2400,8 +2411,20 @@
         {
           "name": "Get Webhook Listener",
           "request": {
+            "auth": {
+							"type": "noauth"
+						},
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							}
+            ],
             "url": {
               "raw": "{{baseUrl}}/api/webhook-listeners/:listenerId",
               "host": ["{{baseUrl}}"],
@@ -2419,8 +2442,20 @@
         {
           "name": "List Webhook Listeners",
           "request": {
+            "auth": {
+							"type": "noauth"
+						},
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							}
+            ],
             "url": {
               "raw": "{{baseUrl}}/api/accounts/:accountId/webhook-listeners",
               "host": ["{{baseUrl}}"],
@@ -2438,11 +2473,22 @@
         {
           "name": "Add Webhook Topic Subscription",
           "request": {
+            "auth": {
+							"type": "noauth"
+						},
             "method": "POST",
             "header": [
 							{
 								"key": "Content-Type",
 								"value": "application/json"
+							},
+              {
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
 							}
 						],
             "body": {
@@ -2466,12 +2512,23 @@
         {
           "name": "Send Webhook Test Notification",
           "request": {
+            "auth": {
+							"type": "noauth"
+						},
             "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
-              }
+              },
+              {
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							}
             ],
             "body": {
               "mode": "raw",
