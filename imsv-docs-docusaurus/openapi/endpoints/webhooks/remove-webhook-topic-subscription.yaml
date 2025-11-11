@@ -4,7 +4,7 @@ post:
   summary: Remove Webhook Topic Subscription
   operationId: remove-webhook-topic-subscription
   description: |
-    Remove a topic subscription from an existing webhook listener.
+    Remove a topic subscription from an existing Webhook Listener.
   parameters:
   - name: listenerId
     in: path

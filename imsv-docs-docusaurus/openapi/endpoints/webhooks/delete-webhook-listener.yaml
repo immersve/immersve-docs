@@ -3,7 +3,7 @@ tags:
 summary: Delete Webhook Listener
 operationId: delete-webhook-listener
 description: |
-  Delete an existing webhook listener.
+  Delete an existing Webhook Listener.
 parameters:
 - name: listenerId
   in: path
