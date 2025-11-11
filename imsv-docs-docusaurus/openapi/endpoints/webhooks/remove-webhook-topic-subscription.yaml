@@ -1,18 +1,18 @@
 post:
   tags:
     - webhooks
-  summary: Add Webhook Topic Subscription
-  operationId: add-webhook-topic-subscription
+  summary: Remove Webhook Topic Subscription
+  operationId: remove-webhook-topic-subscription
   description: |
-    Add a topic subscription to an existing webhook listener.
+    Remove a topic subscription from an existing webhook listener.
   parameters:
-    - name: listenerId
-      in: path
-      description: Id for the Webhook Listener
-      example: 315bad4e81ce0f26966a41b9d451638b
-      required: true
-      schema:
-        type: string
+  - name: listenerId
+    in: path
+    description: Id for the Webhook Listener
+    example: 315bad4e81ce0f26966a41b9d451638b
+    required: true
+    schema:
+      type: string
   requestBody:
     content:
       application/json:
@@ -23,7 +23,7 @@ post:
           properties:
               topic:
                 type: string
-                description: The topic the Webhook Listener will subscribe to.
+                description: The topic the Webhook Listener will unsubscribe from.
                 example: kyc-pending
 
   responses:
@@ -32,7 +32,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: "./models/topic-subscription-schema.yaml"
+            $ref: "./models/remove-topic-subscription-schema.yaml"
     "403":
       description: |
         User is not allowed to perform the action with the reason stated in the `errorCode`

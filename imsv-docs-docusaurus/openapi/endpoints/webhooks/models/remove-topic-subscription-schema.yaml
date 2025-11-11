@@ -1,0 +1,18 @@
+type: object
+required:
+  - msg
+  - topic
+  - listenerId
+properties:
+  msg:
+    type: string
+    description: A message indicating the result of removing the subscription.
+    example: "Unsubscribed from topic"
+  topicName:
+    type: string
+    description: The topic to which the webhook listener has been unsubscribed from.
+    example: kyc-pending
+  listenerId:
+    type: string
+    description: The id of the webhook listener associated with this subscription.
+    example: 51663b110bc97ebc9f9235910c4392c0
