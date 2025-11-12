@@ -2020,7 +2020,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"transactionType\": \"purchase\",\n  \"transactionAmount\": \"1\",\n  \"cardPan\": \"{{cardPan}}\",\n  \"cardExpiry\": \"{{cardExpiry}}\",\n  \"cardCvv\": \"{{cardCVV2}}\",\n  \"fxAmount\": {\n    \"amount\": \"1\",\n    \"currencyCode\": \"NZD\"\n  }\n}"
+							"raw": "{\n  \"transactionType\": \"purchase\",\n  \"transactionAmount\": \"1\",\n  \"cardPan\": \"{{cardPan}}\",\n  \"cardExpiry\": \"{{cardExpiry}}\",\n  \"cardCvv\": \"{{cardCVV2}}\",\n  \"fxAmount\": {\n    \"amount\": \"1\",\n    \"currencyCode\": \"NZD\"\n  },\n  \"securityChallenge\": {\n    \"ref\": \"{{$guid}}\",\n    \"outcome\": \"challenge-confirmed\"\n  }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/simulator/authorize",
