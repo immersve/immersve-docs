@@ -40,3 +40,17 @@ properties:
     type: boolean
     default: false
     description: Indicates whether to force post the transaction.
+  securityChallenge:
+    type: object
+    description: |
+      Object containing security challenge information, if applicable.
+    properties:
+      ref:
+        type: string
+        description: |
+          3DS challenge identifier. a randomly generated UUIDv4 string.
+      outcome:
+        type: string
+        description: |
+          3DS challenge outcome. accepted values are:
+          `challenge-confirmed`, `challenge-exempt`
