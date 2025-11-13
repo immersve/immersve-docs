@@ -1,0 +1,13 @@
+type: object
+required:
+  - msg
+  - id
+properties:
+  msg:
+    type: string
+    description: A message indicating the result of deleting the webhook listener.
+    example: "Listener deleted"
+  id:
+    type: string
+    description: The id of the webhook listener that was deleted.
+    example: 51663b110bc97ebc9f9235910c4392c0

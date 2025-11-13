@@ -208,13 +208,16 @@ paths:
   "/api/webhook-listeners":
     $ref: "./endpoints/webhooks/create-webhook-listener.yaml"
   "/api/webhook-listeners/{listenerId}":
-    $ref: "./endpoints/webhooks/get-webhook-listener.yaml"
+    get: { $ref: "./endpoints/webhooks/get-webhook-listener.yaml" }
+    delete: { $ref: "./endpoints/webhooks/delete-webhook-listener.yaml" }
   "/api/accounts/{accountId}/webhook-listeners":
     $ref: "./endpoints/webhooks/list-webhook-listeners-by-accountId.yaml"
   "/api/webhook-listeners/{listenerId}/subscribe":
     $ref: "./endpoints/webhooks/add-webhook-topic-subscription.yaml"
   "/api/webhook-test-notifications":
     $ref: "./endpoints/webhooks/send-webhook-test-notification.yaml"
+  "/api/webhook-listeners/{listenerId}/unsubscribe":
+    $ref: "./endpoints/webhooks/remove-webhook-topic-subscription.yaml"
 
 components:
   parameters:

@@ -1,0 +1,36 @@
+tags:
+  - webhooks
+summary: Delete Webhook Listener
+operationId: delete-webhook-listener
+description: |
+  Delete an existing Webhook Listener.
+parameters:
+- name: listenerId
+  in: path
+  description: Id for the Webhook Listener
+  example: 315bad4e81ce0f26966a41b9d451638b
+  required: true
+  schema:
+    type: string
+
+responses:
+  "200":
+    description: Successful operation
+    content:
+      application/json:
+        schema:
+          $ref: "./models/delete-webhook-listener-schema.yaml"
+
+  "403":
+    description: |
+      User is not allowed to perform the action with the reason stated in the `errorCode`
+
+      **FORBIDDEN**
+      Insufficient permissions to perform the action.
+
+      **ACCOUNT_TYPE_INVALID**
+      `accountType` of the `accountId` is not of type `PARTNER`.
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"

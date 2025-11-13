@@ -2453,6 +2453,37 @@
           "response": []
         },
         {
+          "name": "Delete Webhook Listener",
+          "request": {
+            "auth": {
+							"type": "noauth"
+						},
+            "method": "DELETE",
+            "header": [
+              {
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							}
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/webhook-listeners/:listenerId",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "webhook-listeners", ":listenerId"],
+              "variable": [
+								{
+									"key": "listenerId",
+									"value": "{{listenerId}}"
+								}
+							]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "List Webhook Listeners",
           "request": {
             "auth": {
@@ -2512,6 +2543,45 @@
               "raw": "{{baseUrl}}/api/webhook-listeners/:listenerId/subscribe",
               "host": ["{{baseUrl}}"],
               "path": ["api", "webhook-listeners", ":listenerId", "subscribe"],
+               "variable": [
+                {
+                  "key": "listenerId",
+                  "value": "{{listenerId}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Webhook Topic Subscription",
+          "request": {
+            "auth": {
+							"type": "noauth"
+						},
+            "method": "POST",
+            "header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+              {
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							}
+						],
+            "body": {
+							"mode": "raw",
+							"raw": "{\n    \"topic\": \"transactional-test\"\n}"
+						},
+            "url": {
+              "raw": "{{baseUrl}}/api/webhook-listeners/:listenerId/unsubscribe",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "webhook-listeners", ":listenerId", "unsubscribe"],
                "variable": [
                 {
                   "key": "listenerId",
