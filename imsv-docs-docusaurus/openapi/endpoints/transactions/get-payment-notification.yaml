@@ -1,6 +1,6 @@
 get:
   tags:
-    - transactions
+    - payments
   summary: Get Payment Notification
   operationId: get-payment-notification
   description: |

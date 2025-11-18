@@ -1,6 +1,6 @@
 get:
   tags:
-    - transactions
+    - payments
   summary: List Payment Notifications
   operationId: list-account-payment-notifications
   description: |

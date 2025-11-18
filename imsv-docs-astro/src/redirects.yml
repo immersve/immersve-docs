@@ -45,6 +45,7 @@
 /api-reference/set-a-card-pin: "/api-reference/set-card-pin"
 /api-reference/submit-partner-kyc-statement: "/api-reference/submit-kyc-statement"
 /api-reference/supported-regions: "/api-reference/regions"
+/api-reference/transactions: "/api-reference/payments"
 /api-reference/unblock-a-card: "/api-reference/card"
 /api-reference/update-an-account: "/use-cases/custodial-wallets"
 /api-reference/update-the-allowed-origins: "/api-reference/update-allowed-origins"
