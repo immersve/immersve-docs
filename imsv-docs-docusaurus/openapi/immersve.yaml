@@ -24,8 +24,8 @@ tags:
     x-displayName: Funding Sources
   - name: funding-channel
     x-displayName: Funding Channels
-  - name: transactions
-    x-displayName: Transactions
+  - name: payments
+    x-displayName: Payments
   - name: kyc
     x-displayName: KYC
   - name: file-uploads

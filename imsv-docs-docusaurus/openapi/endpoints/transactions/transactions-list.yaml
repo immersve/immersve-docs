@@ -1,6 +1,6 @@
 get:
   tags:
-    - transactions
+    - payments
   summary: List Transactions
   operationId: list-transactions
   description: |
