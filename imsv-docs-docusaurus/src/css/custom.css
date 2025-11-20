@@ -4,38 +4,15 @@
  * work well for content-centric websites.
  */
 
- @font-face {
-  font-family: "Bebas Neue";
-  src: url("../fonts/Bebas_Neue/BebasNeue-Regular.ttf");
-}
-
-@font-face {
-  font-family: "Montserrat";
-  src: url("../fonts/Montserrat/static/Montserrat-Medium.ttf");
-}
-
-@font-face {
-  font-family: "SF Pro Text";
-  src: url("../fonts/SF Pro Text/SF-Pro-Text-Light.otf");
-}
-
-@font-face {
-  font-family: 'MessinaSans';
-  src: url('../fonts/MessinaSans/MessinaSans_Normal_Upright_Variable_Web.woff') format('woff');
-  src: url('../fonts/MessinaSans/MessinaSans_Normal_Upright_Variable_Web.woff2') format('woff2');
-}
-
 code {
   font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
 }
 
-footer {
-  font-family: Bebas Neue;
-}
-
 :root {
-  font-family: MessinaSans;
-  --ifm-heading-font-family: MessinaSans;
+  --ifm-font-weight-light: 200;
+  --ifm-font-weight-normal: 300;
+  --ifm-font-weight-semibold: 400;
+  --ifm-font-weight-bold: 600;
   --ifm-color-primary: #5434ff;
   --ifm-color-primary-dark: #3a15ff;
   --ifm-color-primary-darker: #2d06ff;
