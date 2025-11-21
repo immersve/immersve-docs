@@ -95,6 +95,10 @@ properties:
     type: string
     description: The ID of the related payment transaction, if applicable
     example: "b297658d0cbac11"
+  failureReason:
+    type: string
+    description: The reason for transaction failure, if applicable
+    example: "cvv-invalid"
 required:
   [
     id,
