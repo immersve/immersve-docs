@@ -167,7 +167,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^3.1.0",
-    "@astrojs/sitemap": "^3.1.5",
+    "@astrojs/sitemap": "^3.6.0",
     "@pagefind/default-ui": "^1.1.1",
     "@types/hast": "^3.0.4",
     "@types/mdast": "^4.0.4",

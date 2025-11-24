@@ -404,14 +404,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/sitemap@npm:^3.1.5":
-  version: 3.1.6
-  resolution: "@astrojs/sitemap@npm:3.1.6"
+"@astrojs/sitemap@npm:^3.6.0":
+  version: 3.6.0
+  resolution: "@astrojs/sitemap@npm:3.6.0"
   dependencies:
-    sitemap: "npm:^7.1.2"
+    sitemap: "npm:^8.0.0"
     stream-replace-string: "npm:^2.0.0"
-    zod: "npm:^3.23.8"
-  checksum: 10/9160db939c12a81e95b9b941cd51bfe5d7f35ab38d0560d40172f82c5d9d3138ce4ebc3620476a16547e576ee7f6410f44df721cefc22a3e2cd1b8284aeb43f2
+    zod: "npm:^3.25.76"
+  checksum: 10/2f0c84ef51203e03575e9b1926a5d52006db0d982e76d4223e1091c12200a07b5a0d314d587ed57a0501ffdfc9773b6bcc2879d5fed0c8affa1dedc5c516cd7a
   languageName: node
   linkType: hard
 
@@ -432,7 +432,7 @@ __metadata:
   dependencies:
     "@astrojs/markdown-remark": "npm:^5.1.0"
     "@astrojs/mdx": "npm:^3.1.0"
-    "@astrojs/sitemap": "npm:^3.1.5"
+    "@astrojs/sitemap": "npm:^3.6.0"
     "@pagefind/default-ui": "npm:^1.1.1"
     "@playwright/test": "npm:^1.44.1"
     "@types/hast": "npm:^3.0.4"
@@ -18219,6 +18219,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sax@npm:^1.4.1":
+  version: 1.4.3
+  resolution: "sax@npm:1.4.3"
+  checksum: 10/99161215f23e0b13bc7f94adbaa63a6a2f188fe291c450790d92b5bc3cd7966d574a15dcd5918c30917e17ed68129e34cc3168564263b967f9b8f61869d6ccc4
+  languageName: node
+  linkType: hard
+
 "scheduler@npm:^0.23.2":
   version: 0.23.2
   resolution: "scheduler@npm:0.23.2"
@@ -18673,7 +18680,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sitemap@npm:^7.1.1, sitemap@npm:^7.1.2":
+"sitemap@npm:^7.1.1":
   version: 7.1.2
   resolution: "sitemap@npm:7.1.2"
   dependencies:
@@ -18684,6 +18691,20 @@ __metadata:
   bin:
     sitemap: dist/cli.js
   checksum: 10/f4edeaaa49511b034b73cc1b1e7b218d1faee8ca05398f30810b8f4662fcff2a20670a9b81470a9445fcdfb40abb602f962c61fdfeaca0fcce9aa99215b0ddc6
+  languageName: node
+  linkType: hard
+
+"sitemap@npm:^8.0.0":
+  version: 8.0.2
+  resolution: "sitemap@npm:8.0.2"
+  dependencies:
+    "@types/node": "npm:^17.0.5"
+    "@types/sax": "npm:^1.2.1"
+    arg: "npm:^5.0.0"
+    sax: "npm:^1.4.1"
+  bin:
+    sitemap: dist/cli.js
+  checksum: 10/6bc489e6dc59adbe0ef34ece15087d9fcd5175d8c7c2cfc903a4fb3875deba5b87dc3bde319cdc3878e28abab2ccbda54734aa6c8834948fd1afb8f50e4cf444
   languageName: node
   linkType: hard
 
@@ -21138,6 +21159,13 @@ __metadata:
   version: 3.23.8
   resolution: "zod@npm:3.23.8"
   checksum: 10/846fd73e1af0def79c19d510ea9e4a795544a67d5b34b7e1c4d0425bf6bfd1c719446d94cdfa1721c1987d891321d61f779e8236fde517dc0e524aa851a6eff1
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.25.76":
+  version: 3.25.76
+  resolution: "zod@npm:3.25.76"
+  checksum: 10/f0c963ec40cd96858451d1690404d603d36507c1fc9682f2dae59ab38b578687d542708a7fdbf645f77926f78c9ed558f57c3d3aa226c285f798df0c4da16995
   languageName: node
   linkType: hard
 
