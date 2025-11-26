@@ -373,15 +373,18 @@ must tolerate the addition of unknown message attributes.
 
 ---
 * {% wrap %} cancelReason {% /wrap %}
-* insufficient-funds
+* funds-insufficient
 * The discriminator indicating the reason for an auth cancellation message. Clients must
   tolerate unknown reasons. Reasons may include the following:
-  `funds-insufficient`,
+  `card-blocked`,
+  `card-canceled`,
+  `card-expired`,
+  `card-suspended`,
   `cvv-invalid`,
   `expiry-invalid`,
-  `security-challenge-failed`,
-  `pin-invalid`.
-
+  `funds-insufficient`,
+  `pin-invalid`,
+  `security-challenge-failed`.
 ---
 * {% wrap %} securityChallengeRef {% /wrap %}
 * 51661658-65f8-49d3-a3c0-9f0566671132
