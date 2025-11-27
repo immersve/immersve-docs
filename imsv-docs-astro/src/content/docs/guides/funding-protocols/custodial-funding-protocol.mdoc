@@ -374,7 +374,7 @@ must tolerate the addition of unknown message attributes.
 
 ---
 * {% wrap %} cancelReason {% /wrap %}
-* funds-insufficient
+* pin-invalid
 * The discriminator indicating the reason for an auth cancellation message. Clients must
   tolerate unknown reasons. Reasons may include the following:
   `card-blocked`,
@@ -383,7 +383,6 @@ must tolerate the addition of unknown message attributes.
   `card-suspended`,
   `cvv-invalid`,
   `expiry-invalid`,
-  `funds-insufficient`,
   `pin-invalid`,
   `security-challenge-failed`.
 ---
