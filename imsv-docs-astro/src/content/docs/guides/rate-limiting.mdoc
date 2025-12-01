@@ -12,10 +12,7 @@ is being called, in which case requests are limited to **500** requests per minu
 
 ## What to do if your requests are rate limited?
 If you receive a `429 Too Many Requests` response, it means you have exceeded the
-allowed request limit. The response will include a `Retry-After` header indicating
-the number of seconds you should wait before making another request.
-
-### Troubleshooting
+allowed request limit. To resolve this, you can:
 - Check the Retry-After HTTP response header for the number of seconds before
 the next request will be accepted.
 - Contact [support@immersve.com](mailto:support@immersve.com) to increase your
