@@ -30,6 +30,7 @@ export default defineConfig({
           label: 'Guides',
           items: [
             { label: 'HTTP Status Codes', link: 'guides/http-status-codes' } ,
+            { label: 'Rate Limiting', link: 'guides/rate-limiting' } ,
             { label: 'Supported Regions', link: 'guides/regions' } ,
             { label: 'Authentication', autogenerate: { directory: 'guides/authentication' } } ,
             { label: 'Core Concepts', autogenerate: { directory: 'guides/core-concepts' } },
