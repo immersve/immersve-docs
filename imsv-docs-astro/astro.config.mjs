@@ -25,13 +25,20 @@ export default defineConfig({
       sidebar: [
         { label: 'Home', link: '/' },
         { label: 'API Reference', link: 'https://docs.immersve.com/api-reference' },
+        { label: 'API Fundamentals', items: [
+          { label: 'Authentication', link: 'guides/authentication' } ,
+          { label: 'HTTP Status Codes', link: 'guides/http-status-codes' } ,
+        ]},
         { label: 'Use Cases', autogenerate: { directory: 'use-cases' } },
         {
           label: 'Guides',
           items: [
-            { label: 'HTTP Status Codes', link: 'guides/http-status-codes' } ,
             { label: 'Supported Regions', link: 'guides/regions' } ,
-            { label: 'Authentication', autogenerate: { directory: 'guides/authentication' } } ,
+            { label: 'Authentication', items: [
+                { label: 'Algorand Login', link: 'guides/algorand-login' },
+                { label: 'SIWE Login', link: 'guides/siwe-login' },
+                { label: 'XRPL Login', link: 'guides/xrpl-login' },
+            ]},
             { label: 'Core Concepts', autogenerate: { directory: 'guides/core-concepts' } },
             { label: 'Card Issuing Apps', autogenerate: { directory: 'guides/card-issuing-apps' } },
             { label: 'KYC' , items: [
