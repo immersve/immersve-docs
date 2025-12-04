@@ -160,29 +160,43 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"docs": {
-"guides/authentication/algorand-login.mdoc": {
-	id: "guides/authentication/algorand-login.mdoc";
+"guides/api-fundamentals/algorand-login.mdoc": {
+	id: "guides/api-fundamentals/algorand-login.mdoc";
   slug: "guides/algorand-login";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
-"guides/authentication/authentication.mdoc": {
-	id: "guides/authentication/authentication.mdoc";
+"guides/api-fundamentals/authentication.mdoc": {
+	id: "guides/api-fundamentals/authentication.mdoc";
   slug: "guides/authentication";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
-"guides/authentication/siwe-login.mdoc": {
-	id: "guides/authentication/siwe-login.mdoc";
+"guides/api-fundamentals/http-status-codes.mdoc": {
+	id: "guides/api-fundamentals/http-status-codes.mdoc";
+  slug: "guides/http-status-codes";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
+"guides/api-fundamentals/rate-limiting.mdoc": {
+	id: "guides/api-fundamentals/rate-limiting.mdoc";
+  slug: "guides/rate-limiting";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
+"guides/api-fundamentals/siwe-login.mdoc": {
+	id: "guides/api-fundamentals/siwe-login.mdoc";
   slug: "guides/siwe-login";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
-"guides/authentication/xrpl-login.mdoc": {
-	id: "guides/authentication/xrpl-login.mdoc";
+"guides/api-fundamentals/xrpl-login.mdoc": {
+	id: "guides/api-fundamentals/xrpl-login.mdoc";
   slug: "guides/xrpl-login";
   body: string;
   collection: "docs";
@@ -324,13 +338,6 @@ declare module 'astro:content' {
 "guides/funding-protocols/universal-evm-funding-protocol.mdoc": {
 	id: "guides/funding-protocols/universal-evm-funding-protocol.mdoc";
   slug: "guides/universal-evm-funding-protocol";
-  body: string;
-  collection: "docs";
-  data: InferEntrySchema<"docs">
-} & { render(): Render[".mdoc"] };
-"guides/http-status-codes.mdoc": {
-	id: "guides/http-status-codes.mdoc";
-  slug: "guides/http-status-codes";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
