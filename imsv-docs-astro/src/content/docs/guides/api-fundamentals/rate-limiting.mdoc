@@ -1,20 +1,31 @@
 ---
 title: Rate Limiting
 slug: guides/rate-limiting
+sidebar:
+  order: 5
 ---
 All requests to Immersve APIs are rate limited to ensure fair usage and to protect the platform from abuse.
 When a client exceeds the allowed number of requests within a specified time frame,
 the server responds with a `429 Too Many Requests` status code.
 
 ## Rate limits
-Limits are applied per api key and vary based on the rate group that is being called.
+Limits are applied to the rate limiting consumer:
+- Integrating partner account when using API key auth
+- Authenticated subject when using login authentication (SIWE)
+- IP address when not authenticated
+
 In general, requests are limited to **2000** requests per minute unless `/spending-prerequisites`
-is being called, in which case requests are limited to **500** requests per minute.
+is called, in which case requests are limited to **500** requests per minute.
+
+The rate limit is the sustained limit for evenly distributed traffic.
 
 ## What to do if your requests are rate limited?
 If you receive a `429 Too Many Requests` response, it means you have exceeded the
 allowed request limit. To resolve this, you can:
 - Check the Retry-After HTTP response header for the number of seconds before
 you should try again.
-- Contact [support@immersve.com](mailto:support@immersve.com) to increase your
-limits.
+
+{% note %}
+  Contact [support@immersve.com](mailto:support@immersve.com) to request higher
+  limits.
+{% /note %}
