@@ -113,6 +113,10 @@ properties:
           `challenge-failed`,
           `challenge-timeout`,
           `challenge-denied`.
+  failureReason:
+    type: string
+    description: The reason for transaction failure, if applicable
+    example: "cvv-invalid"
 required:
   [
     id,
