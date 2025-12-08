@@ -79,3 +79,10 @@ properties:
     type: string
     description: Deprecated field, use expiresAt
     example: "2022-11-16T03:18:23.431Z"
+  cancelationReason:
+    type: string
+    description: Reason why the card was cancelled
+    enum:
+      - provisioning_failed
+      - user_requested
+      - external_provider_failed
