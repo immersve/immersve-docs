@@ -603,16 +603,16 @@ declare module 'astro:content' {
   collection: "funding-types";
   data: InferEntrySchema<"funding-types">
 } & { render(): Render[".md"] };
-"bsc-mainnet-usdt-universal-evm.md": {
-	id: "bsc-mainnet-usdt-universal-evm.md";
-  slug: "bsc-mainnet-usdt-universal-evm";
+"bsc-testnet-usdt-universal-evm.md": {
+	id: "bsc-testnet-usdt-universal-evm.md";
+  slug: "bsc-testnet-usdt-universal-evm";
   body: string;
   collection: "funding-types";
   data: InferEntrySchema<"funding-types">
 } & { render(): Render[".md"] };
-"bsc-testnet-usdt-universal-evm.md": {
-	id: "bsc-testnet-usdt-universal-evm.md";
-  slug: "bsc-testnet-usdt-universal-evm";
+"bsc-usdt-universal-evm.md": {
+	id: "bsc-usdt-universal-evm.md";
+  slug: "bsc-usdt-universal-evm";
   body: string;
   collection: "funding-types";
   data: InferEntrySchema<"funding-types">
