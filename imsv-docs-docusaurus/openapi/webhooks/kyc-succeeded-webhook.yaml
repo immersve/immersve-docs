@@ -2,7 +2,7 @@ tags: [ kyc ]
 summary: KYC Succeeded
 operationId: kyc-succeeded
 description: |
-  Triggered when a cardholder's KYC status is verified and a `passed` result occurs.
+  Triggered when a cardholder's associated KYC Profile status is verified and a `passed` result occurs.
 requestBody:
   content:
     application/json:
