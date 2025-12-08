@@ -83,6 +83,6 @@ properties:
     type: string
     description: Reason why the card was cancelled
     enum:
-      - provisioning_failed
-      - user_requested
-      - external_provider_failed
+      - provisioning-failed
+      - user-requested
+      - external-provider_failed
