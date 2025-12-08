@@ -85,4 +85,4 @@ properties:
     enum:
       - provisioning-failed
       - user-requested
-      - external-provider_failed
+      - external-provider-failed
