@@ -79,7 +79,7 @@ properties:
     type: string
     description: Deprecated field, use expiresAt
     example: "2022-11-16T03:18:23.431Z"
-  cancelationReason:
+  cancelReason:
     type: string
     description: Reason why the card was cancelled
     enum:
