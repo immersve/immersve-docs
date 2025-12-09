@@ -38,7 +38,7 @@ properties:
     example: "978"
   expiry:
     type: string
-    description: The driver's license expiry formatted as YYYY-MM-DD. Required in some cases.
+    description: The driver's license expiry formatted as YYYY-MM-DD.
     example: "2028-10-12"
   # additionalNumber:
   #   type: string
