@@ -377,14 +377,20 @@ must tolerate the addition of unknown message attributes.
 * pin-invalid
 * The discriminator indicating the reason for an auth cancellation message. Clients must
   tolerate unknown reasons. Reasons may include the following:
+  `auth-reversal-accepted`,
   `card-blocked`,
   `card-canceled`,
   `card-expired`,
   `card-suspended`,
+  `clearing-reversal-accepted`,
+  `custodian-declined`,
   `cvv-invalid`,
   `expiry-invalid`,
+  `float-depleted`,
+  `payment-expired`,
   `pin-invalid`,
-  `security-challenge-failed`.
+  `security-challenge-failed`,
+  `unexpected-error`.
 ---
 * {% wrap %} securityChallengeRef {% /wrap %}
 * 51661658-65f8-49d3-a3c0-9f0566671132
