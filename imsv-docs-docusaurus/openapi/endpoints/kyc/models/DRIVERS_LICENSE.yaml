@@ -32,10 +32,14 @@ properties:
     example: VIC
   version:
     type: string
-    description:  |
+    description: |
       The driver's license card number or version. This field is required for New Zealand and Australia.
       For other countries this field is optional.
     example: "978"
+  expiry:
+    type: string
+    description: The driver's license expiry formatted as YYYY-MM-DD. Required in some cases.
+    example: "2028-10-12"
   # additionalNumber:
   #   type: string
   #   description: An additional number found on the drivers license card like NUIP in Colombia or CUIL in Argentina.
