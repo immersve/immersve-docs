@@ -13,6 +13,7 @@ Examples:
 * Two-decimal fiat currency (for example US Dollars): $13.14 USD, amount will be `1314`.
 * Zero-decimal fiat currency (for example Japanese Yen): ¥1314 JPY, amount will be `1314`.
 * Six-decimal crypto assets (for example USDC): $13.14 USDC, amount will be `13140000`.
+* Eighteen-decimal crypto assets (for example Binance USDT): $13.14 USDT, amount will be `13140000000000000000`.
 
 
 ## Currency Codes
@@ -29,3 +30,14 @@ units (cents).
 |  Fiat Amount | Fiat Minor Units | Token Minor Units |
 |-|-|-|
 | $5.00 USD | 500 USD cents | 5000000 USDC |
+
+## Converting Binance USDT to USD
+
+Binance USDT is pegged 1:1 for USD, the smallest possible unit of Binance USDT
+represents one 10,000,000,000,000,000th of 1 USD cent. For example:
+5,000,000,000,000,000,000 Binance USDT minor units = 500 USD minor
+units (cents).
+
+|  Fiat Amount | Fiat Minor Units | Token Minor Units |
+|-|-|-|
+| $5.00 USD | 500 USD cents | 5000000000000000000 Binance USDT |
