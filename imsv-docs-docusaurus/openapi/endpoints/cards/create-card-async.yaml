@@ -48,10 +48,10 @@ post:
         AML check failed.
 
         **MAX_CARDS_EXCEEDED**
-        Cardholder has reached the maximum number of cards allowed.
+        Cardholder has reached the maximum of 10 total cards allowed.
 
         **MAX_ACTIVE_CARDS_EXCEEDED**
-        Cardholder has reached the maximum number of active cards allowed.
+        Cardholder has reached the maximum of 5 active cards allowed.
       content:
         application/json:
           schema:
