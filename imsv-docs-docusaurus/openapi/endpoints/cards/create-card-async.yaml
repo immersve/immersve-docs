@@ -49,6 +49,9 @@ post:
 
         **MAX_CARDS_EXCEEDED**
         Cardholder has reached the maximum number of cards allowed.
+
+        **MAX_ACTIVE_CARDS_EXCEEDED**
+        Cardholder has reached the maximum number of active cards allowed.
       content:
         application/json:
           schema:
