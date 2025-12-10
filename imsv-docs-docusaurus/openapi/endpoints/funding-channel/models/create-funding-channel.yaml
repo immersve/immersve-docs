@@ -25,6 +25,8 @@ properties:
       - simulator-usdc
       - custodial-usdc
       - custodial-test-usdc
+      - bsc-testnet-usdt-universal-evm
+      - bsc-usdt-universal-evm
 
     example: polygon-amoy-usdc-universal-evm-test
   purpose:
