@@ -29,6 +29,10 @@ properties:
     type: string
     description: The maternal family name of the cardholder. This is required when country is MX.
     example: Souza
+  expiry:
+    type: string
+    description: The national id expiry formatted as YYYY-MM-DD.
+    example: "2028-10-12"
   # additionalNumber:
   #   type: string
   #   description: An additional number found on the ID card like NUIP in Colombia or CUIL in Argentina.
