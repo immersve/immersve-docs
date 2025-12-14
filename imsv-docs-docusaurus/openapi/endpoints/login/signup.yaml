@@ -15,8 +15,8 @@ post:
         schema:
           oneOf:
             - $ref: "./models/algorand-login-request.yaml"
-            - $ref: "./models/xrpl-login-request.yaml"
             - $ref: "./models/siwe-login-request.yaml"
+            - $ref: "./models/xrpl-login-request.yaml"
     required: true
   responses:
     "200":

@@ -1,4 +1,5 @@
 type: object
+title: SIWE Login
 required:
   - clientApplicationId
   - scopes
