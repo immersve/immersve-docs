@@ -1,5 +1,6 @@
 type: object
 required:
+  - id
   - accountId
   - status
   - scope
@@ -7,6 +8,10 @@ required:
   - reason
   - initiator
 properties:
+  id:
+    type: string
+    description: Identifier of the block
+    example: 75a7e8ef0d234d0a6bf755e07d39eb03
   accountId:
     type: string
     description: Identifier of the cardholder account associated with the block
