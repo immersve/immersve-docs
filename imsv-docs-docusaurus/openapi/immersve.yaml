@@ -104,7 +104,7 @@ paths:
     $ref: "./endpoints/cards/card-pan-token.yaml"
 
   # Cardholder Blocks
-  "/api/cardholders/{cardholderAccountId}/blocks":
+  "/api/accounts/{cardholderAccountId}/blocks":
     get: { $ref: "./endpoints/cardholder-blocks/get-cardholder-blocks.yaml" }
 
   # Currency
