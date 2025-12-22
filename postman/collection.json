@@ -2515,6 +2515,58 @@
           "response": []
         },
         {
+          "name": "List Webhook Notifications",
+          "request": {
+            "auth": {
+							"type": "noauth"
+						},
+            "method": "GET",
+            "header": [
+              {
+								"key": "x-api-key",
+								"value": "{{accountAdminApiKey}}"
+							},
+							{
+								"key": "x-api-secret",
+								"value": "{{accountAdminApiSecret}}"
+							}
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/accounts/:accountId/webhook-notifications",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "accounts", ":accountId", "webhook-notifications"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "cursor",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "createdFrom",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "createdTo",
+                  "value": "",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+								{
+									"key": "accountId",
+									"value": "{{partnerAccountId}}"
+								}
+							]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Add Webhook Topic Subscription",
           "request": {
             "auth": {
