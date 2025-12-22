@@ -25,7 +25,7 @@ properties:
   deliveryStatus:
     type: string
     description: Status of the webhook delivery
-    enum: ["pending", "delivered", "failed"]
+    enum: ["pending", "attempting", "delivered", "aborted", "failed"]
     example: "delivered"
   topic:
     type: string
@@ -77,7 +77,7 @@ properties:
         type: string
         format: uri
         description: The URL the webhook was sent to
-        example: "https://webhook.site/bd8c1731-a508-49d5-bbcc-6ddcd4e6a984/kyc-succeeded"
+        example: "https://partner.com/kyc-succeeded"
       requestTimestamp:
         type: string
         format: date-time
