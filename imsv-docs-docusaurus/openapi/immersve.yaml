@@ -218,6 +218,8 @@ paths:
     $ref: "./endpoints/webhooks/send-webhook-test-notification.yaml"
   "/api/webhook-listeners/{listenerId}/unsubscribe":
     $ref: "./endpoints/webhooks/remove-webhook-topic-subscription.yaml"
+  "/api/accounts/{accountId}/webhook-notifications":
+    $ref: "./endpoints/webhooks/list-webhook-notifications.yaml"
 
 components:
   parameters:

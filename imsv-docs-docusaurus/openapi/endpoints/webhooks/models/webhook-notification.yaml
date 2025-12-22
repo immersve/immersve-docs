@@ -1,0 +1,98 @@
+type: object
+properties:
+  id:
+    type: string
+    description: Unique identifier for the webhook notification
+    example: "dcd07ae53c03209282543316312e4c38"
+  accountId:
+    type: string
+    description: Account ID associated with the notification
+    example: "2d4aec21adf5c3251d6f868accf94791"
+  attempts:
+    type: number
+    description: Number of delivery attempts
+    example: 1
+  createdAt:
+    type: string
+    format: date-time
+    description: Timestamp when the notification was created
+    example: "2025-10-17T01:46:14.481Z"
+  modifiedAt:
+    type: string
+    format: date-time
+    description: Timestamp when the notification was last modified
+    example: "2025-10-17T01:46:14.742Z"
+  deliveryStatus:
+    type: string
+    description: Status of the webhook delivery
+    enum: ["pending", "delivered", "failed"]
+    example: "delivered"
+  topic:
+    type: string
+    description: The webhook topic/event type
+    example: "kyc-succeeded"
+  lastDelivery:
+    type: object
+    description: Details of the last delivery attempt
+    properties:
+      requestBody:
+        type: object
+        description: The request body that was sent
+        properties:
+          messageId:
+            type: string
+            example: "dcd07ae53c03209282543316312e4c38"
+          topic:
+            type: string
+            example: "kyc-succeeded"
+          listenerId:
+            type: string
+            example: "9ee479ec4dd3a2cd77a4fb4c8ffe51ec"
+          listenerAccountId:
+            type: string
+            example: "2d4aec21adf5c3251d6f868accf94791"
+          deliveryAttempt:
+            type: number
+            example: 0
+          createdAt:
+            type: string
+            format: date-time
+            example: "2025-10-17T01:46:14.481Z"
+          sentAt:
+            type: string
+            format: date-time
+            example: "2025-10-17T01:46:14.528Z"
+          keyId:
+            type: string
+            example: "c1e1a59e41d9e009a43256cab1f8839d"
+          liveness:
+            type: string
+            enum: ["live", "test"]
+            example: "live"
+          payload:
+            type: object
+            description: The actual payload data for the webhook event
+            additionalProperties: true
+      requestUrl:
+        type: string
+        format: uri
+        description: The URL the webhook was sent to
+        example: "https://webhook.site/bd8c1731-a508-49d5-bbcc-6ddcd4e6a984/kyc-succeeded"
+      requestTimestamp:
+        type: string
+        format: date-time
+        description: Timestamp when the request was sent
+        example: "2025-10-17T01:46:14.528Z"
+      responseStatus:
+        type: number
+        description: HTTP response status code from the webhook endpoint
+        example: 200
+      responseTimestamp:
+        type: string
+        format: date-time
+        description: Timestamp when the response was received
+        example: "2025-10-17T01:46:14.742Z"
+      duration:
+        type: number
+        description: Duration of the request in milliseconds
+        example: 214
