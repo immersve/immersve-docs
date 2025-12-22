@@ -18,6 +18,8 @@ tags:
     x-displayName: Cards
   - name: contact-details
     x-displayName: Contact Details
+  - name: cardholder-blocks
+    x-displayName: Cardholder Blocks
   - name: currency
     x-displayName: Currency
   - name: funding-source
@@ -54,7 +56,6 @@ security:
 # The order of the paths defines the order of pages in the sidebar navigation.
 # The tags field in the yaml files defines the grouping in the sidebar navigation.
 paths:
-
   # Auth
   "/auth/signup":
     $ref: "./endpoints/login/signup.yaml"
@@ -88,7 +89,11 @@ paths:
     $ref: "./endpoints/cards/card-get.yaml"
   "/api/cards/{cardId}/set-pin":
     $ref: "./endpoints/cards/card-set-pin.yaml"
-    servers: [ { url: https://test-sec.immersve.com }, { url: https://api-sec.immersve.com } ]
+    servers:
+      [
+        { url: https://test-sec.immersve.com },
+        { url: https://api-sec.immersve.com },
+      ]
   "/api/cards/{cardId}/cancel-async":
     $ref: "./endpoints/cards/card-cancel.yaml"
   "/api/cards/{cardId}/freeze":
@@ -97,6 +102,10 @@ paths:
     $ref: "./endpoints/cards/card-unfreeze.yaml"
   "/api/cards/{cardId}/pan-token":
     $ref: "./endpoints/cards/card-pan-token.yaml"
+
+  # Cardholder Blocks
+  "/api/cardholders/{cardholderAccountId}/blocks":
+    get: { $ref: "./endpoints/cardholder-blocks/get-cardholder-blocks.yaml" }
 
   # Currency
   "/api/currencies":
@@ -142,30 +151,42 @@ paths:
   "/api/accounts/{accountId}/kyc-profile":
     get: { $ref: "./endpoints/kyc/get-kyc-profile.yaml" }
   "/api/accounts/{cardholderId}/expected-spend-amount":
-    get: { $ref: "./endpoints/expected-spend-amount/get-expected-spend-amount.yaml" }
-    post: { $ref: "./endpoints/expected-spend-amount/update-expected-spend-amount.yaml" }
+    get:
+      {
+        $ref: "./endpoints/expected-spend-amount/get-expected-spend-amount.yaml",
+      }
+    post:
+      {
+        $ref: "./endpoints/expected-spend-amount/update-expected-spend-amount.yaml",
+      }
   "/api/accounts/{cardholderId}/residential-addresses":
-    get: { $ref: "./endpoints/residential-addresses/get-residential-addresses.yaml" }
-    post: { $ref: "./endpoints/residential-addresses/submit-residential-addresses.yaml" }
+    get:
+      {
+        $ref: "./endpoints/residential-addresses/get-residential-addresses.yaml",
+      }
+    post:
+      {
+        $ref: "./endpoints/residential-addresses/submit-residential-addresses.yaml",
+      }
   "/api/accounts/{partnerAccountId}/supported-regions":
     get: { $ref: "./endpoints/regions/get-supported-regions.yaml" }
 
   # Simulator
   "/api/simulator/authorize":
     $ref: "./endpoints/simulator/authorize.yaml"
-    servers: [ { url: https://test.immersve.com } ]
+    servers: [{ url: https://test.immersve.com }]
   "/api/simulator/clear":
     $ref: "./endpoints/simulator/clear.yaml"
-    servers: [ { url: https://test.immersve.com } ]
+    servers: [{ url: https://test.immersve.com }]
   "/api/simulator/reverse":
     $ref: "./endpoints/simulator/reverse.yaml"
-    servers: [ { url: https://test.immersve.com } ]
+    servers: [{ url: https://test.immersve.com }]
   "/api/simulator/execute-deposit":
     $ref: "./endpoints/simulator/execute-simulator-deposit.yaml"
-    servers: [ { url: https://test.immersve.com } ]
+    servers: [{ url: https://test.immersve.com }]
   "/api/simulator/execute-withdrawal":
     $ref: "./endpoints/simulator/execute-simulator-withdrawal.yaml"
-    servers: [ { url: https://test.immersve.com } ]
+    servers: [{ url: https://test.immersve.com }]
 
   # Funding
   "/api/accounts/{accountId}/funding-sources":

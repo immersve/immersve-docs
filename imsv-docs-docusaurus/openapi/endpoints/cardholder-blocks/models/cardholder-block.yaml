@@ -1,0 +1,46 @@
+type: object
+required:
+  - accountId
+  - status
+  - scope
+  - type
+  - reason
+  - initiator
+properties:
+  accountId:
+    type: string
+    description: Identifier of the cardholder account associated with the block
+    example: 9b7552cf9abab0f2efed72df6b3ce4bc
+  cardId:
+    type: string
+    description: Optional. Primary identifier of the card (present when scope is card)
+    example: 91ad6fea3b52ca58d60d7fd310f789ec
+  status:
+    description: Current status of the block
+    type: string
+    enum:
+      - creating
+      - created
+      - releasing
+      - released
+  scope:
+    description: Scope of the block, indicating whether it applies to the cardholder or a specific card
+    type: string
+    enum:
+      - card
+      - cardholder
+  type:
+    description: Type of block applied
+    type: string
+    example: card-suspension
+  reason:
+    description: Reason the block was created
+    type: string
+    example: fraud
+  initiator:
+    description: Entity that initiated the block
+    type: string
+    enum:
+      - system
+      - partner
+      - user
