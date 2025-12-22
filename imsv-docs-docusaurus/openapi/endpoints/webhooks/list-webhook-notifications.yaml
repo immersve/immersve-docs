@@ -43,8 +43,11 @@ get:
           schema:
             $ref: "./models/list-webhook-notifications-schema.yaml"
     "403":
-      description: No Authorization to access resource
-      content:
-        application/json:
-          schema:
-            $ref: '../../models/api-error-403.yaml'
+      description: |
+        User is not allowed to perform the action with the reason stated in the `errorCode`
+
+        **FORBIDDEN**
+        Insufficient permissions to perform the action.
+
+        **ACCOUNT_TYPE_INVALID**
+        `accountType` of the `accountId` is not of type `PARTNER`.
