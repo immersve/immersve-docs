@@ -1756,6 +1756,37 @@
 				}
 			]
 		},
+    {
+			"name": "Cardholder Blocks",
+			"item": [
+				{
+					"name": "Get cardholder blocks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/cardholders/:cardholderAccountId/blocks",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"cardholders",
+								":cardholderAccountId",
+								"blocks"
+							],
+							"variable": [
+								{
+									"key": "cardholderAccountId",
+									"value": "{{cardholderAccountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Currency",
 			"item": [
