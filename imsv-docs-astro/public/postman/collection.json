@@ -1765,7 +1765,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/api/cardholders/:cardholderAccountId/blocks",
+							"raw": "{{baseUrl}}/api/accounts/:cardholderAccountId/blocks",
 							"host": [
 								"{{baseUrl}}"
 							],
