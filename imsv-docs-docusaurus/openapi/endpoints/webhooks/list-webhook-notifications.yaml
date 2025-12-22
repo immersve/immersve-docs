@@ -1,0 +1,53 @@
+get:
+  tags:
+    - webhooks
+  summary: List Webhook Notifications
+  operationId: list-webhook-notifications
+  description: Retrieves Webhook Notifications for the given account id.
+  parameters:
+    - name: accountId
+      in: path
+      description: Partner account id.
+      required: true
+      schema:
+        type: string
+    - name: limit
+      in: query
+      description: Amount of records to return (max 100).
+      required: false
+      schema:
+        type: number
+    - name: cursor
+      in: query
+      description: Cursor to retrieve the next page.
+      required: false
+      schema:
+        type: string
+    - name: createdFrom
+      in: query
+      description: Filter for notifications from this date (inclusive). Value should be a ISO 8601 string.
+      required: false
+      schema:
+        type: string
+    - name: createdTo
+      in: query
+      description: Filter for notifications up to this date (inclusive). Value should be a ISO 8601 string.
+      required: false
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/list-webhook-notifications-schema.yaml"
+    "403":
+      description: |
+        User is not allowed to perform the action with the reason stated in the `errorCode`
+
+        **FORBIDDEN**
+        Insufficient permissions to perform the action.
+
+        **ACCOUNT_TYPE_INVALID**
+        `accountType` of the `accountId` is not of type `PARTNER`.
