@@ -300,6 +300,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/core-concepts/regions.mdoc": {
+	id: "guides/core-concepts/regions.mdoc";
+  slug: "guides/regions";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/funding-protocols/custodial-funding-protocol.mdoc": {
 	id: "guides/funding-protocols/custodial-funding-protocol.mdoc";
   slug: "guides/custodial-funding-protocol";
@@ -373,13 +380,6 @@ declare module 'astro:content' {
 "guides/kyc/partner-conducted-kyc.mdoc": {
 	id: "guides/kyc/partner-conducted-kyc.mdoc";
   slug: "guides/partner-conducted-kyc";
-  body: string;
-  collection: "docs";
-  data: InferEntrySchema<"docs">
-} & { render(): Render[".mdoc"] };
-"guides/regions.mdoc": {
-	id: "guides/regions.mdoc";
-  slug: "guides/regions";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
