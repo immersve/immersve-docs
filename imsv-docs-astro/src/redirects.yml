@@ -50,6 +50,7 @@
 /api-reference/update-an-account: "/use-cases/custodial-wallets"
 /api-reference/update-the-allowed-origins: "/api-reference/update-allowed-origins"
 /api-reference/upload-a-kyc-resource: "/api-reference/submit-kyc-statement"
+/api: "/api-reference" # Convenient redirect to save typing "/api-reference" in full
 /category/api-reference: "/api-reference/category/api-reference"
 /category/custodial-wallets: "/use-cases/custodial-wallets"
 /category/non-custodial-wallets: "/use-cases/web3-wallets"

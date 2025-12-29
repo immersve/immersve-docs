@@ -29,7 +29,9 @@ link_match_outcome="found (use --fix to replace)"
 [[ "${fix}" == "yes" ]] && link_match_outcome=fixed
 
 redirects_json="$(yq -o json "${astro_dir}/src/redirects.yml")"
-redirect_from_paths="$(echo "${redirects_json}" | jq -r 'keys | .[]')"
+# Hack: ignore the /api->/api-reference redirect rule because it produces false
+# positives on every /api-reference link.
+redirect_from_paths="$(echo "${redirects_json}" | jq -r 'keys | .[]' | grep -v '^/api$')"
 
 function replace_links () {
   old_link="$1"
