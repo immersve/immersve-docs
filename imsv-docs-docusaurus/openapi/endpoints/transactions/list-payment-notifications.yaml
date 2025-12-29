@@ -5,9 +5,9 @@ get:
   operationId: list-account-payment-notifications
   description: |
     List payment event notifications for the given accountId.
+    **This endpoint is exclusively intended for accounts operating under the custodial funding mode**.
     The notification account id will be the same as the partner account
     that owns the Card Program for the payments.
-    This endpoint is exclusively intended for accounts operating under the custodial funding mode
     See [Custodial Funding Protocol](https://docs.immersve.com/guides/custodial-funding-protocol)
     for details about payment event notifications.
     Results are paginated and ordered by descending `createdAt` date.
