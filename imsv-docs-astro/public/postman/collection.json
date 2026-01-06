@@ -1771,7 +1771,7 @@
 							],
 							"path": [
 								"api",
-								"cardholders",
+								"accounts",
 								":cardholderAccountId",
 								"blocks"
 							],
