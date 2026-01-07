@@ -18,6 +18,8 @@ tags:
     x-displayName: Cards
   - name: contact-details
     x-displayName: Contact Details
+  - name: cardholder-blocks
+    x-displayName: Cardholder Blocks
   - name: currency
     x-displayName: Currency
   - name: funding-source
@@ -97,6 +99,10 @@ paths:
     $ref: "./endpoints/cards/card-unfreeze.yaml"
   "/api/cards/{cardId}/pan-token":
     $ref: "./endpoints/cards/card-pan-token.yaml"
+
+  # Cardholder Blocks
+  "/api/accounts/{cardholderAccountId}/blocks":
+    get: { $ref: "./endpoints/cardholder-blocks/get-cardholder-blocks.yaml" }
 
   # Currency
   "/api/currencies":

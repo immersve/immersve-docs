@@ -1,0 +1,19 @@
+tags:
+  - cardholder-blocks
+summary: Get Cardholder Blocks
+operationId: get-cardholder-blocks
+description: Get cardholder blocks for the account.
+parameters:
+  - name: accountId
+    in: path
+    description: Cardholder account ID
+    required: true
+    schema:
+      type: string
+responses:
+  "200":
+    description: Successful operation
+    content:
+      application/json:
+        schema:
+          $ref: "./models/get-cardholder-blocks-response.yaml"
