@@ -24,6 +24,13 @@ properties:
     example: "2025-09-29T10:11:13Z"
     description: |
       The delivery attempt timestamp.
+  keyId:
+    type: string
+    example: "9ce69d31277108d46d2cb19fa772705e"
+    description: |
+      The public key id for validating the signature. Public keys can be
+      found at https://api.immersve.com/.well-known/jwks.json and matched
+      using the "kid" attribute.
   issuer:
     type: string
     example: api.immersve.com
