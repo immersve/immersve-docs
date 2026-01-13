@@ -30,7 +30,7 @@ requestBody:
                       The timestamp for the event that triggered the message.
                   paymentId:
                     type: string
-                    example: "pay-123456"
+                    example: "38fb58acc55b4907a1e2b4c890e567f3"
                     description: |
                       Immersve payment transaction identifier.
                   paymentAmount:
@@ -55,24 +55,22 @@ requestBody:
                       The type of payment: purchase, refund, or adjustment.
                   fundingSourceId:
                     type: string
-                    example: "fs-123"
+                    example: "c65fe4d184a24619b3e8f2c7a9d15e42"
                     description: |
                       Immersve funding source identifier.
                   fundingSourceExternalId:
                     type: string
-                    example: "ext-fs-123"
+                    example: "ext-abc123def456"
                     description: |
                       The custodial account external reference stored on the Immersve funding source.
                   cardholderId:
                     type: string
-                    example: "ch-456"
+                    example: "d44d045826d4484c9b7f1e3a5c8d2f6b"
                     description: |
                       Immersve cardholder account id.
                   cardId:
                     type: string
-                    example: "card-789"
+                    example: "9ae177ea85ed4128b2c3d5f6e7a9c8d4"
                     description: |
                       Immersve card identifier.
-                  deliveryOptions:
-                    $ref: "../models/delivery-options.yaml"
           - $ref: "./webhook-envelope.yaml"
