@@ -28,6 +28,6 @@ properties:
       $ref: "./evidence.yaml"
   attachments:
     type: array
-    description: A list of uploaded supporting documents. Optional, only required in some cases. See [link](/api-reference/partner-conducted-kyc#submitting-a-statement-with-supporting-documents)
+    description: A list of uploaded supporting documents. Optional, only required in some cases. See [Submitting a Statement with supporting documents](/guides/partner-conducted-kyc#submitting-a-statement-with-supporting-documents)
     items:
       $ref: "./attachments.yaml"

@@ -377,8 +377,21 @@ and unstructured address formats in an Address claim.
 ### Submitting a Statement with supporting documents
 
 KYC Statements can include supporting documents as attachments. For certain regions, providing supporting documents is mandatory.
-Documents must be uploaded using the file upload API before being attached to the statement using their document IDs and the appropriate attachment type.
-Supporting documents are required for KYC Statements in the following regions:
+
+Supporting documents must be first uploaded using the {% link endpoint="upload-file" /%} endpoint before being attached to the statement using their file IDs and the appropriate attachment type.
+
+```json
+  {
+    "attachments": [
+      {
+        "fileId": "f4b8e8ef0d230d0a6bf755e07d39ab12",
+        "type": "passport"
+      }
+    ]
+  }
+```
+
+Supporting documents are required for KYC Statements in the following regions: `AT` `BE` `BG` `CY` `CZ` `DE` `DK` `EE` `ES` `FI` `FR` `GR` `HR` `HU` `IE` `IS` `IT` `LI` `LT` `LU` `LV` `MT` `NL` `NO` `PL` `PT` `RO` `SE` `SI` `SK` `UK`.
 
 
 ## Get spending prerequisites
