@@ -33,6 +33,11 @@ requestBody:
                     example: "Authorization accepted for payment"
                     description: |
                       Description of the authorization event.
+                  paymentId:
+                    type: string
+                    example: "pay-123456"
+                    description: |
+                      Immersve payment identifier
                   paymentAmount:
                     type: string
                     example: "5000"
@@ -68,11 +73,6 @@ requestBody:
                     example: "purchase"
                     description: |
                       The type of payment: purchase, refund, or adjustment.
-                  paymentId:
-                    type: string
-                    example: "pay-123456"
-                    description: |
-                      Immersve payment identifier
                   fundingSourceId:
                     type: string
                     example: "fs-123"
