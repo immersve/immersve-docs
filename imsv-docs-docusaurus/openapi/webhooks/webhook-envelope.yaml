@@ -12,9 +12,6 @@ properties:
   listenerAccountId:
     type: string
     example: "partner-account-1"
-  deliveryId:
-    type: string
-    example: "msg-1234:1"
   deliveryAttempt:
     type: number
     example: 1
