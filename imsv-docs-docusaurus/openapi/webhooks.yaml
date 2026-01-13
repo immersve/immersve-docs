@@ -69,6 +69,25 @@ webhooks:
   payment-authorization-cancelled:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/payment-authorization-cancelled-webhook.yaml }
+  payment-cleared:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/payment-cleared-webhook.yaml }
+  payment-authorization-reversed:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/payment-authorization-reversed-webhook.yaml }
+  payment-clearing-reversed:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/payment-clearing-reversed-webhook.yaml }
+  payment-expired:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/payment-expired-webhook.yaml }
+  payment-failed:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/payment-failed-webhook.yaml }
+  payment-adjusted:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/payment-adjusted-webhook.yaml }
+
   async-test:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/async-test-webhook.yaml }

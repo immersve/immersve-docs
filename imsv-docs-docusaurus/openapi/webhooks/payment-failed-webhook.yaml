@@ -1,8 +1,8 @@
 tags: [payments]
-summary: Payment Cleared
-operationId: payment-cleared
+summary: Payment Failed
+operationId: payment-failed
 description: |
-  Triggered when a payment is cleared.
+  Triggered when a payment fails.
 
 requestBody:
   content:
@@ -13,26 +13,26 @@ requestBody:
             properties:
               topic:
                 type: string
-                example: "payment-cleared"
+                example: "payment-failed"
               payload:
                 type: object
                 properties:
                   eventType:
                     type: string
-                    example: "clearing-accepted"
+                    example: "payment-failed"
                     description: |
                       The payment lifecycle event which triggered the message.
                   eventTimestamp:
                     type: string
                     format: date-time
-                    example: "2026-01-07T10:15:30Z"
+                    example: "2026-01-06T10:15:31Z"
                     description: |
                       The timestamp for the event that triggered the message.
                   paymentId:
                     type: string
                     example: "pay-123456"
                     description: |
-                      Immersve payment identifier.
+                      Immersve payment transaction identifier.
                   paymentAmount:
                     type: string
                     example: "5000"
@@ -55,9 +55,9 @@ requestBody:
                       The merchant's local currency.
                   paymentFeeAmount:
                     type: string
-                    example: "50"
+                    example: "0"
                     description: |
-                      The fee amount of the payment in minor units.
+                      Immersve's fee portion of the payment amount in minor units.
                   paymentFinalized:
                     type: boolean
                     example: true
@@ -118,9 +118,9 @@ requestBody:
                     example: "5411"
                     description: |
                       The merchant's ISO-18245 category code.
-                  relatedPaymentId:
+                  cancel-reason:
                     type: string
-                    example: "pay-123456"
+                    example: "system-error"
                     description: |
-                      The original authorization payment ID
+                      The reason why the payment failed.
           - $ref: "./webhook-envelope.yaml"

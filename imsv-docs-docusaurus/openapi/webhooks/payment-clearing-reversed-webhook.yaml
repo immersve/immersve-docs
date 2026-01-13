@@ -1,8 +1,8 @@
 tags: [payments]
-summary: Payment Cleared
-operationId: payment-cleared
+summary: Payment Clearing Reversed
+operationId: payment-clearing-reversed
 description: |
-  Triggered when a payment is cleared.
+  Triggered when a payment clearing is reversed.
 
 requestBody:
   content:
@@ -13,31 +13,31 @@ requestBody:
             properties:
               topic:
                 type: string
-                example: "payment-cleared"
+                example: "payment-clearing-reversed"
               payload:
                 type: object
                 properties:
                   eventType:
                     type: string
-                    example: "clearing-accepted"
+                    example: "clearing-reversal-accepted"
                     description: |
                       The payment lifecycle event which triggered the message.
                   eventTimestamp:
                     type: string
                     format: date-time
-                    example: "2026-01-07T10:15:30Z"
+                    example: "2026-01-08T10:15:30Z"
                     description: |
                       The timestamp for the event that triggered the message.
                   paymentId:
                     type: string
                     example: "pay-123456"
                     description: |
-                      Immersve payment identifier.
+                      Immersve payment transaction identifier.
                   paymentAmount:
                     type: string
-                    example: "5000"
+                    example: "-5000"
                     description: |
-                      Total payment amount that the cardholder will be debited in minor units.
+                      Total refund amount that the cardholder will be credited in minor units.
                   paymentCurrency:
                     type: string
                     example: "USD"
@@ -45,9 +45,9 @@ requestBody:
                       Expected payment currency which will be the same as the billing funding source.
                   paymentAcquirerAmount:
                     type: string
-                    example: "5000"
+                    example: "-5000"
                     description: |
-                      Payment amount represented in the merchant's local currency. The amount will use fiat minor units.
+                      Refund amount represented in the merchant's local currency. The amount will use fiat minor units.
                   paymentAcquirerCurrency:
                     type: string
                     example: "USD"
@@ -57,7 +57,7 @@ requestBody:
                     type: string
                     example: "50"
                     description: |
-                      The fee amount of the payment in minor units.
+                      Immersve's fee portion of the payment amount in minor units.
                   paymentFinalized:
                     type: boolean
                     example: true
@@ -65,7 +65,7 @@ requestBody:
                       Flag indicating if the payment is expected to have further updates.
                   paymentType:
                     type: string
-                    example: "purchase"
+                    example: "refund"
                     description: |
                       The type of payment: purchase, refund, or adjustment.
                   fundingSourceId:
@@ -122,5 +122,5 @@ requestBody:
                     type: string
                     example: "pay-123456"
                     description: |
-                      The original authorization payment ID
+                      The id of the related payment, if applicable.
           - $ref: "./webhook-envelope.yaml"
