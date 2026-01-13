@@ -32,7 +32,9 @@ components:
     XKeyId:
       name: X-Key-ID
       in: header
-      description: ID of the public key used to validate the signature.
+      description: The public key id for validating the signature. Public keys can be
+        found at https://api.immersve.com/.well-known/jwks.json and matched
+        using the "kid" attribute.
       schema:
         type: string
     XSignature:
