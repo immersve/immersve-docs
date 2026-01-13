@@ -20,9 +20,14 @@ properties:
     type: array
     description: A list of claims about the cardholder's identity.
     items:
-      $ref: './claims.yaml'
+      $ref: "./claims.yaml"
   evidence:
     type: array
     description: A list of evidence supporting the claimed identity. At least one piece of evidence is required.
     items:
-      $ref: './evidence.yaml'
+      $ref: "./evidence.yaml"
+  attachments:
+    type: array
+    description: A list of uploaded supporting documents. Optional, only required in some cases. See [link](/api-reference/partner-conducted-kyc#submitting-a-statement-with-supporting-documents)
+    items:
+      $ref: "./attachments.yaml"
