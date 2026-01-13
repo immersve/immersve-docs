@@ -66,6 +66,9 @@ webhooks:
   payment-authorization-confirmed:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/payment-authorization-confirmed-webhook.yaml }
+  payment-authorization-cancelled:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/payment-authorization-cancelled-webhook.yaml }
   async-test:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/async-test-webhook.yaml }

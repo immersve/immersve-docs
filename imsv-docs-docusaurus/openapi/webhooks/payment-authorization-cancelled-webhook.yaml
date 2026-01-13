@@ -1,8 +1,8 @@
 tags: [payments]
-summary: Payment Authorization Confirmed
-operationId: payment-auth-confirmed
+summary: Payment Authorization Cancelled
+operationId: payment-auth-cancelled
 description: |
-  Triggered when a payment authorization is confirmed.
+  Triggered when a payment authorization is cancelled.
 
 requestBody:
   content:
@@ -13,13 +13,13 @@ requestBody:
             properties:
               topic:
                 type: string
-                example: "payment-auth-confirmed"
+                example: "payment-auth-cancelled"
               payload:
                 type: object
                 properties:
                   eventType:
                     type: string
-                    example: "auth-confirmed"
+                    example: "auth-declined"
                     description: |
                       The payment lifecycle event which triggered the message.
                   eventTimestamp:
@@ -32,7 +32,7 @@ requestBody:
                     type: string
                     example: "pay-123456"
                     description: |
-                      Immersve payment identifier
+                      Immersve payment transaction identifier.
                   paymentAmount:
                     type: string
                     example: "5000"
@@ -118,14 +118,19 @@ requestBody:
                     example: "5411"
                     description: |
                       The merchant's ISO-18245 category code.
+                  cancelReason:
+                    type: string
+                    example: "float-depleted"
+                    description: |
+                      The discriminator indicating the reason for an auth cancellation message.
                   securityChallengeOutcome:
                     type: string
-                    example: "success"
+                    example: "failed"
                     description: |
-                      Security challenge outcome for the authorization.
+                      The discriminator indicating the outcome of the 3DS challenge, if applicable.
                   securityChallengeRef:
                     type: string
                     example: "3ds-ref-123"
                     description: |
-                      Security challenge reference identifier.
+                      The 3DS challenge identifier, if applicable. This reference can be used to correlate the payment to the Payment 3DS OTP webhook.
           - $ref: "./webhook-envelope.yaml"
