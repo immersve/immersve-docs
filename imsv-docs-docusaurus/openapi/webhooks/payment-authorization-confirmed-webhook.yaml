@@ -21,116 +21,121 @@ requestBody:
                     type: string
                     example: "auth-confirmed"
                     description: |
-                      The payment lifecycle event which triggered the message
+                      The payment lifecycle event which triggered the message.
                   eventTimestamp:
                     type: string
                     format: date-time
                     example: "2026-01-06T10:15:31Z"
                     description: |
-                      The timestamp for the event that triggered the message
+                      The timestamp for the event that triggered the message.
                   eventDescription:
                     type: string
                     example: "Authorization accepted for payment"
                     description: |
-                      Description of the authorization event
+                      Description of the authorization event.
                   paymentAmount:
                     type: string
                     example: "5000"
                     description: |
-                      Total payment amount that the cardholder will be debited in minor units
+                      Total payment amount that the cardholder will be debited in minor units.
                   paymentCurrency:
                     type: string
                     example: "USD"
                     description: |
-                      Expected payment currency which will be the same as the billing funding source
+                      Expected payment currency which will be the same as the billing funding source.
                   paymentAcquirerAmount:
                     type: string
                     example: "5000"
                     description: |
-                      Payment amount represented in the merchant's local currency. The amount will use fiat minor units
+                      Payment amount represented in the merchant's local currency. The amount will use fiat minor units.
                   paymentAcquirerCurrency:
                     type: string
                     example: "USD"
                     description: |
-                      The merchant's local currency
+                      The merchant's local currency.
                   paymentFeeAmount:
                     type: string
                     example: "0"
                     description: |
-                      Immersve's fee portion of the payment amount in minor units
+                      Immersve's fee portion of the payment amount in minor units.
                   paymentFinalized:
                     type: boolean
                     example: false
                     description: |
-                      Flag indicating if the payment is expected to have further updates
-                  fundingSourceId:
-                    type: string
-                    example: "fs-123"
-                    description: |
-                      Immersve funding source identifier
-                  fundingSourceExternalId:
-                    type: string
-                    example: "ext-fs-123"
-                    description: |
-                      The custodial account external reference stored on the Immersve funding source
-                  cardholderId:
-                    type: string
-                    example: "ch-456"
-                    description: |
-                      Immersve cardholder account id
-                  cardId:
-                    type: string
-                    example: "card-789"
-                    description: |
-                      Immersve card identifier
-                  merchantId:
-                    type: string
-                    example: "merch-001"
-                    description: |
-                      The merchant identifier from the payment network
-                  merchantName:
-                    type: string
-                    example: "Example Store"
-                    description: |
-                      The merchant's name
-                  merchantCountryCode:
-                    type: string
-                    example: "US"
-                    description: |
-                      The merchant's ISO-3166-1 Alpha-2 country code
-                  merchantCity:
-                    type: string
-                    example: "New York"
-                    description: |
-                      The merchant's city name
-                  merchantTerminalId:
-                    type: string
-                    example: "term-001"
-                    description: |
-                      The merchant's payment terminal identifier
-                  merchantCategoryCode:
-                    type: string
-                    example: "5411"
-                    description: |
-                      The merchant's ISO-18245 category code
+                      Flag indicating if the payment is expected to have further updates.
                   paymentType:
                     type: string
                     example: "purchase"
                     description: |
-                      The type of payment: purchase, refund, or adjustment
+                      The type of payment: purchase, refund, or adjustment.
+                  paymentId:
+                    type: string
+                    example: "pay-123456"
+                    description: |
+                      Immersve payment identifier
+                  fundingSourceId:
+                    type: string
+                    example: "fs-123"
+                    description: |
+                      Immersve funding source identifier.
+                  fundingSourceExternalId:
+                    type: string
+                    example: "ext-fs-123"
+                    description: |
+                      The custodial account external reference stored on the Immersve funding source.
+                  cardholderId:
+                    type: string
+                    example: "ch-456"
+                    description: |
+                      Immersve cardholder account id.
+                  cardId:
+                    type: string
+                    example: "card-789"
+                    description: |
+                      Immersve card identifier.
+                  merchantId:
+                    type: string
+                    example: "merch-001"
+                    description: |
+                      The merchant identifier from the payment network.
+                  merchantName:
+                    type: string
+                    example: "Example Store"
+                    description: |
+                      The merchant's name.
+                  merchantCountryCode:
+                    type: string
+                    example: "US"
+                    description: |
+                      The merchant's ISO-3166-1 Alpha-2 country code.
+                  merchantCity:
+                    type: string
+                    example: "New York"
+                    description: |
+                      The merchant's city name.
+                  merchantTerminalId:
+                    type: string
+                    example: "term-001"
+                    description: |
+                      The merchant's payment terminal identifier.
+                  merchantCategoryCode:
+                    type: string
+                    example: "5411"
+                    description: |
+                      The merchant's ISO-18245 category code.
                   networkMessageRef:
                     type: string
                     example: "ref-123456"
                     description: |
-                      Network message reference for the authorization
+                      Network message reference for the authorization.
                   securityChallengeOutcome:
                     type: string
                     example: "success"
                     description: |
-                      Security challenge outcome for the authorization
+                      Security challenge outcome for the authorization.
                   securityChallengeRef:
                     type: string
                     example: "3ds-ref-123"
                     description: |
-                      Security challenge reference identifier
+                      Security challenge reference identifier.
           - $ref: "./webhook-envelope.yaml"
