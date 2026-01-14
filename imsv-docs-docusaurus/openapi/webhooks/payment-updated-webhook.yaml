@@ -141,6 +141,16 @@ requestBody:
                         example: "315bad4e81ce0f26966a41b9d451638b"
                         description: |
                           The id of the related payment, if applicable.
+                      securityChallengeOutcome:
+                        type: string
+                        example: "success"
+                        description: |
+                          3DS challenge outcome, if applicable.
+                      securityChallengeRef:
+                        type: string
+                        example: "3ds-ref-123"
+                        description: |
+                          Reference identifier for the 3DS challenge, if applicable.
                       cardholder:
                         type: object
                         properties:
@@ -186,7 +196,7 @@ requestBody:
                                 The blockchain network where the funding source resides.
                             tokenName:
                               type: string
-                              example: "usdc"
+                              example: "circle-usdc"
                               description: |
                                 The name of the token used for funding.
                             tokenAddress:
