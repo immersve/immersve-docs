@@ -65,7 +65,7 @@ requestBody:
                       status:
                         type: string
                         example: "cleared"
-                        enum: ["creating", "holding", "cleared", "reversed", "failed"]
+                        enum: ["holding", "cleared", "reversed", "failed"]
                         description: |
                           The current status of the payment.
                       amount:
@@ -93,6 +93,21 @@ requestBody:
                         example: "50"
                         description: |
                           The fee amount of the payment in minor units.
+                      networkReference:
+                        type: string
+                        example: "MPGCCRJ7C0113"
+                        description: |
+                          The payment network reference identifier for the transaction, if applicable.
+                      failureReason:
+                        type: string
+                        example: "cvv-invalid"
+                        description: |
+                          The reason for payment failure, if applicable.
+                      relatedPaymentId:
+                        type: string
+                        example: "315bad4e81ce0f26966a41b9d451638b"
+                        description: |
+                          The id of the related payment, if applicable.
                       merchant:
                         type: object
                         properties:
@@ -126,31 +141,18 @@ requestBody:
                             example: "5411"
                             description: |
                               The merchant's ISO-18245 category code.
-                      networkReference:
-                        type: string
-                        example: "MPGCCRJ7C0113"
-                        description: |
-                          The payment network reference identifier for the transaction.
-                      failureReason:
-                        type: string
-                        example: "cvv-invalid"
-                        description: |
-                          The reason for payment failure, if applicable.
-                      relatedPaymentId:
-                        type: string
-                        example: "315bad4e81ce0f26966a41b9d451638b"
-                        description: |
-                          The id of the related payment, if applicable.
-                      securityChallengeOutcome:
-                        type: string
-                        example: "success"
-                        description: |
-                          3DS challenge outcome, if applicable.
-                      securityChallengeRef:
-                        type: string
-                        example: "3ds-ref-123"
-                        description: |
-                          Reference identifier for the 3DS challenge, if applicable.
+                      security:
+                        properties:
+                          challengeOutcome:
+                            type: string
+                            example: "success"
+                            description: |
+                              3DS challenge outcome, if applicable.
+                          challengeRef:
+                            type: string
+                            example: "3ds-ref-123"
+                            description: |
+                              Reference identifier for the 3DS challenge, if applicable.
                       cardholder:
                         type: object
                         properties:
