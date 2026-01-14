@@ -303,6 +303,171 @@ curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/part
   }'
 ```
 
+### Submitting a Statement with a National ID as evidence
+The following script demonstrates how you could submit a KYC statement with a national ID as evidence.
+
+```bash
+idempotencyKey="" # a unique key for each request. See api docs for more info
+kyc_region="" # An ISO 3166-2 (Alpha-2) for the region you are submitting the statement for, i.e. EU, NZ, AU, etc.
+
+# personal details
+your_honorific="" #e.g. Mr, Mrs, Ms
+your_given_name=""
+your_middle_name=""
+your_family_name=""
+date_of_birth="" # YYYY-MM-DD
+
+# address details
+street_number=""
+street_name=""
+street_type="" #e.g. Road, Street, Avenue etc
+suburb_name=""
+town_name=""
+region_name=""
+state_name=""
+postal_code=""
+country_code="" #i.e. ISO 3166-2 Country Code
+
+# national ID details
+national_id_number=""
+national_id_country_code="" #i.e. ISO 3166-2 Country Code
+national_id_region="" #See submit KYC statement docs for more info
+national_id_paternal_family_name=""
+national_id_maternal_family_name=""
+
+curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -H "x-api-key: ${card_issuer_api_key}" \
+  -H "x-api-secret: ${card_issuer_api_secret}" \
+  --data '{
+    "idempotencyKey": "'${idempotencyKey}'",
+    "region": "'${kyc_region}'",
+    "claims": [
+      {
+        "claimType": "DOB",
+        "attributes": {
+          "dateOfBirth": "'${date_of_birth}'"
+        }
+      },
+      {
+        "claimType": "FULL_NAME",
+        "attributes": {
+          "honorific": "'${your_honorific}'",
+          "givenName": "'${your_given_name}'",
+          "middleName": "'${your_middle_name}'",
+          "familyName": "'${your_family_name}'"
+        }
+      },
+      {
+        "claimType": "ADDRESS",
+        "attributes": {
+          "addressType": "RESIDENTIAL",
+          "streetNumber": "'${street_number}'",
+          "streetName": "'${street_name}'",
+          "streetType": "'${street_type}'",
+          "suburb": "'${suburb_name}'",
+          "town": "'${town_name}'",
+          "region": "'${region_name}'",
+          "state": "'${state_name}'",
+          "postalCode": "'${postal_code}'",
+          "country": "'${country_code}'"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceType": "NATIONAL_ID",
+        "documentId": "'${national_id_number}'",
+        "country": "'${national_id_country_code}'",
+        "paternalFamilyName": "'${national_id_paternal_family_name}'",
+        "maternalFamilyName": "'${national_id_maternal_family_name}'"
+      }
+    ]
+  }'
+```
+
+### Submitting a Statement with a Residence Permit as evidence
+The following script demonstrates how you could submit a KYC statement with a residence permit as evidence.
+
+```bash
+idempotencyKey="" # a unique key for each request. See api docs for more info
+kyc_region="" # An ISO 3166-2 (Alpha-2) for the region you are submitting the statement for, i.e. EU, NZ, AU, etc.
+
+# personal details
+your_honorific="" #e.g. Mr, Mrs, Ms
+your_given_name=""
+your_middle_name=""
+your_family_name=""
+date_of_birth="" # YYYY-MM-DD
+
+# address details
+street_number=""
+street_name=""
+street_type="" #e.g. Road, Street, Avenue etc
+suburb_name=""
+town_name=""
+region_name=""
+state_name=""
+postal_code=""
+country_code="" #i.e. ISO 3166-2 Country Code
+
+# residence permit details
+residence_permit_number=""
+residence_permit_country_code="" #i.e. ISO 3166-2 Country Code
+residence_permit_region="" #See submit KYC statement docs for more info
+
+curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -H "x-api-key: ${card_issuer_api_key}" \
+  -H "x-api-secret: ${card_issuer_api_secret}" \
+  --data '{
+    "idempotencyKey": "'${idempotencyKey}'",
+    "region": "'${kyc_region}'",
+    "claims": [
+      {
+        "claimType": "DOB",
+        "attributes": {
+          "dateOfBirth": "'${date_of_birth}'"
+        }
+      },
+      {
+        "claimType": "FULL_NAME",
+        "attributes": {
+          "honorific": "'${your_honorific}'",
+          "givenName": "'${your_given_name}'",
+          "middleName": "'${your_middle_name}'",
+          "familyName": "'${your_family_name}'"
+        }
+      },
+      {
+        "claimType": "ADDRESS",
+        "attributes": {
+          "addressType": "RESIDENTIAL",
+          "streetNumber": "'${street_number}'",
+          "streetName": "'${street_name}'",
+          "streetType": "'${street_type}'",
+          "suburb": "'${suburb_name}'",
+          "town": "'${town_name}'",
+          "region": "'${region_name}'",
+          "state": "'${state_name}'",
+          "postalCode": "'${postal_code}'",
+          "country": "'${country_code}'"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceType": "RESIDENCE_PERMIT",
+        "documentId": "'${residence_permit_number}'",
+        "country": "'${residence_permit_country_code}'",
+        "region": "'${residence_permit_region}'"
+      }
+    ]
+  }'
+```
+
 ### KYC Statement Addresses in Partner conducted KYC
 
 The {% link endpoint="submit-kyc-statement" /%} endpoint accepts both structured,
