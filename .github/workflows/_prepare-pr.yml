@@ -1,0 +1,41 @@
+on:
+  workflow_call:
+    secrets:
+      CODE_JANITOR_PRIVATE_KEY: { required: true }
+
+jobs:
+  prepare-pr:
+    runs-on: ubuntu-latest
+    steps:
+
+      - id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.CODE_JANITOR_APP_ID }}
+          private-key: ${{ secrets.CODE_JANITOR_PRIVATE_KEY }}
+
+      - uses: actions/github-script@v7
+        name: Trim PR Description
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          script: |
+            const trimMarkers = [
+              '<details',
+              '| Package |'
+            ];
+            const pr = context.payload.pull_request;
+            const body = pr.body || '';
+            let trimAt = body.length;
+            for (const m of trimMarkers) {
+              const i = body.indexOf(m);
+              if (i !== -1 && i < trimAt) {
+                trimAt = i;
+              }
+            }
+            const shortBody = body.slice(0, trimAt).trim();
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: shortBody
+            });
