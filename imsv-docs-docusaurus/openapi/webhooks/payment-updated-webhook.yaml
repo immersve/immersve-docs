@@ -64,7 +64,7 @@ requestBody:
                           Indicates whether this is a credit or debit transaction.
                       status:
                         type: string
-                        example: "failed"
+                        example: "cleared"
                         enum: ["creating", "holding", "cleared", "reversed", "failed"]
                         description: |
                           The current status of the payment.
