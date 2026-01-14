@@ -65,7 +65,7 @@ requestBody:
                       status:
                         type: string
                         example: "cleared"
-                        enum: ["holding", "cleared", "reversed", "failed"]
+                        enum: ["holding", "cleared", "canceled", "failed"]
                         description: |
                           The current status of the payment.
                       amount:
