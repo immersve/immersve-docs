@@ -22,7 +22,7 @@
     "typescript": "^5.8.2"
   },
   "devDependencies": {
-    "@astrojs/ts-plugin": "^1.10.4",
+    "@astrojs/ts-plugin": "^1.10.5",
     "vitest": "^1.6.0"
   }
 }
