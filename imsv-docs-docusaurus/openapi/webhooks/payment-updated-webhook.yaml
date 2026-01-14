@@ -2,7 +2,7 @@ tags: [payments]
 summary: Payment Updated
 operationId: payment-updated
 description: |
-  Triggered when a payment is updated. Subscribers to this webhook will receive notifications for various payment lifecycle events including authorization confirmed, authorization reversed, authorization cancelled, payment cleared, payment clearing reversed, payment adjusted, payment failed, and payment expired.
+  Triggered when a payment is updated. Subscribers to this webhook will receive notifications for various payment lifecycle events including authorization accepted, authorization reversed, authorization cancelled, payment cleared, payment clearing reversed, payment adjusted, payment failed, and payment expired.
 
 requestBody:
   content:
@@ -22,7 +22,7 @@ requestBody:
                     properties:
                       type:
                         type: string
-                        example: "payment-failed"
+                        example: "payment-cleared"
                         description: |
                           The payment lifecycle event which triggered the message.
                       createdAt:
@@ -49,7 +49,7 @@ requestBody:
                         type: boolean
                         example: true
                         description: |
-                          Indicates if the payment is still pending processing.
+                          Indicates if the payment is still in progress
                       type:
                         type: string
                         example: "purchase"
@@ -65,7 +65,7 @@ requestBody:
                       status:
                         type: string
                         example: "failed"
-                        enum: ["holding", "cleared", "reversed", "failed"]
+                        enum: ["creating", "holding", "cleared", "reversed", "failed"]
                         description: |
                           The current status of the payment.
                       amount:
@@ -90,9 +90,9 @@ requestBody:
                           The merchant's local currency code.
                       feeAmount:
                         type: string
-                        example: "0"
+                        example: "50"
                         description: |
-                          Immersve's fee portion of the payment amount in minor units.
+                          The fee amount of the payment in minor units.
                       merchant:
                         type: object
                         properties:
