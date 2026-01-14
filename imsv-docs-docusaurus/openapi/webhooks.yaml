@@ -63,30 +63,10 @@ webhooks:
   3ds-otp:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/payment-3ds-otp-webhook.yaml }
-  payment-authorization-confirmed:
+
+  payment-updated:
     parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/payment-authorization-confirmed-webhook.yaml }
-  payment-authorization-cancelled:
-    parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/payment-authorization-cancelled-webhook.yaml }
-  payment-cleared:
-    parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/payment-cleared-webhook.yaml }
-  payment-authorization-reversed:
-    parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/payment-authorization-reversed-webhook.yaml }
-  payment-clearing-reversed:
-    parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/payment-clearing-reversed-webhook.yaml }
-  payment-expired:
-    parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/payment-expired-webhook.yaml }
-  payment-failed:
-    parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/payment-failed-webhook.yaml }
-  payment-adjusted:
-    parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/payment-adjusted-webhook.yaml }
+    post: { $ref: ./webhooks/payment-updated-webhook.yaml }
 
   async-test:
     parameters: *WebhookHeaders

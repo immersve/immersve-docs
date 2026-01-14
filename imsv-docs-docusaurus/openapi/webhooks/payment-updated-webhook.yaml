@@ -1,0 +1,202 @@
+tags: [payments]
+summary: Payment Updated
+operationId: payment-updated
+description: |
+  Triggered when a payment is updated. Subscribers to this webhook will receive notifications for various payment lifecycle events including authorization confirmed, authorization reversed, authorization cancelled, payment cleared, payment clearing reversed, payment adjusted, payment failed, and payment expired.
+
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              topic:
+                type: string
+                example: "payment-updated"
+              payload:
+                type: object
+                properties:
+                  event:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: "payment-failed"
+                        description: |
+                          The payment lifecycle event which triggered the message.
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: "2026-01-06T10:15:31Z"
+                        description: |
+                          The timestamp when the event was created.
+                  payment:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: "91ad6fea3b52ca58d60d7fd310f789ec"
+                        description: |
+                          Immersve payment transaction identifier.
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: "2026-01-06T10:15:31Z"
+                        description: |
+                          The timestamp when the payment was created.
+                      pending:
+                        type: boolean
+                        example: true
+                        description: |
+                          Indicates if the payment is still pending processing.
+                      type:
+                        type: string
+                        example: "purchase"
+                        enum: ["purchase", "refund", "adjustment"]
+                        description: |
+                          The type of payment transaction.
+                      creditDebitIndicator:
+                        type: string
+                        example: "debit"
+                        enum: ["credit", "debit"]
+                        description: |
+                          Indicates whether this is a credit or debit transaction.
+                      status:
+                        type: string
+                        example: "failed"
+                        enum: ["holding", "cleared", "reversed", "failed"]
+                        description: |
+                          The current status of the payment.
+                      amount:
+                        type: string
+                        example: "5000"
+                        description: |
+                          Total payment amount in minor units.
+                      currency:
+                        type: string
+                        example: "USD"
+                        description: |
+                          Payment currency code.
+                      acquirerAmount:
+                        type: string
+                        example: "5000"
+                        description: |
+                          Payment amount in the merchant's local currency using minor units.
+                      acquirerCurrency:
+                        type: string
+                        example: "USD"
+                        description: |
+                          The merchant's local currency code.
+                      feeAmount:
+                        type: string
+                        example: "0"
+                        description: |
+                          Immersve's fee portion of the payment amount in minor units.
+                      merchant:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: "057aa15913a57f50577234c8426534c0"
+                            description: |
+                              The merchant identifier from the payment network.
+                          countryCode:
+                            type: string
+                            example: "US"
+                            description: |
+                              The merchant's ISO-3166-1 Alpha-2 country code.
+                          name:
+                            type: string
+                            example: "Example Store"
+                            description: |
+                              The merchant's name.
+                          city:
+                            type: string
+                            example: "New York"
+                            description: |
+                              The merchant's city name.
+                          terminalId:
+                            type: string
+                            example: "term-001"
+                            description: |
+                              The merchant's payment terminal identifier.
+                          categoryCode:
+                            type: string
+                            example: "5411"
+                            description: |
+                              The merchant's ISO-18245 category code.
+                      networkReference:
+                        type: string
+                        example: "MPGCCRJ7C0113"
+                        description: |
+                          The payment network reference identifier for the transaction.
+                      failureReason:
+                        type: string
+                        example: "cvv-invalid"
+                        description: |
+                          The reason for payment failure, if applicable.
+                      relatedPaymentId:
+                        type: string
+                        example: "315bad4e81ce0f26966a41b9d451638b"
+                        description: |
+                          The id of the related payment, if applicable.
+                      cardholder:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: "9ce69d31277108d46d2cb19fa772705e"
+                            description: |
+                              Immersve cardholder account identifier.
+                      card:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: "d44d045826d4484c9b7f1e3a5c8d2f6b"
+                            description: |
+                              Immersve card identifier.
+                      fundingSources:
+                        type: array
+                        description: |
+                          Array of funding sources used for the payment. Will not be present for custodial payments.
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: "c65fe4d184a24619b3e8f2c7a9d15e42"
+                              description: |
+                                Immersve funding source identifier.
+                            address:
+                              type: string
+                              example: "0x123"
+                              description: |
+                                The blockchain address of the funding source.
+                            fundingChannelId:
+                              type: string
+                              example: "38fb58acc55b4907a1e2b4c890e567f3"
+                              description: |
+                                The funding channel identifier associated with this source.
+                            network:
+                              type: string
+                              example: "polygon-mainnet"
+                              description: |
+                                The blockchain network where the funding source resides.
+                            tokenName:
+                              type: string
+                              example: "usdc"
+                              description: |
+                                The name of the token used for funding.
+                            tokenAddress:
+                              type: string
+                              example: "0x456"
+                              description: |
+                                The smart contract address of the funding token.
+                            tokenDecimals:
+                              type: integer
+                              example: 18
+                              description: |
+                                The number of decimal places supported by the funding token.
+          - $ref: "./webhook-envelope.yaml"
