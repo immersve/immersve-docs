@@ -2,7 +2,7 @@ tags: [payments]
 summary: Payment Updated
 operationId: payment-updated
 description: |
-  Triggered when a payment is updated. Subscribers to this webhook will receive notifications for various payment lifecycle events including authorization accepted, authorization reversed, authorization cancelled, payment cleared, payment clearing reversed, payment adjusted, payment failed, and payment expired.
+  Triggered when a payment is updated. Subscribers to this webhook will receive notifications for various payment lifecycle events including authorization accepted, authorization reversed, authorization canceled, payment cleared, payment clearing reversed, payment adjusted, payment failed, and payment expired.
 
 requestBody:
   content:
