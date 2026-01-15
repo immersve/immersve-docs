@@ -141,14 +141,14 @@ requestBody:
                             example: "5411"
                             description: |
                               The merchant's ISO-18245 category code.
-                      security:
+                      securityChallenge:
                         properties:
-                          challengeOutcome:
+                          outcome:
                             type: string
                             example: "success"
                             description: |
                               3DS challenge outcome, if applicable.
-                          challengeRef:
+                          ref:
                             type: string
                             example: "3ds-ref-123"
                             description: |
