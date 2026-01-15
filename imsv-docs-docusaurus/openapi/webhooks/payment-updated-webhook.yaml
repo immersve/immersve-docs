@@ -82,12 +82,12 @@ requestBody:
                         type: string
                         example: "5000"
                         description: |
-                          Payment amount in the merchant's local currency using minor units.
+                          Payment amount in the acquirer's local currency using minor units.
                       acquirerCurrency:
                         type: string
                         example: "USD"
                         description: |
-                          The merchant's local currency code.
+                          The acquirer's local currency code.
                       feeAmount:
                         type: string
                         example: "50"
