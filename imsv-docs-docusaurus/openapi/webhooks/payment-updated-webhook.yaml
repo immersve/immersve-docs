@@ -91,7 +91,7 @@ requestBody:
                               Payment amount in the acquirer's local currency using minor units.
                           currency:
                             type: string
-                            example: "USD"
+                            example: "NZD"
                             description: |
                               The acquirer's local currency code.
                       feeAmount:
