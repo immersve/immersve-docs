@@ -334,8 +334,8 @@ country_code="" #i.e. ISO 3166-2 Country Code
 national_id_number=""
 national_id_country_code="" #i.e. ISO 3166-2 Country Code
 national_id_region="" #See submit KYC statement docs for more info
-national_id_paternal_family_name=""
-national_id_maternal_family_name=""
+national_id_paternal_family_name="" # Only applicable for MX
+national_id_maternal_family_name="" # Only applicable for MX
 national_id_expiry_date="" # YYYY-MM-DD
 
 curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
