@@ -250,6 +250,7 @@ license_number=""
 license_country_code="" #i.e. ISO 3166-2 Country Code
 license_region="" #See submit KYC statement docs for more info
 license_version=""
+license_expiry_date="" # YYYY-MM-DD
 
 curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
   -H "Content-Type: application/json" \
@@ -297,7 +298,8 @@ curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/part
         "documentId": "'${license_number}'",
         "country": "'${license_country_code}'",
         "region": "'${license_region}'",
-        "version": "'${license_version}'"
+        "version": "'${license_version}'",
+        "expiry": "'${license_expiry_date}'"
       }
     ]
   }'
@@ -334,6 +336,7 @@ national_id_country_code="" #i.e. ISO 3166-2 Country Code
 national_id_region="" #See submit KYC statement docs for more info
 national_id_paternal_family_name=""
 national_id_maternal_family_name=""
+national_id_expiry_date="" # YYYY-MM-DD
 
 curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
   -H "Content-Type: application/json" \
@@ -381,7 +384,8 @@ curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/part
         "documentId": "'${national_id_number}'",
         "country": "'${national_id_country_code}'",
         "paternalFamilyName": "'${national_id_paternal_family_name}'",
-        "maternalFamilyName": "'${national_id_maternal_family_name}'"
+        "maternalFamilyName": "'${national_id_maternal_family_name}'",
+        "expiry": "'${national_id_expiry_date}'"
       }
     ]
   }'
@@ -415,7 +419,7 @@ country_code="" #i.e. ISO 3166-2 Country Code
 # residence permit details
 residence_permit_number=""
 residence_permit_country_code="" #i.e. ISO 3166-2 Country Code
-residence_permit_region="" #See submit KYC statement docs for more info
+residence_permit_expiry_date="" # YYYY-MM-DD
 
 curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
   -H "Content-Type: application/json" \
@@ -462,7 +466,7 @@ curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/part
         "evidenceType": "RESIDENCE_PERMIT",
         "documentId": "'${residence_permit_number}'",
         "country": "'${residence_permit_country_code}'",
-        "region": "'${residence_permit_region}'"
+        "expiry": "'${residence_permit_expiry_date}'"
       }
     ]
   }'
