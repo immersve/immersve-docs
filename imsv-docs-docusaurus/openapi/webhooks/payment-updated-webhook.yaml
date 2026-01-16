@@ -2,7 +2,7 @@ tags: [payments]
 summary: Payment Updated
 operationId: payment-updated
 description: |
-  Triggered when a payment is updated. Subscribers to this webhook will receive notifications for various payment lifecycle events including authorization accepted, authorization reversed, authorization canceled, payment cleared, payment clearing reversed, payment adjusted, payment failed, and payment expired.
+  Triggered when a payment is updated. Subscribers to this webhook will receive notifications for various payment lifecycle events.
 
 requestBody:
   content:
@@ -13,26 +13,44 @@ requestBody:
             properties:
               topic:
                 type: string
-                example: "payment-updated"
               payload:
                 type: object
+                required:
+                  - event
+                  - payment
                 properties:
                   event:
                     type: object
+                    required:
+                      - type
+                      - createdAt
                     properties:
                       type:
                         type: string
-                        example: "payment-cleared"
+                        example: "clearing-accepted"
+                        enum: ["auth-accepted", "auth-declined", "auth-forced", "clearing-accepted", "clearing-declined", "auth-reversal-accepted", "auth-reversal-declined", "payment-expired", "payment-failed", "payment-adjusted", "clearing-reversal-accepted", "clearing-reversal-declined"]
                         description: |
-                          The payment lifecycle event which triggered the message.
+                          The payment lifecycle event which triggered the webhook event.
                       createdAt:
                         type: string
                         format: date-time
                         example: "2026-01-06T10:15:31Z"
                         description: |
-                          The timestamp when the event was created.
+                           ISO 8601 timestamp.
                   payment:
                     type: object
+                    required:
+                      - id
+                      - createdAt
+                      - pending
+                      - type
+                      - creditDebitIndicator
+                      - status
+                      - amount
+                      - feeAmount
+                      - acquirerAmount
+                      - cardholder
+                      - card
                     properties:
                       id:
                         type: string
@@ -44,7 +62,7 @@ requestBody:
                         format: date-time
                         example: "2026-01-06T10:15:31Z"
                         description: |
-                          The timestamp when the payment was created.
+                          ISO 8601 timestamp.
                       pending:
                         type: boolean
                         example: true
@@ -70,32 +88,25 @@ requestBody:
                           The current status of the payment.
                       amount:
                         type: object
+                        required:
+                          - value
+                          - currency
                         properties:
                           value:
                             type: string
                             example: "5000"
                             description: |
-                              Total payment amount in minor units.
+                              Total payment amount in minor units. Fee inclusive.
                           currency:
                             type: string
                             example: "USD"
                             description: |
-                              Payment currency code.
-                      acquirerAmount:
-                        type: object
-                        properties:
-                          value:
-                            type: string
-                            example: "8754"
-                            description: |
-                              Payment amount in the acquirer's local currency using minor units.
-                          currency:
-                            type: string
-                            example: "NZD"
-                            description: |
-                              The acquirer's local currency code.
+                              ISO 4217 currency code.
                       feeAmount:
                         type: object
+                        required:
+                          - value
+                          - currency
                         properties:
                           value:
                             type: string
@@ -107,6 +118,42 @@ requestBody:
                             example: "USD"
                             description: |
                               The fee currency code.
+                      acquirerAmount:
+                        type: object
+                        required:
+                          - value
+                          - currency
+                        properties:
+                          value:
+                            type: string
+                            example: "5000"
+                            description: |
+                              Payment amount in the acquirer's currency using minor units.
+                          currency:
+                            type: string
+                            example: "USD"
+                            description: |
+                              The acquirer's currency code.
+                      cardholder:
+                        type: object
+                        required:
+                          - id
+                        properties:
+                          id:
+                            type: string
+                            example: "9ce69d31277108d46d2cb19fa772705e"
+                            description: |
+                              Immersve cardholder account identifier.
+                      card:
+                        type: object
+                        required:
+                          - id
+                        properties:
+                          id:
+                            type: string
+                            example: "d44d045826d4484c9b7f1e3a5c8d2f6b"
+                            description: |
+                              Immersve card identifier.
                       networkReference:
                         type: string
                         example: "MPGCCRJ7C0113"
@@ -130,11 +177,6 @@ requestBody:
                             example: "057aa15913a57f50577234c8426534c0"
                             description: |
                               The merchant identifier from the payment network.
-                          countryCode:
-                            type: string
-                            example: "US"
-                            description: |
-                              The merchant's ISO-3166-1 Alpha-2 country code.
                           name:
                             type: string
                             example: "Example Store"
@@ -145,6 +187,11 @@ requestBody:
                             example: "New York"
                             description: |
                               The merchant's city name.
+                          countryCode:
+                            type: string
+                            example: "US"
+                            description: |
+                              The merchant's ISO-3166-1 Alpha-2 country code.
                           terminalId:
                             type: string
                             example: "term-001"
@@ -156,6 +203,7 @@ requestBody:
                             description: |
                               The merchant's ISO-18245 category code.
                       securityChallenge:
+                        type: object
                         properties:
                           outcome:
                             type: string
@@ -167,22 +215,6 @@ requestBody:
                             example: "3ds-ref-123"
                             description: |
                               Reference identifier for the 3DS challenge, if applicable.
-                      cardholder:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                            example: "9ce69d31277108d46d2cb19fa772705e"
-                            description: |
-                              Immersve cardholder account identifier.
-                      card:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                            example: "d44d045826d4484c9b7f1e3a5c8d2f6b"
-                            description: |
-                              Immersve card identifier.
                       fundingSources:
                         type: array
                         description: |
@@ -197,7 +229,7 @@ requestBody:
                                 Immersve funding source identifier.
                             address:
                               type: string
-                              example: "0x123"
+                              example: "0x2e4B47b104C07aa68D19b92e2B3E8eB98a2C17F1"
                               description: |
                                 The blockchain address of the funding source.
                             fundingChannelId:
@@ -220,12 +252,12 @@ requestBody:
                                     The name of the token used for funding.
                                 address:
                                   type: string
-                                  example: "0x456"
+                                  example: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
                                   description: |
                                     The smart contract address of the funding token.
                                 decimals:
                                   type: integer
-                                  example: 18
+                                  example: 6
                                   description: |
                                     The number of decimal places supported by the funding token.
           - $ref: "./webhook-envelope.yaml"
