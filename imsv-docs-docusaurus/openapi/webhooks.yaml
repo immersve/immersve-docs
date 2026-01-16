@@ -63,6 +63,11 @@ webhooks:
   3ds-otp:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/payment-3ds-otp-webhook.yaml }
+
+  payment-updated:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/payment-updated-webhook.yaml }
+
   async-test:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/async-test-webhook.yaml }
