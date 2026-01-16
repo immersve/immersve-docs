@@ -69,30 +69,44 @@ requestBody:
                         description: |
                           The current status of the payment.
                       amount:
-                        type: string
-                        example: "5000"
-                        description: |
-                          Total payment amount in minor units.
-                      currency:
-                        type: string
-                        example: "USD"
-                        description: |
-                          Payment currency code.
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                            example: "5000"
+                            description: |
+                              Total payment amount in minor units.
+                          currency:
+                            type: string
+                            example: "USD"
+                            description: |
+                              Payment currency code.
                       acquirerAmount:
-                        type: string
-                        example: "5000"
-                        description: |
-                          Payment amount in the acquirer's local currency using minor units.
-                      acquirerCurrency:
-                        type: string
-                        example: "USD"
-                        description: |
-                          The acquirer's local currency code.
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                            example: "8754"
+                            description: |
+                              Payment amount in the acquirer's local currency using minor units.
+                          currency:
+                            type: string
+                            example: "USD"
+                            description: |
+                              The acquirer's local currency code.
                       feeAmount:
-                        type: string
-                        example: "50"
-                        description: |
-                          The fee amount of the payment in minor units.
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                            example: "50"
+                            description: |
+                              The fee amount of the payment in minor units.
+                          currency:
+                            type: string
+                            example: "USD"
+                            description: |
+                              The fee currency code.
                       networkReference:
                         type: string
                         example: "MPGCCRJ7C0113"
@@ -145,7 +159,7 @@ requestBody:
                         properties:
                           outcome:
                             type: string
-                            example: "success"
+                            example: "challenge-confirmed"
                             description: |
                               3DS challenge outcome, if applicable.
                           ref:
