@@ -210,19 +210,22 @@ requestBody:
                               example: "polygon-mainnet"
                               description: |
                                 The blockchain network where the funding source resides.
-                            tokenName:
-                              type: string
-                              example: "circle-usdc"
-                              description: |
-                                The name of the token used for funding.
-                            tokenAddress:
-                              type: string
-                              example: "0x456"
-                              description: |
-                                The smart contract address of the funding token.
-                            tokenDecimals:
-                              type: integer
-                              example: 18
-                              description: |
-                                The number of decimal places supported by the funding token.
+                            token:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  example: "circle-usdc"
+                                  description: |
+                                    The name of the token used for funding.
+                                address:
+                                  type: string
+                                  example: "0x456"
+                                  description: |
+                                    The smart contract address of the funding token.
+                                decimals:
+                                  type: integer
+                                  example: 18
+                                  description: |
+                                    The number of decimal places supported by the funding token.
           - $ref: "./webhook-envelope.yaml"
