@@ -36,7 +36,7 @@ requestBody:
                         format: date-time
                         example: "2026-01-06T10:15:31Z"
                         description: |
-                           ISO 8601 timestamp.
+                           ISO 8601 timestamp of when the event occurred.
                   payment:
                     type: object
                     required:
@@ -56,13 +56,13 @@ requestBody:
                         type: string
                         example: "91ad6fea3b52ca58d60d7fd310f789ec"
                         description: |
-                          Immersve payment transaction identifier.
+                          Payment identifier.
                       createdAt:
                         type: string
                         format: date-time
                         example: "2026-01-06T10:15:31Z"
                         description: |
-                          ISO 8601 timestamp.
+                          ISO 8601 timestamp of when the payment was created.
                       pending:
                         type: boolean
                         example: true
@@ -73,13 +73,13 @@ requestBody:
                         example: "purchase"
                         enum: ["purchase", "refund", "adjustment"]
                         description: |
-                          The type of payment transaction.
+                          The type of payment.
                       creditDebitIndicator:
                         type: string
                         example: "debit"
                         enum: ["credit", "debit"]
                         description: |
-                          Indicates whether this is a credit or debit transaction.
+                          Indicates whether this is a credit or debit payment.
                       status:
                         type: string
                         example: "cleared"
@@ -117,7 +117,7 @@ requestBody:
                             type: string
                             example: "USD"
                             description: |
-                              The fee currency code.
+                              ISO 4217 currency code.
                       acquirerAmount:
                         type: object
                         required:
@@ -133,7 +133,7 @@ requestBody:
                             type: string
                             example: "USD"
                             description: |
-                              The acquirer's currency code.
+                              ISO 4217 currency code.
                       cardholder:
                         type: object
                         required:
@@ -143,7 +143,7 @@ requestBody:
                             type: string
                             example: "9ce69d31277108d46d2cb19fa772705e"
                             description: |
-                              Immersve cardholder account identifier.
+                              Cardholder account identifier.
                       card:
                         type: object
                         required:
@@ -153,12 +153,12 @@ requestBody:
                             type: string
                             example: "d44d045826d4484c9b7f1e3a5c8d2f6b"
                             description: |
-                              Immersve card identifier.
+                              Card identifier.
                       networkReference:
                         type: string
                         example: "MPGCCRJ7C0113"
                         description: |
-                          The payment network reference identifier for the transaction, if applicable.
+                          The payment network reference identifier for the payment, if applicable.
                       failureReason:
                         type: string
                         example: "cvv-invalid"
@@ -226,7 +226,7 @@ requestBody:
                               type: string
                               example: "c65fe4d184a24619b3e8f2c7a9d15e42"
                               description: |
-                                Immersve funding source identifier.
+                                Funding source identifier.
                             address:
                               type: string
                               example: "0x2e4B47b104C07aa68D19b92e2B3E8eB98a2C17F1"
