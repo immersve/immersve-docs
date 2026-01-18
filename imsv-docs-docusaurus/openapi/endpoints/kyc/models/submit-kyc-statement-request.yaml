@@ -31,6 +31,6 @@ properties:
     description: |
       A list of uploaded supporting documents. Optional, only required in some
       cases. See [Submitting a Statement with supporting
-      documents](/guides/partner-conducted-kyc#submitting-a-statement-with-supporting-documents)
+      documents](/guides/partner-conducted-kyc#submitting-a-statement-with-supporting-documents).
     items:
       $ref: "./attachments.yaml"
