@@ -1,0 +1,16 @@
+type: object
+properties:
+  fileId:
+    type: string
+    description: The identifier of the uploaded file.
+    example: f4b8e8ef0d230d0a6bf755e07d39ab12
+  type:
+    type: string
+    description: The type of attachment.
+    enum:
+      - proof-of-address
+      - drivers-license
+      - passport
+      - national-id
+      - residence-permit
+      - self-image
