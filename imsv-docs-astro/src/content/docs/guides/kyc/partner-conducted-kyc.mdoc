@@ -543,6 +543,36 @@ and unstructured address formats in an Address claim.
   {% /listitem %}
 {% /list %}
 
+### Submitting a Statement with supporting documents
+
+Providing supporting documents in the KYC Statement is mandatory for the
+following regions: `AT` `BE` `BG` `CY` `CZ` `DE` `DK` `EE` `ES` `FI` `FR` `GR`
+`HR` `HU` `IE` `IS` `IT` `LI` `LT` `LU` `LV` `MT` `NL` `NO` `PL` `PT` `RO` `SE`
+`SI` `SK` `UK`.
+
+The following supporting documents are required:
+1. Self image for liveness checks
+2. Identity document
+3. Proof of address document (depending on the region)
+
+Supporting documents must be first uploaded using the {% link
+endpoint="upload-file" /%} endpoint for each document before being attached to
+the statement using their file IDs and the appropriate attachment type.
+
+```json
+  {
+    "attachments": [
+      {
+        "fileId": "f4b8e8ef0d230d0a6bf755e07d39ab12",
+        "type": "passport"
+      },
+      {
+        "fileId": "a1c9e8ef0d230d0a6bf755e07d39cd34",
+        "type": "self-image"
+      }
+    ]
+  }
+```
 
 
 ## Get spending prerequisites
