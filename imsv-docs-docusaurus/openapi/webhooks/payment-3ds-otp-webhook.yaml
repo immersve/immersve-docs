@@ -26,10 +26,6 @@ requestBody:
                   - cardId
                   - cardPanLast4
                   - cardProgramId
-                  - merchantName
-                  - merchantCountryCode
-                  - paymentAcquirerAmount
-                  - paymentAcquirerCurrency
                   - deliveryOptions
                 properties:
                   ref:
