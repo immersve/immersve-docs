@@ -15,6 +15,9 @@ requestBody:
                 enum: ["kyc-succeeded"]
               payload:
                 type: object
+                required:
+                  - kycStatus
+                  - accountId
                 properties:
                   kycStatus:
                     type: string

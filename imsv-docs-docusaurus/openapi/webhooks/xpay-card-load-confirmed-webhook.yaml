@@ -19,6 +19,12 @@ requestBody:
                 enum: ["xpay-card-load-confirmed"]
               payload:
                 type: object
+                required:
+                  - xpayType
+                  - cardholderId
+                  - cardId
+                  - cardPanLast4
+                  - cardProgramId
                 properties:
                   xpayType:
                     type: string

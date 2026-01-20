@@ -18,13 +18,26 @@ requestBody:
                 example: "payment-3ds-otp"
               payload:
                 type: object
+                required:
+                  - ref
+                  - verificationCode
+                  - ttl
+                  - cardholderId
+                  - cardId
+                  - cardPanLast4
+                  - cardProgramId
+                  - merchantName
+                  - merchantCountryCode
+                  - paymentAcquirerAmount
+                  - paymentAcquirerCurrency
+                  - deliveryOptions
                 properties:
                   ref:
                     type: string
                     example: "51661658-65f8-49d3-a3c0-9f0566671132"
                     description: |
                       A unique reference for the 3DS security challenge. This reference can
-                      be used to correlate the challenge to the subsequent Immersve payment
+                      be used to correlate the challenge to the subsequent payment
                       resource.
 
                   verificationCode:
@@ -43,13 +56,13 @@ requestBody:
                     type: string
                     example: "65a7e8ef0d230d0a6bf755e07d39eb02"
                     description: |
-                      The Immersve id for the cardholder associated with the card.
+                      The id for the cardholder associated with the card.
 
                   cardId:
                     type: string
                     example: "e2b6ae409cfc11f098ac"
                     description: |
-                      The Immersve card ID for the card being loaded.
+                      The id for the card being loaded.
 
                   cardPanLast4:
                     type: string
@@ -61,7 +74,7 @@ requestBody:
                     type: string
                     example: "83dee5409cfc11f0a1e6"
                     description: |
-                      The Immersve card program id for the card.
+                      The card program id for the card.
 
                   merchantName:
                     type: string

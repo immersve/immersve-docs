@@ -19,6 +19,14 @@ requestBody:
                 enum: ["xpay-card-load-otp"]
               payload:
                 type: object
+                required:
+                  - xpayType
+                  - verificationCode
+                  - cardholderId
+                  - cardId
+                  - cardPanLast4
+                  - cardProgramId
+                  - deliveryOptions
                 properties:
                   xpayType:
                     type: string
