@@ -56,13 +56,13 @@ requestBody:
                     type: string
                     example: "65a7e8ef0d230d0a6bf755e07d39eb02"
                     description: |
-                      The id for the cardholder associated with the card.
+                      The Immersve id for the cardholder associated with the card.
 
                   cardId:
                     type: string
                     example: "e2b6ae409cfc11f098ac"
                     description: |
-                      The id for the card being loaded.
+                      The Immersve card id for the card being loaded.
 
                   cardPanLast4:
                     type: string
@@ -74,7 +74,7 @@ requestBody:
                     type: string
                     example: "83dee5409cfc11f0a1e6"
                     description: |
-                      The card program id for the card.
+                      The Immersve card program id for the card.
 
                   merchantName:
                     type: string
