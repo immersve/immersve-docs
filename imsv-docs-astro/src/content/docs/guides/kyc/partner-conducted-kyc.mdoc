@@ -135,10 +135,8 @@ Be careful when setting the region as this cannot be changed. You will need to c
 incorrectly supplied.
 {% /warning %}
 
-The following sections show examples of how to submit individual types of identity evidence.
-
 ### Submitting a Statement with evidence
-The following script demonstrates how you could submit a KYC statement with evidence.
+The following script demonstrates how you could submit a KYC statement with a passport as evidence.
 
 ```bash
 idempotencyKey="" # a unique key for each request. See submit KYC statement docs for more info
@@ -225,64 +223,61 @@ You can combine multiple types of evidence into a single request when submitting
 
 {% list %}
   {% listitem "ArrowRightCircle" %}
-  **Driver's License**
-  ```bash
-  # drivers license details
-  license_number=""
-  license_country_code="" #i.e. ISO 3166-2 Country Code
-  license_region="" #See submit KYC statement docs for more info
-  license_version=""
-  license_expiry_date="" # YYYY-MM-DD
-  
-  {
-    "evidenceType": "DRIVERS_LICENSE",
-    "documentId": "'${license_number}'",
-    "country": "'${license_country_code}'",
-    "region": "'${license_region}'",
-    "version": "'${license_version}'",
-    "expiry": "'${license_expiry_date}'"
-  }
-  ```
-
-    {% /listitem %}
+    **Driver's License**
+    ```bash
+    # driver's license details
+    license_number=""
+    license_country_code="" #i.e. ISO 3166-2 Country Code
+    license_region="" #See submit KYC statement docs for more info
+    license_version=""
+    license_expiry_date="" # YYYY-MM-DD
+    
+    {
+      "evidenceType": "DRIVERS_LICENSE",
+      "documentId": "'${license_number}'",
+      "country": "'${license_country_code}'",
+      "region": "'${license_region}'",
+      "version": "'${license_version}'",
+      "expiry": "'${license_expiry_date}'"
+    }
+    ```
+  {% /listitem %}
   {% listitem "ArrowRightCircle" %}
-  **National ID**
-  ```bash
-  # national ID details
-  national_id_number=""
-  national_id_country_code="" #i.e. ISO 3166-2 Country Code
-  national_id_region="" #See submit KYC statement docs for more info
-  national_id_paternal_family_name="" # Only applicable for MX
-  national_id_maternal_family_name="" # Only applicable for MX
-  national_id_expiry_date="" # YYYY-MM-DD
-  
-  {
-    "evidenceType": "NATIONAL_ID",
-    "documentId": "'${national_id_number}'",
-    "country": "'${national_id_country_code}'",
-    "paternalFamilyName": "'${national_id_paternal_family_name}'",
-    "maternalFamilyName": "'${national_id_maternal_family_name}'",
-    "expiry": "'${national_id_expiry_date}'"
-  }
-  ```
-  
-    {% /listitem %}
+    **National ID**
+    ```bash
+    # national ID details
+    national_id_number=""
+    national_id_country_code="" #i.e. ISO 3166-2 Country Code
+    national_id_region="" #See submit KYC statement docs for more info
+    national_id_paternal_family_name="" # Only applicable for MX
+    national_id_maternal_family_name="" # Only applicable for MX
+    national_id_expiry_date="" # YYYY-MM-DD
+    
+    {
+      "evidenceType": "NATIONAL_ID",
+      "documentId": "'${national_id_number}'",
+      "country": "'${national_id_country_code}'",
+      "paternalFamilyName": "'${national_id_paternal_family_name}'",
+      "maternalFamilyName": "'${national_id_maternal_family_name}'",
+      "expiry": "'${national_id_expiry_date}'"
+    }
+    ```
+  {% /listitem %}
   {% listitem "ArrowRightCircle" %}
-  **Residence Permit**
-  ```bash
-  # residence permit details
-  residence_permit_number=""
-  residence_permit_country_code="" #i.e. ISO 3166-2 Country Code
-  residence_permit_expiry_date="" # YYYY-MM-DD
-  
-  {
-    "evidenceType": "RESIDENCE_PERMIT",
-    "documentId": "'${residence_permit_number}'",
-    "country": "'${residence_permit_country_code}'",
-    "expiry": "'${residence_permit_expiry_date}'"
-  }
-  ```
-  
+    **Residence Permit**
+    ```bash
+    # residence permit details
+    residence_permit_number=""
+    residence_permit_country_code="" #i.e. ISO 3166-2 Country Code
+    residence_permit_expiry_date="" # YYYY-MM-DD
+    
+    {
+      "evidenceType": "RESIDENCE_PERMIT",
+      "documentId": "'${residence_permit_number}'",
+      "country": "'${residence_permit_country_code}'",
+      "expiry": "'${residence_permit_expiry_date}'"
+    }
+    ```
   {% /listitem %}
 {% /list %}
 
