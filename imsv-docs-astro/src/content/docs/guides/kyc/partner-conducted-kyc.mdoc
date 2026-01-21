@@ -135,11 +135,7 @@ Be careful when setting the region as this cannot be changed. You will need to c
 incorrectly supplied.
 {% /warning %}
 
-The following sections show examples of how to submit individual types of identity evidence.
-
-__Note__: You can combine multiple types of evidence into a single request when submitting.
-
-### Submitting a Statement with a Passport as evidence
+### Submitting a Statement with evidence
 The following script demonstrates how you could submit a KYC statement with a passport as evidence.
 
 ```bash
@@ -147,7 +143,7 @@ idempotencyKey="" # a unique key for each request. See submit KYC statement docs
 kyc_region="" # An ISO 3166-2 (Alpha-2) for the region you are submitting the statement for, i.e. EU, NZ, AU, etc.
 
 # personal details
-your_honorific="" #e.g. Mr, Mrs, Ms
+your_honorific="" # e.g. Mr, Mrs, Ms
 your_given_name=""
 your_middle_name=""
 your_family_name=""
@@ -156,17 +152,17 @@ date_of_birth="" # YYYY-MM-DD
 # address details
 street_number=""
 street_name=""
-street_type="" #e.g. Road, Street, Avenue etc
+street_type="" # e.g. Road, Street, Avenue etc
 suburb_name=""
 town_name=""
 region_name=""
 state_name=""
 postal_code=""
-country_code="" #i.e. ISO 3166-2 Country Code
+country_code="" # i.e. ISO 3166-2 Country Code
 
 # passport details
 passport_number=""
-passport_country_code="" #i.e. ISO 3166-2 Country Code
+passport_country_code="" # i.e. ISO 3166-2 Country Code
 passport_expiry_date="" # YYYY-MM-DD
 
 curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
@@ -219,89 +215,46 @@ curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/part
     ]
   }'
 ```
+### Other supported evidence types
 
-### Submitting a Statement with a Drivers License as evidence
-The following script demonstrates how you could submit a KYC statement with a drivers license as evidence.
+{% note %}
+You can combine multiple types of evidence into a single request when submitting.
+{% /note %}
 
-```bash
-idempotencyKey="" # a unique key for each request. See api docs for more info
-kyc_region="" # An ISO 3166-2 (Alpha-2) for the region you are submitting the statement for, i.e. EU, NZ, AU, etc.
-
-# personal details
-your_honorific="" #e.g. Mr, Mrs, Ms
-your_given_name=""
-your_middle_name=""
-your_family_name=""
-date_of_birth="" # YYYY-MM-DD
-
-# address details
-street_number=""
-street_name=""
-street_type="" #e.g. Road, Street, Avenue etc
-suburb_name=""
-town_name=""
-region_name=""
-state_name=""
-postal_code=""
-country_code="" #i.e. ISO 3166-2 Country Code
-
-# drivers license details
-license_number=""
-license_country_code="" #i.e. ISO 3166-2 Country Code
-license_region="" #See submit KYC statement docs for more info
-license_version=""
-
-curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json" \
-  -H "x-api-key: ${card_issuer_api_key}" \
-  -H "x-api-secret: ${card_issuer_api_secret}" \
-  --data '{
-    "idempotencyKey": "'${idempotencyKey}'",
-    "region": "'${kyc_region}'",
-    "claims": [
-      {
-        "claimType": "DOB",
-        "attributes": {
-          "dateOfBirth": "'${date_of_birth}'"
-        }
-      },
-      {
-        "claimType": "FULL_NAME",
-        "attributes": {
-          "honorific": "'${your_honorific}'",
-          "givenName": "'${your_given_name}'",
-          "middleName": "'${your_middle_name}'",
-          "familyName": "'${your_family_name}'"
-        }
-      },
-      {
-        "claimType": "ADDRESS",
-        "attributes": {
-          "addressType": "RESIDENTIAL",
-          "streetNumber": "'${street_number}'",
-          "streetName": "'${street_name}'",
-          "streetType": "'${street_type}'",
-          "suburb": "'${suburb_name}'",
-          "town": "'${town_name}'",
-          "region": "'${region_name}'",
-          "state": "'${state_name}'",
-          "postalCode": "'${postal_code}'",
-          "country": "'${country_code}'"
-        }
-      }
-    ],
-    "evidence": [
-      {
-        "evidenceType": "DRIVERS_LICENSE",
-        "documentId": "'${license_number}'",
-        "country": "'${license_country_code}'",
-        "region": "'${license_region}'",
-        "version": "'${license_version}'"
-      }
-    ]
-  }'
+#### Driver's License
+```json
+{
+  "evidenceType": "DRIVERS_LICENSE",
+  "documentId": "DS230475", // license number
+  "country": "AU", // i.e. ISO 3166-2 Country Code
+  "region": "VIC", // See submit KYC statement docs for more info
+  "version": "978",
+  "expiry": "2028-10-12" // YYYY-MM-DD
+}
 ```
+
+#### National ID
+```json
+{
+  "evidenceType": "NATIONAL_ID",
+  "documentId": "S1234567A", // national ID number
+  "country": "MX", // i.e. ISO 3166-2 Country Code
+  "paternalFamilyName": "Garcia", // Only applicable for MX
+  "maternalFamilyName": "Lopez", // Only applicable for MX
+  "expiry": "2028-10-12" // YYYY-MM-DD
+}
+```
+
+#### Residence Permit
+```json
+{
+  "evidenceType": "RESIDENCE_PERMIT",
+  "documentId": "DS230475", // residence permit number
+  "country": "CO", // i.e. ISO 3166-2 Country Code
+  "expiry": "2028-10-12" // YYYY-MM-DD
+}
+```
+
 
 ### KYC Statement Addresses in Partner conducted KYC
 
@@ -374,36 +327,6 @@ and unstructured address formats in an Address claim.
   {% /listitem %}
 {% /list %}
 
-### Submitting a Statement with supporting documents
-
-Providing supporting documents in the KYC Statement is mandatory for the
-following regions: `AT` `BE` `BG` `CY` `CZ` `DE` `DK` `EE` `ES` `FI` `FR` `GR`
-`HR` `HU` `IE` `IS` `IT` `LI` `LT` `LU` `LV` `MT` `NL` `NO` `PL` `PT` `RO` `SE`
-`SI` `SK` `UK`.
-
-The following supporting documents are required:
-1. Self image for liveness checks
-2. Identity document
-3. Proof of address document (depending on the region)
-
-Supporting documents must be first uploaded using the {% link
-endpoint="upload-file" /%} endpoint for each document before being attached to
-the statement using their file IDs and the appropriate attachment type.
-
-```json
-  {
-    "attachments": [
-      {
-        "fileId": "f4b8e8ef0d230d0a6bf755e07d39ab12",
-        "type": "passport"
-      },
-      {
-        "fileId": "a1c9e8ef0d230d0a6bf755e07d39cd34",
-        "type": "self-image"
-      }
-    ]
-  }
-```
 
 
 ## Get spending prerequisites
