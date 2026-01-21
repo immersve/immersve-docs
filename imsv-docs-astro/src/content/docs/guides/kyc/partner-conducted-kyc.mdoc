@@ -221,65 +221,40 @@ curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/part
 You can combine multiple types of evidence into a single request when submitting.
 {% /note %}
 
-{% list %}
-  {% listitem "ArrowRightCircle" %}
-    **Driver's License**
-    ```bash
-    # driver's license details
-    license_number=""
-    license_country_code="" # i.e. ISO 3166-2 Country Code
-    license_region="" # See submit KYC statement docs for more info
-    license_version=""
-    license_expiry_date="" # YYYY-MM-DD
-    
-    {
-      "evidenceType": "DRIVERS_LICENSE",
-      "documentId": "'${license_number}'",
-      "country": "'${license_country_code}'",
-      "region": "'${license_region}'",
-      "version": "'${license_version}'",
-      "expiry": "'${license_expiry_date}'"
-    }
-    ```
-  {% /listitem %}
-  {% listitem "ArrowRightCircle" %}
-    **National ID**
-    ```bash
-    # national ID details
-    national_id_number=""
-    national_id_country_code="" # i.e. ISO 3166-2 Country Code
-    national_id_region="" # See submit KYC statement docs for more info
-    national_id_paternal_family_name="" # Only applicable for MX
-    national_id_maternal_family_name="" # Only applicable for MX
-    national_id_expiry_date="" # YYYY-MM-DD
-    
-    {
-      "evidenceType": "NATIONAL_ID",
-      "documentId": "'${national_id_number}'",
-      "country": "'${national_id_country_code}'",
-      "paternalFamilyName": "'${national_id_paternal_family_name}'",
-      "maternalFamilyName": "'${national_id_maternal_family_name}'",
-      "expiry": "'${national_id_expiry_date}'"
-    }
-    ```
-  {% /listitem %}
-  {% listitem "ArrowRightCircle" %}
-    **Residence Permit**
-    ```bash
-    # residence permit details
-    residence_permit_number=""
-    residence_permit_country_code="" # i.e. ISO 3166-2 Country Code
-    residence_permit_expiry_date="" # YYYY-MM-DD
-    
-    {
-      "evidenceType": "RESIDENCE_PERMIT",
-      "documentId": "'${residence_permit_number}'",
-      "country": "'${residence_permit_country_code}'",
-      "expiry": "'${residence_permit_expiry_date}'"
-    }
-    ```
-  {% /listitem %}
-{% /list %}
+#### Driver's License
+```json
+{
+  "evidenceType": "DRIVERS_LICENSE",
+  "documentId": "DS230475", // license number
+  "country": "AU", // i.e. ISO 3166-2 Country Code
+  "region": "VIC", // See submit KYC statement docs for more info
+  "version": "978",
+  "expiry": "2028-10-12" // YYYY-MM-DD
+}
+```
+
+#### National ID
+```json
+{
+  "evidenceType": "NATIONAL_ID",
+  "documentId": "S1234567A", // national ID number
+  "country": "MX", // i.e. ISO 3166-2 Country Code
+  "paternalFamilyName": "Garcia", // Only applicable for MX
+  "maternalFamilyName": "Lopez", // Only applicable for MX
+  "expiry": "2028-10-12" // YYYY-MM-DD
+}
+```
+
+#### Residence Permit
+```json
+{
+  "evidenceType": "RESIDENCE_PERMIT",
+  "documentId": "DS230475", // residence permit number
+  "country": "CO", // i.e. ISO 3166-2 Country Code
+  "expiry": "2028-10-12" // YYYY-MM-DD
+}
+```
+
 
 ### KYC Statement Addresses in Partner conducted KYC
 
