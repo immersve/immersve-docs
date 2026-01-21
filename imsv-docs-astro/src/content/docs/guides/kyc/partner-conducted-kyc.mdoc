@@ -143,7 +143,7 @@ idempotencyKey="" # a unique key for each request. See submit KYC statement docs
 kyc_region="" # An ISO 3166-2 (Alpha-2) for the region you are submitting the statement for, i.e. EU, NZ, AU, etc.
 
 # personal details
-your_honorific="" #e.g. Mr, Mrs, Ms
+your_honorific="" # e.g. Mr, Mrs, Ms
 your_given_name=""
 your_middle_name=""
 your_family_name=""
@@ -152,17 +152,17 @@ date_of_birth="" # YYYY-MM-DD
 # address details
 street_number=""
 street_name=""
-street_type="" #e.g. Road, Street, Avenue etc
+street_type="" # e.g. Road, Street, Avenue etc
 suburb_name=""
 town_name=""
 region_name=""
 state_name=""
 postal_code=""
-country_code="" #i.e. ISO 3166-2 Country Code
+country_code="" # i.e. ISO 3166-2 Country Code
 
 # passport details
 passport_number=""
-passport_country_code="" #i.e. ISO 3166-2 Country Code
+passport_country_code="" # i.e. ISO 3166-2 Country Code
 passport_expiry_date="" # YYYY-MM-DD
 
 curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
@@ -227,8 +227,8 @@ You can combine multiple types of evidence into a single request when submitting
     ```bash
     # driver's license details
     license_number=""
-    license_country_code="" #i.e. ISO 3166-2 Country Code
-    license_region="" #See submit KYC statement docs for more info
+    license_country_code="" # i.e. ISO 3166-2 Country Code
+    license_region="" # See submit KYC statement docs for more info
     license_version=""
     license_expiry_date="" # YYYY-MM-DD
     
@@ -247,8 +247,8 @@ You can combine multiple types of evidence into a single request when submitting
     ```bash
     # national ID details
     national_id_number=""
-    national_id_country_code="" #i.e. ISO 3166-2 Country Code
-    national_id_region="" #See submit KYC statement docs for more info
+    national_id_country_code="" # i.e. ISO 3166-2 Country Code
+    national_id_region="" # See submit KYC statement docs for more info
     national_id_paternal_family_name="" # Only applicable for MX
     national_id_maternal_family_name="" # Only applicable for MX
     national_id_expiry_date="" # YYYY-MM-DD
@@ -268,7 +268,7 @@ You can combine multiple types of evidence into a single request when submitting
     ```bash
     # residence permit details
     residence_permit_number=""
-    residence_permit_country_code="" #i.e. ISO 3166-2 Country Code
+    residence_permit_country_code="" # i.e. ISO 3166-2 Country Code
     residence_permit_expiry_date="" # YYYY-MM-DD
     
     {
