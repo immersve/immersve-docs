@@ -11,15 +11,60 @@ properties:
     example: DS230475
   country:
     type: string
-    description: The country that issued the document.
+    description: ISO 3166-1 alpha-2 country code of the country that issued the document.
     enum:
       - AR
       - BR
+      - BO
       - CL
       - CO
+      - EC
       - GT
       - MX
+      - PA
       - PE
+      - PY
+      - UY
+      - AM
+      - KZ
+      - MY
+      - BH
+      - AE
+      - KR
+      - UA
+      - AT
+      - BE
+      - BG
+      - CY
+      - CZ
+      - DE
+      - DK
+      - EE
+      - ES
+      - FI
+      - FR
+      - GR
+      - HR
+      - HU
+      - IE
+      - IS
+      - IT
+      - LI
+      - LT
+      - LU
+      - LV
+      - MT
+      - NL
+      - NO
+      - PL
+      - PT
+      - RO
+      - SE
+      - SI
+      - SK
+      - GB
+      - ZA
+      - GH
     example: CO
   expiry:
     type: string
