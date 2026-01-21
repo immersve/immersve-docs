@@ -11,15 +11,60 @@ properties:
     example: S1234567A
   country:
     type: string
-    description: The country that issued the document.
+    description: ISO 3166-1 alpha-2 country code of the country that issued the document.
     enum:
+      - AE
+      - AM
       - AR
+      - AT
+      - BE
+      - BG
+      - BH
+      - BO
       - BR
       - CL
       - CO
+      - CY
+      - CZ
+      - DE
+      - DK
+      - EC
+      - EE
+      - ES
+      - FI
+      - FR
+      - GB
+      - GH
+      - GR
       - GT
+      - HR
+      - HU
+      - IE
+      - IS
+      - IT
+      - KR
+      - KZ
+      - LI
+      - LT
+      - LU
+      - LV
+      - MT
       - MX
+      - MY
+      - NL
+      - NO
+      - PA
       - PE
+      - PL
+      - PT
+      - PY
+      - RO
+      - SE
+      - SI
+      - SK
+      - UA
+      - UY
+      - ZA
     example: BR
   paternalFamilyName:
     type: string
