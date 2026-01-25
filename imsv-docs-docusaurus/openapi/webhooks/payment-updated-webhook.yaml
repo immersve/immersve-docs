@@ -28,7 +28,7 @@ requestBody:
                       type:
                         type: string
                         example: "clearing-accepted"
-                        enum: ["auth-accepted", "auth-declined", "auth-forced", "clearing-accepted", "clearing-declined", "auth-reversal-accepted", "auth-reversal-declined", "payment-expired", "payment-failed", "payment-adjusted", "clearing-reversal-accepted", "clearing-reversal-declined"]
+                        enum: ["auth-accepted", "auth-declined", "auth-forced", "clearing-accepted", "clearing-declined", "auth-reversal-accepted", "auth-reversal-declined", "payment-expired", "payment-failed", "clearing-reversal-accepted", "clearing-reversal-declined"]
                         description: |
                           The payment lifecycle event which triggered the webhook event.
                       createdAt:
