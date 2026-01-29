@@ -57,6 +57,12 @@ requestBody:
                     description: |
                       The Immersve card program id for the card.
 
+                  expiresAt:
+                    type: string
+                    example: "2026-01-01T10:10:10Z"
+                    description: |
+                      The OTP expiration timestamp
+
                   deliveryOptions:
                     $ref: "../models/delivery-options.yaml"
 
