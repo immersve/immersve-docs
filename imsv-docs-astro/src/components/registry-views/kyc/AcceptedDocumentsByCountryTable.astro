@@ -1,0 +1,29 @@
+---
+import { SUPPORTED_COUNTRIES } from 'src/data/supported-countries.ts';
+
+const countries = Object.entries(SUPPORTED_COUNTRIES);
+---
+<div class="overflow-x-auto">
+  <table>
+    <thead>
+      <tr>
+          <th style="text-align: center">Code</th>
+        <th>Country</th>
+        <th style="text-align: center">Driver's License</th>
+        <th style="text-align: center">National ID</th>
+        <th style="text-align: center">Residence Permit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {countries.map(([code, info]) => (
+        <tr>
+          <td style="text-align: center">{code}</td>
+          <td>{info.name}</td>
+          <td style="text-align: center">{info.driversLicense ? '✓' : '—'}</td>
+          <td style="text-align: center">{info.nationalId ? '✓' : '—'}</td>
+          <td style="text-align: center">{info.residencePermit ? '✓' : '—'}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
