@@ -1,4 +1,4 @@
-export const SUPPORTED_COUNTRIES = {
+export const supportedDocuments = {
   AE: {
     name: 'United Arab Emirates',
     driversLicense: true,
@@ -325,4 +325,4 @@ export const SUPPORTED_COUNTRIES = {
   },
 } as const;
 
-export type CountryCode = keyof typeof SUPPORTED_COUNTRIES;
+export type CountryCode = keyof typeof supportedDocuments;

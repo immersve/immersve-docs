@@ -1,13 +1,13 @@
 ---
-import { SUPPORTED_COUNTRIES } from 'src/data/supported-countries.ts';
+import { supportedDocuments } from 'src/data/supportedDocuments';
 
-const countries = Object.entries(SUPPORTED_COUNTRIES);
+const countries = Object.entries(supportedDocuments);
 ---
 <div class="overflow-x-auto">
   <table>
     <thead>
       <tr>
-          <th style="text-align: center">Code</th>
+        <th style="text-align: center">Code</th>
         <th>Country</th>
         <th style="text-align: center">Driver's License</th>
         <th style="text-align: center">National ID</th>
