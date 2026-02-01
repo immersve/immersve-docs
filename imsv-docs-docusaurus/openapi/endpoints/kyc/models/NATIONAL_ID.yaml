@@ -11,7 +11,9 @@ properties:
     example: S1234567A
   country:
     type: string
-    description: ISO 3166-1 alpha-2 country code of the country that issued the document.
+    description: |
+      ISO 3166-1 alpha-2 country code of the country that issued the document.
+      See [Supported Regions](/guides/regions/#regional-exceptions).
     example: BR
   paternalFamilyName:
     type: string
