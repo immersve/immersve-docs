@@ -71,6 +71,11 @@ webhooks:
   card-block-released:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/card-block-released-webhook.yaml }
+
+  payment-updated:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/payment-updated-webhook.yaml }
+
   async-test:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/async-test-webhook.yaml }

@@ -11,17 +11,7 @@ properties:
     example: DS230475
   country:
     type: string
-    description: The country that issued the document.
-    enum:
-      - NZ
-      - AU
-      - AR
-      - BR
-      - CL
-      - CO
-      - GT
-      - MX
-      - PE
+    description: ISO 3166-1 alpha-2 country code of the country that issued the document.
     example: NZ
   expiry:
     type: string

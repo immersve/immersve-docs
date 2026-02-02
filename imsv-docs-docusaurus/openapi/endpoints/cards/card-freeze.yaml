@@ -7,7 +7,7 @@ post:
   parameters:
     - $ref: "../../models/card-id-path.yaml"
   responses:
-    "202":
+    "200":
       description: Successful operation
     "400":
       description: Request fields are invalid

@@ -11,23 +11,68 @@ properties:
     example: S1234567A
   country:
     type: string
-    description: The country that issued the document.
+    description: ISO 3166-1 alpha-2 country code of the country that issued the document.
     enum:
+      - AE
+      - AM
       - AR
+      - AT
+      - BE
+      - BG
+      - BH
+      - BO
       - BR
       - CL
       - CO
+      - CY
+      - CZ
+      - DE
+      - DK
+      - EC
+      - EE
+      - ES
+      - FI
+      - FR
+      - GB
+      - GH
+      - GR
       - GT
+      - HR
+      - HU
+      - IE
+      - IS
+      - IT
+      - KR
+      - KZ
+      - LI
+      - LT
+      - LU
+      - LV
+      - MT
       - MX
+      - MY
+      - NL
+      - NO
+      - PA
       - PE
+      - PL
+      - PT
+      - PY
+      - RO
+      - SE
+      - SI
+      - SK
+      - UA
+      - UY
+      - ZA
     example: BR
   paternalFamilyName:
     type: string
-    description: The paternal family name of the cardholder. This is required when country is MX.
+    description: The paternal family name of the cardholder. This field is optional and only applicable for MX.
     example: Silva
   maternalFamilyName:
     type: string
-    description: The maternal family name of the cardholder. This is required when country is MX.
+    description: The maternal family name of the cardholder. This field is optional and only applicable for MX.
     example: Souza
   expiry:
     type: string
