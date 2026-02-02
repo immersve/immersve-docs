@@ -23,6 +23,7 @@ x-webhook-headers: &WebhookHeaders
 paths: []
 
 components:
+
   parameters:
     XDeliveryId:
       name: X-Delivery-ID
@@ -45,6 +46,7 @@ components:
         type: string
 
 webhooks:
+
   xpay-otp:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/xpay-card-load-otp-webhook.yaml }
