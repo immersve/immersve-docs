@@ -1,0 +1,38 @@
+tags: [cardholder-blocks]
+summary: Cardholder Block Created
+operationId: cardholder-block-created
+description: |
+  Triggered when a cardholder block is created.
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              topic:
+                type: string
+                enum: ["cardholder-block-created"]
+              payload:
+                type: object
+                properties:
+                  blockId:
+                    type: string
+                    example: "75a7e8ef0d234d0a6bf755e07d39eb03"
+                    description: |
+                      Identifier of the block.
+                  cardholderAccountId:
+                    type: string
+                    example: "9b7552cf9abab0f2efed72df6b3ce4bc"
+                    description: |
+                      Identifier of the cardholder account associated with the block.
+                  reason:
+                    type: string
+                    enum:
+                      - "fraud"
+                      - "kyc"
+                    example: "fraud"
+                    description: |
+                      Reason for the cardholder block.
+
+          - $ref: './webhook-envelope.yaml'
