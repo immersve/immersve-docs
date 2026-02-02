@@ -1,0 +1,37 @@
+tags: [ card-block ]
+summary: Card Block Released
+operationId: card-block-released
+description: |
+  Triggered when a card is unblocked/unfrozen.
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              topic:
+                type: string
+                enum: ["card-block-released"]
+              payload:
+                type: object
+                properties:
+                  blockId:
+                    type: string
+                    example: "af2d8ce3c7c691a45dc6c0172f66a184"
+                    description: |
+                      The created card block's id.
+
+                  cardId:
+                    type: string
+                    example: "e2b6ae409cfc11f098ac"
+                    description: |
+                      The Immersve card id for the card being loaded.
+
+                  cardholderAccountId:
+                    type: string
+                    example: "e8e48f309cfc11f08711"
+                    description: |
+                      The Immersve cardholder's account id.
+
+          - $ref: './webhook-envelope.yaml'
