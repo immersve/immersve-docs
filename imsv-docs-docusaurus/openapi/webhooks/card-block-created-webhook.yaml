@@ -20,7 +20,7 @@ requestBody:
                     type: string
                     example: "af2d8ce3c7c691a45dc6c0172f66a184"
                     description: |
-                      The created card block's id.
+                      Identifier of the block.
 
                   cardId:
                     type: string
