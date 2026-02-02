@@ -1,0 +1,29 @@
+tags: [cards]
+summary: Card Activated
+operationId: card-activated
+description: Triggered when a card is activated for a cardholder.
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              topic:
+                type: string
+                enum: ["card-activated"]
+              payload:
+                type: object
+                properties:
+                  cardholderAccountId:
+                    type: string
+                    example: "e8e48f309cfc11f08711"
+                    description: |
+                      The Immersve cardholder's account id.
+                  cardId:
+                    type: string
+                    example: "c1234567890abcdef"
+                    description: |
+                      Identifier of the activated card.
+
+          - $ref: "./webhook-envelope.yaml"

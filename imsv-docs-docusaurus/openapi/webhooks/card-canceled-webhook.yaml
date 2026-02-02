@@ -1,0 +1,29 @@
+tags: [cards]
+summary: Card Canceled
+operationId: card-canceled
+description: Triggered when a card is canceled for a cardholder.
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              topic:
+                type: string
+                enum: ["card-canceled"]
+              payload:
+                type: object
+                properties:
+                  cardholderAccountId:
+                    type: string
+                    example: "e8e48f309cfc11f08711"
+                    description: |
+                      The Immersve cardholder's account id.
+                  cardId:
+                    type: string
+                    example: "c1234567890abcdef"
+                    description: |
+                      Identifier of the canceled card.
+
+          - $ref: "./webhook-envelope.yaml"
