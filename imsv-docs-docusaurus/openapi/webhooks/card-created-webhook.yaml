@@ -1,4 +1,4 @@
-tags: [cards]
+tags: [ cards ]
 summary: Card Created
 operationId: card-created
 description: Triggered when a card is created for a cardholder.
@@ -24,6 +24,6 @@ requestBody:
                     type: string
                     example: "c1234567890abcdef"
                     description: |
-                      Identifier of the created card.
+                      Identifier of the card.
 
           - $ref: "./webhook-envelope.yaml"

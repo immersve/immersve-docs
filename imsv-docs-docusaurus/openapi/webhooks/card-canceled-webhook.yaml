@@ -1,4 +1,4 @@
-tags: [cards]
+tags: [ cards ]
 summary: Card Canceled
 operationId: card-canceled
 description: Triggered when a card is canceled for a cardholder.
@@ -24,6 +24,6 @@ requestBody:
                     type: string
                     example: "c1234567890abcdef"
                     description: |
-                      Identifier of the canceled card.
+                      Identifier of the card.
 
           - $ref: "./webhook-envelope.yaml"
