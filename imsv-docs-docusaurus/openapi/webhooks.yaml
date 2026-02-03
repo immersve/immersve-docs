@@ -3,14 +3,14 @@ info:
   version: 1.0.0
   title: Immersve Webhooks
 tags:
+  - name: card-blocks
+    x-displayName: Card Blocks
   - name: kyc
     x-displayName: KYC
   - name: payments
     x-displayName: Payments
   - name: xpay
     x-displayName: XPay
-  - name: card-block
-    x-displayName: Card Block
   - name: test-webhooks
     x-displayName: Test Webhooks
 
