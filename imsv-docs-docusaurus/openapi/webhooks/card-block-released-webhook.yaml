@@ -20,13 +20,13 @@ requestBody:
                     type: string
                     example: "af2d8ce3c7c691a45dc6c0172f66a184"
                     description: |
-                      The created card block's id.
+                      The card block's id.
 
                   cardId:
                     type: string
                     example: "e2b6ae409cfc11f098ac"
                     description: |
-                      The Immersve card id for the card being loaded.
+                      Identifier of the card being blocked.
 
                   cardholderAccountId:
                     type: string
