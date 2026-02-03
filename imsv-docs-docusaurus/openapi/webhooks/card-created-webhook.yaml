@@ -24,6 +24,6 @@ requestBody:
                     type: string
                     example: "c1234567890abcdef"
                     description: |
-                      Identifier of the created card.
+                      Identifier of the card.
 
           - $ref: "./webhook-envelope.yaml"
