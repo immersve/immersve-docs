@@ -3,8 +3,6 @@ info:
   version: 1.0.0
   title: Immersve Webhooks
 tags:
-  - name: cardholders
-    x-displayName: Cardholders
   - name: cards
     x-displayName: Cards
   - name: kyc
@@ -48,12 +46,6 @@ components:
         type: string
 
 webhooks:
-  cardholder-block-created:
-    parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/cardholder-block-created-webhook.yaml }
-  cardholder-block-released:
-    parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/cardholder-block-released-webhook.yaml }
 
   xpay-otp:
     parameters: *WebhookHeaders
@@ -73,7 +65,7 @@ webhooks:
   3ds-otp:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/payment-3ds-otp-webhook.yaml }
-  
+
   card-created:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/card-created-webhook.yaml }
