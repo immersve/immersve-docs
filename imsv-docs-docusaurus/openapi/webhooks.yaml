@@ -73,13 +73,7 @@ webhooks:
   3ds-otp:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/payment-3ds-otp-webhook.yaml }
-  card-block-created:
-    parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/card-block-created-webhook.yaml }
-  card-block-released:
-    parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/card-block-released-webhook.yaml }
-
+  
   card-created:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/card-created-webhook.yaml }
@@ -89,6 +83,12 @@ webhooks:
   card-canceled:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/card-canceled-webhook.yaml }
+  card-block-created:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/card-block-created-webhook.yaml }
+  card-block-released:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/card-block-released-webhook.yaml }
 
   payment-updated:
     parameters: *WebhookHeaders
