@@ -3,8 +3,8 @@ info:
   version: 1.0.0
   title: Immersve Webhooks
 tags:
-  - name: card-blocks
-    x-displayName: Card Blocks
+  - name: cards
+    x-displayName: Cards
   - name: kyc
     x-displayName: KYC
   - name: payments
