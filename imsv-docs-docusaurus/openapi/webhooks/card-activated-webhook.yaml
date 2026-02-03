@@ -1,4 +1,4 @@
-tags: [cards]
+tags: [ cards ]
 summary: Card Activated
 operationId: card-activated
 description: Triggered when a card is activated for a cardholder.

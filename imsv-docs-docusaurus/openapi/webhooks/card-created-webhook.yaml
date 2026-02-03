@@ -1,4 +1,4 @@
-tags: [cards]
+tags: [ cards ]
 summary: Card Created
 operationId: card-created
 description: Triggered when a card is created for a cardholder.
