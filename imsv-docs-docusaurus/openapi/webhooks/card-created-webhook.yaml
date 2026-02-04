@@ -1,0 +1,29 @@
+tags: [ cards ]
+summary: Card Created
+operationId: card-created
+description: Triggered when a card is created for a cardholder.
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              topic:
+                type: string
+                enum: ["card-created"]
+              payload:
+                type: object
+                properties:
+                  cardholderAccountId:
+                    type: string
+                    example: "e8e48f309cfc11f08711"
+                    description: |
+                      The Immersve cardholder's account id.
+                  cardId:
+                    type: string
+                    example: "c1234567890abcdef"
+                    description: |
+                      Identifier of the card.
+
+          - $ref: "./webhook-envelope.yaml"
