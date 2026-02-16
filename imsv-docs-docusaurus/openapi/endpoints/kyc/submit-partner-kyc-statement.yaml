@@ -29,6 +29,9 @@ responses:
 
         **KYC_STATEMENTS_NOT_ALLOWED**
         Partner is not configured to submit KYC statements
+
+        **ATTACHMENT_ACCOUNT_MISMATCH**
+        One or more attachments provided in the KYC statement were uploaded for another cardholder
     content:
       application/json:
         schema:
