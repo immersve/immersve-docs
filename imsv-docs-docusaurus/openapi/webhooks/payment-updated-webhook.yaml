@@ -2,7 +2,7 @@ tags: [payments]
 summary: Payment Updated
 operationId: payment-updated
 description: |
-  Triggered when a payment is updated. Subscribers to this webhook will receive notifications for various payment lifecycle events.
+  Triggered when a payment is updated throughout its lifecycle.
 
 requestBody:
   content:
@@ -13,6 +13,7 @@ requestBody:
             properties:
               topic:
                 type: string
+                enum: [ payment-updated ]
               payload:
                 type: object
                 required:
@@ -27,8 +28,18 @@ requestBody:
                     properties:
                       type:
                         type: string
-                        example: "clearing-accepted"
-                        enum: ["auth-accepted", "auth-declined", "auth-forced", "clearing-accepted", "clearing-declined", "auth-reversal-accepted", "auth-reversal-declined", "payment-expired", "payment-failed", "clearing-reversal-accepted", "clearing-reversal-declined"]
+                        enum:
+                          - auth-accepted
+                          - auth-declined
+                          - auth-forced
+                          - clearing-accepted
+                          - clearing-declined
+                          - auth-reversal-accepted
+                          - auth-reversal-declined
+                          - payment-expired
+                          - payment-failed
+                          - clearing-reversal-accepted
+                          - clearing-reversal-declined
                         description: |
                           The payment lifecycle event which triggered the webhook event.
                       createdAt:
