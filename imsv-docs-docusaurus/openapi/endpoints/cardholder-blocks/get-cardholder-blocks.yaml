@@ -2,12 +2,27 @@ tags:
   - cardholder-blocks
 summary: Get Cardholder Blocks
 operationId: get-cardholder-blocks
-description: Get cardholder blocks for the account.
+description: |
+  Get cardholder blocks for the account.
+
+  This API uses cursor-based pagination. Start by making a request without a cursor to get the first page. Use the nextCursor from the pageInfo in the response as the cursor for subsequent requests to retrieve further pages. Empty pages can be expected, subsequent requests may return more items. Continue until nextCursor is undefined, indicating no more data.
 parameters:
   - name: accountId
     in: path
     description: Cardholder account ID
     required: true
+    schema:
+      type: string
+  - name: limit
+    in: query
+    description: Amount of records to return (max 100)
+    required: false
+    schema:
+      type: number
+  - name: cursor
+    in: query
+    description: Cursor to retrieve the next page
+    required: false
     schema:
       type: string
 responses:
