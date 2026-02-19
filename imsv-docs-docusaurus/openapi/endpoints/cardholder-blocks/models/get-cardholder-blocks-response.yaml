@@ -4,3 +4,5 @@ properties:
     type: array
     items:
       $ref: "./cardholder-block.yaml"
+  pageInfo:
+    $ref: "../../../models/page-info.yaml"
