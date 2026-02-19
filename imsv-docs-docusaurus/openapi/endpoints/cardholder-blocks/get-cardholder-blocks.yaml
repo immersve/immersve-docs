@@ -15,7 +15,7 @@ parameters:
       type: string
   - name: limit
     in: query
-    description: Amount of records to return (max 100)
+    description: Amount of records to return (default 100, max 1000)
     required: false
     schema:
       type: number
