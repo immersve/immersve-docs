@@ -433,7 +433,7 @@ __metadata:
     "@astrojs/markdown-remark": "npm:^5.1.0"
     "@astrojs/mdx": "npm:^3.1.0"
     "@astrojs/sitemap": "npm:^3.1.5"
-    "@pagefind/default-ui": "npm:^1.1.1"
+    "@pagefind/default-ui": "npm:^1.4.0"
     "@playwright/test": "npm:^1.44.1"
     "@types/hast": "npm:^3.0.4"
     "@types/mdast": "npm:^4.0.4"
@@ -5325,10 +5325,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pagefind/default-ui@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@pagefind/default-ui@npm:1.1.1"
-  checksum: 10/13fc148fe259129d5e196311ba6617983d9d98494ffa82170041ea89225ed4e94e887b7335396df0561b893c11f6d296b943620bf90eab3732309b7a783d0051
+"@pagefind/default-ui@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "@pagefind/default-ui@npm:1.4.0"
+  checksum: 10/b997130c71c3cc45e39ce1e417f8d671c8ef6a9dabcf403510581071de3a5e71bc5c528b70c4f21501dcf6d2020c7a9e10a5648c4d1e016a9b0898de123ee0fb
   languageName: node
   linkType: hard
 
