@@ -13,7 +13,7 @@ requestBody:
             properties:
               topic:
                 type: string
-                enum: [ payment-updated ]
+                enum: [payment-updated]
               payload:
                 type: object
                 required:
@@ -47,7 +47,7 @@ requestBody:
                         format: date-time
                         example: "2026-01-06T10:15:31Z"
                         description: |
-                           ISO 8601 timestamp of when the event occurred.
+                          ISO 8601 timestamp of when the event occurred.
                   payment:
                     type: object
                     required:
@@ -59,6 +59,7 @@ requestBody:
                       - status
                       - amount
                       - feeAmount
+                      - feeComposition
                       - acquirerAmount
                       - cardholder
                       - card
@@ -129,6 +130,55 @@ requestBody:
                             example: "USD"
                             description: |
                               ISO 4217 currency code.
+                      feeComposition:
+                        type: array
+                        description: |
+                          Breakdown of fees applied to the payment.
+                        items:
+                          type: object
+                          required:
+                            - category
+                            - name
+                            - amount
+                            - type
+                          properties:
+                            category:
+                              type: string
+                              example: "fx"
+                              description: |
+                                The category of the fee.
+                            name:
+                              type: string
+                              example: "fx-international"
+                              description: |
+                                The name of the fee.
+                            rate:
+                              type: number
+                              example: 0.015
+                              description: |
+                                The rate applied for the fee.
+                            amount:
+                              type: object
+                              required:
+                                - value
+                                - currency
+                              properties:
+                                value:
+                                  type: string
+                                  example: "15"
+                                  description: |
+                                    The fee amount in minor units.
+                                currency:
+                                  type: string
+                                  example: "USD"
+                                  description: |
+                                    ISO 4217 currency code.
+                            type:
+                              type: string
+                              enum: ["variable", "fixed"]
+                              example: "variable"
+                              description: |
+                                The type of fee.
                       acquirerAmount:
                         type: object
                         required:
