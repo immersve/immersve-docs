@@ -138,7 +138,6 @@ requestBody:
                           type: object
                           required:
                             - category
-                            - name
                             - amount
                             - type
                           properties:
@@ -147,11 +146,6 @@ requestBody:
                               example: "fx"
                               description: |
                                 The category of the fee.
-                            name:
-                              type: string
-                              example: "fx-international"
-                              description: |
-                                The name of the fee.
                             rate:
                               type: number
                               example: 0.015
