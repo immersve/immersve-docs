@@ -2,7 +2,7 @@ tags: [payments]
 summary: Payment Updated
 operationId: payment-updated
 description: |
-  Triggered when a payment is updated. Subscribers to this webhook will receive notifications for various payment lifecycle events.
+  Triggered when a payment is updated throughout its lifecycle.
 
 requestBody:
   content:
@@ -13,6 +13,7 @@ requestBody:
             properties:
               topic:
                 type: string
+                enum: [payment-updated]
               payload:
                 type: object
                 required:
@@ -27,8 +28,18 @@ requestBody:
                     properties:
                       type:
                         type: string
-                        example: "clearing-accepted"
-                        enum: ["auth-accepted", "auth-declined", "auth-forced", "clearing-accepted", "clearing-declined", "auth-reversal-accepted", "auth-reversal-declined", "payment-expired", "payment-failed", "clearing-reversal-accepted", "clearing-reversal-declined"]
+                        enum:
+                          - auth-accepted
+                          - auth-declined
+                          - auth-forced
+                          - clearing-accepted
+                          - clearing-declined
+                          - auth-reversal-accepted
+                          - auth-reversal-declined
+                          - payment-expired
+                          - payment-failed
+                          - clearing-reversal-accepted
+                          - clearing-reversal-declined
                         description: |
                           The payment lifecycle event which triggered the webhook event.
                       createdAt:
@@ -36,7 +47,7 @@ requestBody:
                         format: date-time
                         example: "2026-01-06T10:15:31Z"
                         description: |
-                           ISO 8601 timestamp of when the event occurred.
+                          ISO 8601 timestamp of when the event occurred.
                   payment:
                     type: object
                     required:
@@ -48,6 +59,7 @@ requestBody:
                       - status
                       - amount
                       - feeAmount
+                      - feeComposition
                       - acquirerAmount
                       - cardholder
                       - card
@@ -118,6 +130,49 @@ requestBody:
                             example: "USD"
                             description: |
                               ISO 4217 currency code.
+                      feeComposition:
+                        type: array
+                        description: |
+                          Breakdown of fees applied to the payment.
+                        items:
+                          type: object
+                          required:
+                            - category
+                            - amount
+                            - type
+                          properties:
+                            category:
+                              type: string
+                              example: "fx"
+                              description: |
+                                The category of the fee.
+                            rate:
+                              type: number
+                              example: 0.015
+                              description: |
+                                The rate applied for the fee.
+                            amount:
+                              type: object
+                              required:
+                                - value
+                                - currency
+                              properties:
+                                value:
+                                  type: string
+                                  example: "15"
+                                  description: |
+                                    The fee amount in minor units.
+                                currency:
+                                  type: string
+                                  example: "USD"
+                                  description: |
+                                    ISO 4217 currency code.
+                            type:
+                              type: string
+                              enum: ["variable", "fixed"]
+                              example: "variable"
+                              description: |
+                                The type of fee.
                       acquirerAmount:
                         type: object
                         required:

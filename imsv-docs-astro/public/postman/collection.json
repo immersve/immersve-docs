@@ -1732,12 +1732,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://api-sec.8dev.lol/api/cards/secure?tokenId={{secureCardDetailsTokenId}}",
+							"raw": "https://test-sec.immersve.com/api/cards/secure?tokenId={{secureCardDetailsTokenId}}",
 							"protocol": "https",
 							"host": [
-								"api-sec",
-								"8dev",
-								"lol"
+								"test-sec",
+								"immersve",
+								"com"
 							],
 							"path": [
 								"api",

@@ -5,6 +5,8 @@ info:
 tags:
   - name: cardholders
     x-displayName: Cardholders
+  - name: cards
+    x-displayName: Cards
   - name: kyc
     x-displayName: KYC
   - name: payments
@@ -71,6 +73,22 @@ webhooks:
   3ds-otp:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/payment-3ds-otp-webhook.yaml }
+
+  card-created:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/card-created-webhook.yaml }
+  card-activated:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/card-activated-webhook.yaml }
+  card-canceled:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/card-canceled-webhook.yaml }
+  card-block-created:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/card-block-created-webhook.yaml }
+  card-block-released:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/card-block-released-webhook.yaml }
 
   payment-updated:
     parameters: *WebhookHeaders

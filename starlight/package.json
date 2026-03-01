@@ -161,13 +161,13 @@
     "@astrojs/markdown-remark": "^5.1.0",
     "@playwright/test": "^1.44.1",
     "@types/node": "^18.16.19",
-    "@vitest/coverage-v8": "^3.1.2",
+    "@vitest/coverage-v8": "^4.0.13",
     "astro": "^4.16.18",
     "vitest": "^1.6.0"
   },
   "dependencies": {
     "@astrojs/mdx": "^3.1.0",
-    "@astrojs/sitemap": "^3.1.5",
+    "@astrojs/sitemap": "^3.6.0",
     "@pagefind/default-ui": "^1.1.1",
     "@types/hast": "^3.0.4",
     "@types/mdast": "^4.0.4",

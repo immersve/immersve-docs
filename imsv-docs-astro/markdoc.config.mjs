@@ -158,6 +158,7 @@ export default defineMarkdocConfig({
     },
     ...registryViewComponents([
       'chains/SupportedChainsTable',
+      'kyc/SupportedDocumentsTable',
       'protocols/FundingProtocolsTable',
       'protocols/DeployedFundingProtocolsTable',
       'protocols/FundingTypeTable',
