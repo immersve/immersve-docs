@@ -1,4 +1,4 @@
-tags: [cardholder-blocks]
+tags: [cardholders]
 summary: Cardholder Block Released
 operationId: cardholder-block-released
 description: |
@@ -36,4 +36,4 @@ requestBody:
                     description: |
                       Reason for the cardholder block.
 
-          - $ref: './webhook-envelope.yaml'
+          - $ref: "./webhook-envelope.yaml"

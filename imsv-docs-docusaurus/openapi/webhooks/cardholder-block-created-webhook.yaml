@@ -1,4 +1,4 @@
-tags: [cardholder-blocks]
+tags: [cardholders]
 summary: Cardholder Block Created
 operationId: cardholder-block-created
 description: |
@@ -35,4 +35,4 @@ requestBody:
                     description: |
                       Reason for the cardholder block.
 
-          - $ref: './webhook-envelope.yaml'
+          - $ref: "./webhook-envelope.yaml"
