@@ -182,7 +182,7 @@
     "pagefind": "^1.1.1",
     "rehype": "^13.0.1",
     "rehype-format": "^5.0.0",
-    "remark-directive": "^3.0.0",
+    "remark-directive": "^4.0.0",
     "unified": "^11.0.4",
     "unist-util-visit": "^5.0.0",
     "vfile": "^6.0.3"
