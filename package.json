@@ -20,5 +20,10 @@
   "packageManager": "yarn@4.8.1",
   "engines": {
     "node": ">=22"
+  },
+  "resolutions": {
+    "serve-handler/minimatch": "^3.1.5",
+    "glob@7.x/minimatch": "^3.1.5",
+    "docusaurus-lunr-search/minimatch": "^3.1.5"
   }
 }
