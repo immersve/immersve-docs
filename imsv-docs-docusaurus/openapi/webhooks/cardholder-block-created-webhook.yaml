@@ -29,6 +29,7 @@ requestBody:
                   reason:
                     type: string
                     enum:
+                      - "aml"
                       - "fraud"
                       - "kyc"
                     example: "fraud"

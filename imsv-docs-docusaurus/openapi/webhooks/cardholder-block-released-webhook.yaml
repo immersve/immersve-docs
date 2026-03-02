@@ -30,6 +30,7 @@ requestBody:
                     type: string
                     enum:
                       - "activation"
+                      - "aml"
                       - "fraud"
                       - "kyc"
                     example: "fraud"
