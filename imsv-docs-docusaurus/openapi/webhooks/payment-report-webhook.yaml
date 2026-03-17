@@ -1,6 +1,6 @@
 tags: [ reports ]
-summary: Payment Report Download
-operationId: payment-report-download
+summary: Payment Report
+operationId: payment-report
 description: |
   Triggered when either a daily or monthly payment report becomes available for download via the payment report api.
 requestBody:

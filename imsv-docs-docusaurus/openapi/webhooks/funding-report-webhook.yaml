@@ -1,6 +1,6 @@
 tags: [ reports ]
-summary: Funding Report Download
-operationId: funding-report-download
+summary: Funding Report
+operationId: funding-report
 description: |
   Triggered when either a daily or monthly funding report becomes available for download via the funding report api.
 requestBody:
