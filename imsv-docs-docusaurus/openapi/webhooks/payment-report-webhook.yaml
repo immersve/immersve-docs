@@ -1,0 +1,25 @@
+tags: [ reports ]
+summary: Payment Report Download
+operationId: payment-report-download
+description: |
+  Triggered when either a daily or monthly payment report becomes available for download via the payment report api.
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              topic:
+                type: string
+                enum: ["payment-report"]
+              payload:
+                type: object
+                properties:
+                  timeframe:
+                    type: string
+                    enum: ["daily", "monthly"]
+                    description: |
+                      The timeframe the report is generated over.
+
+          - $ref: './webhook-envelope.yaml'

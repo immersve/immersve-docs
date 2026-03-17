@@ -15,6 +15,8 @@ tags:
     x-displayName: XPay
   - name: test-webhooks
     x-displayName: Test Webhooks
+  - name: reports
+    x-displayName: Reports
 
 # Custom attribute used as YAML anchor to simplify webhook header inclusion
 x-webhook-headers: &WebhookHeaders
@@ -100,3 +102,10 @@ webhooks:
   transactional-test:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/transactional-test-webhook.yaml }
+
+  funding-report:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/funding-report-webhook.yaml }
+  payment-report:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/payment-report-webhook.yaml }

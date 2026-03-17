@@ -1,0 +1,25 @@
+tags: [ reports ]
+summary: Funding Report Download
+operationId: funding-report-download
+description: |
+  Triggered when either a daily or monthly funding report becomes available for download via the funding report api.
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              topic:
+                type: string
+                enum: ["funding-report"]
+              payload:
+                type: object
+                properties:
+                  timeframe:
+                    type: string
+                    enum: ["daily", "monthly"]
+                    description: |
+                      The timeframe the report is generated over.
+
+          - $ref: './webhook-envelope.yaml'
