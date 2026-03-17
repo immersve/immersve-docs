@@ -103,9 +103,6 @@ webhooks:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/transactional-test-webhook.yaml }
 
-  funding-report:
+  report-download:
     parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/funding-report-webhook.yaml }
-  payment-report:
-    parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/payment-report-webhook.yaml }
+    post: { $ref: ./webhooks/report-download-webhook.yaml }
