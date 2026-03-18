@@ -60,5 +60,10 @@ requestBody:
                         description: |
                           Identifier of the report.
                         example: report-1234
+                      failureReason:
+                        type: string
+                        description: |
+                          Reason for report failure if applicable.
+
 
           - $ref: './webhook-envelope.yaml'
