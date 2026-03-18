@@ -29,7 +29,7 @@ requestBody:
                       type:
                         type: string
                         enum:
-                          - report-created
+                          - report-scheduled
                           - report-completed
                           - report-failed
                         description: |
