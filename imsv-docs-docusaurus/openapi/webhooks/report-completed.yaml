@@ -1,0 +1,35 @@
+tags: [ reports ]
+summary: Report Completed
+operationId: report-completed
+description: |
+  Triggered when a report is completed and ready for download.
+
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              topic:
+                type: string
+                enum: [report-completed]
+              payload:
+                type: object
+                properties:
+                  reportType:
+                    type: string
+                    enum:
+                      - funding-source-interactions-daily
+                      - funding-source-interactions-monthly
+                      - payments-daily
+                      - payments-monthly
+                    description: |
+                      The type of report being generated.
+                  reportId:
+                    type: string
+                    description: |
+                      Identifier of the report.
+                    example: report-1234
+
+          - $ref: './webhook-envelope.yaml'
