@@ -105,4 +105,4 @@ webhooks:
 
   report-download:
     parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/report-updated-webhook.yaml }
+    post: { $ref: ./webhooks/report-completed.yaml }
