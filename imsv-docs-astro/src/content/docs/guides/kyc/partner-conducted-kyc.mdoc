@@ -360,44 +360,6 @@ the statement using their file IDs and the appropriate attachment type.
 ```
 
 
-## Get spending prerequisites
+## Monitor KYC evaluation process
 
-{% endpointref name="get-spending-prerequisites" /%}
-
-Call the Get Spending Prerequisites endpoint to initiate the KYC evaluation process for the cardholder.
-
-For detailed guidance on when and how to call this endpoint to detect KYC completion, see {% link page="guides/detecting-kyc-completion" /%}.
-
-### Example request
-```bash
-curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
-  -H "Content-Type: application/json" \
-  -H "X-Api-Key: ${card_issuer_api_key}" \
-  -H "X-Api-Secret: ${card_issuer_api_secret}" \
-  -H "X-Account-Id: ${cardholder_account_id}" \
-  --data '{
-    "cardProgramId": "'${card_program_id}'",
-    "fundingSourceId": "'${funding_source_id}'",
-    "spendableAmount": 100,
-    "spendableCurrency": "USD",
-    "kycType": "partner-conducted"
-  }'
-```
-
-### Example response
-
-```json
-{
-  "prerequisites": [
-    {
-      "stage": "kyc",
-      "status": "action-required",
-      "type": "kyc",
-      "actionType": "submit_kyc_statement",
-      "params": {
-        "status": "check_in_progress"
-      }
-    }
-  ]
-}
-```
+For detailed guidance on detecting KYC completion, see {% link page="guides/detecting-kyc-completion" /%}.
