@@ -1591,6 +1591,38 @@
 					"response": []
 				},
 				{
+					"name": "Activate card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/cards/:cardId/activate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"cards",
+								":cardId",
+								"activate"
+							],
+							"variable": [
+								{
+									"key": "cardId",
+									"value": "{{createdCardId}}",
+									"description": "id of the card to activate"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Set card PIN",
 					"request": {
 						"method": "POST",
