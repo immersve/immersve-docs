@@ -9,3 +9,35 @@ properties:
   fundingSourceId:
     type: string
     description: ID of the Funding Source the card will authorize against
+  shippingAddress:
+    type: object
+    description: Shipping address for physical card. Required if card program supports physical cards.
+    properties:
+      companyName:
+        type: string
+        description: Company name (optional)
+        example: Immersve
+      country:
+        type: string
+        description: The ISO 3166-2 Country code of the country the address is in.
+        example: NZ
+      state:
+        type: string
+        description: State, province, prefecture, canton, region. Use local abbreviations such as VIC (Victoria) or TX (Texas).
+        example: AKL
+      town:
+        type: string
+        description: City, town, village, ward, municipality
+        example: Auckland
+      postalCode:
+        type: string
+        description: Postal code
+        example: "1050"
+      addressLine1:
+        type: string
+        description: First line of an address. Can represent street number and name or a PO Box
+        example: 3A Victoria Avenue
+      addressLine2:
+        type: string
+        description: Second line of an address (optional)
+        example: Floor 1
