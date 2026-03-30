@@ -26,9 +26,9 @@ responses:
     description: |
       Subject is not allowed to perform the action with the reason stated in the `errorCode`.
 
-      **REPORT_NOT_FOUND**
-      The report does not exist, the caller is not authorized to access it,
-      or the report does not yet have a completed artifact available for download.
+      **FORBIDDEN**
+      The caller is not authorized to access the report, or the report artifact is
+      not available for download.
     content:
       application/json:
         schema:
