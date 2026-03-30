@@ -1,0 +1,38 @@
+post:
+  tags:
+    - reports
+  summary: Create Report Download URL
+  operationId: create-report-download-url
+  description: |
+    Generate a pre-signed download URL for a report artifact.
+
+    The URL is short-lived and expires after 24 hours. The report must have
+    a completed artifact before a download URL can be generated.
+
+    The caller must be authorized with the `report:download` action for the
+    account that owns the report.
+  parameters:
+    - name: reportId
+      in: path
+      required: true
+      description: The ID of the report to download.
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Download URL successfully generated.
+      content:
+        application/json:
+          schema:
+            $ref: "./models/create-report-download-url-response.yaml"
+    "403":
+      description: |
+        Subject is not allowed to perform the action with the reason stated in the `errorCode`.
+
+        **REPORT_NOT_FOUND**
+        The report does not exist, the caller is not authorized to access it,
+        or the report does not yet have a completed artifact available for download.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"

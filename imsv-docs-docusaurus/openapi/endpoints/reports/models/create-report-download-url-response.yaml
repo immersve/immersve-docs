@@ -1,0 +1,19 @@
+type: object
+required:
+  - reportId
+  - downloadUrl
+  - expiresAt
+properties:
+  reportId:
+    type: string
+    description: The ID of the report.
+    example: "01JPMK5BGDY7G2PQXYZ1234567"
+  downloadUrl:
+    type: string
+    description: A pre-signed S3 URL to download the report artifact. Valid for 24 hours.
+    example: "https://s3.amazonaws.com/immersve-reports/report.csv?X-Amz-Signature=..."
+  expiresAt:
+    type: string
+    format: date-time
+    description: The ISO 8601 timestamp at which the download URL expires.
+    example: "2026-03-22T10:00:00.000Z"
