@@ -1,0 +1,33 @@
+tags:
+  - reports
+summary: Create Report Download URL
+operationId: create-report-download-url
+description: |
+  After receiving the webhook [Report Completed](/api-reference/webhook-topics/report-completed/), call this endpoint to generate a short-lived pre-signed URL for the report artifact.
+
+  If the URL expires before you use it, call the endpoint again to generate a new one for the same report.
+parameters:
+  - name: reportId
+    in: path
+    required: true
+    description: The ID of the report to download.
+    schema:
+      type: string
+responses:
+  "200":
+    description: Download URL successfully generated.
+    content:
+      application/json:
+        schema:
+          $ref: "./models/create-report-download-url-response.yaml"
+  "403":
+    description: |
+      Subject is not allowed to perform the action with the reason stated in the `errorCode`.
+
+      **REPORT_NOT_FOUND**
+      The report does not exist, the caller is not authorized to access it,
+      or the report does not yet have a completed artifact available for download.
+    content:
+      application/json:
+        schema:
+          $ref: "../../models/api-error-403.yaml"

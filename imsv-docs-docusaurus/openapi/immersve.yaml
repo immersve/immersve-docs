@@ -44,6 +44,8 @@ tags:
     x-displayName: Support
   - name: fault-injection
     x-displayName: Fault Injection
+  - name: reports
+    x-displayName: Reports
   - name: webhooks
     x-displayName: Webhooks
 
@@ -119,6 +121,10 @@ paths:
     $ref: "./endpoints/transactions/list-payment-notifications.yaml"
   "/api/payment-notifications/{messageId}":
     $ref: "./endpoints/transactions/get-payment-notification.yaml"
+
+  # Reports
+  "/api/reports/{reportId}/download":
+    post: { $ref: "./endpoints/reports/create-report-download-url.yaml" }
 
   # Files
   "/api/file-uploads":
