@@ -3,6 +3,8 @@ tags:
 summary: Create Report Download URL
 operationId: create-report-download-url
 description: |
+  Create a pre-signed URL to download a report.
+
   After receiving the webhook [Report Completed](/api-reference/webhook-topics/report-completed/), call this endpoint to generate a short-lived pre-signed URL for the report artifact.
 
   If the URL expires before you use it, call the endpoint again to generate a new one for the same report.
