@@ -8,6 +8,10 @@ slug: guides/card-lifecycle
 Virtual cards are activated and ready to use by default. When the card is
 either expired or cancelled by the user it will transition to the `cancelled`
 state.
+Physical cards are initially in the "created" state which changes to "shipped"
+when the card order is sent to a manufacturer. Both "created" and "shipped" cards
+cannot be used for transactions. After card enters "shipped" state,
+it can be activated.
 
 ![Card Lifecycle](./assets/card-lifecycle-flow.png "Card Lifecycle Flow Diagram")
 
@@ -19,6 +23,12 @@ Call the {% link endpoint="create-card" /%} operation to request
 Immersve generate a card, returning an ID. It is ready to use when a call to
 {% link endpoint="get-card" /%} with the card ID returns a
 payload with `status` `"active"`.
+
+### Activate a card
+Physical cards must be activated before they can be used to perform transactions.
+To activate a card, call the {% link endpoint="activate-card" /%} endpoint. Once
+the card is activated, it will transition to an active state and can be used for
+transactions.
 
 ### Block a card
 
