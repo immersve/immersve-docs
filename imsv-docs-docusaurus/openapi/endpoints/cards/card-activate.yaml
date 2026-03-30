@@ -1,0 +1,19 @@
+post:
+  tags:
+    - card
+  summary: Activate Card
+  operationId: activate-card
+  description: Activate a physical card.
+  parameters:
+    - $ref: "../../models/card-id-path.yaml"
+  responses:
+    "200":
+      description: Successful operation
+    "403":
+      description: |
+        **CARD_STATE_INVALID**
+        Card is not in the "shipped" state and cannot be activated.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
