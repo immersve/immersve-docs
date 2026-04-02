@@ -39,10 +39,10 @@ post:
         KYC profile is missing, does not have PASSED status, or does not match card program region. Use the spending prerequisites endpoint for more details.
 
         **CONTACT_EMAIL_REQUIRED**
-        Cardholder does not have a contact phone.
+        Cardholder does not have a contact email.
 
         **CONTACT_PHONE_REQUIRED**
-        Cardholder does not have a contact email.
+        Cardholder does not have a contact phone.
 
         **AML_CHECK_FAILED**
         AML check failed.
