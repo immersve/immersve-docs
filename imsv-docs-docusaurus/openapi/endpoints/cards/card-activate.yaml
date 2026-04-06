@@ -11,12 +11,6 @@ post:
       description: Successful operation
     "403":
       description: |
-        **FORBIDDEN**
-        The card or cardholder does not exist or the user has insufficient permissions.
-
-        **LIVENESS_MISMATCH**
-        Resource liveness does not match request liveness.
-
         **CARD_ACTIVATION_FORBIDDEN**
         Card activation is only allowed for shipped physical cards that are provisioned, not blocked, and not expired.
       content:
