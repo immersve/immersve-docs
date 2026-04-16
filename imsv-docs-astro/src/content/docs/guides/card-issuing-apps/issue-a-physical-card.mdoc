@@ -1,17 +1,15 @@
 ---
-title: Issue a Virtual Card
-slug: guides/issue-a-virtual-card
+title: Issue a Physical Card
+slug: guides/issue-a-physical-card
 ---
 
-A virtual card is a payment card that exists only in digital form. It is
-activated for immediate use upon creation. Once funded it
-enables online purchases, and other card-not-present transactions. Add the card
-to a {% link page="guides/add-card-to-xpay-wallet" title="digital wallet" /%}
-for in-store contactless payments.
+A physical card is a payment card that is manufactured and shipped to the
+cardholder. Once activated and funded, it can be used for in-store purchases,
+ATM withdrawals and other card-present transactions, as well as online purchases.
 
 {% note %}
-See the {% link page="guides/issue-a-physical-card" /%} guide for instructions
-on how to issue a physical card available for in-store purchases and other card-present transactions.
+See the {% link page="guides/issue-a-virtual-card" /%} guide for instructions
+on how to issue a virtual card available for online purchases and other card-not-present transactions.
 {% /note %}
 
 Before being permitted to create a card a user must first have successfully
@@ -19,7 +17,7 @@ fulfilled any regulatory prerequisites as instructed by the {% link
 endpoint="get-spending-prerequisites" /%} endpoint.
 
 
-![Card Issuing Sequence](./assets/card-issuing-sequence.png "Card Creation Sequence Diagram")
+![Physical Card Issuing Sequence](./assets/physical-card-issuing-sequence.png "Physical Card Issuing Sequence Diagram")
 
 
 ## Authentication
@@ -40,12 +38,26 @@ endpoint="create-funding-source" /%} and the
 
 ## Create a card
 
-Call the {% link endpoint="create-card" /%} endpoint to request
-a card. The card is provisioned and activated when the
-{% link endpoint="get-card" /%} response payload includes a `status`
-of `"active"`. All cards are currently long-lived. The `expiresAt` field returns
-exact card expiry timestamp. The `expiry` field returns expiry date usually printed
-on physical cards.
+Call the {% link endpoint="create-card" /%} endpoint to request a physical
+card. Specified card program must support physical cards.
+A `shippingAddress` must be supplied in the request body so that the card
+can be manufactured and delivered to the cardholder.
+
+Unlike virtual cards, physical cards are not activated upon creation. The card
+will initially have a `status` of `"created"` which will eventually change to
+`"shipped"` once the card manufacturing process has begun. After the card status
+changes to `"shipped"`, it can be activated. Poll the {% link endpoint="get-card" /%} endpoint
+to confirm the card status.
+The `expiresAt` field returns the exact card expiry timestamp. The `expiry`
+field returns the expiry date printed on the card.
+
+
+## Activate the card
+
+Once the cardholder has received their physical card, call the
+{% link endpoint="activate-card" /%} endpoint to activate it. Use {% link title="Card Activated" endpoint="webhook-topics/card-activated" /%} webhook
+to be notified when the card becomes active. Alternatively verify that the response payload of
+{% link endpoint="get-card" /%} endpoint includes a `status` of `"active"`.
 
 
 ## Obtaining Card Details
