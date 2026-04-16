@@ -25,6 +25,7 @@ properties:
     description: Type of the card
     enum:
       - virtual
+      - physical
   createdAt:
     type: string
     description: Timestamp of card creation
