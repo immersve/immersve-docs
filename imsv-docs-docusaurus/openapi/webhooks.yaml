@@ -27,7 +27,6 @@ x-webhook-headers: &WebhookHeaders
 paths: []
 
 components:
-
   parameters:
     XDeliveryId:
       name: X-Delivery-ID
@@ -79,6 +78,9 @@ webhooks:
   card-created:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/card-created-webhook.yaml }
+  card-shipped:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/card-shipped-webhook.yaml }
   card-activated:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/card-activated-webhook.yaml }

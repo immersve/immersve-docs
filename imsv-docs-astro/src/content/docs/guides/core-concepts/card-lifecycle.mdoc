@@ -20,9 +20,11 @@ it can be activated.
 ### Create a card
 
 Call the {% link endpoint="create-card" /%} operation to request
-Immersve generate a card, returning an ID. It is ready to use when a call to
+Immersve generate a card, returning an ID. A virtual card is ready to use when a call to
 {% link endpoint="get-card" /%} with the card ID returns a
-payload with `status` `"active"`.
+payload with `status` `"active"`. A physical card is initially in the "created"
+state which changes to "shipped" when the card order is sent to a manufacturer.
+Once the card is in the "shipped" state, it can be activated.
 
 ### Activate a card
 Physical cards must be activated before they can be used to perform transactions.
@@ -46,3 +48,15 @@ to once again be used to perform transactions.
 Should a cardholder change their mind prior to presenting the card to a
 merchant, cancel the card by calling the {% link endpoint="cancel-card" /%}
 endpoint.
+
+## Webhooks
+Each card state transition is associated with a webhook topic:
+- {% link title="Card Created" endpoint="webhook-topics/card-created" /%}
+- {% link title="Card Shipped" endpoint="webhook-topics/card-shipped" /%}
+- {% link title="Card Activated" endpoint="webhook-topics/card-activated" /%}
+- {% link title="Card Block Created" endpoint="webhook-topics/card-block-created" /%}
+- {% link title="Card Block Released" endpoint="webhook-topics/card-block-released" /%}
+- {% link title="Card Canceled" endpoint="webhook-topics/card-canceled" /%}
+See the {% link page="guides/configuring-webhook-listeners" /%}
+guide for more information on how to subscribe to webhooks and receive notifications
+of card state changes.
