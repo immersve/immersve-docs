@@ -52,6 +52,7 @@ export default defineConfig({
             ]},
             { label: 'Webhooks', autogenerate: { directory: 'guides/webhooks' }},
             { label: 'Testing', autogenerate: { directory: 'guides/testing' } },
+            { label: 'Reports', autogenerate: { directory: 'guides/reports' }},
           ]
         },
         { label: 'Resources', autogenerate: { directory: 'resources' } },

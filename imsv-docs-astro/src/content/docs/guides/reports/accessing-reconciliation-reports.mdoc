@@ -1,0 +1,167 @@
+---
+title: Downloading Reconciliation Reports
+description: |
+  How to download reports related to the reconciliation of funds for custodial partners.
+slug: guides/downloading-reconciliation-reports
+---
+
+### Reports
+There are two report categories available for download. All reports are generated in `.jsonl` format.
+
+1. Funding Source Reporting. Covers changes in balance, and related funding lifecycle events.
+2. Payment Reporting. Covers events in the payment lifecycle.
+
+Funding reports describe balance changes across funding sources held by cardholders and partners. They include events for increases and decreases in balances, plus the related movement of funds. Each line item contains a snapshot of the relevant funding source or funding source interaction at the time the event occurred.
+
+<details>
+  <summary><strong>Funding Source Interaction Report format</strong></summary>
+
+```json
+{
+  "event": {
+    "id": "fsi-card-pay-1-2",
+    "type": "confirmed",
+    "createdAt": "2026-04-05T10:00:05Z"
+  },
+  "snapshot": {
+    "id": "fsi-card-pay-1",
+    "type": "payment",
+    "status": "confirmed",
+    "createdAt": "2026-04-05T10:00:00Z",
+    "accountId": "cardholder-789",
+    "fundingSource": {
+      "id": "fs-card-xyz",
+      "fundingChannelId": "fc-binance-1"
+    },
+    "amount": { "value": "30.00", "currency": "USDC" },
+    "relatedTransaction": { "type": "payment", "id": "pay-001" }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary><strong>Funding Source Balance Change Report format</strong></summary>
+
+```json
+{
+  "event": {
+    "id": "fs-card-xyz-42",
+    "type": "decrease",
+    "createdAt": "2026-04-05T10:00:05Z",
+    "interactionEventId": "fsi-card-pay-1-2",
+    "amount": { "value": "30.00", "currency": "USDC" }
+  },
+  "snapshot": {
+    "id": "fs-card-xyz",
+    "createdAt": "2026-03-01T12:00:00Z",
+    "externalId": "card-xyz-wallet",
+    "accountId": "cardholder-789",
+    "fundingChannel": {
+      "id": "fc-binance-1",
+      "name": "binance-usdc-1"
+    },
+    "purpose": "card-funding",
+    "mode": "deposit",
+    "strategy": "custodial",
+    "partnerAccountId": "partner-acc-123",
+    "balance": { "value": "70.00", "currency": "USDC" }
+  }
+}
+```
+
+</details>
+
+Payment reports follow the same principle. They provide payment event line items with a snapshot of the payment state at each stage of its lifecycle. This model is consistent with the
+`payment-updated` webhook payload.
+
+<details>
+  <summary><strong>Payment Report format</strong></summary>
+
+```json
+{
+  "modifiedAt": "2026-03-23T04:56:53.574Z",
+  "clearedBillingCurrency": "USD",
+  "creditDebitIndicator": "debit",
+  "paymentType": "purchase",
+  "createdAt": "2026-03-23T04:56:53.491Z",
+  "id": "48b2c88170897bcec586a13579502a2d",
+  "amount": {
+    "value": "5000",
+    "currency": "USD"
+  },
+  "feeAmount": {
+    "value": "50",
+    "currency": "USD"
+  },
+  "acquirerAmount": {
+    "value": "5000",
+    "currency": "EUR"
+  },
+  "merchant": {
+    "name": "mockCardAcceptorName",
+    "regionCode": "US",
+    "categoryCode": "mockMcc",
+    "id": "mockCardAcceptorId",
+    "terminalId": "mockCardAcceptorTerminalId",
+    "city": "mockCardAcceptorCity"
+  },
+  "securityChallenge": {
+    "outcome": "challenge-confirmed",
+    "ref": "3ds-ref-123"
+  },
+  "card": {
+    "id": "7624946497485cfcf5a77a81b0ee213b",
+    "regionCode": "NZ"
+  },
+  "cardholder": {
+    "id": "d02d361a89095c7629fc"
+  },
+  "cardProgramId": "9248c576c2da4fdfbfca6dbd0b44d524",
+  "feeComposition": [
+    {
+      "category": "fx",
+      "rate": 0.015,
+      "amount": {
+        "value": "15",
+        "currency": "USD"
+      },
+      "type": "variable"
+    }
+  ],
+  "activityNumber": 2,
+  "networkReference": "1429694598",
+  "status": "holding",
+  "pending": true,
+  "fundingSources": [
+    { "id": "abc", "fundingChannelId": "def" }
+  ]
+}
+```
+
+</details>
+
+### Schedule
+Reports are generated on two schedules:
+
+1. Daily, from 0001 UTC
+2. Monthly, from 01 0001 UTC
+
+
+### Webhook
+To be notified when a report is ready, subscribe to the `report-completed` webhook topic.
+
+This webhook is sent when report generation has finished for reports you have requested. Refer to the webhook documentation for full payload details.
+
+
+### Download
+To download a report, use the `reportId` from the webhook payload with the file download endpoint.
+
+The endpoint returns a short-lived pre-signed S3 URL that can be used to download the report file.
+
+Download API call example:
+
+```bash
+curl -L -X POST 'https://app.immersve.com/api/reports/{reportId}/download'
+```
