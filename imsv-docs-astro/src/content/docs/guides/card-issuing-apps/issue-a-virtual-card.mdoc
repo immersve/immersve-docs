@@ -9,6 +9,11 @@ enables online purchases, and other card-not-present transactions. Add the card
 to a {% link page="guides/add-card-to-xpay-wallet" title="digital wallet" /%}
 for in-store contactless payments.
 
+{% note %}
+See the {% link page="guides/issue-a-physical-card" /%} guide for instructions
+on how to issue a physical card available for in-store purchases and other card-present transactions.
+{% /note %}
+
 Before being permitted to create a card a user must first have successfully
 fulfilled any regulatory prerequisites as instructed by the {% link
 endpoint="get-spending-prerequisites" /%} endpoint.
@@ -38,8 +43,8 @@ endpoint="create-funding-source" /%} and the
 Call the {% link endpoint="create-card" /%} endpoint to request
 a card. The card is provisioned and activated when the
 {% link endpoint="get-card" /%} response payload includes a `status`
-of `"active"`. All cards are currently long-lived. The `expiresAt` field returns
-exact card expiry timestamp. The `expiry` field returns expiry date usually printed
+of `"active"`. All cards are currently long-lived. The `expiresAt` field returns the
+exact card expiry timestamp. The `expiry` field returns the expiry date usually printed
 on physical cards.
 
 

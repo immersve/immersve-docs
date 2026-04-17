@@ -1,0 +1,109 @@
+---
+title: Issue a Physical Card
+slug: guides/issue-a-physical-card
+---
+
+A physical card is a payment card that is manufactured and shipped to the
+cardholder. Once activated and funded, it can be used for in-store purchases,
+ATM withdrawals and other card-present transactions, as well as online purchases.
+
+{% note %}
+See the {% link page="guides/issue-a-virtual-card" /%} guide for instructions
+on how to issue a virtual card available for online purchases and other card-not-present transactions.
+{% /note %}
+
+Before being permitted to create a card a user must first have successfully
+fulfilled any regulatory prerequisites as instructed by the {% link
+endpoint="get-spending-prerequisites" /%} endpoint.
+
+
+![Physical Card Issuing Sequence](./assets/physical-card-issuing-sequence.png "Physical Card Issuing Sequence Diagram")
+
+
+## Authentication
+
+The authentication processes are described in the {% link
+page="guides/authentication" /%} guide. As the user account is anchored by
+control of the private key, there is no distinct prior explicit registration or
+signup process needed before authenticating.
+
+
+## Provision Funding Source
+
+A Funding Source is required for card creation. Besides this requirement, cards
+and Funding Sources are managed independently. See {% link
+endpoint="create-funding-source" /%} and the
+{% link page="guides/card-funding" /%} guide.
+
+
+## Create a card
+
+Call the {% link endpoint="create-card" /%} endpoint to request a physical
+card. The specified card program must support physical cards.
+A `shippingAddress` must be supplied in the request body so that the card
+can be delivered to the cardholder once manufactured.
+
+Physical cards are not activated upon creation. The card
+will initially have a `status` of `"created"` which will eventually change to
+`"shipped"` once the card manufacturing process has begun. After the card status
+changes to `"shipped"`, it can be activated. See the {% link page="guides/card-lifecycle" /%}
+guide for more information on the card lifecycle and the various card statuses.
+
+Use {% link title="Card Shipped" endpoint="webhook-topics/card-shipped" /%} webhook
+to be notified when the card is shipped. Alternatively, poll the {% link endpoint="get-card" /%} endpoint
+to confirm the card status.
+The `expiresAt` field returns the exact card expiry timestamp. The `expiry`
+field returns the expiry date printed on the card.
+
+## Activate the card
+Once the cardholder has received their physical card, call the
+{% link endpoint="activate-card" /%} endpoint to activate it.
+
+{% warning %}
+The cardholder should provide proof of possession before the card is activated.
+For example, the cardholder could be prompted to enter the last 4 digits of the
+card number or the expiry date.
+{% /warning %}
+
+Use {% link title="Card Activated" endpoint="webhook-topics/card-activated" /%} webhook
+to be notified when the card becomes active. Alternatively verify that the response payload of
+{% link endpoint="get-card" /%} endpoint includes a `status` of `"active"`.
+
+
+## Obtaining Card Details
+
+{% warning %}
+Card details should not be revealed to the cardholder until the card is activated.
+Revealing the card details before activation may compromise the card possession verification step
+and allow an unauthorized user to activate the card and use it fraudulently.
+{% /warning %}
+
+There are two steps to obtain the sensitive card details to be presented to the cardholder.
+
+1. Obtaining a token for transmission to the client application to which the
+card details are to be provided (i.e. the application that will display the
+card data to the cardholder) and;
+2. The exchange, by that client application,
+of the token for the card data.
+
+{% note %}
+It is not recommended that the card token is supplied to any application other
+than one that resides within the cardholder environment (i.e. their mobile
+application or web application running in their browser) unless that system is
+sufficiently compliant with PCI-DSS requirements and is audited as such.
+{% /note %}
+
+
+### Get a Card Token
+
+Generate a single-use card `token` using the {% link endpoint="get-card-token"
+/%} endpoint. The token is typically then transmitted to the cardholder's
+environment (i.e. web application or mobile application running in their web
+browser) to complete the final step of card issuance.
+
+
+### Get Sensitive Card Details
+
+To obtain the full PAN and CVV2 for display to the cardholder your client-side
+application should exchange the token for the sensitive card data. See {% link
+page="guides/fetching-secure-card-information" /%}.
