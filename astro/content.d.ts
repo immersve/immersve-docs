@@ -244,6 +244,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/card-issuing-apps/issue-a-physical-card.mdoc": {
+	id: "guides/card-issuing-apps/issue-a-physical-card.mdoc";
+  slug: "guides/issue-a-physical-card";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/card-issuing-apps/issue-a-virtual-card.mdoc": {
 	id: "guides/card-issuing-apps/issue-a-virtual-card.mdoc";
   slug: "guides/issue-a-virtual-card";
