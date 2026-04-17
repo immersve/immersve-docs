@@ -73,8 +73,7 @@ Funding reports describe balance changes across funding sources held by cardhold
 
 </details>
 
-Payment reports follow the same principle. They provide payment event line items with a snapshot of the payment state at each stage of its lifecycle. This model is consistent with the
-`payment-updated` webhook payload.
+Payment reports follow the same principle. They provide payment event line items with a snapshot of the payment state at each stage of its lifecycle. This model is also consistent with the [Payment Updated webhook payload](/api-reference/webhook-topics/payment-updated/).
 
 <details>
   <summary><strong>Payment Report format</strong></summary>
@@ -151,8 +150,9 @@ Reports are generated on two schedules:
 
 ### Webhook
 To be notified when a report is ready, subscribe to the `report-completed` webhook topic.
+This webhook shows the full list of available reports you can subscribe to.
 
-This webhook is sent when report generation has finished for reports you have requested. Refer to the webhook documentation for full payload details.
+This webhook is sent when report generation has finished for reports you have requested. Refer to the [Report Completed webhook documentation](/api-reference/webhook-topics/report-completed/) for full payload details.
 
 
 ### Download
