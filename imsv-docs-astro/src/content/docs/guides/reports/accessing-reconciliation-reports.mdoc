@@ -15,6 +15,8 @@ Funding reports describe balance changes across funding sources held by cardhold
 They include events for increases and decreases in balances, plus the related movement of funds.
 Each line item contains a snapshot of the relevant funding source or funding source interaction and the details of the event that altered its state.
 
+TODO: How you can use this for reconciliation:
+
 1. **Funding Source Interaction Report Line Item:**
 ```json
 {
@@ -71,7 +73,7 @@ Each line item contains a snapshot of the relevant funding source or funding sou
 Payment reports follow the same principle. They provide payment event line items with a snapshot of the payment state at each stage of its lifecycle.
 This model is also consistent with the {% link title="Payment Updated webhook payload" href="/api-reference/webhook-topics/payment-updated/" /%}.
 
-
+1. **Payment Report Line Item:**
 ```json
 {
   "modifiedAt": "2026-03-23T04:56:53.574Z",
@@ -132,6 +134,14 @@ This model is also consistent with the {% link title="Payment Updated webhook pa
   ]
 }
 ```
+
+### Join Logic for Downstream Processing
+
+Use the following joins to ensure end-to-end traceability across report layers:
+
+1. Funding Source `event.interactionEventId` links to Funding Source Interaction `event.id`.
+2. When Funding Source Interaction `snapshot.type` is `payment`, Funding Source Interaction `snapshot.relatedTransaction.id` links to Payment `id`.
+
 
 ## Schedule
 Reports are generated on two schedules:

@@ -25,7 +25,7 @@ requestBody:
                       - daily-funding-source-interaction-report
                       - monthly-funding-source-interaction-report
                       - daily-payment-report
-                      - monthly-payment-report
+                      - monthly-payment-report // CHANGE HTIS OSCAR
                     description: |
                       The type of report being generated.
                   reportId:
