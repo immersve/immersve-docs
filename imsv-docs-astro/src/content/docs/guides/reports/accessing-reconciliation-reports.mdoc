@@ -5,17 +5,17 @@ description: |
 slug: guides/downloading-reconciliation-reports
 ---
 
-### Reports
-There are two report categories available for download. All reports are generated in `.jsonl` format.
+## Reports
+In order to begin report generation for your partner integration you must make a request to Immersve stating what reports you wish to receive.
+Reports are generated in `.jsonl` format.
 
-1. Funding Source Reporting. Covers changes in balance, and related funding lifecycle events.
-2. Payment Reporting. Covers events in the payment lifecycle.
+### Funding Source Reporting:
 
-Funding reports describe balance changes across funding sources held by cardholders and partners. They include events for increases and decreases in balances, plus the related movement of funds. Each line item contains a snapshot of the relevant funding source or funding source interaction at the time the event occurred.
+Funding reports describe balance changes across funding sources held by cardholders and partners.
+They include events for increases and decreases in balances, plus the related movement of funds.
+Each line item contains a snapshot of the relevant funding source or funding source interaction and the details of the event that altered its state.
 
-<details>
-  <summary><strong>Funding Source Interaction Report format</strong></summary>
-
+1. **Funding Source Interaction Report Line Item:**
 ```json
 {
   "event": {
@@ -39,16 +39,12 @@ Funding reports describe balance changes across funding sources held by cardhold
 }
 ```
 
-</details>
-
-<details>
-  <summary><strong>Funding Source Balance Change Report format</strong></summary>
-
+2. **Funding Source Report Line Item:**
 ```json
 {
   "event": {
     "id": "fs-card-xyz-42",
-    "type": "decrease",
+    "type": "balance-decrease",
     "createdAt": "2026-04-05T10:00:05Z",
     "interactionEventId": "fsi-card-pay-1-2",
     "amount": { "value": "30.00", "currency": "USDC" }
@@ -71,12 +67,10 @@ Funding reports describe balance changes across funding sources held by cardhold
 }
 ```
 
-</details>
+### Payment Reporting:
+Payment reports follow the same principle. They provide payment event line items with a snapshot of the payment state at each stage of its lifecycle.
+This model is also consistent with the {% link title="Payment Updated webhook payload" href="/api-reference/webhook-topics/payment-updated/" /%}.
 
-Payment reports follow the same principle. They provide payment event line items with a snapshot of the payment state at each stage of its lifecycle. This model is also consistent with the [Payment Updated webhook payload](/api-reference/webhook-topics/payment-updated/).
-
-<details>
-  <summary><strong>Payment Report format</strong></summary>
 
 ```json
 {
@@ -139,29 +133,28 @@ Payment reports follow the same principle. They provide payment event line items
 }
 ```
 
-</details>
-
-### Schedule
+## Schedule
 Reports are generated on two schedules:
 
-1. Daily, from 0001 UTC
-2. Monthly, from 01 0001 UTC
+1. Daily, from 00:01 UTC
+2. Monthly, from day 1 at 00:01 UTC
+
+You can choose to receive both, one or none of these time frames for each given report type.
 
 
-### Webhook
-To be notified when a report is ready, subscribe to the `report-completed` webhook topic.
-This webhook shows the full list of available reports you can subscribe to.
+## Webhook
+To be notified when a report is ready for download, subscribe to the `report-completed` webhook topic.
+Refer to the {% link title="report completed webhook documentation" href="/api-reference/webhook-topics/report-completed/" /%} for full payload details and list of available report types.
 
-This webhook is sent when report generation has finished for reports you have requested. Refer to the [Report Completed webhook documentation](/api-reference/webhook-topics/report-completed/) for full payload details.
-
-
-### Download
-To download a report, use the `reportId` from the webhook payload with the file download endpoint.
-
+## Download
+To download a report, call the file download API using the `reportId` from the webhook payload as the path parameter.
 The endpoint returns a short-lived pre-signed S3 URL that can be used to download the report file.
 
 Download API call example:
 
 ```bash
-curl -L -X POST 'https://app.immersve.com/api/reports/{reportId}/download'
+curl -L 'https://app.immersve.com/api/reports/{reportId}/download' \
+  -H 'Content-Type: application/json' \
+  -H "X-Api-Key: ${account_admin_api_key}" \
+  -H "X-Api-Secret: ${account_admin_api_secret}"
 ```
