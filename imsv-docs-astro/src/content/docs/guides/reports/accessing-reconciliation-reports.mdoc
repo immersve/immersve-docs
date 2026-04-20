@@ -27,7 +27,7 @@ Each line item contains a snapshot of the relevant funding source or funding sou
     "type": "confirmed",
     "createdAt": "2026-04-05T10:00:05Z"
   },
-  "snapshot": {
+  "fundingSourceInteraction": {
     "id": "fsi-card-pay-1",
     "type": "payment",
     "status": "confirmed",
@@ -53,7 +53,7 @@ Each line item contains a snapshot of the relevant funding source or funding sou
     "interactionEventId": "fsi-card-pay-1-2",
     "amount": { "value": "30.00", "currency": "USDC" }
   },
-  "snapshot": {
+  "fundingSource": {
     "id": "fs-card-xyz",
     "createdAt": "2026-03-01T12:00:00Z",
     "externalId": "card-xyz-wallet",
@@ -129,8 +129,8 @@ This model is also consistent with the {% link title="payment updated webhook pa
 
 Use the following joins to ensure end-to-end traceability across report layers:
 
-1. Funding Source `event.interactionEventId` links to Funding Source Interaction `event.id`.
-2. When Funding Source Interaction `snapshot.type` is `payment`, Funding Source Interaction `snapshot.relatedTransaction.id` links to Payment `id`.
+1. Funding Source `event.interactionEventId` links to `fundingSourceInteraction.event.id`.
+2. When `fundingSourceInteraction.type` is `payment`, fundingSourceInteraction.relatedTransaction.id` links to Payment `id`.
 
 
 ## Schedule
