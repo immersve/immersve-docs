@@ -8,7 +8,7 @@ slug: guides/downloading-reconciliation-reports
 ## Reports
 In order to begin report generation for your partner integration you must make a request to Immersve stating what reports you wish to receive.
 
-There reports are generated in `.jsonl` format covering either a 1 day or 1 month window of time. When reports become available for download a notification
+There reports are generated in `.jsonl` format covering either a daily or monthly period of time. When reports become available for download a notification
 will be sent. The details of this notification as well as the list of supported report types can be found in the {% link title="report completed webhook documentation" href="/api-reference/webhook-topics/report-completed/" /%}.
 
 
@@ -137,9 +137,9 @@ Use the following joins to ensure end-to-end traceability across report layers:
 Reports are generated on two schedules:
 
 1. Daily, from 00:01 UTC
-2. Monthly, from day 1 at 00:01 UTC
+2. Monthly, first day of the month at 00:01 UTC
 
-You can choose to receive both, one or none of these time frames for each given report type.
+You can choose to receive both, one or none of these time frames for each given report type. Also note these are the times reports begin generation, the time they are completed can vary based on partner volume.
 
 
 ## Webhook
