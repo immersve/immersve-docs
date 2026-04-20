@@ -78,62 +78,50 @@ This model is also consistent with the {% link title="payment updated webhook pa
 1. **Payment Report Line Item:**
 ```json
 {
-  "modifiedAt": "2026-03-23T04:56:53.574Z",
-  "clearedBillingCurrency": "USD",
-  "creditDebitIndicator": "debit",
-  "paymentType": "purchase",
-  "createdAt": "2026-03-23T04:56:53.491Z",
-  "id": "48b2c88170897bcec586a13579502a2d",
-  "amount": {
-    "value": "5000",
-    "currency": "USD"
+  "event": {
+    "type": "auth-accepted",
+    "createdAt": "2026-04-20T03:10:02.938Z"
   },
-  "feeAmount": {
-    "value": "50",
-    "currency": "USD"
-  },
-  "acquirerAmount": {
-    "value": "5000",
-    "currency": "EUR"
-  },
-  "merchant": {
-    "name": "mockCardAcceptorName",
-    "regionCode": "US",
-    "categoryCode": "mockMcc",
-    "id": "mockCardAcceptorId",
-    "terminalId": "mockCardAcceptorTerminalId",
-    "city": "mockCardAcceptorCity"
-  },
-  "securityChallenge": {
-    "outcome": "challenge-confirmed",
-    "ref": "3ds-ref-123"
-  },
-  "card": {
-    "id": "7624946497485cfcf5a77a81b0ee213b",
-    "regionCode": "NZ"
-  },
-  "cardholder": {
-    "id": "d02d361a89095c7629fc"
-  },
-  "cardProgramId": "9248c576c2da4fdfbfca6dbd0b44d524",
-  "feeComposition": [
-    {
-      "category": "fx",
-      "rate": 0.015,
-      "amount": {
-        "value": "15",
-        "currency": "USD"
-      },
-      "type": "variable"
-    }
-  ],
-  "activityNumber": 2,
-  "networkReference": "1429694598",
-  "status": "holding",
-  "pending": true,
-  "fundingSources": [
-    { "id": "abc", "fundingChannelId": "def" }
-  ]
+  "payment": {
+    "id": "abc123",
+    "createdAt": "2026-04-20T03:10:00.000Z",
+    "modifiedAt": "2026-04-20T03:10:02.938Z",
+    "pending": true,
+    "type": "purchase",
+    "creditDebitIndicator": "debit",
+    "status": "holding",
+    "amount": { "value": "1000", "currency": "USDC" },
+    "acquirerAmount": { "value": "1000", "currency": "USD" },
+    "feeAmount": { "value": "10", "currency": "USDC" },
+    "feeComposition": [
+      {
+        "category": "fx",
+        "rate": 0.015,
+        "amount": {
+          "value": "15",
+          "currency": "USD"
+        },
+        "type": "variable"
+      }
+    ],
+    "merchant": {
+        "name": "mockCardAcceptorName",
+        "regionCode": "US",
+        "categoryCode": "mockMcc",
+        "id": "mockCardAcceptorId",
+        "terminalId": "mockCardAcceptorTerminalId",
+        "city": "mockCardAcceptorCity"
+    },
+    "networkReference": "...",
+    "failureReason": undefined,
+    "relatedPaymentId": undefined,
+    "cardholder": { "id": "cardholder-account-id" },
+    "card": { "id": "card-id" },
+    "securityChallenge": {
+      "outcome": "challenge-confirmed",
+      "ref": "3ds-ref-123"
+    },
+  }
 }
 ```
 
