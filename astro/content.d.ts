@@ -391,6 +391,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/reports/accessing-reconciliation-reports.mdoc": {
+	id: "guides/reports/accessing-reconciliation-reports.mdoc";
+  slug: "guides/downloading-reconciliation-reports";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/supported-chains/algorand.mdoc": {
 	id: "guides/supported-chains/algorand.mdoc";
   slug: "guides/algorand";
