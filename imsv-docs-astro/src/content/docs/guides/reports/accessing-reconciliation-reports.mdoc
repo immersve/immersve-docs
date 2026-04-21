@@ -113,14 +113,14 @@ This model is also consistent with the {% link title="payment updated webhook pa
         "city": "mockCardAcceptorCity"
     },
     "networkReference": "1429694598",
-    "failureReason": undefined,
-    "relatedPaymentId": undefined,
+    "failureReason": null,
+    "relatedPaymentId": null,
     "cardholder": { "id": "cardholder-account-id" },
     "card": { "id": "card-id" },
     "securityChallenge": {
       "outcome": "challenge-confirmed",
       "ref": "3ds-ref-123"
-    },
+    }
   }
 }
 ```
@@ -136,11 +136,10 @@ Use the following joins to ensure end-to-end traceability across report layers:
 ## Schedule
 Reports are generated on two schedules:
 
-1. Daily, from 00:01 UTC
-2. Monthly, first day of the month at 00:01 UTC
+1. Daily reports cover 00:00:00 until 23:59:59.999 UTC and are generated immediately after the window closes. The report-completed webhook fires once the file is available.
+2. Monthly reports cover 00:00:00 on the first day of the month until 23:59:59.999 UTC on the last day of the month and are generated immediately after the window closes. The report-completed webhook fires once the file is available.
 
-You can choose to receive both, one or none of these time frames for each given report type. Also note these are the times reports begin generation, the time they are completed can vary based on partner volume.
-
+You can choose to receive both, one or none of these time frames for each given report type. Also note the time it takes to complete a report can vary based on partner volume.
 
 ## Webhook
 To be notified when a report is ready for download, subscribe to the `report-completed` webhook topic.
@@ -148,7 +147,7 @@ Refer to the {% link title="report completed webhook documentation" href="/api-r
 
 ## Download
 To download a report, call the file download API using the `reportId` from the webhook payload as the path parameter.
-The endpoint returns a short-lived pre-signed S3 URL that can be used to download the report file.
+The endpoint returns a pre-signed S3 URL with a TTL of 24 hours that can be used to download the report file.
 
 Download API call example:
 
