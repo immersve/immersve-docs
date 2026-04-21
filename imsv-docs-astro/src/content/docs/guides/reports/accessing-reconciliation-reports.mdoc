@@ -146,7 +146,7 @@ To be notified when a report is ready for download, subscribe to the `report-com
 Refer to the {% link title="report completed webhook documentation" href="/api-reference/webhook-topics/report-completed/" /%} for full payload details and list of available report types.
 
 ## Download
-To download a report, call the file download API using the `reportId` from the webhook payload as the path parameter.
+To download a report, call the {% link title="report download API" href="/api-reference/create-report-download-url/" /%} using the `reportId` from the webhook payload as the path parameter.
 The endpoint returns a pre-signed S3 URL with a TTL of 24 hours that can be used to download the report file.
 
 Download API call example:
