@@ -393,7 +393,7 @@ declare module 'astro:content' {
 } & { render(): Render[".mdoc"] };
 "guides/reports/accessing-reconciliation-reports.mdoc": {
 	id: "guides/reports/accessing-reconciliation-reports.mdoc";
-  slug: "guides/downloading-reconciliation-reports";
+  slug: "guides/financial-reports";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
