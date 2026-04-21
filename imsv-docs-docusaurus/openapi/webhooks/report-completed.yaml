@@ -20,10 +20,12 @@ requestBody:
                   reportType:
                     type: string
                     enum:
-                      - funding-source-interactions-daily
-                      - funding-source-interactions-monthly
-                      - payments-daily
-                      - payments-monthly
+                      - daily-funding-source
+                      - monthly-funding-source
+                      - daily-funding-source-interaction
+                      - monthly-funding-source-interaction
+                      - daily-payment
+                      - monthly-payment
                     description: |
                       The type of report being generated.
                   reportId:
