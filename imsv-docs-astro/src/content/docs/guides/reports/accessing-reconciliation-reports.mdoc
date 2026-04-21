@@ -6,20 +6,20 @@ slug: guides/downloading-reconciliation-reports
 ---
 
 ## Reports
-In order to begin report generation for your partner integration you must make a request to Immersve stating what reports you wish to receive.
+In order to begin report generation for your partner integration you must make a request to Immersve specifying which reports you wish to receive.
 
-There reports are generated in `.jsonl` format covering either a daily or monthly period of time. When reports become available for download a notification
+These reports are generated in `.jsonl` format covering either a daily or monthly period of time. When reports become available for download a notification
 will be sent. The details of this notification as well as the list of supported report types can be found in the {% link title="report completed webhook documentation" href="/api-reference/webhook-topics/report-completed/" /%}.
 
 
 
-### Funding Source Reporting:
+### Funding Source Reporting
 
 Funding reports describe balance changes across funding sources held by cardholders and partners.
 They include events for increases and decreases in balances, plus the related movement of funds.
 Each line item contains a snapshot of the relevant funding source or funding source interaction and the details of the event that altered its state.
 
-1. **Funding Source Interaction Report Line Item:**
+1. **Funding Source Interaction Report Line Item**
 ```json
 {
   "event": {
@@ -43,7 +43,7 @@ Each line item contains a snapshot of the relevant funding source or funding sou
 }
 ```
 
-2. **Funding Source Report Line Item:**
+2. **Funding Source Report Line Item**
 ```json
 {
   "event": {
@@ -71,11 +71,11 @@ Each line item contains a snapshot of the relevant funding source or funding sou
 }
 ```
 
-### Payment Reporting:
+### Payment Reporting
 Payment reports follow the same principle. They provide payment event line items with a snapshot of the payment state at each stage of its lifecycle.
 This model is also consistent with the {% link title="payment updated webhook payload" href="/api-reference/webhook-topics/payment-updated/" /%}.
 
-1. **Payment Report Line Item:**
+1. **Payment Report Line Item**
 ```json
 {
   "event": {
@@ -130,7 +130,7 @@ This model is also consistent with the {% link title="payment updated webhook pa
 Use the following joins to ensure end-to-end traceability across report layers:
 
 1. Funding Source `event.interactionEventId` links to `fundingSourceInteraction.event.id`.
-2. When `fundingSourceInteraction.type` is `payment`, fundingSourceInteraction.relatedTransaction.id` links to Payment `id`.
+2. When `fundingSourceInteraction.type` is `payment`, `fundingSourceInteraction.relatedTransaction.id` links to Payment `id`.
 
 
 ## Schedule
