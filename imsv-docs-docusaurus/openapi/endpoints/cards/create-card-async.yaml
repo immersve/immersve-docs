@@ -44,9 +44,6 @@ post:
         **CONTACT_PHONE_REQUIRED**
         Cardholder does not have a contact phone.
 
-        **AML_CHECK_FAILED**
-        AML check failed.
-
         **MAX_CARDS_EXCEEDED**
         Cardholder has reached the maximum number of cards allowed.
 
