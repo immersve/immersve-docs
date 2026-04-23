@@ -11,11 +11,14 @@ properties:
     description: ID of the Funding Source the card will authorize against
   shippingAddress:
     type: object
-    description: Shipping address for physical card. Required if card program supports physical cards.
+    description:
+      Shipping address for physical card. Required if card program
+      supports physical cards. Only one of the optional fields companyName or
+      addressLine2 can be provided. Each field must be less than 35 characters.
     properties:
       companyName:
         type: string
-        description: Company name (optional)
+        description: (Optional) Company name.
         example: Immersve
       country:
         type: string
@@ -23,7 +26,7 @@ properties:
         example: NZ
       state:
         type: string
-        description: State, province, prefecture, canton, region. Use local abbreviations such as VIC (Victoria) or TX (Texas).
+        description: (Optional) State, province, prefecture, canton, region. Use local abbreviations such as VIC (Victoria) or TX (Texas).
         example: AKL
       town:
         type: string
@@ -35,9 +38,9 @@ properties:
         example: "1050"
       addressLine1:
         type: string
-        description: First line of an address. Can represent street number and name or a PO Box
+        description: First line of an address. Can represent street number and name or a PO Box. Max 35 characters.
         example: 3A Victoria Avenue
       addressLine2:
         type: string
-        description: Second line of an address (optional)
+        description: (Optional) Second line of an address. Max 35 characters.
         example: Floor 1

@@ -1516,7 +1516,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cardProgramId\":\"{{cardProgramId}}\",\n    \"fundingSourceId\": \"{{fundingSourceId}}\"\n}"
+							"raw": "{\n    \"cardProgramId\":\"{{cardProgramId}}\",\n    \"fundingSourceId\": \"{{fundingSourceId}}\",\n    \"shippingAddress\": {\n        \"country\": \"NZ\",\n        \"state\": \"AKL\",\n        \"town\": \"Auckland\",\n        \"postalCode\": \"1050\",\n        \"addressLine1\": \"3A Victoria Avenue\",\n        \"companyName\": \"Immersve\"\n    }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/cards",
