@@ -1,0 +1,38 @@
+get:
+  tags:
+    - reports
+  summary: Get Report
+  operationId: get-report
+  description: |
+    Retrieve a report by ID.
+
+    Use this endpoint to poll the `status` of a scheduled report. Once the status is `completed`, call [Create Report Download URL](/api-reference/create-report-download-url/) to obtain a pre-signed URL for the report artifact.
+
+    Subscribing to the [Report Completed](/api-reference/webhook-topics/report-completed/) webhook is the recommended alternative to polling.
+  parameters:
+    - name: reportId
+      in: path
+      description: The ID of the report to retrieve.
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Successful operation.
+      content:
+        application/json:
+          schema:
+            $ref: "./models/report.yaml"
+    "400":
+      description: Request fields are invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'
+    "403":
+      description: |
+        No authorization to access the report, or the report does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
