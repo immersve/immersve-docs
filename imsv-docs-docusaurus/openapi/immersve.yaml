@@ -125,6 +125,10 @@ paths:
     $ref: "./endpoints/transactions/get-payment-notification.yaml"
 
   # Reports
+  "/api/accounts/{accountId}/reports":
+    $ref: "./endpoints/reports/list-reports-by-account.yaml"
+  "/api/reports/{reportId}":
+    $ref: "./endpoints/reports/get-report.yaml"
   "/api/reports/{reportId}/download":
     post: { $ref: "./endpoints/reports/create-report-download-url.yaml" }
 

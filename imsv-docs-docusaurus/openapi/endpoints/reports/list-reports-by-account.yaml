@@ -1,0 +1,60 @@
+get:
+  tags:
+    - reports
+  summary: List Reports
+  operationId: list-reports-by-account
+  description: |
+    List reports for an account.
+
+    This API uses cursor-based pagination. Start by making a request without a cursor to get the first page. Use the `nextCursor` from the `pageInfo` in the response as the cursor for subsequent requests to retrieve further pages. Continue until `nextCursor` is undefined, indicating no more data.
+  parameters:
+    - name: accountId
+      in: path
+      description: The ID of the account to list reports for.
+      required: true
+      schema:
+        type: string
+    - name: limit
+      in: query
+      description: Number of records to return (max 100, defaults to 100).
+      required: false
+      schema:
+        type: number
+    - name: cursor
+      in: query
+      description: Cursor to retrieve the next page.
+      required: false
+      schema:
+        type: string
+    - name: type
+      in: query
+      description: Filter results to reports of this type.
+      required: false
+      schema:
+        type: string
+        enum:
+          - "daily-funding-source"
+          - "monthly-funding-source"
+          - "daily-funding-source-interaction"
+          - "monthly-funding-source-interaction"
+          - "daily-payment"
+          - "monthly-payment"
+  responses:
+    "200":
+      description: Successful operation.
+      content:
+        application/json:
+          schema:
+            $ref: "./models/reports-paging-result.yaml"
+    "400":
+      description: Request fields are invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'
+    "403":
+      description: No authorization to access resource.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"

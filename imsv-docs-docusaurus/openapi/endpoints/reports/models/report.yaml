@@ -1,0 +1,70 @@
+type: object
+properties:
+  id:
+    type: string
+    description: The report ID.
+    example: "01JPMK5BGDY7G2PQXYZ1234567"
+  type:
+    type: string
+    description: The report type.
+    enum:
+      - "daily-funding-source"
+      - "monthly-funding-source"
+      - "daily-funding-source-interaction"
+      - "monthly-funding-source-interaction"
+      - "daily-payment"
+      - "monthly-payment"
+    example: "daily-payment"
+  accountId:
+    type: string
+    description: The account the report belongs to.
+    example: "225d85e65495722bf6517ea0ba0d6f56"
+  scheduleDate:
+    type: string
+    format: date-time
+    description: The ISO 8601 date the report covers.
+    example: "2026-03-21T00:00:00.000Z"
+  params:
+    type: object
+    description: The parameters the report was scheduled with. Fields present depend on the report `type`.
+    properties:
+      partnerAccountId:
+        type: string
+        description: The partner account the report covers. Present on all report types.
+        example: "225d85e65495722bf6517ea0ba0d6f56"
+      date:
+        type: string
+        description: The period the report covers. Format is `yyyyMMdd` for daily reports and `yyyyMM` for monthly reports.
+        example: "20260321"
+      fundingPurpose:
+        type: string
+        description: Optional funding purpose filter. Only applies to funding-source and funding-source-interaction reports.
+        enum:
+          - "card-funding"
+          - "billing"
+        example: "card-funding"
+  status:
+    type: string
+    description: |
+      The processing status of the report.
+
+      When `completed`, use [Create Report Download URL](/api-reference/create-report-download-url/) to retrieve the artifact.
+    enum:
+      - "pending"
+      - "completed"
+  liveness:
+    type: string
+    description: Whether the report covers live or test data.
+    enum:
+      - "live"
+      - "test"
+required:
+  [
+    id,
+    type,
+    accountId,
+    scheduleDate,
+    params,
+    status,
+    liveness,
+  ]

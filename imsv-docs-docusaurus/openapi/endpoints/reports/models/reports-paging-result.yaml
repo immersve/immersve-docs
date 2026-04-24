@@ -1,0 +1,8 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      $ref: './report.yaml'
+  pageInfo:
+    $ref: '../../../models/page-info.yaml'
