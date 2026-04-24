@@ -2349,6 +2349,60 @@
 			"name": "Reports",
 			"item": [
 				{
+					"name": "List Reports",
+					"request": {
+						"description": "Discover scheduled reports generated for an account. Use this to find a reportId to pass to Get Report or Create Report Download URL. Filter by report type to narrow results. Results are ordered by most recent first. Uses cursor-based pagination: pass the nextCursor from pageInfo on subsequent requests until it is undefined.",
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts/:accountId/reports",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								":accountId",
+								"reports"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "{{partnerAccountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Report",
+					"request": {
+						"description": "Retrieve a report by ID. Poll the `status` field — when `completed`, call Create Report Download URL to obtain the artifact. Subscribing to the Report Completed webhook is the recommended alternative to polling.",
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/reports/:reportId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"reports",
+								":reportId"
+							],
+							"variable": [
+								{
+									"key": "reportId",
+									"value": "01JPMK5BGDY7G2PQXYZ1234567",
+									"description": "The ID of the report to retrieve."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create Report Download URL",
 					"request": {
 						"description": "After receiving the Report Completed webhook, call this endpoint to generate a short-lived pre-signed URL for the report artifact. If the URL expires before you use it, call the endpoint again to generate a new one for the same report.",
