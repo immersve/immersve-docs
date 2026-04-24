@@ -7,6 +7,13 @@ properties:
   type:
     type: string
     description: The report type.
+    enum:
+      - "daily-funding-source"
+      - "monthly-funding-source"
+      - "daily-funding-source-interaction"
+      - "monthly-funding-source-interaction"
+      - "daily-payment"
+      - "monthly-payment"
     example: "daily-payment"
   accountId:
     type: string

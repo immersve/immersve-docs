@@ -2351,7 +2351,7 @@
 				{
 					"name": "List Reports",
 					"request": {
-						"description": "List reports for an account. Uses cursor-based pagination: pass the nextCursor from pageInfo on subsequent requests until it is undefined.",
+						"description": "Discover scheduled reports generated for an account. Use this to find a reportId to pass to Get Report or Create Report Download URL. Filter by report type to narrow results. Results are ordered by most recent first. Uses cursor-based pagination: pass the nextCursor from pageInfo on subsequent requests until it is undefined.",
 						"method": "GET",
 						"header": [],
 						"url": {
