@@ -25,5 +25,12 @@ requestBody:
                     example: "c1234567890abcdef"
                     description: |
                       Identifier of the card.
+                  cancelReason:
+                    type: string
+                    description: Reason why the card was cancelled
+                    enum:
+                      - provisioning-failed
+                      - user-requested
+                      - external-provider-failed
 
           - $ref: "./webhook-envelope.yaml"
