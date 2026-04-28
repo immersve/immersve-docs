@@ -41,7 +41,13 @@ properties:
   reason:
     description: Reason the block was created
     type: string
-    example: fraud
+    enum:
+      - activation
+      - deactivation
+      - fraud
+      - loststolen
+      - suspended
+      - system
   initiator:
     description: Entity that initiated the block
     type: string

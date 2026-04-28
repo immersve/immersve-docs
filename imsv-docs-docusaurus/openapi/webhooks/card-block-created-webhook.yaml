@@ -38,6 +38,6 @@ requestBody:
                     type: boolean
                     example: true
                     description: |
-                      Indicates whether it's a card freeze
+                      Indicates whether the card can be unfrozen with the unfreeze endpoint
 
           - $ref: './webhook-envelope.yaml'
