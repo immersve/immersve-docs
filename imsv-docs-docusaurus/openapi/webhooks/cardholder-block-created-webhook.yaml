@@ -29,6 +29,7 @@ requestBody:
                   reason:
                     type: string
                     enum:
+                      - "activation"
                       - "fraud"
                       - "kyc"
                     example: "fraud"
