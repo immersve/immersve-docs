@@ -43,12 +43,20 @@ Each line item contains a snapshot of the relevant funding source or funding sou
 }
 ```
 
+Enum values:
+- `event.type`: `created`, `pending`, `confirmed`, `discarded`
+- `fundingSourceInteraction.type`: `deposit`, `withdrawal`, `refund`, `payment`
+- `fundingSourceInteraction.status`: same set as `event.type`
+- `fundingSourceInteraction.relatedTransaction.type`: `blockchain`, `payment`
+
+`amount.value` is a string of the amount in minor units of the token (e.g. `"30000000"` for 30 USDC).
+
 2. **Funding Source Report Line Item**
 ```json
 {
   "event": {
     "id": "fs-card-xyz-42",
-    "type": "balance-decrease",
+    "type": "balance-decreased",
     "createdAt": "2026-04-05T10:00:05Z",
     "interactionEventId": "fsi-card-pay-1-2",
     "amount": { "value": "30000000", "currency": "USDC" }
@@ -70,6 +78,11 @@ Each line item contains a snapshot of the relevant funding source or funding sou
   }
 }
 ```
+
+Enum values:
+- `event.type`: `created`, `balance-increased`, `balance-decreased` (`created` events carry no balance change and have `amount.value` of `"0"`)
+
+`amount.value` and `balance.value` are strings of the amount in minor units of the token.
 
 ### Payment Reporting
 Payment reports follow the same principle. They provide payment event line items with a snapshot of the payment state at each stage of its lifecycle.
