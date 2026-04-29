@@ -23,6 +23,6 @@
   },
   "devDependencies": {
     "@astrojs/ts-plugin": "^1.10.5",
-    "vitest": "^1.6.0"
+    "vitest": "^4.0.18"
   }
 }
