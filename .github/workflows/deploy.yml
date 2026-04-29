@@ -5,6 +5,13 @@ on:
   workflow_dispatch:
 
 jobs:
+
+  prepare-pr:
+    if: github.event.action == 'opened' || github.event.action == 'reopened'
+    uses: ./.github/workflows/_prepare-pr.yml
+    secrets:
+      CODE_JANITOR_PRIVATE_KEY: ${{ secrets.CODE_JANITOR_PRIVATE_KEY }}
+
   lint:
     runs-on: ubuntu-latest
     steps:
