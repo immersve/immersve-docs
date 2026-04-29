@@ -11,7 +11,6 @@ items:
       enum:
       - "sms"
       - "email"
-      - "in-app"
       example: "sms"
     destination:
       type: string
