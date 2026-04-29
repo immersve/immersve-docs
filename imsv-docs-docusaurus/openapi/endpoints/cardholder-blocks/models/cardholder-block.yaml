@@ -39,7 +39,7 @@ properties:
     type: string
     example: card-suspension
   reason:
-    description: Reason the block was created
+    description: Reason the block was created (the list is not exhaustive)
     type: string
     enum:
       - activation
