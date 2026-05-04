@@ -4,6 +4,7 @@ required:
   - fundingSourceId
   - spendableAmount
   - spendableCurrency
+  - kycType
 properties:
   cardProgramId:
     type: string
