@@ -20,19 +20,19 @@ requestBody:
               payload:
                 type: object
                 properties:
-                  ref:
+                  id:
+                    type: string
+                    example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
+                    description: |
+                      The Immersve identifier for this 3DS transaction.
+
+                  externalId:
                     type: string
                     example: "51661658-65f8-49d3-a3c0-9f0566671132"
                     description: |
                       A unique reference for the 3DS security challenge. This reference can
                       be used to correlate the challenge to the subsequent Immersve payment
                       resource.
-
-                  ttl:
-                    type: string
-                    example: "3600"
-                    description: |
-                      Time to live for the SCA challenge in seconds.
 
                   challengeId:
                     type: string
@@ -45,12 +45,6 @@ requestBody:
                     example: "bdd53f2b-f39e-4115-a913-877141fa56cb"
                     description: |
                       The unique identifier for this 3DS transaction.
-
-                  id:
-                    type: string
-                    example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
-                    description: |
-                      The Immersve identifier for this 3DS transaction.
 
                   category:
                     type: string
@@ -108,12 +102,6 @@ requestBody:
                     example: GBP
                     description: |
                       The merchant's local currency.
-
-                  challengeMethodType:
-                    type: string
-                    example: "delegate-sca"
-                    description: |
-                      The method used to deliver the SCA challenge to the cardholder.
 
                   expiryTime:
                     type: string
