@@ -71,9 +71,6 @@ webhooks:
   kyc-pending:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/kyc-pending-webhook.yaml }
-  3ds-otp:
-    parameters: *WebhookHeaders
-    post: { $ref: ./webhooks/payment-3ds-otp-webhook.yaml }
 
   card-created:
     parameters: *WebhookHeaders
@@ -94,6 +91,12 @@ webhooks:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/card-block-released-webhook.yaml }
 
+  3ds-otp:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/payment-3ds-otp-webhook.yaml }
+  3ds-sca:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/payment-3ds-sca-webhook.yaml }
   payment-updated:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/payment-updated-webhook.yaml }
