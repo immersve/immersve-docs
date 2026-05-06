@@ -23,7 +23,7 @@ requestBody:
                     type: string
                     example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
                     description: |
-                      The Immersve identifier for this 3DS transaction.
+                      The Immersve identifier for the 3DS transaction.
 
                   externalId:
                     type: string
@@ -37,13 +37,13 @@ requestBody:
                     type: string
                     example: "5830c663-427f-48e7-a8c7-1179471faa5c"
                     description: |
-                      A unique identifier for this SCA challenge instance.
+                      The unique identifier for the 3DS security challenge instance.
 
                   transactionId:
                     type: string
                     example: "bdd53f2b-f39e-4115-a913-877141fa56cb"
                     description: |
-                      The unique identifier for this 3DS transaction.
+                      The unique identifier for the 3DS transaction.
 
                   cardholderId:
                     type: string
