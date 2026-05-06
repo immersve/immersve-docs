@@ -1,0 +1,94 @@
+post:
+  tags:
+    - payments
+  summary: Submit 3DS Challenge Outcome
+  operationId: submit-3ds-challenge-outcome
+  description: |
+    Submit the outcome of a 3DS Strong Customer Authentication (SCA) challenge.
+    Call this endpoint after presenting the cardholder with the challenge received
+    via the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook,
+    to approve or decline the transaction on their behalf.
+  parameters:
+    - name: cardholderAccountId
+      in: path
+      description: The Immersve cardholder account ID.
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - outcome
+            - challengeId
+            - transactionId
+            - ref
+            - id
+          properties:
+            outcome:
+              type: string
+              enum:
+                - approved
+                - declined
+              description: |
+                The cardholder's response to the SCA challenge.
+              example: "approved"
+            challengeId:
+              type: string
+              description: |
+                The unique identifier for the SCA challenge instance. Corresponds to
+                the `challengeId` field in the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook payload.
+              example: "5830c663-427f-48e7-a8c7-1179471faa5c"
+            transactionId:
+              type: string
+              description: |
+                The unique identifier for the 3DS transaction. Corresponds to the
+                `transactionId` field in the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook payload.
+              example: "bdd53f2b-f39e-4115-a913-877141fa56cb"
+            ref:
+              type: string
+              description: |
+                The 3DS network transaction reference. Corresponds to the `ref` field
+                in the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook payload.
+              example: "254a5d3a-e251-4fc0-913a-51c01d3420a7"
+            id:
+              type: string
+              description: |
+                The Immersve identifier for the 3DS transaction. Corresponds to the
+                `id` field in the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook payload.
+              example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
+            deviceId:
+              type: string
+              description: |
+                Optional. The identifier of the device used by the cardholder during
+                authentication.
+              example: "device-abc123"
+            auth_type:
+              type: string
+              description: |
+                Optional. The authentication method used by the cardholder.
+              example: "biometric"
+            ip_address:
+              type: string
+              description: |
+                Optional. The IP address of the cardholder's device at the time of
+                authentication.
+              example: "203.0.113.42"
+  responses:
+    "200":
+      description: Challenge outcome submitted successfully.
+    "400":
+      description: Request fields are invalid.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-400.yaml"
+    "403":
+      description: No Authorization to access resource.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
