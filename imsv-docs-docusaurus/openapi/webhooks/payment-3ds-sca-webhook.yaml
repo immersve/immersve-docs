@@ -1,0 +1,129 @@
+tags: [payments]
+summary: Payment 3DS SCA
+operationId: payment-3ds-sca
+description: |
+  Triggered when a 3D Secure (3DS) Strong Customer Authentication (SCA) challenge is
+  initiated for a card transaction. Subscribers should use this event to present the
+  cardholder with a challenge to authenticate or decline the transaction using the
+  method specified in the `challengeMethodType` field.
+
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              topic:
+                type: string
+                enum: [payment-3ds-sca]
+              payload:
+                type: object
+                properties:
+                  ref:
+                    type: string
+                    example: "51661658-65f8-49d3-a3c0-9f0566671132"
+                    description: |
+                      A unique reference for the 3DS security challenge. This reference can
+                      be used to correlate the challenge to the subsequent Immersve payment
+                      resource.
+
+                  ttl:
+                    type: string
+                    example: "3600"
+                    description: |
+                      Time to live for the SCA challenge in seconds.
+
+                  challengeId:
+                    type: string
+                    example: "5830c663-427f-48e7-a8c7-1179471faa5c"
+                    description: |
+                      A unique identifier for this SCA challenge instance.
+
+                  transactionId:
+                    type: string
+                    example: "bdd53f2b-f39e-4115-a913-877141fa56cb"
+                    description: |
+                      The unique identifier for this 3DS transaction.
+
+                  id:
+                    type: string
+                    example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
+                    description: |
+                      The Immersve identifier for this 3DS transaction.
+
+                  category:
+                    type: string
+                    example: "payment"
+                    enum:
+                      - "payment"
+                      - "non_payment"
+                    description: |
+                      The category of the 3DS transaction.
+
+                  cardholderId:
+                    type: string
+                    example: "65a7e8ef0d230d0a6bf755e07d39eb02"
+                    description: |
+                      The Immersve id for the cardholder associated with the card.
+
+                  cardId:
+                    type: string
+                    example: "eb9edbae08d9cfd2be91ce178dbc7a04"
+                    description: |
+                      The Immersve card ID.
+
+                  cardPanLast4:
+                    type: string
+                    example: "4567"
+                    description: |
+                      The last four digits of the card PAN.
+
+                  cardProgramId:
+                    type: string
+                    example: "83dee5409cfc11f0a1e6"
+                    description: |
+                      The Immersve card program id for the card.
+
+                  merchantName:
+                    type: string
+                    example: "Unsworth Height Super"
+                    description: |
+                      The merchant's name.
+
+                  merchantCountryCode:
+                    type: string
+                    example: "NZ"
+                    description: |
+                      The merchant's ISO-3166-1 Alpha-2 country code.
+
+                  paymentAcquirerAmount:
+                    type: string
+                    example: "978"
+                    description: |
+                      Payment amount represented in the merchant's local currency. The amount will use fiat minor units. For example 978 GBP is £9.78.
+
+                  paymentAcquirerCurrency:
+                    type: string
+                    example: GBP
+                    description: |
+                      The merchant's local currency.
+
+                  challengeMethodType:
+                    type: string
+                    example: "delegate-sca"
+                    description: |
+                      The method used to deliver the SCA challenge to the cardholder.
+
+                  expiryTime:
+                    type: string
+                    format: date-time
+                    example: "2026-02-08T19:31:30.420Z"
+                    description: |
+                      The date and time at which the SCA challenge expires.
+
+          - $ref: "./webhook-envelope.yaml"
+
+responses:
+  "200":
+    $ref: "../models/delivery-options-response.yaml"
