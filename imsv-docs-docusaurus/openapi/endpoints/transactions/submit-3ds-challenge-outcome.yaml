@@ -34,19 +34,19 @@ post:
             - ipAddress
             - metadata
           properties:
-            outcome:
-              type: string
-              enum:
-                - approved
-                - declined
-              description: |
-                The cardholder's response to the SCA challenge.
             id:
               type: string
               description: |
                 The Immersve identifier for the 3DS transaction. Corresponds to the
                 `id` field in the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook payload.
               example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
+            outcome:
+              type: string
+              description: |
+                The cardholder's response to the SCA challenge.
+              enum:
+                - approved
+                - declined
             externalId:
               type: string
               description: |
