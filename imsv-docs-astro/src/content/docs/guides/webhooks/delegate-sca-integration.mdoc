@@ -1,0 +1,100 @@
+---
+title: In-App 3DS SCA Integration Guide
+slug: guides/delegate-sca-integration
+---
+
+When a cardholder makes an online payment that requires Strong Customer
+Authentication (SCA), Immersve can delegate the challenge to your app. Your app
+is responsible for presenting the authentication prompt to the cardholder and
+reporting the outcome back to Immersve.
+
+This flow uses the `payment-3ds-sca` webhook topic and the Submit 3DS Challenge
+Outcome endpoint.
+
+## Prerequisites
+
+- A webhook listener configured and subscribed to the `payment-3ds-sca` topic.
+  See [Configuring Webhook Listeners](/guides/configuring-webhook-listeners).
+- Your token must have the `payment-3ds-sca:submit` permission.
+
+## How It Works
+
+1. A cardholder initiates an online payment that triggers a 3DS SCA challenge.
+2. Immersve sends a `payment-3ds-sca` webhook to your listener containing the
+   transaction details and challenge metadata.
+3. Your app presents an authentication prompt to the cardholder before the
+   challenge expires.
+4. Your app submits the outcome — approved or declined — to Immersve.
+5. Immersve forwards the outcome to the card scheme to complete or reject the
+   transaction.
+
+## Step 1: Receive the SCA Webhook
+
+When a challenge is initiated, Immersve delivers a `payment-3ds-sca`
+notification to your listener. The payload contains everything needed to display
+the challenge and submit the outcome.
+
+```json
+{
+  "id": "6d8ebff23fe6fcf25d8a1d9dab909e54",
+  "challengeId": "5830c663-427f-48e7-a8c7-1179471faa5c",
+  "cardholderId": "8e7fc0addcbe4409199d4c779d9bd06e",
+  "cardId": "eb9edbae08d9cfd2be91ce178dbc7a04",
+  "cardPanLast4": "1234",
+  "merchantName": "Amazon.com",
+  "merchantCountryCode": "US",
+  "paymentAcquirerAmount": "12550",
+  "paymentAcquirerCurrency": "USD",
+  "expiryTime": "2026-02-08T19:31:30.420Z",
+  "challengeMethodType": "delegate-sca",
+  "category": "payment"
+}
+```
+
+The challenge must be completed before `expiryTime`. If no outcome is submitted
+in time, the challenge will time out.
+
+## Step 2: Present the Challenge to the Cardholder
+
+Display a confirmation screen to the cardholder showing the merchant name,
+payment amount, and currency before requesting authentication.
+
+Authenticate the cardholder using one of the supported methods:
+
+| `authType`    | Description            |
+| ------------- | ---------------------- |
+| `face-id`     | Facial recognition     |
+| `fingerprint` | Fingerprint biometric  |
+| `pin`         | PIN or device passcode |
+
+## Step 3: Submit the Outcome
+
+Once the cardholder has approved or declined, submit the outcome to Immersve
+before the challenge expires.
+
+```shell
+curl -X POST https://test.immersve.com/api/accounts/{cardholderAccountId}/3ds/challenge-outcome \
+  -H 'Authorization: Bearer <TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "6d8ebff23fe6fcf25d8a1d9dab909e54",
+    "outcome": "approved",
+    "authType": "face-id",
+    "authenticatedAt": "2026-02-08T19:29:45.000Z",
+    "dynamicLinkingConfirmed": true,
+    "deviceId": "FBDDF7E1-7A11-4D4E-9C9B-3D8E5C2F1A4B",
+    "ipAddress": "192.0.2.1",
+    "metadata": {
+      "clientName": "Partner App",
+      "deviceName": "Bob'\''s iPhone",
+      "deviceModel": "iPhone16,2",
+      "deviceManufacturer": "Apple"
+    }
+  }'
+```
+
+Set `outcome` to `"declined"` if the cardholder rejected the transaction or
+failed authentication.
+
+Set `dynamicLinkingConfirmed` to `true` if your app displayed the merchant name,
+amount, and currency to the cardholder before they authenticated.
