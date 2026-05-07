@@ -101,7 +101,3 @@ requestBody:
                       The ISO 8601 timestamp of when the SCA challenge expires.
 
           - $ref: "./webhook-envelope.yaml"
-
-responses:
-  "200":
-    $ref: "../models/delivery-options-response.yaml"
