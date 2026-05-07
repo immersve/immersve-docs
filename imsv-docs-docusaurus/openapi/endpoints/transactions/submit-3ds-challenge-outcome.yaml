@@ -1,0 +1,133 @@
+post:
+  tags:
+    - payments
+  summary: Submit 3DS Challenge Outcome
+  operationId: submit-3ds-challenge-outcome
+  description: |
+    Submit the outcome of a 3DS Strong Customer Authentication (SCA) challenge.
+    Call this endpoint after presenting the cardholder with the challenge received
+    via the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook,
+    to approve or decline the transaction on their behalf.
+  parameters:
+    - name: cardholderAccountId
+      in: path
+      description: The Immersve cardholder account ID.
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - outcome
+            - id
+            - externalId
+            - challengeId
+            - transactionId
+            - deviceId
+            - authType
+            - authenticatedAt
+            - dynamicLinkingConfirmed
+            - ipAddress
+            - metadata
+          properties:
+            outcome:
+              type: string
+              enum:
+                - approved
+                - declined
+              description: |
+                The cardholder's response to the SCA challenge.
+            id:
+              type: string
+              description: |
+                The Immersve identifier for the 3DS transaction. Corresponds to the
+                `id` field in the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook payload.
+              example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
+            externalId:
+              type: string
+              description: |
+                The 3DS network transaction reference. Corresponds to the `externalId` field
+                in the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook payload.
+              example: "254a5d3a-e251-4fc0-913a-51c01d3420a7"
+            challengeId:
+              type: string
+              description: |
+                The unique identifier for the SCA challenge instance. Corresponds to
+                the `challengeId` field in the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook payload.
+              example: "5830c663-427f-48e7-a8c7-1179471faa5c"
+            transactionId:
+              type: string
+              description: |
+                The unique identifier for the 3DS transaction. Corresponds to the
+                `transactionId` field in the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook payload.
+              example: "bdd53f2b-f39e-4115-a913-877141fa56cb"
+            deviceId:
+              type: string
+              description: |
+                The identifier of the device used by the cardholder during
+                authentication.
+              example: "device-abc123"
+            authType:
+              type: string
+              description: |
+                The authentication method used by the cardholder.
+              enum:
+                - pin
+                - face-id
+                - fingerprint
+            authenticatedAt:
+              type: string
+              format: date-time
+              description: |
+                The timestamp when the cardholder completed authentication.
+              example: "2024-01-01T12:00:00Z"
+            dynamicLinkingConfirmed:
+              type: boolean
+              description: |
+                Confirms merchant name, amount, and currency were shown before authentication.
+            ipAddress:
+              type: string
+              description: |
+                The IP address of the cardholder's device at the time of
+                authentication.
+              example: "203.0.113.42"
+            metadata:
+              type: object
+              description: |
+                Additional context about the client and device used during authentication.
+              properties:
+                clientName:
+                  type: string
+                  description: The name of the client application.
+                  example: "Immersve App"
+                deviceName:
+                  type: string
+                  description: The name of the cardholder's device.
+                  example: "Bob's iPhone"
+                deviceModel:
+                  type: string
+                  description: The model identifier of the cardholder's device.
+                  example: "SM-S942"
+                deviceManufacturer:
+                  type: string
+                  description: The manufacturer of the cardholder's device.
+                  example: "Samsung"
+  responses:
+    "200":
+      description: Challenge outcome submitted successfully.
+    "400":
+      description: Request fields are invalid.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-400.yaml"
+    "403":
+      description: No Authorization to access resource.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
