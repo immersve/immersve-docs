@@ -24,9 +24,6 @@ post:
           required:
             - outcome
             - id
-            - externalId
-            - challengeId
-            - transactionId
             - deviceId
             - authType
             - authenticatedAt
@@ -47,24 +44,6 @@ post:
               enum:
                 - approved
                 - declined
-            externalId:
-              type: string
-              description: |
-                The 3DS network transaction reference. Corresponds to the `externalId` field
-                in the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook payload.
-              example: "254a5d3a-e251-4fc0-913a-51c01d3420a7"
-            challengeId:
-              type: string
-              description: |
-                The unique identifier for the SCA challenge instance. Corresponds to
-                the `challengeId` field in the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook payload.
-              example: "5830c663-427f-48e7-a8c7-1179471faa5c"
-            transactionId:
-              type: string
-              description: |
-                The unique identifier for the 3DS transaction. Corresponds to the
-                `transactionId` field in the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook payload.
-              example: "bdd53f2b-f39e-4115-a913-877141fa56cb"
             deviceId:
               type: string
               description: |
