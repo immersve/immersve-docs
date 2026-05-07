@@ -4,9 +4,9 @@ slug: guides/delegate-sca-integration
 ---
 
 When a cardholder makes an online payment that requires Strong Customer
-Authentication (SCA), Immersve can delegate the challenge to your app. Your app
-is responsible for presenting the authentication prompt to the cardholder and
-reporting the outcome back to Immersve.
+Authentication (SCA), Immersve can delegate the challenge to your application.
+Your application is responsible for presenting the authentication prompt to the
+cardholder and reporting the outcome back to Immersve.
 
 This flow uses the `payment-3ds-sca` webhook topic and the Submit 3DS Challenge
 Outcome endpoint.
@@ -22,9 +22,9 @@ Outcome endpoint.
 1. A cardholder initiates an online payment that triggers a 3DS SCA challenge.
 2. Immersve sends a `payment-3ds-sca` webhook to your listener containing the
    transaction details and challenge metadata.
-3. Your app presents an authentication prompt to the cardholder before the
+3. Your application presents an authentication prompt to the cardholder before the
    challenge expires.
-4. Your app submits the outcome — approved or declined — to Immersve.
+4. Your application submits the outcome — approved or declined — to Immersve.
 5. Immersve forwards the outcome to the card scheme to complete or reject the
    transaction.
 
@@ -96,5 +96,5 @@ curl -X POST https://test.immersve.com/api/accounts/{cardholderAccountId}/3ds/ch
 Set `outcome` to `"declined"` if the cardholder rejected the transaction or
 failed authentication.
 
-Set `dynamicLinkingConfirmed` to `true` if your app displayed the merchant name,
+Set `dynamicLinkingConfirmed` to `true` if your application displayed the merchant name,
 amount, and currency to the cardholder before they authenticated.
