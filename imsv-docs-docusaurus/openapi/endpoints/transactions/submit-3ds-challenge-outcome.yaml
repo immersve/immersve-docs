@@ -52,14 +52,7 @@ post:
                 - pin
                 - face-id
                 - fingerprint
-            authScope:
-              type: string
-              description: |
-                The scope of the authentication performed by the cardholder.
-              enum:
-                - device
-                - app
-                - prompt
+                - device-passcode
             authenticatedAt:
               type: string
               format: date-time
@@ -123,7 +116,7 @@ post:
                   description: |
                     The IP address of the cardholder's device at the time of
                     authentication.
-                  example: "203.0.113.42"
+                  example: "192.0.2.1"
   responses:
     "200":
       description: Challenge outcome submitted successfully.

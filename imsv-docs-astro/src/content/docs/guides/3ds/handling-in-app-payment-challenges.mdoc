@@ -36,6 +36,7 @@ display the challenge and submit the outcome.
 ```json
 {
   "id": "6d8ebff23fe6fcf25d8a1d9dab909e54",
+  "externalId": "254a5d3a-e251-4fc0-913a-51c01d3420a7",
   "cardholderId": "8e7fc0addcbe4409199d4c779d9bd06e",
   "cardId": "eb9edbae08d9cfd2be91ce178dbc7a04",
   "cardPanLast4": "1234",
@@ -51,7 +52,12 @@ display the challenge and submit the outcome.
 The challenge must be completed before `expiryTime`. If no outcome is submitted
 in time, the challenge will time out.
 
-## Step 2: Ensure the User is Authenticated
+## Step 2: Present the Challenge to the User
+
+Display a confirmation screen to the cardholder showing the **merchant name**,
+**payment amount**, and **payment currency**, and ask to approve or decline the transaction.
+
+## Step 3: Prompt the User to Authenticate
 
 Authenticate the cardholder using one of the supported `authType` methods:
 
@@ -59,20 +65,8 @@ Authenticate the cardholder using one of the supported `authType` methods:
 | ------------- | ---------------------- |
 | `face-id`     | Facial recognition     |
 | `fingerprint` | Fingerprint biometric  |
-| `pin`         | PIN or device passcode |
-
-Specify the scope of the authentication using `authScope`:
-
-| authScope | Description                                        |
-| --------- | -------------------------------------------------- |
-| `device`  | User authenticated when accessing the device       |
-| `app`     | User authenticated when accessing the app          |
-| `prompt`  | User authenticated when prompted for the challenge |
-
-## Step 3: Present the Challenge to the User
-
-Display a confirmation screen to the cardholder showing the **merchant name**,
-**payment amount**, and **payment currency**.
+| `pin`         | App PIN |
+| `device-passcode` | Device PIN or passcode |
 
 ## Step 4: Submit the Outcome
 
@@ -87,7 +81,6 @@ curl -X POST https://test.immersve.com/api/accounts/{cardholderAccountId}/3ds/ch
     "id": "6d8ebff23fe6fcf25d8a1d9dab909e54",
     "outcome": "approved",
     "authType": "face-id",
-    "authScope": "app",
     "authenticatedAt": "2026-02-08T19:29:45.000Z",
     "dynamicLinkingConfirmed": true,
     "confirmedTransactionDetails": {
