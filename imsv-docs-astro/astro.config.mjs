@@ -50,6 +50,7 @@ export default defineConfig({
               { label: 'Funding Protocols', link: 'guides/funding-protocols' },
               { label: 'Funding Types', link: 'guides/funding-types' },
             ]},
+            { label: 'SCA', autogenerate: { directory: 'guides/strong-customer-authentication' }},
             { label: 'Webhooks', autogenerate: { directory: 'guides/webhooks' }},
             { label: 'Testing', autogenerate: { directory: 'guides/testing' } },
             { label: 'Reports', autogenerate: { directory: 'guides/reports' }},
