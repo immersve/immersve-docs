@@ -1,6 +1,6 @@
 tags: [payments]
-summary: Payment 3DS SCA
-operationId: payment-3ds-sca
+summary: Payment 3DS SCA Challenge
+operationId: payment-3ds-sca-challenge
 description: |
   Triggered when a 3D Secure (3DS) Strong Customer Authentication (SCA) challenge is
   initiated for a card transaction. Subscribers should use this event to present the
@@ -15,7 +15,7 @@ requestBody:
             properties:
               topic:
                 type: string
-                enum: [payment-3ds-sca]
+                enum: [payment-3ds-sca-challenge]
               payload:
                 type: object
                 properties:

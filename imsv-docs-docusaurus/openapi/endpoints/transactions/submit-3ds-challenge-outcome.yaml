@@ -6,7 +6,7 @@ post:
   description: |
     Submit the outcome of a 3DS Strong Customer Authentication (SCA) challenge.
     Call this endpoint after presenting the cardholder with the challenge received
-    via the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook,
+    via the [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook,
     to approve or decline the transaction on their behalf.
   parameters:
     - name: cardholderAccountId
@@ -24,18 +24,18 @@ post:
           required:
             - outcome
             - id
-            - deviceId
             - authType
+            - authScope
             - authenticatedAt
             - dynamicLinkingConfirmed
-            - ipAddress
+            - confirmedTransactionDetails
             - metadata
           properties:
             id:
               type: string
               description: |
                 The Immersve identifier for the 3DS transaction. Corresponds to the
-                `id` field in the [Payment 3DS SCA](/api-reference/webhook-topics/payment-3-ds-sca/) webhook payload.
+                `id` field in the [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook payload.
               example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
             outcome:
               type: string
@@ -44,13 +44,6 @@ post:
               enum:
                 - approved
                 - declined
-            deviceId:
-              type: string
-              description: |
-                A stable, platform-native identifier for the cardholder's
-                device. Should be consistent across sessions and recognisable
-                to the cardholder.
-              example: "FBDDF7E1-7A11-4D4E-9C9B-3D8E5C2F1A4B"
             authType:
               type: string
               description: |
@@ -59,11 +52,19 @@ post:
                 - pin
                 - face-id
                 - fingerprint
+            authScope:
+              type: string
+              description: |
+                The scope of the authentication performed by the cardholder.
+              enum:
+                - device
+                - app
+                - prompt
             authenticatedAt:
               type: string
               format: date-time
               description: |
-                The timestamp when the cardholder completed authentication.
+                The timestamp when the cardholder completed authentication in UTC.
               example: "2024-01-01T12:00:00Z"
             dynamicLinkingConfirmed:
               type: boolean
@@ -71,12 +72,24 @@ post:
                 Confirms that the merchant name, amount, and currency were
                 displayed to the cardholder before authentication was
                 performed.
-            ipAddress:
-              type: string
+            confirmedTransactionDetails:
+              type: object
               description: |
-                The IP address of the cardholder's device at the time of
-                authentication.
-              example: "203.0.113.42"
+                The transaction details that were confirmed to the cardholder
+                before authentication was performed.
+              properties:
+                amount:
+                  type: integer
+                  description: The transaction amount in minor units.
+                  example: 5000
+                currency:
+                  type: string
+                  description: The three-letter ISO currency code for the transaction.
+                  example: "USD"
+                merchantName:
+                  type: string
+                  description: The name of the merchant as displayed to the cardholder during authentication.
+                  example: "Immersve Store"
             metadata:
               type: object
               description: |
@@ -86,6 +99,13 @@ post:
                   type: string
                   description: The name of the client application.
                   example: "Immersve App"
+                deviceId:
+                  type: string
+                  description: |
+                    A stable, platform-native identifier for the cardholder's
+                    device. Should be consistent across sessions and recognisable
+                    to the cardholder.
+                  example: "FBDDF7E1-7A11-4D4E-9C9B-3D8E5C2F1A4B"
                 deviceName:
                   type: string
                   description: The name of the cardholder's device.
@@ -98,6 +118,12 @@ post:
                   type: string
                   description: The manufacturer of the cardholder's device.
                   example: "Samsung"
+                ipAddress:
+                  type: string
+                  description: |
+                    The IP address of the cardholder's device at the time of
+                    authentication.
+                  example: "203.0.113.42"
   responses:
     "200":
       description: Challenge outcome submitted successfully.
