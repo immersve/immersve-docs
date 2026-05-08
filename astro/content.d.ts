@@ -160,6 +160,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"docs": {
+"guides/3ds/handling-in-app-payment-challenges.mdoc": {
+	id: "guides/3ds/handling-in-app-payment-challenges.mdoc";
+  slug: "guides/handling-in-app-payment-challenges";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/api-fundamentals/algorand-login.mdoc": {
 	id: "guides/api-fundamentals/algorand-login.mdoc";
   slug: "guides/algorand-login";
