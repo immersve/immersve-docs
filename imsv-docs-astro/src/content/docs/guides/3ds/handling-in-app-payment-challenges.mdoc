@@ -4,7 +4,7 @@ slug: guides/handling-in-app-payment-challenges
 ---
 
 When a cardholder makes a payment that requires 3DS authentication, Immersve
-can delegate the challenge to your application. Your application is responsible
+can delegate the challenge to your mobile application. Your mobile application is responsible
 for presenting the authentication prompt to the cardholder and reporting the
 outcome back to Immersve.
 
@@ -21,10 +21,10 @@ Outcome endpoint.
 1. A cardholder initiates a payment that triggers a 3DS challenge.
 2. Immersve sends a `payment-3ds-sca-challenge` webhook to your webhook listener containing the
    transaction details and challenge metadata.
-3. Your application presents an authentication prompt to the cardholder before the
+3. Your mobile application presents an authentication prompt to the cardholder before the
    challenge expires.
-4. Your application submits the outcome to Immersve.
-5. Immersve forwards the outcome to the card scheme to complete or reject the
+4. Your mobile application submits the challenge outcome to Immersve.
+5. Immersve forwards the challenge outcome to the card scheme to complete or reject the
    transaction.
 
 ## Step 1: Receive the 3DS Webhook
@@ -49,13 +49,13 @@ display the challenge and submit the outcome.
 }
 ```
 
-The challenge must be completed before `expiryTime`. If no outcome is submitted
+The challenge must be completed before `expiryTime`. If an outcome is not submitted
 in time, the challenge will time out.
 
 ## Step 2: Present the Challenge to the User
 
 Display a confirmation screen to the cardholder showing the **merchant name**,
-**payment amount**, and **payment currency**, and ask to approve or decline the transaction.
+**payment amount**, and **payment currency**, and options to approve or decline the transaction.
 
 ## Step 3: Prompt the User to Authenticate
 
@@ -73,8 +73,16 @@ Authenticate the cardholder using one of the supported `authType` methods:
 Once the cardholder has approved or declined, submit the outcome to Immersve
 before the challenge expires.
 
+If the cardholder declined the transaction or failed authentication set
+`outcome` to `"declined"`.
+
+Your mobile application must display the **merchant name**,
+**payment amount**, and **payment currency** to
+the cardholder before they authenticate. Set `dynamicLinkingConfirmed` to `true`
+to confirm this. If set to `false` the transaction will be declined.
+
 ```shell
-curl -X POST https://test.immersve.com/api/accounts/{cardholderAccountId}/3ds/challenge-outcome \
+curl -X POST https://api.immersve.com/api/accounts/{cardholderAccountId}/3ds/challenge-outcome \
   -H 'Authorization: Bearer <TOKEN>' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -99,9 +107,5 @@ curl -X POST https://test.immersve.com/api/accounts/{cardholderAccountId}/3ds/ch
   }'
 ```
 
-Set `outcome` to `"declined"` if the cardholder rejected the transaction or
-failed authentication.
 
-Set `dynamicLinkingConfirmed` to `true` if your application displayed the merchant name,
-amount, and currency to the cardholder before they authenticated.
 
