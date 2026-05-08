@@ -9,9 +9,9 @@ post:
     via the [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook,
     to approve or decline the transaction on their behalf.
   parameters:
-    - name: cardholderAccountId
+    - name: accountId
       in: path
-      description: The Immersve cardholder account ID.
+      description: The Immersve id for the cardholder associated with the card.
       required: true
       schema:
         type: string

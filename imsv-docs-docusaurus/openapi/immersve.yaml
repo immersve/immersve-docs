@@ -123,7 +123,7 @@ paths:
     $ref: "./endpoints/transactions/list-payment-notifications.yaml"
   "/api/payment-notifications/{messageId}":
     $ref: "./endpoints/transactions/get-payment-notification.yaml"
-  "/api/accounts/{cardholderAccountId}/3ds/challenge-outcome":
+  "/api/accounts/{accountId}/3ds/challenge-outcome":
     $ref: "./endpoints/transactions/submit-3ds-challenge-outcome.yaml"
 
   # Reports
