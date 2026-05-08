@@ -41,6 +41,7 @@ export default defineConfig({
               { label: 'Detecting KYC Completion', link: 'guides/detecting-kyc-completion' },
               { label: 'KYC Spending Prerequisites', link: 'guides/kyc-spending-prerequisites' },
             ]},
+            { label: 'SCA', autogenerate: { directory: 'guides/sca' }},
             { label: 'Supported Chains', autogenerate: { directory: 'guides/supported-chains' } },
             { label: 'Supported Tokens', autogenerate: { directory: 'guides/supported-tokens' } },
             { label: 'Funding Protocols', items: [
