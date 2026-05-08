@@ -72,16 +72,16 @@ post:
                 before authentication was performed.
               properties:
                 amount:
-                  type: integer
-                  description: The transaction amount in minor units.
-                  example: 5000
+                  type: string
+                  description: Payment amount represented in the merchant's local currency. The amount will use fiat minor units. For example 978 GBP is £9.78.
+                  example: "5000"
                 currency:
                   type: string
-                  description: The three-letter ISO currency code for the transaction.
+                  description: The merchant's local currency.
                   example: "USD"
                 merchantName:
                   type: string
-                  description: The name of the merchant as displayed to the cardholder during authentication.
+                  description: The merchant's name.
                   example: "Immersve Store"
             metadata:
               type: object
