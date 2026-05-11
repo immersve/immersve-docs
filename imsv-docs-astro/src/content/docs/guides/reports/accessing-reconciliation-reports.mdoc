@@ -23,19 +23,19 @@ Each line item contains a snapshot of the relevant funding source or funding sou
 ```json
 {
   "event": {
-    "id": "funding-source-interaction-id-000000000000001",
+    "id": "fsi-id-000000000000001",
     "type": "confirmed",
     "createdAt": "2026-04-05T10:00:05Z"
   },
   "fundingSourceInteraction": {
-    "id": "funding-source-interaction-id",
+    "id": "fsi-id",
     "type": "payment",
     "status": "confirmed",
     "createdAt": "2026-04-05T10:00:00Z",
     "accountId": "account-id",
     "fundingSource": {
-      "id": "funding-source-id",
-      "fundingChannelId": "funding-channel-id"
+      "id": "fs-id",
+      "fundingChannelId": "fc-id"
     },
     "amount": { "value": "30000000", "currency": "USDC" },
     "relatedTransaction": { "type": "payment", "id": "related-transaction-id" }
@@ -55,19 +55,19 @@ Enum values:
 ```json
 {
   "event": {
-    "id": "funding-source-id-000000000000002",
+    "id": "fs-id-000000000000002",
     "type": "balance-decreased",
     "createdAt": "2026-04-05T10:00:05Z",
-    "interactionEventId": "interaction-event-id-000000000000001",
+    "interactionEventId": "fsi-id-000000000000001",
     "amount": { "value": "30000000", "currency": "USDC" }
   },
   "fundingSource": {
-    "id": "funding-source-id",
+    "id": "fs-id",
     "createdAt": "2026-03-01T12:00:00Z",
     "externalId": "external-id",
     "accountId": "account-id",
     "fundingChannel": {
-      "id": "funding-channel-id",
+      "id": "fc-id",
       "name": "usdc-funding-1"
     },
     "purpose": "card-funding",
