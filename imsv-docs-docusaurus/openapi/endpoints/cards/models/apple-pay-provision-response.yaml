@@ -1,0 +1,24 @@
+type: object
+required:
+  - encryptedPassData
+  - ephemeralPublicKey
+  - activationData
+properties:
+  encryptedPassData:
+    type: string
+    description: |
+      Base64-encoded encrypted pass data. Pass to the PassKit completion
+      handler as `PKAddPaymentPassRequest.encryptedPassData`.
+    example: "BASE64..."
+  ephemeralPublicKey:
+    type: string
+    description: |
+      Base64-encoded ephemeral public key. Pass to the PassKit completion
+      handler as `PKAddPaymentPassRequest.ephemeralPublicKey`.
+    example: "BASE64..."
+  activationData:
+    type: string
+    description: |
+      Base64-encoded activation data. Pass to the PassKit completion
+      handler as `PKAddPaymentPassRequest.activationData`.
+    example: "BASE64..."
