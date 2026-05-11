@@ -138,6 +138,10 @@ This model is also consistent with the {% link title="payment updated webhook pa
 }
 ```
 
+Enum values:
+- `event.type`: `auth-accepted`, `clearing-accepted`, `auth-declined`, `payment-failed`, `auth-reversal-accepted`, `auth-expired`, `auth-completion-accepted`, `clearing-reversal-accepted`
+- `payment.type`: `purchase`, `refund`, `adjustment`
+
 ### Join Logic for Downstream Processing
 
 Use the following joins to ensure end-to-end traceability across report layers:
