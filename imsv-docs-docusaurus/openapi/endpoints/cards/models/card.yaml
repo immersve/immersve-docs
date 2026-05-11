@@ -95,11 +95,8 @@ properties:
 
       Use as the `primaryAccountIdentifier` when constructing an Apple Pay
       `PKAddPaymentPassRequestConfiguration`. PassKit uses this value to
-      detect that a card is already present in the wallet; it must stay
-      stable across reissues of the same card so that a reissued card does
-      not appear as a separate entry. Always use `seriesId` rather than
-      `id` — even though they are currently equal, this will change in a
-      later release.
+      detect that a card is already present in the wallet even if the card
+      was reissued.
     example: 91ad6fea3b52ca58d60d7fd310f789ec
   cardholderName:
     type: string
