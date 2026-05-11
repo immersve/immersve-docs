@@ -104,7 +104,7 @@ properties:
       The cardholder's name as it should be displayed when adding the card
       to a digital wallet. Use as the `cardholderName` when constructing
       an Apple Pay `PKAddPaymentPassRequestConfiguration`.
-    example: JOHN DOE
+    example: John Doe
   immersveExpiration:
     type: string
     description: Deprecated field, use expiresAt
