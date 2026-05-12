@@ -1,0 +1,30 @@
+type: object
+required:
+  - certChain
+  - nonce
+  - nonceSignature
+properties:
+  certChain:
+    type: array
+    description: |
+      The Apple-supplied certificate chain, leaf certificate first, as
+      provided to your app by the PassKit
+      `PKAddPaymentPassViewController` delegate callback. Each entry is the
+      standard base64 encoding of the raw certificate bytes.
+    items:
+      type: string
+    example:
+      - "MIIEdjCCBBugAwIBAgIIWz..."
+      - "MIIDFjCCArygAwIBAgIIflF..."
+  nonce:
+    type: string
+    description: |
+      The Apple-supplied nonce from the PassKit
+      `PKAddPaymentPassViewController` delegate callback, base64-encoded.
+    example: "Tn9aZ0qkPp4xWvE..."
+  nonceSignature:
+    type: string
+    description: |
+      The Apple-supplied nonce signature from the PassKit
+      `PKAddPaymentPassViewController` delegate callback, base64-encoded.
+    example: "MEUCIQDk3jX..."

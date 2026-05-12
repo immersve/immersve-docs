@@ -103,6 +103,8 @@ paths:
     $ref: "./endpoints/cards/card-unfreeze.yaml"
   "/api/cards/{cardId}/pan-token":
     $ref: "./endpoints/cards/card-pan-token.yaml"
+  "/api/cards/{cardId}/provision/apple-pay":
+    $ref: "./endpoints/cards/apple-pay-provision.yaml"
 
   # Cardholder Blocks
   "/api/accounts/{cardholderAccountId}/blocks":

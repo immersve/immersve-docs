@@ -1,0 +1,58 @@
+post:
+  tags:
+    - card
+  summary: Provision Card to Apple Pay
+  operationId: provision-card-apple-pay
+  description: |
+    Generate the encrypted payload required to add a card to Apple Pay via
+    in-app push provisioning.
+
+    Call this endpoint from your partner app in response to the PassKit
+    `PKAddPaymentPassViewController` delegate callback
+    `generateRequestWithCertificateChain:nonce:nonceSignature:completionHandler:`.
+    Forward the `certChain`, `nonce`, and `nonceSignature` values supplied by
+    PassKit to this endpoint, then pass the response fields back to the
+    PassKit completion handler as the corresponding fields of
+    `PKAddPaymentPassRequest`.
+
+    Refer to the `seriesId` field on the card resource for the value to use
+    as `primaryAccountIdentifier`, and to `cardholderName` for the value to
+    use as the cardholder name.
+  parameters:
+    - $ref: "../../models/card-id-path.yaml"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "./models/apple-pay-provision-request.yaml"
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/apple-pay-provision-response.yaml"
+    "400":
+      description: |
+        **APPLE_PAY_PAYLOAD_INVALID**
+        The supplied `certChain`, `nonce`, or `nonceSignature` was rejected
+        by the upstream provisioning service.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-400.yaml"
+    "403":
+      description: |
+        **FORBIDDEN**
+        The card does not exist or the caller lacks permission to provision
+        it.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
+    "503":
+      description: |
+        **PAYMENT_BRIDGE_ERROR**
+        The upstream provisioning service is unavailable or returned an
+        unexpected error. Safe to retry.
