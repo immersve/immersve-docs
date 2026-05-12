@@ -12,7 +12,7 @@ description: |
     -H 'Authorization: Bearer <TOKEN>' \
     -F 'purpose="kyc-doc-upload"' \
     -F 'accountId="accountId"' \
-    -F 'file=@"/path/to/file"'
+    -F 'file=@"/path/to/file";type="type"'
   ```
 requestBody:
   content:
