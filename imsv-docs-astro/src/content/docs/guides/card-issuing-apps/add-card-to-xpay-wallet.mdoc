@@ -71,3 +71,23 @@ See the [Google
 guide](https://support.google.com/wallet/answer/12058983?hl=en#zippy=%2Cwith-the-google-wallet-app)
 for more details on how manual provisioning operates from the user's
 perspective.
+
+## OTP Security Challenge
+
+Whether the card is loaded manually or via in-app push provisioning, the
+network may require a one-time password (OTP) challenge before the token is
+activated. This is dynamic and driven by risk scoring on the card load, so the
+challenge is not always presented.
+
+When a challenge is required, the xPay wallet prompts the cardholder to choose
+a delivery method (SMS or email). The available destinations come from the
+cardholder's contact details set via the {% link endpoint="update-contact-details" /%}
+endpoint, so ensure a phone number and email address are recorded against the
+cardholder account before provisioning.
+
+By default, Immersve delivers the OTP to the chosen destination. To deliver the
+OTP from your own sender instead, subscribe to the {% link title="XPay Card Load OTP"
+endpoint="webhook-topics/xpay-card-load-otp" /%} webhook. The webhook payload
+includes the verification code and the delivery option selected by the
+cardholder; your handler is responsible for sending the code to the cardholder
+and returning the delivery channel and destination it used.
