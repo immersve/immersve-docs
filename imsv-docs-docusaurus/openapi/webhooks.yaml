@@ -13,10 +13,10 @@ tags:
     x-displayName: Payments
   - name: xpay
     x-displayName: XPay
-  - name: test-webhooks
-    x-displayName: Test Webhooks
   - name: reports
     x-displayName: Reports
+  - name: test-webhooks
+    x-displayName: Test Webhooks
 
 # Custom attribute used as YAML anchor to simplify webhook header inclusion
 x-webhook-headers: &WebhookHeaders
