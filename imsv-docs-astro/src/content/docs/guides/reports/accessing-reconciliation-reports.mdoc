@@ -11,6 +11,8 @@ In order to begin report generation for your partner integration you must make a
 These reports are generated in `.jsonl` format covering either a daily or monthly period of time. When reports become available for download a notification
 will be sent. The details of this notification as well as the list of supported report types can be found in the {% link title="report completed webhook documentation" href="/api-reference/webhook-topics/report-completed/" /%}.
 
+Enum values listed in this guide may be extended in future releases. Parsing code should treat unknown values as informational rather than fail on them.
+
 
 
 ### Funding Source Reporting
@@ -55,7 +57,7 @@ Enum values:
 - `fundingSourceInteraction.creditDebitIndicator`: `credit` or `debit`.
 - `fundingSourceInteraction.relatedTransaction.type`: `blockchain` or `payment`.
   - When `blockchain`, `transactionHash` is populated and the row carries `chainId` and `block`.
-  - When `payment`, `paymentId` is populated. It is the card payment transaction identifier, joinable to the Payment report and the {% link title="Get Payment Notification endpoint" href="/api-reference/get-payment-notification/" /%}.
+  - When `payment`, `paymentId` is populated. It is the card payment transaction identifier, joinable to the Payment report.
 
 `amount.value` is a string of the amount in minor units of the token (e.g. `"30000000"` for 30 USDC).
 
@@ -148,7 +150,18 @@ This model is also consistent with the {% link title="payment updated webhook pa
 ```
 
 Enum values:
-- `event.type`: `auth-accepted`, `auth-completion-accepted`, `auth-completion-declined`, `auth-declined`, `auth-expired`, `auth-reversal-accepted`, `auth-reversal-declined`, `clearing-accepted`, `clearing-reversal-accepted`, `clearing-reversal-declined`, `payment-failed`.
+- `event.type`, one of:
+  - `auth-accepted`
+  - `auth-completion-accepted`
+  - `auth-completion-declined`
+  - `auth-declined`
+  - `auth-expired`
+  - `auth-reversal-accepted`
+  - `auth-reversal-declined`
+  - `clearing-accepted`
+  - `clearing-reversal-accepted`
+  - `clearing-reversal-declined`
+  - `payment-failed`
 - `payment.type`: `purchase`, `refund`, `adjustment`.
 - `payment.status`: `created`, `holding`, `cleared`, `canceled`, `failed`.
 - `payment.creditDebitIndicator`: `credit` or `debit`.
@@ -196,16 +209,14 @@ The non-`confirmed` rows are not used for balance arithmetic but support operati
 
 If you are moving from the legacy `List Funding Source Interactions`, `Get Funding Source Balance`, `List Payment Notifications`, and `Get Payment Notification` APIs to the new reports, the table below maps each legacy field to its new equivalent.
 
-| Legacy field / behaviour | New equivalent | Notes |
-| --- | --- | --- |
-| Filter `status='Confirmed'` and sum (List FSI) | Filter `event.type='confirmed'` on the FSI report and sum | See *Reconciling balances* above for a worked example. |
-| `creditDebitIndicator` (List FSI) | `fundingSourceInteraction.creditDebitIndicator` (FSI report row) | Same field, now first-class on every event row. |
-| `modifiedAt` (List FSI) | `event.createdAt` of the most recent event row sharing the same `fundingSourceInteraction.id` | Report rows are immutable events; the equivalent of "modified" is the latest event for the interaction. |
-| `context.ref` for card-context interactions (List FSI) | `fundingSourceInteraction.relatedTransaction.paymentId` | Same meaning as the legacy `context.ref` for card-context interactions; joinable to the Payment report and `Get Payment Notification`. |
-| `context.transactionHash` (List FSI) | `fundingSourceInteraction.relatedTransaction.transactionHash` | Populated when `relatedTransaction.type = 'blockchain'`; the row also carries `chainId` and `block`. |
-| `channel.{id, type, strategy}` (List FSI) | Not on the FSI row. Join to the Funding Source report on `fundingSourceInteraction.fundingSource.id`; the FS row carries `fundingChannel.{id, name}`, `purpose`, `mode`, `strategy` | FSI rows stay thin; channel-level metadata lives on the FS report so it isn't duplicated on every event row. |
-| `description` (List FSI; `cardAcceptor` name/city/country for card-context) | For card-context interactions, join to the Payment report via `relatedTransaction.paymentId` and read `payment.merchant.{name, city, regionCode, ...}`. For on-chain deposits and withdrawals, the chain itself is the source of descriptive context — look up `relatedTransaction.{chainId, transactionHash, block}` in any blockchain explorer. | The legacy `description` only existed for card-context interactions. |
-| Top-level `accountId` on payment notifications (Get Payment Notification) | `payment.cardholder.id` on the Payment report row | The cardholder id is the equivalent identifier on the new shape. |
+| Legacy field | New equivalent |
+| --- | --- |
+| `modifiedAt` (List FSI) | `event.createdAt` of the most recent event row sharing the same `fundingSourceInteraction.id`. Report rows are immutable events, so "modified" maps to the latest event for the interaction. |
+| `context.ref` for card-context interactions (List FSI) | `fundingSourceInteraction.relatedTransaction.paymentId`, joinable to the Payment report. |
+| `context.transactionHash` (List FSI) | `fundingSourceInteraction.relatedTransaction.transactionHash`, populated when `relatedTransaction.type = 'blockchain'`. |
+| `channel.{id, type, strategy}` (List FSI) | Not on the FSI row. Join to the Funding Source report on `fundingSourceInteraction.fundingSource.id`; the FS row carries `fundingChannel.{id, name}`, `purpose`, `mode`, `strategy`. |
+| `description` (List FSI; `cardAcceptor` name/city/country for card-context) | For card-context interactions, join to the Payment report via `relatedTransaction.paymentId` and read `payment.merchant.{name, city, regionCode, ...}`. For on-chain deposits and withdrawals, look up `relatedTransaction.{chainId, transactionHash, block}` in any blockchain explorer. |
+| Top-level `accountId` on payment notifications (Get Payment Notification) | `payment.cardholder.id` on the Payment report row. |
 
 
 ## Schedule
