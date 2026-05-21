@@ -98,13 +98,6 @@ properties:
       detect that a card is already present in the wallet even if the card
       was reissued.
     example: 91ad6fea3b52ca58d60d7fd310f789ec
-  cardholderName:
-    type: string
-    description: |
-      The cardholder's name as it should be displayed when adding the card
-      to a digital wallet. Use as the `cardholderName` when constructing
-      an Apple Pay `PKAddPaymentPassRequestConfiguration`.
-    example: John Doe
   immersveExpiration:
     type: string
     description: Deprecated field, use expiresAt
