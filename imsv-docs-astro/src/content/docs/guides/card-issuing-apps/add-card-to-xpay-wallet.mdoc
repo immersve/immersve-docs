@@ -43,7 +43,7 @@ The flow is:
    is set to the card's `cardholderName` field.
 2. When PassKit invokes your delegate to request the provisioning payload,
    forward the `certChain`, `nonce`, and `nonceSignature` values it supplies
-   to the {% link endpoint="provision-card-apple-pay" /%} endpoint.
+   to the {% link endpoint="provision-card-to-apple-pay" /%} endpoint.
 3. Pass the `encryptedPassData`, `ephemeralPublicKey`, and `activationData`
    fields from the endpoint response back to the PassKit completion handler
    as the corresponding fields of `PKAddPaymentPassRequest`.

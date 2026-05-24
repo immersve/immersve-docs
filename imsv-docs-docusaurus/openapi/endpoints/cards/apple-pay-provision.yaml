@@ -2,7 +2,7 @@ post:
   tags:
     - card
   summary: Provision Card to Apple Pay
-  operationId: provision-card-apple-pay
+  operationId: provision-card-to-apple-pay
   description: |
     Generate the encrypted payload required to add a card to Apple Pay via
     in-app push provisioning.
