@@ -449,7 +449,7 @@ __metadata:
     mdast-util-directive: "npm:^3.1.0"
     mdast-util-to-markdown: "npm:^2.1.0"
     pagefind: "npm:^1.1.1"
-    rehype: "npm:^13.0.1"
+    rehype: "npm:^13.0.2"
     rehype-format: "npm:^5.0.0"
     remark-directive: "npm:^3.0.0"
     unified: "npm:^11.0.4"
@@ -17850,18 +17850,6 @@ __metadata:
     hast-util-to-html: "npm:^9.0.0"
     unified: "npm:^11.0.0"
   checksum: 10/76ded4b2b137f585c6a35ac2e95a35cbd9d49558bd5af946b7e7a9e67b17cb2a7d33f3df21776d2e9972cd057e829e17f61954bc72ea6cbe0e20d670b179adab
-  languageName: node
-  linkType: hard
-
-"rehype@npm:^13.0.1":
-  version: 13.0.1
-  resolution: "rehype@npm:13.0.1"
-  dependencies:
-    "@types/hast": "npm:^3.0.0"
-    rehype-parse: "npm:^9.0.0"
-    rehype-stringify: "npm:^10.0.0"
-    unified: "npm:^11.0.0"
-  checksum: 10/0638c2719db2b6bab93c8182e5e6275c20d320068859b0d8d356ea9d84e4a02c8717660414f96ad711a01cce3071447a46855a0cd1f0b5b0679c9eed537da48c
   languageName: node
   linkType: hard
 
