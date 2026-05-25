@@ -116,3 +116,6 @@ docker compose run linkchecker -F csv --check-extern --verbose http://nginx
 The status of all links will be reported in the generated `linkchecker-out.csv`
 file.
 
+## Legal
+
+Copyright 2026 Immersve
