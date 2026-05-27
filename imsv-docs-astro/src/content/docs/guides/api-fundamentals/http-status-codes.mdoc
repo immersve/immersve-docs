@@ -66,7 +66,12 @@ making the correct request.
 Rate limits have been exceeded. Refer to {% link page="guides/rate-limiting" /%} for more information.
 
 ## 5xx Server Error
-Errors in the 5xx range suggest a problem on our side. Usually, retrying your
-request might resolve the issue. Our engineering team monitors these errors
-closely but bug reports are also welcome at
+Errors in the 5xx range suggest a temporary problem on Immersve's side. Clients
+may retry these requests, but should use bounded retries with increasing delay/backoff.
+Do not retry indefinitely or in a tight loop, as excessive retries may be rate
+limited with 429 Too Many Requests. For non-idempotent requests, ensure your 
+integration can safely handle duplicate attempts before retrying.
+
+Our engineering team monitors these errors closely but, if you experience persistent 
+errors, bug reports are also welcome at
 [support@immersve.com](mailto:support@immersve.com).
