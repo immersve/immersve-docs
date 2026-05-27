@@ -71,7 +71,8 @@ Authenticate the cardholder using one of the supported `authType` methods:
 ## Step 4: Submit the Outcome
 
 Once the cardholder has approved or declined, submit the outcome to Immersve
-before the challenge expires.
+before the challenge expires. If a submission fails with a `5xx` or times out,
+retry before `expiryTime`. See {% link page="guides/http-status-codes" /%}.
 
 If the cardholder declined the transaction or failed authentication set
 `outcome` to `"declined"`.
