@@ -77,6 +77,10 @@ retry before `expiryTime`. See {% link page="guides/http-status-codes" /%}.
 If the cardholder declined the transaction or failed authentication set
 `outcome` to `"declined"`.
 
+Your mobile application must display the **merchant name**,
+**payment amount**, and **payment currency** to
+the cardholder before they authenticate.
+
 ```shell
 curl -X POST https://api.immersve.com/api/3ds-challenges/{challengeId}/outcome \
   -H 'Authorization: Bearer <TOKEN>' \
