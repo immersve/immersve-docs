@@ -24,6 +24,7 @@ post:
         schema:
           type: object
           required:
+            - id
             - accountId
             - outcome
             - authType
@@ -33,6 +34,13 @@ post:
             - confirmedTransactionDetails
             - metadata
           properties:
+            id:
+              type: string
+              description: |
+                The Immersve identifier for the 3DS challenge. Must match the
+                `{id}` path parameter. Corresponds to the `id` field in the
+                [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook payload.
+              example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
             accountId:
               type: string
               description: |
