@@ -6,7 +6,7 @@ post:
   description: |
     Submit the outcome of a 3DS Strong Customer Authentication (SCA) challenge.
     Call this endpoint after presenting the cardholder with the challenge received
-    via the [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook,
+    via the [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3ds-sca-challenge/) webhook,
     to approve or decline the transaction on their behalf.
   parameters:
     - name: accountId
@@ -35,7 +35,7 @@ post:
               type: string
               description: |
                 The Immersve identifier for the 3DS transaction. Corresponds to the
-                `id` field in the [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook payload.
+                `id` field in the [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3ds-sca-challenge/) webhook payload.
               example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
             outcome:
               type: string
