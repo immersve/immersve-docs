@@ -1,0 +1,108 @@
+---
+title: Cardholder Activation
+slug: guides/cardholder-activation
+description: |
+  Cardholder activation blocks and how to detect activation via webhooks.
+---
+
+Cardholder are created in an *activating* state behind an **activation block**.
+See {% link endpoint="get-cardholder-blocks" /%} for more information on blocks.
+
+Activation block prevents the cardholder from issuing or using a card until Immersve
+has confirmed that every onboarding prerequisite is satisfied. The cardholder becomes
+usable only once the activation block is lifted.
+
+## Activation Prerequisites
+
+Immersve lifts the activation block only after **all** of the following are
+satisfied. These are the same checks surfaced by the
+{% link endpoint="get-spending-prerequisites" /%} endpoint, described in
+{% link page="guides/kyc-spending-prerequisites" /%}.
+
+{% table %}
+* Prerequisite
+* Description
+---
+* Expected spend
+* The cardholder's expected spend amount has been set via the {% link endpoint="update-expected-spend-amount" /%} endpoint.
+---
+* KYC passed
+* The cardholder has successfully completed identity verification. See {% link page="guides/detecting-kyc-completion" /%}.
+---
+* Contact channels
+* Both a contact email and a contact phone number have been set via the {% link endpoint="update-contact-details" /%} endpoint.
+---
+* AML cleared
+* The cardholder has passed Immersve's anti-money-laundering screening and is not blocked.
+---
+{% /table %}
+
+{% note %}
+  The AML check is performed after the other prerequisites are met. A cardholder who
+  has passed KYC may still be awaiting AML clearance, during which the activation
+  block remains in place.
+{% /note %}
+
+## Detecting Activation
+
+There are two ways to detect that a cardholder's activation block has been lifted.
+Using webhooks is the recommended approach.
+
+### Webhooks (Recommended)
+
+Subscribe to the `cardholder-block-released` topic to receive a real-time
+notification when an activation block is lifted.
+
+1. **Configure a Webhook Listener** –
+   Set up and register your webhook listener. See
+   {% link page="guides/configuring-webhook-listeners" /%}.
+
+2. **Subscribe to the Topic** –
+   Subscribe your listener to the `cardholder-block-released` topic.
+
+3. **Handle the Notification** –
+   Match the cardholder account id and check that `reason` is `"activation"` before
+   treating the cardholder as activated. The same topic is also fired for other block
+   types (for example `fraud`), always validate the `reason`.
+
+   ```json
+   {
+     "blockId": "75a7e8ef0d234d0a6bf755e07d39eb03",
+     "cardholderAccountId": "9b7552cf9abab0f2efed72df6b3ce4bc",
+     "reason": "activation"
+   }
+   ```
+
+   See the {% link title="Cardholder Block Released" href="https://docs.immersve.com/api-reference/webhook-topics/cardholder-block-released/" /%}
+   topic reference for the full payload schema.
+
+### Polling (Fallback)
+
+For partners without webhook infrastructure, poll
+{% link endpoint="get-spending-prerequisites" /%} while the user is actively waiting.
+The `aml` stage reports `"status": "ok"` only once the activation block has been
+lifted.
+
+```json
+[{
+  "stage": "aml",
+  "status": "ok"
+}]
+```
+
+{% warning %}
+  **Unacceptable Usage:** Continuously polling the spending prerequisites endpoint at
+  high frequencies or for extended periods is not supported and may result in rate
+  limiting. Poll only while the user is actively waiting, and stop after a short
+  timeout. See {% link page="guides/detecting-kyc-completion" /%} for acceptable
+  polling patterns.
+{% /warning %}
+
+## Creating a Card
+
+Attempting to create a card before the activation block has been lifted will fail. The
+{% link endpoint="create-card" /%} endpoint returns a `403` response with an
+`errorCode` identifying the missing prerequisite.
+
+Once the activation block has been lifted, follow
+{% link page="guides/issue-a-virtual-card" /%} to issue a card.

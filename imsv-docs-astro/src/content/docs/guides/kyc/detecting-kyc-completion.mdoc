@@ -36,8 +36,9 @@ updates.
    page="guides/immersve-conducted-kyc" /%}.
 
 3. **Wait for Webhook** –
-   Once you receive the `kyc-succeeded` webhook, the cardholder can proceed to
-   activate their card.
+   Once you receive the `kyc-succeeded` webhook, identity verification is complete.
+   This is necessary but not sufficient to issue a card: the cardholder must still be
+   fully activated. See {% link page="guides/cardholder-activation" /%}.
 
 4. **Webhook Failure Recovery** –
     Immersve retries webhooks for approximately 24 hours. If your system is down for
@@ -66,8 +67,8 @@ while the user is actively engaged in the card onboarding flow.
 
 3. **Detect Completion** –
    When the KYC stage shows `"status": "ok"` in the spending prerequisites
-   response, the KYC evaluation is complete and the cardholder can proceed to
-   activate their card.
+   response, the KYC evaluation is complete. The cardholder must still be fully
+   activated before a card can be issued. See {% link page="guides/cardholder-activation" /%}.
 
 4. **Ongoing Monitoring** –
     After initial KYC completion, make a single call to {% link

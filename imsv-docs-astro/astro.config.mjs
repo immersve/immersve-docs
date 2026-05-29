@@ -40,6 +40,7 @@ export default defineConfig({
               { label: 'Immersve Conducted KYC', link: 'guides/immersve-conducted-kyc' },
               { label: 'Detecting KYC Completion', link: 'guides/detecting-kyc-completion' },
               { label: 'KYC Spending Prerequisites', link: 'guides/kyc-spending-prerequisites' },
+              { label: 'Cardholder Activation', link: 'guides/cardholder-activation' },
             ]},
             { label: 'Supported Chains', autogenerate: { directory: 'guides/supported-chains' } },
             { label: 'Supported Tokens', autogenerate: { directory: 'guides/supported-tokens' } },
