@@ -24,6 +24,7 @@ post:
         schema:
           type: object
           required:
+            - accountId
             - outcome
             - authType
             - authScope
@@ -32,6 +33,13 @@ post:
             - confirmedTransactionDetails
             - metadata
           properties:
+            accountId:
+              type: string
+              description: |
+                The Immersve id for the cardholder the challenge belongs to.
+                Corresponds to the `cardholderId` field in the
+                [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook payload.
+              example: "8e7fc0addcbe4409199d4c779d9bd06e"
             outcome:
               type: string
               description: |
