@@ -9,7 +9,7 @@ post:
     via the [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook,
     to approve or decline the transaction on their behalf.
   parameters:
-    - name: id
+    - name: challengeId
       in: path
       description: |
         The Immersve identifier for the 3DS challenge. Corresponds to the
@@ -24,21 +24,19 @@ post:
         schema:
           type: object
           required:
-            - id
+            - challengeId
             - accountId
             - outcome
             - authType
             - authScope
             - authenticatedAt
-            - dynamicLinkingConfirmed
-            - confirmedTransactionDetails
             - metadata
           properties:
-            id:
+            challengeId:
               type: string
               description: |
                 The Immersve identifier for the 3DS challenge. Must match the
-                `{id}` path parameter. Corresponds to the `id` field in the
+                `{challengeId}` path parameter. Corresponds to the `id` field in the
                 [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook payload.
               example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
             accountId:
@@ -70,39 +68,15 @@ post:
               description: |
                 The timestamp when the cardholder completed authentication in UTC.
               example: "2024-01-01T12:00:00Z"
-            dynamicLinkingConfirmed:
-              type: boolean
-              description: |
-                Confirms that the merchant name, amount, and currency were
-                displayed to the cardholder before authentication was
-                performed.
-            confirmedTransactionDetails:
-              type: object
-              description: |
-                The transaction details that were confirmed to the cardholder
-                before authentication was performed.
-              properties:
-                amount:
-                  type: string
-                  description: Payment amount represented in the merchant's local currency. The amount will use fiat minor units. For example 978 GBP is £9.78.
-                  example: "5000"
-                currency:
-                  type: string
-                  description: The merchant's local currency.
-                  example: "USD"
-                merchantName:
-                  type: string
-                  description: The merchant's name.
-                  example: "Immersve Store"
             metadata:
               type: object
               description: |
-                Additional context about the client and device used during authentication.
+                Additional context about the app and device used during authentication.
               properties:
-                clientName:
+                appId:
                   type: string
-                  description: The name of the client application.
-                  example: "Immersve App"
+                  description: An identifier for the app submitting the outcome.
+                  example: "com.immersve.app"
                 deviceId:
                   type: string
                   description: |

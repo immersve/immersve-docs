@@ -77,29 +77,18 @@ retry before `expiryTime`. See {% link page="guides/http-status-codes" /%}.
 If the cardholder declined the transaction or failed authentication set
 `outcome` to `"declined"`.
 
-Your mobile application must display the **merchant name**,
-**payment amount**, and **payment currency** to
-the cardholder before they authenticate. Set `dynamicLinkingConfirmed` to `true`
-to confirm this. If set to `false` the transaction will be declined.
-
 ```shell
-curl -X POST https://api.immersve.com/api/3ds-challenges/{id}/outcome \
+curl -X POST https://api.immersve.com/api/3ds-challenges/{challengeId}/outcome \
   -H 'Authorization: Bearer <TOKEN>' \
   -H 'Content-Type: application/json' \
   -d '{
-    "id": "6d8ebff23fe6fcf25d8a1d9dab909e54",
+    "challengeId": "6d8ebff23fe6fcf25d8a1d9dab909e54",
     "accountId": "8e7fc0addcbe4409199d4c779d9bd06e",
     "outcome": "approved",
     "authType": "face-id",
     "authenticatedAt": "2026-02-08T19:29:45.000Z",
-    "dynamicLinkingConfirmed": true,
-    "confirmedTransactionDetails": {
-      "amount": "12550",
-      "currency": "USD",
-      "merchantName": "Amazon.com",
-    },
     "metadata": {
-      "clientName": "Partner App",
+      "appId": "com.immersve.app",
       "deviceId": "FBDDF7E1-7A11-4D4E-9C9B-3D8E5C2F1A4B",
       "deviceName": "Bobs Phone",
       "deviceModel": "XD-7700",
