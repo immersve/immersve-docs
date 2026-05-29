@@ -46,14 +46,12 @@ then supplied to Immersve via API (name, date of birth, ID details, etc).
 {% /list %}
 
 
+## Integration Steps
+
 Below, we've outlined the steps for completion of this verification process, assuming all necessary details, such as
 document scans and biometrics, have been collected and verified.
 
-## Testing KYC in Test Mode
-
-For a complete guide on passing KYC in test mode, please read {% link page="guides/pass-kyc-in-testmode" /%}.
-
-## Set up environment variables
+### Set up Environment Variables
 
 ```bash
 card_issuer_api_key="<your_card_issuer_api_key>"
@@ -66,7 +64,7 @@ imsv_api_host="test.immersve.com"
 
 ```
 
-## Supply Contact Details
+### Supply Contact Details
 
 Immersve requires users contact details (phone number and email) for the
 following reasons, this should be explained to customers:
@@ -103,7 +101,7 @@ curl -X PATCH "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/co
     }'
 ```
 
-## Supply Expected Spend Amount
+### Supply Expected Spend Amount
 
 Regulations require that Immersve obtain information on the “nature and purpose”
 of the proposed business relationship between ourselves and the cardholder.
@@ -126,17 +124,27 @@ curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/exp
 ```
 
 
-## Submit Cardholder KYC statement
+### Upload Supporting Documents
+
+### Submit Cardholder KYC statement
 
 {% endpointref name="submit-kyc-statement" /%}
+
+
+A KYC Statement should include the DOB, Full Name and Address claims plus one or
+more type of evidence (Driver's License or Passport etc). The requirements vary
+by region. The Address and Full Name attributes are mostly optional because of
+the wide variation between regions. The available document types for each region
+are listed in https://docs.immersve.com/guides/regions/.
 
 {% warning %}
 Be careful when setting the region as this cannot be changed. You will need to create a new wallet if this is
 incorrectly supplied.
 {% /warning %}
 
-### Submitting a Statement with evidence
-The following script demonstrates how you could submit a KYC statement with a passport as evidence.
+The following script demonstrates how you could submit a KYC statement with a
+passport as evidence. See the sections below for examples with other evidence
+types.
 
 ```bash
 idempotencyKey="" # a unique key for each request. See submit KYC statement docs for more info
@@ -215,13 +223,22 @@ curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/part
     ]
   }'
 ```
-### Other supported evidence types
+
+## Claim Types
+
+### Date Of Birth
+
+### Full Name
+
+### Residential Address
+
+## Supported Evidence Types
 
 {% note %}
 You can combine multiple types of evidence into a single request when submitting.
 {% /note %}
 
-#### Driver's License
+### Driver's License
 ```json
 {
   "evidenceType": "DRIVERS_LICENSE",
@@ -233,7 +250,7 @@ You can combine multiple types of evidence into a single request when submitting
 }
 ```
 
-#### National ID
+### National ID
 ```json
 {
   "evidenceType": "NATIONAL_ID",
@@ -245,7 +262,7 @@ You can combine multiple types of evidence into a single request when submitting
 }
 ```
 
-#### Residence Permit
+### Residence Permit
 ```json
 {
   "evidenceType": "RESIDENCE_PERMIT",
@@ -256,83 +273,79 @@ You can combine multiple types of evidence into a single request when submitting
 ```
 
 
-### KYC Statement Addresses in Partner conducted KYC
+## Address Formatting
 
 The {% link endpoint="submit-kyc-statement" /%} endpoint accepts both structured,
 and unstructured address formats in an Address claim.
 
+{% note %}
+Use Structured Address where possible: Structured addresses are preferred for
+accuracy and consistency.
+{% /note %}
 
-{% list %}
-  {% listitem "ArrowRightCircle" %}
-    **Structured Address**
-
-    Organizes address details into predefined fields, making it easier to validate and process the data.
-
-    ```json
-    {
-      "claimType": "ADDRESS",
-      "attributes": {
-        "addressType": "RESIDENTIAL",
-        "streetNumber": "73",
-        "streetName": "Great Southern",
-        "streetType": "ROAD",
-        "suburb": "Auckland CBD",
-        "town": "Auckland",
-        "region": "Auckland",
-        "state": "AKL",
-        "postalCode": "6140",
-        "country": "NZ"
-      }
-    }
-    ```
-    Partners are strongly encouraged to use this format whenever possible.
-
-  {% /listitem %}
-  {% listitem "ArrowRightCircle" %}
-  **Unstructured Address**
-
-  When it is not possible to provide a Structured Addresses, partners can provide an Unstructured Address.
+Use Unstructured Addresses only if structured address
+data is not available from your IDV provider. Immersve attempts to parse
+Unstructured Addresses into structured address components after submission.
+Ensure the fullAddress field is as detailed as possible.
 
 
+### Structured Addresses
 
-  ```json
-  {
-    "claimType": "ADDRESS",
-    "attributes": {
-      "addressType": "RESIDENTIAL",
-      "fullAddress": "2/45 Laddier Road,
-      Centurion, The Reeds, Auckland, Auckland 0100,
-      New Zealand",
-      "country": "NZ"
-    }
+Organizes address details into predefined fields, making it easier to validate
+and process the data. Partners are strongly encouraged to use this format
+whenever possible.
+
+```json
+{
+  "claimType": "ADDRESS",
+  "attributes": {
+    "addressType": "RESIDENTIAL",
+    "streetNumber": "73",
+    "streetName": "Great Southern",
+    "streetType": "ROAD",
+    "suburb": "Auckland CBD",
+    "town": "Auckland",
+    "region": "Auckland",
+    "state": "AKL",
+    "postalCode": "6140",
+    "country": "NZ"
   }
-  ```
+}
+```
 
-  This format consolidates the address into a single text string in the `fullAddress` field,
-    which Immersve later attempts to parse into structured address components.
+### Unstructured Addresses
 
-  Unstructured addresses are only allowed for the following regions: `AR` `AT` `AU` `BE` `BG` `BR` `CA` `CH` `CL` `CO` `CZ` `DE` `DK` `EE` `ES` `FI` `FR` `GB` `HR` `HU` `IE` `IT` `LT` `LU` `LV` `MX` `MY` `NL` `NO` `NZ` `PL` `PR` `PT` `SE` `SG` `SI` `SK` `US`.
+When it is not possible to provide a Structured Addresses, partners may be able
+to provide an Unstructured Address. This format consolidates the address into a
+single text string in the `fullAddress` field, which Immersve later attempts to
+parse into structured address components.
 
-  The list of supported regions, including whether each region allows this format, can be retrieved using the {% link endpoint="get-supported-regions" /%} endpoint.
+```json
+{
+  "claimType": "ADDRESS",
+  "attributes": {
+    "addressType": "RESIDENTIAL",
+    "fullAddress": "2/45 Laddier Road, Centurion, The Reeds, Auckland, Auckland 0100, New Zealand",
+    "country": "NZ"
+  }
+}
+```
 
-  {% /listitem %}
-  {% listitem "ArrowRightCircle" %}
-    **Key Considerations**
+Unstructured addresses are only allowed for the following regions: `AR`, `AT`,
+`AU`, `BE`, `BG`, `BR`, `CA`, `CH`, `CL`, `CO`, `CZ`, `DE`, `DK`, `EE`, `ES`,
+`FI`, `FR`, `GB`, `HR`, `HU`, `IE`, `IT`, `LT`, `LU`, `LV`, `MX`, `MY`, `NL`,
+`NO`, `NZ`, `PL`, `PR`, `PT`, `SE`, `SG`, `SI`, `SK`, `US`.
 
-    Use Structured Address where possible: Structured addresses are preferred for accuracy and consistency.
+The list of supported regions, including whether each region allows this format,
+can be retrieved using the {% link endpoint="get-supported-regions" /%}
+endpoint.
 
-    Use Unstructured Addresses only if structured address data is not available from your IDV provider.
-
-    Immersve attempts to parse Unstructured Addresses into structured address components after submission. Ensure the fullAddress field is as detailed as possible.
-  {% /listitem %}
-{% /list %}
-
-### Submitting a Statement with supporting documents
+## Attaching Supporting Documents
 
 Supporting documents can be attached to the KYC Statement for any region, but
-are mandatory for the following regions: `AT` `BE` `BG` `CY` `CZ` `DE` `DK` `EE`
-`ES` `FI` `FR` `GR` `HR` `HU` `IE` `IS` `IT` `LI` `LT` `LU` `LV` `MT` `NL` `NO`
-`PL` `PT` `RO` `SE` `SI` `SK` `UK`.
+are mandatory for the following regions: `AT`, `BE`, `BG`, `CY`, `CZ`, `DE`,
+`DK`, `EE`, `ES`, `FI`, `FR`, `GR`, `HR`, `HU`, `IE`, `IS`, `IT`, `LI`, `LT`,
+`LU`, `LV`, `MT`, `NL`, `NO` `PL`, `PT`, `RO`, `SE`, `SI`, `SK`, `UK`.
 
 The following supporting documents can be attached to the KYC statement:
 1. Self image for liveness checks
@@ -360,6 +373,10 @@ the statement using their file IDs and the appropriate attachment type.
 ```
 
 
-## Monitor KYC evaluation process
+## Monitor KYC Evaluation Process
 
 For detailed guidance on detecting KYC completion, see {% link page="guides/detecting-kyc-completion" /%}.
+
+## Testing KYC in Test Mode
+
+For a complete guide on passing KYC in test mode, please read {% link page="guides/pass-kyc-in-testmode" /%}.
