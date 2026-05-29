@@ -5,11 +5,11 @@ description: |
   Cardholder activation blocks and how to detect activation via webhooks.
 ---
 
-Cardholder are created in an *activating* state behind an **activation block**.
+Cardholders are created in an *activating* state behind an **activation block**.
 See {% link endpoint="get-cardholder-blocks" /%} for more information on blocks.
 
-Activation block prevents the cardholder from issuing or using a card until Immersve
-has confirmed that every onboarding prerequisite is satisfied. The cardholder becomes
+The activation block prevents the cardholder from issuing or using a card until Immersve
+has confirmed that all onboarding prerequisites are satisfied. The cardholder becomes
 usable only once the activation block is lifted.
 
 ## Activation Prerequisites
