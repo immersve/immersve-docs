@@ -13,7 +13,7 @@ post:
       in: path
       description: |
         The Immersve identifier for the 3DS challenge. Corresponds to the
-        `id` field in the [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook payload.
+        `challengeId` field in the [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook payload.
       required: true
       schema:
         type: string
@@ -36,7 +36,7 @@ post:
               type: string
               description: |
                 The Immersve identifier for the 3DS challenge. Must match the
-                `{challengeId}` path parameter. Corresponds to the `id` field in the
+                `{challengeId}` path parameter. Corresponds to the `challengeId` field in the
                 [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook payload.
               example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
             accountId:
