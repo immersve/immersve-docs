@@ -28,7 +28,6 @@ post:
             - accountId
             - outcome
             - authType
-            - authScope
             - authenticatedAt
             - metadata
           properties:
