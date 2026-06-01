@@ -12,7 +12,7 @@ post:
     - name: challengeId
       in: path
       description: |
-        The Immersve identifier for the 3DS challenge, as received in the
+        The Immersve ID for the 3DS challenge, as received in the
         [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook payload.
       required: true
       schema:
@@ -34,14 +34,14 @@ post:
             challengeId:
               type: string
               description: |
-                The Immersve identifier for the 3DS challenge. Must match the
+                The Immersve ID for the 3DS challenge. Must match the
                 `{challengeId}` path parameter, and the value received in the
                 [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook payload.
               example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
             accountId:
               type: string
               description: |
-                The Immersve id for the cardholder. Matches `cardholderId` in the
+                The Immersve ID for the cardholder. Matches `cardholderId` in the
                 [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook payload.
               example: "8e7fc0addcbe4409199d4c779d9bd06e"
             outcome:
@@ -73,14 +73,14 @@ post:
               properties:
                 appId:
                   type: string
-                  description: An identifier for the app submitting the outcome.
-                  example: "com.immersve.app"
+                  description: An ID for the app submitting the outcome.
+                  example: "com.example.wallet"
                 deviceId:
                   type: string
                   description: |
-                    A stable, platform-native identifier for the cardholder's
-                    device. Should be consistent across sessions and recognisable
-                    to the cardholder.
+                    A stable, platform-native ID for the cardholder's device.
+                    Should be consistent across sessions and recognisable to
+                    the cardholder.
                   example: "FBDDF7E1-7A11-4D4E-9C9B-3D8E5C2F1A4B"
                 deviceName:
                   type: string
@@ -88,7 +88,7 @@ post:
                   example: "Bobs Phone"
                 deviceModel:
                   type: string
-                  description: The model identifier of the cardholder's device.
+                  description: The model ID of the cardholder's device.
                   example: "XD-7700"
                 deviceManufacturer:
                   type: string
