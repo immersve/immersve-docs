@@ -54,8 +54,10 @@ in time, the challenge will time out.
 
 ## Step 2: Present the Challenge to the User
 
-Display a confirmation screen to the cardholder showing the **merchant name**,
-**payment amount**, and **payment currency**, and options to approve or decline the transaction.
+{% note %}
+  Display a confirmation screen to the cardholder showing the **merchant name**,
+  **payment amount**, and **payment currency**, and options to approve or decline the transaction.
+{% /note %}
 
 ## Step 3: Prompt the User to Authenticate
 
@@ -76,10 +78,6 @@ retry before `expiryTime`. See {% link page="guides/http-status-codes" /%}.
 
 If the cardholder declined the transaction or failed authentication set
 `outcome` to `"declined"`.
-
-Your mobile application must display the **merchant name**,
-**payment amount**, and **payment currency** to
-the cardholder before they authenticate.
 
 ```shell
 curl -X POST https://api.immersve.com/api/3ds-challenges/{challengeId}/outcome \
