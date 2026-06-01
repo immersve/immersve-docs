@@ -4,6 +4,8 @@ operationId: report-completed
 description: |
   Triggered when a report is completed and ready for download.
 
+  Use the `reportId` from the payload as the path parameter to [Create Report Download URL](/api-reference/create-report-download-url/) to generate a short-lived pre-signed URL for the report artifact.
+
 requestBody:
   content:
     application/json:

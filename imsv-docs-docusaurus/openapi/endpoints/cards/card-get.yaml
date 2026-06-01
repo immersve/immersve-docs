@@ -18,7 +18,7 @@ get:
         application/json:
           schema:
             allOf:
-              - $ref: "./models/card.yaml"
+              - $ref: "./models/card-detail.yaml"
               - type: object
                 properties:
                   unfreezeAllowed:

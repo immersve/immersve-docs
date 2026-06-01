@@ -19,9 +19,9 @@ const countries = Object.entries(supportedDocuments);
         <tr>
           <td style="text-align: center">{code}</td>
           <td>{info.name}</td>
-          <td style="text-align: center">{info.driversLicense ? '✓' : '—'}</td>
-          <td style="text-align: center">{info.nationalId ? '✓' : '—'}</td>
-          <td style="text-align: center">{info.residencePermit ? '✓' : '—'}</td>
+          <td style="text-align: center">{info.driversLicense ? '✓' : ''}</td>
+          <td style="text-align: center">{info.nationalId ? '✓' : ''}</td>
+          <td style="text-align: center">{info.residencePermit ? '✓' : ''}</td>
         </tr>
       ))}
     </tbody>

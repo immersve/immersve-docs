@@ -23,6 +23,40 @@ DPAN at the time of adding the virtual card to the xPay wallet.
 The complexity of managing DPANs is opaque to the cardholder and the process to
 provision a card to an xPay wallet is rather simple from their perspective.
 
+## Apple Pay In-App Provisioning
+
+When your application runs on an iOS device, you can add the card directly
+from within your app using Apple's PassKit push provisioning. The cardholder
+taps an "Add to Apple Wallet" button in your app and Apple Pay handles the
+rest — they do not need to leave your app to enter card details into the
+Wallet app. The same flow can provision the card to a paired Apple Watch.
+
+This requires entitlement from Apple for in-app provisioning. See Apple's
+[Wallet Developer Guide](https://developer.apple.com/documentation/passkit/pkaddpaymentpassviewcontroller)
+for details on requesting the entitlement and integrating `PKAddPaymentPassViewController`.
+
+The flow is:
+
+1. Present a `PKAddPaymentPassViewController` from your app, configured with a
+   `PKAddPaymentPassRequestConfiguration` whose `primaryAccountIdentifier` is
+   set to the `seriesId` field of the card resource and whose cardholder name
+   is set to the card's `cardholderName` field.
+2. When PassKit invokes your delegate to request the provisioning payload,
+   forward the `certChain`, `nonce`, and `nonceSignature` values it supplies
+   to the {% link endpoint="provision-card-to-apple-pay" /%} endpoint.
+3. Pass the `encryptedPassData`, `ephemeralPublicKey`, and `activationData`
+   fields from the endpoint response back to the PassKit completion handler
+   as the corresponding fields of `PKAddPaymentPassRequest`.
+
+PassKit then finalizes tokenization with Apple and the card becomes available
+in the cardholder's Apple Pay wallet.
+
+## Manual Provisioning for Other Wallets
+
+In-app push provisioning for Google Pay and Samsung Pay will be supported
+soon. Until then, cardholders add the card to a Google Pay or Samsung Pay
+wallet manually.
+
 Where your application (within which the virtual card is presented) is
 co-located with the xPay wallet then the user can simply copy/paste and/or
 manually enter the card details from your application into the xPay wallet.
@@ -30,6 +64,30 @@ Where your application resides on a device other than the one that holds the
 target xPay wallet then the user can scan the virtual card with their camera to
 add it to their xPay wallet.
 
-See the [Apple guide](https://support.apple.com/en-us/HT204506) and the [Google
+Manual provisioning is not permitted for Apple Pay under Immersve's agreement
+with Apple. Apple Pay must always be provisioned via the in-app flow above.
+
+See the [Google
 guide](https://support.google.com/wallet/answer/12058983?hl=en#zippy=%2Cwith-the-google-wallet-app)
-for more details on how this operates from the user's perspective.
+for more details on how manual provisioning operates from the user's
+perspective.
+
+## OTP Security Challenge
+
+Whether the card is loaded manually or via in-app push provisioning, the
+network may require a one-time password (OTP) challenge before the token is
+activated. This is dynamic and driven by risk scoring on the card load, so the
+challenge is not always presented.
+
+When a challenge is required, the xPay wallet prompts the cardholder to choose
+a delivery method (SMS or email). The available destinations come from the
+cardholder's contact details set via the {% link endpoint="update-contact-details" /%}
+endpoint, so ensure a phone number and email address are recorded against the
+cardholder account before provisioning.
+
+By default, Immersve delivers the OTP to the chosen destination. To deliver the
+OTP from your own sender instead, subscribe to the {% link title="XPay Card Load OTP"
+endpoint="webhook-topics/xpay-card-load-otp" /%} webhook. The webhook payload
+includes the verification code and the delivery option selected by the
+cardholder; your handler is responsible for sending the code to the cardholder
+and returning the delivery channel and destination it used.
