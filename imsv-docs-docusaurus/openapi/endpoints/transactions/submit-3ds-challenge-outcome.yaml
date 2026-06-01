@@ -42,8 +42,7 @@ post:
             accountId:
               type: string
               description: |
-                The Immersve id for the cardholder the challenge belongs to.
-                Corresponds to the `cardholderId` field in the
+                The Immersve id for the cardholder. Matches `cardholderId` in the
                 [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook payload.
               example: "8e7fc0addcbe4409199d4c779d9bd06e"
             outcome:
@@ -98,9 +97,7 @@ post:
                   example: "Acme Corp"
                 ipAddress:
                   type: string
-                  description: |
-                    The IP address of the cardholder's device at the time of
-                    authentication.
+                  description: The IP address of the cardholder's device.
                   example: "192.0.2.1"
   responses:
     "200":
