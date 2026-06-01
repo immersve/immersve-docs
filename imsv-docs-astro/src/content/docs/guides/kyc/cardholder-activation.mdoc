@@ -31,16 +31,12 @@ satisfied. These are the same checks surfaced by the
 ---
 * Contact channels
 * Both a contact email and a contact phone number have been set via the {% link endpoint="update-contact-details" /%} endpoint.
----
-* AML cleared
-* The cardholder has passed Immersve's anti-money-laundering screening and is not blocked.
----
 {% /table %}
 
 {% note %}
-  The AML check is performed after the other prerequisites are met. A cardholder who
-  has passed KYC may still be awaiting AML clearance, during which the activation
-  block remains in place.
+  Additional checks are performed after prerequisites are met. A cardholder who
+  has passed identity verification may still be awaiting clearance, during which
+  the activation block remains in place.
 {% /note %}
 
 ## Detecting Activation
@@ -80,15 +76,6 @@ notification when an activation block is lifted.
 
 For partners without webhook infrastructure, poll
 {% link endpoint="get-spending-prerequisites" /%} while the user is actively waiting.
-The `aml` stage reports `"status": "ok"` only once the activation block has been
-lifted.
-
-```json
-[{
-  "stage": "aml",
-  "status": "ok"
-}]
-```
 
 {% warning %}
   **Unacceptable Usage:** Continuously polling the spending prerequisites endpoint at
