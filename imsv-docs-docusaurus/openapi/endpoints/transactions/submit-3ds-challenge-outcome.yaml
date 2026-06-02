@@ -68,7 +68,8 @@ post:
             metadata:
               type: object
               description: |
-                Additional context about the app and device used during authentication.
+                Optional additional context about the app and device used
+                during authentication.
               properties:
                 appId:
                   type: string
