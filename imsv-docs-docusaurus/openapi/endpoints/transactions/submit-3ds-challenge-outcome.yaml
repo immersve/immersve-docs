@@ -24,25 +24,10 @@ post:
         schema:
           type: object
           required:
-            - challengeId
-            - accountId
             - outcome
             - authType
             - authenticatedAt
           properties:
-            challengeId:
-              type: string
-              description: |
-                The Immersve ID for the 3DS challenge. Must match the
-                `{challengeId}` path parameter, and the value received in the
-                [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook payload.
-              example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
-            accountId:
-              type: string
-              description: |
-                The Immersve ID for the cardholder. Matches `cardholderId` in the
-                [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook payload.
-              example: "8e7fc0addcbe4409199d4c779d9bd06e"
             outcome:
               type: string
               description: |
