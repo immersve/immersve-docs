@@ -363,6 +363,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/kyc/cardholder-activation.mdoc": {
+	id: "guides/kyc/cardholder-activation.mdoc";
+  slug: "guides/cardholder-activation";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/kyc/detecting-kyc-completion.mdoc": {
 	id: "guides/kyc/detecting-kyc-completion.mdoc";
   slug: "guides/detecting-kyc-completion";
