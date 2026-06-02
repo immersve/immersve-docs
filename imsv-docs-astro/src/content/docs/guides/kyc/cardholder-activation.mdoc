@@ -8,9 +8,9 @@ description: |
 Cardholders are created in an *activating* state behind an **activation block**.
 See {% link endpoint="get-cardholder-blocks" /%} for more information on blocks.
 
-The activation block prevents the cardholder from issuing or using a card until Immersve
-has confirmed that all onboarding prerequisites are satisfied. The cardholder becomes
-usable only once the activation block is lifted.
+The activation block prevents the cardholder from issuing cards and transacting.
+The block is lifted once Immersve has confirmed that all onboarding prerequisites
+and checks are satisfied.
 
 ## Activation Prerequisites
 
@@ -35,11 +35,11 @@ satisfied. These are the same checks surfaced by the
 
 {% note %}
   Additional checks are performed after prerequisites are met. A cardholder who
-  has passed identity verification may still be awaiting clearance, during which
+  completed identity verification may still be awaiting clearance, during which
   the activation block remains in place.
 {% /note %}
 
-## Detecting Activation
+## Detecting Cardholder Activation
 
 There are two ways to detect that a cardholder's activation block has been lifted.
 Using webhooks is the recommended approach.
