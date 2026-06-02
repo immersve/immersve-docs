@@ -21,7 +21,7 @@
     "@mdx-js/react": "^3.0.1",
     "clsx": "^2.1.1",
     "docusaurus-lunr-search": "^3.4.0",
-    "docusaurus-plugin-openapi-docs": "^4.5.1",
+    "docusaurus-plugin-openapi-docs": "patch:docusaurus-plugin-openapi-docs@npm%3A4.5.1#~/.yarn/patches/docusaurus-plugin-openapi-docs-npm-4.5.1-d44e599936.patch",
     "docusaurus-theme-openapi-docs": "^4.5.1",
     "prism-react-renderer": "^2.4.1",
     "react": "^18.3.1",

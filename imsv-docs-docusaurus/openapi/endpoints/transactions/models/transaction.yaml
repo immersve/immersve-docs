@@ -103,7 +103,7 @@ properties:
       ref:
         type: string
         description: |
-          3DS challenge identifier. This can be used to correlate with the 'ref' in the payload of the webhook [Payment 3DS OTP](/api-reference/webhook-topics/payment-3-ds-otp/).
+          3DS challenge identifier. This can be used to correlate with the 'ref' in the payload of the webhook [Payment 3DS OTP](/api-reference/webhook-topics/payment-3ds-otp/).
       outcome:
         type: string
         description: |

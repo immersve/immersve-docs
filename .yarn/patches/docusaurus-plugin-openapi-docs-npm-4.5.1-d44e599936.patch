@@ -1,0 +1,22 @@
+diff --git a/lib/openapi/openapi.js b/lib/openapi/openapi.js
+index 803aab88526b5e97e1c7ac53c3180e6e73cbd13e..71a037d3dd69b7458189645d1b7c63473f836d85 100644
+--- a/lib/openapi/openapi.js
++++ b/lib/openapi/openapi.js
+@@ -147,7 +147,7 @@ function createItems(openapiData, options, sidebarOptions) {
+                     (_g = (_f = operationObject.summary) !== null && _f !== void 0 ? _f : operationObject.operationId) !== null && _g !== void 0 ? _g : "";
+             }
+             const baseId = operationObject.operationId
+-                ? (0, kebabCase_1.default)(operationObject.operationId)
++                ? (operationObject.operationId)
+                 : (0, kebabCase_1.default)(operationObject.summary);
+             const extensions = [];
+             const commonExtensions = ["x-codeSamples"];
+@@ -261,7 +261,7 @@ function createItems(openapiData, options, sidebarOptions) {
+                     (_u = (_t = operationObject.summary) !== null && _t !== void 0 ? _t : operationObject.operationId) !== null && _u !== void 0 ? _u : "";
+             }
+             const baseId = operationObject.operationId
+-                ? (0, kebabCase_1.default)(operationObject.operationId)
++                ? (operationObject.operationId)
+                 : (0, kebabCase_1.default)(operationObject.summary);
+             const extensions = [];
+             const commonExtensions = ["x-codeSamples"];
