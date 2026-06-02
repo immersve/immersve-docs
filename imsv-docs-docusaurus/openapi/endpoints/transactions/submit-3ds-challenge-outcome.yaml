@@ -29,7 +29,6 @@ post:
             - outcome
             - authType
             - authenticatedAt
-            - metadata
           properties:
             challengeId:
               type: string
