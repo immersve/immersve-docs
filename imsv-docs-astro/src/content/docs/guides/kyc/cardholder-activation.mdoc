@@ -57,9 +57,9 @@ notification when an activation block is lifted.
    Subscribe your listener to the `cardholder-block-released` topic.
 
 3. **Handle the Notification** –
-   Match the cardholder account id and check that `reason` is `"activation"` before
-   treating the cardholder as activated. The same topic is also fired for other block
-   types (for example `fraud`), always validate the `reason`.
+   Listen to incoming webhooks and verify the `cardholderAccountId` and `reason`
+   to ensure the webhook corresponds to the cardholder activation block. The
+   webhook payload will be as following:
 
    ```json
    {
@@ -72,14 +72,17 @@ notification when an activation block is lifted.
    See the {% link title="Cardholder Block Released" href="https://docs.immersve.com/api-reference/webhook-topics/cardholder-block-released/" /%}
    topic reference for the full payload schema.
 
+   Once the webhook notification is received for the given cardholder, treat the
+   cardholder as active.
+
 ### Polling (Fallback)
 
 For partners without webhook infrastructure, poll
 {% link endpoint="get-spending-prerequisites" /%} while the user is actively waiting.
 
 {% warning %}
-  **Unacceptable Usage:** Continuously polling the spending prerequisites endpoint at
-  high frequencies or for extended periods is not supported and may result in rate
+  **Unacceptable Usage:** Polling the spending prerequisites endpoint at high
+  frequencies or for extended periods is not supported and may result in rate
   limiting. Poll only while the user is actively waiting, and stop after a short
   timeout. See {% link page="guides/detecting-kyc-completion" /%} for acceptable
   polling patterns.
