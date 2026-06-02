@@ -11,6 +11,8 @@ In order to begin report generation for your partner integration you must make a
 These reports are generated in `.jsonl` format covering either a daily or monthly period of time. When reports become available for download a notification
 will be sent. The details of this notification as well as the list of supported report types can be found in the {% link title="report completed webhook documentation" href="/api-reference/webhook-topics/report-completed/" /%}.
 
+Enum values listed in this guide may be extended in future releases. Parsing code should treat unknown values as informational rather than fail on them.
+
 
 
 ### Funding Source Reporting
@@ -23,31 +25,39 @@ Each line item contains a snapshot of the relevant funding source or funding sou
 ```json
 {
   "event": {
-    "id": "fsi-card-pay-1-2",
+    "id": "fsi-id-000000000000001",
     "type": "confirmed",
     "createdAt": "2026-04-05T10:00:05Z"
   },
   "fundingSourceInteraction": {
-    "id": "fsi-card-pay-1",
+    "id": "fsi-id",
     "type": "payment",
     "status": "confirmed",
     "createdAt": "2026-04-05T10:00:00Z",
-    "accountId": "cardholder-789",
+    "accountId": "account-id",
     "fundingSource": {
-      "id": "fs-card-xyz",
-      "fundingChannelId": "fc-usdc-1"
+      "id": "fs-id",
+      "fundingChannelId": "fc-id"
     },
     "amount": { "value": "30000000", "currency": "USDC" },
-    "relatedTransaction": { "type": "payment", "id": "pay-001" }
+    "creditDebitIndicator": "debit",
+    "relatedTransaction": { "type": "payment", "paymentId": "payment-id" }
   }
 }
 ```
 
 Enum values:
-- `event.type`: `created`, `pending`, `confirmed`, `discarded`
-- `fundingSourceInteraction.type`: `deposit`, `withdrawal`, `refund`, `payment`
-- `fundingSourceInteraction.status`: same set as `event.type`
-- `fundingSourceInteraction.relatedTransaction.type`: `blockchain`, `payment`
+- `event.type`:
+  - `created` — interaction recorded; no balance movement yet.
+  - `pending` — processing initiated; balance has not moved.
+  - `confirmed` — settled. The only balance-affecting status.
+  - `discarded` — cancelled before settlement; the balance was never affected.
+- `fundingSourceInteraction.type`: `deposit`, `withdrawal`, `refund`, `payment`.
+- `fundingSourceInteraction.status`: same set as `event.type`, reflecting the state of the interaction at the time of the event.
+- `fundingSourceInteraction.creditDebitIndicator`: `credit` or `debit`.
+- `fundingSourceInteraction.relatedTransaction.type`: `blockchain` or `payment`.
+  - When `blockchain`, `transactionHash` is populated and the row carries `chainId` and `block`.
+  - When `payment`, `paymentId` is populated. It is the card payment transaction identifier, joinable to the Payment report.
 
 `amount.value` is a string of the amount in minor units of the token (e.g. `"30000000"` for 30 USDC).
 
@@ -55,25 +65,25 @@ Enum values:
 ```json
 {
   "event": {
-    "id": "fs-card-xyz-42",
+    "id": "fs-id-000000000000002",
     "type": "balance-decreased",
     "createdAt": "2026-04-05T10:00:05Z",
-    "interactionEventId": "fsi-card-pay-1-2",
+    "interactionEventId": "fsi-id-000000000000001",
     "amount": { "value": "30000000", "currency": "USDC" }
   },
   "fundingSource": {
-    "id": "fs-card-xyz",
+    "id": "fs-id",
     "createdAt": "2026-03-01T12:00:00Z",
-    "externalId": "card-xyz-wallet",
-    "accountId": "cardholder-789",
+    "externalId": "external-id",
+    "accountId": "account-id",
     "fundingChannel": {
-      "id": "fc-usdc-1",
+      "id": "fc-id",
       "name": "usdc-funding-1"
     },
     "purpose": "card-funding",
     "mode": "deposit",
     "strategy": "custodial",
-    "partnerAccountId": "partner-acc-123",
+    "partnerAccountId": "partner-account-id",
     "balance": { "value": "70000000", "currency": "USDC" }
   }
 }
@@ -92,11 +102,12 @@ This model is also consistent with the {% link title="payment updated webhook pa
 ```json
 {
   "event": {
+    "id": "payment-id-000000000000002",
     "type": "auth-accepted",
     "createdAt": "2026-04-20T03:10:02.938Z"
   },
   "payment": {
-    "id": "abc123",
+    "id": "payment-id",
     "createdAt": "2026-04-20T03:10:00.000Z",
     "modifiedAt": "2026-04-20T03:10:02.938Z",
     "pending": true,
@@ -138,12 +149,74 @@ This model is also consistent with the {% link title="payment updated webhook pa
 }
 ```
 
+Enum values:
+- `event.type`, one of:
+  - `auth-accepted`
+  - `auth-completion-accepted`
+  - `auth-completion-declined`
+  - `auth-declined`
+  - `auth-expired`
+  - `auth-reversal-accepted`
+  - `auth-reversal-declined`
+  - `clearing-accepted`
+  - `clearing-reversal-accepted`
+  - `clearing-reversal-declined`
+  - `payment-failed`
+- `payment.type`: `purchase`, `refund`, `adjustment`.
+- `payment.status`: `created`, `holding`, `cleared`, `canceled`, `failed`.
+- `payment.creditDebitIndicator`: `credit` or `debit`.
+
 ### Join Logic for Downstream Processing
 
 Use the following joins to ensure end-to-end traceability across report layers:
 
 1. Funding Source `event.interactionEventId` links to `fundingSourceInteraction.event.id`.
-2. When `fundingSourceInteraction.type` is `payment`, `fundingSourceInteraction.relatedTransaction.id` links to Payment `id`.
+2. When `fundingSourceInteraction.type` is `payment`, `fundingSourceInteraction.relatedTransaction.paymentId` links to Payment `id`.
+
+### Reconciling balances
+
+To compute a running balance for a funding source, filter on `event.type='confirmed'` and sum amounts using the sign from `creditDebitIndicator`.
+
+**Scenario.** A funding source has five interactions in one day:
+
+| Time | Interaction | Type | Amount (USDC) | Outcome |
+| --- | --- | --- | --- | --- |
+| 09:00 | `fsi-A` | deposit | 100 | confirmed at 09:05 |
+| 10:00 | `fsi-B` | deposit | 50 | **discarded** at 10:30 (failed) |
+| 11:00 | `fsi-X` | payment | 20 | confirmed at 11:01 |
+| 13:00 | `fsi-C` | deposit | 200 | confirmed at 13:10 |
+| 14:00 | `fsi-Y` | payment | 30 | confirmed at 14:01 |
+
+Expected net balance change: `+100 − 20 + 200 − 30 = +250 USDC`. The discarded deposit never moved the balance.
+
+The FSI report emits one row per partner-visible lifecycle transition (typically `created` and then `confirmed` or `discarded`). To reconcile, keep only the `confirmed` rows and apply the sign:
+
+```
+keep   rows where event.type = 'confirmed'
++amount when creditDebitIndicator = 'credit'
+−amount when creditDebitIndicator = 'debit'
+result: +100 + 200 − 20 − 30 = +250 USDC
+```
+
+The `created` and `discarded` rows for the same interactions are present in the report — they describe lifecycle transitions, not balance movement. Skipping them is essential:
+
+- `created` rows would double-count the eventual `confirmed` amount.
+- `discarded` rows describe interactions that were cancelled before settlement and never moved the balance.
+
+The non-`confirmed` rows are not used for balance arithmetic but support operational analytics such as settlement latency (time between `created` and `confirmed`) and failure rates (count of `discarded` rows).
+
+### Migrating from legacy APIs
+
+If you are moving from the legacy `List Funding Source Interactions`, `Get Funding Source Balance`, `List Payment Notifications`, and `Get Payment Notification` APIs to the new reports, the table below maps each legacy field to its new equivalent.
+
+| Legacy field | New equivalent |
+| --- | --- |
+| `modifiedAt` (List FSI) | `event.createdAt` of the most recent event row sharing the same `fundingSourceInteraction.id`. Report rows are immutable events, so "modified" maps to the latest event for the interaction. |
+| `context.ref` for card-context interactions (List FSI) | `fundingSourceInteraction.relatedTransaction.paymentId`, joinable to the Payment report. |
+| `context.transactionHash` (List FSI) | `fundingSourceInteraction.relatedTransaction.transactionHash`, populated when `relatedTransaction.type = 'blockchain'`. |
+| `channel.{id, type, strategy}` (List FSI) | Not on the FSI row. Join to the Funding Source report on `fundingSourceInteraction.fundingSource.id`; the FS row carries `fundingChannel.{id, name}`, `purpose`, `mode`, `strategy`. |
+| `description` (List FSI; `cardAcceptor` name/city/country for card-context) | For card-context interactions, join to the Payment report via `relatedTransaction.paymentId` and read `payment.merchant.{name, city, regionCode, ...}`. For on-chain deposits and withdrawals, look up `relatedTransaction.{chainId, transactionHash, block}` in any blockchain explorer. |
+| Top-level `accountId` on payment notifications (Get Payment Notification) | `payment.cardholder.id` on the Payment report row. |
 
 
 ## Schedule
@@ -165,7 +238,7 @@ The endpoint returns a pre-signed S3 URL with a TTL of 24 hours that can be used
 Download API call example:
 
 ```bash
-curl -L 'https://app.immersve.com/api/reports/{reportId}/download' \
+curl -L 'https://test.immersve.com/api/reports/{reportId}/download' \
   -H 'Content-Type: application/json' \
   -H "X-Api-Key: ${account_admin_api_key}" \
   -H "X-Api-Secret: ${account_admin_api_secret}"

@@ -42,6 +42,7 @@ export default defineConfig({
               { label: 'KYC Spending Prerequisites', link: 'guides/kyc-spending-prerequisites' },
               { label: 'Cardholder Activation', link: 'guides/cardholder-activation' },
             ]},
+            { label: '3DS', autogenerate: { directory: 'guides/3ds' }},
             { label: 'Supported Chains', autogenerate: { directory: 'guides/supported-chains' } },
             { label: 'Supported Tokens', autogenerate: { directory: 'guides/supported-tokens' } },
             { label: 'Funding Protocols', items: [

@@ -17,7 +17,7 @@ it can be activated.
 
 ## State Transitions
 
-### Create a card
+### Create a Card
 
 Call the {% link endpoint="create-card" /%} operation to request
 Immersve generate a card, returning an ID. A virtual card is ready to use when a call to
@@ -26,24 +26,24 @@ payload with `status` `"active"`. A physical card is initially in the "created"
 state which changes to "shipped" when the card order is sent to a manufacturer.
 Once the card is in the "shipped" state, it can be activated.
 
-### Activate a card
+### Activate a Card
 Physical cards must be activated before they can be used to perform transactions.
 To activate a card, call the {% link endpoint="activate-card" /%} endpoint. Once
 the card is activated, it will transition to an active state and can be used for
 transactions.
 
-### Block a card
+### Block a Card
 
 Calling the {% link endpoint="freeze-card" /%} endpoint will temporarily block a card.
 While a card is blocked it cannot be used to perform transactions.
 
-### Unblock a card
+### Unblock a Card
 
 To remove a block the {% link endpoint="unfreeze-card" /%} endpoint is called.
 This returns the card to an active status allowing it
 to once again be used to perform transactions.
 
-### Cancel a card
+### Cancel a Card
 
 Should a cardholder change their mind prior to presenting the card to a
 merchant, cancel the card by calling the {% link endpoint="cancel-card" /%}

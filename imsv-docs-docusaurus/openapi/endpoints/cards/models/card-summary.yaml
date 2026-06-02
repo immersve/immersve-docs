@@ -76,6 +76,28 @@ properties:
     type: string
     description: Last 4 digits of the card's PAN (Primary Account Number)
     example: "1920"
+  network:
+    type: string
+    description: |
+      The payment network the card is issued on. The value `simulator` is
+      returned for test-mode cards, which route through Immersve's simulator
+      rather than a live network.
+    enum:
+      - mastercard
+      - simulator
+    example: mastercard
+  seriesId:
+    type: string
+    description: |
+      Opaque identifier for the card's reissuance lineage. All cards in a
+      reissuance chain share the same `seriesId`. Treat this value as
+      opaque: do not assume any relationship to `id` or any other field.
+
+      Use as the `primaryAccountIdentifier` when constructing an Apple Pay
+      `PKAddPaymentPassRequestConfiguration`. PassKit uses this value to
+      detect that a card is already present in the wallet even if the card
+      was reissued.
+    example: 91ad6fea3b52ca58d60d7fd310f789ec
   immersveExpiration:
     type: string
     description: Deprecated field, use expiresAt
