@@ -9668,7 +9668,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docusaurus-plugin-openapi-docs@npm:^4.5.1":
+"docusaurus-plugin-openapi-docs@npm:4.5.1":
   version: 4.5.1
   resolution: "docusaurus-plugin-openapi-docs@npm:4.5.1"
   dependencies:
@@ -9693,6 +9693,34 @@ __metadata:
     "@docusaurus/utils-validation": ^3.5.0
     react: ^16.8.4 || ^17.0.0 || ^18.0.0 || ^19.0.0
   checksum: 10/496ce49d494f06803a61eaa6c6810782668269574c12a1a55315742974884a7ffd6e2c75875d8fd9909611bdccaa4de42419e0debbf47def0db6974617b9e5ba
+  languageName: node
+  linkType: hard
+
+"docusaurus-plugin-openapi-docs@patch:docusaurus-plugin-openapi-docs@npm%3A4.5.1#~/.yarn/patches/docusaurus-plugin-openapi-docs-npm-4.5.1-d44e599936.patch":
+  version: 4.5.1
+  resolution: "docusaurus-plugin-openapi-docs@patch:docusaurus-plugin-openapi-docs@npm%3A4.5.1#~/.yarn/patches/docusaurus-plugin-openapi-docs-npm-4.5.1-d44e599936.patch::version=4.5.1&hash=34d487"
+  dependencies:
+    "@apidevtools/json-schema-ref-parser": "npm:^11.5.4"
+    "@redocly/openapi-core": "npm:^1.10.5"
+    allof-merge: "npm:^0.6.6"
+    chalk: "npm:^4.1.2"
+    clsx: "npm:^1.1.1"
+    fs-extra: "npm:^9.0.1"
+    json-pointer: "npm:^0.6.2"
+    json5: "npm:^2.2.3"
+    lodash: "npm:^4.17.20"
+    mustache: "npm:^4.2.0"
+    openapi-to-postmanv2: "npm:^4.21.0"
+    postman-collection: "npm:^4.4.0"
+    slugify: "npm:^1.6.5"
+    swagger2openapi: "npm:^7.0.8"
+    xml-formatter: "npm:^2.6.1"
+  peerDependencies:
+    "@docusaurus/plugin-content-docs": ^3.5.0
+    "@docusaurus/utils": ^3.5.0
+    "@docusaurus/utils-validation": ^3.5.0
+    react: ^16.8.4 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10/e8db2919466ec3228e4a9803ccfd43fc244f6ed563e8d5b272462cec47946a5f4f33f51e98b0bc9986d26e0d7f61c8eeab9f7c0457763af18a7d87d10704cd89
   languageName: node
   linkType: hard
 
@@ -12197,7 +12225,7 @@ __metadata:
     "@types/react": "npm:^18.3.3"
     clsx: "npm:^2.1.1"
     docusaurus-lunr-search: "npm:^3.4.0"
-    docusaurus-plugin-openapi-docs: "npm:^4.5.1"
+    docusaurus-plugin-openapi-docs: "patch:docusaurus-plugin-openapi-docs@npm%3A4.5.1#~/.yarn/patches/docusaurus-plugin-openapi-docs-npm-4.5.1-d44e599936.patch"
     docusaurus-theme-openapi-docs: "npm:^4.5.1"
     prettier: "npm:^3.5.3"
     prism-react-renderer: "npm:^2.4.1"

@@ -6,7 +6,7 @@ post:
   description: |
     Submit the outcome of a 3DS Strong Customer Authentication (SCA) challenge.
     Call this endpoint after presenting the cardholder with the challenge received
-    via the [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3-ds-sca-challenge/) webhook,
+    via the [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3ds-sca-challenge/) webhook,
     to approve or decline the transaction on their behalf.
   parameters:
     - name: challengeId
