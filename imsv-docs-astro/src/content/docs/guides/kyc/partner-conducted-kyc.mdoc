@@ -276,6 +276,16 @@ field-by-field detail. A structured example:
 You can combine multiple types of evidence into a single request when submitting.
 {% /note %}
 
+### Passport
+```json
+{
+  "evidenceType": "PASSPORT",
+  "documentId": "DS230475", // passport number
+  "country": "NZ", // i.e. ISO 3166-2 Country Code
+  "expiry": "2028-10-12" // YYYY-MM-DD
+}
+```
+
 ### Driver's License
 ```json
 {
@@ -413,3 +423,78 @@ For detailed guidance on detecting KYC completion, see {% link page="guides/dete
 ## Testing KYC in Test Mode
 
 For a complete guide on passing KYC in test mode, please read {% link page="guides/pass-kyc-in-testmode" /%}.
+
+## Full Statement Example
+
+The following script submits a fully-populated KYC Statement: DOB, Full
+Name, and a structured Residential Address claim, a passport as evidence,
+and two supporting documents referenced by the file IDs returned from
+[Upload Supporting Documents](#upload-supporting-documents).
+
+```bash
+idempotencyKey="" # a unique key for each request. See submit KYC statement docs for more info
+kyc_region="" # An ISO 3166-2 (Alpha-2) for the region you are submitting the statement for, i.e. EU, NZ, AU, etc.
+
+passport_file_id="" # id returned from /api/file-uploads for the passport scan
+selfie_file_id=""   # id returned from /api/file-uploads for the selfie
+
+curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -H "x-api-key: ${card_issuer_api_key}" \
+  -H "x-api-secret: ${card_issuer_api_secret}" \
+  --data '{
+    "idempotencyKey": "'${idempotencyKey}'",
+    "region": "'${kyc_region}'",
+    "claims": [
+      {
+        "claimType": "DOB",
+        "attributes": {
+          "dateOfBirth": "1990-04-23"
+        }
+      },
+      {
+        "claimType": "FULL_NAME",
+        "attributes": {
+          "honorific": "Ms",
+          "givenName": "Alex",
+          "middleName": "Jordan",
+          "familyName": "Taylor"
+        }
+      },
+      {
+        "claimType": "ADDRESS",
+        "attributes": {
+          "addressType": "RESIDENTIAL",
+          "streetNumber": "73",
+          "streetName": "Great Southern",
+          "streetType": "ROAD",
+          "suburb": "Auckland CBD",
+          "town": "Auckland",
+          "region": "Auckland",
+          "state": "AKL",
+          "postalCode": "6140",
+          "country": "NZ"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "evidenceType": "PASSPORT",
+        "documentId": "DS230475",
+        "country": "NZ",
+        "expiry": "2028-10-12"
+      }
+    ],
+    "attachments": [
+      {
+        "fileId": "'${passport_file_id}'",
+        "type": "passport"
+      },
+      {
+        "fileId": "'${selfie_file_id}'",
+        "type": "self-image"
+      }
+    ]
+  }'
+```

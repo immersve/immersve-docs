@@ -42,20 +42,12 @@ isn't just a redirect.
 
 ## Stage 4 — Passport and Full Statement Example
 
-Round out the reference material so the page documents all four evidence
-types and provides a fully-featured example for readers who want to see
-everything in one place.
-
-- [ ] Add `### Passport` under `## Supported Evidence Types` mirroring the
-  format of the other three evidence type subsections.
-- [ ] Add `## Full Statement Example` at the very end of the page (after
-  `## Testing KYC in Test Mode`): a comprehensive curl example with DOB +
-  Full Name + Address claims, a passport-style evidence block, and an
-  `attachments` array referencing uploaded file IDs.
-
-End state: `## Supported Evidence Types` covers all four documented evidence
-types; the page closes with a single end-to-end example a reader can copy as
-a starting point for their own integration.
+Added `### Passport` under `## Supported Evidence Types` (as the leading
+entry, mirroring the heading + JSON shape of the other three) and a
+`## Full Statement Example` at the very end of the page: a comprehensive
+curl carrying DOB + Full Name + structured Address claims, passport
+evidence, and an `attachments` array tying back to the file IDs returned
+from `### Upload Supporting Documents`.
 
 ## Open Questions
 

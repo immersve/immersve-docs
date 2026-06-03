@@ -1,30 +1,25 @@
 # Progress: Partner Conducted KYC Guide Tidy-Up
 
-**Current Status:** Stages 1–3 landed on `partner-kyc-tidy-up`, pushed to
-draft PR #897. Ready to begin Stage 4 (Passport evidence subsection + Full
-Statement Example at end of page).
+**Current Status:** All four stages landed and pushed to draft PR #897.
+The project is ready for review; once #897 merges, archive under
+`_projects/archive/2026-06-partner-kyc-tidy-up/`.
 
 ## Last Session (2026-06-04)
 
-- Completed: Stage 3 filled the four empty stub headings. `### Upload
-  Supporting Documents` gained an intro and a multipart curl example;
-  `### Date Of Birth`, `### Full Name`, `### Residential Address` each
-  carry a short description and a minimal claim JSON block. Residential
-  Address points at `## Address Formatting` for the structured/unstructured
-  detail.
-- Outcome: the page has no hollow headings; a reader can scan top-to-bottom
-  without hitting a stub.
+- Completed: Stage 4 added `### Passport` to Supported Evidence Types
+  (leading entry, mirroring the other three) and `## Full Statement
+  Example` at the end of the page — a complete curl with DOB + Full Name +
+  structured Address claims, passport evidence, and an `attachments` array
+  using the file IDs returned from Upload Supporting Documents.
+- Outcome: page closes with one comprehensive copy-paste example; all four
+  evidence types are documented under Supported Evidence Types.
 
 ## Next Session
 
-- Pick up from: `/Users/nathan/code/immersve/worktrees/immersve-docs/partner-kyc-tidy-up`
-  on branch `partner-kyc-tidy-up`, working tree clean.
-- First task: Stage 4 against
-  `imsv-docs-astro/src/content/docs/guides/kyc/partner-conducted-kyc.mdoc`.
-  Add `### Passport` under `## Supported Evidence Types` mirroring the
-  Driver's License / National ID / Residence Permit shape (one-line intro
-  plus a JSON block with `evidenceType`, `documentId`, `country`,
-  `expiry`). Then add `## Full Statement Example` at the very end of the
-  page (after `## Testing KYC in Test Mode`): a comprehensive curl request
-  combining DOB + Full Name + Address claims, a passport-style evidence
-  block, and an `attachments` array referencing uploaded file IDs.
+- Pick up from: PR #897 on GitHub. If reviewers leave comments, address
+  them on `partner-kyc-tidy-up` and push.
+- First task: after #897 merges, archive the project — collapse
+  `progress.md` to a summary, move `_projects/active/partner-kyc-tidy-up/`
+  to `_projects/archive/2026-06-partner-kyc-tidy-up/` on a new branch,
+  open the archival PR, then `git worktree remove` the project worktree
+  once merged.
