@@ -131,47 +131,36 @@ curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/exp
 {% endpointref name="submit-kyc-statement" /%}
 
 
-A KYC Statement should include the DOB, Full Name and Address claims plus one or
-more type of evidence (Driver's License or Passport etc). The requirements vary
-by region. The Address and Full Name attributes are mostly optional because of
-the wide variation between regions. The available document types for each region
-are listed in {% link page="guides/regions" /%}.
+A KYC Statement captures a cardholder's region plus the
+[claims](#claim-types) and [evidence](#supported-evidence-types) that verify
+their identity. At least one piece of evidence is required, and every
+request must include an idempotency key so retries don't create duplicate
+statements. Some regions also require
+[supporting documents](#attaching-supporting-documents).
+
+The available claim types, evidence types, and any mandatory attachments
+vary by region — see {% link page="guides/regions" /%}.
 
 {% warning %}
 Be careful when setting the region as this cannot be changed. You will need to create a new wallet if this is
 incorrectly supplied.
 {% /warning %}
 
-The following script demonstrates how you could submit a KYC statement with a
-passport as evidence. See the sections below for examples with other evidence
-types.
+The following script submits a minimal KYC statement with a residence permit
+as evidence. See the [Full Statement Example](#full-statement-example) below
+for a request that exercises every claim type and an attachments array.
 
 ```bash
 idempotencyKey="" # a unique key for each request. See submit KYC statement docs for more info
 kyc_region="" # An ISO 3166-2 (Alpha-2) for the region you are submitting the statement for, i.e. EU, NZ, AU, etc.
 
-# personal details
-your_honorific="" # e.g. Mr, Mrs, Ms
-your_given_name=""
-your_middle_name=""
-your_family_name=""
 date_of_birth="" # YYYY-MM-DD
+your_given_name=""
+your_family_name=""
 
-# address details
-street_number=""
-street_name=""
-street_type="" # e.g. Road, Street, Avenue etc
-suburb_name=""
-town_name=""
-region_name=""
-state_name=""
-postal_code=""
-country_code="" # i.e. ISO 3166-2 Country Code
-
-# passport details
-passport_number=""
-passport_country_code="" # i.e. ISO 3166-2 Country Code
-passport_expiry_date="" # YYYY-MM-DD
+residence_permit_number=""
+residence_permit_country="" # i.e. ISO 3166-2 Country Code
+residence_permit_expiry="" # YYYY-MM-DD
 
 curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
   -H "Content-Type: application/json" \
@@ -191,34 +180,17 @@ curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/part
       {
         "claimType": "FULL_NAME",
         "attributes": {
-          "honorific": "'${your_honorific}'",
           "givenName": "'${your_given_name}'",
-          "middleName": "'${your_middle_name}'",
           "familyName": "'${your_family_name}'"
-        }
-      },
-      {
-        "claimType": "ADDRESS",
-        "attributes": {
-          "addressType": "RESIDENTIAL",
-          "streetNumber": "'${street_number}'",
-          "streetName": "'${street_name}'",
-          "streetType": "'${street_type}'",
-          "suburb": "'${suburb_name}'",
-          "town": "'${town_name}'",
-          "region": "'${region_name}'",
-          "state": "'${state_name}'",
-          "postalCode": "'${postal_code}'",
-          "country": "'${country_code}'"
         }
       }
     ],
     "evidence": [
       {
-        "evidenceType": "PASSPORT",
-        "documentId": "'${passport_number}'",
-        "country": "'${passport_country_code}'",
-        "expiry": "'${passport_expiry_date}'"
+        "evidenceType": "RESIDENCE_PERMIT",
+        "documentId": "'${residence_permit_number}'",
+        "country": "'${residence_permit_country}'",
+        "expiry": "'${residence_permit_expiry}'"
       }
     ]
   }'

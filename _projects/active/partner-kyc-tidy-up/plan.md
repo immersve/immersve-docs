@@ -19,23 +19,15 @@ description on Submit KYC Statement to `#attaching-supporting-documents`.
 
 ## Stage 2 — KYC Statement Intro and Slim Example
 
-Reshape the Submit Cardholder KYC Statement section so the reader understands
-the data model before they read code. This pairs the new intro with a slimmed
-example, because the example only reads naturally once "what's required vs.
-optional" has been established.
-
-- [ ] Write a short intro under `### Submit Cardholder KYC Statement` covering:
-  what a KYC Statement is (region + claims + evidence + optional attachments),
-  the general requirements (at least one piece of evidence; idempotency key;
-  region is permanent), and where to find regional variations
-  (`{% link page="guides/regions" /%}`).
-- [ ] Slim the worked curl example to the smallest valid shape — DOB +
-  FULL_NAME claims plus a single RESIDENCE_PERMIT evidence (three fields:
-  `documentId`, `country`, `expiry`). Cut bash variables that aren't used.
-
-End state: a first-time reader can answer "what does Submit KYC Statement
-need from me?" from the intro alone; the curl example fits on one screen and
-shows the request shape without placeholder noise.
+Reshaped the Submit Cardholder KYC Statement section so the reader sees the
+data model before the code. Replaced the loose intro with one paragraph that
+frames the statement (region + claims + evidence + optional attachments)
+and one that defers regional variation to `{% link page="guides/regions" /%}`,
+kept the region-permanence warning, and rewrote the worked example as a
+minimal DOB + FULL_NAME claim + single RESIDENCE_PERMIT evidence request
+with only the bash variables it actually uses. Forward-referenced
+`#full-statement-example` so the reader knows the comprehensive example is
+coming.
 
 ## Stage 3 — Fill Empty Section Bodies
 
