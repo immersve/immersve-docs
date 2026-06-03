@@ -126,7 +126,7 @@ curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/exp
 
 ### Upload Supporting Documents
 
-### Submit Cardholder KYC statement
+### Submit Cardholder KYC Statement
 
 {% endpointref name="submit-kyc-statement" /%}
 
@@ -135,7 +135,7 @@ A KYC Statement should include the DOB, Full Name and Address claims plus one or
 more type of evidence (Driver's License or Passport etc). The requirements vary
 by region. The Address and Full Name attributes are mostly optional because of
 the wide variation between regions. The available document types for each region
-are listed in https://docs.immersve.com/guides/regions/.
+are listed in {% link page="guides/regions" /%}.
 
 {% warning %}
 Be careful when setting the region as this cannot be changed. You will need to create a new wallet if this is
@@ -278,11 +278,6 @@ You can combine multiple types of evidence into a single request when submitting
 The {% link endpoint="submit-kyc-statement" /%} endpoint accepts both structured,
 and unstructured address formats in an Address claim.
 
-{% note %}
-Use Structured Address where possible: Structured addresses are preferred for
-accuracy and consistency.
-{% /note %}
-
 Use Unstructured Addresses only if structured address
 data is not available from your IDV provider. Immersve attempts to parse
 Unstructured Addresses into structured address components after submission.
@@ -345,7 +340,7 @@ endpoint.
 Supporting documents can be attached to the KYC Statement for any region, but
 are mandatory for the following regions: `AT`, `BE`, `BG`, `CY`, `CZ`, `DE`,
 `DK`, `EE`, `ES`, `FI`, `FR`, `GR`, `HR`, `HU`, `IE`, `IS`, `IT`, `LI`, `LT`,
-`LU`, `LV`, `MT`, `NL`, `NO` `PL`, `PT`, `RO`, `SE`, `SI`, `SK`, `UK`.
+`LU`, `LV`, `MT`, `NL`, `NO`, `PL`, `PT`, `RO`, `SE`, `SI`, `SK`, `UK`.
 
 The following supporting documents can be attached to the KYC statement:
 1. Self image for liveness checks

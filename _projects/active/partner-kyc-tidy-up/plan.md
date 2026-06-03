@@ -9,24 +9,13 @@
 
 ## Stage 1 — Quick Fixes and Cross-Link
 
-Low-risk corrections that are independent of the rewrite work. Lands first to
-clear the noise out of subsequent diffs.
-
-- [ ] Title-case `### Submit Cardholder KYC statement` → `### Submit Cardholder KYC Statement`.
-- [ ] Add the missing comma between `NO` and `PL` in the mandatory-attachments
-  region list under `## Attaching Supporting Documents`.
-- [ ] Replace the bare `https://docs.immersve.com/guides/regions/` URL with
-  `{% link page="guides/regions" /%}` in the KYC Statement intro paragraph.
-- [ ] Remove the duplicated `{% note %}` at the top of `## Address Formatting`
-  (or remove the prose paragraph that restates it — keep one).
-- [ ] Update
-  `imsv-docs-docusaurus/openapi/endpoints/kyc/models/submit-kyc-statement-request.yaml:34`
-  to point at `#attaching-supporting-documents` instead of the renamed
-  `#submitting-a-statement-with-supporting-documents`.
-
-End state: page renders without the typo, without the duplicated note, and
-without a bare URL; the OpenAPI description on Submit KYC Statement deep-links
-to a real anchor.
+Low-risk corrections independent of the rewrite work, landed first to clear
+noise out of subsequent diffs. Title-cased the Submit Cardholder KYC
+Statement heading, fixed the missing `NO`/`PL` comma in the
+mandatory-attachments region list, swapped the bare regions URL for a
+`{% link %}` tag, removed the duplicate Structured Address note (kept the
+matching prose in `### Structured Addresses`), and repointed the OpenAPI
+description on Submit KYC Statement to `#attaching-supporting-documents`.
 
 ## Stage 2 — KYC Statement Intro and Slim Example
 
