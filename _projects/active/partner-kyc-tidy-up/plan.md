@@ -31,23 +31,14 @@ coming.
 
 ## Stage 3 — Fill Empty Section Bodies
 
-Populate every empty subsection introduced by `0a569c866` so the page has no
-hollow headings.
-
-- [ ] `### Upload Supporting Documents` (under `## Integration Steps`): brief
-  intro to the upload-file flow, example curl returning a `fileId`, and a
-  pointer to `## Attaching Supporting Documents` for how the `fileId` is then
-  referenced from the statement.
-- [ ] `### Date Of Birth` (under `## Claim Types`): one-line description plus
-  a minimal DOB claim JSON block.
-- [ ] `### Full Name` (under `## Claim Types`): one-line description plus a
-  minimal FULL_NAME claim JSON block.
-- [ ] `### Residential Address` (under `## Claim Types`): short blurb pointing
-  at `## Address Formatting` for the structured/unstructured detail, with a
-  minimal ADDRESS claim JSON example so the section isn't merely a redirect.
-
-End state: every heading on the page has body content; the page can be read
-top-to-bottom without hitting a stub.
+Filled `### Upload Supporting Documents` with an intro framing the
+upload-then-reference flow, a multipart curl example against
+{% link endpoint="upload-file" /%}, and a note that the response `id` is
+what becomes `fileId` on the statement. Filled the three `## Claim Types`
+subsections with a one-line description and a minimal claim JSON each;
+`### Residential Address` defers structured/unstructured detail to
+`## Address Formatting` while showing a structured example so the section
+isn't just a redirect.
 
 ## Stage 4 — Passport and Full Statement Example
 

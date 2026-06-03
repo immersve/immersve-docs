@@ -126,6 +126,26 @@ curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/exp
 
 ### Upload Supporting Documents
 
+Some regions require supporting documents (a passport scan, a selfie, a data
+source export, etc.) to accompany the KYC Statement. Upload each document
+with the {% link endpoint="upload-file" /%} endpoint to receive a file `id`,
+then reference those IDs from the statement — see
+[Attaching Supporting Documents](#attaching-supporting-documents) for the
+full list of mandatory regions and attachment types.
+
+```bash
+curl -X POST "https://${imsv_api_host}/api/file-uploads" \
+  -H "Content-Type: multipart/form-data" \
+  -H "x-api-key: ${card_issuer_api_key}" \
+  -H "x-api-secret: ${card_issuer_api_secret}" \
+  -F 'purpose="kyc-doc-upload"' \
+  -F "accountId=${cardholder_account_id}" \
+  -F 'file=@"/path/to/passport-scan.jpg"'
+```
+
+The response contains an `id` field — use that value as the `fileId` when
+attaching the document to a KYC Statement.
+
 ### Submit Cardholder KYC Statement
 
 {% endpointref name="submit-kyc-statement" /%}
@@ -200,9 +220,55 @@ curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/part
 
 ### Date Of Birth
 
+The cardholder's date of birth in `YYYY-MM-DD` format.
+
+```json
+{
+  "claimType": "DOB",
+  "attributes": {
+    "dateOfBirth": "1990-04-23"
+  }
+}
+```
+
 ### Full Name
 
+The cardholder's legal name. `givenName` and `familyName` are required; the
+optional `honorific` and `middleName` fields are accepted where they apply.
+
+```json
+{
+  "claimType": "FULL_NAME",
+  "attributes": {
+    "givenName": "Alex",
+    "familyName": "Taylor"
+  }
+}
+```
+
 ### Residential Address
+
+The cardholder's residential address, accepted in either structured or
+unstructured form — see [Address Formatting](#address-formatting) for the
+field-by-field detail. A structured example:
+
+```json
+{
+  "claimType": "ADDRESS",
+  "attributes": {
+    "addressType": "RESIDENTIAL",
+    "streetNumber": "73",
+    "streetName": "Great Southern",
+    "streetType": "ROAD",
+    "suburb": "Auckland CBD",
+    "town": "Auckland",
+    "region": "Auckland",
+    "state": "AKL",
+    "postalCode": "6140",
+    "country": "NZ"
+  }
+}
+```
 
 ## Supported Evidence Types
 
