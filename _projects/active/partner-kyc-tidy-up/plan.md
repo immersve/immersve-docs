@@ -49,6 +49,16 @@ curl carrying DOB + Full Name + structured Address claims, passport
 evidence, and an `attachments` array tying back to the file IDs returned
 from `### Upload Supporting Documents`.
 
+## Stage 5 — Section Intros and Evidence Descriptions
+
+Closed the asymmetry between `## Claim Types` (subsections had one-line
+descriptions) and `## Supported Evidence Types` (subsections jumped
+straight to JSON). Added a short intro under each `##` heading framing
+what claims and evidence are, and gave each of the four evidence type
+subsections a one-sentence description matching the claim type treatment.
+Folded the standalone "you can combine multiple types" note into the new
+evidence-types intro.
+
 ## Open Questions
 
 - None.

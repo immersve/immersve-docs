@@ -218,6 +218,10 @@ curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/part
 
 ## Claim Types
 
+Claims are the structured attributes of the cardholder's identity included
+on a KYC Statement. Which claims are required depends on the region — see
+{% link page="guides/regions" /%}.
+
 ### Date Of Birth
 
 The cardholder's date of birth in `YYYY-MM-DD` format.
@@ -272,11 +276,15 @@ field-by-field detail. A structured example:
 
 ## Supported Evidence Types
 
-{% note %}
-You can combine multiple types of evidence into a single request when submitting.
-{% /note %}
+Evidence is the identity document or documents that back the claims on a
+KYC Statement. At least one piece of evidence is required, and multiple
+types can be combined into a single request. The accepted types vary by
+region — see {% link page="guides/regions" /%}.
 
 ### Passport
+
+A government-issued passport identifying the cardholder.
+
 ```json
 {
   "evidenceType": "PASSPORT",
@@ -287,6 +295,10 @@ You can combine multiple types of evidence into a single request when submitting
 ```
 
 ### Driver's License
+
+A government-issued driver's license. Some jurisdictions also require a
+`region` (state or province) and a `version` number.
+
 ```json
 {
   "evidenceType": "DRIVERS_LICENSE",
@@ -299,6 +311,10 @@ You can combine multiple types of evidence into a single request when submitting
 ```
 
 ### National ID
+
+A government-issued national identity card. The `paternalFamilyName` and
+`maternalFamilyName` fields are only applicable to Mexican (`MX`) IDs.
+
 ```json
 {
   "evidenceType": "NATIONAL_ID",
@@ -311,6 +327,9 @@ You can combine multiple types of evidence into a single request when submitting
 ```
 
 ### Residence Permit
+
+A residence permit issued to the cardholder by the country they live in.
+
 ```json
 {
   "evidenceType": "RESIDENCE_PERMIT",

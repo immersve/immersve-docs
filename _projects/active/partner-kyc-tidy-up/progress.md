@@ -1,18 +1,19 @@
 # Progress: Partner Conducted KYC Guide Tidy-Up
 
-**Current Status:** All four stages landed and pushed to draft PR #897.
-The project is ready for review; once #897 merges, archive under
+**Current Status:** Stages 1–5 landed and pushed to PR #897 (ready for
+review). Once #897 merges, archive under
 `_projects/archive/2026-06-partner-kyc-tidy-up/`.
 
 ## Last Session (2026-06-04)
 
-- Completed: Stage 4 added `### Passport` to Supported Evidence Types
-  (leading entry, mirroring the other three) and `## Full Statement
-  Example` at the end of the page — a complete curl with DOB + Full Name +
-  structured Address claims, passport evidence, and an `attachments` array
-  using the file IDs returned from Upload Supporting Documents.
-- Outcome: page closes with one comprehensive copy-paste example; all four
-  evidence types are documented under Supported Evidence Types.
+- Completed: Stage 5 added a short intro under `## Claim Types` and
+  `## Supported Evidence Types` and gave each of the four evidence types
+  a one-sentence description, closing the asymmetry with the claim type
+  subsections. Folded the "you can combine multiple types" note into the
+  new evidence-types intro.
+- Outcome: both reference sections now lead with framing prose, and every
+  subsection on the page follows a consistent description-then-example
+  shape.
 
 ## Next Session
 
