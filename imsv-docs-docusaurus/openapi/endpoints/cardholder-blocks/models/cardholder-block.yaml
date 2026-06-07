@@ -35,19 +35,27 @@ properties:
       - card
       - cardholder
   type:
-    description: Type of block applied
+    description: |
+      Type of block applied. `card-suspension` is scoped to a specific card.
+      `cardholder-activation` is a temporary block applied while the cardholder account is being activated.
+      `cardholder-suspension` applies to the cardholder account as a whole.
     type: string
-    example: card-suspension
+    enum:
+      - card-suspension
+      - cardholder-activation
+      - cardholder-suspension
   reason:
-    description: Reason the block was created (the list is not exhaustive)
+    description: Reason the block was created
     type: string
     enum:
       - activation
       - deactivation
       - fraud
+      - kyc
       - loststolen
       - suspended
       - system
+      - termination
   initiator:
     description: Entity that initiated the block
     type: string
