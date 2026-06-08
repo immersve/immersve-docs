@@ -35,14 +35,14 @@ properties:
       - card
       - cardholder
   type:
-    description: Type of block applied
+    description: >-
+      Type of block applied. Known values include card-suspension,
+      cardholder-activation, and cardholder-suspension; the list is not
+      exhaustive and new values may be added.
     type: string
-    enum:
-      - card-suspension
-      - cardholder-activation
-      - cardholder-suspension
+    example: card-suspension
   reason:
-    description: Reason the block was created
+    description: Reason the block was created (the list is not exhaustive)
     type: string
     enum:
       - activation
