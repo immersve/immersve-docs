@@ -21,40 +21,46 @@ properties:
     description: Optional. Primary identifier of the card (present when scope is card)
     example: 91ad6fea3b52ca58d60d7fd310f789ec
   status:
-    description: Current status of the block
     type: string
-    enum:
-      - creating
-      - created
-      - releasing
-      - released
+    description: |
+      Current status of the block. May include the following values:
+      `creating`,
+      `created`,
+      `releasing`,
+      `released`.
   scope:
-    description: Scope of the block, indicating whether it applies to the cardholder or a specific card
     type: string
-    enum:
-      - card
-      - cardholder
+    description: |
+      Scope of the block, indicating whether it applies to the cardholder or a
+      specific card. May include the following values:
+      `card`,
+      `cardholder`.
   type:
-    description: Type of block applied
     type: string
-    example: card-suspension
+    description: |
+      Type of block applied. May include the following values:
+      `card-suspension`,
+      `cardholder-activation`,
+      `cardholder-suspension`.
   reason:
-    description: Reason the block was created (the list is not exhaustive)
     type: string
-    enum:
-      - activation
-      - deactivation
-      - fraud
-      - loststolen
-      - suspended
-      - system
+    description: |
+      Reason the block was created. May include the following values:
+      `activation`,
+      `deactivation`,
+      `fraud`,
+      `kyc`,
+      `loststolen`,
+      `suspended`,
+      `system`,
+      `termination`.
   initiator:
-    description: Entity that initiated the block
     type: string
-    enum:
-      - system
-      - partner
-      - user
+    description: |
+      Entity that initiated the block. May include the following values:
+      `system`,
+      `partner`,
+      `user`.
   createdAt:
     type: string
     description: Timestamp of block creation
