@@ -24,6 +24,7 @@ properties:
     type: string
     description: |
       Current status of the block. Known values:
+
       - creating
       - created
       - releasing
@@ -35,6 +36,7 @@ properties:
     description: |
       Scope of the block, indicating whether it applies to the cardholder or a
       specific card. Known values:
+
       - card
       - cardholder
 
@@ -43,6 +45,7 @@ properties:
     type: string
     description: |
       Type of block applied. Known values:
+
       - card-suspension
       - cardholder-activation
       - cardholder-suspension
@@ -52,6 +55,7 @@ properties:
     type: string
     description: |
       Reason the block was created. Known values:
+
       - activation
       - deactivation
       - fraud
@@ -66,6 +70,7 @@ properties:
     type: string
     description: |
       Entity that initiated the block. Known values:
+
       - system
       - partner
       - user
