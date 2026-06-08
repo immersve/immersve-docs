@@ -17,8 +17,7 @@ platform evolves.
 
 These changes are backward-compatible and may be introduced at any time:
 
-- Adding new fields to existing API responses, webhook notifications, and report
-  line items.
+- Adding new fields to existing API responses and webhook notifications.
 - Adding new optional fields or query parameters to existing requests.
 - Adding new values to existing enums.
 - Adding new endpoints, webhook topics, and report types.
@@ -32,8 +31,8 @@ Your integration should:
 - Ignore unknown fields. Most JSON libraries do this by default; some need
   non-strict parsing enabled (for example, disabling "fail on unknown
   properties").
-- Don't reject a response, notification, or report line item just because it
-  contains a field, header, or enum value you don't recognise.
+- Don't reject a response or notification just because it contains a field,
+  header, or enum value you don't recognise.
 - Reference fields by name rather than relying on the order in which they appear
   in a response.
 
@@ -44,5 +43,4 @@ never made silently to existing endpoints. These include removing or renaming a
 field, removing an enum value, or changing a field's type.
 
 Legacy or deprecated endpoints may behave slightly differently. Any such
-exceptions are documented on the affected endpoints. See
-{% link page="guides/http-status-codes" /%} for related details.
+exceptions are documented on the affected endpoints.
