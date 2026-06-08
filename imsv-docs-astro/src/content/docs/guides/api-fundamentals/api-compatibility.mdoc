@@ -29,19 +29,20 @@ These changes are backward-compatible and may be introduced at any time:
 
 Your integration should:
 
-- **Ignore unknown fields.** Most JSON libraries do this by default; some need
+- Ignore unknown fields. Most JSON libraries do this by default; some need
   non-strict parsing enabled (for example, disabling "fail on unknown
   properties").
-- **Avoid restrictive validation.** Don't reject a response, notification, or
-  report line item just because it contains a field, header, or enum value you
-  don't recognise.
-- **Reference fields by name.** Don't rely on the order in which they appear in
-  a response.
+- Don't reject a response, notification, or report line item just because it
+  contains a field, header, or enum value you don't recognise.
+- Reference fields by name rather than relying on the order in which they appear
+  in a response.
 
 ## Breaking changes
 
-Changes that are **not** backward-compatible — removing or renaming a field,
-removing an enum value, or changing a field's type — are handled separately and
-aren't made silently to existing endpoints. Legacy or deprecated endpoints may
-behave slightly differently; any such exceptions are documented on the affected
-endpoints. See {% link page="guides/http-status-codes" /%} for related details.
+Changes that are **not** backward-compatible are handled separately, and are
+never made silently to existing endpoints. These include removing or renaming a
+field, removing an enum value, or changing a field's type.
+
+Legacy or deprecated endpoints may behave slightly differently. Any such
+exceptions are documented on the affected endpoints. See
+{% link page="guides/http-status-codes" /%} for related details.
