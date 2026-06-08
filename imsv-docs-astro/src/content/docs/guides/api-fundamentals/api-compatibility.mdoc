@@ -1,0 +1,59 @@
+---
+title: API Compatibility
+slug: guides/api-compatibility
+description: |
+  How Immersve evolves its APIs and how to build integrations that remain
+  compatible as the platform changes.
+sidebar:
+  order: 6
+---
+
+Immersve actively develops its platform and will introduce **backward-compatible
+changes** to existing APIs from time to time, without prior notice. To ensure
+your integration keeps working as the platform evolves, your implementation
+should be tolerant of these additive changes.
+
+## Backward-compatible changes
+
+The following changes are considered backward-compatible and may be introduced
+at any time:
+
+- Adding new fields to existing API responses, webhook notifications, and report
+  line items.
+- Adding new optional fields or query parameters to existing requests.
+- Adding new values to existing enums.
+- Adding new endpoints, webhook topics, and report types.
+- Adding new HTTP response headers.
+- Changing the order in which fields appear in a response.
+
+## Building a tolerant integration
+
+To remain compatible with backward-compatible changes, your integration must:
+
+- **Ignore unknown fields.** Tolerate fields that are not described in the
+  documentation rather than rejecting the response. Most JSON deserialization
+  libraries do this by default, but some require non-strict parsing to be
+  enabled explicitly (for example, disabling "fail on unknown properties").
+- **Avoid restrictive validation.** Do not reject responses, notifications, or
+  report line items solely because they contain fields, headers, or enum values
+  that your integration does not recognise.
+- **Handle unknown enum values gracefully.** Treat values that are not yet known
+  to your integration as informational, and apply a sensible default rather than
+  failing. New values can be added to existing enums at any time.
+- **Not depend on field ordering.** Reference fields by name; do not rely on the
+  position in which they appear in a response.
+
+{% note %}
+Read leniently and validate only what your integration depends on. The safest
+integrations only assert the presence and type of the specific fields they use,
+and pass everything else through untouched.
+{% /note %}
+
+## Breaking changes
+
+Changes that are **not** backward-compatible — such as removing or renaming a
+field, removing an enum value, or changing the type of an existing field — are
+treated separately and are not made silently to existing endpoints. Legacy or
+deprecated endpoints may behave slightly differently from current ones; any such
+exceptions are documented on the affected endpoints. See
+{% link page="guides/http-status-codes" /%} for related details.
