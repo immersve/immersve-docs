@@ -21,30 +21,37 @@ properties:
     description: Optional. Primary identifier of the card (present when scope is card)
     example: 91ad6fea3b52ca58d60d7fd310f789ec
   status:
-    description: Current status of the block
     type: string
-    enum:
+    description: |
+      Current status of the block. Known values:
       - creating
       - created
       - releasing
       - released
+
+      This field is open-ended; clients must preserve and tolerate unknown values.
   scope:
-    description: Scope of the block, indicating whether it applies to the cardholder or a specific card
     type: string
-    enum:
+    description: |
+      Scope of the block, indicating whether it applies to the cardholder or a
+      specific card. Known values:
       - card
       - cardholder
+
+      This field is open-ended; clients must preserve and tolerate unknown values.
   type:
-    description: >-
-      Type of block applied. Known values include card-suspension,
-      cardholder-activation, and cardholder-suspension; the list is not
-      exhaustive and new values may be added.
     type: string
-    example: card-suspension
+    description: |
+      Type of block applied. Known values:
+      - card-suspension
+      - cardholder-activation
+      - cardholder-suspension
+
+      This field is open-ended; clients must preserve and tolerate unknown values.
   reason:
-    description: Reason the block was created (the list is not exhaustive)
     type: string
-    enum:
+    description: |
+      Reason the block was created. Known values:
       - activation
       - deactivation
       - fraud
@@ -53,13 +60,17 @@ properties:
       - suspended
       - system
       - termination
+
+      This field is open-ended; clients must preserve and tolerate unknown values.
   initiator:
-    description: Entity that initiated the block
     type: string
-    enum:
+    description: |
+      Entity that initiated the block. Known values:
       - system
       - partner
       - user
+
+      This field is open-ended; clients must preserve and tolerate unknown values.
   createdAt:
     type: string
     description: Timestamp of block creation
