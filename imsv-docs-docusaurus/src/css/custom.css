@@ -48,6 +48,28 @@ table td {
   word-break: break-word;
 }
 
+/*
+ * Restore bullet markers for Markdown lists inside OpenAPI schema property
+ * descriptions. The theme strips list markers within the schema tree, so a
+ * list authored in a property's description renders without bullets. The
+ * Markdown list is a classless <ul>; the theme's own lists (tabs, etc.) all
+ * carry classes, so :not([class]) scopes this to description lists only.
+ */
+.openapi-schema__list-item ul:not([class]) {
+  list-style: disc outside;
+  padding-left: 1.25rem;
+  margin: 0.25rem 0;
+}
+
+.openapi-schema__list-item ul:not([class]) > li {
+  list-style: inherit;
+  margin: 0;
+}
+
+.openapi-schema__list-item ul:not([class]) > li > p {
+  margin: 0;
+}
+
 
 @media (min-width: 997px) {
   .navbar-title {
