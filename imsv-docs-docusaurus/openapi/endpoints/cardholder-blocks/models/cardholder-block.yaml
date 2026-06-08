@@ -23,59 +23,44 @@ properties:
   status:
     type: string
     description: |
-      Current status of the block. Known values:
-
-      - creating
-      - created
-      - releasing
-      - released
-
-      This field is open-ended; clients must preserve and tolerate unknown values.
+      Current status of the block. May include the following values:
+      `creating`,
+      `created`,
+      `releasing`,
+      `released`.
   scope:
     type: string
     description: |
       Scope of the block, indicating whether it applies to the cardholder or a
-      specific card. Known values:
-
-      - card
-      - cardholder
-
-      This field is open-ended; clients must preserve and tolerate unknown values.
+      specific card. May include the following values:
+      `card`,
+      `cardholder`.
   type:
     type: string
     description: |
-      Type of block applied. Known values:
-
-      - card-suspension
-      - cardholder-activation
-      - cardholder-suspension
-
-      This field is open-ended; clients must preserve and tolerate unknown values.
+      Type of block applied. May include the following values:
+      `card-suspension`,
+      `cardholder-activation`,
+      `cardholder-suspension`.
   reason:
     type: string
     description: |
-      Reason the block was created. Known values:
-
-      - activation
-      - deactivation
-      - fraud
-      - kyc
-      - loststolen
-      - suspended
-      - system
-      - termination
-
-      This field is open-ended; clients must preserve and tolerate unknown values.
+      Reason the block was created. May include the following values:
+      `activation`,
+      `deactivation`,
+      `fraud`,
+      `kyc`,
+      `loststolen`,
+      `suspended`,
+      `system`,
+      `termination`.
   initiator:
     type: string
     description: |
-      Entity that initiated the block. Known values:
-
-      - system
-      - partner
-      - user
-
-      This field is open-ended; clients must preserve and tolerate unknown values.
+      Entity that initiated the block. May include the following values:
+      `system`,
+      `partner`,
+      `user`.
   createdAt:
     type: string
     description: Timestamp of block creation
