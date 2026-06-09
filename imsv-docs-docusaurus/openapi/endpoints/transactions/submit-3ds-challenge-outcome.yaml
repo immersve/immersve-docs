@@ -27,6 +27,7 @@ post:
             - outcome
             - authType
             - authenticatedAt
+            - metadata
           properties:
             outcome:
               type: string
@@ -53,7 +54,7 @@ post:
             metadata:
               type: object
               description: |
-                Optional additional context about the app and device used
+                Additional context about the app and device used
                 during authentication.
               properties:
                 appId:
