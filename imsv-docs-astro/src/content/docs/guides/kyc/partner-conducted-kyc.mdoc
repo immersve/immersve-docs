@@ -126,6 +126,8 @@ curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/exp
 
 ### Upload Supporting Documents
 
+{% endpointref name="upload-file" /%}
+
 Some regions require supporting documents (a passport scan, a selfie, a data
 source export, etc.) to accompany the KYC Statement. Upload each document
 with the {% link endpoint="upload-file" /%} endpoint to receive a file `id`,
@@ -179,7 +181,7 @@ your_given_name=""
 your_family_name=""
 
 residence_permit_number=""
-residence_permit_country="" # i.e. ISO 3166-2 Country Code
+residence_permit_country="" # ISO 3166-2 Country Code
 residence_permit_expiry="" # YYYY-MM-DD
 
 curl -X PUT "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/partner-kyc-statement" \
@@ -291,7 +293,7 @@ A government-issued passport identifying the cardholder.
 {
   "evidenceType": "PASSPORT",
   "documentId": "DS230475", // passport number
-  "country": "NZ", // i.e. ISO 3166-2 Country Code
+  "country": "NZ", // ISO 3166-2 Country Code
   "expiry": "2028-10-12" // YYYY-MM-DD
 }
 ```
@@ -305,7 +307,7 @@ A government-issued driver's license. Some jurisdictions also require a
 {
   "evidenceType": "DRIVERS_LICENSE",
   "documentId": "DS230475", // license number
-  "country": "AU", // i.e. ISO 3166-2 Country Code
+  "country": "AU", // ISO 3166-2 Country Code
   "region": "VIC", // See submit KYC statement docs for more info
   "version": "978",
   "expiry": "2028-10-12" // YYYY-MM-DD
@@ -321,7 +323,7 @@ A government-issued national identity card. The `paternalFamilyName` and
 {
   "evidenceType": "NATIONAL_ID",
   "documentId": "S1234567A", // national ID number
-  "country": "MX", // i.e. ISO 3166-2 Country Code
+  "country": "MX", // ISO 3166-2 Country Code
   "paternalFamilyName": "Garcia", // Only applicable for MX
   "maternalFamilyName": "Lopez", // Only applicable for MX
   "expiry": "2028-10-12" // YYYY-MM-DD
@@ -336,7 +338,7 @@ A residence permit issued to the cardholder by the country they live in.
 {
   "evidenceType": "RESIDENCE_PERMIT",
   "documentId": "DS230475", // residence permit number
-  "country": "CO", // i.e. ISO 3166-2 Country Code
+  "country": "CO", // ISO 3166-2 Country Code
   "expiry": "2028-10-12" // YYYY-MM-DD
 }
 ```
