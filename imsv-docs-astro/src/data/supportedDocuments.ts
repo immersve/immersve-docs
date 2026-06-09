@@ -95,6 +95,12 @@ export const supportedDocuments = {
     nationalId: true,
     residencePermit: true,
   },
+  DO: {
+    name: 'Dominican Republic',
+    driversLicense: false,
+    nationalId: true,
+    residencePermit: false,
+  },
   EC: {
     name: 'Ecuador',
     driversLicense: true,
@@ -304,6 +310,18 @@ export const supportedDocuments = {
     driversLicense: true,
     nationalId: true,
     residencePermit: true,
+  },
+  SV: {
+    name: 'El Salvador',
+    driversLicense: false,
+    nationalId: true,
+    residencePermit: false,
+  },
+  TJ: {
+    name: 'Tajikistan',
+    driversLicense: false,
+    nationalId: true,
+    residencePermit: false,
   },
   UA: {
     name: 'Ukraine',
