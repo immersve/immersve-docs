@@ -19,11 +19,14 @@ requestBody:
               payload:
                 type: object
                 properties:
-                  id:
+                  challengeId:
                     type: string
                     example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
                     description: |
-                      The Immersve identifier for the 3DS transaction.
+                      The Immersve ID for the 3DS challenge. Send this
+                      value back as the `{challengeId}` path parameter and the
+                      `challengeId` body field when calling [Submit 3DS Challenge
+                      Outcome](/api-reference/submit-3ds-challenge-outcome/).
 
                   externalId:
                     type: string
@@ -37,7 +40,7 @@ requestBody:
                     type: string
                     example: "65a7e8ef0d230d0a6bf755e07d39eb02"
                     description: |
-                      The Immersve id for the cardholder associated with the card.
+                      The Immersve ID for the cardholder associated with the card.
 
                   cardId:
                     type: string
@@ -55,7 +58,7 @@ requestBody:
                     type: string
                     example: "83dee5409cfc11f0a1e6"
                     description: |
-                      The Immersve card program id for the card.
+                      The Immersve card program ID for the card.
 
                   merchantName:
                     type: string

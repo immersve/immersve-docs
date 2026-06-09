@@ -9,9 +9,11 @@ post:
     via the [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3ds-sca-challenge/) webhook,
     to approve or decline the transaction on their behalf.
   parameters:
-    - name: accountId
+    - name: challengeId
       in: path
-      description: The Immersve id for the cardholder associated with the card.
+      description: |
+        The Immersve ID for the 3DS challenge, as received in the
+        [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3ds-sca-challenge/) webhook payload.
       required: true
       schema:
         type: string
@@ -23,20 +25,10 @@ post:
           type: object
           required:
             - outcome
-            - id
             - authType
-            - authScope
             - authenticatedAt
-            - dynamicLinkingConfirmed
-            - confirmedTransactionDetails
             - metadata
           properties:
-            id:
-              type: string
-              description: |
-                The Immersve identifier for the 3DS transaction. Corresponds to the
-                `id` field in the [Payment 3DS SCA Challenge](/api-reference/webhook-topics/payment-3ds-sca-challenge/) webhook payload.
-              example: "6d8ebff23fe6fcf25d8a1d9dab909e54"
             outcome:
               type: string
               description: |
@@ -59,63 +51,30 @@ post:
               description: |
                 The timestamp when the cardholder completed authentication in UTC.
               example: "2024-01-01T12:00:00Z"
-            dynamicLinkingConfirmed:
-              type: boolean
-              description: |
-                Confirms that the merchant name, amount, and currency were
-                displayed to the cardholder before authentication was
-                performed.
-            confirmedTransactionDetails:
-              type: object
-              description: |
-                The transaction details that were confirmed to the cardholder
-                before authentication was performed.
-              properties:
-                amount:
-                  type: string
-                  description: Payment amount represented in the merchant's local currency. The amount will use fiat minor units. For example 978 GBP is £9.78.
-                  example: "5000"
-                currency:
-                  type: string
-                  description: The merchant's local currency.
-                  example: "USD"
-                merchantName:
-                  type: string
-                  description: The merchant's name.
-                  example: "Immersve Store"
             metadata:
               type: object
               description: |
-                Additional context about the client and device used during authentication.
+                Additional context about the app and device used
+                during authentication.
+              required:
+                - appId
+                - deviceId
+                - ipAddress
               properties:
-                clientName:
+                appId:
                   type: string
-                  description: The name of the client application.
-                  example: "Immersve App"
+                  description: An ID for the app submitting the outcome.
+                  example: "com.example.wallet"
                 deviceId:
                   type: string
                   description: |
-                    A stable, platform-native identifier for the cardholder's
-                    device. Should be consistent across sessions and recognisable
-                    to the cardholder.
+                    A stable, platform-native ID for the cardholder's device.
+                    Should be consistent across sessions and recognisable to
+                    the cardholder.
                   example: "FBDDF7E1-7A11-4D4E-9C9B-3D8E5C2F1A4B"
-                deviceName:
-                  type: string
-                  description: The name of the cardholder's device.
-                  example: "Bobs Phone"
-                deviceModel:
-                  type: string
-                  description: The model identifier of the cardholder's device.
-                  example: "XD-7700"
-                deviceManufacturer:
-                  type: string
-                  description: The manufacturer of the cardholder's device.
-                  example: "Acme Corp"
                 ipAddress:
                   type: string
-                  description: |
-                    The IP address of the cardholder's device at the time of
-                    authentication.
+                  description: The IP address of the cardholder's device.
                   example: "192.0.2.1"
   responses:
     "200":
