@@ -67,18 +67,6 @@ post:
                     Should be consistent across sessions and recognisable to
                     the cardholder.
                   example: "FBDDF7E1-7A11-4D4E-9C9B-3D8E5C2F1A4B"
-                deviceName:
-                  type: string
-                  description: The name of the cardholder's device.
-                  example: "Bobs Phone"
-                deviceModel:
-                  type: string
-                  description: The model ID of the cardholder's device.
-                  example: "XD-7700"
-                deviceManufacturer:
-                  type: string
-                  description: The manufacturer of the cardholder's device.
-                  example: "Acme Corp"
                 ipAddress:
                   type: string
                   description: The IP address of the cardholder's device.
