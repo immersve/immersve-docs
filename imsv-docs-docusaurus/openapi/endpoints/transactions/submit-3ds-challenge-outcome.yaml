@@ -56,6 +56,10 @@ post:
               description: |
                 Additional context about the app and device used
                 during authentication.
+              required:
+                - appId
+                - deviceId
+                - ipAddress
               properties:
                 appId:
                   type: string
