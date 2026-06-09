@@ -26,7 +26,7 @@ requestBody:
                       The Immersve ID for the 3DS challenge. Send this
                       value back as the `{challengeId}` path parameter and the
                       `challengeId` body field when calling [Submit 3DS Challenge
-                      Outcome](/api-reference/payments/submit-3-ds-challenge-outcome/).
+                      Outcome](/api-reference/payments/submit-3ds-challenge-outcome/).
 
                   externalId:
                     type: string
