@@ -15,7 +15,7 @@ requestBody:
             properties:
               topic:
                 type: string
-                enum: [payment-3ds-sca-challenge]
+                enum: [payment-3ds-sca]
               payload:
                 type: object
                 properties:

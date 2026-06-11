@@ -8,18 +8,18 @@ can delegate the challenge to your mobile application. Your mobile application i
 for presenting the authentication prompt to the cardholder and reporting the
 outcome back to Immersve.
 
-This flow uses the `payment-3ds-sca-challenge` webhook topic and the Submit 3DS Challenge
+This flow uses the `payment-3ds-sca` webhook topic and the Submit 3DS Challenge
 Outcome endpoint.
 
 ## Prerequisites
 
-- A webhook listener configured and subscribed to the `payment-3ds-sca-challenge` topic.
+- A webhook listener configured and subscribed to the `payment-3ds-sca` topic.
   See [Configuring Webhook Listeners](/guides/configuring-webhook-listeners).
 
 ## How It Works
 
 1. A cardholder initiates a payment that triggers a 3DS challenge.
-2. Immersve sends a `payment-3ds-sca-challenge` webhook to your webhook listener containing the
+2. Immersve sends a `payment-3ds-sca` webhook to your webhook listener containing the
    transaction details and challenge metadata.
 3. Your mobile application presents an authentication prompt to the cardholder before the
    challenge expires.
@@ -29,7 +29,7 @@ Outcome endpoint.
 
 ## Step 1: Receive the 3DS Webhook
 
-When a challenge is initiated, Immersve delivers a `payment-3ds-sca-challenge`
+When a challenge is initiated, Immersve delivers a `payment-3ds-sca`
 notification to your webhook listener. The payload contains everything needed to
 display the challenge and submit the outcome.
 
