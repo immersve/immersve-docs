@@ -1,0 +1,54 @@
+type: object
+title: Approved
+required:
+  - outcome
+  - authType
+  - authenticatedAt
+  - metadata
+properties:
+  outcome:
+    type: string
+    description: |
+      The cardholder's response to the SCA challenge.
+    enum:
+      - approved
+  authType:
+    type: string
+    description: |
+      The authentication method used by the cardholder.
+    enum:
+      - pin
+      - face-id
+      - fingerprint
+      - device-passcode
+  authenticatedAt:
+    type: string
+    format: date-time
+    description: |
+      The timestamp when the cardholder completed authentication in UTC.
+    example: "2024-01-01T12:00:00Z"
+  metadata:
+    type: object
+    description: |
+      Additional context about the app and device used
+      during authentication.
+    required:
+      - appId
+      - deviceId
+      - ipAddress
+    properties:
+      appId:
+        type: string
+        description: An ID for the app submitting the outcome.
+        example: "com.example.wallet"
+      deviceId:
+        type: string
+        description: |
+          A stable, platform-native ID for the cardholder's device.
+          Should be consistent across sessions and recognisable to
+          the cardholder.
+        example: "FBDDF7E1-7A11-4D4E-9C9B-3D8E5C2F1A4B"
+      ipAddress:
+        type: string
+        description: The IP address of the cardholder's device.
+        example: "192.0.2.1"
