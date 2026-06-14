@@ -307,6 +307,7 @@ page="guides/fetching-secure-card-information" /%} for more details.
 
 {% endpointref name="get-card-token" /%}
 
+```bash {% title="Example curl requesting a one-time URL for fetching sensitive card details." %}
 curl -X POST "https://${imsv_api_host}/api/cards/${card_id}/pan-token" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
@@ -323,6 +324,7 @@ Call the simulator endpoint with the sensitive card details.
 Note: "transactionAmount" uses USD minor units. For example, "10" means $0.10.
 {% /note %}
 
+```bash {% title="Example curl submitting a test card payment." %}
 curl -X POST "https://${imsv_api_host}/api/simulator/authorize" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \

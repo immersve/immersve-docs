@@ -40,6 +40,7 @@ KYC instructions such as "submit_contact_phone" will also be included if those
 details have not been supplied and the relevant Immersve KYC steps have been
 requested to be skipped.
 
+```json {% title="Example follow_kyc_url prerequisite returned from Get Spending Prerequisites." %}
 [{
   "stage": "kyc",
   "status": "action-required",
@@ -56,6 +57,7 @@ A first-time user for whom a partner-conducted KYC statement has not been
 received. Additional KYC instructions such as "submit_contact_phone" will also
 be included if those have not been supplied.
 
+```json {% title="Example submit_kyc_statement prerequisite returned from Get Spending Prerequisites." %}
 [{
   "stage": "kyc",
   "status": "action-required",
