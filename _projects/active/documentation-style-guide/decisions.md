@@ -53,3 +53,26 @@ viable, but loses the agent-specific hook for future repo-level
 instructions. (b) Leave `CLAUDE.md` duplicating the guide — rejected
 because it perpetuates the drift problem the project exists to
 solve.
+
+## 2026-06-15 — Move the published page under `resources/`
+
+**Decision:** Supersedes the 2026-06-13 and 2026-06-14 slug decisions.
+The style guide is published at `resources/style-guide` (sourced from
+`imsv-docs-astro/src/content/docs/resources/style-guide.mdoc`) and
+appears in the existing "Resources" sidebar group via Starlight's
+autogeneration. The provisional "Contributors" top-level sidebar
+group is removed.
+
+**Rationale:** "Resources" already hosts reference material the docs
+audience reaches for (Postman collection, sandbox account, smart
+contracts, supported-tokens tables). The style guide fits that shape
+— it's a reference that contributors and partners consult while
+authoring or reading docs. Promoting a separate "Contributors" group
+overstates the section's volume (one page) and splits navigation for
+no real benefit.
+
+**Alternatives considered:** (a) Keep the new "Contributors" sidebar
+group — rejected as premature: one page does not justify a top-level
+group. Re-promote if a second contributor-facing page lands.
+(b) Top-level `CONTRIBUTING.md` — already rejected on 2026-06-13 and
+the reasoning still holds.

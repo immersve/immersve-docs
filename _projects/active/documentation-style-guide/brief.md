@@ -24,7 +24,8 @@ brief restates only what's load-bearing for project continuity.
 
 In scope:
 
-- A new page on the docs site under a `contributors/` slug
+- A new page on the docs site under the `resources/` slug
+  (`resources/style-guide`)
 - Ten sections in priority order: Casing, English Variant, Headings and
   Document Structure, Links, Figures and Captions, Code Samples,
   Terminology, Prose Conventions, OpenAPI Authoring, URLs and Redirects

@@ -1,29 +1,34 @@
 # Progress: Documentation Style Guide
 
-**Current Status:** Stage 1 complete. Page published at
-`contributors/style-guide` with §1, §2, §5 drafted; `CLAUDE.md`
-slimmed to a pointer. Ready to open the draft PR and begin Stage 2.
+**Current Status:** Stage 1 shipped (draft PR #906); branch rebased
+on `main`; page relocated under `resources/style-guide` in the
+existing Resources sidebar group. §3 scope expanded to include a
+Callouts subsection. Paused awaiting user review of Stage 1 before
+starting Stage 2.
 
-## Last Session (2026-06-14)
+## Last Session (2026-06-15)
 
-- Completed: Stage 1 in full. Added the docs page at
-  `imsv-docs-astro/src/content/docs/contributors/style-guide.mdoc`
-  containing §1 Casing, §2 English Variant, and §5 Figures and
-  Captions. Wired a new "Contributors" group into
-  `imsv-docs-astro/astro.config.mjs`. Replaced the uncommitted
-  root-level `CLAUDE.md` with a slim pointer at the published guide.
-  Recorded two decisions (final slug, `CLAUDE.md` disposition) and
-  resolved two open questions accordingly.
-- Outcome: `yarn build` succeeds; the new page renders at
-  `contributors/style-guide`. Branch has three new commits ready to
-  push as a draft PR against `main`.
+- Completed: opened draft PR #906 with Stage 1's three sections;
+  rebased onto current `main` (one conflict in `_projects/README.md`
+  resolved by taking main's version); expanded the §3 task in
+  `plan.md` to add a Callouts subsection covering only the variants
+  that ship today (`{% note %}` green, `{% warning %}` red).
+  Relocated the page from `contributors/style-guide` to
+  `resources/style-guide` per user direction — removed the
+  short-lived "Contributors" sidebar group; the page surfaces via
+  the existing "Resources" autogeneration. Updated `CLAUDE.md`,
+  `brief.md`, and `decisions.md` to reflect the new slug.
+- Outcome: PR is mergeable; CI green on lint, test, build,
+  test-deploy on the pre-relocation commit. Force-push pending after
+  local build verification.
 
 ## Next Session
 
 - Pick up from:
   `/Users/nathan/code/immersve/worktrees/immersve-docs/documentation-style-guide`
   on branch `docs-style-guide-skeleton`.
-- First task: push the branch and open a draft PR against `main`
-  (PR body must include the Notion document URL from `brief.md`).
-  Then begin Stage 2 — start with **§3 Headings and Document
-  Structure** as a new section in the same page, appended after §2.
+- First task: **wait for user feedback on Stage 1 before writing
+  Stage 2.** Per the per-stage-approval rule, do not draft §3
+  speculatively. When approved, begin Stage 2 with §3 (including the
+  Callouts subsection), then §4 Links, then §10 URLs and Redirects —
+  all appended to the same page in the same PR.
