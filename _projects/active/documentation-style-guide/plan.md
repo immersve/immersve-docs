@@ -16,35 +16,13 @@ Stage 4, when the guide is feature-complete at v1.
 - [x] Stale `STYLE_GUIDE_PLAN.md` branch retired in favour of this
       structure; worktree relocated to the conventional path
 
-## Stage 1 — Skeleton and Foundational Sections
+## Stage 1 — Skeleton and Foundational Sections (done)
 
-Lands the three sections the sibling projects depend on (§1, §2, §5),
-plus the docs-site page scaffolding.
-
-- [ ] Confirm the published page's slug (recommended:
-      `contributors/style-guide`)
-- [ ] Add the page under `imsv-docs-astro/src/content/docs/contributors/`
-      and wire it into the sidebar under a new "Contributors" group
-- [ ] Write **§1 Casing** — Title Case for headings, page titles, UI
-      labels, and bolded leading labels in lists; sentence case for body
-      prose; domain resources (Card, Cardholder, Funding Source, Funding
-      Channel, Webhook, Client Application) treated as proper nouns and
-      capitalised everywhere; canonical product casing preserved (iPhone,
-      npm, GitHub, XRPL, etc.); **exception:** headings that are literal
-      code identifiers (e.g. Algorand contract methods like
-      `partnerChannelDeployInit(...)`) keep their source casing — code,
-      not prose
-- [ ] Write **§2 English Variant** — US English (`finalize`, `tokenize`,
-      `color`)
-- [ ] Write **§5 Figures and Captions** — every image, table, and code
-      block carries a short Title Case caption; no screenshots (UI rots
-      and screenshots don't localise); diagrams must be PNGs
-- [ ] Slim or replace `CLAUDE.md` so it points at the published guide
-      instead of restating Casing rules
-
-End state: PR branch contains a new page at `<slug>` with §1, §2, §5
-drafted; draft PR open against `main`. Sibling projects can review the
-committed-but-unmerged sections and begin their own scoping.
+Page published at `contributors/style-guide`, wired into the sidebar
+under a new "Contributors" group. Draft §1 Casing, §2 English
+Variant, and §5 Figures and Captions landed — the three sections the
+sibling projects depend on. `CLAUDE.md` slimmed to a one-line pointer
+at the published guide.
 
 ## Stage 2 — Structural Sections
 
@@ -100,12 +78,8 @@ review and merged. Sibling sweep projects unblocked.
 
 ## Open Questions
 
-- Exact published slug — `contributors/style-guide` (recommended) versus
-  `contributors/docs-style-guide` versus something shorter
 - Whether to cross-link from each section to specific Markdoc tag
   reference docs, or keep the guide self-contained
-- Whether `CLAUDE.md` shrinks to a one-line pointer or is removed
-  entirely once the guide is live
 
 ## Known Risks
 
