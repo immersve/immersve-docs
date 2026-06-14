@@ -44,7 +44,7 @@ own KYC process can require a significant effort.
     An action can be identified by looking at the list of
     prerequisites where `"stage": "kyc"` and `"status": "action-required"`.
 
-    ```json {% title="Example action-required KYC prerequisite returned from POST /spending-prerequisites." %}
+    
      [
       {
         "stage":"kyc",
@@ -66,7 +66,7 @@ own KYC process can require a significant effort.
   {% listitem "Browser" connector=true %}
     __Present Immersve Conducted KYC UI__ <br/>
     The `follow_kyc_url` action is the gateway to starting Immersve Conducted KYC.
-      ```json {% title="Example follow_kyc_url prerequisite returned from POST /spending-prerequisites." %}
+      
          [
           {
             "stage":"kyc",
@@ -157,7 +157,6 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 ```
 
 **Example Response:**
-```json {% title="Example response from POST /spending-prerequisites carrying a follow_kyc_url action." %}
 {
   "prerequisites": [
     {
@@ -409,7 +408,6 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 
 **Example Response:**
 
-```json {% title="Example response from POST /spending-prerequisites once all stages are ok." %}
 {
   "prerequisites": [
     {

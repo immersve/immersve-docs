@@ -22,7 +22,6 @@ They include events for increases and decreases in balances, plus the related mo
 Each line item contains a snapshot of the relevant funding source or funding source interaction and the details of the event that altered its state.
 
 1. **Funding Source Interaction Report Line Item**
-```json {% title="Example funding source interaction report line item." %}
 {
   "event": {
     "id": "fsi-id-000000000000001",
@@ -62,7 +61,6 @@ Enum values:
 `amount.value` is a string of the amount in minor units of the token (e.g. `"30000000"` for 30 USDC).
 
 2. **Funding Source Report Line Item**
-```json {% title="Example funding source report line item." %}
 {
   "event": {
     "id": "fs-id-000000000000002",
@@ -99,7 +97,6 @@ Payment reports follow the same principle. They provide payment event line items
 This model is also consistent with the {% link title="payment updated webhook payload" href="/api-reference/webhook-topics/payment-updated/" /%}.
 
 1. **Payment Report Line Item**
-```json {% title="Example payment report line item." %}
 {
   "event": {
     "id": "payment-id-000000000000002",
@@ -237,7 +234,6 @@ The endpoint returns a pre-signed S3 URL with a TTL of 24 hours that can be used
 
 Download API call example:
 
-```bash {% title="Example curl downloading a reconciliation report via the pre-signed URL." %}
 curl -L 'https://test.immersve.com/api/reports/{reportId}/download' \
   -H 'Content-Type: application/json' \
   -H "X-Api-Key: ${account_admin_api_key}" \

@@ -189,7 +189,6 @@ requirements for a cardholder have been satisfied.
 
 {% endpointref name="get-spending-prerequisites" /%}
 
-```bash {% title="Example curl fetching spending prerequisites to start Immersve-conducted KYC." %}
 curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${imsv_access_token}" \
@@ -214,7 +213,6 @@ redirected back to your "kycRedirectUrl".
 
 Refer to {% link page="guides/immersve-conducted-kyc" /%} for more information.
 
-```json {% title="Example follow_kyc_url prerequisite returned from POST /spending-prerequisites." %}
 {
   "stage": "kyc",
   "status": "action-required",
@@ -272,7 +270,6 @@ page="guides/fetching-secure-card-information" /%} for more details.
 
 {% endpointref name="get-card-token" /%}
 
-```bash {% title="Example curl requesting a one-time token for fetching sensitive card details." %}
 curl -X POST "https://${imsv_api_host}/api/cards/${card_id}/pan-token" \
   -H "Authorization: Bearer ${imsv_access_token}"
 ```
@@ -290,7 +287,6 @@ For more information on executing deposits and withdrawals see the {% link page=
 Note: "spendableAmount" uses minor units. For example, "100" USD minor units means $1.00.
 {% /note %}
 
-```bash {% title="Example curl fetching spending prerequisites to get the deposit transaction parameters." %}
 curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${imsv_access_token}" \
@@ -325,7 +321,6 @@ Call the simulator endpoint with the sensitive card details.
 Note: "transactionAmount" uses USD minor units. For example, "10" means $0.10.
 {% /note %}
 
-```bash {% title="Example curl simulating a test card payment." %}
 curl -X POST "https://${imsv_api_host}/api/simulator/authorize" \
   -H "Authorization: Bearer ${imsv_access_token}" \
   --data '{
