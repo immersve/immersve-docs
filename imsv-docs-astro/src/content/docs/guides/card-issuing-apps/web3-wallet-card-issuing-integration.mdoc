@@ -65,7 +65,7 @@ API interactions.
 The following variables are referenced from the example bash scripts throughout
 this guide.
 
-```bash
+```bash {% title="Environment variables used by the curl examples that follow." %}
 partner_account_id="<your_partner_account_id>"
 card_program_id="<your_card_program_id>"
 funding_channel_id="<your_funding_channel_id>"
@@ -114,7 +114,7 @@ with Immersve APIs and obtain access and refresh tokens.
 
 Save the access token, refresh token, and cardholder account for later.
 
-```bash
+```bash {% title="Variables capturing the access token, refresh token, and account ID from the login response." %}
 imsv_access_token="<access token from login response>"
 imsv_refresh_token="<refresh token from login response>"
 cardholder_account_id="<account from login response>"
@@ -131,7 +131,7 @@ user to re-authenticate.
 
 {% endpointref name="exchange-auth-token" /%}
 
-```bash
+```bash {% title="Example curl exchanging a refresh token for a new access token." %}
 tokens_json="$(
   curl -X POST "https://${imsv_api_host}/auth/token" \
   -H 'Content-Type: application/json' \
@@ -161,7 +161,7 @@ transactions to and from a funding address to the individual cardholders account
 
 {% endpointref name="create-funding-source" /%}
 
-```bash
+```bash {% title="Example curl registering a cardholder funding source for the user's wallet address." %}
 funding_source_id=$(curl -X POST "https://${imsv_api_host}/api/funding-sources" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${imsv_access_token}" \
@@ -189,7 +189,7 @@ requirements for a cardholder have been satisfied.
 
 {% endpointref name="get-spending-prerequisites" /%}
 
-```bash
+```bash {% title="Example curl fetching spending prerequisites to start Immersve-conducted KYC." %}
 curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${imsv_access_token}" \
@@ -214,7 +214,7 @@ redirected back to your "kycRedirectUrl".
 
 Refer to {% link page="guides/immersve-conducted-kyc" /%} for more information.
 
-```json
+```json {% title="Example follow_kyc_url prerequisite returned from POST /spending-prerequisites." %}
 {
   "stage": "kyc",
   "status": "action-required",
@@ -242,7 +242,7 @@ endpoint and record the returned card ID.
 
 {% endpointref name="create-card" /%}
 
-```bash
+```bash {% title="Example curl creating a card for the cardholder." %}
 card_id=$(curl -X POST "https://${imsv_api_host}/api/cards" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${imsv_access_token}" \
@@ -258,7 +258,7 @@ Call Get Card Details to see card status and ensure it is active.
 
 {% endpointref name="get-card" /%}
 
-```bash
+```bash {% title="Example curl fetching card details to check the card is active." %}
 curl -X GET "https://${imsv_api_host}/api/cards/${card_id}" \
   -H "Authorization: Bearer ${imsv_access_token}"
 ```
@@ -272,7 +272,7 @@ page="guides/fetching-secure-card-information" /%} for more details.
 
 {% endpointref name="get-card-token" /%}
 
-```bash
+```bash {% title="Example curl requesting a one-time token for fetching sensitive card details." %}
 curl -X POST "https://${imsv_api_host}/api/cards/${card_id}/pan-token" \
   -H "Authorization: Bearer ${imsv_access_token}"
 ```
@@ -290,7 +290,7 @@ For more information on executing deposits and withdrawals see the {% link page=
 Note: "spendableAmount" uses minor units. For example, "100" USD minor units means $1.00.
 {% /note %}
 
-```bash
+```bash {% title="Example curl fetching spending prerequisites to get the deposit transaction parameters." %}
 curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer ${imsv_access_token}" \
@@ -309,7 +309,7 @@ Verify that the balance is reflected on the Funding Source.
 
 {% endpointref name="list-funding-sources" /%}
 
-```bash
+```bash {% title="Example curl listing funding sources to verify the deposited balance." %}
 curl -X GET "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/funding-sources" \
   -H "Authorization: Bearer ${imsv_access_token}"
 ```
@@ -325,7 +325,7 @@ Call the simulator endpoint with the sensitive card details.
 Note: "transactionAmount" uses USD minor units. For example, "10" means $0.10.
 {% /note %}
 
-```bash
+```bash {% title="Example curl simulating a test card payment." %}
 curl -X POST "https://${imsv_api_host}/api/simulator/authorize" \
   -H "Authorization: Bearer ${imsv_access_token}" \
   --data '{

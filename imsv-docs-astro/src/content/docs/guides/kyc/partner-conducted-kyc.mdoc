@@ -53,7 +53,7 @@ document scans and biometrics, have been collected and verified.
 
 ### Set up Environment Variables
 
-```bash
+```bash {% title="Environment variables used by the curl examples that follow." %}
 card_issuer_api_key="<your_card_issuer_api_key>"
 card_issuer_api_secret="<your_card_issuer_api_secret>"
 card_program_id="<your_card_program_id>"
@@ -82,7 +82,7 @@ a checkbox. This can be done at the same time as KYC information sharing.
 
 {% endpointref name="update-contact-details" /%}
 
-```bash
+```bash {% title="Example curl supplying the cardholder's email and phone contact details." %}
 your_email_address="" # the email address of the cardholder
 your_mobile_number="" # the mobile number of the cardholder in E.164 format
 
@@ -111,7 +111,7 @@ one measure that assists in our understanding of the nature and purpose of the c
 
 {% endpointref name="update-expected-spend-amount" /%}
 
-```bash
+```bash {% title="Example curl supplying the cardholder's expected monthly spend amount." %}
 expected_spend_amount="" # in minor units
 curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/expected-spend-amount" \
   -H "Content-Type: application/json" \
@@ -135,7 +135,7 @@ then reference those IDs from the statement — see
 [Attaching Supporting Documents](#attaching-supporting-documents) for the
 full list of mandatory regions and attachment types.
 
-```bash
+```bash {% title="Example curl uploading a supporting KYC document and receiving a file ID." %}
 curl -X POST "https://${imsv_api_host}/api/file-uploads" \
   -H "Content-Type: multipart/form-data" \
   -H "x-api-key: ${card_issuer_api_key}" \
@@ -172,7 +172,7 @@ The following script submits a minimal KYC statement with a residence permit
 as evidence. See the [Full Statement Example](#full-statement-example) below
 for a request that exercises every claim type and an attachments array.
 
-```bash
+```bash {% title="Example curl submitting a minimal partner-conducted KYC statement with a residence permit." %}
 idempotencyKey="" # a unique key for each request. See submit KYC statement docs for more info
 kyc_region="" # An ISO 3166-2 (Alpha-2) for the region you are submitting the statement for, i.e. EU, NZ, AU, etc.
 
@@ -228,7 +228,7 @@ and Residential Address claim.
 
 The cardholder's date of birth in `YYYY-MM-DD` format.
 
-```json
+```json {% title="Example date-of-birth claim on a KYC statement." %}
 {
   "claimType": "DOB",
   "attributes": {
@@ -242,7 +242,7 @@ The cardholder's date of birth in `YYYY-MM-DD` format.
 The cardholder's legal name. `givenName` and `familyName` are required; the
 optional `honorific` and `middleName` fields are accepted where they apply.
 
-```json
+```json {% title="Example full-name claim on a KYC statement." %}
 {
   "claimType": "FULL_NAME",
   "attributes": {
@@ -260,7 +260,7 @@ The cardholder's residential address, accepted in either structured or
 unstructured form — see [Address Formatting](#address-formatting) for the
 field-by-field detail. A structured example:
 
-```json
+```json {% title="Example structured residential-address claim on a KYC statement." %}
 {
   "claimType": "ADDRESS",
   "attributes": {
@@ -289,7 +289,7 @@ region — see {% link page="guides/regions" /%}.
 
 A government-issued passport identifying the cardholder.
 
-```json
+```json {% title="Example passport evidence on a KYC statement." %}
 {
   "evidenceType": "PASSPORT",
   "documentId": "DS230475", // passport number
@@ -303,7 +303,7 @@ A government-issued passport identifying the cardholder.
 A government-issued driver's license. Some jurisdictions also require a
 `region` (state or province) and a `version` number.
 
-```json
+```json {% title="Example driver's license evidence on a KYC statement." %}
 {
   "evidenceType": "DRIVERS_LICENSE",
   "documentId": "DS230475", // license number
@@ -319,7 +319,7 @@ A government-issued driver's license. Some jurisdictions also require a
 A government-issued national identity card. The `paternalFamilyName` and
 `maternalFamilyName` fields are only applicable to Mexican (`MX`) IDs.
 
-```json
+```json {% title="Example national ID evidence on a KYC statement." %}
 {
   "evidenceType": "NATIONAL_ID",
   "documentId": "S1234567A", // national ID number
@@ -334,7 +334,7 @@ A government-issued national identity card. The `paternalFamilyName` and
 
 A residence permit issued to the cardholder by the country they live in.
 
-```json
+```json {% title="Example residence permit evidence on a KYC statement." %}
 {
   "evidenceType": "RESIDENCE_PERMIT",
   "documentId": "DS230475", // residence permit number
@@ -361,7 +361,7 @@ Organizes address details into predefined fields, making it easier to validate
 and process the data. Partners are strongly encouraged to use this format
 whenever possible.
 
-```json
+```json {% title="Example structured address claim payload." %}
 {
   "claimType": "ADDRESS",
   "attributes": {
@@ -386,7 +386,7 @@ to provide an Unstructured Address. This format consolidates the address into a
 single text string in the `fullAddress` field, which Immersve later attempts to
 parse into structured address components.
 
-```json
+```json {% title="Example unstructured address claim payload." %}
 {
   "claimType": "ADDRESS",
   "attributes": {
@@ -423,7 +423,7 @@ Supporting documents must be first uploaded using the {% link
 endpoint="upload-file" /%} endpoint for each document before being attached to
 the statement using their file IDs and the appropriate attachment type.
 
-```json
+```json {% title="Example attachments array referencing uploaded supporting documents." %}
   {
     "attachments": [
       {
@@ -454,7 +454,7 @@ Name, and a structured Residential Address claim, a passport as evidence,
 and two supporting documents referenced by the file IDs returned from
 [Upload Supporting Documents](#upload-supporting-documents).
 
-```bash
+```bash {% title="Example curl submitting a fully populated partner-conducted KYC statement." %}
 idempotencyKey="" # a unique key for each request. See submit KYC statement docs for more info
 kyc_region="" # An ISO 3166-2 (Alpha-2) for the region you are submitting the statement for, i.e. EU, NZ, AU, etc.
 

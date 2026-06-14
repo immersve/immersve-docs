@@ -51,7 +51,7 @@ endpoint for current Listeners.
 
 {% endpointref name="create-webhook-listener" /%}
 
-```bash
+```bash {% title="Example curl registering a webhook listener for a partner account." %}
 curl -L "https://${imsv_api_host}/api/webhook-listeners" \
   -H 'Content-Type: application/json' \
   -H "X-Api-Key: ${account_admin_api_key}" \
@@ -69,7 +69,7 @@ Use the Webhook Topic Subscription endpoint to subscribe your Webhook Listener t
 
 {% endpointref name="add-webhook-topic-subscription" /%}
 
-```bash
+```bash {% title="Example curl subscribing a webhook listener to a topic." %}
 curl -L 'https://${imsv_api_host}/api/webhook-listeners/${listenerId}/subscribe' \
   -H 'Content-Type: application/json' \
   -H "X-Api-Key: ${account_admin_api_key}" \
@@ -94,7 +94,7 @@ parameter.
 
 {% endpointref name="send-webhook-test-notification" /%}
 
-```bash
+```bash {% title="Example curl sending a test webhook notification for a topic." %}
 curl -L 'https://api.immersve.com/api/webhook-test-notifications' \
   -H 'Content-Type: application/json' \
   -H "X-Api-Key: ${account_admin_api_key}" \

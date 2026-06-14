@@ -33,7 +33,7 @@ When a challenge is initiated, Immersve delivers a `payment-3ds-sca`
 notification to your webhook listener. The payload contains everything needed to
 display the challenge and submit the outcome.
 
-```json
+```json {% title="Example payment-3ds-sca webhook payload." %}
 {
   "challengeId": "6d8ebff23fe6fcf25d8a1d9dab909e54",
   "externalId": "254a5d3a-e251-4fc0-913a-51c01d3420a7",
@@ -79,7 +79,7 @@ retry before `expiryTime`. See {% link page="guides/http-status-codes" /%}.
 If the cardholder approved, include `authType` and `authenticatedAt` to record
 the completed authentication.
 
-```shell
+```shell {% title="Example curl submitting an approved 3DS challenge outcome." %}
 curl -X POST https://api.immersve.com/api/3ds-challenges/{challengeId}/outcome \
   -H 'Authorization: Bearer <TOKEN>' \
   -H 'Content-Type: application/json' \
@@ -98,7 +98,7 @@ curl -X POST https://api.immersve.com/api/3ds-challenges/{challengeId}/outcome \
 If the cardholder declined or failed authentication, set `outcome` to
 `"declined"` and omit `authType` and `authenticatedAt`.
 
-```shell
+```shell {% title="Example curl submitting a declined 3DS challenge outcome." %}
 curl -X POST https://api.immersve.com/api/3ds-challenges/{challengeId}/outcome \
   -H 'Authorization: Bearer <TOKEN>' \
   -H 'Content-Type: application/json' \

@@ -26,7 +26,7 @@ contract are scoped to your application.
 
 **Set up environment variables:**
 
-```bash
+```bash {% title="Environment variables used by the curl examples that follow." %}
 account_admin_api_key="<your_account_admin_api_key>"
 account_admin_api_secret="<your_account_admin_api_secret>"
 partner_account_id="<your_partner_account_id>"
@@ -36,7 +36,7 @@ funding_type_name="polygon-amoy-usdc-universal-evm-test"
 
 **Create a funding channel:**
 
-```bash
+```bash {% title="Example curl creating a funding channel for a deployed Funds Storage contract." %}
 funding_channel_id=$(curl -X POST "https://test.immersve.com/api/funding-channels" \
   -H "Content-Type: application/json" \
   -H "x-api-key: ${account_admin_api_key}" \

@@ -17,7 +17,7 @@ The {% link endpoint="initiate-login" /%} endpoint produces a message that needs
 to be signed by the user's wallet. The message format for the `algorand` login
 method is like the following example.
 
-``` {% title="algorand login message" %}
+``` {% title="Example Algorand login challenge message returned by the initiate-login endpoint." %}
 Login with your Algorand address 0xA3058369d6A481B1ff08F62B352409c3D709De9b
 
 Id: GlSDzZHcxrSDeJbKu
@@ -32,7 +32,7 @@ signature to the {% link endpoint="complete-login" /%} endpoint.
 The following script demonstrates how to authenticate with the Immersve
 `algorand` login method using the Node.js Algorand SDK and Axios HTTP client.
 
-```js {% title="sign-algorand-challenge.js" %}
+```js {% title="Example script signing an Algorand login challenge." %}
 #!/usr/bin/env node
 
 const algosdk = require('algosdk');

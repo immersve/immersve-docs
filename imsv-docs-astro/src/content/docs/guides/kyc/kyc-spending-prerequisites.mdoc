@@ -40,7 +40,7 @@ KYC instructions such as "submit_contact_phone" will also be included if those
 details have not been supplied and the relevant Immersve KYC steps have been
 requested to be skipped.
 
-```json
+```json {% title="Example new-cardholder prerequisite returned from POST /spending-prerequisites." %}
 [{
   "stage": "kyc",
   "status": "action-required",
@@ -57,7 +57,7 @@ A first-time user for whom a partner-conducted KYC statement has not been
 received. Additional KYC instructions such as "submit_contact_phone" will also
 be included if those have not been supplied.
 
-```json
+```json {% title="Example submit_kyc_statement prerequisite returned from POST /spending-prerequisites." %}
 [{
   "stage": "kyc",
   "status": "action-required",
@@ -72,7 +72,7 @@ When all information has been submitted by actioning the KYC instructions the
 KYC instruction will have status "pending" while background checks are being
 completed.
 
-```json
+```json {% title="Example pending KYC prerequisite returned while background checks run." %}
 [{
   "stage": "kyc",
   "status": "pending"
@@ -81,7 +81,7 @@ completed.
 
 ### Background Checks Failed (Partner Conducted)
 When cardholder KYC checks have been completed, but some checks have failed or more information is required. A reason code may be included to explain why the application was not successful. Reason codes are detailed at the bottom of this guide.
-```json
+```json {% title="Example KYC prerequisite requesting a resubmitted statement with failure reasons." %}
 [{
   "stage": "kyc",
   "status": "action-required",
@@ -100,7 +100,7 @@ When cardholder KYC checks have been completed, but some checks have failed or m
 When all cardholder KYC checks have been completed successfully then a
 prerequisite instruction will indicate the KYC stage is "ok".
 
-```json
+```json {% title="Example ok KYC prerequisite returned once all checks have passed." %}
 [{
   "stage": "kyc",
   "status": "ok",
@@ -113,7 +113,7 @@ prerequisite instruction will indicate the KYC stage is "ok".
 If a cardholder account has failed KYC checks and retry is not allowed then the
 status will be "blocked".
 
-```json
+```json {% title="Example blocked KYC prerequisite returned when retries are not allowed." %}
 [{
   "stage": "kyc",
   "status": "blocked"

@@ -91,7 +91,7 @@ The {% link endpoint="create-withdrawal-intent" /%} endpoint creates a withdrawa
 intent for a given amount and returns the parameters needed to execute the withdrawal on the cardholder's
 web3 wallet.
 
-```js {% title="ethers-execute-withdrawal.js" %}
+```js {% title="Example using ethers to execute a withdrawal intent transaction." %}
 const {
   abi,
   contractAddress,
@@ -127,7 +127,7 @@ prerequisite. The value of the `type` attribute will depend on the funding
 protocol in use. For example, an action type of `"smart_contract_write"`
 indicates that an EVM smart contract interaction is required.
 
-```js {% title="ethers-execute-deposit.js" %}
+```js {% title="Example using ethers to execute a deposit transaction." %}
 const {
   abi,
   contractAddress,
