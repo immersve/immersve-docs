@@ -94,3 +94,97 @@ Trade-offs:
   plugin styles from interfering with Expressive Code's own
   styling; the figcaption may need explicit re-application of the
   prose caption rule.
+
+## Stage B2 — Endpoint Naming in Captions (2026-06-14)
+
+Captions name endpoints by their title from the `endpointref`
+registry, not by method+path.
+
+- Use: "from Get Spending Prerequisites", "to Create Account",
+  "via Submit Challenge Outcome".
+- Do not use: "from POST /spending-prerequisites", "to POST
+  /accounts".
+
+The endpoint title is the canonical name surfaced in the surrounding
+`endpointref` block and in the API reference sidebar. The method+path
+form is reference data that already appears one block away; the
+caption restates the *action* the call performs in the API's own
+vocabulary.
+
+## Stage B2 — Domain-Resource Casing in Captions (2026-06-14)
+
+Captions surfaced an unresolved inconsistency in how the wider docs
+case named platform concepts. A `grep` of `imsv-docs-astro/src/content/docs/guides/`
+counted:
+
+- Funding Source: 53 Title Case vs 31 lowercase
+- Funding Channel: 21 vs 6
+- Funds Storage: 15 vs 1
+- Card Program: 6 vs 5
+- Cardholder Account: 4 vs 10
+- Partner Account: 9 vs 4
+
+No single rule explains the split. Two rules are in play and they
+disagree:
+
+1. **"Is it the name of a defined platform concept?"** Under this
+   rule, every concept defined in the data model gets Title Case
+   in every appearance. This is the rule the API reference
+   approximates when introducing a concept formally.
+2. **"Is it functioning as a name here, or as a description?"**
+   Under this rule, the same word swings on its grammatical role.
+   "Create a Funding Source" (resource type, named) vs. "the
+   cardholder's funding source" (instance, possessed). English
+   does this constantly: "the President" vs. "a president".
+
+### Interim Rule Applied in Captions
+
+For the captions PR, the second rule:
+
+- **Title Case when naming the resource type as a concept.**
+  Markers: the word is acting as the type name, often after
+  "a/the/list/create/get". "Create a Funding Channel.",
+  "List Webhook Listeners.", "Register a Funding Source."
+- **lowercase when describing an instance, a possessive, or a
+  compound noun phrase.** Markers: possessive, indefinite article
+  with modifiers, or generic plural. "the cardholder's funding
+  source", "a custodial cardholder funding source", "their card
+  program ID", "listing funding sources".
+
+Test: if the phrase could be replaced with "the [Resource]" in
+API-reference prose without sounding off, capitalize. If it reads
+naturally with a possessive or with an instance-specific modifier
+mid-sentence, leave it lowercase.
+
+### Why Not Rule 1
+
+Rule 1 is mechanically simpler and unambiguous but would require
+retro-editing ~70 lowercase occurrences in the existing guides to
+match — work that touches every integration walkthrough. Captions
+alone cannot drive that. The *Documentation Style Guide* project
+is the appropriate venue for picking a rule and conforming the
+corpus.
+
+### Trade-offs of Rule 2
+
+- **Pro:** Matches English convention; most current docs already
+  lean this way (the lowercase-loser bucket is mostly possessives
+  and instance descriptions, not random).
+- **Con:** Requires judgment per use site. Two reviewers can read
+  the same sentence differently. A house style guide entry with
+  examples is needed.
+- **Con:** Captions get this right in isolation but the
+  surrounding prose is inconsistent. Reads as polish in one
+  block, sloppiness in the next.
+
+### Handoff to Documentation Style Guide
+
+The Documentation Style Guide project should:
+
+1. Decide between rule 1 and rule 2 (or a hybrid).
+2. If rule 2 wins, lift the markers and test from this entry into
+   the style guide with worked examples.
+3. Retro-edit existing guides so the corpus is consistent with the
+   chosen rule. Caption text in this PR will conform without
+   further changes if rule 2 is chosen; will need a sweep if rule
+   1 is chosen.

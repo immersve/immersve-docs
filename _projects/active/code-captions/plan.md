@@ -100,6 +100,16 @@ guidance on when to choose title vs paragraph form.
   confirm one shared list, not two.
 - Existing meaningful filename captions
   (e.g. `sign-xrpl-challenge.js`) stay as-is — confirm rule.
+- **Domain-resource casing (out of scope — handed off to the
+  *Documentation Style Guide* project).** Captions surfaced an
+  unresolved inconsistency: "Funding Source" appears Title Case 53
+  times and lowercase 31 times in the existing docs, "Funding
+  Channel" 21 vs 6, "Card Program" 6 vs 5. The captions PR has
+  applied an interim rule documented in `decisions.md` — Title
+  Case when naming the resource type as a concept, lowercase when
+  describing an instance — but the wider docs corpus has not been
+  conformed to either rule. The style guide project should pick
+  one and retro-edit existing prose to match.
 
 ## Known Risks
 
