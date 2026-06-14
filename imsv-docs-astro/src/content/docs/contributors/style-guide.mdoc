@@ -1,0 +1,140 @@
+---
+title: Documentation Style Guide
+description: |
+  House style for contributors writing Immersve docs — casing, English
+  variant, structure, links, figures, code samples, terminology, prose,
+  OpenAPI, and URLs.
+slug: contributors/style-guide
+---
+
+This guide is the source of truth for how Immersve documentation is
+written. It applies to every page on the docs site, every code sample,
+and every OpenAPI description. Read it once before authoring or
+reviewing a docs change.
+
+The audience is contributors: Immersve engineers, AI agents authoring
+docs, and partners writing integration notes against the Immersve API.
+
+## 1. Casing
+
+Use **Title Case** for headings, page titles, UI labels, and bolded
+leading labels in lists. Use **sentence case** for body prose.
+
+A heading or label names the thing it labels, and names are
+capitalized. Title Case marks an element as a self-contained name
+rather than a sentence fragment describing what something does. The
+test is "is this a name?", not "is this bold?".
+
+### Where Title Case Applies
+
+Title Case applies regardless of length:
+
+- Page titles and section headings (`## Creating a Card`, not
+  `## Creating a card`)
+- UI labels — button text, menu items, form field labels, navigation
+  entries ("Save Changes", not "Save changes")
+- Table column headers and figure or code-block captions
+- Bolded leading labels in list items, where the bold introduces a
+  named term ("**Webhook Topic** — a specific, named category…")
+
+Sentence case is correct for actual sentences — body prose,
+descriptions, help text, error messages, and tooltips that read as
+full sentences.
+
+### Title Case Mechanics
+
+- Capitalize the first and last word always
+- Capitalize nouns, verbs, adjectives, adverbs, and pronouns
+- Lowercase articles (a, an, the), coordinating conjunctions (and,
+  but, or), and short prepositions (in, on, at, to, of, for) — unless
+  they are the first or last word
+- Capitalize all words of four letters or more, including
+  prepositions (Through, Between, About)
+- Preserve the canonical casing of proper nouns and product names
+  (iPhone, npm, GitHub, XRPL, Algorand)
+
+### Domain Resources Are Proper Nouns
+
+Immersve's domain resources are treated as proper nouns and
+capitalized everywhere they appear — in headings, in prose, in list
+items, in captions:
+
+- Card
+- Cardholder
+- Funding Source
+- Funding Channel
+- Webhook
+- Client Application
+
+The authoritative list of domain resources lives in §7 Terminology.
+
+Write "every Card belongs to a Cardholder", not "every card belongs
+to a cardholder". The capitalization signals that the term names a
+specific domain concept with a precise meaning, distinct from the
+everyday English word.
+
+### Code Identifiers in Headings
+
+Headings whose entire content is a literal code identifier keep
+their source casing — they are code, not prose. Wrap the identifier
+in backticks.
+
+For example, an Algorand contract method heading stays in its
+declared casing:
+
+```
+### `partnerChannelDeployInit(...)`
+```
+
+Not `### Partner Channel Deploy Init(...)`. The heading names a
+symbol that exists in code; renaming it for visual consistency
+would make the page un-greppable against the source.
+
+This exception is narrow. A heading that *describes* a code symbol
+("Deploying a Partner Channel") is prose and follows Title Case.
+The exception only applies when the heading **is** the symbol.
+
+## 2. English Variant
+
+Write US English throughout.
+
+- Spellings: `finalize`, `tokenize`, `color`, `behavior`, `center`,
+  `license` (noun and verb), `analyze`, `catalog`
+- Not: `finalise`, `tokenise`, `colour`, `behaviour`, `centre`,
+  `licence`, `analyse`, `catalogue`
+
+This applies to all prose, headings, captions, code comments, and
+OpenAPI descriptions. Proper nouns keep their canonical spelling
+regardless of variant (a product literally named `Behaviour Ltd`
+stays that way).
+
+## 5. Figures and Captions
+
+Every image, table, and code block carries a short Title Case
+caption.
+
+A caption names the figure so readers can refer to it ("see *Card
+State Transitions* below") and so it stands on its own when scanned.
+It is not a sentence describing what the figure shows — that
+belongs in the surrounding prose.
+
+### No Screenshots
+
+Do not embed screenshots of the Immersve dashboard, partner portals,
+or any third-party UI. UI rots faster than docs, screenshots don't
+localize, and a year-old screenshot is worse than no screenshot at
+all because it actively misleads.
+
+Describe the UI in prose with the labels Title-Cased per §1
+("click **Create Card**, then enter the Cardholder's email"). If a
+visual reference is genuinely required, draw a diagram.
+
+### Diagrams Are PNGs
+
+Source diagrams (sequence diagrams, architecture diagrams, state
+machines) as PNGs. They render predictably across browsers and
+print, and they don't pull in extra runtime dependencies.
+
+Keep the source file (`.drawio`, `.excalidraw`, Mermaid `.mmd`)
+alongside the PNG in the same `assets/` directory so the diagram
+remains editable.

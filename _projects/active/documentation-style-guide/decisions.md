@@ -19,3 +19,37 @@ regularly, and partners couldn't see it at all. (b) Both — a stub
 `CONTRIBUTING.md` pointing at the published guide — viable but adds a
 maintenance surface for marginal benefit; revisit if a clear need
 arises.
+
+## 2026-06-14 — Final slug: `contributors/style-guide`
+
+**Decision:** The published page lives at
+`https://docs.immersve.com/contributors/style-guide` (sourced from
+`imsv-docs-astro/src/content/docs/contributors/style-guide.mdoc`).
+
+**Rationale:** Matches the section directory cleanly, leaves room
+for a future Contributors landing page or sibling pages (e.g. local
+dev setup) without restructuring URLs.
+
+**Alternatives considered:** (a) `contributors/docs-style-guide` —
+more specific but redundant inside the `contributors/` section,
+where "style guide" is unambiguous. (b) `contributors` — promotes
+the page to the section root for a shorter URL, but forecloses on a
+future Contributors landing page.
+
+## 2026-06-14 — `CLAUDE.md` slims to a pointer
+
+**Decision:** The repo-root `CLAUDE.md` (previously uncommitted, with
+casing rules duplicated from the guide) is committed as a slim
+pointer to the published style guide, with no rule restatement.
+
+**Rationale:** Single source of truth — agents and humans read the
+same page. Slim file still picks up automatically by Claude Code's
+project-instructions loader, so any future agent-specific
+instructions (build commands, repo layout notes) have a place to
+live without polluting the published guide.
+
+**Alternatives considered:** (a) Remove `CLAUDE.md` entirely —
+viable, but loses the agent-specific hook for future repo-level
+instructions. (b) Leave `CLAUDE.md` duplicating the guide — rejected
+because it perpetuates the drift problem the project exists to
+solve.
