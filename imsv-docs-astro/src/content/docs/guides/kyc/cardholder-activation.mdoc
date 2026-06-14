@@ -50,8 +50,8 @@ Subscribe to the `cardholder-block-released` topic to receive a real-time
 notification when an activation block is lifted.
 
 1. **Configure a Webhook Listener** –
-   Set up and register your webhook listener. See
-   {% link page="guides/configuring-webhook-listeners" /%}.
+   Set up and register your webhook listener. See {% link 
+   page="guides/configuring-webhook-listeners" /%}.
 
 2. **Subscribe to the Topic** –
    Subscribe your listener to the `cardholder-block-released` topic.
@@ -69,11 +69,10 @@ notification when an activation block is lifted.
    }
    ```
 
-   See the {% link title="Cardholder Block Released" href="https://docs.immersve.com/api-reference/webhook-topics/cardholder-block-released/" /%}
-   topic reference for the full payload schema.
+Once the webhook notification is received for the given cardholder, treat the cardholder as active.
+See the {% link title="Cardholder Block Released" endpoint="webhook-topics/cardholder-block-released/" /%}
+topic reference for the full payload schema.
 
-   Once the webhook notification is received for the given cardholder, treat the
-   cardholder as active.
 
 ### Polling (Fallback)
 
