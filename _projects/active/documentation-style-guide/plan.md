@@ -34,7 +34,16 @@ at the published guide.
       carries multiple columns of information prefers a table or icon
       list; **bullet rule:** within a list, each bullet is either a label
       (Title Case, no trailing period) or a paragraph (sentence case,
-      trailing period) — pick one shape per list and stay consistent
+      trailing period) — pick one shape per list and stay consistent;
+      **Callouts subsection** — only `{% note %}` (green) and
+      `{% warning %}` (red) ship today; use sparingly; a callout
+      reinforces a point already made in the surrounding prose, never
+      introduces a new constraint; `{% note %}` for important facts a
+      careful reader has already absorbed (immutable identifiers,
+      reasoned defaults); `{% warning %}` for hazards with real cost
+      (data loss, irreversible state, account lockout, security
+      exposure); never use callouts for cross-links, motivation, or
+      section summaries
 - [ ] **§4 Links** — always use the `{% link %}` Markdoc tag; avoid
       `target=_blank`; avoid generic "see also" sub-sections (prefer "see
       X for more information" inline)
