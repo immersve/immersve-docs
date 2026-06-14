@@ -55,6 +55,29 @@ period. The rules in short:
   for rewrite as a list, and the malformed inline triple-backtick at
   `immersve-conducted-kyc.mdoc:444` is noted but not counted.
 
+## Preview Deploy Links
+
+Every page modified by Stage B2, on the PR preview deploy:
+
+- [3DS — Handling In-App Payment Challenges](https://907-merge--jovial-scone-ec740d.netlify.app/guides/3ds/handling-in-app-payment-challenges/)
+- [API Fundamentals — Algorand Login](https://907-merge--jovial-scone-ec740d.netlify.app/guides/api-fundamentals/algorand-login/)
+- [API Fundamentals — HTTP Status Codes](https://907-merge--jovial-scone-ec740d.netlify.app/guides/api-fundamentals/http-status-codes/)
+- [API Fundamentals — SIWE Login](https://907-merge--jovial-scone-ec740d.netlify.app/guides/api-fundamentals/siwe-login/)
+- [API Fundamentals — XRPL Login](https://907-merge--jovial-scone-ec740d.netlify.app/guides/api-fundamentals/xrpl-login/)
+- [Card-Issuing Apps — Creating a Funding Channel](https://907-merge--jovial-scone-ec740d.netlify.app/guides/card-issuing-apps/creating-a-funding-channel/)
+- [Card-Issuing Apps — Custodial Card-Issuing Integration](https://907-merge--jovial-scone-ec740d.netlify.app/guides/card-issuing-apps/custodial-card-issuing-integration/)
+- [Card-Issuing Apps — Custodial On-Chain Card-Issuing Integration](https://907-merge--jovial-scone-ec740d.netlify.app/guides/card-issuing-apps/custodial-on-chain-card-issuing-integration/)
+- [Card-Issuing Apps — Fetching Secure Card Information](https://907-merge--jovial-scone-ec740d.netlify.app/guides/card-issuing-apps/fetching-secure-card-information/)
+- [Card-Issuing Apps — Web3 Wallet Card-Issuing Integration](https://907-merge--jovial-scone-ec740d.netlify.app/guides/card-issuing-apps/web3-wallet-card-issuing-integration/)
+- [Core Concepts — Card Funding](https://907-merge--jovial-scone-ec740d.netlify.app/guides/core-concepts/card-funding/)
+- [Core Concepts — Regions](https://907-merge--jovial-scone-ec740d.netlify.app/guides/core-concepts/regions/)
+- [KYC — Cardholder Activation](https://907-merge--jovial-scone-ec740d.netlify.app/guides/kyc/cardholder-activation/)
+- [KYC — Immersve-Conducted KYC](https://907-merge--jovial-scone-ec740d.netlify.app/guides/kyc/immersve-conducted-kyc/)
+- [KYC — KYC Spending Prerequisites](https://907-merge--jovial-scone-ec740d.netlify.app/guides/kyc/kyc-spending-prerequisites/)
+- [KYC — Partner-Conducted KYC](https://907-merge--jovial-scone-ec740d.netlify.app/guides/kyc/partner-conducted-kyc/)
+- [Reports — Accessing Reconciliation Reports](https://907-merge--jovial-scone-ec740d.netlify.app/guides/reports/accessing-reconciliation-reports/)
+- [Webhooks — Configuring Webhook Listeners](https://907-merge--jovial-scone-ec740d.netlify.app/guides/webhooks/configuring-webhook-listeners/)
+
 ## guides/3ds/handling-in-app-payment-challenges.mdoc
 
 | Line | Lang | Existing Title | Nearest Heading | Proposed Form | Proposed Caption |
