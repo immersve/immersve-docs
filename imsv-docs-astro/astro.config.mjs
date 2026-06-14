@@ -58,7 +58,6 @@ export default defineConfig({
           ]
         },
         { label: 'Resources', autogenerate: { directory: 'resources' } },
-        { label: 'Contributors', autogenerate: { directory: 'contributors' } },
         { label: 'Contact Us', link: 'https://immersve.com/contact' },
       ],
     }),
