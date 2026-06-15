@@ -32,5 +32,6 @@ requestBody:
                       - provisioning-failed
                       - user-requested
                       - external-provider-failed
+                      - expired
 
           - $ref: "./webhook-envelope.yaml"

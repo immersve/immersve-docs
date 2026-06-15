@@ -109,3 +109,4 @@ properties:
       - provisioning-failed
       - user-requested
       - external-provider-failed
+      - expired
