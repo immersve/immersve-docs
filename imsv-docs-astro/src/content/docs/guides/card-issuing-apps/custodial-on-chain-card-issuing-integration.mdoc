@@ -65,7 +65,7 @@ API interactions.
 The following variables are referenced from the example bash scripts throughout
 this guide.
 
-```bash
+```bash {% title="Environment variables used by the curl examples that follow." %}
 card_issuer_api_key="<your_card_issuer_api_key>"
 card_issuer_api_secret="<your_card_issuer_api_secret>"
 partner_account_id="<your_partner_account_id>"
@@ -113,7 +113,7 @@ page="guides/authentication" title="Authentication Guide"/%}.
 
 {% endpointref name="create-account" /%}
 
-```bash
+```bash {% title="Example curl creating a cardholder account." %}
 cardholder_account_id=$(curl \
   -X POST "https://${imsv_api_host}/api/accounts" \
   -H "Content-Type: application/json" \
@@ -139,7 +139,7 @@ title="Ethers.js" /%}.
 
 {% endpointref name="create-challenge" /%}
 
-```bash
+```bash {% title="Example curl creating a challenge for the cardholder to sign with their web3 wallet." %}
 wallet_address="<wallet_address>"
 
 response=$(curl -X POST "https://${imsv_api_host}/api/challenges" \
@@ -169,7 +169,7 @@ withdrawals see the {% link page="guides/card-funding" /%} guide.
 
 {% endpointref name="create-funding-source" /%}
 
-```bash
+```bash {% title="Example curl registering a cardholder funding source with a signed web3 challenge." %}
 signature="<signature hash of cardholder signing the challenge message with their wallet>"
 
 funding_source_id=$(curl -X POST "https://${imsv_api_host}/api/funding-sources" \
@@ -194,7 +194,7 @@ contact details requirements for a cardholder have been satisfied.
 
 {% endpointref name="get-spending-prerequisites" /%}
 
-```bash
+```bash {% title="Example curl fetching spending prerequisites to surface KYC and contact-detail requirements." %}
 curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
   -H "Content-Type: application/json" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
@@ -234,7 +234,7 @@ endpoint and record the returned card ID.
 
 {% endpointref name="create-card" /%}
 
-```bash
+```bash {% title="Example curl creating a card for the cardholder." %}
 card_id=$(curl -X POST "https://${imsv_api_host}/api/cards" \
   -H "Content-Type: application/json" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
@@ -252,7 +252,7 @@ Call Get Card Details to see card status and ensure it is active.
 
 {% endpointref name="get-card" /%}
 
-```bash
+```bash {% title="Example curl fetching card details to check the card is active." %}
 curl -X GET "https://${imsv_api_host}/api/cards/${card_id}" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
@@ -268,7 +268,7 @@ page="guides/fetching-secure-card-information" /%} for more details.
 
 {% endpointref name="get-card-token" /%}
 
-```bash
+```bash {% title="Example curl requesting a one-time URL for fetching sensitive card details." %}
 curl -X POST "https://${imsv_api_host}/api/cards/${card_id}/pan-token" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
@@ -288,7 +288,7 @@ For more information on executing deposits and withdrawals see the {% link page=
 Note: "spendableAmount" uses minor units. For example, "100" USD minor units means $1.00.
 {% /note %}
 
-```bash
+```bash {% title="Example curl fetching spending prerequisites to get the deposit transaction parameters." %}
 curl -X POST "https://${imsv_api_host}/api/spending-prerequisites" \
   -H "Content-Type: application/json" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
@@ -308,7 +308,7 @@ Verify that the balance is reflected on the Funding Source.
 
 {% endpointref name="list-funding-sources" /%}
 
-```bash
+```bash {% title="Example curl listing funding sources to verify the deposited balance." %}
 curl -X GET "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/funding-sources" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \
@@ -325,7 +325,7 @@ Call the simulator endpoint with the sensitive card details.
 Note: "transactionAmount" uses USD minor units. For example, "10" means $0.10.
 {% /note %}
 
-```bash
+```bash {% title="Example curl submitting a test card payment." %}
 curl -X POST "https://${imsv_api_host}/api/simulator/authorize" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
   -H "X-Api-Secret: ${card_issuer_api_secret}" \

@@ -19,7 +19,7 @@ produces a message that needs to be signed by the user's wallet.
 The message format for the `xrpl` login method
 is a hex-encoded XRPL transaction.
 
-``` {% title="xrpl login message" %}
+``` {% title="Example XRPL login challenge message returned by the initiate-login endpoint." %}
 7321ED86C55E77C731F33313A3A47A7E...
 ```
 
@@ -32,7 +32,7 @@ signature to the {% link endpoint="complete-login" /%} endpoint.
 The following script demonstrates how to authenticate with the Immersve xrpl
 login method using the Node.js XRPL SDK and Axios HTTP client.
 
-```js {% title="sign-xrpl-challenge.js" %}
+```js {% title="Example script signing an XRPL login challenge." %}
 #!/usr/bin/env node
 
 const xrplSdk = require('xrpl');

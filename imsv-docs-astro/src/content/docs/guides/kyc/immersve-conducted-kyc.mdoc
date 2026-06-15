@@ -44,7 +44,7 @@ own KYC process can require a significant effort.
     An action can be identified by looking at the list of
     prerequisites where `"stage": "kyc"` and `"status": "action-required"`.
 
-    ```json
+    ```json {% title="Example action-required KYC prerequisite returned from Get Spending Prerequisites." %}
      [
       {
         "stage":"kyc",
@@ -66,7 +66,7 @@ own KYC process can require a significant effort.
   {% listitem "Browser" connector=true %}
     __Present Immersve Conducted KYC UI__ <br/>
     The `follow_kyc_url` action is the gateway to starting Immersve Conducted KYC.
-      ```json
+      ```json {% title="Example follow_kyc_url prerequisite returned from Get Spending Prerequisites." %}
          [
           {
             "stage":"kyc",
@@ -88,7 +88,7 @@ own KYC process can require a significant effort.
     __Wait for Background Checks__ <br/>
     Once the `follow_kyc_url` action has been completed. You will see a similar response
      to below from the {% link endpoint="get-spending-prerequisites" /%} endpoint.
-    ```json
+    ```json {% title="Example response while background checks are running." %}
     [{
       "stage":"kyc","status":"pending"
     }]
@@ -103,7 +103,7 @@ own KYC process can require a significant effort.
    Once all of the necessary actions have been completed and KYC checks have passed,
     all KYC prequisites have been completed. You'll see a similar response to the following:
 
-    ```json
+    ```json {% title="Example response once background checks have passed." %}
     [{
       "stage":"kyc","status":"ok"
     }]
@@ -121,7 +121,7 @@ convenient.
 This guide assumes that the partner has already obtained an access token or API
 keys, and has the card program and funding source IDs ready.
 
-```bash
+```bash {% title="Environment variables used by the curl examples that follow." %}
 token="<your_access_token>"
 card_program_id="<your_card_program_id>"
 funding_source_id="<funding_source_id>"
@@ -142,7 +142,7 @@ depending on the effort required to verify an individual. See {% link page="guid
 {% endpointref name="get-spending-prerequisites" /%}
 
 **Example Request:**
-```bash
+```bash {% title="Example curl fetching spending prerequisites to start Immersve-conducted KYC." %}
 curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer $token" \
@@ -157,7 +157,7 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 ```
 
 **Example Response:**
-```json
+```json {% title="Example response from Get Spending Prerequisites carrying a follow_kyc_url action." %}
 {
   "prerequisites": [
     {
@@ -254,7 +254,7 @@ a checkbox. This can be done at the same time as KYC information sharing.
 
 {% endpointref name="update-contact-details" /%}
 
-```bash
+```bash {% title="Example curl supplying the cardholder's email and phone contact details." %}
 curl -X PATCH "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/contact-details" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $token" \
@@ -281,7 +281,7 @@ You can do this by calling the {% link endpoint="update-expected-spend-amount" /
 
 {% endpointref name="update-expected-spend-amount" /%}
 
-```bash
+```bash {% title="Example curl supplying the cardholder's expected monthly spend amount." %}
 expected_spend_amount="" # in minor units
 curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/expected-spend-amount" \
   -H "Content-Type: application/json" \
@@ -309,7 +309,7 @@ whenever possible as correct parsing of an unstructured address is not guarantee
 
     Organizes address details into predefined fields, making it easier to validate and process the data.
 
-    ```json
+    ```json {% title="Example structured residential address payload." %}
     {
       "streetNumber": "140",
       "streetName": "Commonwealth Avenue",
@@ -327,7 +327,7 @@ whenever possible as correct parsing of an unstructured address is not guarantee
 
     This format consolidates the address into a single text string in the `fullAddress` field
 
-    ```json
+    ```json {% title="Example unstructured residential address payload." %}
     {
       "fullAddress": "140 Commonwealth Ave,
        Yarralumla ACT 2600, Australia",
@@ -343,7 +343,7 @@ whenever possible as correct parsing of an unstructured address is not guarantee
 
 {% endpointref name="submit-residential-addresses" /%}
 
-```bash
+```bash {% title="Example curl submitting the cardholder's residential address ahead of KYC." %}
 curl -X POST "https://${imsv_api_host}/api/accounts/${cardholder_account_id}/residential-addresses" \
   -H "Content-Type: application/json" \
   -H "X-Api-Key: ${card_issuer_api_key}" \
@@ -393,7 +393,7 @@ allowed to create and use their Immersve card.
 
 **Example Request:**
 
-```bash
+```bash {% title="Example curl fetching spending prerequisites after KYC redirect to confirm completion." %}
 curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer $token" \
@@ -409,7 +409,7 @@ curl -X POST "https://test.immersve.com/api/spending-prerequisites" \
 
 **Example Response:**
 
-```json
+```json {% title="Example response from Get Spending Prerequisites once all stages are ok." %}
 {
   "prerequisites": [
     {

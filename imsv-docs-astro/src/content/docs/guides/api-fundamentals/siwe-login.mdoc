@@ -19,7 +19,7 @@ method is a Sign-In With Ethereum {% link
 href="https://docs.login.xyz/general-information/siwe-overview/eip-4361"
 title="EIP-4361" /%} message.
 
-``` {% title="siwe login message" %}
+``` {% title="Example SIWE login challenge message returned by the initiate-login endpoint." %}
 yourapp.com wants you to sign in with your Ethereum account:
 0xA3058369d6A481B1ff08F62B352409c3D709De9b
 
@@ -42,7 +42,7 @@ The following script demonstrates how to authenticate with the Immersve
 `siwe` login method using the Node.js Ethers SDK and Axios HTTP client.
 
 
-```js {% title="sign-siwe-challenge.js" %}
+```js {% title="Example script signing a SIWE login challenge." %}
 #!/usr/bin/env node
 
 const ethers = require('ethers');
