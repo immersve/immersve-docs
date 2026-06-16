@@ -1,0 +1,62 @@
+post:
+  tags:
+    - card
+  summary: Reissue Card
+  operationId: reissue-card
+  description: |
+    Reissues a card, creating a new replacement card linked to the original.
+    Returns the ID of the new card.
+  parameters:
+    - $ref: "../../models/card-id-path.yaml"
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./models/reissue-card-request.yaml"
+    required: true
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cardId:
+                type: string
+                description: The ID of the reissued (replacement) card
+    "403":
+      description: |
+        User is not allowed to perform the action with the reason stated in the `message`
+
+        **FORBIDDEN**
+        Card ID not found, or insufficient permissions to perform the action.
+
+        **SHIPPING_ADDRESS_INVALID**
+        The shipping address could not be validated.
+
+        **CARD_REISSUE_NOT_ALLOWED**
+        The card cannot be reissued. The card has already been reissued and a replacement card exists, the maximum number of reissues for this card has been exceeded, the card is not in an active (reissuable) state, the cardholder or card is blocked from card creation, or a reissue is already in progress for this card.
+
+        **KYC_REQUIRED**
+        Cardholder has no KYC profile, or KYC profile has not passed.
+
+        **CONTACT_EMAIL_REQUIRED**
+        Cardholder does not have a contact email.
+
+        **CONTACT_PHONE_REQUIRED**
+        Cardholder does not have a contact phone.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
+    "400":
+      description: |
+        Request fields are invalid, or the request could not be processed for the reason stated in the `message`
+
+        **SHIPPING_ADDRESS_REQUIRED**
+        Card program is configured for physical cards but no shipping address was provided.
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'
