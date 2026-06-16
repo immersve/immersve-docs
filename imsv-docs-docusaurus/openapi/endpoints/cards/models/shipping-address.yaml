@@ -3,9 +3,6 @@ description:
   Shipping address for a physical card. Required if card program
   supports physical cards. Only one of the optional fields companyName or
   addressLine2 can be provided. Each field must be less than 35 characters.
-required:
-  - addressLine1
-  - country
 properties:
   companyName:
     type: string
