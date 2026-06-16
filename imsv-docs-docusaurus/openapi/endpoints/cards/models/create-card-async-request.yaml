@@ -10,37 +10,4 @@ properties:
     type: string
     description: ID of the Funding Source the card will authorize against
   shippingAddress:
-    type: object
-    description:
-      Shipping address for physical card. Required if card program
-      supports physical cards. Only one of the optional fields companyName or
-      addressLine2 can be provided. Each field must be less than 35 characters.
-    properties:
-      companyName:
-        type: string
-        description: (Optional) Company name.
-        example: Immersve
-      country:
-        type: string
-        description: The ISO 3166-2 Country code of the country the address is in.
-        example: NZ
-      state:
-        type: string
-        description: (Optional) State, province, prefecture, canton, region. Use local abbreviations such as VIC (Victoria) or TX (Texas).
-        example: AKL
-      town:
-        type: string
-        description: City, town, village, ward, municipality
-        example: Auckland
-      postalCode:
-        type: string
-        description: Postal code
-        example: "1050"
-      addressLine1:
-        type: string
-        description: First line of an address. Can represent street number and name or a PO Box. Max 35 characters.
-        example: 3A Victoria Avenue
-      addressLine2:
-        type: string
-        description: (Optional) Second line of an address. Max 35 characters.
-        example: Floor 1
+    $ref: "./shipping-address.yaml"

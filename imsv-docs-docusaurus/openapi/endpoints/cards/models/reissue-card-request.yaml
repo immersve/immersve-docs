@@ -1,0 +1,12 @@
+type: object
+required:
+  - reissuanceType
+properties:
+  reissuanceType:
+    type: string
+    description: The reason for reissuance.
+    enum:
+      - standard-renewal
+    example: standard-renewal
+  shippingAddress:
+    $ref: "./shipping-address.yaml"
