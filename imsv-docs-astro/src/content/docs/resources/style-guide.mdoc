@@ -580,8 +580,7 @@ HTTP shape of the request without the extra layer an SDK adds, which
 makes them the most portable form of example.
 
 ```bash {% title="Example Formatted Curl Command" %}
-curl "https://test.immersve.com/api/cards/${card_id}" \
-  -X POST \
+curl -X POST "https://test.immersve.com/api/cards/${card_id}" \
   -H "Authorization: Bearer ${token}" \
   -H "Content-Type: application/json" \
   -H "X-Idempotency-Key: ${idempotency_key}"
@@ -594,6 +593,11 @@ curl "https://test.immersve.com/api/cards/${card_id}" \
 * `curl` Flags
 * Prefer short flags (`-X POST`, `-H "..."`); reserve long flags
   for the few cases without a short form.
+---
+* Flag Order
+* `-X METHOD` and the URL go on the first line, so the line
+  reads like the HTTP request line ("POST /api/cards/…").
+  Headers and body follow on continuation lines.
 ---
 * Line Continuation
 * Break long invocations across lines with a trailing backslash
