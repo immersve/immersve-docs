@@ -126,3 +126,67 @@ Cardholder's email").
 Source diagrams (sequence diagrams, architecture diagrams, state machines) are
 transparent PNGs using the Immersve responsive documentation Miro theme. They
 render predictably across devices and themes.
+
+## Headings and Document Structure
+
+Headings carve a page into scannable units. The rules here keep
+documents readable to someone landing cold on a page as well as to
+someone skimming for a known answer.
+
+### Section Introductions
+
+Every section — top-level or sub — opens with at least one paragraph
+of prose explaining *what* the section covers and *why* it matters
+before showing *how*. A heading followed only by a figure, table, or
+code block leaves a skimming reader without context.
+
+### Headings Are Not Numbered
+
+Section headings are bare titles (`## Casing`, not `## 1. Casing`).
+Cross-references in prose use the section name — write
+"see *Casing*", never "see §1". Manual numbering breaks silently
+when sections are inserted, moved, or removed.
+
+### Patterns, Not Use Cases
+
+Documentation describes patterns, not single use cases. When two
+pages would share most of their content but diverge on one variable
+(target chain, partner, region), write one page per variant rather
+than weaving conditional prose into a single page. Conditional prose
+is hard to skim and silently drifts out of sync; per-variant pages
+stay accurate.
+
+### Tables for Long or Multi-Column Lists
+
+A bullet list works for a handful of single-value items. Past a few
+items, or when each item carries multiple columns of information,
+prefer a table or an icon list. Both let readers scan one column at
+a time.
+
+### Bullet Shape Consistency
+
+Every list picks one of three shapes and stays consistent:
+
+- **Pure Label** — Title Case, no trailing period. Names a category,
+  term, or value.
+- **Pure Paragraph** — sentence case, full sentence with trailing period.
+- **Labeled Paragraph** — **Bold Label** followed by an em-dash or a
+  colon, then a sentence-case body ending in a period.
+
+Mixing shapes within one list is the failure mode. Decide the shape
+before writing the first bullet; on review, fix the inconsistent
+bullet or convert the whole list to the dominant shape.
+
+### Callouts
+
+Two callout types ship today: `{% note %}` (green) and `{% warning %}`
+(red). Use them sparingly. A callout reinforces a point already made
+in the surrounding prose; it never introduces a new constraint a
+reader could miss by skipping the box.
+
+- **`{% note %}`** — Use for important facts a careful reader has
+  already absorbed: immutable identifiers, reasoned defaults.
+- **`{% warning %}`** — Use for hazards with real cost: data loss,
+  irreversible state, account lockout, security exposure.
+
+Do not use callouts for cross-links, motivation, or section summaries.
