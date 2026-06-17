@@ -419,23 +419,26 @@ sensible point. It has three forms:
 
 {% table title="Wrap Tag Forms" %}
 * Form
-* Breaks On
-* Use For
+* Syntax
+* Description
 ---
+* camelCase
 * `{% wrap %}value{% /wrap %}`
-* camelCase transitions
-* JSON field names and other camelCase identifiers
-  (`messageId`, `eventTimestamp`, `cancelReason`).
+* Breaks on camelCase transitions. Use for JSON field names and
+  other camelCase identifiers (`messageId`, `eventTimestamp`,
+  `cancelReason`).
 ---
+* Regex
 * `{% wrap "_" %}value{% /wrap %}`
-* Each match of the given regex
-* SCREAMING_SNAKE error codes (`BIOMETRICS_FAILED`,
-  `CARD_REISSUE_FAILED`) and any other pattern-bearing string.
+* Breaks after each match of the given regex. Use the `"_"` form
+  for SCREAMING_SNAKE error codes (`BIOMETRICS_FAILED`,
+  `CARD_REISSUE_FAILED`) and other pattern-bearing strings.
 ---
+* Count
 * `{% wrap N %}value{% /wrap %}`
-* Every `N` characters
-* Opaque hex strings without a natural break point — account ids,
-  contract addresses, API keys.
+* Breaks every `N` characters. Use for opaque hex strings without
+  a natural break point — account ids, contract addresses, API
+  keys.
 {% /table %}
 
 ``` {% process=false title="Example uses of the wrap tag in table cells." %}
