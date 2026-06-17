@@ -213,3 +213,22 @@ Cross-references work harder when they sit inline next to the prose
 that motivates them — write "see *Casing* for the full rule" in the
 sentence where the cross-link is relevant, not as a dangling list
 under a separate heading.
+
+## URLs and Redirects
+
+Page URLs are part of the contract with readers. A bookmarked or
+shared link should not break when a page is restructured.
+
+### Slugs Are Kebab-Case
+
+All page slugs use lowercase kebab-case: `api-fundamentals/xrpl-login`,
+not `apiFundamentals/xrplLogin` or `api_fundamentals/xrpl_login`. The
+slug is the path segment after the docs root and is set in the page
+frontmatter.
+
+### Redirects Are Mandatory on Move or Rename
+
+Whenever a page is renamed or moved, add a redirect from the old
+slug to the new one. The redirect preserves bookmarks, partner
+integration notes, and search-engine results that point at the old
+URL. Removing a page without a redirect breaks links we can't see.
