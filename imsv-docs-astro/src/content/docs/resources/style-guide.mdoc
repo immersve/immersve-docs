@@ -133,10 +133,21 @@ mechanical rule.
 
 ### Slugs
 
-All page slugs use lowercase kebab-case: `api-fundamentals/xrpl-login`,
-not `apiFundamentals/xrplLogin` or `api_fundamentals/xrpl_login`. The
-slug is the path segment after the docs root. The slug is set in the page
-frontmatter; it is not coupled to a page's file name or location.
+A slug is the lowercase kebab-case identifier that pins a docs
+artifact to a stable URL. Slugs appear in two places:
+
+- **Page slugs** — set in a page's frontmatter, they form the
+  path after the docs root (`api-fundamentals/xrpl-login`). A
+  page slug is not coupled to the source file's name or
+  location.
+- **Endpoint slugs** — the `operationId` field on each OpenAPI
+  operation (`get-card`, `create-card-v2`). The
+  `{% link endpoint="…" /%}` tag resolves against this value;
+  see *Links*.
+
+Both forms use lowercase ASCII with words separated by single
+hyphens — never `apiFundamentals/xrplLogin` or
+`api_fundamentals/xrpl_login`.
 
 ### Redirects
 
