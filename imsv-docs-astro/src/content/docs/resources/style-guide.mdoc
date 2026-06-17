@@ -1,7 +1,7 @@
 ---
-title: Documentation Style Guide
+title: Docs Style Guide
 description: |
-  House style for contributors writing Immersve docs — casing, English
+  Style guide for contributors writing Immersve docs — casing, English
   variant, structure, links, figures, code samples, terminology, prose,
   OpenAPI, and URLs.
 slug: resources/style-guide
@@ -9,13 +9,9 @@ slug: resources/style-guide
 
 This guide is the source of truth for how Immersve documentation is
 written. It applies to every page on the docs site, every code sample,
-and every OpenAPI description. Read it once before authoring or
-reviewing a docs change.
+and every OpenAPI description.
 
-The audience is contributors: Immersve engineers, AI agents authoring
-docs, and partners writing integration notes against the Immersve API.
-
-## 1. Casing
+## Casing
 
 Use **Title Case** for headings, page titles, UI labels, and bolded
 leading labels in lists. Use **sentence case** for body prose.
@@ -94,47 +90,40 @@ This exception is narrow. A heading that *describes* a code symbol
 ("Deploying a Partner Channel") is prose and follows Title Case.
 The exception only applies when the heading **is** the symbol.
 
-## 2. English Variant
+## English Variant
 
 Write US English throughout.
 
-- Spellings: `finalize`, `tokenize`, `color`, `behavior`, `center`,
-  `license` (noun and verb), `analyze`, `catalog`
-- Not: `finalise`, `tokenise`, `colour`, `behaviour`, `centre`,
-  `licence`, `analyse`, `catalogue`
+- Correct Speelling: `finalize`, `tokenize`, `color`, `behavior`, `center`,
+  `license` (noun and verb), `analyze`, `catalog`, `canceled`.
+- Incorrect Spelling: `finalise`, `tokenise`, `colour`, `behaviour`, `centre`,
+  `licence`, `analyse`, `catalogue`, `cancelled`.
 
 This applies to all prose, headings, captions, code comments, and
 OpenAPI descriptions. Proper nouns keep their canonical spelling
 regardless of variant (a product literally named `Behaviour Ltd`
-stays that way).
+stays that way). Only exceptions are existing API contracts that violate the
+rule.
 
-## 5. Figures and Captions
+## Figures and Captions
 
-Every image, table, and code block carries a short Title Case
-caption.
-
-A caption names the figure so readers can refer to it ("see *Card
-State Transitions* below") and so it stands on its own when scanned.
-It is not a sentence describing what the figure shows — that
-belongs in the surrounding prose.
+Every image, table, and code block carries a short caption. Captions may be
+treated as either a label (title case) or a paragraph (sentence case). A caption
+names the figure so readers can refer to it ("see *Card State Transitions*
+below") and so it stands on its own when scanned. It is not a sentence
+describing what the figure shows — that belongs in the surrounding prose.
 
 ### No Screenshots
 
 Do not embed screenshots of the Immersve dashboard, partner portals,
 or any third-party UI. UI rots faster than docs, screenshots don't
 localize, and a year-old screenshot is worse than no screenshot at
-all because it actively misleads.
-
-Describe the UI in prose with the labels Title-Cased per §1
-("click **Create Card**, then enter the Cardholder's email"). If a
-visual reference is genuinely required, draw a diagram.
+all because it actively misleads. Describe the UI in prose with the labels
+Title-Cased per casing rules ("click **Create Card**, then enter the
+Cardholder's email").
 
 ### Diagrams Are PNGs
 
-Source diagrams (sequence diagrams, architecture diagrams, state
-machines) as PNGs. They render predictably across browsers and
-print, and they don't pull in extra runtime dependencies.
-
-Keep the source file (`.drawio`, `.excalidraw`, Mermaid `.mmd`)
-alongside the PNG in the same `assets/` directory so the diagram
-remains editable.
+Source diagrams (sequence diagrams, architecture diagrams, state machines) are
+transparent PNGs using the Immersve responsive documentation Miro theme. They
+render predictably across devices and themes.
