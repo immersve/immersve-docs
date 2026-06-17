@@ -232,6 +232,62 @@ Link text can be customized using the Link tag's "title" attribute: `{% link
 href="https://www.postman.com/" title="Postman" /%}`. Hyperlinks should not specify
 the `target` attribute.
 
+## Code Samples
+
+Code samples teach by example. A reader should be able to copy a
+sample, change one or two values, and watch it run. Samples that
+depend on private libraries, omit setup, or paper over errors break
+that contract.
+
+- **Run Before You Ship** — every example must execute as written.
+  A sample that has never run will mislead a reader.
+- **Minimise Dependencies** — prefer `bash` with `curl` or vanilla
+  JavaScript/TypeScript over framework-specific clients. A sample
+  that requires an SDK install before the reader can try anything
+  hides the simple shape of the request.
+- **Short and Single-Purpose** — one sample makes one point. Two
+  unrelated calls in one block fragment the reader's attention;
+  split them into separate captioned blocks.
+- **No Comments in Response Payloads** — JSON is not a comment-
+  bearing format. Lines like `// ...other fields` read as a helpful
+  shorthand but parse-fail; a reader who copies the payload into a
+  tool sees an error before they see the lesson.
+
+### Bash
+
+- **`curl` Flags** — prefer short flags (`-X POST`, `-H "..."`)
+  and reserve long flags for the few cases without a short form.
+- **Line Continuation** — break long invocations across lines with
+  a trailing backslash and indent continuation lines two spaces.
+- **Variable Substitution** — use braced `${VAR}` consistently,
+  even when bare `$VAR` would parse. Braces survive being copied next
+  to a non-word character.
+
+```bash
+curl "https://test.immersve.com/api/cards/${card_id}" \
+  -H "Authorization: Bearer ${token}"
+```
+
+### JSON
+
+- **Indent** — two spaces, no tabs.
+- **Quotes** — double quotes only; JSON requires them.
+- **Key Order** — keys appear in the same order as the OpenAPI
+  schema declares them. Consistent ordering keeps `grep` and visual
+  diff useful when readers compare a sample against the live response.
+- **No Trailing Commas, No Comments** — see *Run Before You Ship*
+  above; both are invalid JSON.
+
+### JavaScript and TypeScript
+
+- **Indent** — two spaces.
+- **Quotes** — single quotes for strings; double quotes only when
+  the string contains a single quote.
+- **Async** — `async`/`await` over `.then(...)` chains. Linear
+  control flow reads more naturally for someone learning the API.
+- **Declarations** — `const` by default; `let` only when
+  reassignment is intentional; never `var`.
+
 ## URLs and Redirects
 
 Page URLs are part of the contract with readers. A bookmarked or
