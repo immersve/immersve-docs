@@ -338,7 +338,9 @@ have a single canonical form. Use them as written.
 - **Endpoint** — a single addressable URL on the Immersve API,
   paired with an HTTP method. Lowercase *endpoint* in prose. Use
   *endpoint*, not "API", when referring to a specific operation:
-  "call the `create-card` endpoint", not "call the Create Card API".
+  "call the Get Card endpoint", not "call the Get Card API". Refer
+  to an endpoint by its title, not its operation id — see *Prose
+  Conventions*.
 - **API** — the Immersve API as a whole. Reserve uppercase *API*
   for the system; use lowercase *endpoint* for the operations it
   exposes.
@@ -363,6 +365,65 @@ Cased everywhere they appear, per *Casing*:
 This list is authoritative. Adding a new domain resource means
 adding to this list; if a term is not on it, it is not a domain
 resource and stays lowercase in prose.
+
+## Prose Conventions
+
+The conventions below govern body prose across the docs site — the
+sentences in between the elements covered in *Document Structure*
+and *Elements*. Casing rules live in *Casing*; the rules below are
+the prose mechanics every page is expected to follow.
+
+### Quotes
+
+Use straight double quotes (`"like this"`), never typographic
+"smart" quotes. Do not use single quotes in prose — they collide
+visually with apostrophes and read inconsistently against the
+surrounding doubles.
+
+Smart quotes look polished when rendered but break the moment a
+reader copies a sample into a shell, pastes a value into a tool,
+or greps the source.
+
+### Line Length
+
+Hard-wrap prose lines at 80 columns. Wrapping keeps diffs
+reviewable — a one-word fix shows up as a one-line change rather
+than a rewrapped paragraph.
+
+Two exceptions: never break a URL across lines, and never put a
+`{% link %}` tag at the start of a line. Markdoc treats any tag
+at the start of a line as a block element, which terminates the
+surrounding paragraph; the build enforces this for `{% link %}`
+and fails rather than render broken prose. Wrap the surrounding
+text around `{% link %}` and URLs instead.
+
+Breaks inside a Markdoc block tag (`{% table %}`, `{% note %}`,
+`{% endpointref %}`) are fine — block tags are not part of a
+paragraph.
+
+### Oxford Comma
+
+Use the Oxford comma in lists of three or more: "cards,
+cardholders, and funding sources". The trailing comma removes
+ambiguity about whether the last two items are paired or separate
+— compare "their parents, Alice and Bob" (parents named) with
+"their parents, Alice, and Bob" (four people).
+
+### Referring to Endpoints
+
+When writing about a specific endpoint, name it directly rather
+than saying "this endpoint" or "the endpoint above". Named
+references stay legible when prose is excerpted, reordered, or
+encountered mid-page: write "call the Get Card endpoint", not
+"call this endpoint".
+
+Refer to an endpoint by its **title** ("Get Card"), not its
+operation id (`get-card`). The `{% link endpoint="…" /%}` tag
+renders the title automatically — see *Links*.
+
+Do not call an endpoint an "API" — *Terminology* covers the
+distinction between the API as a whole and a single endpoint on
+it.
 
 ## OpenAPI Authoring
 

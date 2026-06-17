@@ -105,16 +105,19 @@ draft.
 End state: PR branch additionally contains §6, §7, §9. PR remains
 draft.
 
-## Stage 4 — Prose Conventions
+## Stage 4 — Prose Conventions (done)
 
-- [ ] **§8 Prose Conventions** — no smart quotes (and no single quotes in
-      prose); sentence case for body prose; hard-wrap lines at 80 chars;
-      use the Oxford comma in lists of three or more; avoid "this
-      endpoint…" when describing endpoints; do not refer to endpoints as
-      "APIs"
+§8 Prose Conventions landed between *Terminology* and *OpenAPI
+Authoring*. Four subsections — *Quotes* (straight doubles only, no
+single quotes in prose), *Line Length* (hard-wrap at 80), *Oxford
+Comma*, *Referring to Endpoints* (name endpoints directly, avoid
+"this endpoint", do not call endpoints "APIs"). Sentence-case-for-
+body-prose was already stated in *Casing* and is not duplicated
+here.
 
-End state: PR branch contains all ten sections. Marked ready for
-review and merged. Sibling sweep projects unblocked.
+End state: PR branch contains all ten sections. **Not yet** ready
+for review — the *Pending Feedback* items below must be addressed
+first.
 
 ## Pending Feedback (2026-06-18)
 
