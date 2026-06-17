@@ -267,12 +267,14 @@ sloppy even when each individual sentence reads fine.
 The following terms carry specific meanings in Immersve docs and
 have a single canonical form. Use them as written.
 
-- **Endpoint** — a single addressable URL on the Immersve API,
-  paired with an HTTP method. Lowercase *endpoint* in prose. Use
-  *endpoint*, not "API", when referring to a specific operation:
-  "call the Get Card endpoint", not "call the Get Card API". Refer
-  to an endpoint by its title, not its `operationId` — see
-  *Prose Conventions*.
+- **Endpoint** — an HTTP method paired with a parameterized path
+  on the Immersve API (for example, `GET /cards/{cardId}`). Each
+  endpoint has many concrete URLs at runtime; the endpoint itself
+  is the method-and-path pattern. Lowercase *endpoint* in prose.
+  Use *endpoint*, not "API", when referring to a specific
+  operation: "call the Get Card endpoint", not "call the Get Card
+  API". Refer to an endpoint by its title, not its `operationId`
+  — see *Prose Conventions*.
 - **API** — the Immersve API as a whole. Reserve uppercase *API*
   for the system; use lowercase *endpoint* for the operations it
   exposes.
