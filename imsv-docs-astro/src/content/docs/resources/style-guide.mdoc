@@ -128,7 +128,7 @@ in backticks.
 For example, an Algorand contract method heading stays in its
 declared casing:
 
-```
+``` {% title="Code-Identifier Heading" %}
 ### `partnerChannelDeployInit(...)`
 ```
 
@@ -341,7 +341,7 @@ tags. Each item displays with an icon (any of the icon names in
 `src/components/icons/`) and an optional connector line linking
 adjacent items into a sequence:
 
-``` {% process=false %}
+``` {% process=false title="Icon List with Connectors" %}
 {% list %}
   {% listitem "Key" connector=true %}
     Custodial partner accounts have full control over Immersve
@@ -387,7 +387,7 @@ Authored tables use the Markdoc `{% table %}` tag rather than
 Markdown's pipe syntax. The tag accepts a `title` attribute that
 renders as the caption, and each row separates with `---`:
 
-``` {% process=false %}
+``` {% process=false title="Markdoc Table Tag Source" %}
 {% table title="HTTP Status Codes" %}
 * Code
 * Meaning
@@ -424,7 +424,7 @@ sensible point. It has three forms:
   `N` characters. Use for opaque hex strings without a natural
   break point: account ids, contract addresses, API keys.
 
-``` {% process=false %}
+``` {% process=false title="Wrap Tag Examples" %}
 | Error Code         | {% wrap "_" %}BIOMETRICS_FAILED{% /wrap %} |
 | Partner Account Id | {% wrap 9 %}d1bc97edfa4f7dc9b56726c7d82a9956{% /wrap %} |
 | Field Name         | {% wrap %}eventTimestamp{% /wrap %} |
@@ -716,7 +716,7 @@ Mark deprecated endpoints and attributes with `deprecated: true`
 in the spec. Begin the description with `**Deprecated.**` in bold
 and name the replacement inline:
 
-```
+``` {% title="Deprecation Notice in an OpenAPI Description" %}
 **Deprecated.** Use the [Create Card V2](/api-reference/create-card-v2)
 endpoint instead.
 ```
