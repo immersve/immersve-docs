@@ -1,15 +1,54 @@
 ---
 title: Docs Style Guide
 description: |
-  Style guide for contributors writing Immersve docs — casing, English
-  variant, structure, links, figures, code samples, terminology, prose,
-  OpenAPI, and URLs.
+  Style guide for contributors writing Immersve docs — page
+  structure, casing, prose, terminology, elements, code samples,
+  and OpenAPI.
 slug: resources/style-guide
 ---
 
 This guide is the source of truth for how Immersve documentation is
 written. It applies to every page on the docs site, every code sample,
 and every OpenAPI description.
+
+## Document Structure
+
+A page's structure tells readers what they're going to learn and
+how to navigate it. The rules below apply across every page on the
+docs site and govern the page as a whole rather than the individual
+elements inside it.
+
+### Section Introductions
+
+Every section — top-level or sub — opens with at least one
+paragraph of prose explaining *what* the section covers and *why*
+it matters before showing *how*. A heading followed only by a
+figure, table, or code block leaves a skimming reader without
+context.
+
+### Variant Pages
+
+When the same instructions would diverge on a single dimension —
+target chain, partner type, region — write one page per variant
+rather than weaving conditional prose into a single page.
+Conditional prose ("if you're on Algorand, do X; otherwise…") is
+hard to skim, hard to deep-link to, and silently drifts out of
+sync as one variant evolves. A page that documents one
+configuration end-to-end stays accurate.
+
+### Slugs
+
+All page slugs use lowercase kebab-case: `api-fundamentals/xrpl-login`,
+not `apiFundamentals/xrplLogin` or `api_fundamentals/xrpl_login`. The
+slug is the path segment after the docs root. The slug is set in the page
+frontmatter; it is not coupled to a page's file name or location.
+
+### Redirects
+
+Whenever a page is renamed or moved, add a redirect from the old
+slug to the new one. The redirect preserves bookmarks, partner
+integration notes, and search-engine results that point at the old
+URL. Removing a page without a redirect breaks links we can't see.
 
 ## Casing
 
@@ -109,29 +148,109 @@ regardless of variant (a product literally named `Behaviour Ltd`
 stays that way). Only exceptions are existing API contracts that violate the
 rule.
 
-## Document Structure
+## Prose Conventions
 
-A page's structure tells readers what they're going to learn and
-how to navigate it. The rules below apply across every page on the
-docs site and govern the page as a whole rather than the individual
-elements inside it.
+The conventions below govern body prose across the docs site — the
+sentences in between the elements covered in *Document Structure*
+and *Elements*. Casing rules live in *Casing*; the rules below are
+the prose mechanics every page is expected to follow.
 
-### Section Introductions
+### Quotes
 
-Every section — top-level or sub — opens with at least one
-paragraph of prose explaining *what* the section covers and *why*
-it matters before showing *how*. A heading followed only by a
-figure, table, or code block leaves a skimming reader without
-context.
+Use straight double quotes (`"like this"`), never typographic
+"smart" quotes. Do not use single quotes in prose — they collide
+visually with apostrophes and read inconsistently against the
+surrounding doubles.
 
-### Patterns, Not Use Cases
+Smart quotes look polished when rendered but break the moment a
+reader copies a sample into a shell, pastes a value into a tool,
+or greps the source.
 
-Documentation describes patterns, not single use cases. When two
-pages would share most of their content but diverge on one variable
-(target chain, partner, region), write one page per variant rather
-than weaving conditional prose into a single page. Conditional
-prose is hard to skim and silently drifts out of sync; per-variant
-pages stay accurate.
+### Line Length
+
+Hard-wrap prose lines at 80 columns. Wrapping keeps diffs
+reviewable — a one-word fix shows up as a one-line change rather
+than a rewrapped paragraph.
+
+Two exceptions: never break a URL across lines, and never put a
+`{% link %}` tag at the start of a line. Markdoc treats any tag
+at the start of a line as a block element, which terminates the
+surrounding paragraph; the build enforces this for `{% link %}`
+and fails rather than render broken prose. Wrap the surrounding
+text around `{% link %}` and URLs instead.
+
+Breaks inside a Markdoc block tag (`{% table %}`, `{% note %}`,
+`{% endpointref %}`) are fine — block tags are not part of a
+paragraph.
+
+### Oxford Comma
+
+Use the Oxford comma in lists of three or more: "cards,
+cardholders, and funding sources". The trailing comma removes
+ambiguity about whether the last two items are paired or separate
+— compare "their parents, Alice and Bob" (parents named) with
+"their parents, Alice, and Bob" (four people).
+
+### Referring to Endpoints
+
+When writing about a specific endpoint, name it directly rather
+than saying "this endpoint" or "the endpoint above". Named
+references stay legible when prose is excerpted, reordered, or
+encountered mid-page: write "call the Get Card endpoint", not
+"call this endpoint".
+
+Refer to an endpoint by its **title** ("Get Card"), not its
+`operationId` (`get-card`, declared on the operation in the
+OpenAPI spec). The `{% link endpoint="…" /%}` tag takes the
+`operationId` and renders the title automatically — see *Links*.
+
+Do not call an endpoint an "API" — *Terminology* covers the
+distinction between the API as a whole and a single endpoint on
+it.
+
+## Terminology
+
+Use the canonical term for each concept everywhere it appears.
+Inconsistent terms scatter search results and make the docs feel
+sloppy even when each individual sentence reads fine.
+
+### Glossary
+
+The following terms carry specific meanings in Immersve docs and
+have a single canonical form. Use them as written.
+
+- **Endpoint** — a single addressable URL on the Immersve API,
+  paired with an HTTP method. Lowercase *endpoint* in prose. Use
+  *endpoint*, not "API", when referring to a specific operation:
+  "call the Get Card endpoint", not "call the Get Card API". Refer
+  to an endpoint by its title, not its `operationId` — see
+  *Prose Conventions*.
+- **API** — the Immersve API as a whole. Reserve uppercase *API*
+  for the system; use lowercase *endpoint* for the operations it
+  exposes.
+- **Webhook** — an outbound HTTP request from Immersve to a
+  partner-controlled URL, triggered by a domain event. Cased as a
+  domain resource (see *Domain Resources* below).
+- **Immersve** — the company and the platform. Always capitalised;
+  never "immersve", "Imsv", or "IMSV" in prose.
+
+### Domain Resources
+
+The following nouns name Immersve domain resources. They are Title
+Cased when naming the resource as a class and lowercase when
+referring to a specific instance — see *Casing* for the rule and
+the disambiguation test.
+
+- Card
+- Cardholder
+- Funding Source
+- Funding Channel
+- Webhook
+- Client Application
+
+This list is authoritative. Adding a new domain resource means
+adding to this list; if a term is not on it, it is not a domain
+resource and stays lowercase in prose.
 
 ## Elements
 
@@ -469,110 +588,6 @@ runtime would expect.
   never `var`.
 {% /table %}
 
-## Terminology
-
-Use the canonical term for each concept everywhere it appears.
-Inconsistent terms scatter search results and make the docs feel
-sloppy even when each individual sentence reads fine.
-
-### Glossary
-
-The following terms carry specific meanings in Immersve docs and
-have a single canonical form. Use them as written.
-
-- **Endpoint** — a single addressable URL on the Immersve API,
-  paired with an HTTP method. Lowercase *endpoint* in prose. Use
-  *endpoint*, not "API", when referring to a specific operation:
-  "call the Get Card endpoint", not "call the Get Card API". Refer
-  to an endpoint by its title, not its `operationId` — see
-  *Prose Conventions*.
-- **API** — the Immersve API as a whole. Reserve uppercase *API*
-  for the system; use lowercase *endpoint* for the operations it
-  exposes.
-- **Webhook** — an outbound HTTP request from Immersve to a
-  partner-controlled URL, triggered by a domain event. Cased as a
-  domain resource (see *Domain Resources* below).
-- **Immersve** — the company and the platform. Always capitalised;
-  never "immersve", "Imsv", or "IMSV" in prose.
-
-### Domain Resources
-
-The following nouns name Immersve domain resources. They are Title
-Cased when naming the resource as a class and lowercase when
-referring to a specific instance — see *Casing* for the rule and
-the disambiguation test.
-
-- Card
-- Cardholder
-- Funding Source
-- Funding Channel
-- Webhook
-- Client Application
-
-This list is authoritative. Adding a new domain resource means
-adding to this list; if a term is not on it, it is not a domain
-resource and stays lowercase in prose.
-
-## Prose Conventions
-
-The conventions below govern body prose across the docs site — the
-sentences in between the elements covered in *Document Structure*
-and *Elements*. Casing rules live in *Casing*; the rules below are
-the prose mechanics every page is expected to follow.
-
-### Quotes
-
-Use straight double quotes (`"like this"`), never typographic
-"smart" quotes. Do not use single quotes in prose — they collide
-visually with apostrophes and read inconsistently against the
-surrounding doubles.
-
-Smart quotes look polished when rendered but break the moment a
-reader copies a sample into a shell, pastes a value into a tool,
-or greps the source.
-
-### Line Length
-
-Hard-wrap prose lines at 80 columns. Wrapping keeps diffs
-reviewable — a one-word fix shows up as a one-line change rather
-than a rewrapped paragraph.
-
-Two exceptions: never break a URL across lines, and never put a
-`{% link %}` tag at the start of a line. Markdoc treats any tag
-at the start of a line as a block element, which terminates the
-surrounding paragraph; the build enforces this for `{% link %}`
-and fails rather than render broken prose. Wrap the surrounding
-text around `{% link %}` and URLs instead.
-
-Breaks inside a Markdoc block tag (`{% table %}`, `{% note %}`,
-`{% endpointref %}`) are fine — block tags are not part of a
-paragraph.
-
-### Oxford Comma
-
-Use the Oxford comma in lists of three or more: "cards,
-cardholders, and funding sources". The trailing comma removes
-ambiguity about whether the last two items are paired or separate
-— compare "their parents, Alice and Bob" (parents named) with
-"their parents, Alice, and Bob" (four people).
-
-### Referring to Endpoints
-
-When writing about a specific endpoint, name it directly rather
-than saying "this endpoint" or "the endpoint above". Named
-references stay legible when prose is excerpted, reordered, or
-encountered mid-page: write "call the Get Card endpoint", not
-"call this endpoint".
-
-Refer to an endpoint by its **title** ("Get Card"), not its
-`operationId` (`get-card`, declared on the operation in the
-OpenAPI spec). The `{% link endpoint="…" /%}` tag takes the
-`operationId` and renders the title automatically — see *Links*.
-
-Do not call an endpoint an "API" — *Terminology* covers the
-distinction between the API as a whole and a single endpoint on
-it.
-
 ## OpenAPI Authoring
 
 The OpenAPI spec is read by tools (clients, validators, the docs
@@ -655,22 +670,3 @@ description prose renders downstream.
 Use Markdown `[text](url)` syntax for inline links inside OpenAPI
 descriptions. The `{% link %}` Markdoc tag does not render in the
 OpenAPI pipeline; see *Links*.
-
-## URLs and Redirects
-
-Page URLs are part of the contract with readers. A bookmarked or
-shared link should not break when a page is restructured.
-
-### Slugs
-
-All page slugs use lowercase kebab-case: `api-fundamentals/xrpl-login`,
-not `apiFundamentals/xrplLogin` or `api_fundamentals/xrpl_login`. The
-slug is the path segment after the docs root. The slug is set in the page
-frontmatter; it is not coupled to a page's file name or location.
-
-### Redirects
-
-Whenever a page is renamed or moved, add a redirect from the old
-slug to the new one. The redirect preserves bookmarks, partner
-integration notes, and search-engine results that point at the old
-URL. Removing a page without a redirect breaks links we can't see.
