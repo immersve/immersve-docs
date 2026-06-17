@@ -326,7 +326,9 @@ has several forms depending on the target resource type.
 ---
 * API Reference Link
 * Endpoint Title
-* `{% link endpoint="create-card" /%}`
+* `{% link endpoint="create-card" /%}` — the `endpoint` value is
+  the OpenAPI `operationId`; the rendered link text is the
+  endpoint's title.
 ---
 * External Link
 * Href URL
@@ -482,8 +484,8 @@ have a single canonical form. Use them as written.
   paired with an HTTP method. Lowercase *endpoint* in prose. Use
   *endpoint*, not "API", when referring to a specific operation:
   "call the Get Card endpoint", not "call the Get Card API". Refer
-  to an endpoint by its title, not its operation id — see *Prose
-  Conventions*.
+  to an endpoint by its title, not its `operationId` — see
+  *Prose Conventions*.
 - **API** — the Immersve API as a whole. Reserve uppercase *API*
   for the system; use lowercase *endpoint* for the operations it
   exposes.
@@ -563,8 +565,9 @@ encountered mid-page: write "call the Get Card endpoint", not
 "call this endpoint".
 
 Refer to an endpoint by its **title** ("Get Card"), not its
-operation id (`get-card`). The `{% link endpoint="…" /%}` tag
-renders the title automatically — see *Links*.
+`operationId` (`get-card`, declared on the operation in the
+OpenAPI spec). The `{% link endpoint="…" /%}` tag takes the
+`operationId` and renders the title automatically — see *Links*.
 
 Do not call an endpoint an "API" — *Terminology* covers the
 distinction between the API as a whole and a single endpoint on
@@ -625,8 +628,14 @@ in the spec. Begin the description with `**Deprecated.**` in bold
 and name the replacement inline:
 
 ```
-**Deprecated.** Use the `create-card-v2` endpoint instead.
+**Deprecated.** Use the [Create Card V2](/api-reference/create-card-v2)
+endpoint instead.
 ```
+
+Name the replacement endpoint by its title, not its `operationId`
+— see *Prose Conventions*. In OpenAPI prose, link to it with a
+Markdown `[Title](url)` (the `{% link %}` Markdoc tag does not
+render here — see *Links*).
 
 ### YAML Formatting
 
