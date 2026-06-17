@@ -188,9 +188,10 @@ surrounding paragraph; the build enforces this for `{% link %}`
 and fails rather than render broken prose. Wrap the surrounding
 text around `{% link %}` and URLs instead.
 
-Breaks inside a Markdoc block tag (`{% table %}`, `{% note %}`,
-`{% endpointref %}`) are fine — block tags are not part of a
-paragraph.
+Breaks inside the tag syntax itself — between attributes, or
+between the opening and closing markers of a paired tag — are
+fine for any tag, inline or block. The rule is about where the
+opening `{%` sits, not about line breaks within the tag.
 
 ### Oxford Comma
 
