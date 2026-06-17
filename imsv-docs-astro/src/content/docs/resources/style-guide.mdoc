@@ -64,15 +64,17 @@ slug to the new one. The redirect preserves bookmarks, partner
 integration notes, and search-engine results that point at the old
 URL. Removing a page without a redirect breaks links we can't see.
 
-## Casing
+## Title Case
 
-Use **Title Case** for headings, page titles, UI labels, and bolded
-leading labels in lists. Use **sentence case** for body prose.
+Title Case is the casing convention for named elements —
+headings, page titles, UI labels, and bolded leading labels in
+lists. A heading or label names the thing it labels, and names
+are capitalized. Title Case marks an element as a self-contained
+name rather than a sentence fragment describing what something
+does. The test is "is this a name?", not "is this bold?".
 
-A heading or label names the thing it labels, and names are
-capitalized. Title Case marks an element as a self-contained name
-rather than a sentence fragment describing what something does. The
-test is "is this a name?", not "is this bold?".
+Body prose, descriptions, help text, error messages, and other
+actual sentences stay in sentence case.
 
 ### Where Title Case Applies
 
@@ -86,10 +88,6 @@ Title Case applies regardless of length:
   the short label that names the element.
 - **Bolded Leading Labels in List Items** — when the bold introduces a
   named term ("**Webhook Topic** — a specific, named category…").
-
-Sentence case is correct for actual sentences — body prose,
-descriptions, help text, error messages, and tooltips that read as
-full sentences.
 
 ### Title Case Mechanics
 
@@ -140,27 +138,6 @@ each case the domain term modifies the next word rather than
 naming the resource; capitalising it would mislabel the phrase
 as a single proper noun.
 
-### Code Identifiers in Headings
-
-Headings whose entire content is a literal code identifier keep
-their source casing — they are code, not prose. Wrap the identifier
-in backticks.
-
-For example, an Algorand contract method heading stays in its
-declared casing:
-
-``` {% title="Example heading naming a code identifier verbatim." %}
-### `partnerChannelDeployInit(...)`
-```
-
-Not `### Partner Channel Deploy Init(...)`. The heading names a
-symbol that exists in code; renaming it for visual consistency
-would make the page un-greppable against the source.
-
-This exception is narrow. A heading that *describes* a code symbol
-("Deploying a Partner Channel") is prose and follows Title Case.
-The exception only applies when the heading **is** the symbol.
-
 ## English Variant
 
 Write US English throughout.
@@ -180,7 +157,7 @@ rule.
 
 The conventions below govern body prose across the docs site — the
 sentences in between the elements covered in *Document Structure*
-and *Elements*. Casing rules live in *Casing*; the rules below are
+and *Elements*. Naming conventions live in *Title Case*; the rules below are
 the prose mechanics every page is expected to follow.
 
 ### Quotes
@@ -300,7 +277,7 @@ The following nouns name Immersve's first-class domain resources
 — the primary platform concepts a partner interacts with as
 named entities, not every API-exposed object. They are Title
 Cased when naming the resource as a class and lowercase when
-referring to a specific instance — see *Casing* for the rule and
+referring to a specific instance — see *Title Case* for the rule and
 the disambiguation test.
 
 - Authorization
@@ -338,7 +315,7 @@ element type.
 
 Section headings are bare titles (`## Casing`, not `## 1. Casing`).
 Cross-references in prose use the section name — write "see
-*Casing*", never "see §1". Manual numbering breaks silently when
+*Title Case*", never "see §1". Manual numbering breaks silently when
 sections are inserted, moved, or removed.
 
 Headings are short. Prefer "JavaScript" over "JavaScript and
@@ -354,8 +331,16 @@ captions, figure captions, UI labels. Reserve the `{% syntax %}`
 form for prose and code examples, where it carries technical
 weight; in a label it just looks noisy.
 
-For heading casing rules and the narrow code-identifier-in-headings
-exception, see *Casing*.
+A heading whose entire content is a literal code identifier keeps
+its source casing, wrapped in backticks:
+
+``` {% title="Example heading naming a code identifier verbatim." %}
+### `partnerChannelDeployInit(...)`
+```
+
+The exception is narrow: a heading that *describes* a code symbol
+("Deploying a Partner Channel") is prose and follows *Title Case*.
+The exception only applies when the heading **is** the symbol.
 
 ### Lists
 
@@ -425,7 +410,7 @@ rows or scan for a single key. Use a table once a list grows past
 a handful of items or once each item carries more than one piece
 of information.
 
-Column headers are Title Case per *Casing*. Every table carries a
+Column headers are Title Case per *Title Case*. Every table carries a
 caption that names it — see *Captions*.
 
 #### Markdoc Table Tag
@@ -506,7 +491,7 @@ Do not embed screenshots of the Immersve dashboard, partner portals,
 or any third-party UI. UI rots faster than docs, screenshots don't
 localize, and a year-old screenshot is worse than no screenshot at
 all because it actively misleads. Describe the UI in prose with the
-labels Title-Cased per *Casing* ("click **Create Card**, then enter
+labels Title-Cased per *Title Case* ("click **Create Card**, then enter
 the Cardholder's email").
 
 ### Code Blocks
