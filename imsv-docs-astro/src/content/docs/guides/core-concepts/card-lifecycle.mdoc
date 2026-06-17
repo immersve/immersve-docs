@@ -78,6 +78,9 @@ billing updates.
 ### Call the reissue-card endpoint
 Call the {% link endpoint="reissue-card" /%} endpoint.
 The successor card will share a `seriesId` with the predecessor card.
+Integrators may wish to prompt the cardholder for an updated shipping address
+before reissuing the card. Shipping address is not carried over from the
+predecessor card.
 
 ### Activate the successor card
 
