@@ -50,7 +50,7 @@ full sentences.
 - Preserve the canonical casing of proper nouns and product names
   (iPhone, npm, GitHub, XRPL, Algorand).
 
-### Domain Resources Are Proper Nouns
+### Domain Nouns
 
 Immersve's domain resources are treated as proper nouns when they
 name the *class* of resource — the concept, the type, the kind of
@@ -146,6 +146,11 @@ Section headings are bare titles (`## Casing`, not `## 1. Casing`).
 Cross-references in prose use the section name — write "see
 *Casing*", never "see §1". Manual numbering breaks silently when
 sections are inserted, moved, or removed.
+
+Headings are short. Prefer "JavaScript" over "JavaScript and
+TypeScript", "Redirects" over "Redirects Are Mandatory on Move or
+Rename". Avoid conjunctions (`and`, `or`, `vs`) — a heading names
+the section; the prose carries the qualifier.
 
 For heading casing rules and the narrow code-identifier-in-headings
 exception, see *Casing*.
@@ -434,14 +439,15 @@ the OpenAPI schema and against live traffic.
 * See *Run Before You Ship* above — both are invalid JSON.
 {% /table %}
 
-### JavaScript and TypeScript
+### JavaScript
 
-JavaScript and TypeScript samples model how a partner application
-calls the Immersve API in a typical web or Node.js context. They use
-the language's standard library where possible, in the modern dialect
-a current LTS runtime would expect.
+JavaScript samples — TypeScript follows the same conventions —
+model how a partner application calls the Immersve API in a
+typical web or Node.js context. They use the language's standard
+library where possible, in the modern dialect a current LTS
+runtime would expect.
 
-{% table title="JavaScript and TypeScript Conventions" %}
+{% table title="JavaScript Conventions" %}
 * Rule
 * Detail
 ---
@@ -571,7 +577,7 @@ site) and by humans reading the rendered API reference. Both
 audiences benefit when the prose is consistent and the structure
 predictable.
 
-### Endpoint Summaries and Descriptions
+### Endpoint Descriptions
 
 Every endpoint declares a summary and a description. They serve
 different audiences — the summary is the navigation label in the
@@ -599,7 +605,7 @@ Do not write "this field is..." or "the X field"; the schema already
 says it is a field. Lead with the noun: "Minor units of the
 spendable currency."
 
-### Enums Versus Open Strings
+### Enums
 
 Use an enum when the set of valid values is closed and stable —
 known up front, owned by Immersve, unlikely to grow without a
@@ -622,7 +628,7 @@ and name the replacement inline:
 **Deprecated.** Use the `create-card-v2` endpoint instead.
 ```
 
-### YAML Wrapping and Indentation
+### YAML Formatting
 
 YAML formatting affects how the spec diffs in pull requests and how
 description prose renders downstream.
@@ -646,14 +652,14 @@ OpenAPI pipeline; see *Links*.
 Page URLs are part of the contract with readers. A bookmarked or
 shared link should not break when a page is restructured.
 
-### Slugs Are Kebab-Case
+### Slugs
 
 All page slugs use lowercase kebab-case: `api-fundamentals/xrpl-login`,
 not `apiFundamentals/xrplLogin` or `api_fundamentals/xrpl_login`. The
 slug is the path segment after the docs root. The slug is set in the page
 frontmatter; it is not coupled to a page's file name or location.
 
-### Redirects Are Mandatory on Move or Rename
+### Redirects
 
 Whenever a page is renamed or moved, add a redirect from the old
 slug to the new one. The redirect preserves bookmarks, partner
