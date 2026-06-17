@@ -770,6 +770,12 @@ Do not write "this field is..." or "the X field"; the schema already
 says it is a field. Lead with the noun: "Minor units of the
 spendable currency."
 
+### Inline Links
+
+Use Markdown `[text](url)` syntax for inline links inside OpenAPI
+descriptions. The `{% link %}` Markdoc tag does not render in the
+OpenAPI pipeline; see *Links*.
+
 ### Enums
 
 Use an enum when the set of valid values is closed and stable —
@@ -823,9 +829,3 @@ how description prose renders downstream.
   fields, then common metadata, then complex or polymorphic
   attributes, with optional fields towards the end.
 {% /table %}
-
-### Inline Links
-
-Use Markdown `[text](url)` syntax for inline links inside OpenAPI
-descriptions. The `{% link %}` Markdoc tag does not render in the
-OpenAPI pipeline; see *Links*.
