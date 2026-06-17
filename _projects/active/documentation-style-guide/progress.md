@@ -18,8 +18,11 @@ the plan, and decisions. Paused awaiting Stage 2 approval.
   label / pure paragraph / labeled paragraph with bolded label and
   em-dash or colon separator). Hoisted both rules into a new
   Conventions section at the top of `plan.md` so future stages
-  pick them up without having to read decisions. Repaired the
-  Stage 1 collapsed paragraph (still referenced `contributors/`).
+  pick them up without having to read decisions, and restored both
+  to the §3 task description so they also ship as published-guide
+  content (Conventions = writer reminder; §3 = rules readers see).
+  Repaired the Stage 1 collapsed paragraph (still referenced
+  `contributors/`).
 - Outcome: published guide is internally consistent against the
   bullet-shape rule. Future sections inherit both rules.
 
