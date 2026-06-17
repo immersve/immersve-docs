@@ -136,11 +136,11 @@ mechanical rule.
 A slug is the lowercase kebab-case identifier that pins a docs
 artifact to a stable URL. Slugs appear in two places:
 
-- **Page slugs** — set in a page's frontmatter, they form the
+- **Page Slugs** — set in a page's frontmatter, they form the
   path after the docs root (`api-fundamentals/xrpl-login`). A
   page slug is not coupled to the source file's name or
   location.
-- **Endpoint slugs** — the `operationId` field on each OpenAPI
+- **Endpoint Slugs** — the `operationId` field on each OpenAPI
   operation (`get-card`, `create-card-v2`). The
   `{% link endpoint="…" /%}` tag resolves against this value;
   see *Links*.
@@ -567,9 +567,9 @@ the prefix makes that role explicit at a glance. Drop "Example"
 only for verbatim setup blocks (an env-var stub at the top of an
 integration guide that the reader actually pastes).
 
-- **Example caption** — "Example call to fetch a card.",
+- **Example Caption** — "Example call to fetch a card.",
   "Example deprecation notice in an OpenAPI description."
-- **Setup caption** (no "Example") — "Set the test environment
+- **Setup Caption** (no "Example") — "Set the test environment
   variables.", "Install the Immersve SDK."
 
 When the caption describes a call to an endpoint, name the
