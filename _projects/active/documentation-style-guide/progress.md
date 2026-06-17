@@ -1,39 +1,30 @@
 # Progress: Documentation Style Guide
 
-**Current Status:** Stage 1 shipped (draft PR #906). Review-feedback
-pass complete: typo and broken cross-reference fixed; bullet-shape
-rule and no-numbered-headings convention codified across the guide,
-the plan, and decisions. Paused awaiting Stage 2 approval.
+**Current Status:** Stage 2 shipped onto draft PR #906. The guide
+now covers §1 Casing, §2 English Variant, §3 Headings and Document
+Structure (with Callouts), §4 Links, §5 Figures and Captions, and
+§10 URLs and Redirects. Paused awaiting Stage 3 approval.
 
 ## Last Session (2026-06-17)
 
-- Completed: applied review feedback to the published §1 and §2
-  sections — fixed "Speelling" typo, removed an orphan `§7
-  Terminology` cross-reference, converted *Where Title Case Applies*
-  to labeled-paragraph shape with bolded labels, added trailing
-  periods to *Title Case Mechanics* (pure-paragraph shape), bolded
-  the *Correct/Incorrect Spelling* labels. Codified two design
-  decisions: no numbered headings in the published guide (`§N`
-  remains plan-internal only); and the three-shape bullet rule (pure
-  label / pure paragraph / labeled paragraph with bolded label and
-  em-dash or colon separator). Hoisted both rules into a new
-  Conventions section at the top of `plan.md` so future stages
-  pick them up without having to read decisions, and restored both
-  to the §3 task description so they also ship as published-guide
-  content (Conventions = writer reminder; §3 = rules readers see).
-  Repaired the Stage 1 collapsed paragraph (still referenced
-  `contributors/`).
-- Outcome: published guide is internally consistent against the
-  bullet-shape rule. Future sections inherit both rules.
+- Completed: Stage 2 landed as three commits on
+  `docs-style-guide-skeleton`, one per section. §3 codifies section
+  introductions, no numbered headings, patterns-over-use-cases,
+  tables for long or multi-column lists, the three-shape bullet
+  rule, and the `{% note %}` / `{% warning %}` callout policy. §4
+  standardises on the `{% link %}` Markdoc tag, bans
+  `target=_blank`, and rules out generic "See Also" sub-sections in
+  favour of inline cross-references. §10 codifies kebab-case page
+  slugs and mandates a redirect from the old slug to the new
+  whenever a page is renamed or moved.
+- Outcome: structural rules now ship inside the published guide.
+  All Stage 2 bullets in `plan.md` ticked.
 
 ## Next Session
 
 - Pick up from:
   `/Users/nathan/code/immersve/worktrees/immersve-docs/documentation-style-guide`
   on branch `docs-style-guide-skeleton`.
-- First task: **wait for user approval before starting Stage 2.**
-  Per the per-stage rule, do not draft §3 speculatively. When
-  approved, begin Stage 2 with §3 Headings and Document Structure
-  (including the Callouts subsection), then §4 Links, then §10
-  URLs and Redirects — all appended to the same page in the same
-  PR.
+- First task: **wait for user approval before starting Stage 3.**
+  When approved, draft §6 Code Samples, §7 Terminology, and §9
+  OpenAPI Authoring — appended to the same page in the same PR.
