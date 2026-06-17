@@ -190,3 +190,26 @@ reader could miss by skipping the box.
   irreversible state, account lockout, security exposure.
 
 Do not use callouts for cross-links, motivation, or section summaries.
+
+## Links
+
+Internal and external links use Markdoc's `{% link %}` tag rather
+than raw Markdown link syntax. The tag renders consistently across
+themes and lets us retarget by page slug, OpenAPI endpoint ID, or
+external URL from a single place if the destination moves.
+
+```
+{% link page="resources/style-guide" title="Style Guide" /%}
+{% link endpoint="create-card" title="create a Card" /%}
+{% link href="https://www.postman.com/" title="Postman" /%}
+```
+
+Do not set `target="_blank"`. Forcing a new tab takes navigation
+control away from the reader, who can already choose to open a link
+in a new tab from their browser.
+
+Avoid generic "See Also" sub-sections at the bottom of a page.
+Cross-references work harder when they sit inline next to the prose
+that motivates them — write "see *Casing* for the full rule" in the
+sentence where the cross-link is relevant, not as a dangling list
+under a separate heading.
