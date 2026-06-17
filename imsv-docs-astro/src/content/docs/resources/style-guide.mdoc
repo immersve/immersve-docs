@@ -583,7 +583,7 @@ makes them the most portable form of example.
 curl -X POST "https://test.immersve.com/api/cards/${card_id}" \
   -H "Authorization: Bearer ${token}" \
   -H "Content-Type: application/json" \
-  -H "X-Idempotency-Key: ${idempotency_key}"
+  -H "X-Account-Id: ${cardholder_account_id}"
 ```
 
 {% table title="Bash Conventions" %}
