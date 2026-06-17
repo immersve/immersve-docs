@@ -319,6 +319,75 @@ This list is authoritative. Adding a new domain resource means
 adding to this list; if a term is not on it, it is not a domain
 resource and stays lowercase in prose.
 
+## OpenAPI Authoring
+
+The OpenAPI spec is read by tools (clients, validators, the docs
+site) and by humans reading the rendered API reference. Both
+audiences benefit when the prose is consistent and the structure
+predictable.
+
+### Endpoint Summaries and Descriptions
+
+- **Summary** — one short imperative phrase that names the
+  operation ("Create a Card", "List Cards"). Title Case, no period.
+- **Description** — one to three sentences expanding on the
+  summary: what the endpoint does, what state it changes, and any
+  notable preconditions. Sentence case, full sentences with periods.
+
+A description does not repeat the summary or restate the URL; it
+adds the context that does not fit there.
+
+### Attribute Descriptions
+
+Each schema attribute carries a short sentence-case description
+ending in a period. State what the field is, its unit or format
+when not obvious from the type, and any constraint not expressible
+in the schema (for example, a minimum length enforced at the
+application layer).
+
+Do not write "this field is..." or "the X field"; the schema already
+says it is a field. Lead with the noun: "Minor units of the
+spendable currency."
+
+### Enums Versus Open Strings
+
+Use an enum when the set of valid values is closed and stable —
+known up front, owned by Immersve, unlikely to grow without a
+schema bump (card status, transaction stage). Use an open string
+when partners may pass through their own values, or when the value
+space is plausibly extensible (correlation IDs, free-form merchant
+categories).
+
+A poorly chosen enum forces a breaking change every time the value
+set widens; an over-broad string loses the validation and
+code-generation benefits of an enum.
+
+### Deprecation
+
+Mark deprecated endpoints and attributes with `deprecated: true`
+in the spec. Begin the description with `**Deprecated.**` in bold
+and name the replacement inline:
+
+```
+**Deprecated.** Use the `create-card-v2` endpoint instead.
+```
+
+### YAML Wrapping and Indentation
+
+- **Indent** — two spaces.
+- **Line Length** — wrap description prose at 80 columns using
+  YAML's block-scalar `|` (literal) or `>` (folded) style as
+  appropriate. Single-line summaries do not wrap.
+- **Key Order** — within a schema, declare keys in the order the
+  Immersve API returns them. JSON sample key order (see *Code
+  Samples*) inherits from this declaration.
+
+### Inline Links
+
+Use Markdown `[text](url)` syntax for inline links inside OpenAPI
+descriptions. The `{% link %}` Markdoc tag does not render in the
+OpenAPI pipeline; see *Links*.
+
 ## URLs and Redirects
 
 Page URLs are part of the contract with readers. A bookmarked or
