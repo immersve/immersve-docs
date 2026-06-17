@@ -128,7 +128,7 @@ in backticks.
 For example, an Algorand contract method heading stays in its
 declared casing:
 
-``` {% title="Code-Identifier Heading" %}
+``` {% title="Example heading naming a code identifier verbatim." %}
 ### `partnerChannelDeployInit(...)`
 ```
 
@@ -341,7 +341,7 @@ tags. Each item displays with an icon (any of the icon names in
 `src/components/icons/`) and an optional connector line linking
 adjacent items into a sequence:
 
-``` {% process=false title="Icon List with Connectors" %}
+``` {% process=false title="Example icon list with sequence connectors." %}
 {% list %}
   {% listitem "Key" connector=true %}
     Custodial partner accounts have full control over Immersve
@@ -387,7 +387,7 @@ Authored tables use the Markdoc `{% table %}` tag rather than
 Markdown's pipe syntax. The tag accepts a `title` attribute that
 renders as the caption, and each row separates with `---`:
 
-``` {% process=false title="Markdoc Table Tag Source" %}
+``` {% process=false title="Example Markdoc table tag source." %}
 {% table title="HTTP Status Codes" %}
 * Code
 * Meaning
@@ -433,7 +433,7 @@ sensible point. It has three forms:
   contract addresses, API keys.
 {% /table %}
 
-``` {% process=false title="Wrap Tag Examples" %}
+``` {% process=false title="Example uses of the wrap tag in table cells." %}
 | Error Code         | {% wrap "_" %}BIOMETRICS_FAILED{% /wrap %} |
 | Partner Account Id | {% wrap 9 %}d1bc97edfa4f7dc9b56726c7d82a9956{% /wrap %} |
 | Field Name         | {% wrap %}eventTimestamp{% /wrap %} |
@@ -483,9 +483,24 @@ State Transitions* below") and so it stands on its own when scanned.
 It is not a sentence describing what the element shows — that
 belongs in the surrounding prose.
 
-Captions may be treated as either a label (Title Case) or a
-paragraph (sentence case). Pick one form per caption and apply it
-consistently.
+Image and table captions are short labels in Title Case ("Link
+Tag Forms", "Card State Transitions"). Code-block captions are
+full sentences in sentence case with a terminal period, leading
+with "Example" — code blocks are almost always illustrative, and
+the prefix makes that role explicit at a glance. Drop "Example"
+only for verbatim setup blocks (an env-var stub at the top of an
+integration guide that the reader actually pastes).
+
+- **Example caption** — "Example call to fetch a card.",
+  "Example deprecation notice in an OpenAPI description."
+- **Setup caption** (no "Example") — "Set the test environment
+  variables.", "Install the Immersve SDK."
+
+When the caption describes a call to an endpoint, name the
+endpoint by its title (the same name the `endpointref` block
+surfaces), not method-and-path. Write "Example call to Get
+Spending Prerequisites.", not "Example call to GET
+`/spending-prerequisites`."
 
 Each element type carries its caption in a different attribute:
 
@@ -503,7 +518,7 @@ Each element type carries its caption in a different attribute:
 ---
 * Code Block
 * `{% title %}` annotation after the opening fence (works with or
-  without a language hint): `` ```bash {% title="Caption Text" %} ``.
+  without a language hint): `` ```bash {% title="Example caption text." %} ``.
 {% /table %}
 
 ### Links
@@ -590,7 +605,7 @@ Bash samples use `curl` to call the Immersve API. They show the
 HTTP shape of the request without the extra layer an SDK adds, which
 makes them the most portable form of example.
 
-```bash {% title="Example Formatted Curl Command" %}
+```bash {% title="Example formatted curl command." %}
 curl -X POST "https://test.immersve.com/api/cards/${card_id}" \
   -H "Authorization: Bearer ${token}" \
   -H "Content-Type: application/json" \
@@ -727,7 +742,7 @@ Mark deprecated endpoints and attributes with `deprecated: true`
 in the spec. Begin the description with `**Deprecated.**` in bold
 and name the replacement inline:
 
-``` {% title="Deprecation Notice in an OpenAPI Description" %}
+``` {% title="Example deprecation notice in an OpenAPI description." %}
 **Deprecated.** Use the [Create Card V2](/api-reference/create-card-v2)
 endpoint instead.
 ```
