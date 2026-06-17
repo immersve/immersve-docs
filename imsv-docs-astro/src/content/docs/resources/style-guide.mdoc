@@ -271,6 +271,14 @@ TypeScript", "Redirects" over "Redirects Are Mandatory on Move or
 Rename". Avoid conjunctions (`and`, `or`, `vs`) — a heading names
 the section; the prose carries the qualifier.
 
+Headings refer to Markdoc tags by their English name, not their
+raw `{% tag %}` syntax. Write "Markdoc Table Tag", not
+"`{% table %}` Tag"; write "Note Callout", not "`{% note %}`
+Callout". The same applies in any Title Case context — table
+captions, figure captions, UI labels. Reserve the `{% syntax %}`
+form for prose and code examples, where it carries technical
+weight; in a label it just looks noisy.
+
 For heading casing rules and the narrow code-identifier-in-headings
 exception, see *Casing*.
 
@@ -345,7 +353,7 @@ of information.
 Column headers are Title Case per *Casing*. Every table carries a
 caption that names it — see *Captions*.
 
-#### Markdoc `{% table %}` Tag
+#### Markdoc Table Tag
 
 Authored tables use the Markdoc `{% table %}` tag rather than
 Markdown's pipe syntax. The tag accepts a `title` attribute that
@@ -368,7 +376,7 @@ Markdown pipe tables (`| Code | Meaning |`) also render, but the
 `{% table %}` form is preferred — it carries the caption directly
 and tolerates multi-line cell content the pipe form does not.
 
-#### `{% wrap %}` for Long Values in Cells
+#### Markdoc Wrap Tag
 
 A long opaque value (an account id, an API key, a contract
 address) blows out a table column when it cannot break across
@@ -409,7 +417,7 @@ the `{% title %}` annotation on the opening fence — see *Captions*.
 The per-language formatting conventions live in *Code Style*.
 
 When the example itself contains Markdoc syntax — the kind shown
-in *Markdoc `{% table %}` Tag* — annotate the fence with
+in *Markdoc Table Tag* — annotate the fence with
 `{% process=false %}` so the inner tags display as source text
 rather than render as components. The annotation applies only to
 the fence it sits on; surrounding code blocks parse Markdoc tags
