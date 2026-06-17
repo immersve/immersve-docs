@@ -110,3 +110,13 @@ properties:
       - user-requested
       - external-provider-failed
       - expired
+      - reissued
+  successorCardId:
+    type: string
+    description: The ID of the card that was reissued from this card.
+    example: 91ad6fea3b52ca58d60d7fd310f789ec
+  reissuanceType:
+    type: string
+    description: The reason this card was reissued.
+    enum:
+      - standard-renewal
