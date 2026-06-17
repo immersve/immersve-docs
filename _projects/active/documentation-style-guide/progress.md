@@ -1,38 +1,35 @@
 # Progress: Documentation Style Guide
 
-**Current Status:** All ten sections of the guide are drafted on
-the PR branch. Stage 4 landed §8 Prose Conventions. The branch is
-**not** ready for review — the *Pending Feedback (2026-06-18)*
-items in `plan.md` must be worked before marking PR #906 ready.
+**Current Status:** All ten sections shipped and the iteration
+pass over the *Pending Feedback (2026-06-18)* backlog is done.
+PR #906 is ready for review.
 
 ## Last Session (2026-06-18)
 
-- Completed: Added §8 Prose Conventions to the guide, slotted
-  between *Terminology* and *OpenAPI Authoring*. Four subsections:
-  *Quotes* (straight doubles only, no single quotes in prose),
-  *Line Length* (hard-wrap at 80), *Oxford Comma*, *Referring to
-  Endpoints* (name endpoints directly, avoid "this endpoint", do
-  not call endpoints "APIs"). User elected to write §8 against
-  the current structure before working the *Pending Feedback*
-  list.
-- Outcome: guide is feature-complete at v1 in terms of section
-  coverage; the *Pending Feedback* list is the only remaining work
-  before review-ready.
+- Completed: Stage 4 (§8 Prose Conventions) plus a full pass
+  through the Pending Feedback list as Stage 5. Substantive
+  changes: rebased onto `main` to pick up code captions;
+  documented `{% title %}`, `{% table %}`, `{% wrap %}`,
+  `{% list %}` / `{% listitem %}`; reordered top-levels so
+  Document Structure leads and OpenAPI Authoring lands last;
+  folded URLs and Redirects into Document Structure; renamed
+  *Code Samples* → *Code Style* and added *Code Blocks* under
+  Elements; reworked Terminology against actual house usage
+  (Domain Resources grew from 6 to 18 entries; funding-* glossary
+  added; adjectival-use rule spelled out); added a fence
+  transform so `{% process=false %}` displays raw Markdoc syntax
+  in a code block without breaking the build.
+- Outcome: guide is internally consistent, builds cleanly,
+  renders the literal Markdoc tag examples as text. Ready-for-
+  review.
 
 ## Next Session
 
 - Pick up from:
   `/Users/nathan/code/immersve/worktrees/immersve-docs/documentation-style-guide`
   on branch `docs-style-guide-skeleton`.
-- First task: work the *Pending Feedback (2026-06-18)* list in
-  `plan.md`. The load-bearing items are (in rough order):
-  **rebase onto `main`** to pull in Code Captions support, then
-  document `{% title %}` in *Elements / Captions* and *Code
-  Samples*; restore the **domain-resource casing nuance** (class
-  vs instance) in *Casing* and *Terminology / Domain Resources*;
-  reconsider **top-level section order** (Casing should not lead;
-  OpenAPI probably belongs last); decide the fate of *Document
-  Structure* as a top-level. Cleanup items follow: audit
-  undocumented Markdoc tags, rewrite the Tables intro, try a
-  per-language table in Code Samples, critical review of
-  Terminology.
+- First task: mark PR #906 ready for review and request review.
+  Once merged, archive the project (move
+  `_projects/active/documentation-style-guide/` to
+  `_projects/archive/2026-06-documentation-style-guide/`, tear
+  down the worktree).
