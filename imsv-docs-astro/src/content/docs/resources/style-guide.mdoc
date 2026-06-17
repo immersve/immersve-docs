@@ -221,6 +221,18 @@ out of negative space.
 Contrasts, motivations, and benefits belong in the sentences
 after the definition, not in the definition itself.
 
+### Plain References
+
+Refer to a thing by its name in plain form — never written in
+the style it demonstrates. Write "camelcase", not "camelCase";
+"the wrap tag (`{% wrap %}`)", not "the `{% wrap %}` tag"; "the
+bold label", not "the **Bold Label**". Using the surface form
+to name the concept is jarring — the styling arrives before the
+noun.
+
+The rule covers first mention. Once a term is established in a
+passage, the short form is fine.
+
 ### Domain Nouns
 
 Immersve's first-class domain resources are treated as proper
@@ -384,7 +396,7 @@ Every list picks one of three shapes and stays consistent:
 - **Pure Label** — Title Case, no trailing period. Names a category,
   term, or value.
 - **Pure Paragraph** — sentence case, full sentence with trailing period.
-- **Labeled Paragraph** — **Bold Label** followed by an em-dash or a
+- **Labeled Paragraph** — bold label followed by an em-dash or a
   colon, then a sentence-case body ending in a period.
 
 Mixing shapes within one list is the failure mode. Decide the shape
@@ -470,20 +482,20 @@ and tolerates multi-line cell content the pipe form does not.
 #### Markdoc Wrap Tag
 
 A long unbreakable value (an account id, an API key, an error
-code, a camelCase field name) blows out a table column when it
-cannot soft-wrap. The `{% wrap %}` tag inserts zero-width break
-opportunities into the value so the browser can wrap it at a
-sensible point. It has three forms:
+code, a camelcase field name) blows out a table column when it
+cannot soft-wrap. The wrap tag (`{% wrap %}`) inserts zero-width
+break opportunities into the value so the browser can wrap it at
+a sensible point. It has three forms:
 
 {% table title="Wrap Tag Forms" %}
 * Form
 * Syntax
 * Description
 ---
-* camelCase
+* Camelcase
 * `{% wrap %}value{% /wrap %}`
-* Breaks on camelCase transitions. Use for JSON field names and
-  other camelCase identifiers (`messageId`, `eventTimestamp`,
+* Breaks on camelcase transitions. Use for JSON field names and
+  other camelcase identifiers (`messageId`, `eventTimestamp`,
   `cancelReason`).
 ---
 * Regex
@@ -531,7 +543,8 @@ A code block is a fenced section that displays code, configuration,
 or example output as a captioned figure. Open with three backticks
 optionally followed by a language hint (`bash`, `json`,
 `javascript`); close with three backticks. The caption lives in
-the `{% title %}` annotation on the opening fence — see *Captions*.
+the title annotation (`{% title %}`) on the opening fence — see
+*Captions*.
 The per-language formatting conventions live in *Code Style*.
 
 When the example itself contains Markdoc syntax — the kind shown
@@ -589,9 +602,10 @@ Each element type carries its caption in a different attribute:
 
 ### Links
 
-Hyperlinks within .mdoc files use the `{% link %}` Markdoc tag. Hyperlinks
-within OpenAPI files use the Markdown `[link]()` syntax. The "link" Markdoc tag
-has several forms depending on the target resource type.
+Hyperlinks within .mdoc files use the link tag (`{% link %}`).
+Hyperlinks within OpenAPI files use the Markdown `[link]()`
+syntax. The link tag has several forms depending on the target
+resource type.
 
 {% table title="Link Tag Forms" %}
 * Form
@@ -804,8 +818,8 @@ spendable currency."
 ### Inline Links
 
 Use Markdown `[text](url)` syntax for inline links inside OpenAPI
-descriptions. The `{% link %}` Markdoc tag does not render in the
-OpenAPI pipeline; see *Links*.
+descriptions. The link tag does not render in the OpenAPI
+pipeline; see *Links*.
 
 ### Enums
 
@@ -833,8 +847,8 @@ endpoint instead.
 
 Name the replacement endpoint by its title, not its `operationId`
 — see *Prose Conventions*. In OpenAPI prose, link to it with a
-Markdown `[Title](url)` (the `{% link %}` Markdoc tag does not
-render here — see *Links*).
+Markdown `[Title](url)` (the link tag does not render here —
+see *Links*).
 
 ### YAML Formatting
 
