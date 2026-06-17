@@ -56,18 +56,21 @@ are not numbered; the `§N` shorthand is plan-internal only.
       case, period; labeled paragraph: **Bold Label** followed by em-dash
       or colon, then sentence-case body with period), and mixing shapes
       within a list is the failure mode;
-      **Callouts subsection** — only `{% note %}` (green) and
-      `{% warning %}` (red) ship today; use sparingly; a callout
-      reinforces a point already made in the surrounding prose, never
-      introduces a new constraint; `{% note %}` for important facts a
-      careful reader has already absorbed (immutable identifiers,
-      reasoned defaults); `{% warning %}` for hazards with real cost
-      (data loss, irreversible state, account lockout, security
-      exposure); never use callouts for cross-links, motivation, or
-      section summaries
-- [x] **§4 Links** — always use the `{% link %}` Markdoc tag; avoid
-      `target=_blank`; avoid generic "see also" sub-sections (prefer "see
-      X for more information" inline)
+      **Callouts subsection** — three callout forms ship today:
+      `{% note %}` (important facts a careful reader has already
+      absorbed — immutable identifiers, reasoned defaults),
+      `{% warning %}` (hazards with real cost — data loss,
+      irreversible state, account lockout, security exposure), and
+      `{% endpointref %}` (highlight the API endpoint being described
+      in an integration guide); use sparingly; a callout reinforces a
+      point already made in the surrounding prose, never summarizes
+      it, and never introduces a new constraint a reader could miss
+      by skipping the box
+- [x] **§4 Links** — use the `{% link %}` Markdoc tag in `.mdoc`
+      files (forms: docs page, API reference endpoint, external URL;
+      link text defaults from the target, customisable via `title`);
+      use Markdown `[link]()` syntax inside OpenAPI files; never set
+      the `target` attribute
 - [x] **§10 URLs and Redirects** — page slugs are kebab-case
       (`api-fundamentals/xrpl-login`); redirects from old slug to new are
       mandatory whenever a page is renamed or moved
@@ -90,7 +93,9 @@ draft.
       under §1
 - [ ] **§9 OpenAPI Authoring** — endpoint summaries and descriptions;
       attribute descriptions; when to use enums versus open strings; how
-      to mark deprecation; YAML wrapping and indentation
+      to mark deprecation; YAML wrapping and indentation; inline links
+      in OpenAPI descriptions use Markdown `[link]()` syntax (the
+      `{% link %}` Markdoc tag does not render here — see §4)
 
 End state: PR branch additionally contains §6, §7, §9. PR remains
 draft.
