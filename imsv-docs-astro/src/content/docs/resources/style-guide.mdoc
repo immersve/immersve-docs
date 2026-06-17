@@ -172,15 +172,91 @@ A list that grows past a handful of items, or carries multiple
 columns of information per item, escalates to a table — see
 *Tables*.
 
+#### Icon Lists
+
+For lists of conceptual steps or features where a visual cue
+helps a reader scan — landing pages, overview sections, "how it
+works" walkthroughs — use the Markdoc `{% list %}` / `{% listitem %}`
+tags. Each item displays with an icon (any of the icon names in
+`src/components/icons/`) and an optional connector line linking
+adjacent items into a sequence:
+
+```
+{% list %}
+  {% listitem "Key" connector=true %}
+    Custodial partner accounts have full control over Immersve
+    cardholder accounts.
+  {% /listitem %}
+  {% listitem "Wallet" %}
+    Custodians deposit stablecoins on behalf of cardholders.
+  {% /listitem %}
+{% /list %}
+```
+
+The `primary` slot (first positional argument) is the icon name.
+Set `connector=true` on every item except the last when the items
+represent a sequence; omit it for unordered lists.
+
+Reserve icon lists for landing-page and walkthrough contexts. A
+standard bullet list reads faster for reference material and
+in-body lists.
+
 ### Tables
 
-Tables present comparable rows of data in scannable columns. Use a
-table when the same fact varies across several values (codes and
-their meanings, fields and their types, options and their defaults),
-or when a bullet list would otherwise grow past a handful of items.
+Tables come in two flavours that share the same conventions:
+
+- **Comparison Tables** — several rows that share the same set of
+  fields, varying across one or two dimensions. Each row is an
+  entity (a card status, a chain, an HTTP code) and the columns
+  describe shared facts about it.
+- **Key/Value Tables** — a two-column table mapping each key to
+  its meaning. Field reference tables, error code lookups, and
+  glossaries belong here.
+
+A table replaces prose when readers will compare values across
+rows or scan for a single key. Use a table once a list grows past
+a handful of items or once each item carries more than one piece
+of information.
 
 Column headers are Title Case per *Casing*. Every table carries a
 caption that names it — see *Captions*.
+
+#### Markdoc `{% table %}` Tag
+
+Authored tables use the Markdoc `{% table %}` tag rather than
+Markdown's pipe syntax. The tag accepts a `title` attribute that
+renders as the caption, and each row separates with `---`:
+
+```
+{% table title="HTTP Status Codes" %}
+* Code
+* Meaning
+---
+* 200
+* Request succeeded.
+---
+* 404
+* Resource not found.
+{% /table %}
+```
+
+Markdown pipe tables (`| Code | Meaning |`) also render, but the
+`{% table %}` form is preferred — it carries the caption directly
+and tolerates multi-line cell content the pipe form does not.
+
+#### `{% wrap %}` for Long Values in Cells
+
+A long opaque value (an account id, an API key, a contract
+address) blows out a table column when it cannot break across
+lines. Wrap such values in `{% wrap N %}value{% /wrap %}` to allow
+soft-wraps every `N` characters:
+
+```
+| Partner Account Id | {% wrap 9 %}d1bc97edfa4f7dc9b56726c7d82a9956{% /wrap %} |
+```
+
+Reserve `{% wrap %}` for tabular contexts where the value would
+otherwise overflow; prose handles long values fine.
 
 ### Figures
 
