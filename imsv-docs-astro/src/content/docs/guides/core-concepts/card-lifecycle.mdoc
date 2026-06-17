@@ -51,33 +51,46 @@ The card will transition to the `cancelled` state and cannot be used for transac
 
 ## Reissuance
 
-Reissuance creates a new successor card linked to the original. Integrators are encouraged to reissue cards when a card is approaching expiry, to ensure continuity of service for the cardholder.
+Reissuance creates a new successor card linked to the original. Integrators are
+encouraged to reissue cards when a card is approaching expiry, to ensure
+continuity of service for the cardholder.
 
-The successor card has the **same** PAN but with a **new** expiry date and **new** security code (CVC).
+The successor card has the **same** PAN but with a **new** expiry date and
+**new** security code (CVC).
 
-- **Continuity of recurring payments.** Participating merchants automatically receive the new card details when the card is reissued.
-- **xPay wallet continuity.** Cards loaded into xPay wallets are automatically updated to the new card details.
+- **Continuity of recurring payments.** Participating merchants automatically
+receive the new card details when the card is reissued.
+- **xPay wallet continuity.** Cards loaded into xPay wallets are automatically
+updated to the new card details.
 
-Reissued cards themselves are reissuable. Reissuance creates a chain of cards linked by a `seriesId`.
-However, once an individual card in the chain is reissued, it cannot be reissued again.
+Reissued cards themselves are reissuable. Reissuance creates a chain of cards
+linked by a `seriesId`. However, once an individual card in the chain is
+reissued, it cannot be reissued again.
 
 ### Subscribe to webhooks
 
 An {% link title="Card Expiry Upcoming" endpoint="webhook-topics/card-expiry-upcoming" /%}
-webhook is sent when a card is approaching its expiry date.
-Integrators are encouraged to communicate with the cardholder the upcoming card expiry and
-to updatetheir payment details with merchants who do not participate in automatic billing updates.
+webhook is sent when a card is approaching its expiry date. Integrators are
+encouraged to communicate with the cardholder the upcoming card expiry and to
+updatetheir payment details with merchants who do not participate in automatic
+billing updates.
 
 ### Call the reissue-card endpoint
-Call the {% link endpoint="reissue-card" /%} endpoint. The successor card will share a `seriesId` with the predecessor card.
+Call the {% link endpoint="reissue-card" /%} endpoint.
+The successor card will share a `seriesId` with the predecessor card.
 
 ### Activate the successor card
 
-Virtual cards are activated automatically. Physical cards are shipped to the cardholder and require activation. See
-the {% link page="guides/issue-a-physical-card" /%} guide on how to activate a physical card.
+Virtual cards are activated automatically. Physical cards are shipped to the
+cardholder and require activation. Seethe {% link page="guides/issue-a-physical-card" /%}
+guide on how to activate a physical card.
 
-Once the successor card is activated, a {% link title="Card Reissue Succeeded" endpoint="webhook-topics/card-reissue-succeeded" /%} webhook is sent and the predecessor card is cancelled.
-If reissuance fails, a {% link title="Card Reissue Failed" endpoint="webhook-topics/card-reissue-failed" /%} webhook is sent and the predecessor card remains active until it is expired.
+Once the successor card is activated,
+a {% link title="Card Reissue Succeeded" endpoint="webhook-topics/card-reissue-succeeded" /%}
+webhook is sent and the predecessor card is cancelled.
+If reissuance fails,
+a {% link title="Card Reissue Failed" endpoint="webhook-topics/card-reissue-failed" /%}
+webhook is sent and the predecessor card remains active until it is expired or canceled.
 If reissuance fails, attempt to reissue the card again.
 
 ## Webhooks
