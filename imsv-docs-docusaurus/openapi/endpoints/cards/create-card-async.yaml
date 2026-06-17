@@ -32,8 +32,8 @@ post:
         **CARD_PROGRAM_INVALID**
         Card program does not belong to a partner this cardholder is associated with.
 
-        **FUNDING_SOURCE_INVALID**
-        Funding source cannot be used with this card program.
+        **FUNDING_CHANNEL_INVALID**
+        Funding channel cannot be used with this card program.
 
         **KYC_REQUIRED**
         KYC profile is missing, does not have PASSED status, or does not match card program region. Use the spending prerequisites endpoint for more details.
@@ -44,17 +44,27 @@ post:
         **CONTACT_PHONE_REQUIRED**
         Cardholder does not have a contact phone.
 
+        **EXPECTED_SPEND_PREREQ_REQUIRED**
+        Cardholder has not completed the required expected spend prerequisite.
+
         **MAX_CARDS_EXCEEDED**
         Cardholder has reached the maximum number of cards allowed.
 
         **MAX_ACTIVE_CARDS_EXCEEDED**
         Cardholder has reached the maximum number of active cards allowed.
+
+        **SHIPPING_COUNTRY_UNSUPPORTED**
+        The shipping country is not supported for physical card creation.
       content:
         application/json:
           schema:
             $ref: "../../models/api-error-403.yaml"
     "400":
-      description: Request fields are invalid
+      description: |
+        Request fields are invalid, or the request could not be processed for the reason stated in the `message`
+
+        **SHIPPING_ADDRESS_REQUIRED**
+        Card program is configured for physical cards but no shipping address was provided.
       content:
         application/json:
           schema:
