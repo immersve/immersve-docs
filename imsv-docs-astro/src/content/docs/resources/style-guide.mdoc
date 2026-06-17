@@ -249,6 +249,10 @@ that contract.
 
 ### Bash
 
+Bash samples use `curl` to call the Immersve API. They show the
+HTTP shape of the request without the extra layer an SDK adds, which
+makes them the most portable form of example.
+
 - **`curl` Flags** — prefer short flags (`-X POST`, `-H "..."`)
   and reserve long flags for the few cases without a short form.
 - **Line Continuation** — break long invocations across lines with
@@ -264,6 +268,10 @@ curl "https://test.immersve.com/api/cards/${card_id}" \
 
 ### JSON
 
+JSON samples document the shape of request payloads and response
+bodies. The conventions below keep samples easy to compare against
+the OpenAPI schema and against live traffic.
+
 - **Indent** — two spaces, no tabs.
 - **Quotes** — double quotes only; JSON requires them.
 - **Key Order** — keys appear in the same order as the OpenAPI
@@ -273,6 +281,11 @@ curl "https://test.immersve.com/api/cards/${card_id}" \
   above; both are invalid JSON.
 
 ### JavaScript and TypeScript
+
+JavaScript and TypeScript samples model how a partner application
+calls the Immersve API in a typical web or Node.js context. They use
+the language's standard library where possible, in the modern dialect
+a current LTS runtime would expect.
 
 - **Indent** — two spaces.
 - **Quotes** — single quotes for strings; double quotes only when
@@ -289,6 +302,9 @@ Inconsistent terms scatter search results and make the docs feel
 sloppy even when each individual sentence reads fine.
 
 ### Glossary
+
+The following terms carry specific meanings in Immersve docs and
+have a single canonical form. Use them as written.
 
 - **Endpoint** — a single addressable URL on the Immersve API,
   paired with an HTTP method. Lowercase *endpoint* in prose. Use
@@ -327,6 +343,11 @@ audiences benefit when the prose is consistent and the structure
 predictable.
 
 ### Endpoint Summaries and Descriptions
+
+Every endpoint declares a summary and a description. They serve
+different audiences — the summary is the navigation label in the
+rendered reference; the description is the operation prose a reader
+reaches after clicking through.
 
 - **Summary** — one short imperative phrase that names the
   operation ("Create a Card", "List Cards"). Title Case, no period.
@@ -374,10 +395,13 @@ and name the replacement inline:
 
 ### YAML Wrapping and Indentation
 
+YAML formatting affects how the spec diffs in pull requests and how
+description prose renders downstream.
+
 - **Indent** — two spaces.
 - **Line Length** — wrap description prose at 80 columns using
   YAML's block-scalar `|` (literal) or `>` (folded) style as
-  appropriate. Single-line summaries do not wrap.
+  appropriate.
 - **Key Order** — within a schema, declare keys in the order the
   Immersve API returns them. JSON sample key order (see *Code
   Samples*) inherits from this declaration.
