@@ -179,40 +179,58 @@ bullet or convert the whole list to the dominant shape.
 
 ### Callouts
 
-Two callout types ship today: `{% note %}` (green) and `{% warning %}`
-(red). Use them sparingly. A callout reinforces a point already made
-in the surrounding prose; it never introduces a new constraint a
-reader could miss by skipping the box.
+Callouts are used to reinforce a key point from the surrounding prose. Callouts
+have several forms that support different usage patterns. Callouts should: be
+used sparingly; avoid summarizing the surrounding prose; avoid introducing new
+constraints a reader could miss by skipping the callout.
 
-- **`{% note %}`** — Use for important facts a careful reader has
+{% table title="Callout Forms" %}
+* Form
+* Description
+* Example
+---
+* Note Callout
+* Use for important facts a careful reader has
   already absorbed: immutable identifiers, reasoned defaults.
-- **`{% warning %}`** — Use for hazards with real cost: data loss,
+* `{% note %}Currency values use minor units.{% /note %}`
+---
+* Warning Callout
+* Use for hazards with real cost: data loss,
   irreversible state, account lockout, security exposure.
-
-Do not use callouts for cross-links, motivation, or section summaries.
+* `{% warning %}Delivery order is not guaranteed.{% /warning %}`
+---
+* API Endpoint Callout
+* Use for highlighting the API endpoint being described in an integration guide.
+* `{% endpointref name="get-card" /%}`
+{% /table %}
 
 ## Links
 
-Internal and external links use Markdoc's `{% link %}` tag rather
-than raw Markdown link syntax. The tag renders consistently across
-themes and lets us retarget by page slug, OpenAPI endpoint ID, or
-external URL from a single place if the destination moves.
+Hyperlinks within .mdoc files use the `{% link %}` Markdoc tag. Hyperlinks
+within OpenAPI files use the Markdown `[link]()` syntax. The "link" Markdoc tag
+has several forms depending on the target resource type.
 
-```
-{% link page="resources/style-guide" title="Style Guide" /%}
-{% link endpoint="create-card" title="create a Card" /%}
-{% link href="https://www.postman.com/" title="Postman" /%}
-```
+{% table title="Link Tag Forms" %}
+* Form
+* Link Text
+* Example
+---
+* Docs Page Link
+* Page Title
+* `{% link page="resources/style-guide" /%}`
+---
+* API Reference Link
+* Endpoint Title
+* `{% link endpoint="create-card" /%}`
+---
+* External Link
+* Href URL
+* `{% link href="https://www.postman.com/" /%}`
+{% /table %}
 
-Do not set `target="_blank"`. Forcing a new tab takes navigation
-control away from the reader, who can already choose to open a link
-in a new tab from their browser.
-
-Avoid generic "See Also" sub-sections at the bottom of a page.
-Cross-references work harder when they sit inline next to the prose
-that motivates them — write "see *Casing* for the full rule" in the
-sentence where the cross-link is relevant, not as a dangling list
-under a separate heading.
+Link text can be customized using the Link tag's "title" attribute: `{% link
+href="https://www.postman.com/" title="Postman" /%}`. Hyperlinks should not specify
+the `target` attribute.
 
 ## URLs and Redirects
 
@@ -223,8 +241,8 @@ shared link should not break when a page is restructured.
 
 All page slugs use lowercase kebab-case: `api-fundamentals/xrpl-login`,
 not `apiFundamentals/xrplLogin` or `api_fundamentals/xrpl_login`. The
-slug is the path segment after the docs root and is set in the page
-frontmatter.
+slug is the path segment after the docs root. The slug is set in the page
+frontmatter; it is not coupled to a page's file name or location.
 
 ### Redirects Are Mandatory on Move or Rename
 
