@@ -48,20 +48,45 @@ otherwise…") couples a page's content to assumptions about which
 branch the reader is on, is hard to skim, hard to deep-link to,
 and silently drifts out of sync as one variant evolves.
 
-### English Variant
+### US English
 
-Write US English throughout.
+Write US English throughout — all prose, headings, captions,
+code comments, and OpenAPI descriptions. Proper nouns keep their
+canonical spelling regardless of variant (a product literally
+named `Behaviour Ltd` stays that way); existing API contracts
+that already violate the rule are the only other exception.
 
-- **Correct Spelling** — `finalize`, `tokenize`, `color`, `behavior`,
-  `center`, `license` (noun and verb), `analyze`, `catalog`, `canceled`.
-- **Incorrect Spelling** — `finalise`, `tokenise`, `colour`, `behaviour`,
-  `centre`, `licence`, `analyse`, `catalogue`, `cancelled`.
-
-This applies to all prose, headings, captions, code comments, and
-OpenAPI descriptions. Proper nouns keep their canonical spelling
-regardless of variant (a product literally named `Behaviour Ltd`
-stays that way). Only exceptions are existing API contracts that violate the
-rule.
+{% table title="Common US vs UK Spellings" %}
+* US (Use)
+* UK (Don't Use)
+---
+* `finalize`
+* `finalise`
+---
+* `tokenize`
+* `tokenise`
+---
+* `color`
+* `colour`
+---
+* `behavior`
+* `behaviour`
+---
+* `center`
+* `centre`
+---
+* `license` (noun and verb)
+* `licence`
+---
+* `analyze`
+* `analyse`
+---
+* `catalog`
+* `catalogue`
+---
+* `canceled`
+* `cancelled`
+{% /table %}
 
 ### Title Case
 
