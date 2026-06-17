@@ -33,5 +33,6 @@ requestBody:
                       - user-requested
                       - external-provider-failed
                       - expired
+                      - reissued
 
           - $ref: "./webhook-envelope.yaml"
