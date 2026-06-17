@@ -87,6 +87,7 @@ export default defineMarkdocConfig({
     },
     link: {
       render: component('./src/components/Link.astro'),
+      inline: true,
       attributes: {
         href: { type: String },
         title: { type: String },
