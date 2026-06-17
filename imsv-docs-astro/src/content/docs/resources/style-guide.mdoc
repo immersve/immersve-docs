@@ -406,13 +406,28 @@ and tolerates multi-line cell content the pipe form does not.
 
 #### Markdoc Wrap Tag
 
-A long opaque value (an account id, an API key, a contract
-address) blows out a table column when it cannot break across
-lines. Wrap such values in `{% wrap N %}value{% /wrap %}` to allow
-soft-wraps every `N` characters:
+A long unbreakable value (an account id, an API key, an error
+code, a camelCase field name) blows out a table column when it
+cannot soft-wrap. The `{% wrap %}` tag inserts zero-width break
+opportunities into the value so the browser can wrap it at a
+sensible point. It has three forms:
+
+- **`{% wrap %}value{% /wrap %}`** — default mode, breaks on
+  camelCase transitions. Use for JSON field names and other
+  identifiers that use camelCase: `messageId`, `eventTimestamp`,
+  `cancelReason`.
+- **`{% wrap "_" %}value{% /wrap %}`** — regex mode, breaks
+  after every match of the given pattern. The common case is
+  `"_"` for SCREAMING_SNAKE error codes:
+  `BIOMETRICS_FAILED`, `CARD_REISSUE_FAILED`.
+- **`{% wrap N %}value{% /wrap %}`** — count mode, breaks every
+  `N` characters. Use for opaque hex strings without a natural
+  break point: account ids, contract addresses, API keys.
 
 ``` {% process=false %}
+| Error Code         | {% wrap "_" %}BIOMETRICS_FAILED{% /wrap %} |
 | Partner Account Id | {% wrap 9 %}d1bc97edfa4f7dc9b56726c7d82a9956{% /wrap %} |
+| Field Name         | {% wrap %}eventTimestamp{% /wrap %} |
 ```
 
 Reserve `{% wrap %}` for tabular contexts where the value would
