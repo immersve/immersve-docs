@@ -29,11 +29,12 @@ before merge. Paused awaiting Stage 4 approval.
 - Pick up from:
   `/Users/nathan/code/immersve/worktrees/immersve-docs/documentation-style-guide`
   on branch `docs-style-guide-skeleton`.
+- **Read `plan.md`'s *Pending Feedback (2026-06-18)* section
+  before doing anything else** — eight items captured at the end
+  of this session that bear on Stage 4 ordering, scope, and
+  prerequisites (notably: rebase the branch onto `main` to pull
+  in code-captions support; resolve domain-resource casing nuance
+  before §8 prose work; reconsider top-level section order).
 - First task: **wait for user approval before starting Stage 4.**
-  When approved, draft §8 Prose Conventions (no smart quotes, no
-  single quotes in prose, sentence case for body prose, hard-wrap
-  at 80, Oxford comma, no "this endpoint…", do not refer to
-  endpoints as "APIs"). §8 likely fits as a top-level section
-  between *Elements* and *Code Samples*, but the final placement
-  is part of Stage 4. After §8 lands, mark the PR ready for
-  review.
+  The user signalled more feedback may follow before Stage 4
+  begins; do not pre-empt.

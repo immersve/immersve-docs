@@ -116,6 +116,54 @@ draft.
 End state: PR branch contains all ten sections. Marked ready for
 review and merged. Sibling sweep projects unblocked.
 
+## Pending Feedback (2026-06-18)
+
+Iteration backlog captured between Stage 3 and Stage 4. Address
+before marking the PR ready for review; several items expand into
+new stage work and may need their own commits.
+
+- **Top-level section order** — Casing should not lead, and OpenAPI
+  Authoring probably belongs last. Decide the right opening section
+  (perhaps a short Overview, or *Document Structure* if it earns
+  its keep) and reorder.
+- **Document Structure feels thin** — only *Section Introductions*
+  clearly earns its place; *Patterns, Not Use Cases* is unclear to
+  the reader and may need to move or be cut. Consider folding
+  *Section Introductions* under *Elements / Headings* and removing
+  the *Document Structure* top-level if nothing else lands there.
+- **Undocumented Markdoc tags** — `{% link %}`, `{% note %}`,
+  `{% warning %}`, `{% endpointref %}`, and `{% table %}` appear in
+  examples but the guide does not explain `{% table %}` itself, and
+  the list/icon-list tags (whatever they are called) are not
+  covered at all. Audit the available tags and document each in
+  the relevant element subsection.
+- **Tables intro is weak** — drop the "tables present comparable
+  rows in scannable columns" opener (says nothing). The "same fact
+  varies across several values" framing also excludes key/value
+  tables (field → meaning, code → description), which are a
+  legitimate use. Rewrite the intro to cover comparison tables
+  *and* key/value tables.
+- **Code Samples per-language bullets are ugly** — the *Bash*,
+  *JSON*, and *JavaScript and TypeScript* subsections all use
+  labeled-bullet lists that read poorly. Try a per-language table
+  (column headers: Rule, Description) and see whether it scans
+  better.
+- **Code captions are missing** — Code Captions support landed on
+  `main` after this branch diverged. Rebase the branch and then
+  extend *Elements / Captions* and *Code Samples* to cover code-
+  block captions (the `{% title %}` annotation already appears in
+  the Bash example but is undocumented).
+- **Terminology needs critical review** — the glossary entries and
+  the *Domain Resources* list are first-draft and have not been
+  vetted against actual house usage. Reread end-to-end and rework
+  before the guide goes ready-for-review.
+- **Domain-resource casing: class vs instance** — restore the
+  previously agreed nuance that domain nouns are Title Case only
+  when referring to the resource *as a class* ("every Card belongs
+  to a Cardholder"), and lowercase when referring to a *specific
+  instance* ("your card"). The current *Casing* and *Terminology /
+  Domain Resources* prose reads as unconditional Title Case.
+
 ## Open Questions
 
 - Whether to cross-link from each section to specific Markdoc tag
