@@ -18,23 +18,29 @@ Stage 4, when the guide is feature-complete at v1.
 
 ## Stage 1 — Skeleton and Foundational Sections (done)
 
-Page published at `contributors/style-guide`, wired into the sidebar
-under a new "Contributors" group. Draft §1 Casing, §2 English
-Variant, and §5 Figures and Captions landed — the three sections the
-sibling projects depend on. `CLAUDE.md` slimmed to a one-line pointer
-at the published guide.
+Page published at `resources/style-guide`, surfaced in the existing
+"Resources" sidebar group via autogeneration. Draft §1 Casing, §2
+English Variant, and §5 Figures and Captions landed — the three
+sections the sibling projects depend on. `CLAUDE.md` slimmed to a
+one-line pointer at the published guide. Note: published headings
+are not numbered; the `§N` shorthand is plan-internal only.
 
 ## Stage 2 — Structural Sections
 
 - [ ] **§3 Headings and Document Structure** — introductions explain
       *what* and *why*; subheadings introduce their topic; every section
       contains at least one paragraph of prose (no heading-then-figure-only
-      sections); guides describe patterns not single use cases (repeating
-      content → page per variant); a list that grows past a few items or
-      carries multiple columns of information prefers a table or icon
-      list; **bullet rule:** within a list, each bullet is either a label
-      (Title Case, no trailing period) or a paragraph (sentence case,
-      trailing period) — pick one shape per list and stay consistent;
+      sections); headings are not numbered (no `## 1. Casing`-style
+      prefixes) and cross-references between sections use the section
+      name, not `§N`; guides describe patterns not single use cases
+      (repeating content → page per variant); a list that grows past a
+      few items or carries multiple columns of information prefers a
+      table or icon list; **bullet rule:** a list picks one bullet shape
+      and stays consistent — (a) pure label (Title Case, no period),
+      (b) pure paragraph (sentence case, period), or (c) labeled
+      paragraph (**Bold Label** followed by em-dash or colon, then
+      sentence-case body with period); mixing shapes within a list is
+      the failure mode;
       **Callouts subsection** — only `{% note %}` (green) and
       `{% warning %}` (red) ship today; use sparingly; a callout
       reinforces a point already made in the surrounding prose, never

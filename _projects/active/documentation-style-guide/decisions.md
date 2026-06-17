@@ -76,3 +76,65 @@ group — rejected as premature: one page does not justify a top-level
 group. Re-promote if a second contributor-facing page lands.
 (b) Top-level `CONTRIBUTING.md` — already rejected on 2026-06-13 and
 the reasoning still holds.
+
+## 2026-06-17 — Published headings are not numbered
+
+**Decision:** Section headings in the published guide are bare titles
+(`## Casing`), not number-prefixed (`## 1. Casing`). The project plan
+continues to use `§N` shorthand internally, but the published guide
+never does.
+
+**Rationale:** Numbered sections are pleasant for readers but high
+maintenance for authors without auto-numbering tooling — inserting,
+deleting, or reordering a section silently breaks every numbered
+cross-reference, and the breakage is invisible until a reader chases
+a dead link. Without LaTeX-style auto-numbering (which would need
+plugin selection plus ongoing maintenance), the manual cost outweighs
+the reader benefit.
+
+**Alternatives considered:** (a) Manual numbering across the guide —
+rejected as above. (b) An Astro/Markdoc auto-numbering plugin — out
+of scope and adds a maintenance surface for marginal reader benefit.
+(c) Number top-level sections only — still requires manual upkeep on
+inserts and still leaks numbered refs into cross-links.
+
+**How to apply:** Cross-references in published text use the section
+name ("see *Terminology*", "per the casing rules"), never `§N`. The
+plan's internal `§N` shorthand stays — it makes plan discussion
+concise without leaking into the guide.
+
+## 2026-06-17 — Bullet shape rule: label, paragraph, or labeled paragraph
+
+**Decision:** Every list in the guide picks one bullet shape and
+stays consistent. Three shapes are valid:
+
+- **Pure label** — Title Case, no trailing period. The bullet names a
+  category, term, or value.
+- **Pure paragraph** — sentence case, full sentence with trailing
+  period. The bullet states or describes a thing.
+- **Labeled paragraph** — **Bold Label** followed by an em-dash or a
+  colon, then a sentence-case body ending in a period.
+
+Mixing shapes within one list is the failure mode.
+
+**Rationale:** Shape signals what kind of content the bullet carries;
+consistency lets readers scan one shape at a time. Bolding the label
+in the labeled-paragraph shape gives the eye an anchor — without
+weight contrast, the label/body boundary becomes invisible. Allowing
+both em-dash and colon as the separator matches existing house
+preference without forcing one stylistic choice.
+
+The §5 Figures and Captions rule (captions are label-or-paragraph)
+is a direct application of this rule to caption text.
+
+**Alternatives considered:** (a) Restrict to pure-label-or-pure-
+paragraph — rejected, the labeled-paragraph shape is genuinely
+useful (e.g. the *Correct Spelling / Incorrect Spelling* list in §2
+English Variant). (b) Allow unbolded labels with separator — rejected,
+the label boundary becomes invisible without weight contrast.
+(c) Mandate one separator (em-dash only, or colon only) — rejected
+as a stylistic constraint with no functional benefit.
+
+**How to apply:** Decide a list's shape before writing the first
+bullet. On review, treat shape mismatches as defects — fix the
+inconsistent bullet or convert the whole list to the dominant shape.
