@@ -386,13 +386,23 @@ Bash samples use `curl` to call the Immersve API. They show the
 HTTP shape of the request without the extra layer an SDK adds, which
 makes them the most portable form of example.
 
-- **`curl` Flags** — prefer short flags (`-X POST`, `-H "..."`)
-  and reserve long flags for the few cases without a short form.
-- **Line Continuation** — break long invocations across lines with
-  a trailing backslash and indent continuation lines two spaces.
-- **Variable Substitution** — use braced `${VAR}` consistently,
-  even when bare `$VAR` would parse. Braces survive being copied next
-  to a non-word character.
+{% table title="Bash Conventions" %}
+* Rule
+* Detail
+---
+* `curl` Flags
+* Prefer short flags (`-X POST`, `-H "..."`); reserve long flags
+  for the few cases without a short form.
+---
+* Line Continuation
+* Break long invocations across lines with a trailing backslash
+  and indent continuation lines two spaces.
+---
+* Variable Substitution
+* Use braced `${VAR}` consistently, even when bare `$VAR` would
+  parse — braces survive being copied next to a non-word
+  character.
+{% /table %}
 
 ```bash {% title="Fetch a Card" %}
 curl "https://test.immersve.com/api/cards/${card_id}" \
@@ -405,13 +415,24 @@ JSON samples document the shape of request payloads and response
 bodies. The conventions below keep samples easy to compare against
 the OpenAPI schema and against live traffic.
 
-- **Indent** — two spaces, no tabs.
-- **Quotes** — double quotes only; JSON requires them.
-- **Key Order** — keys appear in the same order as the OpenAPI
-  schema declares them. Consistent ordering keeps `grep` and visual
-  diff useful when readers compare a sample against the live response.
-- **No Trailing Commas, No Comments** — see *Run Before You Ship*
-  above; both are invalid JSON.
+{% table title="JSON Conventions" %}
+* Rule
+* Detail
+---
+* Indent
+* Two spaces, no tabs.
+---
+* Quotes
+* Double quotes only; JSON requires them.
+---
+* Key Order
+* Keys appear in the same order as the OpenAPI schema declares
+  them. Consistent ordering keeps `grep` and visual diff useful
+  when readers compare a sample against the live response.
+---
+* No Trailing Commas, No Comments
+* See *Run Before You Ship* above — both are invalid JSON.
+{% /table %}
 
 ### JavaScript and TypeScript
 
@@ -420,13 +441,25 @@ calls the Immersve API in a typical web or Node.js context. They use
 the language's standard library where possible, in the modern dialect
 a current LTS runtime would expect.
 
-- **Indent** — two spaces.
-- **Quotes** — single quotes for strings; double quotes only when
-  the string contains a single quote.
-- **Async** — `async`/`await` over `.then(...)` chains. Linear
-  control flow reads more naturally for someone learning the API.
-- **Declarations** — `const` by default; `let` only when
-  reassignment is intentional; never `var`.
+{% table title="JavaScript and TypeScript Conventions" %}
+* Rule
+* Detail
+---
+* Indent
+* Two spaces.
+---
+* Quotes
+* Single quotes for strings; double quotes only when the string
+  contains a single quote.
+---
+* Async
+* `async`/`await` over `.then(...)` chains. Linear control flow
+  reads more naturally for someone learning the API.
+---
+* Declarations
+* `const` by default; `let` only when reassignment is intentional;
+  never `var`.
+{% /table %}
 
 ## Terminology
 
