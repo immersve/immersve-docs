@@ -8,6 +8,22 @@ The PR opens as a draft once Stage 1 has a reviewable surface; later
 stages add commits to the same branch. Final merge happens after
 Stage 4, when the guide is feature-complete at v1.
 
+## Conventions
+
+Cross-cutting rules every section must follow. Full rationale lives
+in `decisions.md`; restated here as a writing reminder for each
+stage.
+
+- **No numbered headings** in the published guide (`## Casing`, not
+  `## 1. Casing`). Cross-references between sections use the
+  section name, not `§N`. The plan's internal `§N` shorthand stays
+  — it does not leak into the guide.
+- **Bullet shape consistency** — every list picks one of three
+  shapes: pure label (Title Case, no period); pure paragraph
+  (sentence case, period); or labeled paragraph (**Bold Label**
+  followed by em-dash or colon, then sentence-case body with
+  period). Mixing within a list is the failure mode.
+
 ## Stage 0 — Prerequisites (done)
 
 - [x] Scope artifact published in Notion (AI Artifacts DB)
@@ -30,18 +46,10 @@ are not numbered; the `§N` shorthand is plan-internal only.
 - [ ] **§3 Headings and Document Structure** — introductions explain
       *what* and *why*; subheadings introduce their topic; every section
       contains at least one paragraph of prose (no heading-then-figure-only
-      sections); headings are not numbered (no `## 1. Casing`-style
-      prefixes) and cross-references between sections use the section
-      name, not `§N`; guides describe patterns not single use cases
-      (repeating content → page per variant); a list that grows past a
-      few items or carries multiple columns of information prefers a
-      table or icon list; **bullet rule:** a list picks one bullet shape
-      and stays consistent — (a) pure label (Title Case, no period),
-      (b) pure paragraph (sentence case, period), or (c) labeled
-      paragraph (**Bold Label** followed by em-dash or colon, then
-      sentence-case body with period); mixing shapes within a list is
-      the failure mode;
-      **Callouts subsection** — only `{% note %}` (green) and
+      sections); guides describe patterns not single use cases (repeating
+      content → page per variant); a list that grows past a few items or
+      carries multiple columns of information prefers a table or icon
+      list; **Callouts subsection** — only `{% note %}` (green) and
       `{% warning %}` (red) ship today; use sparingly; a callout
       reinforces a point already made in the surrounding prose, never
       introduces a new constraint; `{% note %}` for important facts a

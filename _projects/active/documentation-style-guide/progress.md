@@ -16,9 +16,10 @@ the plan, and decisions. Paused awaiting Stage 2 approval.
   decisions: no numbered headings in the published guide (`§N`
   remains plan-internal only); and the three-shape bullet rule (pure
   label / pure paragraph / labeled paragraph with bolded label and
-  em-dash or colon separator). Updated `plan.md` §3 task and the
-  collapsed Stage 1 paragraph (the latter still referenced
-  `contributors/`).
+  em-dash or colon separator). Hoisted both rules into a new
+  Conventions section at the top of `plan.md` so future stages
+  pick them up without having to read decisions. Repaired the
+  Stage 1 collapsed paragraph (still referenced `contributors/`).
 - Outcome: published guide is internally consistent against the
   bullet-shape rule. Future sections inherit both rules.
 
