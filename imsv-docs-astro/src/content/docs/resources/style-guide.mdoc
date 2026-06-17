@@ -11,12 +11,12 @@ This guide is the source of truth for how Immersve documentation is
 written. It applies to every page on the docs site, every code sample,
 and every OpenAPI description.
 
-## Document Structure
+## Core Rules
 
-A page's structure tells readers what they're going to learn and
-how to navigate it. The rules below apply across every page on the
-docs site and govern the page as a whole rather than the individual
-elements inside it.
+Core Rules are the conventions that apply to every page on the
+docs site. They cover page structure, language, naming, and URLs.
+Every other section in this guide assumes these rules as a
+baseline.
 
 ### Top-Down Flow
 
@@ -50,21 +50,7 @@ hard to skim, hard to deep-link to, and silently drifts out of
 sync as one variant evolves. A page that documents one
 configuration end-to-end stays accurate.
 
-### Slugs
-
-All page slugs use lowercase kebab-case: `api-fundamentals/xrpl-login`,
-not `apiFundamentals/xrplLogin` or `api_fundamentals/xrpl_login`. The
-slug is the path segment after the docs root. The slug is set in the page
-frontmatter; it is not coupled to a page's file name or location.
-
-### Redirects
-
-Whenever a page is renamed or moved, add a redirect from the old
-slug to the new one. The redirect preserves bookmarks, partner
-integration notes, and search-engine results that point at the old
-URL. Removing a page without a redirect breaks links we can't see.
-
-## English Variant
+### English Variant
 
 Write US English throughout.
 
@@ -79,7 +65,7 @@ regardless of variant (a product literally named `Behaviour Ltd`
 stays that way). Only exceptions are existing API contracts that violate the
 rule.
 
-## Title Case
+### Title Case
 
 Title Case is the casing convention for named elements —
 headings, page titles, UI labels, and bolded leading labels in
@@ -91,7 +77,7 @@ does. The test is "is this a name?", not "is this bold?".
 Body prose, descriptions, help text, error messages, and other
 actual sentences stay in sentence case.
 
-### Where Title Case Applies
+#### Where Title Case Applies
 
 Title Case applies regardless of length:
 
@@ -104,7 +90,7 @@ Title Case applies regardless of length:
 - **Bolded Leading Labels in List Items** — when the bold introduces a
   named term ("**Webhook Topic** — a specific, named category…").
 
-### Title Case Mechanics
+#### Title Case Mechanics
 
 Title Case is the convention of capitalizing the principal words
 in a name. The rules below settle the edge cases the convention
@@ -122,12 +108,27 @@ mechanical rule.
 - Preserve the canonical casing of proper nouns and product names
   (iPhone, npm, GitHub, XRPL, Algorand).
 
+### Slugs
+
+All page slugs use lowercase kebab-case: `api-fundamentals/xrpl-login`,
+not `apiFundamentals/xrplLogin` or `api_fundamentals/xrpl_login`. The
+slug is the path segment after the docs root. The slug is set in the page
+frontmatter; it is not coupled to a page's file name or location.
+
+### Redirects
+
+Whenever a page is renamed or moved, add a redirect from the old
+slug to the new one. The redirect preserves bookmarks, partner
+integration notes, and search-engine results that point at the old
+URL. Removing a page without a redirect breaks links we can't see.
+
 ## Prose Conventions
 
-The conventions below govern body prose across the docs site — the
-sentences in between the elements covered in *Document Structure*
-and *Elements*. Naming conventions live in *Title Case*; the rules below are
-the prose mechanics every page is expected to follow.
+The conventions below govern body prose across the docs site —
+the sentences in between the elements covered in *Elements*.
+*Core Rules* covers cross-cutting page-level concerns and naming;
+the rules below are the prose mechanics every page is expected to
+follow.
 
 ### Quotes
 
