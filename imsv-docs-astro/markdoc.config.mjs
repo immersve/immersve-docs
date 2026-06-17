@@ -60,6 +60,13 @@ export default defineMarkdocConfig({
         ...nodes.fence.attributes,
         title: { type: String, render: 'title' }
       },
+      transform(node, config) {
+        const attributes = node.transformAttributes(config);
+        const children = node.children.length
+          ? node.transformChildren(config)
+          : [node.attributes.content];
+        return new markdoc.Tag(this.render, attributes, children);
+      },
       render: component('./src/components/CodeFence.astro'),
     },
   },
