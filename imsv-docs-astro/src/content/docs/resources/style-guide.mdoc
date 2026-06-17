@@ -2,7 +2,7 @@
 title: Docs Style Guide
 description: |
   Style guide for contributors writing Immersve docs — page
-  structure, casing, prose, terminology, elements, code samples,
+  structure, casing, prose, terminology, elements, code style,
   and OpenAPI.
 slug: resources/style-guide
 ---
@@ -399,6 +399,22 @@ all because it actively misleads. Describe the UI in prose with the
 labels Title-Cased per *Casing* ("click **Create Card**, then enter
 the Cardholder's email").
 
+### Code Blocks
+
+A code block is a fenced section that displays code, configuration,
+or example output as a captioned figure. Open with three backticks
+optionally followed by a language hint (`bash`, `json`,
+`javascript`); close with three backticks. The caption lives in
+the `{% title %}` annotation on the opening fence — see *Captions*.
+The per-language formatting conventions live in *Code Style*.
+
+When the example itself contains Markdoc syntax — the kind shown
+in *Markdoc `{% table %}` Tag* — annotate the fence with
+`{% process=false %}` so the inner tags display as source text
+rather than render as components. The annotation applies only to
+the fence it sits on; surrounding code blocks parse Markdoc tags
+normally.
+
 ### Captions
 
 Every image, table, and code block carries a short caption. A
@@ -485,7 +501,7 @@ constraints a reader could miss by skipping the callout.
 * `{% endpointref name="get-card" /%}`
 {% /table %}
 
-## Code Samples
+## Code Style
 
 Code samples teach by example. A reader should be able to copy a
 sample, change one or two values, and watch it run. Samples that
@@ -506,7 +522,7 @@ that contract.
   shorthand but parse-fail; a reader who copies the payload into a
   tool sees an error before they see the lesson.
 
-### Bash
+### Bash Style
 
 Bash samples use `curl` to call the Immersve API. They show the
 HTTP shape of the request without the extra layer an SDK adds, which
@@ -535,7 +551,7 @@ curl "https://test.immersve.com/api/cards/${card_id}" \
   -H "Authorization: Bearer ${token}"
 ```
 
-### JSON
+### JSON Style
 
 JSON samples document the shape of request payloads and response
 bodies. The conventions below keep samples easy to compare against
@@ -560,7 +576,7 @@ the OpenAPI schema and against live traffic.
 * See *Run Before You Ship* above — both are invalid JSON.
 {% /table %}
 
-### JavaScript
+### JavaScript Style
 
 JavaScript samples — TypeScript follows the same conventions —
 model how a partner application calls the Immersve API in a
@@ -662,8 +678,8 @@ description prose renders downstream.
   YAML's block-scalar `|` (literal) or `>` (folded) style as
   appropriate.
 - **Key Order** — within a schema, declare keys in the order the
-  Immersve API returns them. JSON sample key order (see *Code
-  Samples*) inherits from this declaration.
+  Immersve API returns them. JSON sample key order (see *JSON
+  Style*) inherits from this declaration.
 
 ### Inline Links
 
