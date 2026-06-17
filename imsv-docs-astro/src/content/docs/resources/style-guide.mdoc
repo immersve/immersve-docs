@@ -112,6 +112,13 @@ sense. If it would, you are talking about an instance — lowercase.
 If it would not — because you are introducing or referring to the
 concept itself — Title Case.
 
+Adjectival uses also stay lowercase. Write "card payment" (the
+noun is *payment*; *card* describes it), "webhook payload" (the
+noun is *payload*), "cardholder email" (the noun is *email*). In
+each case the domain term modifies the next word rather than
+naming the resource; capitalising it would mislabel the phrase
+as a single proper noun.
+
 ### Code Identifiers in Headings
 
 Headings whose entire content is a literal code identifier keep
@@ -233,6 +240,15 @@ have a single canonical form. Use them as written.
   domain resource (see *Domain Resources* below).
 - **Immersve** — the company and the platform. Always capitalised;
   never "immersve", "Imsv", or "IMSV" in prose.
+- **Funding Protocol** — the abstract pattern by which funds reach
+  Immersve to settle a card payment (custodial, on-chain, etc.).
+- **Funding Type** — a concrete configuration of a Funding
+  Protocol for one network and token. Configured by Immersve.
+- **Funding Channel** — a partner's configured instance of a
+  Funding Type. Cards are issued against a Funding Channel.
+- **Funding Source** — a Cardholder's source of funds within a
+  Funding Channel, identifying the on-chain account or balance
+  that backs the card.
 
 ### Domain Resources
 
@@ -241,12 +257,24 @@ Cased when naming the resource as a class and lowercase when
 referring to a specific instance — see *Casing* for the rule and
 the disambiguation test.
 
+- Authorization
 - Card
+- Card Program
 - Cardholder
-- Funding Source
-- Funding Channel
-- Webhook
+- Cardholder Account
+- Clearing
 - Client Application
+- Funding Channel
+- Funding Protocol
+- Funding Source
+- Funding Type
+- Funds Storage
+- Partner Account
+- Settlement
+- Webhook
+- Webhook Listener
+- Webhook Topic
+- Webhook Topic Subscription
 
 This list is authoritative. Adding a new domain resource means
 adding to this list; if a term is not on it, it is not a domain
