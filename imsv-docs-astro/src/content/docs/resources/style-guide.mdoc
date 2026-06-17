@@ -40,15 +40,18 @@ it matters before showing *how*. A heading followed only by a
 figure, table, or code block leaves a skimming reader without
 context.
 
-### Variant Pages
+### Modular Pages
 
-When the same instructions would diverge on a single dimension —
-target chain, partner type, region — write one page per variant
-rather than weaving conditional prose into a single page.
-Conditional prose ("if you're on Algorand, do X; otherwise…") is
-hard to skim, hard to deep-link to, and silently drifts out of
-sync as one variant evolves. A page that documents one
-configuration end-to-end stays accurate.
+A docs page is a modular unit — self-contained, linkable, and
+deep-linkable as a standalone artifact. Each page covers one
+configuration end-to-end.
+
+When the same instructions would diverge across configurations
+(target chain, partner type, region), write one page per
+configuration. Conditional prose ("if you're on Algorand, do X;
+otherwise…") couples a page's content to assumptions about which
+branch the reader is on, is hard to skim, hard to deep-link to,
+and silently drifts out of sync as one variant evolves.
 
 ### English Variant
 
