@@ -191,14 +191,31 @@ the Cardholder's email").
 ### Captions
 
 Every image, table, and code block carries a short caption. A
-caption names the figure so readers can refer to it ("see *Card
+caption names the element so readers can refer to it ("see *Card
 State Transitions* below") and so it stands on its own when scanned.
-It is not a sentence describing what the figure shows — that
+It is not a sentence describing what the element shows — that
 belongs in the surrounding prose.
 
 Captions may be treated as either a label (Title Case) or a
 paragraph (sentence case). Pick one form per caption and apply it
 consistently.
+
+Each element type carries its caption in a different attribute:
+
+- **Image** — the third argument to the Markdown image syntax:
+  `![Alt Text](./asset.png "Caption text.")`.
+- **Table** — the `title` attribute on the opening `{% table %}`
+  tag: `{% table title="Caption Text" %}`.
+- **Code Block** — a `{% title %}` annotation immediately after
+  the opening fence:
+
+```bash {% title="Fetch a Card" %}
+curl "https://test.immersve.com/api/cards/${card_id}" \
+  -H "Authorization: Bearer ${token}"
+```
+
+The `{% title %}` annotation works whether or not the fence
+declares a language.
 
 ### Links
 
@@ -290,7 +307,7 @@ makes them the most portable form of example.
   even when bare `$VAR` would parse. Braces survive being copied next
   to a non-word character.
 
-```bash {% title="foo" %}
+```bash {% title="Fetch a Card" %}
 curl "https://test.immersve.com/api/cards/${card_id}" \
   -H "Authorization: Bearer ${token}"
 ```
