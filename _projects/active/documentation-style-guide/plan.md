@@ -46,10 +46,17 @@ are not numbered; the `§N` shorthand is plan-internal only.
 - [ ] **§3 Headings and Document Structure** — introductions explain
       *what* and *why*; subheadings introduce their topic; every section
       contains at least one paragraph of prose (no heading-then-figure-only
-      sections); guides describe patterns not single use cases (repeating
-      content → page per variant); a list that grows past a few items or
-      carries multiple columns of information prefers a table or icon
-      list; **Callouts subsection** — only `{% note %}` (green) and
+      sections); **no numbered headings** — `## Casing`, not
+      `## 1. Casing`; section cross-references in prose use the section
+      name, not `§N`; guides describe patterns not single use cases
+      (repeating content → page per variant); a list that grows past a
+      few items or carries multiple columns of information prefers a
+      table or icon list; **bullet rule** — every list picks one of three
+      shapes (pure label: Title Case, no period; pure paragraph: sentence
+      case, period; labeled paragraph: **Bold Label** followed by em-dash
+      or colon, then sentence-case body with period), and mixing shapes
+      within a list is the failure mode;
+      **Callouts subsection** — only `{% note %}` (green) and
       `{% warning %}` (red) ship today; use sparingly; a callout
       reinforces a point already made in the surrounding prose, never
       introduces a new constraint; `{% note %}` for important facts a
