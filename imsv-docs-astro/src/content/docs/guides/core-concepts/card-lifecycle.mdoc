@@ -6,7 +6,7 @@ slug: guides/card-lifecycle
 ## Card States
 
 Virtual cards are activated and ready to use by default. When the card is
-either expired or cancelled by the user it will transition to the `cancelled`
+either expired or canceled by the user it will transition to the `cancelled`
 state.
 Physical cards are initially in the "created" state which changes to "shipped"
 when the card order is sent to a manufacturer. Both "created" and "shipped" cards
@@ -45,9 +45,56 @@ to once again be used to perform transactions.
 
 ### Cancel a Card
 
-Should a cardholder change their mind prior to presenting the card to a
-merchant, cancel the card by calling the {% link endpoint="cancel-card" /%}
+If the card is lost or stolen, cancel the card by calling the {% link endpoint="cancel-card" /%}
 endpoint.
+The card will transition to the `cancelled` state and cannot be used for transactions.
+
+## Reissuance
+
+Reissuance creates a new successor card linked to the original. Integrators are
+encouraged to reissue cards when a card is approaching expiry, to ensure
+continuity of service for the cardholder.
+
+The successor card has the **same** PAN but with a **new** expiry date and
+**new** security code (CVC).
+
+- **Continuity of recurring payments.** Participating merchants automatically
+receive the new card details when the card is reissued.
+- **xPay wallet continuity.** Cards loaded into xPay wallets are automatically
+updated to the new card details.
+
+Reissued cards themselves are reissuable. Reissuance creates a chain of cards
+linked by a `seriesId`. However, once an individual card in the chain is
+reissued, it cannot be reissued again.
+
+### Subscribe to webhooks
+
+An {% link title="Card Expiry Upcoming" endpoint="webhook-topics/card-expiry-upcoming" /%}
+webhook is sent when a card is approaching its expiry date. Integrators are
+encouraged to communicate with the cardholder the upcoming card expiry and to
+update their payment details with merchants who do not participate in automatic
+billing updates.
+
+### Call the reissue-card endpoint
+Call the {% link endpoint="reissue-card" /%} endpoint.
+The successor card will share a `seriesId` with the predecessor card.
+Integrators may wish to prompt the cardholder for an updated shipping address
+before reissuing physical cards. Shipping address is not carried over from the
+predecessor card.
+
+### Activate the successor card
+
+Virtual cards are activated automatically. Physical cards are shipped to the
+cardholder and require activation. See the {% link page="guides/issue-a-physical-card" /%}
+guide on how to activate a physical card.
+
+Once the successor card is activated,
+a {% link title="Card Reissue Succeeded" endpoint="webhook-topics/card-reissue-succeeded" /%}
+webhook is sent and the predecessor card is cancelled.
+If reissuance fails,
+a {% link title="Card Reissue Failed" endpoint="webhook-topics/card-reissue-failed" /%}
+webhook is sent and the predecessor card remains active until it is expired or canceled.
+If reissuance fails, attempt to reissue the card again.
 
 ## Webhooks
 Each card state transition is associated with a webhook topic:
@@ -57,6 +104,9 @@ Each card state transition is associated with a webhook topic:
 - {% link title="Card Block Created" endpoint="webhook-topics/card-block-created" /%}
 - {% link title="Card Block Released" endpoint="webhook-topics/card-block-released" /%}
 - {% link title="Card Canceled" endpoint="webhook-topics/card-canceled" /%}
+- {% link title="Card Expiry Upcoming" endpoint="webhook-topics/card-expiry-upcoming" /%}
+- {% link title="Card Reissue Succeeded" endpoint="webhook-topics/card-reissue-succeeded" /%}
+- {% link title="Card Reissue Failed" endpoint="webhook-topics/card-reissue-failed" /%}
 See the {% link page="guides/configuring-webhook-listeners" /%}
 guide for more information on how to subscribe to webhooks and receive notifications
 of card state changes.
