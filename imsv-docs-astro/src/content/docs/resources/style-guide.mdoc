@@ -672,9 +672,9 @@ the OpenAPI schema and against live traffic.
 * Double quotes only; JSON requires them.
 ---
 * Key Order
-* Keys appear in the same order as the OpenAPI schema declares
-  them. Consistent ordering keeps `grep` and visual diff useful
-  when readers compare a sample against the live response.
+* Match the order the OpenAPI schema declares — same
+  reader-comprehension principle, applied once in the spec. See
+  *YAML Formatting / Key Order* for the canonical sequence.
 ---
 * No Trailing Commas, No Comments
 * See *Run Before You Ship* above — both are invalid JSON.
@@ -774,16 +774,28 @@ render here — see *Links*).
 
 ### YAML Formatting
 
-YAML formatting affects how the spec diffs in pull requests and how
-description prose renders downstream.
+YAML formatting affects how the spec diffs in pull requests and
+how description prose renders downstream.
 
-- **Indent** — two spaces.
-- **Line Length** — wrap description prose at 80 columns using
-  YAML's block-scalar `|` (literal) or `>` (folded) style as
-  appropriate.
-- **Key Order** — within a schema, declare keys in the order the
-  Immersve API returns them. JSON sample key order (see *JSON
-  Style*) inherits from this declaration.
+{% table title="YAML Conventions" %}
+* Rule
+* Detail
+---
+* Indent
+* Two spaces.
+---
+* Line Length
+* Wrap description prose at 80 columns using YAML's block-scalar
+  `|` (literal) or `>` (folded) style as appropriate.
+---
+* Key Order
+* Order keys for reader comprehension, not to mirror any
+  implementation — attribute order in JSON has no semantic
+  meaning and implementations are not guaranteed to match the
+  spec. The convention: `id` first, then other identifying
+  fields, then common metadata, then complex or polymorphic
+  attributes, with optional fields towards the end.
+{% /table %}
 
 ### Inline Links
 
