@@ -564,6 +564,14 @@ Bash samples use `curl` to call the Immersve API. They show the
 HTTP shape of the request without the extra layer an SDK adds, which
 makes them the most portable form of example.
 
+```bash {% title="Example Formatted Curl Command" %}
+curl "https://test.immersve.com/api/cards/${card_id}" \
+  -X POST \
+  -H "Authorization: Bearer ${token}" \
+  -H "Content-Type: application/json" \
+  -H "X-Idempotency-Key: ${idempotency_key}"
+```
+
 {% table title="Bash Conventions" %}
 * Rule
 * Detail
@@ -581,11 +589,6 @@ makes them the most portable form of example.
   parse — braces survive being copied next to a non-word
   character.
 {% /table %}
-
-```bash {% title="Fetch a Card" %}
-curl "https://test.immersve.com/api/cards/${card_id}" \
-  -H "Authorization: Bearer ${token}"
-```
 
 ### JSON Style
 
