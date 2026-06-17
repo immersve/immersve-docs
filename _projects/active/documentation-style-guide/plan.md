@@ -23,6 +23,11 @@ stage.
   (sentence case, period); or labeled paragraph (**Bold Label**
   followed by em-dash or colon, then sentence-case body with
   period). Mixing within a list is the failure mode.
+- **Document Structure vs Elements** — the published guide groups
+  page-level rules under *Document Structure* and per-element rules
+  (headings, lists, tables, figures, captions, links, callouts)
+  under *Elements*. New rules pick the right home. The plan's
+  `§N` shorthand tracks stage content, not published location.
 
 ## Stage 0 — Prerequisites (done)
 

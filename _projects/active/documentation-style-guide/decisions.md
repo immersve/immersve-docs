@@ -138,3 +138,40 @@ as a stylistic constraint with no functional benefit.
 **How to apply:** Decide a list's shape before writing the first
 bullet. On review, treat shape mismatches as defects — fix the
 inconsistent bullet or convert the whole list to the dominant shape.
+
+## 2026-06-17 — Top-level split: Document Structure vs Elements
+
+**Decision:** The published guide is reshaped into two new
+top-level sections. *Document Structure* houses page-level rules
+(*Section Introductions*, *Patterns, Not Use Cases*). *Elements*
+houses per-element rules (*Headings*, *Lists*, *Tables*, *Figures*,
+*Captions*, *Links*, *Callouts*). The former *Headings and
+Document Structure* top-level disappears; the former *Figures and
+Captions* and *Links* top-levels move under *Elements*.
+
+**Rationale:** *Headings and Document Structure* bundled unrelated
+element rules (lists, tables, callouts) with page-level structure
+rules. *Figures and Captions* and *Links* lived as siblings of
+that section despite being element rules. The reshape gives each
+element a single home and separates "how the page is laid out"
+from "how each element on the page is written," which matches the
+way readers look things up: "how do I write a table?" →
+*Elements / Tables*; "do sections need intros?" →
+*Document Structure / Section Introductions*.
+
+**Alternatives considered:** (a) Keep the original numbered layout
+— rejected, the user-facing structure is the audience's contract
+and was already drifting from the plan's `§N` shorthand. (b) Keep
+*Headings* as its own top-level — viable but only one rule (no
+numbered headings) sits there once Title Case is handled in
+*Casing*; folded into *Elements / Headings* instead. (c) Keep
+*Captions* under *Figures* — rejected because captions also apply
+to tables and code blocks; a peer subsection cross-references
+better.
+
+**How to apply:** New element rules go under *Elements* as their
+own subsection. New page-level structural rules go under
+*Document Structure*. Cross-references in prose use the new
+section names (just "see *Links*" when unambiguous). The plan's
+`§N` shorthand remains plan-internal and tracks which content
+shipped in each stage, not where it lives in the published page.
