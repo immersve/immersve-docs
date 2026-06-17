@@ -54,14 +54,8 @@ full sentences.
 
 Immersve's domain resources are treated as proper nouns and
 capitalized everywhere they appear — in headings, in prose, in list
-items, in captions:
-
-- Card
-- Cardholder
-- Funding Source
-- Funding Channel
-- Webhook
-- Client Application
+items, in captions. The authoritative list of domain resources
+lives in *Terminology*.
 
 Write "every Card belongs to a Cardholder", not "every card belongs
 to a cardholder". The capitalization signals that the term names a
@@ -287,6 +281,43 @@ curl "https://test.immersve.com/api/cards/${card_id}" \
   control flow reads more naturally for someone learning the API.
 - **Declarations** — `const` by default; `let` only when
   reassignment is intentional; never `var`.
+
+## Terminology
+
+Use the canonical term for each concept everywhere it appears.
+Inconsistent terms scatter search results and make the docs feel
+sloppy even when each individual sentence reads fine.
+
+### Glossary
+
+- **Endpoint** — a single addressable URL on the Immersve API,
+  paired with an HTTP method. Lowercase *endpoint* in prose. Use
+  *endpoint*, not "API", when referring to a specific operation:
+  "call the `create-card` endpoint", not "call the Create Card API".
+- **API** — the Immersve API as a whole. Reserve uppercase *API*
+  for the system; use lowercase *endpoint* for the operations it
+  exposes.
+- **Webhook** — an outbound HTTP request from Immersve to a
+  partner-controlled URL, triggered by a domain event. Title Case
+  everywhere as a domain resource (see *Domain Resources* below).
+- **Immersve** — the company and the platform. Always capitalised;
+  never "immersve", "Imsv", or "IMSV" in prose.
+
+### Domain Resources
+
+The following nouns name Immersve domain resources. They are Title
+Cased everywhere they appear, per *Casing*:
+
+- Card
+- Cardholder
+- Funding Source
+- Funding Channel
+- Webhook
+- Client Application
+
+This list is authoritative. Adding a new domain resource means
+adding to this list; if a term is not on it, it is not a domain
+resource and stays lowercase in prose.
 
 ## URLs and Redirects
 
