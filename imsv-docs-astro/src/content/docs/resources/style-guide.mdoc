@@ -412,17 +412,26 @@ cannot soft-wrap. The `{% wrap %}` tag inserts zero-width break
 opportunities into the value so the browser can wrap it at a
 sensible point. It has three forms:
 
-- **`{% wrap %}value{% /wrap %}`** — default mode, breaks on
-  camelCase transitions. Use for JSON field names and other
-  identifiers that use camelCase: `messageId`, `eventTimestamp`,
-  `cancelReason`.
-- **`{% wrap "_" %}value{% /wrap %}`** — regex mode, breaks
-  after every match of the given pattern. The common case is
-  `"_"` for SCREAMING_SNAKE error codes:
-  `BIOMETRICS_FAILED`, `CARD_REISSUE_FAILED`.
-- **`{% wrap N %}value{% /wrap %}`** — count mode, breaks every
-  `N` characters. Use for opaque hex strings without a natural
-  break point: account ids, contract addresses, API keys.
+{% table title="Wrap Tag Forms" %}
+* Form
+* Breaks On
+* Use For
+---
+* `{% wrap %}value{% /wrap %}`
+* camelCase transitions
+* JSON field names and other camelCase identifiers
+  (`messageId`, `eventTimestamp`, `cancelReason`).
+---
+* `{% wrap "_" %}value{% /wrap %}`
+* Each match of the given regex
+* SCREAMING_SNAKE error codes (`BIOMETRICS_FAILED`,
+  `CARD_REISSUE_FAILED`) and any other pattern-bearing string.
+---
+* `{% wrap N %}value{% /wrap %}`
+* Every `N` characters
+* Opaque hex strings without a natural break point — account ids,
+  contract addresses, API keys.
+{% /table %}
 
 ``` {% process=false title="Wrap Tag Examples" %}
 | Error Code         | {% wrap "_" %}BIOMETRICS_FAILED{% /wrap %} |
@@ -480,20 +489,22 @@ consistently.
 
 Each element type carries its caption in a different attribute:
 
-- **Image** — the third argument to the Markdown image syntax:
+{% table title="Caption Forms" %}
+* Element
+* Caption Attribute
+---
+* Image
+* Third argument to the Markdown image syntax:
   `![Alt Text](./asset.png "Caption text.")`.
-- **Table** — the `title` attribute on the opening `{% table %}`
-  tag: `{% table title="Caption Text" %}`.
-- **Code Block** — a `{% title %}` annotation immediately after
-  the opening fence:
-
-```bash {% title="Fetch a Card" %}
-curl "https://test.immersve.com/api/cards/${card_id}" \
-  -H "Authorization: Bearer ${token}"
-```
-
-The `{% title %}` annotation works whether or not the fence
-declares a language.
+---
+* Table
+* `title` on the opening `{% table %}` tag:
+  `{% table title="Caption Text" %}`.
+---
+* Code Block
+* `{% title %}` annotation after the opening fence (works with or
+  without a language hint): `` ```bash {% title="Caption Text" %} ``.
+{% /table %}
 
 ### Links
 
