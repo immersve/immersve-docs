@@ -41,9 +41,9 @@ sections the sibling projects depend on. `CLAUDE.md` slimmed to a
 one-line pointer at the published guide. Note: published headings
 are not numbered; the `§N` shorthand is plan-internal only.
 
-## Stage 2 — Structural Sections
+## Stage 2 — Structural Sections (done)
 
-- [ ] **§3 Headings and Document Structure** — introductions explain
+- [x] **§3 Headings and Document Structure** — introductions explain
       *what* and *why*; subheadings introduce their topic; every section
       contains at least one paragraph of prose (no heading-then-figure-only
       sections); **no numbered headings** — `## Casing`, not
@@ -65,10 +65,10 @@ are not numbered; the `§N` shorthand is plan-internal only.
       (data loss, irreversible state, account lockout, security
       exposure); never use callouts for cross-links, motivation, or
       section summaries
-- [ ] **§4 Links** — always use the `{% link %}` Markdoc tag; avoid
+- [x] **§4 Links** — always use the `{% link %}` Markdoc tag; avoid
       `target=_blank`; avoid generic "see also" sub-sections (prefer "see
       X for more information" inline)
-- [ ] **§10 URLs and Redirects** — page slugs are kebab-case
+- [x] **§10 URLs and Redirects** — page slugs are kebab-case
       (`api-fundamentals/xrpl-login`); redirects from old slug to new are
       mandatory whenever a page is renamed or moved
 
