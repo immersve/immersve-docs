@@ -78,20 +78,20 @@ are not numbered; the `§N` shorthand is plan-internal only.
 End state: PR branch additionally contains §3, §4, §10. PR remains
 draft.
 
-## Stage 3 — Code and Reference Sections
+## Stage 3 — Code and Reference Sections (done)
 
-- [ ] **§6 Code Samples** — minimise dependencies (prefer bash or vanilla
+- [x] **§6 Code Samples** — minimise dependencies (prefer bash or vanilla
       JS/TS); short and single-purpose; no comments in example response
       payloads; every example must actually run; per-language sub-sections
       cover bash (curl flag style, line continuation, variable
       substitution), JSON (indent, quote style, key ordering against the
       OpenAPI schema), JavaScript and TypeScript (indent, quotes,
       `async`/`await` over `.then`, `const`/`let` over `var`)
-- [ ] **§7 Terminology** — short glossary of canonical terms (`endpoint`
+- [x] **§7 Terminology** — short glossary of canonical terms (`endpoint`
       vs "API", `webhook`, `Immersve`, product names) and the
       authoritative list of domain resources that count as proper nouns
       under §1
-- [ ] **§9 OpenAPI Authoring** — endpoint summaries and descriptions;
+- [x] **§9 OpenAPI Authoring** — endpoint summaries and descriptions;
       attribute descriptions; when to use enums versus open strings; how
       to mark deprecation; YAML wrapping and indentation; inline links
       in OpenAPI descriptions use Markdown `[link]()` syntax (the
