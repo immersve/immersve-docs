@@ -590,19 +590,31 @@ sample, change one or two values, and watch it run. Samples that
 depend on private libraries, omit setup, or paper over errors break
 that contract.
 
-- **Run Before You Ship** — every example must execute as written.
-  A sample that has never run will mislead a reader.
-- **Minimise Dependencies** — prefer `bash` with `curl` or vanilla
-  JavaScript/TypeScript over framework-specific clients. A sample
-  that requires an SDK install before the reader can try anything
-  hides the simple shape of the request.
-- **Short and Single-Purpose** — one sample makes one point. Two
-  unrelated calls in one block fragment the reader's attention;
-  split them into separate captioned blocks.
-- **No Comments in Response Payloads** — JSON is not a comment-
-  bearing format. Lines like `// ...other fields` read as a helpful
-  shorthand but parse-fail; a reader who copies the payload into a
-  tool sees an error before they see the lesson.
+{% table title="General Code Sample Rules" %}
+* Rule
+* Detail
+---
+* Run Before You Ship
+* Every example must execute as written. A sample that has never
+  run will mislead a reader.
+---
+* Minimise Dependencies
+* Prefer `bash` with `curl` or vanilla JavaScript/TypeScript over
+  framework-specific clients. A sample that requires an SDK
+  install before the reader can try anything hides the simple
+  shape of the request.
+---
+* Short and Single-Purpose
+* One sample makes one point. Two unrelated calls in one block
+  fragment the reader's attention; split them into separate
+  captioned blocks.
+---
+* No Comments in Response Payloads
+* JSON is not a comment-bearing format. Lines like
+  `// ...other fields` read as a helpful shorthand but parse-fail;
+  a reader who copies the payload into a tool sees an error before
+  they see the lesson.
+{% /table %}
 
 ### Bash Style
 
