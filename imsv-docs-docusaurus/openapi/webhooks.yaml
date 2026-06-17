@@ -90,6 +90,15 @@ webhooks:
   card-block-released:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/card-block-released-webhook.yaml }
+  card-expiry-upcoming:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/card-expiry-upcoming-webhook.yaml }
+  card-reissue-failed:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/card-reissue-failed-webhook.yaml }
+  card-reissue-succeeded:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/card-reissue-succeeded-webhook.yaml }
 
   3ds-otp:
     parameters: *WebhookHeaders

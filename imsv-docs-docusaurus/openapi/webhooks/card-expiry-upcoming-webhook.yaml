@@ -1,0 +1,42 @@
+tags: [ cards ]
+summary: Card Expiry Upcoming
+operationId: card-expiry-upcoming
+description: Triggered when a card is approaching its expiry date.
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              topic:
+                type: string
+                enum: ["card-expiry-upcoming"]
+              payload:
+                type: object
+                properties:
+                  cardholderAccountId:
+                    type: string
+                    example: "00000000-0000-0000-0000-000000000000"
+                    description: |
+                      The Immersve cardholder's account ID.
+                  cardId:
+                    type: string
+                    example: "a5f71b3c711e741543465a62e7a9e0f4"
+                    description: |
+                      ID of the card.
+                  expiresAt:
+                    type: string
+                    example: "2026-12-31T00:00:00.000Z"
+                    description: |
+                      The date and time at which the card expires.
+                  cardType:
+                    type: string
+                    example: "virtual"
+                    description: |
+                      The type of card.
+                    enum:
+                      - virtual
+                      - physical
+
+          - $ref: "./webhook-envelope.yaml"
