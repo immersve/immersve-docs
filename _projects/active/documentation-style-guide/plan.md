@@ -158,6 +158,25 @@ End state: guide is feature-complete at v1, Markdoc tags and
 Code Captions documented, layout finalized, Terminology
 validated. PR is ready for review.
 
+## Stage 6 — ChatGPT Feedback Pass
+
+A ChatGPT conversation reviewing the guide is attached to the
+Notion project doc
+(https://app.notion.com/p/37d1d446ed8a81d28077d444ba1fd8ed). Walk
+through it and triage:
+
+- [ ] Read the attached conversation end-to-end.
+- [ ] Bucket each suggestion as Apply / Defer / Reject with a
+      one-line rationale.
+- [ ] Land the Apply bucket as a series of small commits, same
+      cadence as Stage 5.
+- [ ] Record the Defer / Reject decisions in `decisions.md` so
+      the choices don't get re-litigated.
+
+End state: every actionable item from the ChatGPT review is
+either landed on the branch or recorded as a deliberate
+non-change.
+
 ## Open Questions
 
 - Whether to cross-link from each section to specific Markdoc tag
