@@ -388,6 +388,13 @@ A list organizes a short sequence of related items. Lists let
 readers scan one item at a time rather than parse a paragraph for
 parallel structure.
 
+A list cannot carry a caption the way a table or image can. The
+sentence immediately preceding the list does that work — it
+frames what the list is for so a reader doesn't have to scan
+back up to figure out why it's there. Without the framing
+sentence, a list stands out as visually significant but its role
+is opaque.
+
 Every list picks one of three shapes and stays consistent:
 
 - **Pure Label** — Title Case, no trailing period. Names a category,
@@ -565,7 +572,8 @@ full sentences in sentence case with a terminal period, leading
 with "Example" — code blocks are almost always illustrative, and
 the prefix makes that role explicit at a glance. Drop "Example"
 only for verbatim setup blocks (an env-var stub at the top of an
-integration guide that the reader actually pastes).
+integration guide that the reader actually pastes). Sample
+captions of each kind:
 
 - **Example Caption** — "Example call to fetch a card.",
   "Example deprecation notice in an OpenAPI description."
