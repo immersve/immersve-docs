@@ -204,6 +204,30 @@ and a reader has no way to learn what makes a resource
 End state: the term either earns its place with a definition the
 reader can apply, or is replaced / dropped.
 
+## Stage 8 — Tweak Vertical Spacing Around Code Blocks and Tables
+
+The style guide page itself stresses the component spacing more
+than any other page on the site — heavy use of tables and code
+blocks, often adjacent to each other or to surrounding prose.
+That density exposes gaps in the current component styles:
+margins read inconsistently between block-after-prose,
+block-after-block, and block-before-caption configurations.
+
+- [ ] Audit the style guide page in the browser; note each
+      spacing gap (excessive, missing, or asymmetric) by section.
+- [ ] Decide whether the fix lives in component CSS
+      (`CodeFence.astro`, the table transform in
+      `markdoc.config.mjs`) or in a shared prose-spacing rule
+      higher up the tree.
+- [ ] Land the spacing changes; recheck the style guide page
+      and a sample integration guide (one that's text-heavy with
+      a few code blocks) to confirm nothing regresses outside
+      the stressed cases.
+
+End state: tables and code blocks read with consistent vertical
+rhythm whether they appear alone, adjacent to each other, or
+adjacent to captions.
+
 ## Open Questions
 
 - Whether to cross-link from each section to specific Markdoc tag
