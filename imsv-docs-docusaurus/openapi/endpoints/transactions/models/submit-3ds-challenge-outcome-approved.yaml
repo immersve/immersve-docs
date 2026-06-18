@@ -14,13 +14,21 @@ properties:
       - approved
   authType:
     type: string
+    deprecated: true
     description: |
-      The authentication method used by the cardholder.
+      The authentication method used by the cardholder. This attribute is
+      deprecated. Clients should use `authTypes` instead.
     enum:
       - pin
       - face-id
       - fingerprint
       - device-passcode
+  authTypes:
+    type: array
+    description: A list authentication methods used by the cardholder.
+    items:
+      type: string
+      example: face-id
   authenticatedAt:
     type: string
     format: date-time
