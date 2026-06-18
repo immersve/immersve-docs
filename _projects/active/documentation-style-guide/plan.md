@@ -162,6 +162,15 @@ validated. PR is ready for review.
 
 - Whether to cross-link from each section to specific Markdoc tag
   reference docs, or keep the guide self-contained
+- Captions section contradicts itself on the sentence rule. The
+  opening paragraph says a caption "is not a sentence describing
+  what the element shows", but the subsequent code-block rule
+  says code-block captions are full sentences in sentence case
+  with a terminal period, leading with "Example". Decide whether
+  all captions are full sentences (in which case the opening
+  paragraph needs to soften), or whether code-block captions are
+  the special case (in which case the opening paragraph needs to
+  scope itself to image/table captions only)
 
 ## Known Risks
 
