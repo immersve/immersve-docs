@@ -177,6 +177,33 @@ End state: every actionable item from the ChatGPT review is
 either landed on the branch or recorded as a deliberate
 non-change.
 
+## Stage 7 — Revisit First-Class Domain Resources
+
+The "first-class domain resource" framing — introduced in Stage
+5 to distinguish the 18-entry authoritative Title-Case list from
+arbitrary API-exposed resources — has been challenged in review
+as having unclear provenance. The term reads as house jargon
+but does not appear to come from a settled internal convention,
+and a reader has no way to learn what makes a resource
+"first-class" beyond the list itself.
+
+- [ ] Trace where the term came from: pre-existing in Immersve
+      docs, surfaced in code-captions / style-guide drafting, or
+      introduced fresh by this guide.
+- [ ] Decide between three resolutions: (a) keep the term and
+      anchor it in a one-line definition the reader can apply
+      themselves; (b) rename to something the team already uses;
+      (c) drop the qualifier and accept that the authoritative
+      list IS the definition.
+- [ ] Apply the chosen resolution across the guide (the
+      *Casing / Domain Nouns* and *Terminology / First-Class
+      Domain Resources* sections, plus the Webhook glossary
+      cross-reference).
+- [ ] Record the decision in `decisions.md`.
+
+End state: the term either earns its place with a definition the
+reader can apply, or is replaced / dropped.
+
 ## Open Questions
 
 - Whether to cross-link from each section to specific Markdoc tag
