@@ -104,13 +104,13 @@ actual sentences stay in sentence case.
 
 Title Case applies regardless of length:
 
-- **Page Titles and Section Headings** — for example, `## Creating a Card`,
+- **Page Titles and Section Headings** — For example, `## Creating a Card`,
   not `## Creating a card`.
-- **UI Labels** — button text, menu items, form field labels, and
+- **UI Labels** — Button text, menu items, form field labels, and
   navigation entries ("Save Changes", not "Save changes").
 - **Table Column Headers, Figure Captions, and Code-Block Captions** —
-  the short label that names the element.
-- **Bolded Leading Labels in List Items** — when the bold introduces a
+  The short label that names the element.
+- **Bolded Leading Labels in List Items** — When the bold introduces a
   named term ("**Webhook Topic** — a specific, named category…").
 
 #### Title Case Mechanics
@@ -136,11 +136,11 @@ mechanical rule.
 A slug is the lowercase kebab-case identifier that pins a docs
 artifact to a stable URL. Slugs appear in two places:
 
-- **Page Slugs** — set in a page's frontmatter, they form the
+- **Page Slugs** — Set in a page's frontmatter, they form the
   path after the docs root (`api-fundamentals/xrpl-login`). A
   page slug is not coupled to the source file's name or
   location.
-- **Endpoint Slugs** — the `operationId` field on each OpenAPI
+- **Endpoint Slugs** — The `operationId` field on each OpenAPI
   operation (`get-card`, `create-card-v2`). The
   `{% link endpoint="…" /%}` tag resolves against this value;
   see *Links*.
@@ -284,7 +284,7 @@ sloppy even when each individual sentence reads fine.
 The following terms carry specific meanings in Immersve docs and
 have a single canonical form. Use them as written.
 
-- **Endpoint** — an HTTP method paired with a parameterized path
+- **Endpoint** — An HTTP method paired with a parameterized path
   on the Immersve API (for example, `GET /cards/{cardId}`). Each
   endpoint has many concrete URLs at runtime; the endpoint itself
   is the method-and-path pattern. Lowercase *endpoint* in prose.
@@ -292,22 +292,22 @@ have a single canonical form. Use them as written.
   operation: "call the Get Card endpoint", not "call the Get Card
   API". Refer to an endpoint by its title, not its `operationId`
   — see *Prose Conventions*.
-- **API** — the Immersve API as a whole. Reserve uppercase *API*
+- **API** — The Immersve API as a whole. Reserve uppercase *API*
   for the system; use lowercase *endpoint* for the operations it
   exposes.
-- **Webhook** — an outbound HTTP request from Immersve to a
+- **Webhook** — An outbound HTTP request from Immersve to a
   partner-controlled URL, triggered by a domain event. Cased as a
   first-class domain resource (see *First-Class Domain Resources*
   below).
-- **Immersve** — the company and the platform. Always capitalized;
+- **Immersve** — The company and the platform. Always capitalized;
   never "immersve", "Imsv", or "IMSV" in prose.
-- **Funding Protocol** — the abstract pattern by which funds reach
+- **Funding Protocol** — The abstract pattern by which funds reach
   Immersve to settle a card payment (custodial, on-chain, etc.).
-- **Funding Type** — a concrete configuration of a Funding
+- **Funding Type** — A concrete configuration of a Funding
   Protocol for one network and token. Configured by Immersve.
-- **Funding Channel** — a partner's configured instance of a
+- **Funding Channel** — A partner's configured instance of a
   Funding Type. Cards are issued against a Funding Channel.
-- **Funding Source** — a Cardholder's source of funds within a
+- **Funding Source** — A Cardholder's source of funds within a
   Funding Channel, identifying the on-chain account or balance
   that backs the card.
 
@@ -399,8 +399,8 @@ Every list picks one of three shapes and stays consistent:
 
 - **Pure Label** — Title Case, no trailing period. Names a category,
   term, or value.
-- **Pure Paragraph** — sentence case, full sentence with trailing period.
-- **Labeled Paragraph** — bold label followed by an em-dash or a
+- **Pure Paragraph** — Sentence case, full sentence with trailing period.
+- **Labeled Paragraph** — Bold label followed by an em-dash or a
   colon, then a sentence-case body ending in a period.
 
 Mixing shapes within one list is the failure mode. Decide the shape
@@ -444,11 +444,11 @@ in-body lists.
 
 Tables come in two flavors that share the same conventions:
 
-- **Comparison Tables** — several rows that share the same set of
+- **Comparison Tables** — Several rows that share the same set of
   fields, varying across one or two dimensions. Each row is an
   entity (a card status, a chain, an HTTP code) and the columns
   describe shared facts about it.
-- **Key/Value Tables** — a two-column table mapping each key to
+- **Key/Value Tables** — A two-column table mapping each key to
   its meaning. Field reference tables, error code lookups, and
   glossaries belong here.
 
@@ -799,9 +799,9 @@ different audiences — the summary is the navigation label in the
 rendered reference; the description is the operation prose a reader
 reaches after clicking through.
 
-- **Summary** — one short imperative phrase that names the
+- **Summary** — One short imperative phrase that names the
   operation ("Create a Card", "List Cards"). Title Case, no period.
-- **Description** — one to three sentences expanding on the
+- **Description** — One to three sentences expanding on the
   summary: what the endpoint does, what state it changes, and any
   notable preconditions. Sentence case, full sentences with periods.
 
