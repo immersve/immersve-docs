@@ -2,7 +2,7 @@ type: object
 title: Approved
 required:
   - outcome
-  - authType
+  - authTypes
   - authenticatedAt
   - metadata
 properties:
@@ -14,13 +14,29 @@ properties:
       - approved
   authType:
     type: string
+    deprecated: true
     description: |
       The authentication method used by the cardholder.
-    enum:
-      - pin
-      - face-id
-      - fingerprint
-      - device-passcode
+      May include the following values:
+      `pin`,
+      `face-id`,
+      `fingerprint`,
+      `device-passcode`.
+      Deprecated — use `authTypes` instead.
+      Either `authType` or `authTypes` must be provided.
+  authTypes:
+    type: array
+    description: |
+      A list of authentication methods used by the cardholder.
+      May include the following values:
+        `pin`,
+        `face-id`,
+        `fingerprint`,
+        `device-passcode`.
+      Either `authTypes` or the deprecated `authType` must be provided.
+    items:
+      type: string
+      example: face-id
   authenticatedAt:
     type: string
     format: date-time
