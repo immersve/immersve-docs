@@ -22,8 +22,8 @@ properties:
       `face-id`,
       `fingerprint`,
       `device-passcode`.
-       Deprecated — use
-      `authTypes` instead. Either `authType` or `authTypes` must be provided.
+      Deprecated — use `authTypes` instead.
+      Either `authType` or `authTypes` must be provided.
   authTypes:
     type: array
     description: |
