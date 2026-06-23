@@ -16,18 +16,24 @@ properties:
     type: string
     deprecated: true
     description: |
-      The authentication method used by the cardholder. Deprecated — use
+      The authentication method used by the cardholder.
+      May include the following values:
+      `pin`,
+      `face-id`,
+      `fingerprint`,
+      `device-passcode`.
+       Deprecated — use
       `authTypes` instead. Either `authType` or `authTypes` must be provided.
-    enum:
-      - pin
-      - face-id
-      - fingerprint
-      - device-passcode
   authTypes:
     type: array
     description: |
-      A list of authentication methods used by the cardholder. Either
-      `authTypes` or the deprecated `authType` must be provided.
+      A list of authentication methods used by the cardholder.
+      May include the following values:
+        `pin`,
+        `face-id`,
+        `fingerprint`,
+        `device-passcode`.
+      Either `authTypes` or the deprecated `authType` must be provided.
     items:
       type: string
       example: face-id
