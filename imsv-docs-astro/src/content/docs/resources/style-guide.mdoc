@@ -7,9 +7,9 @@ description: |
 slug: resources/style-guide
 ---
 
-This guide is the source of truth for how Immersve documentation is
-written. It applies to every page on the docs site, every code sample,
-and every OpenAPI description.
+This guide outlines the style and format of Immersve documentation.
+It applies to guides, API specs, code samples and other pages within
+the docs site.
 
 ## Core Rules
 
@@ -91,14 +91,13 @@ that already violate the rule are the only other exception.
 ### Title Case
 
 Title Case is the casing convention for named elements —
-headings, page titles, UI labels, and bolded leading labels in
-lists. A heading or label names the thing it labels, and names
-are capitalized. Title Case marks an element as a self-contained
-name rather than a sentence fragment describing what something
-does. The test is "is this a name?", not "is this bold?".
-
-Body prose, descriptions, help text, error messages, and other
-actual sentences stay in sentence case.
+headings, page titles, and UI labels (such as labeled list items
+or captions). A heading or label names the thing it labels, and
+names are capitalized. Title Case marks an element as a
+self-contained name rather than a sentence fragment describing
+what something does. The test is "is this a name?", not "is this
+bold?". Body prose, descriptions, help text, error messages, and
+other actual sentences stay in sentence case.
 
 #### Where Title Case Applies
 
@@ -753,8 +752,9 @@ the OpenAPI schema and against live traffic.
   reader-comprehension principle, applied once in the spec. See
   *YAML Formatting / Key Order* for the canonical sequence.
 ---
-* No Trailing Commas, No Comments
-* See *Run Before You Ship* above — both are invalid JSON.
+* Valid Syntax
+* Trailing commas and comments should be excluded. See *Run
+  Before You Ship* above — both are invalid JSON.
 {% /table %}
 
 ### JavaScript Style
@@ -832,8 +832,7 @@ Use an enum when the set of valid values is closed and stable —
 known up front, owned by Immersve, unlikely to grow without a
 schema bump (card status, transaction stage). Use an open string
 when partners may pass through their own values, or when the value
-space is plausibly extensible (correlation IDs, free-form merchant
-categories).
+space is plausibly extensible (merchant categories, event types).
 
 A poorly chosen enum forces a breaking change every time the value
 set widens; an over-broad string loses the validation and
