@@ -1,0 +1,149 @@
+tags: [payments]
+summary: Inquiry Updated
+operationId: inquiry-updated
+description: |
+  Triggered when a Network Inquiry is updated throughout its lifecycle.
+
+requestBody:
+  content:
+    application/json:
+      schema:
+        allOf:
+          - type: object
+            properties:
+              topic:
+                type: string
+                enum: [inquiry-updated]
+              payload:
+                type: object
+                required:
+                  - event
+                  - inquiry
+                properties:
+                  event:
+                    type: object
+                    required:
+                      - type
+                      - createdAt
+                    properties:
+                      type:
+                        type: string
+                        example: "inquiry-declined"
+                        description: |
+                          The inquiry lifecycle event which triggered the webhook event.
+
+                          This set is non-exhaustive and may grow over time, so
+                          consumers should tolerate unrecognised values. Current
+                          values are `inquiry-accepted` and `inquiry-declined`.
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: "2026-01-06T10:15:31Z"
+                        description: |
+                          ISO 8601 timestamp of when the event occurred.
+                  inquiry:
+                    type: object
+                    required:
+                      - id
+                      - type
+                      - liveness
+                      - result
+                      - card
+                      - cardholder
+                    properties:
+                      id:
+                        type: string
+                        example: "17612968295c4897a091d7e48bf3045f"
+                        description: |
+                          Inquiry identifier.
+                      type:
+                        type: string
+                        example: "account-status-inquiry"
+                        description: |
+                          The type of inquiry.
+
+                          This set is non-exhaustive and may grow over time, so
+                          consumers should tolerate unrecognised values. The
+                          current value is `account-status-inquiry`.
+                      liveness:
+                        type: string
+                        enum: ["live", "test"]
+                        example: "test"
+                        description: |
+                          The resource liveness mode.
+                      result:
+                        type: object
+                        required:
+                          - accepted
+                          - code
+                          - message
+                        properties:
+                          accepted:
+                            type: boolean
+                            example: false
+                            description: |
+                              Indicates whether the inquiry was accepted.
+                          code:
+                            type: string
+                            example: "expired-card"
+                            description: |
+                              The result code for the inquiry.
+                          message:
+                            type: string
+                            example: "Card expired"
+                            description: |
+                              A human-readable description of the result.
+                      merchant:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: "057aa15913a57f50577234c8426534c0"
+                            description: |
+                              The merchant identifier from the payment network.
+                          name:
+                            type: string
+                            example: "Example Store"
+                            description: |
+                              The merchant's name.
+                          city:
+                            type: string
+                            example: "New York"
+                            description: |
+                              The merchant's city name.
+                          countryCode:
+                            type: string
+                            example: "US"
+                            description: |
+                              The merchant's ISO-3166-1 Alpha-2 country code.
+                          terminalId:
+                            type: string
+                            example: "term-001"
+                            description: |
+                              The merchant's payment terminal identifier.
+                          categoryCode:
+                            type: string
+                            example: "5411"
+                            description: |
+                              The merchant's ISO-18245 category code.
+                      card:
+                        type: object
+                        required:
+                          - id
+                        properties:
+                          id:
+                            type: string
+                            example: "d44d045826d4484c9b7f1e3a5c8d2f6b"
+                            description: |
+                              Card identifier.
+                      cardholder:
+                        type: object
+                        required:
+                          - id
+                        properties:
+                          id:
+                            type: string
+                            example: "9ce69d31277108d46d2cb19fa772705e"
+                            description: |
+                              Cardholder account identifier.
+          - $ref: "./webhook-envelope.yaml"
