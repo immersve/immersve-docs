@@ -60,6 +60,18 @@ export default defineMarkdocConfig({
         ...nodes.fence.attributes,
         title: { type: String, render: 'title' }
       },
+      // Default fence transform — required so `{% process=false %}` works.
+      // When process=false, Markdoc skips parsing the fence content for tags
+      // and node.children is empty; fall back to node.attributes.content so the
+      // raw fence text reaches CodeFence's slot. Without this, fences annotated
+      // with process=false render with an empty <Code> and crash the build.
+      transform(node, config) {
+        const attributes = node.transformAttributes(config);
+        const children = node.children.length
+          ? node.transformChildren(config)
+          : [node.attributes.content];
+        return new markdoc.Tag(this.render, attributes, children);
+      },
       render: component('./src/components/CodeFence.astro'),
     },
   },

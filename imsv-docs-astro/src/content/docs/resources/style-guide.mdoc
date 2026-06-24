@@ -1,0 +1,880 @@
+---
+title: Docs Style Guide
+description: |
+  Style guide for contributors writing Immersve docs — page
+  structure, casing, prose, terminology, elements, code style,
+  and OpenAPI.
+slug: resources/style-guide
+---
+
+This guide outlines the style and format of Immersve documentation.
+It applies to guides, API specs, code samples and other pages within
+the docs site.
+
+## Core Rules
+
+Core Rules are the conventions that apply to every page on the
+docs site. They cover page structure, language, naming, and URLs.
+Every other section in this guide assumes these rules as a
+baseline.
+
+### Top-Down Flow
+
+Documentation flows from the big to the small, and the most
+important information always comes first. The opening paragraph
+states what the page is and what a reader will be able to do;
+each section then drills in one level, from the concept to the
+mechanics to the edge cases. Readers skim until something
+matters — if the most important fact is buried, they miss it.
+
+### Section Introductions
+
+Every section — top-level or sub — opens with at least one
+paragraph of prose explaining *what* the section covers and *why*
+it matters before showing *how*. A heading followed only by a
+figure, table, or code block leaves a skimming reader without
+context.
+
+### Modular Pages
+
+A docs page is a modular unit — self-contained, linkable, and
+deep-linkable as a standalone artifact. Each page covers one
+configuration end-to-end.
+
+When the same instructions would diverge across configurations
+(target chain, partner type, region), write one page per
+configuration. Conditional prose ("if you're on Algorand, do X;
+otherwise…") couples a page's content to assumptions about which
+branch the reader is on, is hard to skim, hard to deep-link to,
+and silently drifts out of sync as one variant evolves.
+
+### US English
+
+Write US English throughout — all prose, headings, captions,
+code comments, and OpenAPI descriptions. Proper nouns keep their
+canonical spelling regardless of variant (a product literally
+named `Behaviour Ltd` stays that way); existing API contracts
+that already violate the rule are the only other exception.
+
+{% table title="Common US vs UK Spellings" %}
+* US (Use)
+* UK (Don't Use)
+---
+* `finalize`
+* `finalise`
+---
+* `tokenize`
+* `tokenise`
+---
+* `color`
+* `colour`
+---
+* `behavior`
+* `behaviour`
+---
+* `center`
+* `centre`
+---
+* `license` (noun and verb)
+* `licence`
+---
+* `analyze`
+* `analyse`
+---
+* `catalog`
+* `catalogue`
+---
+* `canceled`
+* `cancelled`
+{% /table %}
+
+### Title Case
+
+Title Case is the casing convention for named elements —
+headings, page titles, and UI labels (such as labeled list items
+or captions). A heading or label names the thing it labels, and
+names are capitalized. Title Case marks an element as a
+self-contained name rather than a sentence fragment describing
+what something does. The test is "is this a name?", not "is this
+bold?". Body prose, descriptions, help text, error messages, and
+other actual sentences stay in sentence case.
+
+#### Where Title Case Applies
+
+Title Case applies regardless of length:
+
+- **Page Titles and Section Headings** — For example, `## Creating a Card`,
+  not `## Creating a card`.
+- **UI Labels** — Button text, menu items, form field labels, and
+  navigation entries ("Save Changes", not "Save changes").
+- **Table Column Headers, Figure Captions, and Code-Block Captions** —
+  The short label that names the element.
+- **Bolded Leading Labels in List Items** — When the bold introduces a
+  named term ("**Webhook Topic** — a specific, named category…").
+
+#### Title Case Mechanics
+
+Title Case is the convention of capitalizing the principal words
+in a name. The rules below settle the edge cases the convention
+leaves open — which short words stay lowercase, where to draw
+the four-letter line, how proper nouns interact with the
+mechanical rule.
+
+- Capitalize the first and last word always.
+- Capitalize nouns, verbs, adjectives, adverbs, and pronouns.
+- Lowercase articles (a, an, the), coordinating conjunctions (and,
+  but, or), and short prepositions (in, on, at, to, of, for) — unless
+  they are the first or last word.
+- Capitalize all words of four letters or more, including prepositions
+  (Through, Between, About).
+- Preserve the canonical casing of proper nouns and product names
+  (iPhone, npm, GitHub, XRPL, Algorand).
+
+### Slugs
+
+A slug is the lowercase kebab-case identifier that pins a docs
+artifact to a stable URL. Slugs appear in two places:
+
+- **Page Slugs** — Set in a page's frontmatter, they form the
+  path after the docs root (`api-fundamentals/xrpl-login`). A
+  page slug is not coupled to the source file's name or
+  location.
+- **Endpoint Slugs** — The `operationId` field on each OpenAPI
+  operation (`get-card`, `create-card-v2`). The
+  `{% link endpoint="…" /%}` tag resolves against this value;
+  see *Links*.
+
+Both forms use lowercase ASCII with words separated by single
+hyphens — never `apiFundamentals/xrplLogin` or
+`api_fundamentals/xrpl_login`.
+
+### Redirects
+
+Whenever a page is renamed or moved, add a redirect from the old
+slug to the new one. The redirect preserves bookmarks, partner
+integration notes, and search-engine results that point at the old
+URL. Removing a page without a redirect breaks links we can't see.
+
+## Prose Conventions
+
+The conventions below govern body prose across the docs site —
+the sentences in between the elements covered in *Elements*.
+*Core Rules* covers cross-cutting page-level concerns and naming;
+the rules below are the prose mechanics every page is expected to
+follow.
+
+### Quotes
+
+Use straight double quotes (`"like this"`), never typographic
+"smart" quotes. Do not use single quotes in prose — they collide
+visually with apostrophes and read inconsistently against the
+surrounding doubles.
+
+Smart quotes look polished when rendered but break the moment a
+reader copies a sample into a shell, pastes a value into a tool,
+or greps the source.
+
+### Line Length
+
+Hard-wrap prose lines at 80 columns. Wrapping keeps diffs
+reviewable — a one-word fix shows up as a one-line change rather
+than a rewrapped paragraph.
+
+Two exceptions: never break a URL across lines, and never put a
+`{% link %}` tag at the start of a line. Markdoc treats any tag
+at the start of a line as a block element, which terminates the
+surrounding paragraph; the build enforces this for `{% link %}`
+and fails rather than render broken prose. Wrap the surrounding
+text around `{% link %}` and URLs instead.
+
+Breaks inside the tag syntax itself — between attributes, or
+between the opening and closing markers of a paired tag — are
+fine for any tag, inline or block. The rule is about where the
+opening `{%` sits, not about line breaks within the tag.
+
+### Oxford Comma
+
+Use the Oxford comma in lists of three or more: "cards,
+cardholders, and funding sources". The trailing comma removes
+ambiguity about whether the last two items are paired or separate
+— compare "their parents, Alice and Bob" (parents named) with
+"their parents, Alice, and Bob" (four people).
+
+### Introducing Concepts
+
+Introduce a concept by saying what it is — never by saying what
+it isn't, and never by leading with a secondary aspect like why
+it exists or who likes it. A definition that starts with "X is
+a Y that does Z" tells the reader what they need to know in one
+sentence; a definition that starts with "X is not Y" or "X is
+great because…" forces the reader to assemble the definition
+out of negative space.
+
+- **Yes** — "A Funding Channel is a partner's configured
+  instance of a Funding Type."
+- **No** — "A Funding Channel is not the same as a Funding
+  Source." (Defined by contrast, not by what it is.)
+- **No** — "Funding Channels are the workhorse of card
+  issuing." (Leads with a secondary characteristic.)
+
+Contrasts, motivations, and benefits belong in the sentences
+after the definition, not in the definition itself.
+
+### Plain References
+
+Refer to a thing by its name in plain form — never written in
+the style it demonstrates. Write "camelcase", not "camelCase";
+"the wrap tag (`{% wrap %}`)", not "the `{% wrap %}` tag"; "the
+bold label", not "the **Bold Label**". Using the surface form
+to name the concept is jarring — the styling arrives before the
+noun.
+
+### Domain Nouns
+
+Immersve's first-class domain resources are treated as proper
+nouns when they name the *class* of resource — the concept, the
+type, the kind of thing — and lowercase when they refer to a
+*specific instance* the reader already has in hand. The
+authoritative list of first-class domain resources lives in
+*Terminology*.
+
+Write "every Card belongs to a Cardholder" — the sentence is about
+Cards and Cardholders as concepts. Write "your card is now active"
+— the sentence is about one particular card the reader owns.
+
+When in doubt, ask whether replacing the noun with a definite
+article and a generic noun ("the resource") would still make
+sense. If it would, you are talking about an instance — lowercase.
+If it would not — because you are introducing or referring to the
+concept itself — Title Case.
+
+Adjectival uses also stay lowercase. Write "card payment" (the
+noun is *payment*; *card* describes it), "webhook payload" (the
+noun is *payload*), "cardholder email" (the noun is *email*). In
+each case the domain term modifies the next word rather than
+naming the resource; capitalizing it would mislabel the phrase
+as a single proper noun.
+
+### Referring to Endpoints
+
+When writing about a specific endpoint, name it directly rather
+than saying "this endpoint" or "the endpoint above". Named
+references stay legible when prose is excerpted, reordered, or
+encountered mid-page: write "call the Get Card endpoint", not
+"call this endpoint".
+
+Refer to an endpoint by its *title* ("Get Card"), not its
+`operationId` (`get-card`, declared on the operation in the
+OpenAPI spec). The `{% link endpoint="…" /%}` tag takes the
+`operationId` and renders the title automatically — see *Links*.
+
+Do not call an endpoint an "API" — *Terminology* covers the
+distinction between the API as a whole and a single endpoint on
+it.
+
+## Terminology
+
+Use the canonical term for each concept everywhere it appears.
+Inconsistent terms scatter search results and make the docs feel
+sloppy even when each individual sentence reads fine.
+
+### Glossary
+
+The following terms carry specific meanings in Immersve docs and
+have a single canonical form. Use them as written.
+
+- **Endpoint** — An HTTP method paired with a parameterized path
+  on the Immersve API (for example, `GET /cards/{cardId}`). Each
+  endpoint has many concrete URLs at runtime; the endpoint itself
+  is the method-and-path pattern. Lowercase *endpoint* in prose.
+  Use *endpoint*, not "API", when referring to a specific
+  operation: "call the Get Card endpoint", not "call the Get Card
+  API". Refer to an endpoint by its title, not its `operationId`
+  — see *Prose Conventions*.
+- **API** — The Immersve API as a whole. Reserve uppercase *API*
+  for the system; use lowercase *endpoint* for the operations it
+  exposes.
+- **Webhook** — An outbound HTTP request from Immersve to a
+  partner-controlled URL, triggered by a domain event. Cased as a
+  first-class domain resource (see *First-Class Domain Resources*
+  below).
+- **Immersve** — The company and the platform. Always capitalized;
+  never "immersve", "Imsv", or "IMSV" in prose.
+- **Funding Protocol** — The abstract pattern by which funds reach
+  Immersve to settle a card payment (custodial, on-chain, etc.).
+- **Funding Type** — A concrete configuration of a Funding
+  Protocol for one network and token. Configured by Immersve.
+- **Funding Channel** — A partner's configured instance of a
+  Funding Type. Cards are issued against a Funding Channel.
+- **Funding Source** — A Cardholder's source of funds within a
+  Funding Channel, identifying the on-chain account or balance
+  that backs the card.
+
+### First-Class Domain Resources
+
+The following nouns name Immersve's first-class domain resources
+— the primary platform concepts a partner interacts with as
+named entities, not every API-exposed object. They are Title
+Cased when naming the resource as a class and lowercase when
+referring to a specific instance — see *Title Case* for the rule and
+the disambiguation test.
+
+- Authorization
+- Card
+- Card Program
+- Cardholder
+- Cardholder Account
+- Clearing
+- Client Application
+- Funding Channel
+- Funding Protocol
+- Funding Source
+- Funding Type
+- Funds Storage
+- Partner Account
+- Settlement
+- Webhook
+- Webhook Listener
+- Webhook Topic
+- Webhook Topic Subscription
+
+This list is authoritative. Adding a new first-class domain
+resource means adding to this list; if a term is not on it, it
+is not a first-class domain resource and stays lowercase in
+prose.
+
+## Elements
+
+The rules below cover how to write individual elements that appear
+across docs pages: headings, lists, tables, figures, captions,
+links, and callouts. Each subsection states the conventions for one
+element type.
+
+### Headings
+
+Section headings are bare titles (`## Casing`, not `## 1. Casing`).
+Cross-references in prose use the section name — write "see
+*Title Case*", never "see §1". Manual numbering breaks silently when
+sections are inserted, moved, or removed.
+
+Headings are short. Prefer "JavaScript" over "JavaScript and
+TypeScript", "Redirects" over "Redirects Are Mandatory on Move or
+Rename". Avoid conjunctions (`and`, `or`, `vs`) — a heading names
+the section; the prose carries the qualifier.
+
+Headings refer to Markdoc tags by their English name, not their
+raw `{% tag %}` syntax. Write "Markdoc Table Tag", not
+"`{% table %}` Tag"; write "Note Callout", not "`{% note %}`
+Callout". The same applies in any Title Case context — table
+captions, figure captions, UI labels. Reserve the `{% syntax %}`
+form for prose and code examples, where it carries technical
+weight; in a label it just looks noisy.
+
+A heading whose entire content is a literal code identifier keeps
+its source casing, wrapped in backticks:
+
+``` {% title="Example heading naming a code identifier verbatim." %}
+### `partnerChannelDeployInit(...)`
+```
+
+The exception is narrow: a heading that *describes* a code symbol
+("Deploying a Partner Channel") is prose and follows *Title Case*.
+The exception only applies when the heading *is* the symbol.
+
+### Lists
+
+A list organizes a short sequence of related items. Lists let
+readers scan one item at a time rather than parse a paragraph for
+parallel structure.
+
+A list cannot carry a caption the way a table or image can. The
+sentence immediately preceding the list does that work — it
+frames what the list is for so a reader doesn't have to scan
+back up to figure out why it's there. Without the framing
+sentence, a list stands out as visually significant but its role
+is opaque.
+
+Every list picks one of three shapes and stays consistent:
+
+- **Pure Label** — Title Case, no trailing period. Names a category,
+  term, or value.
+- **Pure Paragraph** — Sentence case, full sentence with trailing period.
+- **Labeled Paragraph** — Bold label followed by an em-dash or a
+  colon, then a sentence-case body ending in a period.
+
+Mixing shapes within one list is the failure mode. Decide the shape
+before writing the first bullet; on review, fix the inconsistent
+bullet or convert the whole list to the dominant shape.
+
+A list that grows past a handful of items, or carries multiple
+columns of information per item, escalates to a table — see
+*Tables*.
+
+#### Icon Lists
+
+For lists of conceptual steps or features where a visual cue
+helps a reader scan — landing pages, overview sections, "how it
+works" walkthroughs — use the Markdoc `{% list %}` / `{% listitem %}`
+tags. Each item displays with an icon (any of the icon names in
+`src/components/icons/`) and an optional connector line linking
+adjacent items into a sequence:
+
+``` {% process=false title="Example icon list with sequence connectors." %}
+{% list %}
+  {% listitem "Key" connector=true %}
+    Custodial partner accounts have full control over Immersve
+    cardholder accounts.
+  {% /listitem %}
+  {% listitem "Wallet" %}
+    Custodians deposit stablecoins on behalf of cardholders.
+  {% /listitem %}
+{% /list %}
+```
+
+The `primary` slot (first positional argument) is the icon name.
+Set `connector=true` on every item except the last when the items
+represent a sequence; omit it for unordered lists.
+
+Reserve icon lists for landing-page and walkthrough contexts. A
+standard bullet list reads faster for reference material and
+in-body lists.
+
+### Tables
+
+Tables come in two flavors that share the same conventions:
+
+- **Comparison Tables** — Several rows that share the same set of
+  fields, varying across one or two dimensions. Each row is an
+  entity (a card status, a chain, an HTTP code) and the columns
+  describe shared facts about it.
+- **Key/Value Tables** — A two-column table mapping each key to
+  its meaning. Field reference tables, error code lookups, and
+  glossaries belong here.
+
+A table replaces prose when readers will compare values across
+rows or scan for a single key. Use a table once a list grows past
+a handful of items or once each item carries more than one piece
+of information.
+
+Column headers are Title Case per *Title Case*. Every table carries a
+caption that names it — see *Captions*.
+
+#### Markdoc Table Tag
+
+Authored tables use the Markdoc `{% table %}` tag rather than
+Markdown's pipe syntax. The tag accepts a `title` attribute that
+renders as the caption, and each row separates with `---`:
+
+``` {% process=false title="Example Markdoc table tag source." %}
+{% table title="HTTP Status Codes" %}
+* Code
+* Meaning
+---
+* 200
+* Request succeeded.
+---
+* 404
+* Resource not found.
+{% /table %}
+```
+
+Markdown pipe tables (`| Code | Meaning |`) also render, but the
+`{% table %}` form is preferred — it carries the caption directly
+and tolerates multi-line cell content the pipe form does not.
+
+#### Markdoc Wrap Tag
+
+A long unbreakable value (an account id, an API key, an error
+code, a camelcase field name) blows out a table column when it
+cannot soft-wrap. The wrap tag (`{% wrap %}`) inserts zero-width
+break opportunities into the value so the browser can wrap it at
+a sensible point. It has three forms:
+
+{% table title="Wrap Tag Forms" %}
+* Form
+* Syntax
+* Description
+---
+* Camelcase
+* `{% wrap %}value{% /wrap %}`
+* Breaks on camelcase transitions. Use for JSON field names and
+  other camelcase identifiers (`messageId`, `eventTimestamp`,
+  `cancelReason`).
+---
+* Regex
+* `{% wrap "_" %}value{% /wrap %}`
+* Breaks after each match of the given regex. Use the `"_"` form
+  for SCREAMING_SNAKE error codes (`BIOMETRICS_FAILED`,
+  `CARD_REISSUE_FAILED`) and other pattern-bearing strings.
+---
+* Count
+* `{% wrap N %}value{% /wrap %}`
+* Breaks every `N` characters. Use for opaque hex strings without
+  a natural break point — account ids, contract addresses, API
+  keys.
+{% /table %}
+
+``` {% process=false title="Example uses of the wrap tag in table cells." %}
+| Error Code         | {% wrap "_" %}BIOMETRICS_FAILED{% /wrap %} |
+| Partner Account Id | {% wrap 9 %}d1bc97edfa4f7dc9b56726c7d82a9956{% /wrap %} |
+| Field Name         | {% wrap %}eventTimestamp{% /wrap %} |
+```
+
+Reserve `{% wrap %}` for tabular contexts where the value would
+otherwise overflow; prose handles long values fine.
+
+### Figures
+
+Figures are diagrams (sequence diagrams, architecture diagrams,
+state machines) and other source-controlled images. They illustrate
+concepts that prose alone makes muddy.
+
+Source diagrams are transparent PNGs using the Immersve responsive
+documentation Miro theme. They render predictably across devices
+and themes.
+
+Do not embed screenshots of the Immersve dashboard, partner portals,
+or any third-party UI. UI rots faster than docs, screenshots don't
+localize, and a year-old screenshot is worse than no screenshot at
+all because it actively misleads. Describe the UI in prose with the
+labels Title-Cased per *Title Case* ("click **Create Card**, then enter
+the Cardholder's email").
+
+### Code Blocks
+
+A code block is a fenced section that displays code, configuration,
+or example output as a captioned figure. Open with three backticks
+optionally followed by a language hint (`bash`, `json`,
+`javascript`); close with three backticks. The caption lives in
+the title annotation (`{% title %}`) on the opening fence — see
+*Captions*.
+The per-language formatting conventions live in *Code Style*.
+
+When the example itself contains Markdoc syntax — the kind shown
+in *Markdoc Table Tag* — annotate the fence with
+`{% process=false %}` so the inner tags display as source text
+rather than render as components. The annotation applies only to
+the fence it sits on; surrounding code blocks parse Markdoc tags
+normally.
+
+### Captions
+
+Every image, table, and code block carries a short caption. A
+caption names the element so readers can refer to it ("see *Card
+State Transitions* below") and so it stands on its own when scanned.
+It is not a sentence describing what the element shows — that
+belongs in the surrounding prose.
+
+Image and table captions are short labels in Title Case ("Link
+Tag Forms", "Card State Transitions"). Code-block captions are
+full sentences in sentence case with a terminal period, leading
+with "Example" — code blocks are almost always illustrative, and
+the prefix makes that role explicit at a glance. Drop "Example"
+only for verbatim setup blocks (an env-var stub at the top of an
+integration guide that the reader actually pastes). Sample
+captions of each kind:
+
+- **Example Caption** — "Example call to fetch a card.",
+  "Example deprecation notice in an OpenAPI description."
+- **Setup Caption** (no "Example") — "Set the test environment
+  variables.", "Install the Immersve SDK."
+
+When the caption describes a call to an endpoint, name the
+endpoint by its title (the same name the `endpointref` block
+surfaces), not method-and-path. Write "Example call to Get
+Spending Prerequisites.", not "Example call to GET
+`/spending-prerequisites`."
+
+Each element type carries its caption in a different attribute:
+
+{% table title="Caption Forms" %}
+* Element
+* Caption Attribute
+---
+* Image
+* Third argument to the Markdown image syntax:
+  `![Alt Text](./asset.png "Caption text.")`.
+---
+* Table
+* `title` on the opening `{% table %}` tag:
+  `{% table title="Caption Text" %}`.
+---
+* Code Block
+* `{% title %}` annotation after the opening fence (works with or
+  without a language hint): `` ```bash {% title="Example caption text." %} ``.
+{% /table %}
+
+### Links
+
+Hyperlinks within .mdoc files use the link tag (`{% link %}`).
+Hyperlinks within OpenAPI files use the Markdown `[link]()`
+syntax. The link tag has several forms depending on the target
+resource type.
+
+{% table title="Link Tag Forms" %}
+* Form
+* Link Text
+* Example
+---
+* Docs Page Link
+* Page Title
+* `{% link page="resources/style-guide" /%}`
+---
+* API Reference Link
+* Endpoint Title
+* `{% link endpoint="create-card" /%}` — the `endpoint` value is
+  the OpenAPI `operationId`; the rendered link text is the
+  endpoint's title.
+---
+* External Link
+* Href URL
+* `{% link href="https://www.postman.com/" /%}`
+{% /table %}
+
+Link text can be customized using the Link tag's "title" attribute: `{% link
+href="https://www.postman.com/" title="Postman" /%}`. Hyperlinks should not specify
+the `target` attribute.
+
+### Callouts
+
+Callouts are used to reinforce a key point from the surrounding prose. Callouts
+have several forms that support different usage patterns. Callouts should: be
+used sparingly; avoid summarizing the surrounding prose; avoid introducing new
+constraints a reader could miss by skipping the callout.
+
+{% table title="Callout Forms" %}
+* Form
+* Description
+* Example
+---
+* Note Callout
+* Use for important facts a careful reader has
+  already absorbed: immutable identifiers, reasoned defaults.
+* `{% note %}Currency values use minor units.{% /note %}`
+---
+* Warning Callout
+* Use for hazards with real cost: data loss,
+  irreversible state, account lockout, security exposure.
+* `{% warning %}Delivery order is not guaranteed.{% /warning %}`
+---
+* API Endpoint Callout
+* Use for highlighting the API endpoint being described in an integration guide.
+* `{% endpointref name="get-card" /%}`
+{% /table %}
+
+## Code Style
+
+Code samples teach by example. A reader should be able to copy a
+sample, change one or two values, and watch it run. Samples that
+depend on private libraries, omit setup, or paper over errors break
+that contract.
+
+{% table title="General Code Sample Rules" %}
+* Rule
+* Detail
+---
+* Run Before You Ship
+* Every example must execute as written. A sample that has never
+  run will mislead a reader.
+---
+* Minimize Dependencies
+* Prefer `bash` with `curl` or vanilla JavaScript/TypeScript over
+  framework-specific clients. A sample that requires an SDK
+  install before the reader can try anything hides the simple
+  shape of the request.
+---
+* Short and Single-Purpose
+* One sample makes one point. Two unrelated calls in one block
+  fragment the reader's attention; split them into separate
+  captioned blocks.
+---
+* No Comments in Response Payloads
+* JSON is not a comment-bearing format. Lines like
+  `// ...other fields` read as a helpful shorthand but parse-fail;
+  a reader who copies the payload into a tool sees an error before
+  they see the lesson.
+{% /table %}
+
+### Bash Style
+
+Bash samples use `curl` to call the Immersve API. They show the
+HTTP shape of the request without the extra layer an SDK adds, which
+makes them the most portable form of example.
+
+```bash {% title="Example formatted curl command." %}
+curl -X POST "https://test.immersve.com/api/cards/${card_id}" \
+  -H "Authorization: Bearer ${token}" \
+  -H "Content-Type: application/json" \
+  -H "X-Account-Id: ${cardholder_account_id}"
+```
+
+{% table title="Bash Conventions" %}
+* Rule
+* Detail
+---
+* `curl` Flags
+* Prefer short flags (`-X POST`, `-H "..."`); reserve long flags
+  for the few cases without a short form.
+---
+* Flag Order
+* `-X METHOD` and the URL go on the first line, so the line
+  reads like the HTTP request line ("POST /api/cards/…").
+  Headers and body follow on continuation lines.
+---
+* Line Continuation
+* Break long invocations across lines with a trailing backslash
+  and indent continuation lines two spaces.
+---
+* Variable Substitution
+* Use braced `${VAR}` consistently, even when bare `$VAR` would
+  parse — braces survive being copied next to a non-word
+  character.
+{% /table %}
+
+### JSON Style
+
+JSON samples document the shape of request payloads and response
+bodies. The conventions below keep samples easy to compare against
+the OpenAPI schema and against live traffic.
+
+{% table title="JSON Conventions" %}
+* Rule
+* Detail
+---
+* Indent
+* Two spaces, no tabs.
+---
+* Quotes
+* Double quotes only; JSON requires them.
+---
+* Key Order
+* Match the order the OpenAPI schema declares — same
+  reader-comprehension principle, applied once in the spec. See
+  *YAML Formatting / Key Order* for the canonical sequence.
+---
+* Valid Syntax
+* Trailing commas and comments should be excluded. See *Run
+  Before You Ship* above — both are invalid JSON.
+{% /table %}
+
+### JavaScript Style
+
+JavaScript samples model how a partner application calls the
+Immersve API in a typical web or Node.js context. They use the
+language's standard library where possible, in the modern
+dialect a current LTS runtime would expect. TypeScript samples
+follow the same conventions.
+
+{% table title="JavaScript Conventions" %}
+* Rule
+* Detail
+---
+* Indent
+* Two spaces.
+---
+* Quotes
+* Single quotes for strings; double quotes only when the string
+  contains a single quote.
+---
+* Async
+* `async`/`await` over `.then(...)` chains. Linear control flow
+  reads more naturally for someone learning the API.
+---
+* Declarations
+* `const` by default; `let` only when reassignment is intentional;
+  never `var`.
+{% /table %}
+
+## OpenAPI Authoring
+
+The OpenAPI spec is read by tools (clients, validators, the docs
+site) and by humans reading the rendered API reference. Both
+audiences benefit when the prose is consistent and the structure
+predictable.
+
+### Endpoint Descriptions
+
+Every endpoint declares a summary and a description. They serve
+different audiences — the summary is the navigation label in the
+rendered reference; the description is the operation prose a reader
+reaches after clicking through.
+
+- **Summary** — One short imperative phrase that names the
+  operation ("Create a Card", "List Cards"). Title Case, no period.
+- **Description** — One to three sentences expanding on the
+  summary: what the endpoint does, what state it changes, and any
+  notable preconditions. Sentence case, full sentences with periods.
+
+A description does not repeat the summary or restate the URL; it
+adds the context that does not fit there.
+
+### Attribute Descriptions
+
+Each schema attribute carries a short sentence-case description
+ending in a period. State what the field is, its unit or format
+when not obvious from the type, and any constraint not expressible
+in the schema (for example, a minimum length enforced at the
+application layer).
+
+Do not write "this field is..." or "the X field"; the schema already
+says it is a field. Lead with the noun: "Minor units of the
+spendable currency."
+
+### Inline Links
+
+Use Markdown `[text](url)` syntax for inline links inside OpenAPI
+descriptions. The link tag does not render in the OpenAPI
+pipeline; see *Links*.
+
+### Enums
+
+Use an enum when the set of valid values is closed and stable —
+known up front, owned by Immersve, unlikely to grow without a
+schema bump (card status, transaction stage). Use an open string
+when partners may pass through their own values, or when the value
+space is plausibly extensible (merchant categories, event types).
+
+A poorly chosen enum forces a breaking change every time the value
+set widens; an over-broad string loses the validation and
+code-generation benefits of an enum.
+
+### Deprecation
+
+Mark deprecated endpoints and attributes with `deprecated: true`
+in the spec. Begin the description with `**Deprecated.**` in bold
+and name the replacement inline:
+
+``` {% title="Example deprecation notice in an OpenAPI description." %}
+**Deprecated.** Use the [Create Card V2](/api-reference/create-card-v2)
+endpoint instead.
+```
+
+Name the replacement endpoint by its title, not its `operationId`
+— see *Prose Conventions*. In OpenAPI prose, link to it with a
+Markdown `[Title](url)` (the link tag does not render here —
+see *Links*).
+
+### YAML Formatting
+
+YAML formatting affects how the spec diffs in pull requests and
+how description prose renders downstream.
+
+{% table title="YAML Conventions" %}
+* Rule
+* Detail
+---
+* Indent
+* Two spaces.
+---
+* Line Length
+* Wrap description prose at 80 columns using YAML's block-scalar
+  `|` (literal) or `>` (folded) style as appropriate.
+---
+* Key Order
+* Order keys for reader comprehension, not to mirror any
+  implementation — attribute order in JSON has no semantic
+  meaning and implementations are not guaranteed to match the
+  spec. The convention: `id` first, then other identifying
+  fields, then common metadata, then complex or polymorphic
+  attributes, with optional fields towards the end.
+{% /table %}
