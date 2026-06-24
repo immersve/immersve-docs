@@ -16,6 +16,8 @@ tags:
     x-displayName: Client Applications
   - name: card
     x-displayName: Cards
+  - name: inquiries
+    x-displayName: Card Inquiries
   - name: contact-details
     x-displayName: Contact Details
   - name: cardholder-blocks
@@ -48,8 +50,6 @@ tags:
     x-displayName: Reports
   - name: webhooks
     x-displayName: Webhooks
-  - name: inquiries
-    x-displayName: Inquiries
 
 security:
   - { "Access Token": [] }

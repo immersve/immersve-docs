@@ -8,7 +8,7 @@ get:
 
     This endpoint uses cursor-based pagination. Start by making a request without a cursor to get the first page. Use the nextCursor from the pageInfo in the response as the cursor for subsequent requests to retrieve further pages. Continue until nextCursor is undefined, indicating no more data.
 
-    Inquiries are used to perform pre payment checks on a cardholder.
+    Inquiries are used to perform pre payment checks.
     Depending on the type, the inquries purpose can be to validate there are no active blocks on a card or
     cardholder, or a balance inquiry to check their available funds.
 
