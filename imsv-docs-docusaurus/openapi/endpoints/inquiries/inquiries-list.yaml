@@ -1,6 +1,6 @@
 get:
   tags:
-    - payments
+    - inquiries
   summary: List Inquiries
   operationId: list-inquiries
   description: |
