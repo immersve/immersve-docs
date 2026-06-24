@@ -7,6 +7,11 @@ get:
     Lists inquiries recorded against a cardholder account, most recent first. Supports an optional inclusive createdAt date range.
 
     This endpoint uses cursor-based pagination. Start by making a request without a cursor to get the first page. Use the nextCursor from the pageInfo in the response as the cursor for subsequent requests to retrieve further pages. Continue until nextCursor is undefined, indicating no more data.
+
+    Inquiries are used to perform pre payment checks on a cardholder.
+    Depending on the type, the inquries purpose can be to validate there are no active blocks on a card or
+    cardholder restircting their ability to make payments, or a balance inquiry to check funds availible to the cardholder.
+
   parameters:
     - name: cardholderAccountId
       in: path
