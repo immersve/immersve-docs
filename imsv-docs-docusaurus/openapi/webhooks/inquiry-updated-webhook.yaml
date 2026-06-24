@@ -28,7 +28,7 @@ requestBody:
                     properties:
                       type:
                         type: string
-                        example: "inquiry-accepted"
+                        example: "inquiry-declined"
                         description: |
                           The inquiry lifecycle event which triggered the webhook event.
 
@@ -46,7 +46,6 @@ requestBody:
                     required:
                       - id
                       - type
-                      - status
                       - liveness
                       - result
                       - card
@@ -66,12 +65,6 @@ requestBody:
                           This set is non-exhaustive and may grow over time, so
                           consumers should tolerate unrecognised values. The
                           current value is `account-status-inquiry`.
-                      status:
-                        type: string
-                        enum: ["accepted", "declined"]
-                        example: "declined"
-                        description: |
-                          The current status of the inquiry.
                       liveness:
                         type: string
                         enum: ["live", "test"]
