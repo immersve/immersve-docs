@@ -1,0 +1,34 @@
+get:
+  tags:
+    - payments
+  summary: Get Inquiry
+  operationId: get-inquiry
+  description: |
+    Retrieves a specific Network Inquiry for the given id.
+
+  parameters:
+    - name: inquiryId
+      in: path
+      description: Primary identifier of the inquiry to fetch
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/inquiry.yaml"
+    "403":
+      description: Inquiry not found, or not visible to the caller.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
+    "400":
+      description: Request fields are invalid
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-400.yaml"
