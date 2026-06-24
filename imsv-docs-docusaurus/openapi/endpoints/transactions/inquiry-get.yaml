@@ -21,13 +21,13 @@ get:
           schema:
             $ref: "./models/inquiry.yaml"
     "403":
-      description: Inquiry not found, or not visible to the caller.
+      description: No Authorization to access resource.
       content:
         application/json:
           schema:
             $ref: "../../models/api-error-403.yaml"
     "400":
-      description: Request fields are invalid
+      description: Request fields are invalid.
       content:
         application/json:
           schema:

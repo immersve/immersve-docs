@@ -52,7 +52,7 @@ get:
           schema:
             $ref: "../../models/api-error-403.yaml"
     "400":
-      description: Request fields are invalid, for example createdTo is not later than createdFrom.
+      description: Request fields are invalid.
       content:
         application/json:
           schema:
