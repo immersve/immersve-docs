@@ -4,7 +4,7 @@ get:
   summary: Get Inquiry
   operationId: get-inquiry
   description: |
-    Retrieves a specific Network Inquiry for the given id.
+    Retrieves a specific inquiry for the given id.
 
   parameters:
     - name: inquiryId

@@ -4,7 +4,7 @@ get:
   summary: List Inquiries
   operationId: list-inquiries
   description: |
-    Lists Network Inquiries recorded against a cardholder account, most recent first. Supports an optional inclusive createdAt date range.
+    Lists inquiries recorded against a cardholder account, most recent first. Supports an optional inclusive createdAt date range.
 
     This endpoint uses cursor-based pagination. Start by making a request without a cursor to get the first page. Use the nextCursor from the pageInfo in the response as the cursor for subsequent requests to retrieve further pages. Continue until nextCursor is undefined, indicating no more data.
   parameters:

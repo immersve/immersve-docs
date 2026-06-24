@@ -11,7 +11,7 @@ properties:
 
       This set is non-exhaustive and may grow over time, so
       consumers should tolerate unrecognised values. The
-      current value is `account-status-inquiry`.
+      current options are `account-status-inquiry`.
     example: "account-status-inquiry"
   liveness:
     type: string
