@@ -2,7 +2,7 @@ tags: [payments]
 summary: Inquiry Updated
 operationId: inquiry-updated
 description: |
-  Triggered when an account status inquiry is updated throughout its lifecycle.
+  Triggered when a Network Inquiry is updated throughout its lifecycle.
 
 requestBody:
   content:
@@ -28,11 +28,13 @@ requestBody:
                     properties:
                       type:
                         type: string
-                        enum:
-                          - inquiry-accepted
-                          - inquiry-declined
+                        example: "inquiry-accepted"
                         description: |
                           The inquiry lifecycle event which triggered the webhook event.
+
+                          This set is non-exhaustive and may grow over time, so
+                          consumers should tolerate unrecognised values. Current
+                          values are `inquiry-accepted` and `inquiry-declined`.
                       createdAt:
                         type: string
                         format: date-time
@@ -57,10 +59,13 @@ requestBody:
                           Inquiry identifier.
                       type:
                         type: string
-                        enum: ["account-status-inquiry"]
                         example: "account-status-inquiry"
                         description: |
                           The type of inquiry.
+
+                          This set is non-exhaustive and may grow over time, so
+                          consumers should tolerate unrecognised values. The
+                          current value is `account-status-inquiry`.
                       status:
                         type: string
                         enum: ["accepted", "declined"]
