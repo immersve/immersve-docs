@@ -6,9 +6,10 @@ get:
   description: |
     Retrieves a specific inquiry for the given id.
 
-    Inquiries are used to perform pre payment checks.
-    Depending on the type, the inquries purpose can be to validate there are no active blocks on a card or
-    cardholder, or a balance inquiry to check their available funds.
+    Inquiries are used to perform pre-payment checks.
+    Depending on the type, the inquiries purpose can be to validate there are no active blocks on a card or
+    cardholder, or to check their available balance.
+
 
   parameters:
     - name: inquiryId
