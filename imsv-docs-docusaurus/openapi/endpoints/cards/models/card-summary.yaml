@@ -120,3 +120,7 @@ properties:
     description: The reason this card was reissued.
     enum:
       - standard-renewal
+  trackingUrl:
+    type: string
+    description: URL to track the shipment of a physical card.
+    example: "https://www.dhl.com/en/express/tracking.html?AWB=123456789"
