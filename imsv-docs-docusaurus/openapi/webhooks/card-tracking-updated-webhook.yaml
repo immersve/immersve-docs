@@ -1,7 +1,7 @@
 tags: [ cards ]
-summary: Card Reissue Failed
-operationId: card-reissue-failed
-description: Triggered when a card reissuance attempt fails.
+summary: Card Tracking Updated
+operationId: card-tracking-updated
+description: Triggered when shipment tracking information for a card is updated.
 requestBody:
   content:
     application/json:
@@ -11,26 +11,24 @@ requestBody:
             properties:
               topic:
                 type: string
-                enum: ["card-reissue-failed"]
+                enum: ["card-tracking-updated"]
               payload:
                 type: object
                 properties:
+                  cardId:
+                    type: string
+                    example: "0485464bedfde163eace0ece2e3e2d75"
+                    description: |
+                      Identifier of the card.
                   cardholderAccountId:
                     type: string
                     example: "992b1b0f0cb8cca355c70ce08150a20d"
                     description: |
                       The Immersve cardholder's account ID.
-                  cardId:
+                  shipmentTrackingUrl:
                     type: string
-                    example: "0485464bedfde163eace0ece2e3e2d75"
+                    example: "https://www.dhl.com/en/express/tracking.html?AWB=123456789"
                     description: |
-                      ID of the card that was to be reissued.
-                  reissuanceType:
-                    type: string
-                    example: "standard-renewal"
-                    description: |
-                      The type of reissuance that was attempted.
-                    enum:
-                      - standard-renewal
+                      URL to track the shipment of the card.
 
           - $ref: "./webhook-envelope.yaml"
