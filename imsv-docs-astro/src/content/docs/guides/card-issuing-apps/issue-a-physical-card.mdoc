@@ -55,6 +55,15 @@ to confirm the card status.
 The `expiresAt` field returns the exact card expiry timestamp. The `expiry`
 field returns the expiry date printed on the card.
 
+## Tracking the Card
+
+Once a physical card ships, a carrier tracking URL may become available. Use
+the {% link title="Card Tracking Updated"
+endpoint="webhook-topics/card-tracking-updated" /%} webhook to be notified when
+tracking information becomes available or changes. Alternatively, read the
+`trackingUrl` field on the response from the {% link endpoint="get-card" /%}
+endpoint, which is populated once a tracking URL is available from the carrier.
+
 ## Activate the card
 Once the cardholder has received their physical card, call the
 {% link endpoint="activate-card" /%} endpoint to activate it.
