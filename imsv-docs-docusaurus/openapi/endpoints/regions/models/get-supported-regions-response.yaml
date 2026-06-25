@@ -45,6 +45,10 @@ properties:
               description: Documentation ensuring compliance with market-specific regulations.
               items:
                 $ref: './document.yaml'
+        transactionMaxSpendLimit:
+          type: number
+          description: The maximum amount a user can spend in a single transaction for the region.
+          default: null
 example:
   regions:
     - code: AU
@@ -62,6 +66,7 @@ example:
           - title: Product Disclosure Statement
             source: https://example.com/disclosures/immersve/pds-au_v001.0_en.pdf
         marketCompliance: []
+      transactionMaxSpendLimit: null
     - code: NZ
       title: New Zealand
       isAvailable: true
@@ -75,6 +80,21 @@ example:
           source: https://immersve.com/terms-and-conditions/nz/privacy-policy
         disclosures: []
         marketCompliance: []
+      transactionMaxSpendLimit: null
     - code: CA
       title: Canada
       isAvailable: false
+    - code: PK
+      title: Pakistan
+      isAvailable: true
+      unstructuredAddressAllowed: false
+      documents:
+        generalTermsOfUse:
+          title: General Terms of Use
+          source: https://immersve.com/terms-and-conditions/nz/general-terms-of-use
+        privacyPolicy:
+          title: Immersve Privacy Policy
+          source: https://immersve.com/terms-and-conditions/nz/privacy-policy
+        disclosures: []
+        marketCompliance: []
+      transactionMaxSpendLimit: 2000
