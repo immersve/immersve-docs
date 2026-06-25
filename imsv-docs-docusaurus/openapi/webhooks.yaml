@@ -99,6 +99,9 @@ webhooks:
   card-reissue-succeeded:
     parameters: *WebhookHeaders
     post: { $ref: ./webhooks/card-reissue-succeeded-webhook.yaml }
+  card-tracking-updated:
+    parameters: *WebhookHeaders
+    post: { $ref: ./webhooks/card-tracking-updated-webhook.yaml }
 
   3ds-otp:
     parameters: *WebhookHeaders
