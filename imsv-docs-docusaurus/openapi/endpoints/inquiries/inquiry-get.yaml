@@ -1,7 +1,7 @@
 get:
   tags:
     - inquiries
-  summary: Get Inquiry
+  summary: Get Card Inquiry
   operationId: get-inquiry
   description: |
     Retrieves a specific inquiry for the given id.

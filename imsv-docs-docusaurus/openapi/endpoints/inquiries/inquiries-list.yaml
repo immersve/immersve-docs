@@ -1,7 +1,7 @@
 get:
   tags:
     - inquiries
-  summary: List Inquiries
+  summary: List Card Inquiries
   operationId: list-inquiries
   description: |
     Lists inquiries recorded against a cardholder account, most recent first. Supports an optional inclusive createdAt date range.

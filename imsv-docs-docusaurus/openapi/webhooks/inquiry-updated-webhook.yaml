@@ -1,5 +1,5 @@
 tags: [inquiries]
-summary: Inquiry Updated
+summary: Card Inquiry Updated
 operationId: inquiry-updated
 description: |
   Triggered when a Card Inquiry is updated throughout its lifecycle.
