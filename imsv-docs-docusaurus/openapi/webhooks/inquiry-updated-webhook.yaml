@@ -1,8 +1,12 @@
-tags: [payments]
+tags: [inquiries]
 summary: Inquiry Updated
 operationId: inquiry-updated
 description: |
-  Triggered when a Network Inquiry is updated throughout its lifecycle.
+  Triggered when a Card Inquiry is updated throughout its lifecycle.
+
+  Inquiries are used to perform pre-payment checks.
+  Depending on the type, the inquiries purpose can be to validate there are no active blocks on a card or
+  cardholder, or to check their available balance.
 
 requestBody:
   content:
