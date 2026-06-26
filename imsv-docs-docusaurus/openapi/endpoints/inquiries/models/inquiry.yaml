@@ -1,0 +1,103 @@
+type: object
+properties:
+  id:
+    type: string
+    description: Inquiry identifier.
+    example: "1993e3250d12948cf2bd1a1964f69437"
+  type:
+    type: string
+    description: |
+      The type of inquiry.
+
+      This set is non-exhaustive and may grow over time, so
+      consumers should tolerate unrecognised values. The
+      current options are `account-status-inquiry`.
+    example: "account-status-inquiry"
+  liveness:
+    type: string
+    description: The resource liveness mode.
+    enum:
+      - "live"
+      - "test"
+    example: "test"
+  declineReason:
+    type: string
+    description: Reason the inquiry was declined only if applicable.
+    example: "inactive-card"
+  result:
+    type: object
+    description: Outcome of the inquiry. Present once a result has been recorded.
+    properties:
+      accepted:
+        type: boolean
+        description: Indicates whether the inquiry was accepted.
+        example: true
+      code:
+        type: string
+        description: The result code for the inquiry.
+        example: "success"
+      message:
+        type: string
+        description: A human-readable description of the result.
+    required:
+      - accepted
+      - code
+  merchant:
+    type: object
+    description: Merchant descriptor. Present when the underlying network message carries merchant details.
+    properties:
+      id:
+        type: string
+        description: The merchant identifier from the payment network.
+        example: "123456789012345"
+      name:
+        type: string
+        description: The merchant's name.
+        example: "1 Queen Street"
+      terminalId:
+        type: string
+        description: The merchant's payment terminal identifier.
+        example: "12345678"
+      categoryCode:
+        type: string
+        description: The merchant's ISO-18245 category code.
+        example: "1234"
+      city:
+        type: string
+        description: The merchant's city name.
+        example: "Auckland"
+      countryCode:
+        type: string
+        description: The merchant's ISO-3166-1 Alpha-2 country code.
+        example: "NZ"
+  card:
+    type: object
+    description: The card the inquiry relates to.
+    properties:
+      id:
+        type: string
+        description: Card identifier.
+        example: "d44d045826d4484c9b7f1e3a5c8d2f6b"
+    required:
+      - id
+  cardholder:
+    type: object
+    description: The cardholder the inquiry relates to.
+    properties:
+      id:
+        type: string
+        description: Cardholder account identifier.
+        example: "9ce69d31277108d46d2cb19fa772705e"
+    required:
+      - id
+  createdAt:
+    type: string
+    format: date-time
+    description: ISO 8601 timestamp of when the inquiry was recorded.
+    example: "2026-06-10T04:02:51.892Z"
+  modifiedAt:
+    type: string
+    format: date-time
+    description: ISO 8601 timestamp of when the inquiry was last modified.
+    example: "2026-06-10T04:02:51.892Z"
+required: [id, type, liveness, card, cardholder, createdAt, modifiedAt]

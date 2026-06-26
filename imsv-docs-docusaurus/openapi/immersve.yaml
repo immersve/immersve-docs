@@ -16,6 +16,8 @@ tags:
     x-displayName: Client Applications
   - name: card
     x-displayName: Cards
+  - name: inquiries
+    x-displayName: Card Inquiries
   - name: contact-details
     x-displayName: Contact Details
   - name: cardholder-blocks
@@ -129,6 +131,10 @@ paths:
     $ref: "./endpoints/transactions/get-payment-notification.yaml"
   "/api/3ds-challenges/{challengeId}/outcome":
     $ref: "./endpoints/transactions/submit-3ds-challenge-outcome.yaml"
+  "/api/inquiries/{inquiryId}":
+    $ref: "./endpoints/inquiries/inquiry-get.yaml"
+  "/api/accounts/{cardholderAccountId}/inquiries":
+    $ref: "./endpoints/inquiries/inquiries-list.yaml"
 
   # Reports
   "/api/accounts/{accountId}/reports":

@@ -1,0 +1,39 @@
+get:
+  tags:
+    - inquiries
+  summary: Get Card Inquiry
+  operationId: get-inquiry
+  description: |
+    Retrieves a specific inquiry for the given id.
+
+    Inquiries are used to perform pre-payment checks.
+    Depending on the type, the inquiries purpose can be to validate there are no active blocks on a card or
+    cardholder, or to check their available balance.
+
+
+  parameters:
+    - name: inquiryId
+      in: path
+      description: Primary identifier of the inquiry to fetch
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/inquiry.yaml"
+    "403":
+      description: No Authorization to access resource.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
+    "400":
+      description: Request fields are invalid.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-400.yaml"

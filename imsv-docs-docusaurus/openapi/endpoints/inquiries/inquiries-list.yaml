@@ -1,0 +1,64 @@
+get:
+  tags:
+    - inquiries
+  summary: List Card Inquiries
+  operationId: list-inquiries
+  description: |
+    Lists inquiries recorded against a cardholder account, most recent first. Supports an optional inclusive createdAt date range.
+
+    This endpoint uses cursor-based pagination. Start by making a request without a cursor to get the first page. Use the nextCursor from the pageInfo in the response as the cursor for subsequent requests to retrieve further pages. Continue until nextCursor is undefined, indicating no more data.
+
+    Inquiries are used to perform pre-payment checks.
+    Depending on the type, the inquiries purpose can be to validate there are no active blocks on a card or
+    cardholder, or to check their available balance.
+
+  parameters:
+    - name: cardholderAccountId
+      in: path
+      description: Identifier of the cardholder account.
+      required: true
+      schema:
+        type: string
+    - name: limit
+      in: query
+      description: Amount of records to return (max 100).
+      required: false
+      schema:
+        type: number
+    - name: cursor
+      in: query
+      description: Cursor to retrieve the next page.
+      required: false
+      schema:
+        type: string
+    - name: createdFrom
+      in: query
+      description: Filter for inquiries from this date (inclusive). Value should be an ISO 8601 string.
+      required: false
+      schema:
+        type: string
+    - name: createdTo
+      in: query
+      description: Filter for inquiries up to this date (inclusive). Value should be an ISO 8601 string, and must be later than createdFrom.
+      required: false
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "./models/inquiries-paging-result.yaml"
+    "403":
+      description: No Authorization to access resource.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"
+    "400":
+      description: Request fields are invalid.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-400.yaml"
