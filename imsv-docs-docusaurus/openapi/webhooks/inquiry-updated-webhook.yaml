@@ -80,7 +80,6 @@ requestBody:
                         required:
                           - accepted
                           - code
-                          - message
                         properties:
                           accepted:
                             type: boolean
