@@ -46,9 +46,17 @@ properties:
               items:
                 $ref: './document.yaml'
         transactionMaxSpendLimit:
-          type: number
+          type: object
           description: The maximum amount a user can spend in a single transaction for the region.
-          default: null
+          properties:
+            value:
+              type: number
+              description: The minor unit of the amount a user can spend
+              example: 2000000
+            currency:
+              type: string
+              description: The currency of the money
+              example: USD
 example:
   regions:
     - code: AU
@@ -66,7 +74,6 @@ example:
           - title: Product Disclosure Statement
             source: https://example.com/disclosures/immersve/pds-au_v001.0_en.pdf
         marketCompliance: []
-      transactionMaxSpendLimit: null
     - code: NZ
       title: New Zealand
       isAvailable: true
@@ -80,7 +87,6 @@ example:
           source: https://immersve.com/terms-and-conditions/nz/privacy-policy
         disclosures: []
         marketCompliance: []
-      transactionMaxSpendLimit: null
     - code: CA
       title: Canada
       isAvailable: false
