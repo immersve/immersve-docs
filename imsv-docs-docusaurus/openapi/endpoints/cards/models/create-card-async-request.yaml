@@ -9,5 +9,16 @@ properties:
   fundingSourceId:
     type: string
     description: ID of the Funding Source the card will authorize against
+  language:
+    type: string
+    description: Carrier language for a physical card, in ISO 639-1 Alpha-2 format. Required if card program supports physical cards.
+    example: en
+  shippingMethod:
+    type: string
+    description: Shipping method for a physical card. Required if card program supports physical cards.
+    enum:
+      - standard-courier
+      - premium-courier
+    example: standard-courier
   shippingAddress:
     $ref: "./shipping-address.yaml"

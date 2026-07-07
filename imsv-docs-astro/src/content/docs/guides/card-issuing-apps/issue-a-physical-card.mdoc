@@ -40,7 +40,7 @@ endpoint="create-funding-source" /%} and the
 
 Call the {% link endpoint="create-card" /%} endpoint to request a physical
 card. The specified card program must support physical cards.
-A `shippingAddress` must be supplied in the request body so that the card
+The request body must include `shippingAddress`, `shippingMethod` and `language` so that the card
 can be delivered to the cardholder once manufactured.
 
 Physical cards are not activated upon creation. The card

@@ -1516,7 +1516,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cardProgramId\":\"{{cardProgramId}}\",\n    \"fundingSourceId\": \"{{fundingSourceId}}\",\n    \"shippingAddress\": {\n        \"country\": \"NZ\",\n        \"state\": \"AKL\",\n        \"town\": \"Auckland\",\n        \"postalCode\": \"1050\",\n        \"addressLine1\": \"3A Victoria Avenue\",\n        \"companyName\": \"Immersve\"\n    }\n}"
+              "raw": "{\n    \"cardProgramId\":\"{{cardProgramId}}\",\n    \"fundingSourceId\": \"{{fundingSourceId}}\",\n    \"shippingAddress\": {\n        \"country\": \"NZ\",\n        \"state\": \"AKL\",\n        \"town\": \"Auckland\",\n        \"postalCode\": \"1050\",\n        \"addressLine1\": \"3A Victoria Avenue\",\n        \"companyName\": \"Immersve\"\n    },\n    \"shippingMethod\": \"standard-courier\",\n    \"language\": \"en\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/cards",
@@ -1590,6 +1590,57 @@
 					},
 					"response": []
 				},
+        {
+          "name": "Reissue a card",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const result = JSON.parse(responseBody);",
+                  "",
+                  "pm.environment.set(\"createdCardId\", result.cardId);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"reissuanceType\":\"standard-renewal\",\n    \"shippingAddress\": {\n        \"country\": \"NZ\",\n        \"state\": \"AKL\",\n        \"town\": \"Auckland\",\n        \"postalCode\": \"1050\",\n        \"addressLine1\": \"3A Victoria Avenue\",\n        \"companyName\": \"Immersve\"\n    },\n    \"shippingMethod\": \"standard-courier\",\n    \"language\": \"en\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/cards/:cardId/reissue",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "cards",
+                ":cardId",
+                "reissue"
+              ],
+              "variable": [
+                {
+                  "key": "cardId",
+                  "value": "{{createdCardId}}",
+                  "description": "ID of the card to reissue"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
 				{
 					"name": "Activate card",
 					"request": {
