@@ -51,25 +51,6 @@ requestBody:
                       declineReason:
                         type: string
                         example: "insufficient-funds"
-                        enum:
-                          - insufficient-funds
-                          - failure
-                          - expired-card
-                          - do-not-honor
-                          - invalid-card_number
-                          - non-existent-from-account
-                          - transaction-not-permitted-to-cardholder
-                          - liveness-mismatch
-                          - inactive-card
-                          - float-depleted
-                          - security-violation
-                          - invalid-merchant
-                          - invalid-amount
-                          - restricted-card
-                          - invalid-lifecycle
-                          - lost-or-stolen-card
-                          - account-restricted
-                          - cardholder-blocked
                         description: |
                           The reason the authorization was declined. Only present when the
                           event `type` is `auth-declined`.
