@@ -11,7 +11,7 @@ properties:
     description: ID of the Funding Source the card will authorize against
   language:
     type: string
-    description: Carrier language for a physical card, in ISO 639-1 Alpha-2 format. Required if card program supports physical cards.
+    description: Carrier language for a physical card, in ISO 639-1 Alpha-2 format. Required if card program supports physical cards. The carrier is the physical packaging to which the card is attached for delivery.
     example: en
   shippingMethod:
     type: string
