@@ -40,8 +40,9 @@ endpoint="create-funding-source" /%} and the
 
 Call the {% link endpoint="create-card" /%} endpoint to request a physical
 card. The specified card program must support physical cards.
-A `shippingAddress` must be supplied in the request body so that the card
-can be delivered to the cardholder once manufactured.
+The request body must include `shippingAddress`, `shippingMethod` and `language` so that the card
+can be delivered to the cardholder once manufactured. The `language` field determines the language used
+for the card carrier (the physical packaging to which the card is attached for delivery).
 
 Physical cards are not activated upon creation. The card
 will initially have a `status` of `"created"` which will eventually change to
@@ -57,12 +58,12 @@ field returns the expiry date printed on the card.
 
 ## Tracking the Card
 
-Once a physical card ships, a carrier tracking URL may become available. Use
+Once a physical card ships, a tracking URL may become available. Use
 the {% link title="Card Tracking Updated"
 endpoint="webhook-topics/card-tracking-updated" /%} webhook to be notified when
 tracking information becomes available or changes. Alternatively, read the
 `trackingUrl` field on the response from the {% link endpoint="get-card" /%}
-endpoint, which is populated once a tracking URL is available from the carrier.
+endpoint, which is populated once a tracking URL is available.
 
 ## Activate the Card
 Once the cardholder has received their physical card, call the

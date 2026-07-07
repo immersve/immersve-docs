@@ -8,5 +8,16 @@ properties:
     enum:
       - standard-renewal
     example: standard-renewal
+  language:
+    type: string
+    description: Carrier language for a physical card, in ISO 639-1 Alpha-2 format. Required if card program supports physical cards. The carrier is the physical packaging to which the card is attached for delivery.
+    example: en
+  shippingMethod:
+    type: string
+    description: Shipping method for a physical card. Required if card program supports physical cards.
+    enum:
+      - standard-courier
+      - premium-courier
+    example: standard-courier
   shippingAddress:
     $ref: "./shipping-address.yaml"

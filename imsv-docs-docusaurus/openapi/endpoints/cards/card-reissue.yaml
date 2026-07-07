@@ -59,6 +59,15 @@ post:
 
         **SHIPPING_ADDRESS_REQUIRED**
         Card program is configured for physical cards but no shipping address was provided.
+
+        **SHIPPING_METHOD_REQUIRED**
+        Card program is configured for physical cards but no shipping method was provided.
+
+        **LANGUAGE_REQUIRED**
+        Card program is configured for physical cards but no carrier language was provided.
+
+        **PHYSICAL_CARD_CONFIGURATION_INVALID**
+        The combination of card program, region, shipping method, and carrier language is invalid.
       content:
         application/json:
           schema:
