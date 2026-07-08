@@ -48,6 +48,15 @@ requestBody:
                         example: "2026-01-06T10:15:31Z"
                         description: |
                           ISO 8601 timestamp of when the event occurred.
+                      declineReason:
+                        type: string
+                        example: "insufficient-funds"
+                        description: |
+                          The reason the authorization was declined. Only present when the
+                          event `type` is `auth-declined`. Possible values include
+                          `insufficient-funds`, `inactive-card`, `lost-or-stolen-card`,
+                          `account-restricted`, and `cardholder-blocked`. New values may be
+                          added over time, so consumers must tolerate unknown values.
                   payment:
                     type: object
                     required:
