@@ -53,7 +53,10 @@ requestBody:
                         example: "insufficient-funds"
                         description: |
                           The reason the authorization was declined. Only present when the
-                          event `type` is `auth-declined`.
+                          event `type` is `auth-declined`. Possible values include
+                          `insufficient-funds`, `inactive-card`, `lost-or-stolen-card`,
+                          `account-restricted`, and `cardholder-blocked`. New values may be
+                          added over time, so consumers must tolerate unknown values.
                   payment:
                     type: object
                     required:
