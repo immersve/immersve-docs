@@ -231,12 +231,11 @@ noun.
 
 ### Domain Nouns
 
-Immersve's first-class domain resources are treated as proper
-nouns when they name the *class* of resource — the concept, the
-type, the kind of thing — and lowercase when they refer to a
-*specific instance* the reader already has in hand. The
-authoritative list of first-class domain resources lives in
-*Terminology*.
+Immersve's domain resource types — the resources the API acts on,
+such as Cards, Cardholders, and Funding Sources — are treated as
+proper nouns when they name the *class* of resource, and lowercase
+when they refer to a *specific instance* the reader already has in
+hand.
 
 Write "every Card belongs to a Cardholder" — the sentence is about
 Cards and Cardholders as concepts. Write "your card is now active"
@@ -296,9 +295,8 @@ have a single canonical form. Use them as written.
   for the system; use lowercase *endpoint* for the operations it
   exposes.
 - **Webhook** — An outbound HTTP request from Immersve to a
-  partner-controlled URL, triggered by a domain event. Cased as a
-  first-class domain resource (see *First-Class Domain Resources*
-  below).
+  partner-controlled URL, triggered by a domain event. Cased per
+  *Domain Nouns* in *Prose Conventions*.
 - **Immersve** — The company and the platform. Always capitalized;
   never "immersve", "Imsv", or "IMSV" in prose.
 - **Funding Protocol** — The abstract pattern by which funds reach
@@ -310,39 +308,6 @@ have a single canonical form. Use them as written.
 - **Funding Source** — A Cardholder's source of funds within a
   Funding Channel, identifying the on-chain account or balance
   that backs the card.
-
-### First-Class Domain Resources
-
-The following nouns name Immersve's first-class domain resources
-— the primary platform concepts a partner interacts with as
-named entities, not every API-exposed object. They are Title
-Cased when naming the resource as a class and lowercase when
-referring to a specific instance — see *Title Case* for the rule and
-the disambiguation test.
-
-- Authorization
-- Card
-- Card Program
-- Cardholder
-- Cardholder Account
-- Clearing
-- Client Application
-- Funding Channel
-- Funding Protocol
-- Funding Source
-- Funding Type
-- Funds Storage
-- Partner Account
-- Settlement
-- Webhook
-- Webhook Listener
-- Webhook Topic
-- Webhook Topic Subscription
-
-This list is authoritative. Adding a new first-class domain
-resource means adding to this list; if a term is not on it, it
-is not a first-class domain resource and stays lowercase in
-prose.
 
 ## Elements
 
