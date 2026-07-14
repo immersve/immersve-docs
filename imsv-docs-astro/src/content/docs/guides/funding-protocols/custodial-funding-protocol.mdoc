@@ -168,10 +168,9 @@ same sequence:
   on the `paymentFinalized` and `paymentAmount` fields. Perform an account
   balance adjustment if necessary: a balance adjustment should be performed if
   the amount differs from what has already been debited or credited. For
-  refund payments (negative `paymentAmount`), only apply the balance
-  adjustment once `paymentFinalized` is `true`. Crediting the user before the
-  payment is finalized could result in financial loss if the payment is
-  canceled.
+  refund payments, only apply the balance adjustment once `paymentFinalized`
+  is `true`. Crediting the user before the payment is finalized could result
+  in financial loss if the payment is canceled.
 ---
 {% /table %}
 
