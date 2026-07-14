@@ -760,16 +760,28 @@ predictable.
 
 ### Endpoint Descriptions
 
-Every endpoint declares a summary and a description. They serve
-different audiences — the summary is the navigation label in the
-rendered reference; the description is the operation prose a reader
-reaches after clicking through.
+An endpoint has a name and a description. The OpenAPI spec
+expresses them through three attributes, each with its own role:
 
-- **Summary** — One short imperative phrase that names the
-  operation ("Create a Card", "List Cards"). Title Case, no period.
-- **Description** — One to three sentences expanding on the
-  summary: what the endpoint does, what state it changes, and any
-  notable preconditions. Sentence case, full sentences with periods.
+- **Summary** — The endpoint name: a concise phrase naming the
+  action and the resource ("Create Card", "List Cards"). Title
+  Case, no period. Renders as the navigation label and the page
+  title in the API reference.
+- **Operation Id** — The unique kebab-case form of the name,
+  declared as `operationId` (`create-card`). Used for linking —
+  the `{% link endpoint="…" /%}` tag resolves against it; see
+  *Slugs*.
+- **Description** — The endpoint description: at least one
+  paragraph of sentence-case prose defining what the endpoint
+  does. Supporting detail — use cases, validation rules, and
+  links to related endpoints and guides — belongs here. Avoid
+  duplicating shared detail across descriptions; pull it into a
+  guide and link to it instead.
+
+Endpoint names use the fewest words that identify the action and
+the resource. Omit grammatical filler — articles (a, an, the) and
+prepositions (for, with, by). Write "Create Card", not "Create a
+Card"; "List Active Cards", not "List Cards with Active State".
 
 A description does not repeat the summary or restate the URL; it
 adds the context that does not fit there.
