@@ -104,10 +104,10 @@ same sequence:
   the payment is a refund (indicated by a negative payment amount) then the
   balance adjustment should not be performed until the payment is finalized
   (indicated by `paymentFinalized: true` on a subsequent payment advice
-  message). Refund amounts may still change while non-finalized, so crediting
-  the ledger early risks having to reverse or re-adjust it later. The outcome
-  of the authorization request is returned in the `result` field of the
-  response payload.
+  message). Crediting the user before the payment is finalized could result
+  in financial loss if the payment is canceled. The outcome of the
+  authorization request is returned in the `result` field of the response
+  payload.
 ---
 {% /table %}
 
