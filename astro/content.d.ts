@@ -538,6 +538,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"resources/style-guide.mdoc": {
+	id: "resources/style-guide.mdoc";
+  slug: "resources/style-guide";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "resources/tables.mdoc": {
 	id: "resources/tables.mdoc";
   slug: "tables";
