@@ -20,6 +20,12 @@ properties:
       - "holding"
       - "cleared"
       - "reversed"
+  cashOperation:
+    type: string
+    enum: ["atm-withdrawal"]
+    example: "atm-withdrawal"
+    description: |
+      Indicates that the transaction was cash-based and of which kind.
   cardId:
     type: string
     description: Which card this transaction belongs to

@@ -107,6 +107,12 @@ requestBody:
                         enum: ["holding", "cleared", "canceled"]
                         description: |
                           The current status of the payment.
+                      cashOperation:
+                        type: string
+                        enum: ["atm-withdrawal"]
+                        example: "atm-withdrawal"
+                        description: |
+                          Indicates that the payment was a cash-based transaction and of which kind.
                       amount:
                         type: object
                         required:
