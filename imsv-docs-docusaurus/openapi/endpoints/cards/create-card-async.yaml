@@ -35,6 +35,9 @@ post:
         **FUNDING_CHANNEL_INVALID**
         Funding channel cannot be used with this card program.
 
+        **BETA_ACCESS_DENIED**
+        Card program is in restricted access mode and cardholder doesn't have access granted.
+
         **KYC_REQUIRED**
         KYC profile is missing, does not have PASSED status, or does not match card program region. Use the spending prerequisites endpoint for more details.
 
@@ -46,6 +49,9 @@ post:
 
         **EXPECTED_SPEND_PREREQ_REQUIRED**
         Cardholder has not completed the required expected spend prerequisite.
+
+        **CARD_REGION_NOT_SUPPORTED**
+        The cardholder's card region is not supported by the card program.
 
         **MAX_CARDS_EXCEEDED**
         Cardholder has reached the maximum number of cards allowed.
@@ -74,6 +80,9 @@ post:
 
         **PHYSICAL_CARD_CONFIGURATION_INVALID**
         The combination of card program, region, shipping method, and carrier language is invalid.
+
+        **SHIPPING_ADDRESS_LINE_TOO_LONG**
+        A formatted shipping address line exceeds the maximum line length allowed for the card carrier.
       content:
         application/json:
           schema:
