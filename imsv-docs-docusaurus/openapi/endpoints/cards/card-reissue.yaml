@@ -68,6 +68,9 @@ post:
 
         **PHYSICAL_CARD_CONFIGURATION_INVALID**
         The combination of card program, region, shipping method, and carrier language is invalid.
+
+        **SHIPPING_ADDRESS_LINE_TOO_LONG**
+        A formatted shipping address line exceeds the maximum line length allowed for the card carrier.
       content:
         application/json:
           schema:
