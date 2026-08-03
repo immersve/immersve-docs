@@ -471,6 +471,12 @@ must tolerate the addition of unknown message attributes.
 * The id of the related payment, if applicable.
 
 ---
+* {% wrap %} cashOperation {% /wrap %}
+* atm-withdrawal
+* If present, indicates that the payment was a cash-based transaction and of which kind.
+  Clients must tolerate unknown kinds, which include the following: `atm-withdrawal`.
+
+---
 * {% wrap %} fundingSourceExternalId {% /wrap %}
 * abc123
 * The custodial account external reference stored on the Immersve funding
