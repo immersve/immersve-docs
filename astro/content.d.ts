@@ -447,6 +447,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/supported-chains/monad.mdoc": {
+	id: "guides/supported-chains/monad.mdoc";
+  slug: "guides/monad";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/supported-chains/polygon.mdoc": {
 	id: "guides/supported-chains/polygon.mdoc";
   slug: "guides/polygon";
@@ -666,6 +673,20 @@ declare module 'astro:content' {
   collection: "funding-types";
   data: InferEntrySchema<"funding-types">
 } & { render(): Render[".md"] };
+"monad-testnet-usdc-universal-evm.md": {
+	id: "monad-testnet-usdc-universal-evm.md";
+  slug: "monad-testnet-usdc-universal-evm";
+  body: string;
+  collection: "funding-types";
+  data: InferEntrySchema<"funding-types">
+} & { render(): Render[".md"] };
+"monad-usdc-universal-evm.md": {
+	id: "monad-usdc-universal-evm.md";
+  slug: "monad-usdc-universal-evm";
+  body: string;
+  collection: "funding-types";
+  data: InferEntrySchema<"funding-types">
+} & { render(): Render[".md"] };
 "polygon-amoy-usdc-universal-evm-test.md": {
 	id: "polygon-amoy-usdc-universal-evm-test.md";
   slug: "polygon-amoy-usdc-universal-evm-test";
@@ -748,6 +769,20 @@ declare module 'astro:content' {
 "usdc-ethereum-sepolia.md": {
 	id: "usdc-ethereum-sepolia.md";
   slug: "usdc-ethereum-sepolia";
+  body: string;
+  collection: "network-tokens";
+  data: InferEntrySchema<"network-tokens">
+} & { render(): Render[".md"] };
+"usdc-monad-mainnet.md": {
+	id: "usdc-monad-mainnet.md";
+  slug: "usdc-monad-mainnet";
+  body: string;
+  collection: "network-tokens";
+  data: InferEntrySchema<"network-tokens">
+} & { render(): Render[".md"] };
+"usdc-monad-testnet.md": {
+	id: "usdc-monad-testnet.md";
+  slug: "usdc-monad-testnet";
   body: string;
   collection: "network-tokens";
   data: InferEntrySchema<"network-tokens">
@@ -862,6 +897,20 @@ declare module 'astro:content' {
 "ethereum-sepolia.md": {
 	id: "ethereum-sepolia.md";
   slug: "ethereum-sepolia";
+  body: string;
+  collection: "networks";
+  data: InferEntrySchema<"networks">
+} & { render(): Render[".md"] };
+"monad-mainnet.md": {
+	id: "monad-mainnet.md";
+  slug: "monad-mainnet";
+  body: string;
+  collection: "networks";
+  data: InferEntrySchema<"networks">
+} & { render(): Render[".md"] };
+"monad-testnet.md": {
+	id: "monad-testnet.md";
+  slug: "monad-testnet";
   body: string;
   collection: "networks";
   data: InferEntrySchema<"networks">
