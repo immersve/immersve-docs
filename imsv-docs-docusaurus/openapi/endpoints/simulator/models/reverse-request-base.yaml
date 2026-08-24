@@ -8,6 +8,7 @@ properties:
     enum:
       - purchase
       - refund
+      - withdrawal
   transactionAmount:
     type: string
     description: |
