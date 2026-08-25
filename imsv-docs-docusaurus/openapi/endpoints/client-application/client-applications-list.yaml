@@ -1,0 +1,37 @@
+get:
+  tags:
+    - client-application
+  summary: List Client Applications
+  operationId: list-client-applications
+  description: Retrieves the client applications for the given account.
+  parameters:
+    - name: accountId
+      in: path
+      description: Id of the account to retrieve client applications for.
+      example: 225d85e65495722bf6517ea0ba0d6f56
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: './models/client-applications-list-response.yaml'
+    '403':
+      description: |
+          Subject is not allowed to perform the action with the reason stated in the `errorCode`
+
+          **FORBIDDEN**
+          Resource does not exist or there are no sufficient permissions to perform the action.
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-403.yaml'
+    '400':
+      description: Request parameters are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '../../models/api-error-400.yaml'
