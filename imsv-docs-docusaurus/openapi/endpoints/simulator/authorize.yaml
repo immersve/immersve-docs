@@ -17,6 +17,9 @@ post:
     authorizations. To simulate this scenario, set the `forcePost` field to `true`
     in your request payload.
 
+    #### ATM Withdrawal
+    Set `transactionType` to `withdrawal` to simulate a cardholder withdrawing
+    cash at an ATM. ATM withdrawals are permitted on physical cards only.
   requestBody:
     content:
       application/json:

@@ -25,6 +25,8 @@ properties:
       - base-sepolia
       - sei-mainnet
       - sei-testnet
+      - monad-mainnet
+      - monad-testnet
   description:
     description: The description of the challenge.
     type: string

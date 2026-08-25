@@ -27,6 +27,8 @@ properties:
       - custodial-test-usdc
       - bsc-testnet-usdt-universal-evm
       - bsc-usdt-universal-evm
+      - monad-usdc-universal-evm
+      - monad-testnet-usdc-universal-evm
 
     example: polygon-amoy-usdc-universal-evm-test
   purpose:

@@ -26,6 +26,8 @@ properties:
       - sei-testnet
       - xahau-mainnet
       - xahau-testnet
+      - monad-mainnet
+      - monad-testnet
   address:
     description: The web3 address to which the challenge is directed.
     type: string

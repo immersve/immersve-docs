@@ -30,6 +30,8 @@ properties:
       - base-sepolia
       - sei-mainnet
       - sei-testnet
+      - monad-mainnet
+      - monad-testnet
     example: "polygon-mainnet"
   clientApplicationId:
     description: ID of the client application created in an Immersve partner profile.
