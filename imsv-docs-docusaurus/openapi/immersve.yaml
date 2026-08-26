@@ -216,6 +216,8 @@ paths:
     $ref: "./endpoints/funding-channel/funding-channels-list.yaml"
 
   # Clients
+  "/api/accounts/{accountId}/client-applications":
+    $ref: "./endpoints/client-application/client-applications-list.yaml"
   "/api/client-applications/{clientApplicationId}":
     $ref: "./endpoints/client-application/client-application-get.yaml"
   "/api/client-applications/{clientApplicationId}/update-origins":
