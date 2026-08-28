@@ -1,10 +1,4 @@
-function kebabToTitle(kebabString) {
-  return kebabString
-    .toLowerCase()
-    .split('-')
-    .map(word => word.replace(/^./, s => s.toUpperCase()))
-    .join(' ');
-}
+import { kebabToTitle } from './kebabToTitle.mjs';
 
 /**
   * Link abstraction used by Link.astro and EndpointRef.astro components.
