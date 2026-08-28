@@ -4,10 +4,15 @@ description: |
   How to configure Webhook Listeners to receive real-time notifications from the Immersve
   platform.
 slug: guides/configuring-webhook-listeners
+sidebar:
+  order: 2
 ---
 
 This guide details the steps to set up webhook integration with your service. It
-lists the API calls required to set up a Webhook Listener and its Subscriptions.  
+lists the API calls required to set up a Webhook Listener and its Subscriptions.
+See {% link page="guides/webhooks" /%} for the notification envelope and
+payload structure, signature verification, delivery guarantees, and the full
+list of available topics.
 
 ## Vocabulary
 
@@ -25,13 +30,9 @@ Immersve. Only `HTTPS` protocol is supported.
 
 Immersve will send notifications to the listener for any topics it is subscribed to.
 Notifications are sent to the Webhook Listener url as HTTP POST requests with
-the notification topic as a path parameter.
-
-### Example Scenario
-When a Webhook Listener is registered with url `https://example.com/webhooks`
-and it is subscribed to the `kyc-succeeded` topic and
-a notification for this topic is fired, then notification is sent
-to `https://example.com/webhooks/kyc-succeeded`
+the notification topic as a path parameter. See {% link page="guides/webhooks" /%}
+for the full notification protocol, including how the topic name is appended
+to your listener's url to form the delivery path.
 
 {% note %} Notifications are not guaranteed to arrive in sequential order.
 Listener must expect potentially out of order notifications. {% /note %}
@@ -85,12 +86,12 @@ Once topic subscriptions have been created, your Webhook Listener will be ready 
 
 Webhook setup can be tested by calling the **Send Webhook Test Notification**
 endpoint. You can use any of the available Topics documented on our {% link
-title="Webhook Topics" 
+title="Webhook Topics"
 href="https://docs.immersve.com/api-reference/category/webhook-topics" /%} reference. This
 will fire a delivery of the notification with the example payload for the
 requested Topic to all subscribed Webhook Listeners. Test notification delivery
 can be targeted to a specific listener id using the `listenerId` body
-parameter.  
+parameter.
 
 {% endpointref name="send-webhook-test-notification" /%}
 
@@ -103,4 +104,47 @@ curl -L 'https://api.immersve.com/api/webhook-test-notifications' \
     "topic": "kyc-succeeded",
     "accountId": "'${partner_account_id}'",
   }'
+```
+
+## Debugging Webhooks
+
+If a notification doesn't arrive as expected, use the List Webhook
+Notifications endpoint to inspect delivery history for your account.
+Each entry reports the current `deliveryStatus` and, under
+`lastDelivery`, the outcome of the most recent attempt — including
+the response your listener returned.
+
+{% endpointref name="list-webhook-notifications" /%}
+
+```bash {% title="Example curl listing webhook notifications for a partner account." %}
+curl -L -X GET "https://${imsv_api_host}/api/accounts/${partner_account_id}/webhook-notifications" \
+  -H "X-Api-Key: ${account_admin_api_key}" \
+  -H "X-Api-Secret: ${account_admin_api_secret}"
+```
+
+`deliveryStatus` tells you whether a notification is still retrying
+(`pending`, `attempting`), succeeded (`delivered`), or gave up
+(`aborted`, `failed`) — see {% link page="guides/webhooks" /%} for the
+full delivery guarantees. The example below shows a notification
+whose most recent attempt failed with a `500` response; `requestBody`
+under `lastDelivery` (omitted here) carries the exact envelope that
+was sent, following the same shape described in that guide's
+*Envelope* section.
+
+```json {% title="Example webhook notification showing a failed delivery attempt." %}
+{
+  "id": "dcd07ae53c03209282543316312e4c38",
+  "topic": "kyc-succeeded",
+  "attempts": 3,
+  "createdAt": "2026-08-17T01:46:14.481Z",
+  "modifiedAt": "2026-08-17T01:52:31.204Z",
+  "deliveryStatus": "failed",
+  "lastDelivery": {
+    "requestUrl": "https://example.com/webhooks/kyc-succeeded",
+    "requestTimestamp": "2026-08-17T01:52:30.990Z",
+    "responseStatus": 500,
+    "responseTimestamp": "2026-08-17T01:52:31.204Z",
+    "duration": 214
+  }
+}
 ```

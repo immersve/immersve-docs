@@ -1,0 +1,369 @@
+---
+title: Webhooks
+slug: guides/webhooks
+description: |
+  How Immersve delivers webhook notifications — envelope and payload
+  structure, signing and verification, delivery guarantees, and where
+  to find the full list of topics you can subscribe to.
+sidebar:
+  order: 1
+---
+
+Immersve notifies your integrated client about domain events, such as
+KYC results, card status changes, and payment updates, by sending HTTP
+Webhook requests to your Webhook Listener endpoint. This guide covers
+the notification format, how to verify a delivery, what your listener
+must return, and the delivery guarantees you can rely on. See {% link
+page="guides/configuring-webhook-listeners" /%} for the steps to
+register a listener and subscribe it to topics.
+
+
+## Requirements
+
+Before Immersve can deliver notifications to your systems:
+
+{% list %}
+  {% listitem "ArrowRightEndOnRectangle" %}
+  **Handle Subscribed Topics** — Your listener must accept `POST`
+  requests at `<url>/<topic>` for every topic you subscribe to.
+  {% /listitem %}
+  {% listitem "LockClosed" %}
+  **HTTPS Listener Endpoints** — Your Webhook Listener's URL must use
+  HTTPS.
+  {% /listitem %}
+  {% listitem "DocumentDuplicate" %}
+  **Idempotent Handling** — Your listener must be safe to invoke more
+  than once for the same notification. See *Idempotency*.
+  {% /listitem %}
+{% /list %}
+
+
+## Available Topics
+
+See {% link title="Webhook Topics"
+href="https://docs.immersve.com/api-reference/category/webhook-topics" /%}
+for the topic names and exact payload schemas for all available
+Webhook Topics.
+
+
+## Protocol
+
+A notification is delivered as an HTTP `POST` to your Webhook
+Listener's registered URL with the topic name appended as a path
+segment — `https://example.com/webhooks` becomes
+`https://example.com/webhooks/kyc-succeeded`. The request body is the
+JSON Envelope described below and includes a `payload` attribute
+carrying the fields specific to the `topic`.
+
+Every topic defines its own `payload` shape — a KYC notification
+carries `accountId` and `kycStatus`, a payment notification carries a
+`payment` object, and so on. See *Available Topics* for the full list
+of topics and their reference pages, each documenting its exact
+payload schema and a sample.
+
+
+## Envelope
+
+Every notification wraps its topic-specific payload in a fixed set of
+metadata fields. This wrapper is the Envelope — the same shape
+regardless of topic.
+
+```json {% title="Example envelope for a KYC Succeeded notification." %}
+{
+  "messageId": "dcd07ae53c03209282543316312e4c38",
+  "topic": "kyc-succeeded",
+  "listenerId": "9ee479ec4dd3a2cd77a4fb4c8ffe51ec",
+  "listenerAccountId": "2d4aec21adf5c3251d6f868accf94791",
+  "deliveryAttempt": 1,
+  "createdAt": "2026-08-17T01:46:14.481Z",
+  "sentAt": "2026-08-17T01:46:14.528Z",
+  "keyId": "c1e1a59e41d9e009a43256cab1f8839d",
+  "issuer": "api.immersve.com",
+  "payload": {
+    "accountId": "00000000-0000-0000-0000-000000000000",
+    "kycStatus": "succeeded"
+  }
+}
+```
+
+The following table describes each field in the envelope.
+
+{% table title="Webhook Envelope Fields" %}
+* Field
+* Type
+* Description
+---
+* `messageId`
+* string
+* Unique id for this notification. Stable across every delivery
+  attempt for the same event — use it to deduplicate. See
+  *Idempotency*.
+---
+* `topic`
+* string
+* Name of the Webhook Topic that triggered this notification, for
+  example `kyc-succeeded`. See *Available Topics*.
+---
+* `listenerId`
+* string
+* Id of the Webhook Listener this notification was sent to.
+---
+* `listenerAccountId`
+* string
+* Id of the partner account that owns the listener.
+---
+* `deliveryAttempt`
+* number
+* 1-based count of delivery attempts made for this message. Changes
+  on every retry.
+---
+* `createdAt`
+* string
+* Timestamp the notification was created, in ISO 8601.
+---
+* `sentAt`
+* string
+* Timestamp this delivery attempt was sent, in ISO 8601. Differs from
+  `createdAt` on a retry. Can help detect a replayed request — see
+  *Idempotency*.
+---
+* `keyId`
+* string
+* Id of the public key used to sign this delivery. See *Security*.
+---
+* `issuer`
+* string
+* Hostname of the Immersve environment that sent the notification —
+  `api.immersve.com` in Live, `test.immersve.com` in Test.
+---
+* `payload`
+* object
+* Topic-specific data. Its shape depends on `topic` — see *Protocol*
+  and *Available Topics*.
+{% /table %}
+
+
+## Security
+
+Every delivery is signed so you can confirm it came from Immersve and
+that the body was not altered in transit.
+
+{% table title="Webhook Signature Headers" %}
+* Header
+* Description
+---
+* <nobr>`X-Delivery-ID`</nobr>
+* Unique message id plus delivery attempt, in the form
+  `{messageId}:{deliveryAttempt}`.
+---
+* <nobr>`X-Key-ID`</nobr>
+* Id of the public key used to sign this delivery.
+---
+* <nobr>`X-Signature`</nobr>
+* Base64-encoded RSA SHA-256 signature of
+  `{deliveryId}:{keyId}:{requestBody}`.
+{% /table %}
+
+To verify a delivery:
+
+1. Fetch Immersve's public keys from
+   `https://${imsv_api_host}/.well-known/jwks.json` — an
+   unauthenticated `GET` returning a standard JWKS document.
+2. Find the key whose `kid` matches the request's `X-Key-ID` header.
+3. Reconstruct the signed string as
+   `{X-Delivery-ID}:{X-Key-ID}:{raw request body}`, using the exact
+   raw body bytes as received.
+4. Verify the base64-decoded `X-Signature` against that string with
+   the matched public key, using RSA SHA-256.
+
+```javascript {% title="Example webhook signature verification in Node.js." %}
+const crypto = require('node:crypto');
+
+async function verifyWebhookSignature(request, jwksUrl) {
+  const deliveryId = request.headers['x-delivery-id'];
+  const keyId = request.headers['x-key-id'];
+  const signature = request.headers['x-signature'];
+
+  const { keys } = await fetch(jwksUrl).then(res => res.json());
+  const jwk = keys.find(key => key.kid === keyId);
+  const publicKey = crypto.createPublicKey({ key: jwk, format: 'jwk' });
+
+  const signedString = `${deliveryId}:${keyId}:${request.rawBody}`;
+  return crypto.verify(
+    'sha256',
+    Buffer.from(signedString),
+    publicKey,
+    Buffer.from(signature, 'base64'),
+  );
+}
+```
+
+{% note %}
+Cache the JWKS response rather than fetching it on every delivery —
+keys are identified by `kid`/`keyId`, so a cached set stays valid
+until a key you haven't seen before appears.
+{% /note %}
+
+Reject any request with a missing or invalid signature, and never
+process a payload before verifying it.
+
+
+## Response
+
+A delivery attempt succeeds when your listener responds with an HTTP
+status in the `200`–`299` range within 15 seconds of the request being
+sent. Immersve does not inspect the response body and will not retry
+a delivery once it succeeds — respond with any 2xx status only once
+you are ready to consider the notification complete.
+
+Any other outcome — a non-2xx status, a connection error, or no
+response within 15 seconds — is treated as a failed delivery attempt
+and handled as described in *Delivery Guarantees*.
+
+{% warning %}
+Because there is no retry after a successful response, acknowledging
+before your own processing can guarantee completion — for example,
+before a downstream call has completed or a database write has
+committed — risks losing the notification if that work later fails.
+{% /warning %}
+
+
+## Delivery Guarantees
+
+Immersve delivers each notification at least once — the same
+notification can arrive more than once, and notifications for the
+same resource are not guaranteed to arrive in the order the underlying
+events occurred. Design your listener to tolerate both.
+
+A failed delivery attempt (see *Response*) is retried automatically
+with increasing backoff. If no attempt succeeds within 24 hours of the
+notification's creation, Immersve stops retrying and the notification
+is abandoned — check `deliveryStatus` via {% link
+endpoint="list-webhook-notifications" /%} if you suspect this
+happened.
+
+Most topics are delivered asynchronously and retried on failure as
+described above. A small number of latency-sensitive topics —
+currently {% link webhook="payment-3ds-otp" title="Payment 3DS OTP" /%}
+and the test-only `transactional-test` topic — are delivered
+synchronously, as part of the request that triggered them, and are
+not retried. Your listener must respond quickly for these so the
+in-flight transaction is not delayed.
+
+
+## Idempotency
+
+Because delivery is at-least-once, your listener must be safe to
+invoke more than once for the same event. Use the Envelope's
+`messageId` as the deduplication key — it is stable across every
+delivery attempt for a given notification. Track the `messageId`
+values you've already processed and skip repeats.
+
+`X-Delivery-ID` (and the envelope's `deliveryAttempt`) changes on
+every retry of the same notification, so don't use it alone for
+deduplication — it identifies the attempt, not the event.
+
+Retaining the `messageId` ledger indefinitely also protects against a
+captured request being replayed later — a valid signature does not
+expire, so `X-Signature` verification alone cannot detect a replay.
+If you don't retain the ledger indefinitely, you can treat an
+implausibly old `sentAt` as a secondary signal that a request may be
+a replay. Because Immersve's own retries can span up to 24 hours (see
+*Delivery Guarantees*), any threshold needs to be generous — this is
+a supplement to `messageId` deduplication, not a replacement for it.
+
+
+## Best Practices
+
+{% list %}
+  {% listitem "ShieldCheck" %}
+  **Verify Every Signature** — Always verify `X-Signature` before
+  trusting a payload; never process an unsigned or invalid request.
+  {% /listitem %}
+  {% listitem "DocumentCheck" %}
+  **Acknowledge When Complete** — Respond with a 2xx only once you
+  are ready to consider the notification complete. Immersve does not
+  retry a delivery after a successful response, so acknowledging
+  earlier risks losing the notification if your processing fails
+  afterward.
+  {% /listitem %}
+  {% listitem "DocumentDuplicate" %}
+  **Deduplicate on `messageId`** — Treat delivery as at-least-once and
+  make handlers idempotent.
+  {% /listitem %}
+  {% listitem "ArrowPathRoundedSquare" %}
+  **Tolerate Out-of-Order Delivery** — Reconcile using resource state
+  or timestamps in the payload, not the order notifications arrive.
+  {% /listitem %}
+  {% listitem "Clock" %}
+  **Respond Within Deadline** — Your listener should respond within
+  15 seconds, before the request times out. See *Response*.
+  {% /listitem %}
+  {% listitem "Beaker" %}
+  **Test Every Topic Before Going Live** — Use {% link
+  endpoint="send-webhook-test-notification" /%} to exercise your
+  listener with each topic's sample payload, including the test-only
+  `async-test` and `transactional-test` topics, before relying on it
+  in production.
+  {% /listitem %}
+  {% listitem "DocumentMagnifyingGlass" %}
+  **Check Delivery Status When in Doubt** — Use {% link
+  endpoint="list-webhook-notifications" /%} to inspect
+  `deliveryStatus` for a listener rather than assuming an event never
+  fired.
+  {% /listitem %}
+{% /list %}
+
+
+## Troubleshooting
+
+Common issues are described below by symptom, along with the likely
+cause and the fix.
+
+
+### Never Receive Notifications for a Topic
+
+- **Likely Cause** — No active Webhook Topic Subscription for that
+  topic on the listener.
+- **Fix** — Confirm subscriptions with {% link
+  endpoint="get-webhook-listener" /%}, then create one with {% link
+  endpoint="add-webhook-topic-subscription" /%}.
+
+
+### Signature Verification Fails
+
+- **Likely Cause** — Verifying against the wrong string, the wrong
+  public key, or a re-serialized body.
+- **Fix** — Verify against the exact raw request body bytes and the
+  string `{deliveryId}:{keyId}:{requestBody}`; match `X-Key-ID` to
+  the JWKS `kid`, not a cached older key.
+
+
+### The Same Notification Arrives More Than Once
+
+- **Likely Cause** — Expected at-least-once delivery.
+- **Fix** — Deduplicate on `messageId` — see *Idempotency*.
+
+
+### Notifications for One Resource Arrive Out of Order
+
+- **Likely Cause** — Expected. Delivery order is not guaranteed.
+- **Fix** — Sequence using resource state or payload timestamps, not
+  arrival order.
+
+
+### A Notification Stops Retrying and Never Arrives
+
+- **Likely Cause** — Delivery was abandoned after the 24-hour retry
+  window.
+- **Fix** — Check `deliveryStatus` via {% link
+  endpoint="list-webhook-notifications" /%} and look for non-2xx
+  responses or timeouts on earlier attempts.
+
+
+### One Topic Always Fails, Others Succeed
+
+- **Likely Cause** — Your listener doesn't have a working route at
+  `<url>/<topic>` for that specific topic.
+- **Fix** — Confirm your handler covers every subscribed topic's path
+  independently.
