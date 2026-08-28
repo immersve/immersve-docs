@@ -9,7 +9,7 @@ slug: guides/financial-reports
 In order to begin report generation for your partner integration you must make a request to Immersve specifying which reports you wish to receive.
 
 These reports are generated in `.jsonl` format covering either a daily or monthly period of time. When reports become available for download a notification
-will be sent. The details of this notification as well as the list of supported report types can be found in the {% link title="report completed webhook documentation" href="/api-reference/webhook-topics/report-completed/" /%}.
+will be sent. The details of this notification as well as the list of supported report types can be found in the {% link webhook="report-completed" title="report completed webhook documentation" /%}.
 
 Enum values listed in this guide may be extended in future releases. Parsing code should treat unknown values as informational rather than fail on them.
 
@@ -96,7 +96,7 @@ Enum values:
 
 ### Payment Reporting
 Payment reports follow the same principle. They provide payment event line items with a snapshot of the payment state at each stage of its lifecycle.
-This model is also consistent with the {% link title="payment updated webhook payload" href="/api-reference/webhook-topics/payment-updated/" /%}.
+This model is also consistent with the {% link webhook="payment-updated" title="payment updated webhook payload" /%}.
 
 1. **Payment Report Line Item**
 ```json {% title="Example payment report pretty-printed line item." %}
@@ -230,7 +230,7 @@ You can choose to receive both, one or none of these time frames for each given 
 
 ## Webhook
 To be notified when a report is ready for download, subscribe to the `report-completed` webhook topic.
-Refer to the {% link title="report completed webhook documentation" href="/api-reference/webhook-topics/report-completed/" /%} for full payload details and list of available report types.
+Refer to the {% link webhook="report-completed" title="report completed webhook documentation" /%} for full payload details and list of available report types.
 
 ## Download
 To download a report, call the {% link title="report download API" href="/api-reference/create-report-download-url/" /%} using the `reportId` from the webhook payload as the path parameter.
