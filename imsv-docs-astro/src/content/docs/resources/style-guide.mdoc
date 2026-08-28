@@ -594,6 +594,16 @@ resource type.
   the OpenAPI `operationId`; the rendered link text is the
   endpoint's title.
 ---
+* Webhook Topic Link
+* Topic Title
+* `{% link webhook="kyc-succeeded" /%}` — the `webhook` value is
+  the Webhook Topic's OpenAPI `operationId`, which is not always
+  identical to the topic name sent on the wire (see *Referring to
+  Endpoints*). Pass `title` explicitly for topics whose name is an
+  acronym or abbreviation (`KYC`, `XPay`, `3DS`) — the rendered
+  title is a naive casing of the `operationId` and does not know
+  about them.
+---
 * External Link
 * Href URL
 * `{% link href="https://www.postman.com/" /%}`

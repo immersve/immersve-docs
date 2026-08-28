@@ -1,12 +1,14 @@
 ---
 import EndpointLink from '../models/EndpointLink.mjs';
 import PageLink from '../models/PageLink.mjs';
+import WebhookLink from '../models/WebhookLink.mjs';
 
 interface Props {
   href: string;
   title: string;
   page: string;
   endpoint?: string;
+  webhook?: string;
 }
 
 export class SimpleLink {
@@ -18,12 +20,15 @@ export class SimpleLink {
   }
 }
 
-export async function makeLink({ href, title, page, endpoint }: Props) {
+export async function makeLink({ href, title, page, endpoint, webhook }: Props) {
   if (page) {
     return await PageLink.forDocsContentId(page);
   }
   if (endpoint) {
     return new EndpointLink(endpoint);
+  }
+  if (webhook) {
+    return new WebhookLink(webhook);
   }
   return new SimpleLink(href);
 }
