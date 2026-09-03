@@ -1,6 +1,11 @@
 tags: [payments]
+# summary intentionally keeps "Challenge" for readability; operationId and
+# topic are the pair that must stay aligned (they're what's referenced by
+# consumers and by spec-generated links/tables), so this is the one webhook
+# where the summary diverges from operationId/topic -- not the other way
+# around.
 summary: Payment 3DS SCA Challenge
-operationId: payment-3ds-sca-challenge
+operationId: payment-3ds-sca
 description: |
   Triggered when a 3D Secure (3DS) Strong Customer Authentication (SCA) challenge is
   initiated for a card transaction. Subscribers should use this event to present the
