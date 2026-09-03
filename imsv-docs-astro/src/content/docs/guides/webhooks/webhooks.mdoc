@@ -220,13 +220,6 @@ Any other outcome — a non-2xx status, a connection error, or no
 response within 15 seconds — is treated as a failed delivery attempt
 and handled as described in *Delivery Guarantees*.
 
-{% warning %}
-Because there is no retry after a successful response, acknowledging
-before your own processing can guarantee completion — for example,
-before a downstream call has completed or a database write has
-committed — risks losing the notification if that work later fails.
-{% /warning %}
-
 
 ## Delivery Guarantees
 
@@ -243,12 +236,12 @@ endpoint="list-webhook-notifications" /%} if you suspect this
 happened.
 
 Most topics are delivered asynchronously and retried on failure as
-described above. A small number of latency-sensitive topics —
-currently {% link webhook="payment-3ds-otp" title="Payment 3DS OTP" /%}
-and the test-only `transactional-test` topic — are delivered
-synchronously, as part of the request that triggered them, and are
-not retried. Your listener must respond quickly for these so the
-in-flight transaction is not delayed.
+described above. A small number of topics — currently {% link
+webhook="payment-3ds-otp" title="Payment 3DS OTP" /%} and the
+test-only `transactional-test` topic — are delivered synchronously
+instead of through the retry queue, and a failed attempt is not
+retried. Because there is no retry safety net for these, make sure
+your listener for these topics responds reliably and promptly.
 
 
 ## Idempotency
