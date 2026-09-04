@@ -86,8 +86,8 @@ endpoint, so ensure a phone number and email address are recorded against the
 cardholder account before provisioning.
 
 By default, Immersve delivers the OTP to the chosen destination. To deliver the
-OTP from your own sender instead, subscribe to the {% link title="XPay Card Load OTP"
-endpoint="webhook-topics/xpay-card-load-otp" /%} webhook. The webhook payload
-includes the verification code and the delivery option selected by the
-cardholder; your handler is responsible for sending the code to the cardholder
-and returning the delivery channel and destination it used.
+OTP from your own sender instead, subscribe to the {% link
+webhook="xpay-card-load-otp" title="XPay Card Load OTP" /%} webhook. The
+webhook payload includes the verification code and the delivery option
+selected by the cardholder; your handler is responsible for sending the code
+to the cardholder and returning the delivery channel and destination it used.

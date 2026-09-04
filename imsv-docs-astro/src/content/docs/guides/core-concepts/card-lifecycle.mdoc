@@ -69,7 +69,7 @@ reissued, it cannot be reissued again.
 
 ### Subscribe to webhooks
 
-An {% link title="Card Expiry Upcoming" endpoint="webhook-topics/card-expiry-upcoming" /%}
+An {% link webhook="card-expiry-upcoming" /%}
 webhook is sent when a card is approaching its expiry date. Integrators are
 encouraged to communicate with the cardholder the upcoming card expiry and to
 update their payment details with merchants who do not participate in automatic
@@ -89,26 +89,26 @@ cardholder and require activation. See the {% link page="guides/issue-a-physical
 guide on how to activate a physical card.
 
 Once the successor card is activated,
-a {% link title="Card Reissue Succeeded" endpoint="webhook-topics/card-reissue-succeeded" /%}
+a {% link webhook="card-reissue-succeeded" /%}
 webhook is sent and the predecessor card is cancelled.
 If reissuance fails,
-a {% link title="Card Reissue Failed" endpoint="webhook-topics/card-reissue-failed" /%}
+a {% link webhook="card-reissue-failed" /%}
 webhook is sent and the predecessor card remains active until it is expired or canceled.
 If reissuance fails, attempt to reissue the card again.
 
 ## Webhooks
 Each card state transition is associated with a webhook topic:
 
-- <wbr/>{% link title="Card Created" endpoint="webhook-topics/card-created" /%}
-- <wbr/>{% link title="Card Shipped" endpoint="webhook-topics/card-shipped" /%}
-- <wbr/>{% link title="Card Tracking Updated" endpoint="webhook-topics/card-tracking-updated" /%}
-- <wbr/>{% link title="Card Activated" endpoint="webhook-topics/card-activated" /%}
-- <wbr/>{% link title="Card Block Created" endpoint="webhook-topics/card-block-created" /%}
-- <wbr/>{% link title="Card Block Released" endpoint="webhook-topics/card-block-released" /%}
-- <wbr/>{% link title="Card Canceled" endpoint="webhook-topics/card-canceled" /%}
-- <wbr/>{% link title="Card Expiry Upcoming" endpoint="webhook-topics/card-expiry-upcoming" /%}
-- <wbr/>{% link title="Card Reissue Succeeded" endpoint="webhook-topics/card-reissue-succeeded" /%}
-- <wbr/>{% link title="Card Reissue Failed" endpoint="webhook-topics/card-reissue-failed" /%}
+- <wbr/>{% link webhook="card-created" /%}
+- <wbr/>{% link webhook="card-shipped" /%}
+- <wbr/>{% link webhook="card-tracking-updated" /%}
+- <wbr/>{% link webhook="card-activated" /%}
+- <wbr/>{% link webhook="card-block-created" /%}
+- <wbr/>{% link webhook="card-block-released" /%}
+- <wbr/>{% link webhook="card-canceled" /%}
+- <wbr/>{% link webhook="card-expiry-upcoming" /%}
+- <wbr/>{% link webhook="card-reissue-succeeded" /%}
+- <wbr/>{% link webhook="card-reissue-failed" /%}
 
 See the {% link page="guides/configuring-webhook-listeners" /%}
 guide for more information on how to subscribe to webhooks and receive notifications
