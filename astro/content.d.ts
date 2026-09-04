@@ -517,6 +517,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/webhooks/webhooks.mdoc": {
+	id: "guides/webhooks/webhooks.mdoc";
+  slug: "guides/webhooks";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "index.mdoc": {
 	id: "index.mdoc";
   slug: "index";
