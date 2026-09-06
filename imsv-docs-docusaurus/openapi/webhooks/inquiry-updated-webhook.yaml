@@ -68,7 +68,12 @@ requestBody:
 
                           This set is non-exhaustive and may grow over time, so
                           consumers should tolerate unrecognised values. The
-                          current value is `account-status-inquiry`.
+                          current values are `account-status-inquiry` and
+                          `balance-inquiry`.
+
+                          Balance inquiries are not currently supported and are
+                          always declined with the result code
+                          `transaction-not-permitted-to-cardholder`.
                       liveness:
                         type: string
                         enum: ["live", "test"]
