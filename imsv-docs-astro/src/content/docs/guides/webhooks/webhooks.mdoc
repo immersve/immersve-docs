@@ -235,13 +235,29 @@ is abandoned — check `deliveryStatus` via {% link
 endpoint="list-webhook-notifications" /%} if you suspect this
 happened.
 
-Most topics are delivered asynchronously and retried on failure as
-described above. A small number of topics — currently {% link
-webhook="payment-3ds-otp" title="Payment 3DS OTP" /%} and the
-test-only `transactional-test` topic — are delivered synchronously
-instead of through the retry queue, and a failed attempt is not
-retried. Because there is no retry safety net for these, make sure
-your listener for these topics responds reliably and promptly.
+### Delivery Modes
+
+Every topic uses one of two delivery modes.
+
+{% table title="Webhook Delivery Modes" %}
+* Mode
+* Topics
+* Retried on Failure
+---
+* Asynchronous (default)
+* All topics not listed below
+* Yes — see above
+---
+* Synchronous
+* {% link webhook="payment-3ds-otp" title="Payment 3DS OTP" /%} and
+  the test-only `transactional-test` topic
+* No
+{% /table %}
+
+Synchronous topics are delivered directly, outside the retry queue
+described above, as part of the request that triggered them. Because
+there is no retry safety net for these, make sure your listener for
+these topics responds reliably and promptly.
 
 
 ## Idempotency
