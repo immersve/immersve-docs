@@ -49,6 +49,9 @@ post:
 
         **FUNDING_STRATEGY_NOT_SUPPORTED**
         Funding strategy is not supported.
+
+        **CARDHOLDER_NOT_PERMITTED_TO_WITHDRAW**
+        Cardholder is not permitted to withdraw funds.
       content:
         application/json:
           schema:
