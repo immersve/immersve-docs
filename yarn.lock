@@ -442,7 +442,7 @@ __metadata:
     astro: "npm:^4.16.18"
     astro-expressive-code: "npm:^0.35.3"
     bcp-47: "npm:^2.1.0"
-    hast-util-from-html: "npm:^2.0.1"
+    hast-util-from-html: "npm:^2.0.3"
     hast-util-select: "npm:^6.0.2"
     hast-util-to-string: "npm:^3.0.1"
     hastscript: "npm:^9.0.0"
