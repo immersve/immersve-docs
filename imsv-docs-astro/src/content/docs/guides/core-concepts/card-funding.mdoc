@@ -14,7 +14,8 @@ or load limits are exceeded. AML/CFT rules can dictate that the funds should not
 be included in the balance.
 
 A card will not authorize transactions without an associated Funding Source. You
-must reference a Funding Source when creating a card.
+must reference a Funding Source when creating a card, and you can point the card
+at a different Funding Source later without reissuing it.
 
 
 ## Authentication
@@ -30,6 +31,13 @@ endpoint="create-funding-source" /%} endpoint. The
 funding wallet may be an EOA or a smart contract implementing the ERC-1271
 interface.
 
+
+## Changing a Card's Funding Source
+
+A card's Funding Source is not fixed at creation. The {% link
+endpoint="set-card-funding-sources" /%} endpoint points an existing card
+at a different Funding Source owned by the same cardholder, without
+reissuing the card.
 
 ## Depositing Funds
 
