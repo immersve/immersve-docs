@@ -1,0 +1,44 @@
+post:
+  tags:
+    - card
+  summary: Set Card Funding Sources
+  operationId: set-card-funding-sources
+  description: |
+    Point an existing card at a different Funding Source.
+
+    Submit exactly one Funding Source ID. The submitted list replaces
+    the card's existing Funding Sources rather than adding to them.
+
+  parameters:
+    - $ref: "../../models/card-id-path.yaml"
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./models/set-card-funding-sources-request.yaml"
+    required: true
+  responses:
+    "200":
+      description: Successful operation
+    "400":
+      description: Request fields are invalid
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-400.yaml"
+    "403":
+      description: |
+        User is not allowed to perform the action with the reason stated in the `message`
+
+        **FORBIDDEN**
+        Insufficient permissions to perform the action, or the card or funding source ID was not found.
+
+        **CARD_SET_FUNDING_SOURCES_NOT_ALLOWED**
+        Setting Funding Sources is not enabled for the account or the card.
+
+        **CARD_FUNDING_SOURCE_ACCOUNT_MISMATCH**
+        The Funding Source belongs to a different account than the card.
+      content:
+        application/json:
+          schema:
+            $ref: "../../models/api-error-403.yaml"

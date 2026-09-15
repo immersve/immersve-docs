@@ -14,7 +14,8 @@ or load limits are exceeded. AML/CFT rules can dictate that the funds should not
 be included in the balance.
 
 A card will not authorize transactions without an associated Funding Source. You
-must reference a Funding Source when creating a card.
+must reference a Funding Source when creating a card, and you can point the card
+at a different Funding Source later without reissuing it.
 
 
 ## Authentication
@@ -30,6 +31,33 @@ endpoint="create-funding-source" /%} endpoint. The
 funding wallet may be an EOA or a smart contract implementing the ERC-1271
 interface.
 
+
+## Changing a Card's Funding Source
+
+Call the {% link endpoint="set-card-funding-sources" /%} endpoint to point an
+existing card at a different Funding Source owned by the same cardholder.
+
+The change applies to that card alone. Other cards belonging to the cardholder
+keep the Funding Sources they are already linked to.
+
+### Spending Prerequisites
+
+Spending prerequisites are satisfied per Funding Source. Changing a card's Funding Source
+carries nothing over from the previous one. Call the {% link
+endpoint="get-spending-prerequisites" /%} endpoint to retrieve spending prerequisites. A card pointed at a Funding Source with outstanding prerequisites cannot
+authorize transactions.
+
+### Reissuance Chains
+
+Reissuance links a successor card to its predecessor in a chain sharing a
+`seriesId`, described in the {% link page="guides/card-lifecycle" /%} guide.
+Each card in a chain holds its own Funding Sources, so a change made to one card
+does not propagate along the chain.
+
+A successor card takes its Funding Sources from the predecessor card at the time
+the {% link endpoint="reissue-card" /%} endpoint is called. Changing the
+predecessor's Funding Source after that point leaves the successor card on the
+Funding Source it was created with.
 
 ## Depositing Funds
 
