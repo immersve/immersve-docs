@@ -1,0 +1,4 @@
+---
+title: vmUSD
+address: "0x1C8a336051D2024E318A229d01F9F6CF96efD316"
+---
