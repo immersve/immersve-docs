@@ -673,16 +673,16 @@ declare module 'astro:content' {
   collection: "funding-types";
   data: InferEntrySchema<"funding-types">
 } & { render(): Render[".md"] };
-"custodial-usdc.md": {
-	id: "custodial-usdc.md";
-  slug: "custodial-usdc";
+"custodial-test-usdc.md": {
+	id: "custodial-test-usdc.md";
+  slug: "custodial-test-usdc";
   body: string;
   collection: "funding-types";
   data: InferEntrySchema<"funding-types">
 } & { render(): Render[".md"] };
-"ethereum-sepolia-usdc-universal-evm-test.md": {
-	id: "ethereum-sepolia-usdc-universal-evm-test.md";
-  slug: "ethereum-sepolia-usdc-universal-evm-test";
+"custodial-usdc.md": {
+	id: "custodial-usdc.md";
+  slug: "custodial-usdc";
   body: string;
   collection: "funding-types";
   data: InferEntrySchema<"funding-types">
