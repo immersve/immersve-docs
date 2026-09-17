@@ -1,0 +1,13 @@
+type: object
+required:
+  - fundingSourceIds
+properties:
+  fundingSourceIds:
+    type: array
+    description: |
+      Funding sources to set on the card. Accepts exactly one entry;
+      a request with none or more than one is rejected.
+    items:
+      type: string
+    example:
+      - 057aa15913a57f50577234c8426534c0

@@ -105,6 +105,8 @@ paths:
     $ref: "./endpoints/cards/card-freeze.yaml"
   "/api/cards/{cardId}/unfreeze":
     $ref: "./endpoints/cards/card-unfreeze.yaml"
+  "/api/cards/{cardId}/set-funding-sources":
+    $ref: "./endpoints/cards/card-set-funding-sources.yaml"
   "/api/cards/{cardId}/pan-token":
     $ref: "./endpoints/cards/card-pan-token.yaml"
   "/api/cards/{cardId}/provision/apple-pay":

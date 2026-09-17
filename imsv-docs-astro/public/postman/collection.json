@@ -1715,6 +1715,47 @@
 					"response": []
 				},
 				{
+					"name": "Set card funding sources",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fundingSourceIds\": [\"{{fundingSourceId}}\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/cards/:cardId/set-funding-sources",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"cards",
+								":cardId",
+								"set-funding-sources"
+							],
+							"variable": [
+								{
+									"key": "cardId",
+									"value": "{{createdCardId}}",
+									"description": "id of the card to set the funding sources for"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get a card token",
 					"event": [
 						{
