@@ -496,6 +496,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdoc"] };
+"guides/supported-tokens/vmusd.mdoc": {
+	id: "guides/supported-tokens/vmusd.mdoc";
+  slug: "guides/vmusd";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdoc"] };
 "guides/testing/obtaining-test-tokens.mdoc": {
 	id: "guides/testing/obtaining-test-tokens.mdoc";
   slug: "guides/obtaining-test-tokens";
@@ -694,6 +701,13 @@ declare module 'astro:content' {
   collection: "funding-types";
   data: InferEntrySchema<"funding-types">
 } & { render(): Render[".md"] };
+"monad-vmusd-universal-evm.md": {
+	id: "monad-vmusd-universal-evm.md";
+  slug: "monad-vmusd-universal-evm";
+  body: string;
+  collection: "funding-types";
+  data: InferEntrySchema<"funding-types">
+} & { render(): Render[".md"] };
 "polygon-amoy-usdc-universal-evm-test.md": {
 	id: "polygon-amoy-usdc-universal-evm-test.md";
   slug: "polygon-amoy-usdc-universal-evm-test";
@@ -832,6 +846,13 @@ declare module 'astro:content' {
 "usdt-bsc-testnet.md": {
 	id: "usdt-bsc-testnet.md";
   slug: "usdt-bsc-testnet";
+  body: string;
+  collection: "network-tokens";
+  data: InferEntrySchema<"network-tokens">
+} & { render(): Render[".md"] };
+"vmusd-monad-mainnet.md": {
+	id: "vmusd-monad-mainnet.md";
+  slug: "vmusd-monad-mainnet";
   body: string;
   collection: "network-tokens";
   data: InferEntrySchema<"network-tokens">
