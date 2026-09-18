@@ -1,0 +1,4 @@
+---
+protocol: custodial
+token: usdc
+---

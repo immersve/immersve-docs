@@ -188,9 +188,9 @@ describe('models', () => {
 
       test('should parse universal-evm funding type', async () => {
         const registry = await ContentRegistry.create();
-        const content = await getEntry('funding-types', 'ethereum-sepolia-usdc-universal-evm-test');
+        const content = await getEntry('funding-types', 'base-sepolia-usdc-universal-evm');
         const fundingType = FundingType.fromContent({ registry, content });
-        expect(fundingType.network).toEqual(registry.getNetwork('ethereum-sepolia'));
+        expect(fundingType.network).toEqual(registry.getNetwork('base-sepolia'));
         expect(fundingType.token.name).toEqual('usdc');
         expect(fundingType.token).toEqual(registry.getToken('usdc'));
         expect(fundingType.protocol.name).toEqual('universal-evm');
@@ -306,21 +306,21 @@ describe('models', () => {
 
       test('funding types are registered by name', async () => {
         const registry = await ContentRegistry.create();
-        const fundingType = registry.getFundingType('ethereum-sepolia-usdc-universal-evm-test');
-        expect(fundingType.name).toEqual('ethereum-sepolia-usdc-universal-evm-test');
+        const fundingType = registry.getFundingType('base-sepolia-usdc-universal-evm');
+        expect(fundingType.name).toEqual('base-sepolia-usdc-universal-evm');
       });
 
       test('funding types are linked from networks', async () => {
         const registry = await ContentRegistry.create();
-        const network = registry.getNetwork('ethereum-sepolia');
-        const fundingType = registry.getFundingType('ethereum-sepolia-usdc-universal-evm-test');
+        const network = registry.getNetwork('base-sepolia');
+        const fundingType = registry.getFundingType('base-sepolia-usdc-universal-evm');
         expect(network.fundingTypes).toContain(fundingType);
       });
 
       test('funding types are linked from tokens', async () => {
         const registry = await ContentRegistry.create();
         const token = registry.getToken('usdc');
-        const fundingType = registry.getFundingType('ethereum-sepolia-usdc-universal-evm-test');
+        const fundingType = registry.getFundingType('base-sepolia-usdc-universal-evm');
         expect(token.fundingTypes).toContain(fundingType);
       });
 

@@ -41,3 +41,10 @@ units (cents).
 |  Fiat Amount | Fiat Minor Units | Token Minor Units |
 |-|-|-|
 | $5.00 USD | 500 USD cents | 5000000000000000000 Binance USDT |
+
+## Converting MetaMask vmUSD to USD
+
+vmUSD is not pegged to USD. One vmUSD is worth the vault's current share price
+in mUSD, which is itself pegged 1:1 to USD, so the conversion changes as the
+vault earns yield. vmUSD has six decimals, so at a share price of 1.012677 mUSD
+per vmUSD, $5.00 USD is 4937408 vmUSD minor units.

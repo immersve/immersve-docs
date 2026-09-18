@@ -24,6 +24,8 @@
   "resolutions": {
     "lodash@4.17.21": "4.18.1",
     "js-yaml@4.1.0": "4.3.2",
-    "tar@^7.5.4": "7.5.22"
+    "tar@^7.5.4": "7.5.22",
+    "minimatch@3.1.2": "3.1.5",
+    "serialize-javascript": "^7.0.3"
   }
 }
