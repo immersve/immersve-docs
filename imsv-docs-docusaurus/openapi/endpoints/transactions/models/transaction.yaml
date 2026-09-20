@@ -109,16 +109,13 @@ properties:
       inserted, swiped, or tapped at a terminal, including a phone or watch
       tap and a manually keyed card at an attended terminal. `false` for
       e-commerce, in-app, mail order, and telephone order payments, and for a
-      merchant charging a card it has stored on file. Reflects the message
-      that created the payment; later clearings and incremental authorizations
-      do not change it. Absent on payments created before this field was
-      introduced.
+      merchant charging a card it has stored on file.
     example: true
   token:
     type: object
     description: >-
       Present when the payment was made with a network token instead of the
-      card's own number, for example from a digital wallet or a merchant's
+      card's own PAN, for example from a digital wallet or a merchant's
       stored credential. Absent when the card itself was used.
     required:
       - requestor
@@ -126,10 +123,10 @@ properties:
       requestor:
         type: string
         description: >-
-          Who the token was issued to: `apple-pay`, `google-pay`,
-          `samsung-pay`, `merchant` for a card the merchant has stored on
-          file, or `other` for a token requestor Immersve does not name.
-          Clients must tolerate unknown values.
+          Who the token was issued to: `apple-pay`, `google-pay`, `merchant`
+          for a card the merchant has stored on file, or `other` for a token
+          requestor Immersve does not name. Clients must tolerate unknown
+          values.
         example: apple-pay
   securityChallenge:
     type: object

@@ -48,7 +48,7 @@ the settlement process nor have visibility of it.
 
 Card presentation describes how a card was presented to the merchant when a
 payment was authorized: at a terminal or remotely, and with the card's own
-number or with a network token issued to a digital wallet or a merchant. Two
+PAN or with a network token issued to a digital wallet or a merchant. Two
 attributes on each Transaction record it. The same attributes are sent on
 custodial payment notifications, as `cardPresent` and `tokenRequestor`.
 
@@ -65,17 +65,12 @@ custodial payment notifications, as `cardPresent` and `tokenRequestor`.
 ---
 * {% wrap %}token.requestor{% /wrap %}
 * Who a network token was issued to, present only when a token was used
-  instead of the card's own number: `apple-pay`, `google-pay`, `samsung-pay`,
-  `merchant` for a card the merchant has stored on file, or `other` for a
-  token requestor Immersve does not name. Clients must tolerate unknown
-  values.
+  instead of the card's own PAN: `apple-pay`, `google-pay`, `merchant` for a
+  card the merchant has stored on file, or `other` for a token requestor
+  Immersve does not name. Clients must tolerate unknown values.
 {% /table %}
 
-Both attributes reflect the authorization that created the payment. A later
-clearing or incremental authorization does not change them, so a hotel that
-authorizes at the front desk and later sends a card-not-present incremental
-leaves the payment marked card present. Payments created before the attributes
-were introduced have neither.
+Both attributes reflect the authorization that created the payment.
 
 The payment network reports a contactless plastic tap and a wallet tap with
 the same entry mode; only the token tells them apart. Combine the attributes
@@ -95,9 +90,9 @@ with the `type` of the Card to identify the presentation.
 * Phone or watch tap at a terminal
 * physical or virtual
 * true
-* apple-pay, google-pay, or samsung-pay
+* apple-pay or google-pay
 ---
-* Online checkout with the card number
+* Online checkout with the card PAN
 * physical or virtual
 * false
 * absent
@@ -105,7 +100,7 @@ with the `type` of the Card to identify the presentation.
 * Online or in-app checkout with a wallet
 * physical or virtual
 * false
-* apple-pay, google-pay, or samsung-pay
+* apple-pay or google-pay
 ---
 * Merchant charging a stored card
 * physical or virtual
