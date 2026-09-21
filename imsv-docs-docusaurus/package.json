@@ -18,7 +18,7 @@
   "dependencies": {
     "@docusaurus/core": "^3.8.1",
     "@docusaurus/preset-classic": "^3.8.1",
-    "@mdx-js/react": "^3.0.1",
+    "@mdx-js/react": "^3.1.1",
     "clsx": "^2.1.1",
     "docusaurus-lunr-search": "^3.4.0",
     "docusaurus-plugin-openapi-docs": "patch:docusaurus-plugin-openapi-docs@npm%3A4.5.1#~/.yarn/patches/docusaurus-plugin-openapi-docs-npm-4.5.1-d44e599936.patch",
