@@ -42,3 +42,73 @@ process of paying out cleared transactions is referred to as Settlement.
 Settlements are conducted by Immersve at a cadence as instructed by
 Mastercard. An Immersve partner organisation does not actively participate in
 the settlement process nor have visibility of it.
+
+
+## Card Presentation
+
+Card presentation describes how a card was presented to the merchant when a
+payment was authorized: at a terminal or remotely, and with the card's own
+PAN or with a network token issued to a digital wallet or a merchant. Two
+attributes on each Transaction record it. The same attributes are sent on
+custodial payment notifications, as `cardPresent` and `tokenRequestor`.
+
+{% table title="Card Presentation Attributes" %}
+* Attribute
+* Description
+---
+* {% wrap %}cardPresent{% /wrap %}
+* Whether the card was at the point of sale, as classified by the payment
+  network. `true` for a card inserted, swiped, or tapped at a terminal,
+  including a phone or watch tap and a manually keyed card at an attended
+  terminal. `false` for e-commerce, in-app, mail order, and telephone order
+  payments, and for a merchant charging a card it has stored on file.
+---
+* {% wrap %}token.requestor{% /wrap %}
+* Who a network token was issued to, present only when a token was used
+  instead of the card's own PAN: `apple-pay`, `google-pay`, `merchant` for a
+  card the merchant has stored on file, or `other` for a token requestor
+  Immersve does not name. Clients must tolerate unknown values.
+{% /table %}
+
+Both attributes reflect the authorization that created the payment.
+
+The payment network reports a contactless plastic tap and a wallet tap with
+the same entry mode; only the token tells them apart. Combine the attributes
+with the `type` of the Card to identify the presentation.
+
+{% table title="Common Card Presentations" %}
+* Presentation
+* Card Type
+* {% wrap %}cardPresent{% /wrap %}
+* {% wrap %}token.requestor{% /wrap %}
+---
+* Plastic card at a terminal
+* physical
+* true
+* absent
+---
+* Phone or watch tap at a terminal
+* physical or virtual
+* true
+* apple-pay or google-pay
+---
+* Online checkout with the card PAN
+* physical or virtual
+* false
+* absent
+---
+* Online or in-app checkout with a wallet
+* physical or virtual
+* false
+* apple-pay or google-pay
+---
+* Merchant charging a stored card
+* physical or virtual
+* false
+* merchant
+{% /table %}
+
+The attributes are returned by the {% link endpoint="list-transactions" /%}
+and {% link endpoint="get-transaction" /%} endpoints. Payment notifications
+carry them too. See the {% link page="guides/custodial-funding-protocol" /%}
+guide.

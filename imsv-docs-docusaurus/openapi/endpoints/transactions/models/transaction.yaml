@@ -101,6 +101,33 @@ properties:
     type: string
     description: The ID of the related payment transaction, if applicable
     example: "b297658d0cbac11"
+  cardPresent:
+    type: boolean
+    description: >-
+      Whether the card was at the point of sale when the payment was
+      authorized, as classified by the payment network. `true` for a card
+      inserted, swiped, or tapped at a terminal, including a phone or watch
+      tap and a manually keyed card at an attended terminal. `false` for
+      e-commerce, in-app, mail order, and telephone order payments, and for a
+      merchant charging a card it has stored on file.
+    example: true
+  token:
+    type: object
+    description: >-
+      Present when the payment was made with a network token instead of the
+      card's own PAN, for example from a digital wallet or a merchant's
+      stored credential. Absent when the card itself was used.
+    required:
+      - requestor
+    properties:
+      requestor:
+        type: string
+        description: >-
+          Who the token was issued to: `apple-pay`, `google-pay`, `merchant`
+          for a card the merchant has stored on file, or `other` for a token
+          requestor Immersve does not name. Clients must tolerate unknown
+          values.
+        example: apple-pay
   securityChallenge:
     type: object
     description: |

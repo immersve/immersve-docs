@@ -478,6 +478,23 @@ must tolerate the addition of unknown message attributes.
   Clients must tolerate unknown kinds, which include the following: `atm-withdrawal`.
 
 ---
+* {% wrap %} cardPresent {% /wrap %}
+* true
+* Whether the card was at the point of sale when the payment was authorized,
+  as classified by the payment network. `true` for a card inserted, swiped, or
+  tapped at a terminal, including a phone or watch tap. `false` for e-commerce,
+  in-app, and other card-not-present payments.
+
+---
+* {% wrap %} tokenRequestor {% /wrap %}
+* apple-pay
+* If present, the payment was made with a network token instead of the card's
+  own PAN, and this names who the token was issued to: `apple-pay`,
+  `google-pay`, `merchant` for a card the merchant has stored on file, or
+  `other`. Absent when the card itself was used. Clients must tolerate unknown
+  values.
+
+---
 * {% wrap %} fundingSourceExternalId {% /wrap %}
 * abc123
 * The custodial account external reference stored on the Immersve funding

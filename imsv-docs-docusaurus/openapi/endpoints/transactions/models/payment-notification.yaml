@@ -65,6 +65,7 @@ properties:
           merchantName: "1 Queen Street"
           merchantTerminalId: "12345678"
           merchantCategoryCode: "1234"
+          cardPresent: true
           networkMessageRef: "010093436710290302140000012345600000000000"
       requestUrl:
         type: string
