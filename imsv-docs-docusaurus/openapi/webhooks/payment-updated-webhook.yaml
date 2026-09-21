@@ -224,6 +224,41 @@ requestBody:
                             example: "d44d045826d4484c9b7f1e3a5c8d2f6b"
                             description: |
                               Card identifier.
+                          type:
+                            type: string
+                            enum: ["virtual", "physical"]
+                            example: "physical"
+                            description: |
+                              Whether the card was issued as `physical` or `virtual`.
+                      cardPresent:
+                        type: boolean
+                        example: true
+                        description: |
+                          Whether the card was at the point of sale when the payment was
+                          authorized, as classified by the payment network. `true` for a
+                          card inserted, swiped, or tapped at a terminal, including a
+                          phone or watch tap and a manually keyed card at an attended
+                          terminal. `false` for e-commerce, in-app, mail order, and
+                          telephone order payments, and for a merchant charging a card it
+                          has stored on file.
+                      token:
+                        type: object
+                        required:
+                          - requestor
+                        description: |
+                          Present when the payment was made with a network token instead
+                          of the card's own PAN, for example from a digital wallet or a
+                          merchant's stored credential. Absent when the card itself was
+                          used.
+                        properties:
+                          requestor:
+                            type: string
+                            example: "apple-pay"
+                            description: |
+                              Who the token was issued to: `apple-pay`, `google-pay`,
+                              `merchant` for a card the merchant has stored on file, or
+                              `other` for a token requestor Immersve does not name.
+                              Clients must tolerate unknown values.
                       networkReference:
                         type: string
                         example: "MPGCCRJ7C0113"

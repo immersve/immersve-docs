@@ -47,14 +47,19 @@ the settlement process nor have visibility of it.
 ## Card Presentation
 
 Card presentation describes how a card was presented to the merchant when a
-payment was authorized: at a terminal or remotely, and with the card's own
-PAN or with a network token issued to a digital wallet or a merchant. Two
-attributes on each Transaction record it. The same attributes are sent on
-custodial payment notifications, as `cardPresent` and `tokenRequestor`.
+payment was authorized: a physical or virtual card, at a terminal or remotely,
+and with the card's own PAN or with a network token issued to a digital wallet
+or a merchant. Three attributes on each Transaction record it. The same
+attributes are sent on custodial payment notifications, as `cardType`,
+`cardPresent`, and `tokenRequestor`.
 
 {% table title="Card Presentation Attributes" %}
 * Attribute
 * Description
+---
+* {% wrap %}cardType{% /wrap %}
+* Whether the card was issued as `physical` or `virtual`, as on the Card's
+  `type`.
 ---
 * {% wrap %}cardPresent{% /wrap %}
 * Whether the card was at the point of sale, as classified by the payment
@@ -70,15 +75,16 @@ custodial payment notifications, as `cardPresent` and `tokenRequestor`.
   Immersve does not name. Clients must tolerate unknown values.
 {% /table %}
 
-Both attributes reflect the authorization that created the payment.
+`cardPresent` and `token` reflect the network message that created the
+payment.
 
 The payment network reports a contactless plastic tap and a wallet tap with
-the same entry mode; only the token tells them apart. Combine the attributes
-with the `type` of the Card to identify the presentation.
+the same entry mode; only the token tells them apart. Combine the three
+attributes to identify the presentation.
 
 {% table title="Common Card Presentations" %}
 * Presentation
-* Card Type
+* {% wrap %}cardType{% /wrap %}
 * {% wrap %}cardPresent{% /wrap %}
 * {% wrap %}token.requestor{% /wrap %}
 ---
@@ -109,6 +115,7 @@ with the `type` of the Card to identify the presentation.
 {% /table %}
 
 The attributes are returned by the {% link endpoint="list-transactions" /%}
-and {% link endpoint="get-transaction" /%} endpoints. Payment notifications
-carry them too. See the {% link page="guides/custodial-funding-protocol" /%}
-guide.
+and {% link endpoint="get-transaction" /%} endpoints and sent on the
+{% link webhook="payment-updated" /%} webhook, where the card type is
+`card.type`. Payment notifications carry them too. See the
+{% link page="guides/custodial-funding-protocol" /%} guide.
