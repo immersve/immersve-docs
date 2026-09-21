@@ -1,0 +1,43 @@
+---
+// Starlight `PageFrame` override: the body layout around the header, the
+// sidebar and the main content. Starlight's Page.astro renders <html>,
+// <head> and <body> itself and passes the Header and Sidebar overrides in
+// as named slots; TwoColumnContent (main content + table of contents) comes
+// through the default slot. The navigation is rendered here from the route
+// props rather than through the `sidebar` slot, because Starlight withholds
+// that slot on pages it considers sidebar-less (the splash-template 404
+// page) while this layout shows the navigation on every page.
+import type { Props } from '@astrojs/starlight/props';
+import Navigation from './Navigation.astro';
+---
+
+<div class="flex w-full flex-col">
+      <slot name="header" />
+
+      <div class="relative mx-auto flex w-full flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
+        <div class="hidden lg:relative lg:block lg:flex-none
+          border-r border-zinc-200 dark:border-zinc-600">
+          <div class="sticky top-[4.75rem] -ml-0.5 h-[calc(100vh-4.75rem)] w-64
+            overflow-y-auto overflow-x-hidden no-scrollbar
+            py-12 pl-0.5 pr-6 xl:w-72">
+            <Navigation {...Astro.props} />
+          </div>
+        </div>
+
+        <slot />
+      </div>
+
+    </div>
+
+<style>
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+</style>

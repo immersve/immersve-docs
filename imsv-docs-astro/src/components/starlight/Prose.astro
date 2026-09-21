@@ -1,0 +1,26 @@
+---
+// Starlight `MarkdownContent` override: the typographic container for the
+// page body. Renders the page title as well so the <h1> sits inside the
+// prose scope.
+import type { Props } from '@astrojs/starlight/props';
+
+// Joined with commas, not spaces: this reproduces the class attribute the
+// site has always rendered here (an array passed to `class` stringifies with
+// commas), so the variants after each comma are not applied. Switching to
+// `class:list` would change the page styling and is a separate decision.
+const proseClass = [
+'prose prose-zinc max-w-none dark:prose-invert dark:text-zinc-400',
+// headings
+'prose-headings:scroll-mt-28 prose-headings:font-display prose-headings:font-normal lg:prose-headings:scroll-mt-[8.5rem]',
+// lead
+'prose-lead:text-zinc-500 dark:prose-lead:text-zinc-400',
+// links
+'prose-a:font-semibold ',
+// hr
+'dark:prose-hr:border-zinc-800',
+].join(',');
+---
+<div class={proseClass}>
+  <h1 id="_top">{Astro.props.entry.data.title}</h1>
+  <slot />
+</div>

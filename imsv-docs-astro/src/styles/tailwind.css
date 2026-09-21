@@ -15,6 +15,17 @@
     display: none;
   }
 
+  /*
+   * Starlight's Page.astro owns <html> and <body> and cannot be overridden,
+   * so the page-level utility classes live here instead of on the elements.
+   */
+  html {
+    @apply h-full antialiased;
+  }
+  body {
+    @apply flex min-h-full bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-200;
+  }
+
 }
 
 @tailwind base;
@@ -48,4 +59,75 @@
 h1, h2, h3, h4 {
   position: relative;
   z-index: -1;
+}
+
+/*
+ * Starlight's Page.astro imports its own base stylesheets and carries a
+ * scoped <style>, and the layout here was built without them. The rules
+ * below put the affected properties back to what the site computed before
+ * Starlight's CSS was in the bundle. Selectors are deliberately one step
+ * more specific than Starlight's, because Page.astro's scoped styles are
+ * emitted after this file (only imported CSS comes before user CSS).
+ */
+
+/* Page.astro: scroll-padding-top would stack on the [id]::before offset above,
+ * and its <main> padding would add to the footer spacing. */
+html:root {
+  scroll-padding-top: 0;
+}
+body main {
+  padding-bottom: 0;
+}
+
+/* reset.css: overflow-wrap:anywhere lets inline code break mid-token, which
+ * squeezes table columns (for example the webhook event names). */
+p, h1, h2, h3, h4, h5, h6, code {
+  overflow-wrap: normal;
+}
+
+/* reset.css: color-scheme follows the theme, which restyles native scrollbars
+ * and form controls, and accent-color tints native checkboxes, radios and
+ * ranges Starlight blue; the site never opted into either. */
+html, html[data-theme='light'] {
+  color-scheme: normal;
+  accent-color: auto;
+}
+
+/* props.css defines the --sl-* font and size variables. This site never had
+ * them, so every rule that reads them through var() fell back to the inherited
+ * value: body text in the Tailwind font stack, and expressive-code blocks in
+ * the size, line height and monospace family of their own frame. Setting the
+ * variables to `initial` makes those var() references invalid again, which
+ * restores that fallback (CSS Variables §2: the initial value of a custom
+ * property is the guaranteed-invalid value). The second selector mirrors the
+ * scope expressive-code uses for its own variables.
+ */
+html:root,
+html:root:not([data-theme='dark']) .expressive-code[data-theme='dark'] {
+  --__sl-font: initial;
+  --__sl-font-mono: initial;
+  --ec-codeFontSize: initial;
+  --ec-codeLineHt: initial;
+}
+
+/*
+ * Starlight's <Tabs> component renders its tab list inside the prose
+ * container. Keep the prose list and link styling off the tabs and let the
+ * tab labels inherit the surrounding text colour, with a bold active tab.
+ */
+.prose .tablist-wrapper :where(ul, li) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.prose .tablist-wrapper a {
+  font-weight: inherit;
+  text-decoration: none;
+}
+.tab > [role='tab'] {
+  color: inherit;
+}
+.tab > [role='tab'][aria-selected='true'] {
+  color: inherit;
+  font-weight: 700;
 }

@@ -1,0 +1,13 @@
+---
+import type { Props as RouteProps } from '@astrojs/starlight/props';
+
+type Props = RouteProps & { class?: string };
+
+import NavigationList from './NavigationList.astro';
+
+const { sidebar, class: className } = Astro.props;
+---
+
+<nav class:list={["text-sm", className]}>
+  <NavigationList items={sidebar}/>
+</nav>
