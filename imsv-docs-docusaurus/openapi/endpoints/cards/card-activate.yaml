@@ -9,6 +9,9 @@ post:
   responses:
     "200":
       description: Successful operation
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"
     "403":
       description: |
         **CARD_ACTIVATION_FORBIDDEN**
@@ -17,3 +20,6 @@ post:
         application/json:
           schema:
             $ref: "../../models/api-error-403.yaml"
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"

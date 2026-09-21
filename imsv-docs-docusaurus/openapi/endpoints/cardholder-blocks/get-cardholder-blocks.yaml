@@ -34,3 +34,6 @@ responses:
       application/json:
         schema:
           $ref: "./models/get-cardholder-blocks-response.yaml"
+    headers:
+      X-Request-Id:
+        $ref: "../../models/x-request-id-header.yaml"

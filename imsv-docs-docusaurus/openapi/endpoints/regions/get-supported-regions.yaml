@@ -23,6 +23,9 @@ responses:
       application/json:
         schema:
           $ref: "./models/get-supported-regions-response.yaml"
+    headers:
+      X-Request-Id:
+        $ref: "../../models/x-request-id-header.yaml"
   "403":
     description: |
       Subject is not allowed to perform the action with the reason stated in the `errorCode`
@@ -36,3 +39,6 @@ responses:
       application/json:
         schema:
           $ref: "../../models/api-error-403.yaml"
+    headers:
+      X-Request-Id:
+        $ref: "../../models/x-request-id-header.yaml"

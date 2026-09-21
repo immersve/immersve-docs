@@ -34,3 +34,6 @@ post:
             Chain ID: 1
             Nonce: 2hFm7TDbZmerUgnrJ
             Issued At: 2022-08-11T22:29:48.244Z
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"

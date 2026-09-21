@@ -36,6 +36,9 @@ post:
                       example: "r7i48f309cfc11f0873s"
                       description: The id of the notification sent.
 
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"
     "403":
       description: |
         User is not allowed to perform the action with the reason stated in the `errorCode`
@@ -49,3 +52,6 @@ post:
         application/json:
           schema:
             $ref: "../../models/api-error-403.yaml"
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"

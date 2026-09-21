@@ -25,6 +25,9 @@ post:
   responses:
     "200":
       description: Successful operation
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"
     "403":
       description: |
         User is not allowed to perform the action with the reason stated in the `errorCode`
@@ -44,9 +47,15 @@ post:
         application/json:
           schema:
             $ref: "../../models/api-error-403.yaml"
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"
     "400":
       description: Request fields are invalid
       content:
         application/json:
           schema:
             $ref: "../../models/api-error-400.yaml"
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"

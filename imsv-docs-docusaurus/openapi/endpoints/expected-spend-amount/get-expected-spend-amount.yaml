@@ -26,11 +26,15 @@ responses:
               type: string
               description: The expected spend amount for the cardholder in USD cents.
               example: '200000'
+    headers:
+      X-Request-Id:
+        $ref: "../../models/x-request-id-header.yaml"
   '403':
     description: |
       User is not allowed to perform the action with the reason stated in the `errorCode`
 
       **FORBIDDEN**
       Insufficient permissions to perform the action.
-
-
+    headers:
+      X-Request-Id:
+        $ref: "../../models/x-request-id-header.yaml"

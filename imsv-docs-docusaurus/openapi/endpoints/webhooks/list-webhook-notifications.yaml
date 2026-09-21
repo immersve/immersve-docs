@@ -42,6 +42,9 @@ get:
         application/json:
           schema:
             $ref: "./models/list-webhook-notifications-schema.yaml"
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"
     "403":
       description: |
         User is not allowed to perform the action with the reason stated in the `errorCode`
@@ -51,3 +54,6 @@ get:
 
         **ACCOUNT_TYPE_INVALID**
         `accountType` of the `accountId` is not of type `PARTNER`.
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"
