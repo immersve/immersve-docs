@@ -78,6 +78,11 @@ Once the webhook notification is received for the given cardholder, treat the ca
 See the {% link title="Cardholder Block Released" endpoint="webhook-topics/cardholder-block-released" /%}
 topic reference for the full payload schema.
 
+Trust the webhook: {% link endpoint="get-spending-prerequisites" /%} may
+briefly continue to report a pending KYC status immediately after the release
+while final checks synchronize, so there is no need to confirm the release by
+polling.
+
 
 ### Polling (Fallback)
 
