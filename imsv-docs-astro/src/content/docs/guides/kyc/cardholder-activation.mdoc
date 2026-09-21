@@ -6,7 +6,9 @@ description: |
 ---
 
 Cardholders are created in an *activating* state behind an **activation block**.
-See {% link endpoint="get-cardholder-blocks" /%} for more information on blocks.
+The activation block is one of several account-level block reasons; see
+{% link page="guides/cardholder-blocks" /%} for the full block model and
+{% link endpoint="get-cardholder-blocks" /%} for the block record schema.
 
 The activation block prevents the cardholder from issuing cards and transacting.
 The block is lifted once Immersve has confirmed that all onboarding prerequisites
@@ -58,8 +60,11 @@ notification when an activation block is lifted.
 
 3. **Handle the Notification** –
    Listen to incoming webhooks and verify the `cardholderAccountId` and `reason`
-   to ensure the webhook corresponds to the cardholder activation block. The
-   webhook payload will be as following:
+   to ensure the webhook corresponds to the cardholder activation block. A
+   `cardholder-block-released` webhook is sent whenever **any** account-level
+   block is released, not only activation blocks, so the `reason` check is
+   required. See {% link page="guides/cardholder-blocks" /%}. The webhook
+   payload will be as following:
 
    ```json {% title="Example cardholder-block-released webhook payload." %}
    {
@@ -95,3 +100,23 @@ Attempting to create a card before the activation block has been lifted will fai
 
 Once the activation block has been lifted, follow
 {% link page="guides/issue-a-virtual-card" /%} to issue a card.
+
+### Guarding Against Unintended Issuance
+
+Do not treat every `cardholder-block-released` webhook as a signal to issue a
+card. Before making a card issuance request, confirm both of the following:
+
+- The `reason` is `activation`. Blocks with other reasons, such as `kyc` or
+  `fraud`, can be placed and released on a cardholder who already holds a
+  card.
+- The account does not already have a suitable card. Call
+  {% link endpoint="list-cards" /%} first. Webhooks are delivered at least
+  once, so a redelivered notification handled without this check would
+  trigger another card issuance request. See
+  {% link page="guides/configuring-webhook-listeners" /%} for deduplication
+  guidance.
+
+If your application issues cards from the client rather than from a backend
+webhook handler, apply the same checks when the client detects activation via
+{% link endpoint="get-spending-prerequisites" /%}: check for an existing card
+before issuing, and do not retry a failed issuance request in a loop.
