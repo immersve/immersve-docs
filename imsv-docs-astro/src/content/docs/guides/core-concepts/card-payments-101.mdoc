@@ -115,6 +115,7 @@ attributes to identify the presentation.
 {% /table %}
 
 The attributes are returned by the {% link endpoint="list-transactions" /%}
-and {% link endpoint="get-transaction" /%} endpoints. Payment notifications
-carry them too. See the {% link page="guides/custodial-funding-protocol" /%}
-guide.
+and {% link endpoint="get-transaction" /%} endpoints and sent on the
+{% link webhook="payment-updated" /%} webhook, where the card type is
+`card.type`. Payment notifications carry them too. See the
+{% link page="guides/custodial-funding-protocol" /%} guide.
