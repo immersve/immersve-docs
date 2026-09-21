@@ -25,6 +25,9 @@ post:
         application/json:
           schema:
             $ref: "./models/signup-response.yaml"
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"
     "403":
       description: |
         **CLIENT_APPLICATION_DOMAIN_NOT_ALLOWED**
@@ -36,3 +39,6 @@ post:
         application/json:
           schema:
             $ref: "../../models/api-error-403.yaml"
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"

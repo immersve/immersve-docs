@@ -4,7 +4,9 @@ slug: guides/http-status-codes
 ---
 
 Immersve APIs respond with 200, 400, 401, 403, 404, or 429 HTTP status codes.
-In rare cases endpoints may respond with status codes in the 5xx range.
+In rare cases endpoints may respond with status codes in the 5xx range. Every
+response, whatever its status code, also carries an `X-Request-Id` header that
+identifies the request; see *Request IDs*.
 
 Please note that certain legacy or deprecated API endpoints could
 operate slightly outside the norms described below. Any such exceptions will
@@ -72,6 +74,35 @@ Do not retry indefinitely or in a tight loop, as excessive retries may be rate
 limited with 429 Too Many Requests. For non-idempotent requests, ensure your 
 integration can safely handle duplicate attempts before retrying.
 
-Our engineering team monitors these errors closely but, if you experience persistent 
-errors, bug reports are also welcome at
-[support@immersve.com](mailto:support@immersve.com).
+Our engineering team monitors these errors closely but, if you experience
+persistent errors, bug reports are also welcome at
+[support@immersve.com](mailto:support@immersve.com). Include the `X-Request-Id`
+response header value of a failing request so it can be traced directly; see
+*Request IDs*.
+
+## Request IDs
+
+Every response from the Immersve API carries an `X-Request-Id` header. The
+value is an identifier Immersve assigns to that one request. It is present on
+successful responses and on error responses alike, including 401 and 429
+responses rejected before the request reaches an endpoint.
+
+Log the `X-Request-Id` value alongside each API call your integration makes.
+When you report a problem to
+[support@immersve.com](mailto:support@immersve.com), include the value for the
+failing call. Immersve uses it to locate the request in its logs across every
+internal service the call touched, which is faster and more reliable than
+searching by timestamp and endpoint.
+
+```http {% title="Example response headers showing the request ID." %}
+HTTP/1.1 403 Forbidden
+Content-Type: application/json
+X-Request-Id: Root=1-68cf3a1c-3f8e2b1a9c4d5e6f7a8b9c0d
+```
+
+{% note %}
+Immersve generates the request ID. A value you send in an `X-Request-Id`
+request header is ignored and is not echoed in the response, so it cannot be
+used to correlate with Immersve support. Treat the value as an opaque string;
+its format is not guaranteed and may change.
+{% /note %}

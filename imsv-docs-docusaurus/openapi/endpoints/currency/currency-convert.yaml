@@ -38,9 +38,15 @@ get:
               "convertedAmount": 696.2285,
               "rate": 0.6962285
             }
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"
     "400":
       description: Request fields are invalid
       content:
         application/json:
           schema:
             $ref: '../../models/api-error-400.yaml'
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"

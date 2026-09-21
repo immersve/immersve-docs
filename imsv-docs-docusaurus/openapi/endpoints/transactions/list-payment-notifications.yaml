@@ -49,15 +49,24 @@ get:
         application/json:
           schema:
             $ref: "./models/list-payment-notifications-result.yaml"
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"
     "403":
       description: No Authorization to access resource.
       content:
         application/json:
           schema:
             $ref: "../../models/api-error-403.yaml"
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"
     "400":
       description: Request fields are invalid
       content:
         application/json:
           schema:
             $ref: '../../models/api-error-400.yaml'
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"

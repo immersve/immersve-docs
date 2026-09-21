@@ -36,6 +36,9 @@ post:
         application/json:
           schema:
             $ref: "./models/create-withdrawal-intent.yaml"
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"
     "403":
       description: |
         **FORBIDDEN**
@@ -53,3 +56,6 @@ post:
         application/json:
           schema:
             $ref: "../../models/api-error-403.yaml"
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"

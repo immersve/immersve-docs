@@ -13,9 +13,15 @@ post:
   responses:
     '200':
       description: 'Card closed'
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"
     default:
       description: 'Error'
       content:
         application/json:
           schema:
             $ref: '../../models/error-response-custodial.yaml'
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"

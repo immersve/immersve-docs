@@ -17,3 +17,6 @@ post:
         application/json:
           schema:
             type: object
+      headers:
+        X-Request-Id:
+          $ref: "../../models/x-request-id-header.yaml"
