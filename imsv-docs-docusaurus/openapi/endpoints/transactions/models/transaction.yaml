@@ -32,10 +32,7 @@ properties:
     example: "6c474aa7a5dc45bff721b5a207cf0f47"
   cardType:
     type: string
-    description: >-
-      Whether the card was issued as `physical` or `virtual`, recorded when
-      the transaction was created. Absent on transactions created before it
-      was recorded.
+    description: Whether the card was issued as `physical` or `virtual`.
     enum:
       - virtual
       - physical
