@@ -427,6 +427,15 @@ must tolerate the addition of unknown message attributes.
 * The type of payment: `purchase`, `refund`, or `adjustment`.
 
 ---
+* {% wrap %} transactionInitiator {% /wrap %}
+* cardholder
+* The party that initiated the payment, if indicated by the payment network.
+  Clients must tolerate unknown values. Values may include the following:
+  `cardholder` for cardholder-initiated payments, such as an online checkout;
+  `merchant` for merchant-initiated payments, such as recurring billing,
+  installments, or stored-credential charges.
+
+---
 * {% wrap %} paymentFinalized {% /wrap %}
 * true
 * Flag indicating if the payment is expected to have further updates.
@@ -551,6 +560,16 @@ must tolerate the addition of unknown message attributes.
 * {% wrap 9 %}01005960960820000000000000{% /wrap %}
 * The payment network identifier for the message which triggered the payment
   lifecycle event.
+
+---
+* {% wrap %} retrievalRef {% /wrap %}
+* {% wrap 9 %}085037100011{% /wrap %}
+* The acquirer-generated retrieval reference number for the payment, if
+  supplied by the payment network. The reference stays with the payment
+  through authorization, clearing, and disputes, and can be used to match
+  the payment across systems. Unlike the `networkMessageRef`, which
+  identifies a single network message, the retrieval reference number
+  identifies the payment as a whole.
 
 ---
 {% /table %}
