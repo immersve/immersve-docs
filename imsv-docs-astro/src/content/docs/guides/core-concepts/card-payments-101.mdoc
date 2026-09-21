@@ -76,9 +76,7 @@ attributes are sent on custodial payment notifications, as `cardType`,
 {% /table %}
 
 `cardPresent` and `token` reflect the network message that created the
-payment: the authorization, or the clearing when a payment such as a refund
-arrives without one. Later clearings and incremental authorizations do not
-change them.
+payment.
 
 The payment network reports a contactless plastic tap and a wallet tap with
 the same entry mode; only the token tells them apart. Combine the three
