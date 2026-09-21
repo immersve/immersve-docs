@@ -30,6 +30,16 @@ properties:
     type: string
     description: Which card this transaction belongs to
     example: "6c474aa7a5dc45bff721b5a207cf0f47"
+  cardType:
+    type: string
+    description: >-
+      Whether the card was issued as `physical` or `virtual`, recorded when
+      the transaction was created. Absent on transactions created before it
+      was recorded.
+    enum:
+      - virtual
+      - physical
+    example: physical
   amount:
     type: string
     description: The billing amount of the transaction, an integer in the smallest denomination for the given currency
