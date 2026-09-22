@@ -52,6 +52,10 @@ properties:
   fundingSourceIds:
     type: array
     description: List of Funding Source IDs linked to the card
+    items:
+      type: string
+    example:
+      - 057aa15913a57f50577234c8426534c0
   cardProgramId:
     type: string
     description: ID of card program linked to the card
