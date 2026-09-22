@@ -40,12 +40,34 @@ existing card at a different Funding Source owned by the same cardholder.
 The change applies to that card alone. Other cards belonging to the cardholder
 keep the Funding Sources they are already linked to.
 
+### Payments in Flight
+
+Changing a card's Funding Source takes effect immediately. Funds are always
+taken from the card's current Funding Source, whatever stage of the {% link
+page="guides/payment-lifecycle" /%} the payment has reached. A single payment
+can therefore involve more than one Funding Source — whenever a payment takes
+further funds, such as an incremental authorization or a clearing for more than
+the amount authorized, those funds come from the card's current Funding Source
+rather than the one that authorized the payment.
+
+Funds returned to the cardholder go back to the Funding Source they were taken
+from. A reversal, an expired authorization, and a clearing for less than the
+amount authorized all release funds on the Funding Source that was drawn from,
+normally the one that authorized the payment. When returned funds cannot be
+traced to an earlier payment, they are credited to the card's current Funding
+Source instead. A merchant refund carries no reliable link to the purchase it
+refunds, so it is credited that way.
+
 ### Spending Prerequisites
 
-Spending prerequisites are satisfied per Funding Source. Changing a card's Funding Source
-carries nothing over from the previous one. Call the {% link
-endpoint="get-spending-prerequisites" /%} endpoint to retrieve spending prerequisites. A card pointed at a Funding Source with outstanding prerequisites cannot
-authorize transactions.
+Spending prerequisites are divided into funding, KYC, and AML stages. Only the
+funding stage is tied to a Funding Source, and it is satisfied per Funding
+Source: changing a card's Funding Source carries nothing over from the previous
+one. The KYC and AML stages unaffected by changing funding sources.
+
+Call the {% link endpoint="get-spending-prerequisites" /%} endpoint to retrieve
+spending prerequisites. A card pointed at a Funding Source with outstanding
+funding prerequisites cannot authorize transactions.
 
 ### Reissuance Chains
 
