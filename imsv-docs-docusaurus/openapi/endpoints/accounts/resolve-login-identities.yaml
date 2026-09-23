@@ -8,7 +8,8 @@ description: |
   partner account named in the URL. Each matched address returns the owning
   user with their identity account and the cardholder accounts under the
   requesting partner. Addresses with no login wallet are omitted from the
-  response, so an address that is absent from `items` is unknown to Immersve.
+  response, so an address that is absent from `items` is unknown to Immersve
+  under the requesting partner.
 
 parameters:
   - name: partnerAccountId
