@@ -4,7 +4,7 @@ summary: Resolve Login Identities
 operationId: resolve-login-identities
 description: |
   Resolves which of the supplied wallet addresses are login identifiers
-  (Sign-In-With-Ethereum wallets) and what accounts they reach, within the
+  and what accounts they reach, within the
   partner account named in the URL. Each matched address returns the owning
   user with their identity account and the cardholder accounts under the
   requesting partner. Addresses with no login wallet are omitted from the
