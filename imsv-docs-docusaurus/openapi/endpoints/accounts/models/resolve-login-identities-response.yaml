@@ -22,6 +22,12 @@ properties:
             The matched wallet address in normalized (EIP-55 checksummed)
             form.
           example: '0x8ba1f109551bD432803012645Ac136ddd64DBA72'
+        walletAddressType:
+          type: string
+          description: The wallet address type of the matched login identifier.
+          enum:
+            - eth
+          example: eth
         userId:
           type: string
           description: >-

@@ -48,9 +48,6 @@ responses:
 
       **FORBIDDEN**
       The credentials do not permit resolving login identities for the requested partner account.
-
-      **INVALID_PARTNER_ACCOUNT**
-      The provided account is not of type partner.
     content:
       application/json:
         schema:
