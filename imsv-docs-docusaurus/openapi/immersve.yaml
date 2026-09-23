@@ -84,6 +84,8 @@ paths:
     post: { $ref: "./endpoints/accounts/accounts-create.yaml" }
   "/api/accounts/{accountId}":
     $ref: "./endpoints/accounts/accounts-get.yaml"
+  "/api/accounts/{partnerAccountId}/resolve-login-identities":
+    post: { $ref: "./endpoints/accounts/resolve-login-identities.yaml" }
 
   # Cards
   "/api/cards":

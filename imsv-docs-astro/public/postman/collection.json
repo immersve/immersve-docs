@@ -705,6 +705,46 @@
 					"response": []
 				},
 				{
+					"name": "Resolve login identities",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"walletAddresses\": [\"{{walletAddress}}\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/accounts/:partnerAccountId/resolve-login-identities",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								":partnerAccountId",
+								"resolve-login-identities"
+							],
+							"variable": [
+								{
+									"key": "partnerAccountId",
+									"value": "{{partnerAccountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create partner account",
 					"request": {
 						"auth": {
