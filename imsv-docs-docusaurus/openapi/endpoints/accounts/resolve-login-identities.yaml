@@ -1,0 +1,54 @@
+tags:
+  - accounts
+summary: Resolve Login Identities
+operationId: resolve-login-identities
+description: |
+  Resolves which of the supplied wallet addresses are login identifiers
+  and what accounts they reach, within the
+  partner account named in the URL. Each matched address returns the owning
+  user with their identity account and the cardholder accounts under the
+  requesting partner. Addresses with no login wallet are omitted from the
+  response, so an address that is absent from `items` is unknown to Immersve
+  under the requesting partner.
+
+parameters:
+  - name: partnerAccountId
+    in: path
+    description: Id of the partner account that scopes the resolution.
+    example: 225d85e65495722bf6517ea0ba0d6f56
+    required: true
+    schema:
+      type: string
+
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: './models/resolve-login-identities-request.yaml'
+  required: true
+
+responses:
+  '200':
+    description: Successful operation
+    content:
+      application/json:
+        schema:
+          $ref: './models/resolve-login-identities-response.yaml'
+  '400':
+    description: |
+      Request fields are invalid: an empty address list, more than 50
+      addresses, or an address that is not a well-formed EVM address.
+    content:
+      application/json:
+        schema:
+          $ref: '../../models/api-error-400.yaml'
+  '403':
+    description: |
+      User is not allowed to perform the action with the reason stated in the `errorCode`
+
+      **FORBIDDEN**
+      The credentials do not permit resolving login identities for the requested partner account.
+    content:
+      application/json:
+        schema:
+          $ref: '../../models/api-error-403.yaml'

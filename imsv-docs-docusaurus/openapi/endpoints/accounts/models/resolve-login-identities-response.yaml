@@ -1,0 +1,62 @@
+type: object
+title: ResolveLoginIdentitiesResponse
+properties:
+  items:
+    type: array
+    description: |
+      One entry per matched login identifier. Requested addresses with no
+      match are omitted.
+    items:
+      type: object
+      title: ResolvedLoginIdentity
+      properties:
+        type:
+          type: string
+          description: The kind of login identifier that matched.
+          enum:
+            - wallet
+          example: wallet
+        walletAddress:
+          type: string
+          description: >-
+            The matched wallet address in normalized (EIP-55 checksummed)
+            form.
+          example: '0x8ba1f109551bD432803012645Ac136ddd64DBA72'
+        walletAddressType:
+          type: string
+          description: The wallet address type of the matched login identifier.
+          enum:
+            - eth
+          example: eth
+        userId:
+          type: string
+          description: >-
+            Id of the user that completed Sign-In-With-Ethereum with this
+            wallet.
+          example: 1279710a642d4c0e
+        accounts:
+          type: array
+          description: >-
+            The user's identity account plus the cardholder accounts under
+            the requesting partner.
+          items:
+            type: object
+            title: ResolvedLoginIdentityAccount
+            properties:
+              accountId:
+                type: string
+                description: Id of the account.
+                example: 4f6f5c2a3d1e4b0a
+              accountType:
+                type: string
+                description: The type of the account.
+                enum:
+                  - identity
+                  - cardholder
+                example: cardholder
+              partnerAccountId:
+                type: string
+                description: >-
+                  Id of the partner account the cardholder account belongs
+                  to. Present on cardholder accounts only.
+                example: 225d85e65495722bf6517ea0ba0d6f56
