@@ -75,3 +75,13 @@ while the user is actively engaged in the card onboarding flow.
     endpoint="get-spending-prerequisites" /%} when the user opens your application
     to check if any actions are required.
 
+## After KYC Completion
+
+KYC completion is not a one-time gate. A cardholder's status can change after
+initial completion, for example when verification expires, risk scoring
+requires more information, or an account-level block is placed. These changes
+are surfaced through the same two mechanisms described above: block webhooks
+in real time, and {% link endpoint="get-spending-prerequisites" /%} on
+demand. See {% link page="guides/cardholder-blocks" /%} for how to detect and
+respond to status changes after onboarding.
+

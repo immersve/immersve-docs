@@ -120,6 +120,17 @@ status will be "blocked".
 }]
 ```
 
+### Blocked Cardholder Account
+
+The "blocked" status is not limited to permanent KYC failure. While any
+account-level block is active, for example during a fraud review, the
+prerequisite stages report "blocked" even if the cardholder previously passed
+KYC. A cardholder in this state cannot transact, although their card records
+still report an `active` status. Use this endpoint as the account-level check
+when a cardholder opens a card view in your application. See
+{% link page="guides/cardholder-blocks" /%} for the block model and the
+recommended treatment for each block reason.
+
 
 ## KYC Prerequisite Actions
 
