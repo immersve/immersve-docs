@@ -25,24 +25,22 @@ properties:
         type: string
         description: The currency the amount is denominated in.
         example: vmUSD
-  exchangeRates:
-    type: array
-    description: The exchange rates used to perform the conversion.
-    items:
-      type: object
-      properties:
-        baseCurrency:
-          type: string
-          description: The currency the rate converts from.
-          example: vmUSD
-        quoteCurrency:
-          type: string
-          description: The currency the rate converts to.
-          example: USD
-        rate:
-          type: string
-          description: The number of units of the quote currency that one unit of the base currency is worth.
-          example: "1.2"
+  exchangeRate:
+    type: object
+    description: The exchange rate used to perform the conversion.
+    properties:
+      baseCurrency:
+        type: string
+        description: The currency the rate converts from.
+        example: vmUSD
+      quoteCurrency:
+        type: string
+        description: The currency the rate converts to.
+        example: USD
+      rate:
+        type: string
+        description: The number of units of the quote currency that one unit of the base currency is worth.
+        example: "1.2"
   createdAt:
     type: string
     description: Date time at which the rate was quoted.
