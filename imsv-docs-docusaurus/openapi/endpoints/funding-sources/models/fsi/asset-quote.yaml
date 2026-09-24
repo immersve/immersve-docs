@@ -1,0 +1,47 @@
+type: object
+description: The currency conversion that was applied to this interaction.
+properties:
+  baseAmount:
+    type: object
+    description: The amount that was converted from.
+    properties:
+      value:
+        type: string
+        description: The amount in the smallest denomination of the currency.
+        example: "507"
+      currency:
+        type: string
+        description: The currency the amount is denominated in.
+        example: USD
+  quoteAmount:
+    type: object
+    description: The amount that was converted to.
+    properties:
+      value:
+        type: string
+        description: The amount in the smallest denomination of the currency.
+        example: "4225000"
+      currency:
+        type: string
+        description: The currency the amount is denominated in.
+        example: vmUSD
+  exchangeRate:
+    type: object
+    description: The exchange rate used to perform the conversion.
+    properties:
+      baseCurrency:
+        type: string
+        description: The currency the rate converts from.
+        example: vmUSD
+      quoteCurrency:
+        type: string
+        description: The currency the rate converts to.
+        example: USD
+      rate:
+        type: string
+        description: The number of units of the quote currency that one unit of the base currency is worth.
+        example: "1.2"
+  createdAt:
+    type: string
+    description: Date time at which the rate was quoted.
+    example: "2023-11-15T00:48:48.902Z"
