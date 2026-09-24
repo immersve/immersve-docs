@@ -61,6 +61,8 @@ properties:
       The direction of the balance adjustment for the interaction:
       * `credit` – Balance increased.
       * `debit` – Balance decreased.
+  assetQuote:
+    $ref: ./fsi/asset-quote.yaml
   channel:
     type: object
     description: |
