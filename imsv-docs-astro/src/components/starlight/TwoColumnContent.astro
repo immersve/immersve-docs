@@ -1,0 +1,17 @@
+---
+// Starlight `TwoColumnContent` override: lays out the main content column
+// and the table of contents. Starlight's Page.astro owns the <main>
+// element inside the default slot, so the column sizing classes live on a
+// wrapper around it.
+import type { Props } from '@astrojs/starlight/props';
+---
+
+<div
+  class:list={{
+    'max-w-3xl': Astro.props.toc,
+    'max-w-5xl': !Astro.props.toc,
+  }}
+  class="min-w-0 flex-auto px-4 py-12 xl:px-16">
+  <slot />
+</div>
+<slot name="right-sidebar" />

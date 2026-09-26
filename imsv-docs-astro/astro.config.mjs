@@ -22,19 +22,29 @@ export default defineConfig({
       favicon: '/favicon.svg',
       customCss: ['./src/styles/tailwind.css'],
       // Immersve components registered under Starlight's override slots
-      // (slot names are the keys of starlight/schemas/components.ts).
-      // Page.astro, FooterPageLink, MobileMenu, NavigationList, TocList and
-      // icons/ are internal helpers imported by these, not slots.
+      // (slot names are the keys of @astrojs/starlight/schemas/components.ts).
+      // FooterPageLink, MobileMenu, Navigation, NavigationList, TocList,
+      // starlight-toc and icons/ are internal helpers imported by these, not
+      // slots. Navigation is rendered by PageFrame on every page, so the
+      // Sidebar slot (which Starlight withholds on the 404 page) is unused.
       components: {
-        Head: '../starlight/components/imsv/Head.astro',
-        Header: '../starlight/components/imsv/Header.astro',
-        Search: '../starlight/components/imsv/Search.astro',
-        ThemeSelect: '../starlight/components/imsv/ThemeSelect.astro',
-        MobileMenuToggle: '../starlight/components/imsv/MobileMenuToggle.astro',
-        Sidebar: '../starlight/components/imsv/Navigation.astro',
-        PageSidebar: '../starlight/components/imsv/TableOfContents.astro',
-        MarkdownContent: '../starlight/components/imsv/Prose.astro',
-        Footer: '../starlight/components/imsv/Footer.astro',
+        Head: './src/components/starlight/Head.astro',
+        ThemeProvider: './src/components/starlight/ThemeProvider.astro',
+        SkipLink: './src/components/starlight/Empty.astro',
+        PageFrame: './src/components/starlight/PageFrame.astro',
+        Header: './src/components/starlight/Header.astro',
+        Search: './src/components/starlight/Search.astro',
+        ThemeSelect: './src/components/starlight/ThemeSelect.astro',
+        MobileMenuToggle: './src/components/starlight/MobileMenuToggle.astro',
+        Sidebar: './src/components/starlight/Empty.astro',
+        TwoColumnContent: './src/components/starlight/TwoColumnContent.astro',
+        PageSidebar: './src/components/starlight/TableOfContents.astro',
+        Banner: './src/components/starlight/Empty.astro',
+        Hero: './src/components/starlight/Empty.astro',
+        ContentPanel: './src/components/starlight/ContentPanel.astro',
+        PageTitle: './src/components/starlight/Empty.astro',
+        MarkdownContent: './src/components/starlight/Prose.astro',
+        Footer: './src/components/starlight/Footer.astro',
       },
       sidebar: [
         { label: 'Home', link: '/' },
