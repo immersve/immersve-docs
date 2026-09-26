@@ -21,7 +21,21 @@ export default defineConfig({
       },
       favicon: '/favicon.svg',
       customCss: ['./src/styles/tailwind.css'],
-      components: {},
+      // Immersve components registered under Starlight's override slots
+      // (slot names are the keys of starlight/schemas/components.ts).
+      // Page.astro, FooterPageLink, MobileMenu, NavigationList, TocList and
+      // icons/ are internal helpers imported by these, not slots.
+      components: {
+        Head: '../starlight/components/imsv/Head.astro',
+        Header: '../starlight/components/imsv/Header.astro',
+        Search: '../starlight/components/imsv/Search.astro',
+        ThemeSelect: '../starlight/components/imsv/ThemeSelect.astro',
+        MobileMenuToggle: '../starlight/components/imsv/MobileMenuToggle.astro',
+        Sidebar: '../starlight/components/imsv/Navigation.astro',
+        PageSidebar: '../starlight/components/imsv/TableOfContents.astro',
+        MarkdownContent: '../starlight/components/imsv/Prose.astro',
+        Footer: '../starlight/components/imsv/Footer.astro',
+      },
       sidebar: [
         { label: 'Home', link: '/' },
         { label: 'API Reference', link: 'https://docs.immersve.com/api-reference' },
