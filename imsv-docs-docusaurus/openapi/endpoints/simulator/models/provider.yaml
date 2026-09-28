@@ -12,7 +12,3 @@ description: |
   for a card. A different value routes the request to a simulator that does
   not know the card, which returns 403 Forbidden with `errorCode`
   `CARD_NOT_FOUND`.
-
-  An unknown value returns 400 Bad Request. A value that does not match the
-  mode of your API credentials, for example `na-test` with live credentials,
-  returns 403 Forbidden with `errorCode` `LIVENESS_MISMATCH`.
