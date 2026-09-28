@@ -1,9 +1,9 @@
 type: string
+default: apac-test
 description: |
-  Card network simulator provider that processes the request. If undefined,
-  the provider is selected on a best match basis. If the card was not
-  provisioned via the provider then the simulated payment will be rejected.
-  Possible values:
+  Card network simulator provider that processes the request. Defaults to
+  `apac-test`. If the card was not provisioned via the provider then the
+  simulated payment will be rejected. Possible values:
 
   - `apac-test`: APAC cards.
   - `eu-test`: EU cards.
