@@ -40,3 +40,5 @@ properties:
       - final
       - multi-final
       - multi-non-final
+  provider:
+    $ref: "./provider.yaml"
