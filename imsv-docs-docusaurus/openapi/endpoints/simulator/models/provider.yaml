@@ -1,14 +1,10 @@
 type: string
-default: apac-test
 description: |
-  Card network simulator that processes the request. Omit it for APAC and EU
-  cards. Possible values:
+  Card network simulator provider that processes the request. If undefined,
+  the provider is selected on a best match basis. If the card was not
+  provisioned via the provider then the simulated payment will be rejected.
+  Possible values:
 
-  - `apac-test`: APAC cards. The default.
+  - `apac-test`: APAC cards.
   - `eu-test`: EU cards.
   - `na-test`: US cards.
-
-  Send the same value on the authorization, clearing and reversal requests
-  for a card. A different value routes the request to a simulator that does
-  not know the card, which returns 403 Forbidden with `errorCode`
-  `CARD_NOT_FOUND`.
