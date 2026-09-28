@@ -18,3 +18,5 @@ properties:
     type: string
     default: USD
     description: ISO 4217 currency code.
+  provider:
+    $ref: "./provider.yaml"

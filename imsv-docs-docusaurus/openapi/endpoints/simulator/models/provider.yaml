@@ -1,0 +1,18 @@
+type: string
+default: apac-test
+description: |
+  Card network simulator that processes the request. Omit it for APAC and EU
+  cards. Possible values:
+
+  - `apac-test`: APAC cards. The default.
+  - `eu-test`: EU cards. Resolves to the same simulator as `apac-test`.
+  - `na-test`: US cards.
+
+  Send the same value on the authorization, clearing and reversal requests
+  for a card. A different value routes the request to a simulator that does
+  not know the card, which returns 403 Forbidden with `errorCode`
+  `CARD_NOT_FOUND`.
+
+  An unknown value returns 400 Bad Request. A value that does not match the
+  mode of your API credentials, for example `na-test` with live credentials,
+  returns 403 Forbidden with `errorCode` `LIVENESS_MISMATCH`.
