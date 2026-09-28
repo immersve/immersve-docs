@@ -5,7 +5,7 @@ description: |
   cards. Possible values:
 
   - `apac-test`: APAC cards. The default.
-  - `eu-test`: EU cards. Resolves to the same simulator as `apac-test`.
+  - `eu-test`: EU cards.
   - `na-test`: US cards.
 
   Send the same value on the authorization, clearing and reversal requests
