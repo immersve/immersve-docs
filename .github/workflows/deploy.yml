@@ -8,19 +8,19 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: scripts/redirect-lint.sh
 
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with: { node-version: 22 }
       - run: corepack enable
       - id: cache-dir
         run: echo "dir=$(yarn config get cacheFolder)" | tee $GITHUB_OUTPUT
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with: { path: "${{ steps.cache-dir.outputs.dir }}", key: "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}" }
       - run: yarn install --immutable
       - run: yarn test run
@@ -28,20 +28,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with: { node-version: 22 }
       - run: corepack enable
       - id: cache-dir
         run: echo "dir=$(yarn config get cacheFolder)" | tee $GITHUB_OUTPUT
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with: { path: "${{ steps.cache-dir.outputs.dir }}", key: "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}" }
       - run: scripts/github-build-info.mjs | tee build-info.json
       - run: yarn install --immutable
       - run: ./build.sh
       - run: cp build-info.json dist
       - run: zip -rq site.zip dist
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with: { name: site, path: site.zip }
 
   test-deploy:
@@ -51,8 +51,8 @@ jobs:
       name: dev
       url: ${{ steps.deploy-summary.outputs.deploy_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
         with: { name: site }
       - run: scripts/netlify-deploy.sh --branch ${{ github.ref_name }} --file site.zip
         env:
@@ -65,12 +65,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ build ]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
         with: { name: site }
       - run: unzip -q site.zip
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # Build output to publish to the `gh-pages` branch:
