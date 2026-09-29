@@ -22,7 +22,8 @@ properties:
   scheduleDate:
     type: string
     format: date-time
-    description: The ISO 8601 date the report covers.
+    description: |
+      The ISO 8601 date-time the report is scheduled to be generated. This is not the period the report covers; see `params.date` for that.
     example: "2026-03-21T00:00:00.000Z"
   params:
     type: object
@@ -35,7 +36,7 @@ properties:
       date:
         type: string
         description: The period the report covers. Format is `yyyyMMdd` for daily reports and `yyyyMM` for monthly reports.
-        example: "20260321"
+        example: "20260320"
       fundingPurpose:
         type: string
         description: Optional funding purpose filter. Only applies to funding-source and funding-source-interaction reports.
