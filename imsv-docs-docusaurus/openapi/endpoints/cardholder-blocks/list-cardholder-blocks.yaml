@@ -1,9 +1,9 @@
 tags:
   - cardholder-blocks
-summary: Get Cardholder Blocks
-operationId: get-cardholder-blocks
+summary: List Cardholder Blocks
+operationId: list-cardholder-blocks
 description: |
-  Get cardholder blocks for the account.
+  List the cardholder blocks for the account.
 
   Some blocks scoped to a card can be lifted via a request to the card unfreeze endpoint. To ascertain that unfreeze is allowed, query the card details endpoint.
 
@@ -33,4 +33,4 @@ responses:
     content:
       application/json:
         schema:
-          $ref: "./models/get-cardholder-blocks-response.yaml"
+          $ref: "./models/list-cardholder-blocks-response.yaml"

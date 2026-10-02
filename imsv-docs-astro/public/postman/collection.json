@@ -1843,7 +1843,7 @@
 			"name": "Cardholder Blocks",
 			"item": [
 				{
-					"name": "Get cardholder blocks",
+					"name": "List cardholder blocks",
 					"request": {
 						"method": "GET",
 						"header": [],
