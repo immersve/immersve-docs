@@ -43,6 +43,14 @@ To remove a block the {% link endpoint="unfreeze-card" /%} endpoint is called.
 This returns the card to an active status allowing it
 to once again be used to perform transactions.
 
+{% note %}
+  Freezing is a card-level block. Blocks can also be placed at the cardholder
+  account level, for example during a KYC or fraud review. Account-level
+  blocks prevent spending but do **not** change the card record: the card's
+  status remains `active` while the cardholder cannot transact. See the
+  guide {% link page="guides/cardholder-blocks" /%}.
+{% /note %}
+
 ### Cancel a Card
 
 If the card is lost or stolen, cancel the card by calling the {% link endpoint="cancel-card" /%}

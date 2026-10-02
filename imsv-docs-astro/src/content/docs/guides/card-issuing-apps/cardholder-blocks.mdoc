@@ -1,0 +1,142 @@
+---
+title: Cardholder Blocks and Status Changes
+slug: guides/cardholder-blocks
+description: |
+  How account and card blocks work, which webhooks they produce, and how to
+  keep block status accurate in your application.
+---
+
+Immersve uses blocks to restrict spending. A block applies at one of two
+scopes: the cardholder account or an individual card. The two scopes behave
+differently, produce different webhooks, and require different handling in
+your application. This guide explains the block model and how to detect,
+reconcile, and display block status.
+
+## Block Scopes
+
+{% table %}
+* Scope
+* Applies To
+* Example Causes
+* Webhook Topics
+---
+* Account
+* The cardholder account and all spending under it
+* Activation, KYC review, fraud review
+* `cardholder-block-created`, `cardholder-block-released`
+---
+* Card
+* A single card
+* Cardholder freezes a card
+* `card-block-created`, `card-block-released`
+{% /table %}
+
+## Account Blocks
+
+An account block restricts the cardholder account as a whole. While an
+account block is active the cardholder cannot transact on any card, and new
+cards cannot be created for the account.
+
+An account block does **not** modify the cardholder's card records. The
+{% link endpoint="get-card" /%} endpoint continues to return
+`"status": "active"` for cards under a blocked account. Do not infer that a
+cardholder can spend from card status alone. See the Card View Back-Stop
+section below.
+
+Account blocks are reflected by the
+{% link endpoint="get-spending-prerequisites" /%} endpoint: while a block is
+active, the prerequisite stages report `"status": "blocked"`.
+
+When an account block is created, a {% link title="Cardholder Block Created"
+endpoint="webhook-topics/cardholder-block-created" /%} webhook is sent:
+
+```json {% title="Example cardholder-block-created webhook payload." %}
+{
+  "blockId": "75a7e8ef0d234d0a6bf755e07d39eb03",
+  "cardholderAccountId": "9b7552cf9abab0f2efed72df6b3ce4bc",
+  "reason": "kyc"
+}
+```
+
+When the block is released, a matching {% link title="Cardholder Block Released"
+endpoint="webhook-topics/cardholder-block-released" /%} webhook is sent with
+the same fields.
+
+### Block Reasons
+
+The `reason` field identifies why the block was placed and determines how
+your application should respond.
+
+{% table %}
+* Reason
+* Description
+* Suggested Treatment
+---
+* activation
+* Placed when the cardholder account is created, and released once all
+  activation prerequisites are satisfied. See {% link page="guides/cardholder-activation" /%}.
+* Present onboarding progress. Treat the release as the cardholder becoming
+  active.
+---
+* kyc
+* Placed when identity verification requires further review or has failed.
+* Direct the cardholder to any outstanding actions returned by {% link
+  endpoint="get-spending-prerequisites" /%}. See {% link page="guides/kyc-spending-prerequisites" /%}.
+---
+* fraud
+* Placed while the account is under review.
+* Present a neutral message, such as "your card is temporarily unavailable",
+  and direct the cardholder to support. Do not present review specifics.
+{% /table %}
+
+## Card Blocks
+
+A card block restricts a single card and leaves the rest of the account
+unaffected. The most common card block is a cardholder-initiated freeze via
+the {% link endpoint="freeze-card" /%} endpoint. Card blocks update the card
+record and produce the {% link title="Card Block Created"
+endpoint="webhook-topics/card-block-created" /%} and {% link title="Card Block Released"
+endpoint="webhook-topics/card-block-released" /%} webhooks. See
+{% link page="guides/card-lifecycle" /%} for card states and transitions.
+
+## Detecting Block Changes
+
+Webhooks are the recommended way to keep block status current in your
+application.
+
+1. **Configure a Webhook Listener** –
+   Set up and register your webhook listener. See
+   {% link page="guides/configuring-webhook-listeners" /%} for configuration,
+   delivery, retry, and deduplication behavior.
+
+2. **Subscribe to the Block Topics** –
+   Subscribe your listener to `cardholder-block-created`,
+   `cardholder-block-released`, `card-block-created`, and
+   `card-block-released`.
+
+3. **Route on Scope and Reason** –
+   Apply `cardholder-block-*` notifications to the account identified by
+   `cardholderAccountId`, using `reason` to select the treatment described
+   above. Apply `card-block-*` notifications to the card identified in the
+   payload.
+
+## Reconciling Block Status
+
+Webhooks provide the real-time signal. The
+{% link endpoint="get-cardholder-blocks" /%} endpoint is the authoritative
+record of an account's blocks, including each block's status and reason. Call
+it to reconcile your stored state, for example after recovering from an
+outage that outlasted webhook retries.
+
+### Card View Back-Stop
+
+When a cardholder opens a card view in your application, refresh both of the
+following:
+
+- <wbr/>{% link endpoint="get-spending-prerequisites" /%} – reflects account
+  blocks.
+- <wbr/>{% link endpoint="get-card" /%} – reflects card blocks.
+
+Treat a blocked prerequisite stage as authoritative over an active card
+status. Because account blocks do not modify card records, checking the card
+record alone will not detect an account block.
