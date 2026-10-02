@@ -32,6 +32,7 @@
 /api-reference/get-balance: "/api-reference/list-funding-sources"
 /api-reference/get-card-details: "/api-reference/get-card"
 /api-reference/get-card-information: "/api-reference/get-card"
+/api-reference/get-cardholder-blocks: "/api-reference/list-cardholder-blocks"
 /api-reference/get-detailed-account-info: "/use-cases/custodial-wallets"
 /api-reference/get-prerequisites: "/api-reference/get-spending-prerequisites"
 /api-reference/get-secure-card-information: "/guides/fetching-secure-card-information"

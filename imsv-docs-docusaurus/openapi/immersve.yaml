@@ -116,7 +116,7 @@ paths:
 
   # Cardholder Blocks
   "/api/accounts/{cardholderAccountId}/blocks":
-    get: { $ref: "./endpoints/cardholder-blocks/get-cardholder-blocks.yaml" }
+    get: { $ref: "./endpoints/cardholder-blocks/list-cardholder-blocks.yaml" }
 
   # Currency
   "/api/currencies":
